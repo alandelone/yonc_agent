@@ -2,8 +2,13 @@ import json
 import os
 from typing import List, Dict, Any
 
-STATE_FILE = "tasklist_state.json"
-CURRENT_STATE_FILE = "current_state.json"
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+os.makedirs(DATA_DIR, exist_ok=True)
+
+STATE_FILE = os.path.join(DATA_DIR, "tasklist_state.json")
+CURRENT_STATE_FILE = os.path.join(DATA_DIR, "current_state.json")
 
 def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inherit_context: str = "") -> List[Dict[str, Any]]:
     """

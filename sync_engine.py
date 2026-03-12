@@ -4,7 +4,12 @@ from datetime import datetime
 from typing import List, Dict, Any
 from state_manager import load_state, STATE_FILE, CURRENT_STATE_FILE, save_state
 
-TUNABLE_FILE = "tunable.jsonl"
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+os.makedirs(DATA_DIR, exist_ok=True)
+
+TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
 
 def log_conflict(task_id: str, task_title: str, field: str, old_value: Any, new_value: Any, source: str):
     """

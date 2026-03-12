@@ -262,8 +262,11 @@ except AttributeError:
 
 # --- Phase 4: The Asynchronous Data Flywheel (Self-Improvement) ---
 THRESHOLD = 50
-QUEUE_FILE = 'pending_human_edits.jsonl'
-CURRENT_MODEL = 'production_l4_generator.json'
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+os.makedirs(DATA_DIR, exist_ok=True)
+
+QUEUE_FILE = os.path.join(DATA_DIR, 'pending_human_edits.jsonl')
+CURRENT_MODEL = os.path.join(DATA_DIR, 'production_l4_generator.json')
 
 def trigger_batch_optimization():
     if not os.path.exists(QUEUE_FILE):

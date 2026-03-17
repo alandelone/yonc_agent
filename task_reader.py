@@ -3,6 +3,14 @@ from notion_client import get_page_blocks
 from config_reader import parse_rich_text
 from config import TEST_MONTHLY_PAGE_ID
 
+def _has_tag_style(rich_text: List[Dict[str, Any]]) -> bool:
+    """Detect if rich_text contains styling that implies tags were already applied."""
+    for rt in rich_text:
+        annos = rt.get("annotations", {})
+        if annos.get("code") or annos.get("bold"):
+            return True
+    return False
+
 def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str = None, inherit_context: str = "") -> List[Dict[str, Any]]:
     """
     Recursively builds an in-memory tree of tasks from Notion blocks.
@@ -20,6 +28,8 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
             type_content = block.get(block_type, {})
             rich_text = type_content.get("rich_text", [])
             plain_text = parse_rich_text(rich_text).strip()
+            checked = type_content.get("checked") if block_type == "to_do" else None
+            has_tag_style = _has_tag_style(rich_text)
             
             if not plain_text and not block.get("has_children"):
                 # Skip perfectly empty leaf nodes
@@ -41,7 +51,9 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
                 "depth": depth,
                 "type": block_type,
                 "annotations": annotations,
-                "children": []
+                "children": [],
+                "checked": checked,
+                "has_tag_style": has_tag_style
             }
             
             # Recurse if children were fetched
@@ -72,7 +84,7 @@ def fetch_and_build_task_tree() -> List[Dict[str, Any]]:
     Fetches the main task page blocks and builds the hierarchical task tree.
     """
     blocks = get_page_blocks(TEST_MONTHLY_PAGE_ID)
-    return build_task_tree(blocks)
+    return build_task_tree(blocks, parent_id=TEST_MONTHLY_PAGE_ID)
 
 if __name__ == "__main__":
     import json

@@ -1,17 +1,19 @@
 from typing import Dict, Any, List
 from notion_client import update_block, replace_with_toggle
 
+DONE_PREFIX = "\U0001F4AF\u2705"
+
 def format_done_text(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
-    Applies strikethrough and gray color to text. 
-    Prepends '💯✅ ' to the first element.
+    Applies strikethrough and gray color to text.
+    Prepends '\U0001F4AF\u2705 ' to the first element.
     Appends ' `?h`' to the last element.
     """
     if not rich_text:
         return []
-        
+
     formatted = []
-    
+
     # Deep copy elements to avoid mutating original state if cached
     for item in rich_text:
         new_item = item.copy()
@@ -19,20 +21,20 @@ def format_done_text(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             new_item["annotations"] = new_item["annotations"].copy()
         else:
             new_item["annotations"] = {}
-            
+
         new_item["annotations"]["strikethrough"] = True
         new_item["annotations"]["color"] = "gray"
         formatted.append(new_item)
-        
+
     # Prepend icon
     first_item = formatted[0]
     if "text" in first_item and "content" in first_item["text"]:
         content = first_item["text"]["content"]
-        if not content.startswith("💯✅"):
-            first_item["text"]["content"] = f"💯✅ {content}"
+        if not content.startswith(DONE_PREFIX):
+            first_item["text"]["content"] = f"{DONE_PREFIX} {content}"
             if "plain_text" in first_item:
-                first_item["plain_text"] = f"💯✅ {first_item['plain_text']}"
-                
+                first_item["plain_text"] = f"{DONE_PREFIX} {first_item['plain_text']}"
+
     # Append time placeholder conceptually
     # Simple logic: just append the text if it's not there
     last_item = formatted[-1]
@@ -58,7 +60,7 @@ def format_done_text(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 "href": None
             }
             formatted.append(time_placeholder)
-            
+
     return formatted
 
 def mark_block_done(block: Dict[str, Any]) -> Dict[str, Any]:

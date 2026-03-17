@@ -22,6 +22,14 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
         combined_title = f"{parent_title_prefix} {node_title}".strip()
         
         current_context = node.get("context_heading", "") or inherit_context
+        block_type = node.get("type", "")
+        type_map = {
+            "to_do": "todo",
+            "bulleted_list_item": "bullet",
+            "numbered_list_item": "bullet",
+            "toggle": "toggle",
+        }
+        task_type = type_map.get(block_type, block_type)
         
         # Create a deep copy of the node properties
         flat_node = {
@@ -32,12 +40,20 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "context_heading": current_context,
             "parent_id": node.get("parent_id"),
             "depth": node.get("depth", 0),
-            "type": node.get("type", ""),
+            "wbs_level": None,
+            "type": task_type,
+            "notion_type": block_type,
             "annotations": node.get("annotations", {}),
+            "checked": node.get("checked"),
+            "has_tag_style": node.get("has_tag_style", False),
             # Default values for fields managed by LLM or User directly
             "tags": {},
-            "status": "pending",
-            "time_taken_h": None
+            "status": "todo",
+            "metrics": {
+                "estimated_time_h": None,
+                "actual_time_taken_h": None,
+                "interruption_count": 0,
+            }
         }
         flat_list.append(flat_node)
         
@@ -58,9 +74,62 @@ def load_state(filename: str = STATE_FILE) -> List[Dict[str, Any]]:
         return []
     try:
         with open(filename, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            raw = json.load(f)
+            return [upgrade_task_schema(item) for item in raw]
     except json.JSONDecodeError:
         return []
+
+def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Upgrades legacy task schema to the current format while preserving data.
+    """
+    upgraded = item.copy()
+
+    type_map = {
+        "to_do": "todo",
+        "bulleted_list_item": "bullet",
+        "numbered_list_item": "bullet",
+        "toggle": "toggle",
+    }
+
+    # Type migration
+    existing_type = upgraded.get("type")
+    if existing_type in type_map:
+        upgraded["notion_type"] = existing_type
+        upgraded["type"] = type_map[existing_type]
+    elif "notion_type" not in upgraded:
+        upgraded["notion_type"] = None
+
+    # Status migration
+    if upgraded.get("status") == "pending":
+        upgraded["status"] = "todo"
+    elif "status" not in upgraded:
+        upgraded["status"] = "todo"
+
+    # Metrics migration
+    metrics = upgraded.get("metrics")
+    if not isinstance(metrics, dict):
+        metrics = {
+            "estimated_time_h": None,
+            "actual_time_taken_h": None,
+            "interruption_count": 0,
+        }
+
+    # Legacy time field mapping
+    if "time_taken_h" in upgraded and metrics.get("actual_time_taken_h") is None:
+        metrics["actual_time_taken_h"] = upgraded.get("time_taken_h")
+    upgraded["metrics"] = metrics
+    upgraded.pop("time_taken_h", None)
+
+    # Ensure wbs_level key exists
+    if "wbs_level" not in upgraded:
+        upgraded["wbs_level"] = None
+    if "checked" not in upgraded:
+        upgraded["checked"] = None
+    if "has_tag_style" not in upgraded:
+        upgraded["has_tag_style"] = False
+
+    return upgraded
 
 def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
@@ -77,8 +146,13 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             # Preserve local state values that might have been updated by LLM or completion logic
             existing = local_dict[b_id]
             notion_item["tags"] = existing.get("tags", {})
-            notion_item["status"] = existing.get("status", "pending")
-            notion_item["time_taken_h"] = existing.get("time_taken_h")
+            notion_item["status"] = existing.get("status", "todo")
+            notion_item["metrics"] = existing.get("metrics", {
+                "estimated_time_h": None,
+                "actual_time_taken_h": None,
+                "interruption_count": 0,
+            })
+            notion_item["wbs_level"] = existing.get("wbs_level")
             
         merged_state.append(notion_item)
         

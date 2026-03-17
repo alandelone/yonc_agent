@@ -11,6 +11,8 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
 
+DONE_MARK = "\u2705"
+
 def log_conflict(task_id: str, task_title: str, field: str, old_value: Any, new_value: Any, source: str):
     """
     Log preference drift and manual overrides to tunable.jsonl
@@ -42,7 +44,9 @@ def compute_diff(current_state: List[Dict[str, Any]], new_notion_state: List[Dic
         if b_id in curr_dict:
             curr_item = curr_dict[b_id]
             # Simple text diff detecting manual text overrides in Notion
-            if new_item.get("title") != curr_item.get("title"):
+            title_changed = new_item.get("title") != curr_item.get("title")
+            checked_changed = new_item.get("checked") != curr_item.get("checked")
+            if title_changed:
                 log_conflict(
                     b_id, 
                     curr_item.get("title"), 
@@ -51,6 +55,16 @@ def compute_diff(current_state: List[Dict[str, Any]], new_notion_state: List[Dic
                     new_item.get("title"), 
                     "notion_manual"
                 )
+            if checked_changed:
+                log_conflict(
+                    b_id,
+                    curr_item.get("title"),
+                    "checked",
+                    curr_item.get("checked"),
+                    new_item.get("checked"),
+                    "notion_manual"
+                )
+            if title_changed or checked_changed:
                 changes_detected.append({"id": b_id, "type": "update", "item": new_item})
         else:
             changes_detected.append({"id": b_id, "type": "add", "item": new_item})
@@ -85,14 +99,19 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     """
     Pushes LLM-generated tags back to Notion by adding formatted prefixes.
     Adds Theme and Mode as bold/code text, and removes [] from emojis.
-    Senses "✅" as Done sign to format the text with strikethrough.
+    Senses "\u2705" as Done sign to format the text with strikethrough.
     """
-    from notion_client import update_block
+    from notion_client import update_block, replace_with_bullet
     from config_reader import structure_yonctask_config
     import re
     
     structured_cfg = structure_yonctask_config(config_dict)
     themes = structured_cfg.get("themes", {})
+    emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
+
+    def _extract_emoji(val: Any) -> str:
+        match = emoji_pattern.search(str(val))
+        return match.group() if match else ""
     
     for task in enriched_state:
         tags = task.get("tags")
@@ -100,9 +119,17 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             continue
             
         block_id = task.get("notion_block_id") or task.get("id")
-        block_type = task.get("type")
+        block_type = task.get("notion_type") or task.get("type")
         original_title = task.get("original_notion_title", task.get("title", ""))
+        wbs_level = task.get("wbs_level")
+        if isinstance(wbs_level, str) and wbs_level.isdigit():
+            wbs_level = int(wbs_level)
         
+        if block_type == "todo":
+            block_type = "to_do"
+        elif block_type == "bullet":
+            block_type = "bulleted_list_item"
+
         if not block_type or not block_id:
             continue
             
@@ -121,7 +148,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
             
-        is_done = "✅" in original_title
+        checked = task.get("checked") if block_type == "to_do" else None
+        is_done = bool(checked) or (DONE_MARK in original_title)
         
         # Clean previous generated prefixes to prevent stacking
         clean_title = original_title
@@ -129,6 +157,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
         
         rich_text = []
+        wbs_val = tags.get("WBS level", "")
+        wbs_emoji = _extract_emoji(wbs_val)
         theme_val = tags.get("Task Theme with colour", "")
         mode_val = tags.get("Modes", "")
         
@@ -179,6 +209,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if original_theme_name in clean_title:
                 clean_title = clean_title.replace(original_theme_name, "").strip()
         
+        # 0. WBS level (always first)
+        if wbs_emoji:
+            if wbs_emoji in clean_title:
+                clean_title = clean_title.replace(wbs_emoji, "").strip()
+            rich_text.append({
+                "type": "text",
+                "text": {"content": wbs_emoji + " "},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            })
+
         # 1. Theme formatting
         if theme_str:
             if theme_str in clean_title:
@@ -225,14 +265,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "text": {"content": " "},
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
-        # 3. Emoji tags without brackets
+        # 3. Emoji tags without brackets (excluding WBS level)
         emojis = []
         for k, v in tags.items():
-            if k in ["Task Theme with colour", "Modes"]:
+            if k in ["Task Theme with colour", "Modes", "WBS level"]:
                 continue
-            match = re.search(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+', str(v))
-            if match:
-                emojis.append(match.group())
+            emoji = _extract_emoji(v)
+            if emoji:
+                emojis.append(emoji)
                 
         if emojis:
             emojis_str = "".join(emojis)
@@ -258,9 +298,35 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "color": "gray" if is_done else "default"
             }
         }
+        if block_type == "to_do":
+            content_payload[block_type]["checked"] = bool(checked)
         
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
+        should_convert = block_type == "to_do" and bool(checked) and wbs_level is not None and wbs_level != 4
+        if should_convert:
+            parent_id = task.get("parent_id")
+            if not parent_id:
+                print(f"Cannot convert to bullet: missing parent_id for {block_id}")
+            else:
+                try:
+                    new_block = replace_with_bullet(block_id, parent_id, rich_text, color="gray" if is_done else "default")
+                    new_block_id = new_block.get("id")
+                    if new_block_id:
+                        task["id"] = new_block_id
+                        task["notion_block_id"] = new_block_id
+                    task["notion_type"] = "bulleted_list_item"
+                    task["type"] = "bullet"
+                    task["checked"] = None
+                    task["synced_tags"] = True
+                    task["title"] = new_plain_title
+                    
+                    import sys
+                    msg = f"Converted checked to-do to bullet for {block_id}: {new_plain_title}\n"
+                    sys.stdout.buffer.write(msg.encode('utf-8'))
+                    continue
+                except Exception as e:
+                    print(f"Failed to convert to bullet for {block_id}: {e}")
         if task.get("synced_tags") and new_plain_title == original_title:
             continue
         

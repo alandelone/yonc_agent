@@ -35,10 +35,14 @@ def cmd_sync():
 def cmd_tag():
     """Run emoji tagging pipeline"""
     config_dict = load_config()
-    state = load_state()
-    if not state:
-        print(f"No state found in {STATE_FILE}. Try running 'sync' first.")
+    # Always refresh from Notion to catch newly generated checkboxes
+    notion_tree = fetch_and_build_task_tree()
+    if not notion_tree:
+        print("No tasks found in Notion. Try running 'sync' first.")
         return
+    flat_notion = flatten_tree(notion_tree)
+    working_state = sync_from_notion(flat_notion)
+    state = merge_states(notion_tree, working_state)
         
     print("Running tagging pipeline through LLM...")
     enriched = enrich_state_with_llm(state, config_dict)

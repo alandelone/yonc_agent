@@ -105,7 +105,8 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
         "modes": [],
         "priorities": {},
         "task_states": {},
-        "task_types": {}
+        "task_types": {},
+        "wbs_levels": {}
     }
 
     # 1. Parse Priorities (Split by " | ")
@@ -135,6 +136,31 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
         elif ":" in item: # fallback for unknown types
              parts = item.split(":", 1)
              structured["task_types"][parts[0].strip()] = {"description": parts[1].strip()}
+
+    # 3.5 Parse WBS Levels (Split by " | ")
+    wbs_key = None
+    for k in raw_config.keys():
+        if k.strip().lower() == "wbs level":
+            wbs_key = k
+            break
+    if wbs_key:
+        for item in raw_config.get(wbs_key, []):
+            if "|" not in item:
+                continue
+            emoji, level_label = map(str.strip, item.split("|", 1))
+            level_num = None
+            match = re.search(r'\d+', level_label)
+            if match:
+                try:
+                    level_num = int(match.group())
+                except ValueError:
+                    level_num = None
+            key = level_num if level_num is not None else level_label
+            structured["wbs_levels"][key] = {
+                "emoji": emoji,
+                "label": level_label,
+                "raw": f"{emoji} | {level_label}"
+            }
 
     # 4. Parse Modes (Regex for Level, Tags, Description)
     for item in raw_config.get("Modes", []):

@@ -80,6 +80,24 @@ def replace_with_toggle(block_id: str, target_parent_id: str, toggle_content: Di
     delete_block(block_id)
     
     return new_block
+
+def replace_with_bullet(block_id: str, target_parent_id: str, rich_text: List[Dict[str, Any]], color: str = "default") -> Dict[str, Any]:
+    """
+    Replace a block with a bulleted_list_item under the same parent.
+    Uses insert-after to preserve ordering, then deletes the original block.
+    """
+    new_bullet_block = {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+            "rich_text": rich_text,
+            "color": color
+        }
+    }
+    append_res = append_children(target_parent_id, [new_bullet_block], after_id=block_id)
+    new_block = append_res.get("results", [])[-1] if append_res.get("results") else {}
+    delete_block(block_id)
+    return new_block
     
 def delete_block(block_id: str) -> Dict[str, Any]:
     """删除（归档）指定的块。"""

@@ -10,8 +10,35 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
+PREFERENCE_DIFF_FILE = os.path.join(DATA_DIR, "generated_preference_diffs.jsonl")
 
 DONE_MARK = "\u2705"
+
+def log_generated_preference_diff(
+    task: Dict[str, Any],
+    action: str,
+    before: Dict[str, Any],
+    after: Dict[str, Any]
+):
+    """
+    Logs generated-task transformation based on user preference actions.
+    This dataset can be used for future split optimization.
+    """
+    log_entry = {
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "action": action,
+        "task_id": task.get("notion_block_id") or task.get("id"),
+        "source_task_id": before.get("task_id"),
+        "parent_id": task.get("parent_id"),
+        "title": task.get("original_notion_title", task.get("title", "")),
+        "wbs_level": task.get("wbs_level"),
+        "is_generated": task.get("is_generated", False),
+        "origin": task.get("origin", "unknown"),
+        "before": before,
+        "after": after
+    }
+    with open(PREFERENCE_DIFF_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
 
 def log_conflict(task_id: str, task_title: str, field: str, old_value: Any, new_value: Any, source: str):
     """
@@ -101,7 +128,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     Adds Theme and Mode as bold/code text, and removes [] from emojis.
     Senses "\u2705" as Done sign to format the text with strikethrough.
     """
-    from notion_client import update_block, replace_with_bullet
+    from notion_client import update_block, replace_with_toggle_item, delete_block
     from config_reader import structure_yonctask_config
     import re
     
@@ -122,6 +149,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         block_type = task.get("notion_type") or task.get("type")
         original_title = task.get("original_notion_title", task.get("title", ""))
         wbs_level = task.get("wbs_level")
+        is_generated = bool(task.get("is_generated"))
+        origin = task.get("origin", "unknown")
         if isinstance(wbs_level, str) and wbs_level.isdigit():
             wbs_level = int(wbs_level)
         
@@ -138,7 +167,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             # tags 为空的 paragraph 是用户手写的 section heading（如 "婚姻"），必须保留作为 context
             if not tags:
                 continue
-            from notion_client import delete_block
             try:
                 delete_block(block_id)
                 import sys
@@ -149,7 +177,37 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             continue
             
         checked = task.get("checked") if block_type == "to_do" else None
-        is_done = bool(checked) or (DONE_MARK in original_title)
+        selection_mode = block_type == "to_do" and is_generated
+
+        # Generated split tasks are treated as a preference selector:
+        # - unchecked -> delete
+        # - checked L1-L3 -> convert to toggle
+        # - checked L4 -> reset to unchecked to_do
+        if selection_mode and checked is False:
+            try:
+                delete_block(block_id)
+                log_generated_preference_diff(
+                    task=task,
+                    action="delete_unchecked_generated_todo",
+                    before={
+                        "task_id": block_id,
+                        "block_type": "to_do",
+                        "checked": False,
+                        "wbs_level": wbs_level,
+                        "origin": origin
+                    },
+                    after={"block_type": "deleted"}
+                )
+                task["deleted"] = True
+                import sys
+                msg = f"Deleted unchecked generated to-do {block_id}: {original_title}\n"
+                sys.stdout.buffer.write(msg.encode('utf-8'))
+            except Exception as e:
+                print(f"Failed to delete unchecked generated to-do {block_id}: {e}")
+            continue
+
+        # For generated selector to-do, checked does not imply completion.
+        is_done = (DONE_MARK in original_title) or (bool(checked) and not selection_mode)
         
         # Clean previous generated prefixes to prevent stacking
         clean_title = original_title
@@ -298,42 +356,81 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "color": "gray" if is_done else "default"
             }
         }
+        checked_for_payload = bool(checked)
+        should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+        if should_reset_l4_to_unchecked:
+            checked_for_payload = False
         if block_type == "to_do":
-            content_payload[block_type]["checked"] = bool(checked)
+            content_payload[block_type]["checked"] = checked_for_payload
         
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
-        should_convert = block_type == "to_do" and bool(checked) and wbs_level is not None and wbs_level != 4
-        if should_convert:
+        should_convert_to_toggle = selection_mode and bool(checked) and wbs_level != 4
+        if should_convert_to_toggle:
             parent_id = task.get("parent_id")
             if not parent_id:
-                print(f"Cannot convert to bullet: missing parent_id for {block_id}")
+                print(f"Cannot convert to toggle: missing parent_id for {block_id}")
             else:
                 try:
-                    new_block = replace_with_bullet(block_id, parent_id, rich_text, color="gray" if is_done else "default")
+                    new_block = replace_with_toggle_item(block_id, parent_id, rich_text, color="gray" if is_done else "default")
                     new_block_id = new_block.get("id")
+                    before = {
+                        "task_id": block_id,
+                        "block_type": "to_do",
+                        "checked": True,
+                        "wbs_level": wbs_level,
+                        "origin": origin
+                    }
                     if new_block_id:
                         task["id"] = new_block_id
                         task["notion_block_id"] = new_block_id
-                    task["notion_type"] = "bulleted_list_item"
-                    task["type"] = "bullet"
+                    task["notion_type"] = "toggle"
+                    task["type"] = "toggle"
                     task["checked"] = None
                     task["synced_tags"] = True
                     task["title"] = new_plain_title
+                    log_generated_preference_diff(
+                        task=task,
+                        action="convert_checked_non_l4_to_toggle",
+                        before=before,
+                        after={
+                            "block_type": "toggle",
+                            "checked": None,
+                            "new_task_id": new_block_id
+                        }
+                    )
                     
                     import sys
-                    msg = f"Converted checked to-do to bullet for {block_id}: {new_plain_title}\n"
+                    msg = f"Converted checked to-do to toggle for {block_id}: {new_plain_title}\n"
                     sys.stdout.buffer.write(msg.encode('utf-8'))
                     continue
                 except Exception as e:
-                    print(f"Failed to convert to bullet for {block_id}: {e}")
-        if task.get("synced_tags") and new_plain_title == original_title:
+                    print(f"Failed to convert to toggle for {block_id}: {e}")
+        if task.get("synced_tags") and new_plain_title == original_title and (block_type != "to_do" or bool(checked) == checked_for_payload):
             continue
         
         try:
             update_block(block_id, content_payload)
             task["synced_tags"] = True
             task["title"] = new_plain_title
+            if block_type == "to_do":
+                task["checked"] = checked_for_payload
+            if should_reset_l4_to_unchecked:
+                log_generated_preference_diff(
+                    task=task,
+                    action="convert_checked_l4_to_unchecked_todo",
+                    before={
+                        "task_id": block_id,
+                        "block_type": "to_do",
+                        "checked": True,
+                        "wbs_level": wbs_level,
+                        "origin": origin
+                    },
+                    after={
+                        "block_type": "to_do",
+                        "checked": False
+                    }
+                )
             
             import sys
             msg = f"Pushed formatted tags to Notion for {block_id}: {new_plain_title}\n"

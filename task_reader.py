@@ -1,5 +1,5 @@
 from typing import Dict, List, Any
-from notion_client import get_page_blocks
+from notion_client import get_page_blocks, get_integration_user_id
 from config_reader import parse_rich_text
 from config import TEST_MONTHLY_PAGE_ID
 
@@ -11,7 +11,13 @@ def _has_tag_style(rich_text: List[Dict[str, Any]]) -> bool:
             return True
     return False
 
-def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str = None, inherit_context: str = "") -> List[Dict[str, Any]]:
+def build_task_tree(
+    blocks: List[Dict[str, Any]],
+    depth: int = 0,
+    parent_id: str = None,
+    inherit_context: str = "",
+    integration_user_id: str = ""
+) -> List[Dict[str, Any]]:
     """
     Recursively builds an in-memory tree of tasks from Notion blocks.
     Captures block_id, plain_text, depth, children, annotations, and context heading.
@@ -30,6 +36,10 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
             plain_text = parse_rich_text(rich_text).strip()
             checked = type_content.get("checked") if block_type == "to_do" else None
             has_tag_style = _has_tag_style(rich_text)
+            created_by_id = block.get("created_by", {}).get("id", "")
+            last_edited_by_id = block.get("last_edited_by", {}).get("id", "")
+            is_generated = bool(integration_user_id and created_by_id == integration_user_id)
+            origin = "generated" if is_generated else "human"
             
             if not plain_text and not block.get("has_children"):
                 # Skip perfectly empty leaf nodes
@@ -53,7 +63,11 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
                 "annotations": annotations,
                 "children": [],
                 "checked": checked,
-                "has_tag_style": has_tag_style
+                "has_tag_style": has_tag_style,
+                "created_by_id": created_by_id,
+                "last_edited_by_id": last_edited_by_id,
+                "is_generated": is_generated,
+                "origin": origin
             }
             
             # Recurse if children were fetched
@@ -62,7 +76,8 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
                     block["children_blocks"], 
                     depth=depth + 1, 
                     parent_id=block_id,
-                    inherit_context=current_context
+                    inherit_context=current_context,
+                    integration_user_id=integration_user_id
                 )
                 
             task_tree.append(task_node)
@@ -74,7 +89,8 @@ def build_task_tree(blocks: List[Dict[str, Any]], depth: int = 0, parent_id: str
                 block["children_blocks"],
                 depth=depth,
                 parent_id=parent_id,
-                inherit_context=current_context
+                inherit_context=current_context,
+                integration_user_id=integration_user_id
             ))
             
     return task_tree
@@ -84,7 +100,8 @@ def fetch_and_build_task_tree() -> List[Dict[str, Any]]:
     Fetches the main task page blocks and builds the hierarchical task tree.
     """
     blocks = get_page_blocks(TEST_MONTHLY_PAGE_ID)
-    return build_task_tree(blocks, parent_id=TEST_MONTHLY_PAGE_ID)
+    integration_user_id = get_integration_user_id()
+    return build_task_tree(blocks, parent_id=TEST_MONTHLY_PAGE_ID, integration_user_id=integration_user_id)
 
 if __name__ == "__main__":
     import json

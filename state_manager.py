@@ -46,6 +46,10 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "annotations": node.get("annotations", {}),
             "checked": node.get("checked"),
             "has_tag_style": node.get("has_tag_style", False),
+            "created_by_id": node.get("created_by_id", ""),
+            "last_edited_by_id": node.get("last_edited_by_id", ""),
+            "is_generated": node.get("is_generated", False),
+            "origin": node.get("origin", "human"),
             # Default values for fields managed by LLM or User directly
             "tags": {},
             "status": "todo",
@@ -128,6 +132,14 @@ def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
         upgraded["checked"] = None
     if "has_tag_style" not in upgraded:
         upgraded["has_tag_style"] = False
+    if "created_by_id" not in upgraded:
+        upgraded["created_by_id"] = ""
+    if "last_edited_by_id" not in upgraded:
+        upgraded["last_edited_by_id"] = ""
+    if "is_generated" not in upgraded:
+        upgraded["is_generated"] = False
+    if "origin" not in upgraded:
+        upgraded["origin"] = "human"
 
     return upgraded
 

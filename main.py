@@ -51,6 +51,8 @@ def cmd_tag():
     print("Pushing tags back to Notion...")
     push_tags_to_notion(enriched, config_dict)
     
+    # Drop locally deleted generated selector tasks from persisted state
+    enriched = [t for t in enriched if not t.get("deleted")]
     save_state(enriched, STATE_FILE)
     print("Tagging complete. LLM outputs have been pushed back to Notion.")
 

@@ -122,6 +122,259 @@ def sync_from_notion(flat_notion_state: List[Dict[str, Any]]):
     
     return working_state
 
+def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
+    """
+    Flatten theme/sub-theme container blocks by moving their child subtrees one level up:
+    - clone each direct child subtree under container's parent (preserve order)
+    - delete original container block (archives original subtree)
+    - update local state ids/parent/depth to the newly cloned blocks
+
+    This makes structures like:
+        - Theme
+            - SubTheme
+                - Task
+    become:
+        - Task
+    with depth reduced once per removed container.
+    """
+    from notion_client import append_children, delete_block
+    from config_reader import structure_yonctask_config
+    import re
+
+    structured_cfg = structure_yonctask_config(config_dict)
+    themes = structured_cfg.get("themes", {})
+    if not themes:
+        return enriched_state
+
+    def _task_id(task: Dict[str, Any]) -> str:
+        return str(task.get("notion_block_id") or task.get("id") or "")
+
+    def _normalize_block_type(task: Dict[str, Any]) -> str:
+        block_type = task.get("notion_type") or task.get("type") or ""
+        if block_type == "todo":
+            return "to_do"
+        if block_type == "bullet":
+            return "bulleted_list_item"
+        return block_type
+
+    def _normalize_theme_text(text: str) -> str:
+        t = str(text or "").strip()
+        if not t:
+            return ""
+        t = re.sub(r'^\[.*?\]\s*', '', t).strip()
+        t = t.replace("`", "").replace("*", "").strip()
+        t = re.sub(r'^(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+\s*', '', t).strip()
+        t = re.sub(r'\s+', ' ', t).strip()
+        return t
+
+    def _match_theme_or_subtheme(text: str) -> tuple[str | None, str | None]:
+        raw = str(text or "").strip()
+        normalized = _normalize_theme_text(raw)
+        for t_name, t_data in themes.items():
+            if raw == t_name or normalized == t_name:
+                return (t_name, t_name)
+            for st in t_data.get("sub_themes", []):
+                if raw == st or normalized == st:
+                    return (t_name, st)
+        return (None, None)
+
+    def _build_children_map(state: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+        children_map: Dict[str, List[Dict[str, Any]]] = {}
+        for task in state:
+            tid = _task_id(task)
+            if not tid:
+                continue
+            pid = str(task.get("parent_id") or "")
+            if not pid:
+                continue
+            children_map.setdefault(pid, []).append(task)
+        return children_map
+
+    def _collect_subtree_ids(root_id: str, children_map: Dict[str, List[Dict[str, Any]]]) -> set:
+        ids = set()
+        stack = [root_id]
+        while stack:
+            current = stack.pop()
+            if current in ids:
+                continue
+            ids.add(current)
+            for child in children_map.get(current, []):
+                cid = _task_id(child)
+                if cid:
+                    stack.append(cid)
+        return ids
+
+    def _build_block_payload(task: Dict[str, Any]) -> Dict[str, Any]:
+        block_type = _normalize_block_type(task)
+        annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
+        color = annotations.get("color", "default")
+        title = str(task.get("original_notion_title", task.get("title", "")) or "").strip()
+        if not title:
+            title = " "
+        rich_text = [{
+            "type": "text",
+            "text": {"content": title}
+        }]
+
+        if block_type == "to_do":
+            return {
+                "object": "block",
+                "type": "to_do",
+                "to_do": {
+                    "rich_text": rich_text,
+                    "checked": bool(task.get("checked")),
+                    "color": color
+                }
+            }
+        if block_type == "bulleted_list_item":
+            return {
+                "object": "block",
+                "type": "bulleted_list_item",
+                "bulleted_list_item": {
+                    "rich_text": rich_text,
+                    "color": color
+                }
+            }
+        if block_type == "numbered_list_item":
+            return {
+                "object": "block",
+                "type": "numbered_list_item",
+                "numbered_list_item": {
+                    "rich_text": rich_text,
+                    "color": color
+                }
+            }
+        if block_type == "toggle":
+            return {
+                "object": "block",
+                "type": "toggle",
+                "toggle": {
+                    "rich_text": rich_text,
+                    "color": color
+                }
+            }
+        if block_type in ["heading_1", "heading_2", "heading_3"]:
+            return {
+                "object": "block",
+                "type": block_type,
+                block_type: {
+                    "rich_text": rich_text,
+                    "color": color
+                }
+            }
+        # Default fallback
+        return {
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": rich_text,
+                "color": color
+            }
+        }
+
+    def _clone_subtree(
+        source_task: Dict[str, Any],
+        new_parent_id: str,
+        after_id: str | None,
+        children_map: Dict[str, List[Dict[str, Any]]]
+    ) -> tuple[List[Dict[str, Any]], Dict[str, str], str]:
+        source_id = _task_id(source_task)
+        if not source_id:
+            raise ValueError("Cannot clone subtree task without id")
+
+        payload = _build_block_payload(source_task)
+        append_res = append_children(new_parent_id, [payload], after_id=after_id)
+        new_block = (append_res.get("results") or [{}])[-1]
+        new_id = str(new_block.get("id") or "")
+        if not new_id:
+            raise RuntimeError(f"Failed to create cloned block for {source_id}")
+
+        cloned_root = source_task.copy()
+        cloned_root["id"] = new_id
+        cloned_root["notion_block_id"] = new_id
+        cloned_root["parent_id"] = new_parent_id
+        if isinstance(source_task.get("depth"), int):
+            cloned_root["depth"] = max(0, int(source_task.get("depth")) - 1)
+
+        cloned_list = [cloned_root]
+        id_map = {source_id: new_id}
+
+        child_after = None
+        for child in children_map.get(source_id, []):
+            child_clones, child_map, child_new_id = _clone_subtree(
+                source_task=child,
+                new_parent_id=new_id,
+                after_id=child_after,
+                children_map=children_map
+            )
+            cloned_list.extend(child_clones)
+            id_map.update(child_map)
+            child_after = child_new_id
+
+        return cloned_list, id_map, new_id
+
+    def _is_theme_container(task: Dict[str, Any], children_map: Dict[str, List[Dict[str, Any]]]) -> bool:
+        tid = _task_id(task)
+        if not tid or not children_map.get(tid):
+            return False
+        if not task.get("parent_id"):
+            return False
+        title = task.get("original_notion_title", task.get("title", ""))
+        theme_key, _ = _match_theme_or_subtheme(title)
+        return bool(theme_key)
+
+    state = list(enriched_state)
+    changed_count = 0
+
+    while True:
+        children_map = _build_children_map(state)
+        order_index = {_task_id(task): i for i, task in enumerate(state) if _task_id(task)}
+
+        container = None
+        for task in state:
+            if _is_theme_container(task, children_map):
+                container = task
+                break
+        if container is None:
+            break
+
+        container_id = _task_id(container)
+        container_parent_id = str(container.get("parent_id") or "")
+        direct_children = children_map.get(container_id, [])
+        if not container_parent_id or not direct_children:
+            break
+
+        cloned_flat: List[Dict[str, Any]] = []
+        after_cursor = container_id
+        try:
+            for child in direct_children:
+                child_clones, _, new_root_id = _clone_subtree(
+                    source_task=child,
+                    new_parent_id=container_parent_id,
+                    after_id=after_cursor,
+                    children_map=children_map
+                )
+                cloned_flat.extend(child_clones)
+                after_cursor = new_root_id
+
+            delete_block(container_id)
+        except Exception as e:
+            print(f"Failed to reparent theme container {container_id}: {e}")
+            break
+
+        old_subtree_ids = _collect_subtree_ids(container_id, children_map)
+        container_idx = order_index.get(container_id, len(state))
+        insert_idx = sum(1 for t in state[:container_idx] if _task_id(t) not in old_subtree_ids)
+
+        remaining = [t for t in state if _task_id(t) not in old_subtree_ids]
+        state = remaining[:insert_idx] + cloned_flat + remaining[insert_idx:]
+        changed_count += 1
+
+    if changed_count:
+        print(f"Reparented and removed {changed_count} theme container block(s).")
+
+    return state
+
 def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]):
     """
     Pushes LLM-generated tags back to Notion by adding formatted prefixes.
@@ -139,11 +392,33 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     def _extract_emoji(val: Any) -> str:
         match = emoji_pattern.search(str(val))
         return match.group() if match else ""
+
+    known_wbs_emojis = set()
+    for _, wbs_entry in structured_cfg.get("wbs_levels", {}).items():
+        if isinstance(wbs_entry, dict):
+            wbs_raw = wbs_entry.get("raw") or wbs_entry.get("emoji", "")
+        else:
+            wbs_raw = str(wbs_entry)
+        e = _extract_emoji(wbs_raw)
+        if e:
+            known_wbs_emojis.add(e)
+
+    def _strip_stale_wbs_prefix(text: str) -> str:
+        cleaned = text
+        if not known_wbs_emojis:
+            return cleaned.strip()
+        changed = True
+        while changed:
+            changed = False
+            for wbs_e in known_wbs_emojis:
+                updated = re.sub(rf'^\s*{re.escape(wbs_e)}\s*', '', cleaned).strip()
+                if updated != cleaned:
+                    cleaned = updated
+                    changed = True
+        return cleaned.strip()
     
     for task in enriched_state:
-        tags = task.get("tags")
-        if not tags:
-            continue
+        tags = task.get("tags") or {}
             
         block_id = task.get("notion_block_id") or task.get("id")
         block_type = task.get("notion_type") or task.get("type")
@@ -161,7 +436,47 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         if not block_type or not block_id:
             continue
-            
+
+        checked = task.get("checked") if block_type == "to_do" else None
+        is_done = (DONE_MARK in original_title) or bool(checked)
+
+        # No tags: only do a lightweight cleanup for stale WBS prefix text.
+        if not tags:
+            if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
+                continue
+
+            clean_title = re.sub(r'^\[.*?\]\s*', '', original_title).strip()
+            clean_title = _strip_stale_wbs_prefix(clean_title)
+            should_normalize_style = bool(task.get("has_tag_style", False))
+            if clean_title == original_title and not should_normalize_style:
+                continue
+
+            rich_text = [{
+                "type": "text",
+                "text": {"content": clean_title},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            }]
+            content_payload = {
+                block_type: {
+                    "rich_text": rich_text,
+                    "color": "gray" if is_done else "default"
+                }
+            }
+            if block_type == "to_do":
+                content_payload[block_type]["checked"] = bool(checked)
+
+            try:
+                update_block(block_id, content_payload)
+                task["title"] = clean_title
+                if block_type == "to_do":
+                    task["checked"] = bool(checked)
+                import sys
+                msg = f"Cleaned stale WBS prefix for {block_id}: {clean_title}\n"
+                sys.stdout.buffer.write(msg.encode('utf-8'))
+            except Exception as e:
+                print(f"Failed to clean stale WBS prefix for {block_id}: {e}")
+            continue
+             
         if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
             # 只删除被 LLM 标记过的 paragraph/heading（已合并到子任务中的主题块）
             # tags 为空的 paragraph 是用户手写的 section heading（如 "婚姻"），必须保留作为 context
@@ -176,7 +491,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
             
-        checked = task.get("checked") if block_type == "to_do" else None
         selection_mode = block_type == "to_do" and is_generated
 
         # Generated split tasks are treated as a preference selector:
@@ -213,6 +527,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title = original_title
         # Remove [emoji_block] if any
         clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
+        # Remove stale leading WBS emojis from older runs when current tags no longer carry WBS.
+        clean_title = _strip_stale_wbs_prefix(clean_title)
         
         rich_text = []
         wbs_val = tags.get("WBS level", "")

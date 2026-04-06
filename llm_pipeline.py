@@ -329,7 +329,8 @@ def enrich_state_with_llm(
     Iterates local state and normalizes tags.
     When allow_llm=True, missing tags are generated via LLM first.
     Regardless of allow_llm, deterministic rule corrections still run
-    (theme backfill by context/neighbor and WBS normalization).
+    (theme backfill by context/neighbor).
+    WBS stays empty by default unless it already exists or is added via LLM.
     """
     from config_reader import structure_yonctask_config, clean_task_title
     structured_cfg = structure_yonctask_config(config_dict)
@@ -358,6 +359,71 @@ def enrich_state_with_llm(
                     return val.get("raw") or val.get("emoji", "")
                 return str(val)
         return ""
+
+    def _normalize_title_for_theme_match(text: str) -> str:
+        t = str(text or "").strip()
+        if not t:
+            return ""
+        # strip old generated wrappers and markdown-like markers
+        t = re.sub(r'^\[.*?\]\s*', '', t).strip()
+        t = t.replace("`", "").replace("*", "").strip()
+        # strip a leading emoji block (e.g., stale WBS prefix)
+        t = re.sub(r'^(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+\s*', '', t).strip()
+        return t
+
+    def _match_theme_or_subtheme(text: str) -> tuple[str | None, str | None]:
+        raw = str(text or "").strip()
+        normalized = _normalize_title_for_theme_match(raw)
+
+        for t_name, t_data in themes.items():
+            if raw == t_name or normalized == t_name:
+                return (t_name, t_name)
+            for st in t_data.get("sub_themes", []):
+                if raw == st or normalized == st:
+                    return (t_name, st)
+        return (None, None)
+
+    def _find_theme_from_ancestor_prefix(task: Dict[str, Any]) -> tuple[str | None, str | None]:
+        """
+        Infer theme from flattened ancestor prefix in task["title"].
+        Example title: "PhDSettle✒ Review Sustainable ..."
+        original_notion_title: "Sustainable ..."
+        ancestor prefix becomes "PhDSettle✒ Review", and we pick the nearest
+        matching theme/sub-theme from the right side.
+        """
+        full_title = str(task.get("title", "") or "").strip()
+        original_title = str(task.get("original_notion_title", "") or "").strip()
+        if not full_title or not original_title:
+            return (None, None)
+
+        if full_title.endswith(original_title):
+            ancestor_prefix = full_title[:-len(original_title)].strip()
+        else:
+            ancestor_prefix = full_title
+        if not ancestor_prefix:
+            return (None, None)
+
+        best_match = None  # (position, length, main_theme, matched_text)
+        for t_name, t_data in themes.items():
+            candidates = [(t_name, t_name)]
+            for st in t_data.get("sub_themes", []):
+                candidates.append((st, t_name))
+
+            for candidate_text, main_theme in candidates:
+                ct = str(candidate_text or "").strip()
+                if not ct:
+                    continue
+                # Prefer exact normalized parent-title fragments first
+                pos = ancestor_prefix.rfind(ct)
+                if pos < 0:
+                    continue
+                key = (pos, len(ct))
+                if (best_match is None) or (key > (best_match[0], best_match[1])):
+                    best_match = (pos, len(ct), main_theme, ct)
+
+        if best_match is None:
+            return (None, None)
+        return (best_match[2], best_match[3])
 
     def _infer_wbs_level_from_existing_tags(tags: Dict[str, Any]) -> int | None:
         wbs_text = str(tags.get("WBS level", "")).strip()
@@ -394,16 +460,77 @@ def enrich_state_with_llm(
                             return int(label_level.group(1))
         return None
 
+    parent_ids = {
+        str(t.get("parent_id"))
+        for t in local_state
+        if t.get("parent_id")
+    }
+    task_by_id: Dict[str, Dict[str, Any]] = {}
+    for t in local_state:
+        tid = str(t.get("notion_block_id") or t.get("id") or "")
+        if tid:
+            task_by_id[tid] = t
+
+    def _find_theme_from_parent_chain(task: Dict[str, Any]) -> tuple[str | None, str | None, int]:
+        """
+        Walk parent -> parent of parent ... and return:
+        (theme_key, matched_text, consecutive_theme_ancestor_count_from_direct_parent)
+        """
+        first_theme_key = None
+        first_match_text = None
+        consecutive_theme_ancestors = 0
+        counting_consecutive = True
+
+        parent_id = str(task.get("parent_id") or "")
+        seen = set()
+        while parent_id and parent_id not in seen:
+            seen.add(parent_id)
+            parent = task_by_id.get(parent_id)
+            if not parent:
+                break
+
+            parent_title = parent.get("original_notion_title", parent.get("title", ""))
+            matched_theme_key, matched_text = _match_theme_or_subtheme(parent_title)
+
+            if matched_theme_key and first_theme_key is None:
+                first_theme_key = matched_theme_key
+                first_match_text = matched_text
+
+            if counting_consecutive:
+                if matched_theme_key:
+                    consecutive_theme_ancestors += 1
+                else:
+                    counting_consecutive = False
+
+            parent_id = str(parent.get("parent_id") or "")
+
+        return (first_theme_key, first_match_text, consecutive_theme_ancestors)
+
     for idx, task in enumerate(local_state):
         import sys
         title_words = task.get("original_notion_title", task.get("title", ""))
         clean_title = clean_task_title(title_words, structured_cfg)
         tags = task.get("tags") or {}
+        existing_wbs_tag = str(tags.get("WBS level", "")).strip()
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        is_parent_container = bool(task_id and task_id in parent_ids)
+        own_theme_key, _ = _match_theme_or_subtheme(title_words)
+        is_theme_container = bool(is_parent_container and own_theme_key)
+
+        # Treat explicit theme/sub-theme containers as structural nodes only:
+        # do not tag them in either push-sync or tag mode.
+        if is_theme_container:
+            task["wbs_level"] = None
+            task["tags"] = {}
+            continue
 
         # Ensure WBS level is present
         wbs_level = task.get("wbs_level")
         if isinstance(wbs_level, str) and wbs_level.isdigit():
             wbs_level = int(wbs_level)
+        had_wbs_level = isinstance(wbs_level, int)
+        had_wbs_signal = had_wbs_level or bool(existing_wbs_tag)
+
         if not isinstance(wbs_level, int):
             inferred_level = _infer_wbs_level_from_existing_tags(tags)
             if isinstance(inferred_level, int):
@@ -416,10 +543,18 @@ def enrich_state_with_llm(
                     print(f"Failed to classify WBS level: {e}")
                     wbs_level = 1
             else:
-                wbs_level = 1
+                wbs_level = None
         task["wbs_level"] = wbs_level
 
-        allowed_keys = _allowed_tag_keys(wbs_level)
+        if isinstance(wbs_level, int):
+            allowed_keys = _allowed_tag_keys(wbs_level)
+        else:
+            allowed_keys = {"Task Theme with colour", "Modes", "Priority", "State of Parent Task", "Task Type"}
+
+        if existing_wbs_tag:
+            allowed_keys = set(allowed_keys)
+            allowed_keys.add("WBS level")
+
         tags = {k: v for k, v in tags.items() if k in allowed_keys}
 
         tag_keys_for_llm = [k for k in allowed_keys if k != "WBS level"]
@@ -442,7 +577,12 @@ def enrich_state_with_llm(
                 except Exception as e:
                     print(f"Failed to tag: {e}")
 
-        if "Task Theme with colour" in allowed_keys:
+        ancestor_theme_key, ancestor_match_text, theme_depth_offset = _find_theme_from_parent_chain(task)
+        if theme_depth_offset > 0 and isinstance(task.get("depth"), int):
+            task["depth"] = max(0, int(task.get("depth")) - theme_depth_offset)
+
+        should_autofill_theme = not (is_parent_container and not allow_llm)
+        if should_autofill_theme and "Task Theme with colour" in allowed_keys:
             context_heading = task.get("context_heading", "")
             first_word = clean_title.split()[0].strip() if clean_title else ""
 
@@ -451,11 +591,25 @@ def enrich_state_with_llm(
 
             found_theme_key = None
 
-            if context_heading:
+            # Priority 1: direct parent -> parent of parent chain
+            if ancestor_theme_key:
+                found_theme_key = ancestor_theme_key
+                if ancestor_match_text:
+                    context_heading = ancestor_match_text
+
+            # Priority 2: explicit context heading
+            if not found_theme_key and context_heading:
                 for t_name, t_data in themes.items():
                     if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
                         found_theme_key = t_name
                         break
+
+            if not found_theme_key:
+                ancestor_theme_key, ancestor_match_text = _find_theme_from_ancestor_prefix(task)
+                if ancestor_theme_key:
+                    found_theme_key = ancestor_theme_key
+                    if ancestor_match_text:
+                        context_heading = ancestor_match_text
 
             if not found_theme_key:
                 for offset in [1, -1, 2, -2]:
@@ -481,9 +635,12 @@ def enrich_state_with_llm(
                         tags["Task Theme with colour"] = raw_text
                         break
 
-        wbs_tag = _resolve_wbs_tag(wbs_level)
-        if wbs_tag:
-            tags["WBS level"] = wbs_tag
+        if isinstance(wbs_level, int) and (allow_llm or had_wbs_signal):
+            wbs_tag = _resolve_wbs_tag(wbs_level)
+            if wbs_tag:
+                tags["WBS level"] = wbs_tag
+        elif not existing_wbs_tag:
+            tags.pop("WBS level", None)
 
         task["tags"] = tags
 

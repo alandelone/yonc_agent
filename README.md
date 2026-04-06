@@ -55,7 +55,7 @@ python main.py push-sync  # 不调用 LLM，按规则修正后直接回写 Notio
 ```
 
 `push-sync` 会在回写前增加两层保障：
-- 不管 LLM 结果如何，都会再做一层规则修正：自动补 Theme（按 context/邻近段落）和 WBS 标签（`llm_pipeline.py`）。
+- 不管 LLM 结果如何，都会再做一层规则修正：自动补 Theme（按 context/邻近段落）；WBS 默认保持空，除非已有值或由 LLM 产出（`llm_pipeline.py`）。
 - 回写 Notion 时会重排标题富文本：`WBS emoji -> Theme(code+bold+color) -> Mode(按配置样式) -> 其他emoji -> 清理后的标题`（`sync_engine.py`）。
 
 ## 项目结构 (Project Structure)

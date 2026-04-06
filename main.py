@@ -49,7 +49,9 @@ def cmd_push_sync():
     print("Applying rule-based tag correction (Theme/WBS) without LLM...")
     merged_state = enrich_state_with_llm(merged_state, config_dict, allow_llm=False)
     
-    from sync_engine import push_tags_to_notion
+    from sync_engine import reparent_theme_containers, push_tags_to_notion
+    print("Reparenting theme/sub-theme containers...")
+    merged_state = reparent_theme_containers(merged_state, config_dict)
     print("Pushing tags back to Notion directly...")
     push_tags_to_notion(merged_state, config_dict)
     
@@ -72,7 +74,9 @@ def cmd_tag():
     print("Running tagging pipeline through LLM...")
     enriched = enrich_state_with_llm(state, config_dict)
     
-    from sync_engine import push_tags_to_notion
+    from sync_engine import reparent_theme_containers, push_tags_to_notion
+    print("Reparenting theme/sub-theme containers...")
+    enriched = reparent_theme_containers(enriched, config_dict)
     print("Pushing tags back to Notion...")
     push_tags_to_notion(enriched, config_dict)
     

@@ -1,6 +1,7 @@
 ﻿import dspy
 import os
 import json
+import re
 from typing import List, Dict, Any
 
 from unlimited_llmapi import configure_dspy
@@ -319,9 +320,16 @@ def tag_task(task_title: str, config_options: Dict[str, List[str]]) -> Dict[str,
     result = predictor(task_title=task_title, config_options=json.dumps(config_options, ensure_ascii=False))
     return result.tags
 
-def enrich_state_with_llm(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[str]]) -> List[Dict[str, Any]]:
+def enrich_state_with_llm(
+    local_state: List[Dict[str, Any]],
+    config_dict: Dict[str, List[str]],
+    allow_llm: bool = True
+) -> List[Dict[str, Any]]:
     """
-    Example runner: iterates through local state, runs tagging and splitting if needed.
+    Iterates local state and normalizes tags.
+    When allow_llm=True, missing tags are generated via LLM first.
+    Regardless of allow_llm, deterministic rule corrections still run
+    (theme backfill by context/neighbor and WBS normalization).
     """
     from config_reader import structure_yonctask_config, clean_task_title
     structured_cfg = structure_yonctask_config(config_dict)
@@ -351,36 +359,77 @@ def enrich_state_with_llm(local_state: List[Dict[str, Any]], config_dict: Dict[s
                 return str(val)
         return ""
 
+    def _infer_wbs_level_from_existing_tags(tags: Dict[str, Any]) -> int | None:
+        wbs_text = str(tags.get("WBS level", "")).strip()
+        if not wbs_text:
+            return None
+
+        direct = re.search(r"([1-4])", wbs_text)
+        if direct:
+            return int(direct.group(1))
+
+        levels = structured_cfg.get("wbs_levels", {})
+        for key, val in levels.items():
+            candidates = [str(key)]
+            if isinstance(val, dict):
+                candidates.extend([
+                    str(val.get("raw", "")),
+                    str(val.get("emoji", "")),
+                    str(val.get("label", ""))
+                ])
+            else:
+                candidates.append(str(val))
+
+            for c in candidates:
+                candidate = c.strip()
+                if not candidate:
+                    continue
+                if wbs_text == candidate or candidate in wbs_text or wbs_text in candidate:
+                    key_level = re.search(r"([1-4])", str(key))
+                    if key_level:
+                        return int(key_level.group(1))
+                    if isinstance(val, dict):
+                        label_level = re.search(r"([1-4])", str(val.get("label", "")))
+                        if label_level:
+                            return int(label_level.group(1))
+        return None
+
     for idx, task in enumerate(local_state):
         import sys
         title_words = task.get("original_notion_title", task.get("title", ""))
         clean_title = clean_task_title(title_words, structured_cfg)
+        tags = task.get("tags") or {}
 
         # Ensure WBS level is present
         wbs_level = task.get("wbs_level")
         if isinstance(wbs_level, str) and wbs_level.isdigit():
             wbs_level = int(wbs_level)
         if not isinstance(wbs_level, int):
-            try:
-                cls_result = classify_task(clean_title or task.get("title", ""))
-                wbs_level = 1 if cls_result.task_type == "OKR" else cls_result.level
-            except Exception as e:
-                print(f"Failed to classify WBS level: {e}")
+            inferred_level = _infer_wbs_level_from_existing_tags(tags)
+            if isinstance(inferred_level, int):
+                wbs_level = inferred_level
+            elif allow_llm:
+                try:
+                    cls_result = classify_task(clean_title or task.get("title", ""))
+                    wbs_level = 1 if cls_result.task_type == "OKR" else cls_result.level
+                except Exception as e:
+                    print(f"Failed to classify WBS level: {e}")
+                    wbs_level = 1
+            else:
                 wbs_level = 1
         task["wbs_level"] = wbs_level
 
         allowed_keys = _allowed_tag_keys(wbs_level)
-        tags = task.get("tags") or {}
         tags = {k: v for k, v in tags.items() if k in allowed_keys}
 
         tag_keys_for_llm = [k for k in allowed_keys if k != "WBS level"]
         missing_allowed = [k for k in tag_keys_for_llm if k not in tags]
-        should_call_llm = bool(missing_allowed)
+        should_call_llm = allow_llm and bool(missing_allowed)
 
-        if task.get("notion_type") in ["to_do", "todo"] and not task.get("has_tag_style", False):
+        if allow_llm and task.get("notion_type") in ["to_do", "todo"] and not task.get("has_tag_style", False):
             should_call_llm = True
 
-        if should_call_llm and tag_keys_for_llm:
+        if allow_llm and should_call_llm and tag_keys_for_llm:
             llm_config = {k: config_dict.get(k, []) for k in tag_keys_for_llm if k in config_dict}
             if llm_config:
                 msg = f"Tagging task: {clean_title or task.get('title', '')}\n"

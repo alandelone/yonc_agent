@@ -51,7 +51,12 @@ YONCTASK_CONFIG_PAGE_ID=page_id_xxx
 python main.py sync   # 同步 Notion 状态
 python main.py tag    # 智能识别并补充标签 (Themes & Modes)
 python main.py split  # 执行 4 级 WBS 任务拆解
+python main.py push-sync  # 不调用 LLM，按规则修正后直接回写 Notion
 ```
+
+`push-sync` 会在回写前增加两层保障：
+- 不管 LLM 结果如何，都会再做一层规则修正：自动补 Theme（按 context/邻近段落）和 WBS 标签（`llm_pipeline.py`）。
+- 回写 Notion 时会重排标题富文本：`WBS emoji -> Theme(code+bold+color) -> Mode(按配置样式) -> 其他emoji -> 清理后的标题`（`sync_engine.py`）。
 
 ## 项目结构 (Project Structure)
 

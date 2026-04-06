@@ -1,7 +1,7 @@
 from typing import Dict, List, Any
 from notion_client import get_page_blocks, get_integration_user_id
 from config_reader import parse_rich_text
-from config import TEST_MONTHLY_PAGE_ID
+from config import DFORGE_LINESV2_PAGE_ID
 
 def _has_tag_style(rich_text: List[Dict[str, Any]]) -> bool:
     """Detect if rich_text contains styling that implies tags were already applied."""
@@ -99,9 +99,9 @@ def fetch_and_build_task_tree() -> List[Dict[str, Any]]:
     """
     Fetches the main task page blocks and builds the hierarchical task tree.
     """
-    blocks = get_page_blocks(TEST_MONTHLY_PAGE_ID)
+    blocks = get_page_blocks(DFORGE_LINESV2_PAGE_ID)
     integration_user_id = get_integration_user_id()
-    return build_task_tree(blocks, parent_id=TEST_MONTHLY_PAGE_ID, integration_user_id=integration_user_id)
+    return build_task_tree(blocks, parent_id=DFORGE_LINESV2_PAGE_ID, integration_user_id=integration_user_id)
 
 if __name__ == "__main__":
     import json

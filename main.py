@@ -32,6 +32,31 @@ def cmd_sync():
     save_state(merged_state, STATE_FILE)
     print("Sync complete.")
 
+def cmd_push_sync():
+    """Pull Notion → update JSON → apply deterministic tag correction → push tags without LLM"""
+    print("Fetching tasks from Notion...")
+    config_dict = load_config()
+    notion_tree = fetch_and_build_task_tree()
+    if not notion_tree:
+        print("No tasks found in Notion.")
+        return
+    flat_notion = flatten_tree(notion_tree)
+    
+    print("Syncing states...")
+    working_state = sync_from_notion(flat_notion)
+    merged_state = merge_states(notion_tree, working_state)
+
+    print("Applying rule-based tag correction (Theme/WBS) without LLM...")
+    merged_state = enrich_state_with_llm(merged_state, config_dict, allow_llm=False)
+    
+    from sync_engine import push_tags_to_notion
+    print("Pushing tags back to Notion directly...")
+    push_tags_to_notion(merged_state, config_dict)
+    
+    merged_state = [t for t in merged_state if not t.get("deleted")]
+    save_state(merged_state, STATE_FILE)
+    print("Push Sync complete.")
+
 def cmd_tag():
     """Run emoji tagging pipeline"""
     config_dict = load_config()
@@ -132,6 +157,16 @@ def cmd_poll():
     except KeyboardInterrupt:
         print("\nPolling stopped.")
 
+def cmd_timeliner():
+    """Run TIMELINER page sync and update"""
+    from timeliner_sync import sync_timeliner
+    sync_timeliner()
+
+def cmd_timeliner_diff():
+    """Print git-diff style timeline date changes"""
+    from timeliner_diff import print_date_diff_all
+    print_date_diff_all()
+
 def main():
     import sys
     sys.stdout.reconfigure(encoding='utf-8')
@@ -139,15 +174,20 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
     subparsers.add_parser("sync", help="Pull Notion → update JSON → push back")
+    subparsers.add_parser("push-sync", help="Pull Notion → update JSON → rule-correct tags (Theme/WBS) → push without LLM")
     subparsers.add_parser("tag", help="Run emoji tagging pipeline")
     subparsers.add_parser("split", help="Run task decomposition pipeline")
     subparsers.add_parser("poll", help="Start polling loop")
     subparsers.add_parser("show-config", help="Print parsed YoncTask_config")
+    subparsers.add_parser("timeliner", help="Sync TIMELINER page with progress from task tree")
+    subparsers.add_parser("timeliner-diff", help="Show git-diff style date change history")
     
     args = parser.parse_args()
     
     if args.command == "sync":
         cmd_sync()
+    elif args.command == "push-sync":
+        cmd_push_sync()
     elif args.command == "tag":
         cmd_tag()
     elif args.command == "split":
@@ -156,6 +196,10 @@ def main():
         cmd_poll()
     elif args.command == "show-config":
         cmd_show_config()
+    elif args.command == "timeliner":
+        cmd_timeliner()
+    elif args.command == "timeliner-diff":
+        cmd_timeliner_diff()
     else:
         parser.print_help()
 

@@ -176,6 +176,12 @@ def cmd_split():
 
     _split_all(notion_tree)
 
+def cmd_cycle(dry_run: bool = False, skip_split: bool = False):
+    """Run the full 4-phase processing cycle (format → wbs → split → enrich)."""
+    from pipeline.runner import CycleRunner
+    CycleRunner(dry_run=dry_run, skip_split=skip_split).run()
+
+
 def cmd_poll():
     """Start polling loop"""
     print(f"Starting polling loop. Interval: {POLL_INTERVAL_SECONDS}s")
@@ -308,6 +314,18 @@ def main():
     focus_parser.add_argument("--move", type=int, default=None, help="Move focus to task number N")
     subparsers.add_parser("track", help="Track focus + update live今目 dashboard")
     subparsers.add_parser("reparent-dry", help="Dry-run: show what reparent would do without modifying Notion")
+    cycle_parser = subparsers.add_parser(
+        "cycle",
+        help="Run full 4-phase cycle: format-check → WBS tag → split → enrich → push"
+    )
+    cycle_parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Fetch and process without writing anything to Notion or disk"
+    )
+    cycle_parser.add_argument(
+        "--no-split", action="store_true",
+        help="Skip Phase 3 interactive task splitting"
+    )
     
     args = parser.parse_args()
     
@@ -333,6 +351,8 @@ def main():
         cmd_track()
     elif args.command == "reparent-dry":
         cmd_reparent_dry()
+    elif args.command == "cycle":
+        cmd_cycle(dry_run=args.dry_run, skip_split=args.no_split)
     else:
         parser.print_help()
 

@@ -12,6 +12,17 @@ os.makedirs(DATA_DIR, exist_ok=True)
 TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
 PREFERENCE_DIFF_FILE = os.path.join(DATA_DIR, "generated_preference_diffs.jsonl")
 
+def _normalize_uuid(raw_id: str) -> str:
+    """将 32 位无连字符的 hex ID 转换为标准 UUID 格式 (8-4-4-4-12)。
+    Notion API 要求 UUID 格式，但 page ID 在 config 中可能不带连字符。
+    """
+    if not raw_id:
+        return raw_id
+    clean = raw_id.replace("-", "")
+    if len(clean) == 32:
+        return f"{clean[:8]}-{clean[8:12]}-{clean[12:16]}-{clean[16:20]}-{clean[20:]}"
+    return raw_id
+
 DONE_MARK = "\u2705"
 
 def log_generated_preference_diff(
@@ -122,7 +133,7 @@ def sync_from_notion(flat_notion_state: List[Dict[str, Any]]):
     
     return working_state
 
-def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
+def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]], dry_run: bool = False) -> List[Dict[str, Any]]:
     """
     Flatten theme/sub-theme container blocks by moving their child subtrees one level up:
     - clone each direct child subtree under container's parent (preserve order)
@@ -136,6 +147,8 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
     become:
         - Task
     with depth reduced once per removed container.
+
+    When dry_run=True, only prints planned actions without calling Notion API.
     """
     from notion_client import append_children, delete_block
     from config_reader import structure_yonctask_config
@@ -170,12 +183,37 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
     def _match_theme_or_subtheme(text: str) -> tuple[str | None, str | None]:
         raw = str(text or "").strip()
         normalized = _normalize_theme_text(raw)
+        best_match: tuple[int, int, str, str] | None = None
         for t_name, t_data in themes.items():
             if raw == t_name or normalized == t_name:
                 return (t_name, t_name)
             for st in t_data.get("sub_themes", []):
                 if raw == st or normalized == st:
                     return (t_name, st)
+            # Fallback for previously prefixed rows, e.g. "鍛造Lab 鍛造Maker".
+            candidates = [t_name] + list(t_data.get("sub_themes", []))
+            for candidate in candidates:
+                c = str(candidate or "").strip()
+                if not c:
+                    continue
+                pos = normalized.rfind(c)
+                if pos < 0:
+                    continue
+                key = (pos, len(c), t_name, c)
+                if best_match is None or key[:2] > best_match[:2]:
+                    best_match = key
+        if best_match is not None:
+            return (best_match[2], best_match[3])
+        return (None, None)
+
+    def _extract_theme_prefixed_suffix(text: str) -> tuple[str | None, str | None]:
+        normalized = _normalize_theme_text(text)
+        for t_name in themes.keys():
+            prefix = f"{t_name} "
+            if normalized.startswith(prefix):
+                suffix = normalized[len(prefix):].strip()
+                if suffix:
+                    return (t_name, suffix)
         return (None, None)
 
     def _build_children_map(state: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
@@ -206,6 +244,9 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
 
     def _build_block_payload(task: Dict[str, Any]) -> Dict[str, Any]:
         block_type = _normalize_block_type(task)
+        # 将编号列表转为无序列表（用户要求子主题下所有内容使用 bullet 格式）
+        if block_type == "numbered_list_item":
+            block_type = "bulleted_list_item"
         annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
         color = annotations.get("color", "default")
         title = str(task.get("original_notion_title", task.get("title", "")) or "").strip()
@@ -272,46 +313,66 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
             }
         }
 
-    def _clone_subtree(
-        source_task: Dict[str, Any],
+    def _batch_clone_children(
+        source_tasks: List[Dict[str, Any]],
         new_parent_id: str,
-        after_id: str | None,
-        children_map: Dict[str, List[Dict[str, Any]]]
-    ) -> tuple[List[Dict[str, Any]], Dict[str, str], str]:
-        source_id = _task_id(source_task)
-        if not source_id:
-            raise ValueError("Cannot clone subtree task without id")
+        children_map: Dict[str, List[Dict[str, Any]]],
+        after_id: str = None
+    ) -> List[Dict[str, Any]]:
+        """批量将 source_tasks 内容创建到 new_parent_id 下，不使用 after 参数避免 ID 重用。
+        返回平展后的克隆任务列表。
+        """
+        if not source_tasks:
+            return []
 
-        payload = _build_block_payload(source_task)
-        append_res = append_children(new_parent_id, [payload], after_id=after_id)
-        new_block = (append_res.get("results") or [{}])[-1]
-        new_id = str(new_block.get("id") or "")
-        if not new_id:
-            raise RuntimeError(f"Failed to create cloned block for {source_id}")
+        safe_parent_id = _normalize_uuid(new_parent_id)
 
-        cloned_root = source_task.copy()
-        cloned_root["id"] = new_id
-        cloned_root["notion_block_id"] = new_id
-        cloned_root["parent_id"] = new_parent_id
-        if isinstance(source_task.get("depth"), int):
-            cloned_root["depth"] = max(0, int(source_task.get("depth")) - 1)
+        # 一次性批量 append 所有 direct children（不带 after）以避免 ID 重用 bug
+        payloads = [_build_block_payload(t) for t in source_tasks]
 
-        cloned_list = [cloned_root]
-        id_map = {source_id: new_id}
+        if dry_run:
+            import uuid
+            new_ids = [f"dry-{uuid.uuid4().hex[:12]}" for _ in source_tasks]
+        else:
+            append_res = append_children(safe_parent_id, payloads, after_id=after_id)
+            results = append_res.get("results") or []
+            
+            # When using after_id, Notion API returns newly created blocks AND subsequent siblings.
+            if len(results) > len(source_tasks):
+                results = results[:len(source_tasks)]
+                
+            if len(results) != len(source_tasks):
+                raise RuntimeError(
+                    f"append_children returned {len(results)} blocks, expected {len(source_tasks)}"
+                )
+            new_ids = [str(r.get("id") or "") for r in results]
+            missing = [i for i, nid in enumerate(new_ids) if not nid]
+            if missing:
+                raise RuntimeError(f"Missing IDs for cloned blocks at indices {missing}")
 
-        child_after = None
-        for child in children_map.get(source_id, []):
-            child_clones, child_map, child_new_id = _clone_subtree(
-                source_task=child,
-                new_parent_id=new_id,
-                after_id=child_after,
-                children_map=children_map
+        cloned_flat: List[Dict[str, Any]] = []
+        for source_task, new_id in zip(source_tasks, new_ids):
+            source_id = _task_id(source_task)
+            cloned_root = source_task.copy()
+            cloned_root["id"] = new_id
+            cloned_root["notion_block_id"] = new_id
+            cloned_root["parent_id"] = new_parent_id
+            if isinstance(source_task.get("depth"), int):
+                cloned_root["depth"] = max(0, int(source_task.get("depth")) - 1)
+            cloned_root["_original_depth_for_reparent"] = source_task.get(
+                "_original_depth_for_reparent",
+                source_task.get("depth")
             )
-            cloned_list.extend(child_clones)
-            id_map.update(child_map)
-            child_after = child_new_id
+            cloned_flat.append(cloned_root)
 
-        return cloned_list, id_map, new_id
+            # 递归处理该节点的子节点（同样批量不带 after）
+            grandchildren = children_map.get(source_id, [])
+            if grandchildren:
+                cloned_flat.extend(
+                    _batch_clone_children(grandchildren, new_id, children_map)
+                )
+
+        return cloned_flat
 
     def _is_theme_container(task: Dict[str, Any], children_map: Dict[str, List[Dict[str, Any]]]) -> bool:
         tid = _task_id(task)
@@ -319,9 +380,29 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
             return False
         if not task.get("parent_id"):
             return False
+        depth = task.get("_original_depth_for_reparent", task.get("depth"))
+        if isinstance(depth, int) and depth > 1:
+            # Only flatten shallow theme/sub-theme containers.
+            # Keep deeper hierarchy (e.g. 3dpF under 鍛造Maker) intact.
+            return False
         title = task.get("original_notion_title", task.get("title", ""))
-        theme_key, _ = _match_theme_or_subtheme(title)
-        return bool(theme_key)
+        
+        raw = str(title or "").strip()
+        normalized = _normalize_theme_text(raw)
+        for t_name, t_data in themes.items():
+            if raw == t_name or normalized == t_name:
+                return True
+            for st in t_data.get("sub_themes", []):
+                if raw == st or normalized == st:
+                    return True
+
+        # Dynamic fallback for "Theme SomeLabel" rows that are effectively
+        # one-child grouping wrappers (e.g. "我流方矩 刚体" -> "刚体打造和训练论").
+        pref_theme, pref_suffix = _extract_theme_prefixed_suffix(title)
+        if pref_theme and pref_suffix and len(children_map.get(tid, [])) == 1:
+            return True
+
+        return False
 
     state = list(enriched_state)
     changed_count = 0
@@ -344,23 +425,49 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         if not container_parent_id or not direct_children:
             break
 
-        cloned_flat: List[Dict[str, Any]] = []
-        after_cursor = container_id
-        try:
-            for child in direct_children:
-                child_clones, _, new_root_id = _clone_subtree(
-                    source_task=child,
-                    new_parent_id=container_parent_id,
-                    after_id=after_cursor,
-                    children_map=children_map
-                )
-                cloned_flat.extend(child_clones)
-                after_cursor = new_root_id
+        # 解析容器匹配到的子主题名，用于传播给子节点的 theme_display_label
+        container_title = container.get("original_notion_title", container.get("title", ""))
+        _, container_matched_subtheme = _match_theme_or_subtheme(container_title)
+        if not container_matched_subtheme:
+            _, container_matched_subtheme = _extract_theme_prefixed_suffix(container_title)
+            if container_matched_subtheme:
+                # _extract_theme_prefixed_suffix 返回 (theme, suffix)，suffix 就是子主题名
+                pass
 
-            delete_block(container_id)
+        import sys
+        if dry_run:
+            msg = f"[DRY-RUN] Would reparent container '{container_title}' (id={container_id})\n"
+            msg += f"  parent_id={container_parent_id} -> normalized={_normalize_uuid(container_parent_id)}\n"
+            msg += f"  matched_subtheme='{container_matched_subtheme}', direct children={len(direct_children)}\n"
+            for child in direct_children:
+                child_title = child.get('original_notion_title', child.get('title', ''))
+                msg += f"    -> child: '{child_title}'\n"
+            sys.stdout.buffer.write(msg.encode('utf-8'))
+
+        try:
+            safe_container_id = _normalize_uuid(container_id) if not dry_run else None
+            
+            cloned_flat = _batch_clone_children(
+                direct_children, container_parent_id, children_map, after_id=safe_container_id
+            )
+
+            # Insert first, then delete to avoid using after=archived_id
+            if not dry_run:
+                delete_block(safe_container_id)
+            else:
+                msg = f"[DRY-RUN] Would delete container block {container_id}\n"
+                sys.stdout.buffer.write(msg.encode('utf-8'))
         except Exception as e:
             print(f"Failed to reparent theme container {container_id}: {e}")
             break
+
+        # 传播 theme_display_label 到直接子节点
+        # clone 后直接子节点的 parent_id == container_parent_id（容器的父级）
+        if container_matched_subtheme:
+            for cloned in cloned_flat:
+                # 仅对直接子节点设置 label（深层子节点的 parent_id 不等于 container_parent_id）
+                if cloned.get("parent_id") == container_parent_id:
+                    cloned["theme_display_label"] = container_matched_subtheme
 
         old_subtree_ids = _collect_subtree_ids(container_id, children_map)
         container_idx = order_index.get(container_id, len(state))
@@ -416,6 +523,148 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     cleaned = updated
                     changed = True
         return cleaned.strip()
+
+    def _normalize_for_theme_match(text: str) -> str:
+        normalized = str(text or "").strip()
+        if not normalized:
+            return ""
+        normalized = re.sub(r'^\[.*?\]\s*', '', normalized).strip()
+        normalized = normalized.replace("`", "").replace("*", "").strip()
+        normalized = re.sub(r'^(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+\s*', '', normalized).strip()
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
+        return normalized
+
+    def _resolve_display_theme_label(task: Dict[str, Any], main_theme_name: str) -> str:
+        explicit = str(task.get("theme_display_label", "")).strip()
+        if explicit:
+            return explicit
+
+        context_heading = str(task.get("context_heading", "")).strip()
+        if main_theme_name in themes:
+            sub_themes = themes[main_theme_name].get("sub_themes", [])
+            if context_heading and context_heading in sub_themes:
+                return context_heading
+
+        full_title = _normalize_for_theme_match(task.get("title", ""))
+        original_title = _normalize_for_theme_match(task.get("original_notion_title", task.get("title", "")))
+        prefix = full_title
+        if original_title and full_title.endswith(original_title):
+            prefix = full_title[:-len(original_title)].strip()
+
+        search_target = prefix if prefix else original_title
+        if main_theme_name in themes and search_target:
+            subthemes = list(themes[main_theme_name].get("sub_themes", []))
+            best_submatch: tuple[int, int, str] | None = None
+            
+            # 1. Prefer matching sub_themes first, and find the earliest/longest
+            for c in subthemes:
+                c = str(c or "").strip()
+                if not c:
+                    continue
+                pos = search_target.find(c)
+                if pos < 0:
+                    continue
+                key = (-pos, len(c), c)
+                if best_submatch is None or key[:2] > best_submatch[:2]:
+                    best_submatch = key
+                    
+            if best_submatch:
+                return best_submatch[2]
+                
+            # 2. If no sub_theme matched, check if main_theme matches
+            if search_target.find(main_theme_name) >= 0:
+                return main_theme_name
+
+        return main_theme_name
+
+    def _word_limit_for_depth(depth: Any) -> int:
+        try:
+            d = int(depth)
+        except (TypeError, ValueError):
+            d = 0
+        if d <= 0:
+            return 12
+        if d == 1:
+            return 11
+        return 10
+
+    def _split_title_with_limit(title: str, depth: Any, tag_token_count: int) -> tuple[str, str]:
+        words = [w for w in str(title or "").split() if w]
+        if not words:
+            return ("", "")
+
+        allowed_total = _word_limit_for_depth(depth)
+        allowed_title_words = max(1, allowed_total - max(0, int(tag_token_count)))
+        
+        visible_words = []
+        overflow_words = []
+        meaningful_count = 0
+        
+        # 只对包含字母、数字、下划线、汉字 (\w) 的有效单词计入限制名额，纯符号（如 : || -）不占字数
+        for w in words:
+            if meaningful_count < allowed_title_words:
+                visible_words.append(w)
+                import re
+                if re.search(r'\w', w):
+                    meaningful_count += 1
+            else:
+                overflow_words.append(w)
+                
+        visible = " ".join(visible_words).strip()
+        overflow = " ".join(overflow_words).strip()
+        return (visible, overflow)
+
+    def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool):
+        base_annos = {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+        title_text = str(visible_title or "").strip()
+        if not title_text:
+            rich_text.append({
+                "type": "text",
+                "text": {"content": " "},
+                "annotations": base_annos.copy()
+            })
+            return
+
+        if ":" not in title_text:
+            rich_text.append({
+                "type": "text",
+                "text": {"content": title_text},
+                "annotations": base_annos.copy()
+            })
+            return
+
+        task_part, desc_part = title_text.split(":", 1)
+        task_part = task_part.strip()
+        desc_part = desc_part.strip()
+
+        if task_part:
+            rich_text.append({
+                "type": "text",
+                "text": {"content": f"{task_part} : "},
+                "annotations": base_annos.copy()
+            })
+        else:
+            rich_text.append({
+                "type": "text",
+                "text": {"content": ": "},
+                "annotations": base_annos.copy()
+            })
+
+        if desc_part:
+            desc_annos = base_annos.copy()
+            desc_annos["italic"] = True
+            desc_annos["color"] = "gray"
+            rich_text.append({
+                "type": "text",
+                "text": {"content": desc_part},
+                "annotations": desc_annos
+            })
+
+    task_by_id: Dict[str, Dict[str, Any]] = {}
+    for t in enriched_state:
+        tid = str(t.get("notion_block_id") or t.get("id") or "")
+        if tid:
+            task_by_id[tid] = t
     
     for task in enriched_state:
         tags = task.get("tags") or {}
@@ -523,6 +772,37 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # For generated selector to-do, checked does not imply completion.
         is_done = (DONE_MARK in original_title) or (bool(checked) and not selection_mode)
         
+        # --- Fast pass if already formatted with Theme/SubTheme ---
+        is_already_themed = False
+        plain_title_trimmed = original_title.strip()
+        for t_name, t_data in themes.items():
+            if plain_title_trimmed.startswith(t_name):
+                is_already_themed = True
+                break
+            for st in t_data.get("sub_themes", []):
+                if plain_title_trimmed.startswith(st):
+                    is_already_themed = True
+                    break
+            if is_already_themed:
+                break
+                
+        should_convert_to_toggle = selection_mode and bool(checked) and wbs_level != 4
+        should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+        is_pending_selection_change = should_convert_to_toggle or should_reset_l4_to_unchecked
+
+        # Check if the row might need colon-italic styling or overflow handling
+        needs_colon_formatting = ":" in original_title
+        word_limit = _word_limit_for_depth(task.get("depth", 0))
+        needs_overflow = len(original_title.split()) > (word_limit + 1)
+
+        # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
+        # we bypass the rich text reconstruction and API update.
+        # BUT we DO NOT bypass if it contains a colon or exceeds word limits (so they continue getting processed for overflow/styling).
+        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_overflow:
+            task["synced_tags"] = True
+            continue
+        # --------------------------------------------------------
+        
         # Clean previous generated prefixes to prevent stacking
         clean_title = original_title
         # Remove [emoji_block] if any
@@ -538,11 +818,13 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         target_color = "default"
         theme_str = ""
+        tag_token_count = 0
+        should_strip_theme_label_from_title = True
         
         if theme_val:
-            original_theme_name = theme_val.split()[0]
+            original_theme_name = str(theme_val).split()[0]
             main_theme_name = original_theme_name
-            context_heading = task.get("context_heading", "")
+            context_heading = str(task.get("context_heading", "")).strip()
             
             # Fallback 1: 用清理后的标题首词（去掉已有主题名和 mode 名）做 context
             if not context_heading and clean_title:
@@ -560,33 +842,44 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         main_theme_name = t_name
                         break
                         
-            theme_str = main_theme_name
-            
             if main_theme_name in themes:
                 target_color = themes[main_theme_name].get("color", "default")
-                sub_themes = themes[main_theme_name].get("sub_themes", [])
-                
-                # Check if context_heading matches a sub-theme
-                if context_heading and context_heading in sub_themes:
-                    theme_str = context_heading
-                else:
-                    # Fallback check against title
-                    for st in sub_themes:
-                        if st in clean_title:
-                            theme_str = st
-                            break
+
+            theme_str = _resolve_display_theme_label(task, main_theme_name)
+            if main_theme_name in themes:
+                known_sub_themes = set(themes[main_theme_name].get("sub_themes", []))
+                if theme_str and theme_str != main_theme_name and theme_str not in known_sub_themes:
+                    # Dynamic display labels (not part of configured sub-themes)
+                    # should not erase semantically meaningful words in task title.
+                    should_strip_theme_label_from_title = False
+
+            current_theme_key = str(main_theme_name or original_theme_name or "").strip()
+            parent_theme_key = ""
+            parent_id = str(task.get("parent_id") or "")
+            parent_task = task_by_id.get(parent_id)
+            if parent_task:
+                parent_tags = parent_task.get("tags") or {}
+                parent_theme_val = parent_tags.get("Task Theme with colour", "")
+                if parent_theme_val:
+                    parent_theme_key = str(parent_theme_val).split()[0].strip()
+            if parent_theme_key and current_theme_key and parent_theme_key == current_theme_key:
+                # Parent already carries the same main theme, so avoid repeating it on the child row.
+                theme_str = ""
                             
             # 移除所有已知主题名，防止之前错误推送的主题名残留
             for t_name in themes.keys():
-                if t_name in clean_title:
+                if t_name and t_name in clean_title:
                     clean_title = clean_title.replace(t_name, "").strip()
-            if original_theme_name in clean_title:
+            if original_theme_name and original_theme_name in clean_title:
                 clean_title = clean_title.replace(original_theme_name, "").strip()
+            if should_strip_theme_label_from_title and theme_str and theme_str in clean_title:
+                clean_title = clean_title.replace(theme_str, "").strip()
         
         # 0. WBS level (always first)
         if wbs_emoji:
             if wbs_emoji in clean_title:
                 clean_title = clean_title.replace(wbs_emoji, "").strip()
+            tag_token_count += 1
             rich_text.append({
                 "type": "text",
                 "text": {"content": wbs_emoji + " "},
@@ -595,8 +888,9 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         # 1. Theme formatting
         if theme_str:
-            if theme_str in clean_title:
+            if should_strip_theme_label_from_title and theme_str in clean_title:
                 clean_title = clean_title.replace(theme_str, "").strip()
+            tag_token_count += 1
                 
             rich_text.append({
                 "type": "text",
@@ -622,6 +916,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     
                     if mode_name in clean_title:
                         clean_title = clean_title.replace(mode_name, "").strip()
+                    tag_token_count += 1
                         
                     # Apply strike and gray out for done state, otherwise keep configured style
                     final_mode_annos = mode_annos.copy()
@@ -652,6 +947,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             emojis_str = "".join(emojis)
             for e in emojis:
                 clean_title = clean_title.replace(e, "").strip()
+            tag_token_count += len(emojis)
             
             rich_text.append({
                 "type": "text",
@@ -659,12 +955,13 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
             
-        # 4. The actual cleaned task title
-        rich_text.append({
-            "type": "text",
-            "text": {"content": clean_title.strip()},
-            "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-        })
+        # 4. The actual cleaned task title (with colon-description style and depth-based word cap)
+        visible_title, overflow_title = _split_title_with_limit(
+            clean_title.strip(),
+            task.get("depth", 0),
+            tag_token_count
+        )
+        _append_title_segments(rich_text, visible_title, is_done)
         
         content_payload = {
             block_type: {
@@ -681,6 +978,46 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
+        if overflow_title:
+            parent_id = task.get("parent_id")
+            if not parent_id:
+                print(f"Cannot convert overflow task to toggle: missing parent_id for {block_id}")
+            else:
+                overflow_children = [{
+                    "object": "block",
+                    "type": "quote",
+                    "quote": {
+                        "rich_text": [{
+                            "type": "text",
+                            "text": {"content": overflow_title},
+                            "annotations": {"italic": True, "color": "gray"}
+                        }],
+                        "color": "gray"
+                    }
+                }]
+                try:
+                    new_block = replace_with_toggle_item(
+                        block_id,
+                        parent_id,
+                        rich_text,
+                        color="gray" if is_done else "default",
+                        children=overflow_children
+                    )
+                    new_block_id = new_block.get("id")
+                    if new_block_id:
+                        task["id"] = new_block_id
+                        task["notion_block_id"] = new_block_id
+                    task["notion_type"] = "toggle"
+                    task["type"] = "toggle"
+                    task["checked"] = None
+                    task["synced_tags"] = True
+                    task["title"] = new_plain_title
+                    import sys
+                    msg = f"Converted overflow text to toggle for {block_id}: {new_plain_title}\n"
+                    sys.stdout.buffer.write(msg.encode('utf-8'))
+                    continue
+                except Exception as e:
+                    print(f"Failed to convert overflow task to toggle for {block_id}: {e}")
         should_convert_to_toggle = selection_mode and bool(checked) and wbs_level != 4
         if should_convert_to_toggle:
             parent_id = task.get("parent_id")

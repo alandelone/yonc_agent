@@ -85,6 +85,31 @@ def cmd_tag():
     save_state(enriched, STATE_FILE)
     print("Tagging complete. LLM outputs have been pushed back to Notion.")
 
+def cmd_reparent_dry():
+    """Dry-run: 展示 reparent_theme_containers 将要执行的操作，不修改 Notion"""
+    import sys
+    sys.stdout.reconfigure(encoding='utf-8')
+    print("Fetching tasks from Notion (dry-run mode)...")
+    config_dict = load_config()
+    notion_tree = fetch_and_build_task_tree()
+    if not notion_tree:
+        print("No tasks found in Notion.")
+        return
+    flat_notion = flatten_tree(notion_tree)
+    working_state = sync_from_notion(flat_notion)
+    merged_state = merge_states(notion_tree, working_state)
+
+    print("Applying rule-based tag correction (no LLM)...")
+    merged_state = enrich_state_with_llm(merged_state, config_dict, allow_llm=False)
+
+    from sync_engine import reparent_theme_containers
+    print("\n" + "=" * 60)
+    print("  REPARENT DRY-RUN: 以下操作将在实际执行时发生")
+    print("=" * 60 + "\n")
+    result_state = reparent_theme_containers(merged_state, config_dict, dry_run=True)
+    print(f"\n结果: {len(merged_state)} -> {len(result_state)} 个任务节点")
+    print("\n运行 'python main.py push-sync' 以实际执行。")
+
 def cmd_split():
     """Run task decomposition pipeline"""
     from task_reader import fetch_and_build_task_tree
@@ -111,7 +136,7 @@ def cmd_split():
         for node in nodes:
             if node.get("type") == "bulleted_list_item":
                 title_words = node.get("title", "")
-                if "✅" not in title_words and len(title_words) > 5:
+                if "✅" not in title_words and len(title_words) > 5 and not (node.get("has_tag_style") and node.get("children")):
                     clean_title = clean_task_title(title_words, structured_cfg)
                     
                     # Extract parent theme
@@ -171,6 +196,100 @@ def cmd_timeliner_diff():
     from timeliner_diff import print_date_diff_all
     print_date_diff_all()
 
+def cmd_focus(move_to: int = None):
+    """显示编号任务列表或移动焦点 emoji"""
+    import sys
+    from focus_tracker import (
+        list_focusable_tasks, find_focus_task,
+        move_focus_emoji, track_focus, load_focus_log, save_focus_log,
+        record_focus_event, FOCUS_EMOJI
+    )
+
+    notion_tree = fetch_and_build_task_tree()
+    if not notion_tree:
+        print("No tasks found in Notion.")
+        return
+
+    tasks = list_focusable_tasks(notion_tree)
+
+    if move_to is not None:
+        # 移动焦点到指定编号
+        target = next((t for t in tasks if t["index"] == move_to), None)
+        if not target:
+            print(f"错误: 编号 {move_to} 不存在。有效范围: 1-{len(tasks)}")
+            return
+
+        focus_info = find_focus_task(notion_tree)
+        if focus_info:
+            if focus_info["block_id"] == target["block_id"]:
+                sys.stdout.buffer.write(f"💪🏿💪🏿💪🏿 已经在该任务上: {target['title']}\n".encode('utf-8'))
+                return
+            # 记录旧焦点结束 + 新焦点开始
+            log = load_focus_log()
+            log = record_focus_event(log, focus_info["block_id"], focus_info["title"], "end")
+            log = record_focus_event(log, target["block_id"], target["title"], "start")
+            save_focus_log(log)
+            # 在 Notion 中移动 emoji
+            move_focus_emoji(focus_info["block_id"], target["block_id"])
+            sys.stdout.buffer.write(f"✅ 焦点已移动到 [{move_to}] {target['title']}\n".encode('utf-8'))
+        else:
+            # 当前没有焦点，直接放到目标任务
+            from focus_tracker import _append_focus_to_block
+            _append_focus_to_block(target["block_id"])
+            log = load_focus_log()
+            log = record_focus_event(log, target["block_id"], target["title"], "start")
+            save_focus_log(log)
+            sys.stdout.buffer.write(f"✅ 焦点已设置到 [{move_to}] {target['title']}\n".encode('utf-8'))
+        return
+
+    # 默认：显示编号任务列表
+    sys.stdout.buffer.write(f"\n📋 Task List ({FOCUS_EMOJI} = current focus)\n".encode('utf-8'))
+    sys.stdout.buffer.write("─" .encode('utf-8') * 50 + b"\n")
+
+    for t in tasks:
+        marker = f" {FOCUS_EMOJI}" if t["has_focus"] else ""
+        line = f"  {t['index']:3d}. {t['title']}{marker}\n"
+        sys.stdout.buffer.write(line.encode('utf-8'))
+
+    sys.stdout.buffer.write(b"\n")
+    sys.stdout.buffer.write("💡 Usage: python main.py focus --move <N>\n".encode('utf-8'))
+    sys.stdout.buffer.write("   Example: python main.py focus --move 4\n".encode('utf-8'))
+
+
+def cmd_track():
+    """追踪当前焦点并更新 live今目 Dashboard"""
+    import sys
+    from focus_tracker import track_focus, FOCUS_EMOJI
+    from dashboard import write_dashboard
+    from config import LIVETODAY_PAGE_ID, DFORGE_LINESV2_PAGE_ID
+
+    print("Fetching tasks from Notion...")
+    notion_tree = fetch_and_build_task_tree()
+    if not notion_tree:
+        print("No tasks found in Notion.")
+        return
+
+    # 追踪焦点变化
+    current_focus = track_focus(notion_tree, DFORGE_LINESV2_PAGE_ID)
+    if current_focus:
+        sys.stdout.buffer.write(f"🎯 当前焦点: {current_focus['title']}\n".encode('utf-8'))
+        sys.stdout.buffer.write(f"   开始时间: {current_focus['started_at']}\n".encode('utf-8'))
+    else:
+        sys.stdout.buffer.write(f"⚠️ 未找到 {FOCUS_EMOJI} 标记的任务\n".encode('utf-8'))
+
+    # 更新 live今目 Dashboard
+    print("Updating live今目 dashboard...")
+    raw_cfg = load_config()
+    structured_cfg = structure_yonctask_config(raw_cfg)
+    flat_state = flatten_tree(notion_tree)
+    # 合并本地状态中的 tags 信息
+    working_state = load_state(STATE_FILE)
+    merged = merge_states(notion_tree, working_state)
+
+    block_count = write_dashboard(LIVETODAY_PAGE_ID, merged, structured_cfg)
+    print(f"Dashboard updated: {block_count} blocks written to live今目 page.")
+    print("Track complete.")
+
 def main():
     import sys
     sys.stdout.reconfigure(encoding='utf-8')
@@ -185,6 +304,10 @@ def main():
     subparsers.add_parser("show-config", help="Print parsed YoncTask_config")
     subparsers.add_parser("timeliner", help="Sync TIMELINER page with progress from task tree")
     subparsers.add_parser("timeliner-diff", help="Show git-diff style date change history")
+    focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus")
+    focus_parser.add_argument("--move", type=int, default=None, help="Move focus to task number N")
+    subparsers.add_parser("track", help="Track focus + update live今目 dashboard")
+    subparsers.add_parser("reparent-dry", help="Dry-run: show what reparent would do without modifying Notion")
     
     args = parser.parse_args()
     
@@ -204,6 +327,12 @@ def main():
         cmd_timeliner()
     elif args.command == "timeliner-diff":
         cmd_timeliner_diff()
+    elif args.command == "focus":
+        cmd_focus(move_to=args.move)
+    elif args.command == "track":
+        cmd_track()
+    elif args.command == "reparent-dry":
+        cmd_reparent_dry()
     else:
         parser.print_help()
 

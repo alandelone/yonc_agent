@@ -1,4 +1,4 @@
-import requests
+﻿import requests
 from typing import List, Dict, Any
 from functools import lru_cache
 from config import NOTION_HEADERS
@@ -19,6 +19,13 @@ def get_integration_user_id() -> str:
         return data.get("id", "")
     except Exception:
         return ""
+
+def get_block(block_id: str) -> Dict[str, Any]:
+    """获取单个块的完整信息（含 rich_text）。"""
+    url = f"{BASE_URL}/blocks/{block_id}"
+    response = requests.get(url, headers=NOTION_HEADERS)
+    response.raise_for_status()
+    return response.json()
 
 def get_page_blocks(block_id: str) -> List[Dict[str, Any]]:
     """递归获取页面或块的所有子块。 (Handles pagination + nested children)"""
@@ -61,7 +68,7 @@ def append_children(parent_id: str, children: List[Dict[str, Any]], after_id: st
         "children": children
     }
     if after_id:
-        payload["after_id"] = after_id
+        payload["after"] = after_id
     if position:
         payload["position"] = {"type": position}
         
@@ -152,3 +159,4 @@ def delete_block(block_id: str) -> Dict[str, Any]:
     response = requests.delete(url, headers=NOTION_HEADERS)
     response.raise_for_status()
     return response.json()
+

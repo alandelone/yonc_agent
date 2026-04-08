@@ -3,5 +3,3 @@ __pycache__/
 *.pyc
 .env
 unlimited_llmapi/key_usage.json
-pytest.log
-.pytest_cache/

@@ -165,6 +165,7 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
                 "interruption_count": 0,
             })
             notion_item["wbs_level"] = existing.get("wbs_level")
+            notion_item["synced_tags"] = bool(existing.get("synced_tags", False))
             
         merged_state.append(notion_item)
         

@@ -300,14 +300,12 @@ def main():
     subparsers.add_parser("push-sync", help="Pull Notion → update JSON → rule-correct tags (Theme/WBS) → push without LLM")
     subparsers.add_parser("tag", help="Run emoji tagging pipeline")
     subparsers.add_parser("split", help="Run task decomposition pipeline")
-    subparsers.add_parser("poll", help="Start polling loop")
     subparsers.add_parser("show-config", help="Print parsed YoncTask_config")
     subparsers.add_parser("timeliner", help="Sync TIMELINER page with progress from task tree")
     subparsers.add_parser("timeliner-diff", help="Show git-diff style date change history")
     focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus")
     focus_parser.add_argument("--move", type=int, default=None, help="Move focus to task number N")
     subparsers.add_parser("track", help="Track focus + update live今目 dashboard")
-    subparsers.add_parser("reparent-dry", help="Dry-run: show what reparent would do without modifying Notion")
     
     args = parser.parse_args()
     
@@ -319,8 +317,6 @@ def main():
         cmd_tag()
     elif args.command == "split":
         cmd_split()
-    elif args.command == "poll":
-        cmd_poll()
     elif args.command == "show-config":
         cmd_show_config()
     elif args.command == "timeliner":
@@ -331,8 +327,6 @@ def main():
         cmd_focus(move_to=args.move)
     elif args.command == "track":
         cmd_track()
-    elif args.command == "reparent-dry":
-        cmd_reparent_dry()
     else:
         parser.print_help()
 

@@ -577,42 +577,48 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         return main_theme_name
 
-    def _word_limit_for_depth(depth: Any) -> int:
+    def _char_limit_for_depth(depth: Any) -> int:
         try:
             d = int(depth)
         except (TypeError, ValueError):
             d = 0
         if d <= 0:
-            return 12
+            return 90
         if d == 1:
-            return 11
-        return 10
+            return 90
+        return 80
 
-    def _split_title_with_limit(title: str, depth: Any, tag_token_count: int) -> tuple[str, str]:
-        words = [w for w in str(title or "").split() if w]
-        if not words:
+    def _split_title_with_limit(title: str, depth: Any, tag_char_count: int) -> tuple[str, str]:
+        raw_title = str(title or "").strip()
+        if not raw_title:
             return ("", "")
 
-        allowed_total = _word_limit_for_depth(depth)
-        allowed_title_words = max(1, allowed_total - max(0, int(tag_token_count)))
-        
-        visible_words = []
-        overflow_words = []
-        meaningful_count = 0
-        
-        # 只对包含字母、数字、下划线、汉字 (\w) 的有效单词计入限制名额，纯符号（如 : || -）不占字数
-        for w in words:
-            if meaningful_count < allowed_title_words:
-                visible_words.append(w)
-                import re
-                if re.search(r'\w', w):
-                    meaningful_count += 1
-            else:
-                overflow_words.append(w)
-                
-        visible = " ".join(visible_words).strip()
-        overflow = " ".join(overflow_words).strip()
-        return (visible, overflow)
+        allowed_total = _char_limit_for_depth(depth)
+        try:
+            consumed_chars = int(tag_char_count)
+        except (TypeError, ValueError):
+            consumed_chars = 0
+
+        allowed_title_chars = max(1, allowed_total - max(0, consumed_chars))
+        if len(raw_title) <= allowed_title_chars:
+            return (raw_title, "")
+
+        # Split only on whitespace so we never cut in the middle of a word.
+        split_at = raw_title.rfind(" ", 0, allowed_title_chars + 1)
+        if split_at > 0:
+            visible = raw_title[:split_at].rstrip()
+            overflow = raw_title[split_at + 1:].lstrip()
+            return (visible, overflow)
+
+        # No earlier whitespace; keep the first whole word even if it exceeds limit.
+        next_space = raw_title.find(" ", allowed_title_chars)
+        if next_space != -1:
+            visible = raw_title[:next_space].rstrip()
+            overflow = raw_title[next_space + 1:].lstrip()
+            return (visible, overflow)
+
+        # Single-word title: keep as-is (no mid-word split).
+        return (raw_title, "")
 
     def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool):
         base_annos = {"strikethrough": is_done, "color": "gray" if is_done else "default"}
@@ -792,12 +798,12 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         # Check if the row might need colon-italic styling or overflow handling
         needs_colon_formatting = ":" in original_title
-        word_limit = _word_limit_for_depth(task.get("depth", 0))
-        needs_overflow = len(original_title.split()) > (word_limit + 1)
+        char_limit = _char_limit_for_depth(task.get("depth", 0))
+        needs_overflow = len(str(original_title or "")) > char_limit
 
         # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
         # we bypass the rich text reconstruction and API update.
-        # BUT we DO NOT bypass if it contains a colon or exceeds word limits (so they continue getting processed for overflow/styling).
+        # BUT we DO NOT bypass if it contains a colon or exceeds char limits (so they continue getting processed for overflow/styling).
         if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_overflow:
             task["synced_tags"] = True
             continue
@@ -818,7 +824,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         target_color = "default"
         theme_str = ""
-        tag_token_count = 0
         should_strip_theme_label_from_title = True
         
         if theme_val:
@@ -879,7 +884,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if wbs_emoji:
             if wbs_emoji in clean_title:
                 clean_title = clean_title.replace(wbs_emoji, "").strip()
-            tag_token_count += 1
             rich_text.append({
                 "type": "text",
                 "text": {"content": wbs_emoji + " "},
@@ -890,8 +894,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if theme_str:
             if should_strip_theme_label_from_title and theme_str in clean_title:
                 clean_title = clean_title.replace(theme_str, "").strip()
-            tag_token_count += 1
-                
             rich_text.append({
                 "type": "text",
                 "text": {"content": theme_str},
@@ -916,8 +918,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     
                     if mode_name in clean_title:
                         clean_title = clean_title.replace(mode_name, "").strip()
-                    tag_token_count += 1
-                        
                     # Apply strike and gray out for done state, otherwise keep configured style
                     final_mode_annos = mode_annos.copy()
                     if is_done:
@@ -947,19 +947,22 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             emojis_str = "".join(emojis)
             for e in emojis:
                 clean_title = clean_title.replace(e, "").strip()
-            tag_token_count += len(emojis)
-            
             rich_text.append({
                 "type": "text",
                 "text": {"content": emojis_str + " "},
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
-            
-        # 4. The actual cleaned task title (with colon-description style and depth-based word cap)
+
+        tag_char_count = sum(
+            len(str(rt.get("text", {}).get("content", "")))
+            for rt in rich_text
+        )
+
+        # 4. The actual cleaned task title (with colon-description style and depth-based char cap)
         visible_title, overflow_title = _split_title_with_limit(
             clean_title.strip(),
             task.get("depth", 0),
-            tag_token_count
+            tag_char_count
         )
         _append_title_segments(rich_text, visible_title, is_done)
         

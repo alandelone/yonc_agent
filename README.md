@@ -82,7 +82,7 @@ task_reader.py
 
 | 核心组件 | 说明 |
 |-----------|-------------|
-| `main.py` | CLI 入口，支持 `sync`, `tag`, `split` 与 `poll` 核心指令。 |
+| `main.py` | CLI 入口，支持 `sync`, `tag`, `split`, `push-sync` 核心指令。 |
 | `llm_pipeline.py` | **核心大脑**。定义 WBS 分类器与各层级精炼器，使用 DSPy 进行安全性约束。 |
 | `sync_engine.py` | 负责处理 Notion Block 的深度写入以及本地状态同步，包含防重复逻辑。 |
 | `config_reader.py` | 解析 Notion 配置页，支持 Task Theme、优先级的颜色与 Emoji 匹配。 |

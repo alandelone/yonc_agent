@@ -50,6 +50,12 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "last_edited_by_id": node.get("last_edited_by_id", ""),
             "is_generated": node.get("is_generated", False),
             "origin": node.get("origin", "human"),
+            "timeliner_key": None,
+            "timeliner_rank": None,
+            "wbs_source": None,
+            "split_stage": "none",
+            "split_batch_id": None,
+            "reviewed_once": False,
             # Default values for fields managed by LLM or User directly
             "tags": {},
             "status": "todo",
@@ -140,6 +146,18 @@ def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
         upgraded["is_generated"] = False
     if "origin" not in upgraded:
         upgraded["origin"] = "human"
+    if "timeliner_key" not in upgraded:
+        upgraded["timeliner_key"] = None
+    if "timeliner_rank" not in upgraded:
+        upgraded["timeliner_rank"] = None
+    if "wbs_source" not in upgraded:
+        upgraded["wbs_source"] = None
+    if "split_stage" not in upgraded:
+        upgraded["split_stage"] = "none"
+    if "split_batch_id" not in upgraded:
+        upgraded["split_batch_id"] = None
+    if "reviewed_once" not in upgraded:
+        upgraded["reviewed_once"] = False
 
     return upgraded
 
@@ -166,7 +184,13 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             })
             notion_item["wbs_level"] = existing.get("wbs_level")
             notion_item["synced_tags"] = bool(existing.get("synced_tags", False))
-            
+            notion_item["timeliner_key"] = existing.get("timeliner_key")
+            notion_item["timeliner_rank"] = existing.get("timeliner_rank")
+            notion_item["wbs_source"] = existing.get("wbs_source")
+            notion_item["split_stage"] = existing.get("split_stage", "none")
+            notion_item["split_batch_id"] = existing.get("split_batch_id")
+            notion_item["reviewed_once"] = bool(existing.get("reviewed_once", False))
+             
         merged_state.append(notion_item)
         
     return merged_state

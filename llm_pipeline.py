@@ -2,7 +2,7 @@ import dspy
 import os
 import json
 import re
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional, Set
 
 from unlimited_llmapi import configure_dspy
 
@@ -678,6 +678,261 @@ def enrich_state_with_llm(
         elif not existing_wbs_tag:
             tags.pop("WBS level", None)
 
+        task["tags"] = tags
+
+    return local_state
+
+
+def _extract_priority_options_in_order(config_dict: Dict[str, List[Any]]) -> List[str]:
+    ordered: List[str] = []
+    for item in config_dict.get("Priority", []):
+        text = item.get("text", "") if isinstance(item, dict) else str(item)
+        text = str(text or "").strip()
+        if not text:
+            continue
+        ordered.append(text)
+    return ordered
+
+
+def _resolve_wbs_tag_from_struct(structured_cfg: Dict[str, Any], level: int) -> str:
+    levels = structured_cfg.get("wbs_levels", {})
+    entry = levels.get(level)
+    if isinstance(entry, dict):
+        return str(entry.get("raw") or entry.get("emoji") or "").strip()
+    for key, val in levels.items():
+        if str(level) in str(key):
+            if isinstance(val, dict):
+                return str(val.get("raw") or val.get("emoji") or "").strip()
+            return str(val).strip()
+    return ""
+
+
+def _infer_wbs_from_text(value: str) -> Optional[int]:
+    if not value:
+        return None
+    match = re.search(r"([1-4])", str(value))
+    if match:
+        try:
+            return int(match.group(1))
+        except ValueError:
+            return None
+    return None
+
+
+def theme_pass(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
+    """
+    L1 deterministic pass:
+    - infer and normalize theme assignment
+    - keep only theme tag visible at this stage
+    """
+    enriched = enrich_state_with_llm(local_state, config_dict, allow_llm=False)
+    for task in enriched:
+        tags = task.get("tags") or {}
+        new_tags: Dict[str, Any] = {}
+        if "Task Theme with colour" in tags:
+            new_tags["Task Theme with colour"] = tags["Task Theme with colour"]
+        task["tags"] = new_tags
+    return enriched
+
+
+def wbs_pass(
+    local_state: List[Dict[str, Any]],
+    config_dict: Dict[str, List[Any]],
+    scoped_ids: Optional[Set[str]] = None,
+) -> List[Dict[str, Any]]:
+    """
+    L2.1 pass:
+    - assign WBS only for scoped tasks
+    - parent-first propagation
+    - preserve manual WBS when present
+    """
+    from block_info_reader import build_block_info_for_state
+    from config_reader import clean_task_title, structure_yonctask_config
+
+    scoped_ids = scoped_ids or set()
+    structured_cfg = structure_yonctask_config(config_dict)
+    by_id: Dict[str, Dict[str, Any]] = {}
+    for task in local_state:
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if task_id:
+            by_id[task_id] = task
+
+    tasks_sorted = sorted(
+        local_state,
+        key=lambda t: (
+            int(t.get("depth", 0)) if str(t.get("depth", 0)).isdigit() else 0,
+            str(t.get("notion_block_id") or t.get("id") or ""),
+        ),
+    )
+
+    for task in tasks_sorted:
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if not task_id or task_id not in scoped_ids:
+            continue
+
+        tags = task.get("tags") or {}
+        existing_level = task.get("wbs_level")
+        if isinstance(existing_level, str) and existing_level.isdigit():
+            existing_level = int(existing_level)
+
+        existing_wbs_tag = str(tags.get("WBS level", "")).strip()
+        inferred_existing = _infer_wbs_from_text(existing_wbs_tag)
+        manual_level = existing_level if isinstance(existing_level, int) else inferred_existing
+
+        parent = by_id.get(str(task.get("parent_id") or ""))
+        parent_level = None
+        if parent:
+            pl = parent.get("wbs_level")
+            if isinstance(pl, str) and pl.isdigit():
+                pl = int(pl)
+            if isinstance(pl, int):
+                parent_level = pl
+
+        depth = task.get("depth")
+        try:
+            depth = int(depth)
+        except (TypeError, ValueError):
+            depth = 0
+
+        if isinstance(manual_level, int):
+            level = manual_level
+            source = "manual"
+        else:
+            if depth == 0:
+                level = 1
+            else:
+                level = None
+                title_words = task.get("original_notion_title", task.get("title", ""))
+                clean_title = clean_task_title(title_words, structured_cfg)
+                try:
+                    block_info = build_block_info_for_state(local_state, task, max_chars=3500)
+                    context = json.dumps(block_info, ensure_ascii=False)
+                except Exception:
+                    context = ""
+
+                try:
+                    cls = classify_task(f"{clean_title}\n{context}" if context else clean_title)
+                    level = 1 if cls.task_type == "OKR" else cls.level
+                except Exception as exc:
+                    print(f"Failed to classify WBS for {task_id}: {exc}")
+                    level = None
+
+            if not isinstance(level, int):
+                if isinstance(parent_level, int):
+                    level = min(4, max(1, parent_level + 1))
+                else:
+                    level = 1
+            source = "auto"
+
+        if isinstance(parent_level, int) and level <= parent_level:
+            level = min(4, parent_level + 1)
+
+        level = max(1, min(4, int(level)))
+        task["wbs_level"] = level
+        task["wbs_source"] = source
+
+        wbs_tag = _resolve_wbs_tag_from_struct(structured_cfg, level)
+        if wbs_tag:
+            tags["WBS level"] = wbs_tag
+        task["tags"] = tags
+
+    return local_state
+
+
+def mode_tasktype_pass(
+    local_state: List[Dict[str, Any]],
+    config_dict: Dict[str, List[Any]],
+    scoped_ids: Optional[Set[str]] = None,
+) -> List[Dict[str, Any]]:
+    """
+    L3 pass:
+    - assign Modes + Task Type for scoped tasks at WBS>=3.
+    """
+    from config_reader import clean_task_title, structure_yonctask_config
+
+    scoped_ids = scoped_ids or set()
+    structured_cfg = structure_yonctask_config(config_dict)
+
+    llm_options: Dict[str, List[Any]] = {}
+    if "Modes" in config_dict:
+        llm_options["Modes"] = config_dict.get("Modes", [])
+    if "Task Type" in config_dict:
+        llm_options["Task Type"] = config_dict.get("Task Type", [])
+    if not llm_options:
+        return local_state
+
+    for task in local_state:
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if not task_id or task_id not in scoped_ids:
+            continue
+
+        level = task.get("wbs_level")
+        if isinstance(level, str) and level.isdigit():
+            level = int(level)
+        if not isinstance(level, int) or level < 3:
+            continue
+
+        tags = task.get("tags") or {}
+        raw_title = task.get("original_notion_title", task.get("title", ""))
+        clean_title = clean_task_title(raw_title, structured_cfg)
+
+        try:
+            generated = tag_task(clean_title, llm_options)
+            mode_val = generated.get("Modes")
+            type_val = generated.get("Task Type")
+            if mode_val:
+                tags["Modes"] = mode_val
+            if type_val:
+                tags["Task Type"] = type_val
+        except Exception as exc:
+            print(f"Failed mode/task-type tagging for {task_id}: {exc}")
+
+        task["tags"] = tags
+
+    return local_state
+
+
+def priority_pass(
+    local_state: List[Dict[str, Any]],
+    config_dict: Dict[str, List[Any]],
+    scoped_ids: Optional[Set[str]] = None,
+    rank_by_task_id: Optional[Dict[str, int]] = None,
+) -> List[Dict[str, Any]]:
+    """
+    L2.3 pass:
+    - overwrite Priority for scoped tasks by TIMELINER rank
+    - quartile mapping (top rank gets highest priority option)
+    """
+    scoped_ids = scoped_ids or set()
+    rank_by_task_id = rank_by_task_id or {}
+    priority_options = _extract_priority_options_in_order(config_dict)
+    if not priority_options:
+        return local_state
+
+    scoped_tasks: List[Dict[str, Any]] = []
+    for task in local_state:
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if task_id and task_id in scoped_ids:
+            scoped_tasks.append(task)
+
+    scoped_tasks.sort(
+        key=lambda t: (
+            rank_by_task_id.get(str(t.get("notion_block_id") or t.get("id") or ""), 10**9),
+            int(t.get("depth", 0)) if str(t.get("depth", 0)).isdigit() else 0,
+            str(t.get("notion_block_id") or t.get("id") or ""),
+        )
+    )
+
+    total = len(scoped_tasks)
+    if total == 0:
+        return local_state
+
+    for idx, task in enumerate(scoped_tasks):
+        band = min(3, (idx * 4) // total)
+        mapped_idx = min(band, len(priority_options) - 1)
+        priority_val = priority_options[mapped_idx]
+        tags = task.get("tags") or {}
+        tags["Priority"] = priority_val
         task["tags"] = tags
 
     return local_state

@@ -1,13 +1,60 @@
-from typing import Dict, Any, List
+from datetime import datetime
+from typing import Dict, Any, List, Optional
 from notion_client import update_block, replace_with_toggle
 
 DONE_PREFIX = "\U0001F4AF\u2705"
 
-def format_done_text(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _parse_iso_timestamp(raw: str) -> Optional[datetime]:
+    text = str(raw or "").strip()
+    if not text:
+        return None
+    # Handle "Z" suffix from persisted UTC timestamps.
+    if text.endswith("Z"):
+        text = text[:-1] + "+00:00"
+    try:
+        return datetime.fromisoformat(text)
+    except ValueError:
+        return None
+
+
+def _render_hours_label(hours_taken: Optional[float]) -> str:
+    if hours_taken is None or hours_taken < 0:
+        return "?h"
+    rounded = round(hours_taken, 1)
+    if rounded.is_integer():
+        return f"{int(rounded)}h"
+    return f"{rounded}h"
+
+
+def _compute_focus_hours_for_block(block_id: str) -> Optional[float]:
+    # Local import avoids hard dependency for callers that only test text formatting.
+    from focus_tracker import load_focus_log
+
+    log = load_focus_log()
+    history = log.get("history", [])
+
+    total_seconds = 0.0
+    for item in history:
+        if item.get("block_id") != block_id:
+            continue
+        started_at = _parse_iso_timestamp(item.get("started_at", ""))
+        ended_at = _parse_iso_timestamp(item.get("ended_at", ""))
+        if started_at is None or ended_at is None:
+            continue
+        delta = (ended_at - started_at).total_seconds()
+        if delta > 0:
+            total_seconds += delta
+
+    if total_seconds <= 0:
+        return None
+    return total_seconds / 3600.0
+
+
+def format_done_text(rich_text: List[Dict[str, Any]], hours_taken: Optional[float] = None) -> List[Dict[str, Any]]:
     """
     Applies strikethrough and gray color to text.
     Prepends '\U0001F4AF\u2705 ' to the first element.
-    Appends ' `?h`' to the last element.
+    Appends an inline-code duration (`?h` fallback or computed value).
     """
     if not rich_text:
         return []
@@ -35,31 +82,34 @@ def format_done_text(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             if "plain_text" in first_item:
                 first_item["plain_text"] = f"{DONE_PREFIX} {first_item['plain_text']}"
 
-    # Append time placeholder conceptually
-    # Simple logic: just append the text if it's not there
-    last_item = formatted[-1]
-    if "text" in last_item and "content" in last_item["text"]:
-        content = last_item["text"]["content"]
-        if "?h" not in content:
-            # Create a separate inline code block for the placeholder
-            time_placeholder = {
-                "type": "text",
-                "text": {
-                    "content": " ?h",
-                    "link": None
-                },
-                "annotations": {
-                    "bold": False,
-                    "italic": False,
-                    "strikethrough": True,
-                    "underline": False,
-                    "code": True,
-                    "color": "gray"
-                },
-                "plain_text": " ?h",
-                "href": None
-            }
-            formatted.append(time_placeholder)
+    has_time_token = any(
+        (
+            item.get("type") == "text"
+            and item.get("annotations", {}).get("code") is True
+            and str(item.get("text", {}).get("content", "")).strip().endswith("h")
+        )
+        for item in formatted
+    )
+    if not has_time_token:
+        hours_label = _render_hours_label(hours_taken)
+        time_placeholder = {
+            "type": "text",
+            "text": {
+                "content": f" {hours_label}",
+                "link": None
+            },
+            "annotations": {
+                "bold": False,
+                "italic": False,
+                "strikethrough": True,
+                "underline": False,
+                "code": True,
+                "color": "gray"
+            },
+            "plain_text": f" {hours_label}",
+            "href": None
+        }
+        formatted.append(time_placeholder)
 
     return formatted
 
@@ -77,7 +127,8 @@ def mark_block_done(block: Dict[str, Any]) -> Dict[str, Any]:
     type_content = block.get(block_type, {})
     rich_text = type_content.get("rich_text", [])
     
-    new_rich_text = format_done_text(rich_text)
+    hours_taken = _compute_focus_hours_for_block(block_id)
+    new_rich_text = format_done_text(rich_text, hours_taken=hours_taken)
     
     payload = {
         block_type: {
@@ -101,7 +152,8 @@ def handle_parent_conversion(parent_block: Dict[str, Any], target_parent_id: str
     rich_text = type_content.get("rich_text", [])
     
     # Format the parent's text
-    new_rich_text = format_done_text(rich_text)
+    hours_taken = _compute_focus_hours_for_block(block_id)
+    new_rich_text = format_done_text(rich_text, hours_taken=hours_taken)
     
     toggle_content = {
         "rich_text": new_rich_text,

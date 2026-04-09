@@ -399,8 +399,12 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         # Dynamic fallback for "Theme SomeLabel" rows that are effectively
         # one-child grouping wrappers (e.g. "我流方矩 刚体" -> "刚体打造和训练论").
         pref_theme, pref_suffix = _extract_theme_prefixed_suffix(title)
-        if pref_theme and pref_suffix and len(children_map.get(tid, [])) == 1:
-            return True
+        if pref_theme and pref_suffix:
+            configured_subthemes = set(themes.get(pref_theme, {}).get("sub_themes", []))
+            if pref_suffix in configured_subthemes:
+                return True
+            if len(children_map.get(tid, [])) == 1:
+                return True
 
         return False
 
@@ -427,12 +431,11 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
 
         # 解析容器匹配到的子主题名，用于传播给子节点的 theme_display_label
         container_title = container.get("original_notion_title", container.get("title", ""))
-        _, container_matched_subtheme = _match_theme_or_subtheme(container_title)
-        if not container_matched_subtheme:
-            _, container_matched_subtheme = _extract_theme_prefixed_suffix(container_title)
-            if container_matched_subtheme:
-                # _extract_theme_prefixed_suffix 返回 (theme, suffix)，suffix 就是子主题名
-                pass
+        _, pref_suffix = _extract_theme_prefixed_suffix(container_title)
+        if pref_suffix:
+            container_matched_subtheme = pref_suffix
+        else:
+            _, container_matched_subtheme = _match_theme_or_subtheme(container_title)
 
         import sys
         if dry_run:
@@ -488,7 +491,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     Adds Theme and Mode as bold/code text, and removes [] from emojis.
     Senses "\u2705" as Done sign to format the text with strikethrough.
     """
-    from notion_client import update_block, replace_with_toggle_item, delete_block
+    from notion_client import update_block, replace_with_toggle_item, replace_with_bullet, delete_block
     from config_reader import structure_yonctask_config
     import re
     
@@ -666,6 +669,66 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "annotations": desc_annos
             })
 
+    def _ordered_visible_tag_emojis(tags: Dict[str, Any]) -> List[str]:
+        emojis: List[str] = []
+        seen: set[str] = set()
+
+        # Enforce visible row order: Priority -> Task Type -> other emoji tags.
+        for key in ["Priority", "Task Type"]:
+            if key not in tags:
+                continue
+            emoji = _extract_emoji(tags.get(key, ""))
+            if emoji and emoji not in seen:
+                seen.add(emoji)
+                emojis.append(emoji)
+
+        for k, v in tags.items():
+            if k in [
+                "Task Theme with colour",
+                "Modes",
+                "WBS level",
+                "State of Parent Task",
+                "Priority",
+                "Task Type",
+            ]:
+                continue
+            emoji = _extract_emoji(v)
+            if emoji and emoji not in seen:
+                seen.add(emoji)
+                emojis.append(emoji)
+
+        return emojis
+
+    def _render_standard_row_tail(
+        rich_text: List[Dict[str, Any]],
+        tags: Dict[str, Any],
+        clean_title: str,
+        is_done: bool,
+        depth: Any,
+    ) -> tuple[List[Dict[str, Any]], str, str]:
+        emojis = _ordered_visible_tag_emojis(tags)
+        if emojis:
+            emojis_str = "".join(emojis)
+            for e in emojis:
+                clean_title = clean_title.replace(e, "").strip()
+            rich_text.append({
+                "type": "text",
+                "text": {"content": emojis_str + " "},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            })
+
+        tag_char_count = sum(
+            len(str(rt.get("text", {}).get("content", "")))
+            for rt in rich_text
+        )
+        visible_title, overflow_title = _split_title_with_limit(
+            clean_title.strip(),
+            depth,
+            tag_char_count
+        )
+        _append_title_segments(rich_text, visible_title, is_done)
+        return rich_text, visible_title, overflow_title
+
     task_by_id: Dict[str, Dict[str, Any]] = {}
     for t in enriched_state:
         tid = str(t.get("notion_block_id") or t.get("id") or "")
@@ -792,9 +855,9 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if is_already_themed:
                 break
                 
-        should_convert_to_toggle = selection_mode and bool(checked) and wbs_level != 4
+        should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
         should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
-        is_pending_selection_change = should_convert_to_toggle or should_reset_l4_to_unchecked
+        is_pending_selection_change = should_convert_to_bullet or should_reset_l4_to_unchecked
 
         # Check if the row might need colon-italic styling or overflow handling
         needs_colon_formatting = ":" in original_title
@@ -934,37 +997,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "text": {"content": " "},
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
-        # 3. Emoji tags without brackets (excluding WBS level)
-        emojis = []
-        for k, v in tags.items():
-            if k in ["Task Theme with colour", "Modes", "WBS level"]:
-                continue
-            emoji = _extract_emoji(v)
-            if emoji:
-                emojis.append(emoji)
-                
-        if emojis:
-            emojis_str = "".join(emojis)
-            for e in emojis:
-                clean_title = clean_title.replace(e, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": emojis_str + " "},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
-
-        tag_char_count = sum(
-            len(str(rt.get("text", {}).get("content", "")))
-            for rt in rich_text
+        # 3. ordered visible tag emojis + title render
+        rich_text, _visible_title, overflow_title = _render_standard_row_tail(
+            rich_text=rich_text,
+            tags=tags,
+            clean_title=clean_title,
+            is_done=is_done,
+            depth=task.get("depth", 0),
         )
-
-        # 4. The actual cleaned task title (with colon-description style and depth-based char cap)
-        visible_title, overflow_title = _split_title_with_limit(
-            clean_title.strip(),
-            task.get("depth", 0),
-            tag_char_count
-        )
-        _append_title_segments(rich_text, visible_title, is_done)
         
         content_payload = {
             block_type: {
@@ -981,7 +1021,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
-        if overflow_title:
+        if overflow_title and not is_pending_selection_change:
             parent_id = task.get("parent_id")
             if not parent_id:
                 print(f"Cannot convert overflow task to toggle: missing parent_id for {block_id}")
@@ -1021,14 +1061,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     continue
                 except Exception as e:
                     print(f"Failed to convert overflow task to toggle for {block_id}: {e}")
-        should_convert_to_toggle = selection_mode and bool(checked) and wbs_level != 4
-        if should_convert_to_toggle:
+        should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+        if should_convert_to_bullet:
             parent_id = task.get("parent_id")
             if not parent_id:
-                print(f"Cannot convert to toggle: missing parent_id for {block_id}")
+                print(f"Cannot convert to bullet: missing parent_id for {block_id}")
             else:
                 try:
-                    new_block = replace_with_toggle_item(block_id, parent_id, rich_text, color="gray" if is_done else "default")
+                    new_block = replace_with_bullet(block_id, parent_id, rich_text, color="gray" if is_done else "default")
                     new_block_id = new_block.get("id")
                     before = {
                         "task_id": block_id,
@@ -1040,28 +1080,28 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     if new_block_id:
                         task["id"] = new_block_id
                         task["notion_block_id"] = new_block_id
-                    task["notion_type"] = "toggle"
-                    task["type"] = "toggle"
+                    task["notion_type"] = "bulleted_list_item"
+                    task["type"] = "bullet"
                     task["checked"] = None
                     task["synced_tags"] = True
                     task["title"] = new_plain_title
                     log_generated_preference_diff(
                         task=task,
-                        action="convert_checked_non_l4_to_toggle",
+                        action="convert_checked_non_l4_to_bullet",
                         before=before,
                         after={
-                            "block_type": "toggle",
+                            "block_type": "bulleted_list_item",
                             "checked": None,
                             "new_task_id": new_block_id
                         }
                     )
                     
                     import sys
-                    msg = f"Converted checked to-do to toggle for {block_id}: {new_plain_title}\n"
+                    msg = f"Converted checked to-do to bullet for {block_id}: {new_plain_title}\n"
                     sys.stdout.buffer.write(msg.encode('utf-8'))
                     continue
                 except Exception as e:
-                    print(f"Failed to convert to toggle for {block_id}: {e}")
+                    print(f"Failed to convert to bullet for {block_id}: {e}")
         if task.get("synced_tags") and new_plain_title == original_title and (block_type != "to_do" or bool(checked) == checked_for_payload):
             continue
         

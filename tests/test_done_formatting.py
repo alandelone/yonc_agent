@@ -26,6 +26,35 @@ class TestDoneFormatting(unittest.TestCase):
         self.assertTrue(out[0]["text"]["content"].startswith(f"{DONE_PREFIX} "))
         self.assertEqual(out[0]["annotations"]["color"], "gray")
         self.assertTrue(out[0]["annotations"]["strikethrough"])
+        self.assertEqual(out[-1]["text"]["content"], " ?h")
+        self.assertTrue(out[-1]["annotations"]["code"])
+
+    def test_format_done_text_uses_computed_hours_when_provided(self):
+        rich_text = [
+            {
+                "type": "text",
+                "text": {"content": "Task"},
+                "annotations": {"bold": False},
+                "plain_text": "Task",
+            }
+        ]
+
+        out = format_done_text(rich_text, hours_taken=1.25)
+        self.assertEqual(out[-1]["text"]["content"], " 1.2h")
+        self.assertTrue(out[-1]["annotations"]["code"])
+
+    def test_format_done_text_rounds_integer_hours_cleanly(self):
+        rich_text = [
+            {
+                "type": "text",
+                "text": {"content": "Task"},
+                "annotations": {"bold": False},
+                "plain_text": "Task",
+            }
+        ]
+
+        out = format_done_text(rich_text, hours_taken=2.0)
+        self.assertEqual(out[-1]["text"]["content"], " 2h")
 
     def test_done_mark_detection(self):
         title = f"Something {DONE_MARK} finished"

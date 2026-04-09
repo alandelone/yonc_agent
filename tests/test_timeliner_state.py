@@ -3,7 +3,8 @@ import json
 import pytest
 from timeliner_state import (
     load_timeliner_state, save_timeliner_state, get_extension_count, 
-    resolve_status_emoji, record_date_change, TIMELINER_STATE_FILE, TIMELINER_AUDIT_FILE
+    resolve_status_emoji, record_date_change, load_latest_audit_dates,
+    TIMELINER_STATE_FILE, TIMELINER_AUDIT_FILE
 )
 
 @pytest.fixture(autouse=True)
@@ -50,3 +51,41 @@ def test_status_emoji():
     assert resolve_status_emoji(2) == "🔴"
     assert resolve_status_emoji(3) == "🔥"
     assert resolve_status_emoji(10) == "🔥"
+
+def test_load_latest_audit_dates():
+    rows = [
+        {
+            "scope_key": "Proj::Sub::TaskA",
+            "colour_subtheme": "TaskA",
+            "field": "settle_date",
+            "new_value": "2026-04-10",
+        },
+        {
+            "scope_key": "Proj::Sub::TaskA",
+            "colour_subtheme": "TaskA",
+            "field": "settle_date",
+            "new_value": "2026-04-12",
+        },
+        {
+            "scope_key": "TaskB",
+            "colour_subtheme": "TaskB",
+            "field": "settle_date",
+            "new_value": "2026-05-01",
+        },
+        {
+            "scope_key": "ignore::me",
+            "colour_subtheme": "Ignore",
+            "field": "percent",
+            "new_value": "99",
+        },
+    ]
+    with open(TIMELINER_AUDIT_FILE, "w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    by_scope, by_subtheme = load_latest_audit_dates()
+    assert by_scope["Proj::Sub::TaskA"] == "2026-04-12"
+    assert by_scope["TaskB"] == "2026-05-01"
+    assert by_subtheme["TaskA"] == "2026-04-12"
+    assert by_subtheme["TaskB"] == "2026-05-01"
+    assert "Ignore" not in by_subtheme

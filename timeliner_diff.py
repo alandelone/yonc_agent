@@ -36,14 +36,17 @@ def format_date_diff(subtheme: str = None) -> str:
         timestamp = entry.get("timestamp", "Unknown")
         # take just the date part of ISO timestamp
         date_str = timestamp.split("T")[0]
+        project = str(entry.get("project", "") or "").strip()
+        subproject = str(entry.get("subproject", "") or "").strip()
         st = entry.get("colour_subtheme", "Unknown")
+        scope_label = " / ".join([x for x in [project, subproject, st] if x]) or st
         old_v = entry.get("old_value", "Unknown")
         new_v = entry.get("new_value", "Unknown")
         ext_count = entry.get("extension_count", "?")
         status_change = entry.get("status_change", "? \u2192 ?")
         
         chunk = [
-            f"[{date_str}] {st}",
+            f"[{date_str}] {scope_label}",
             f"  - Settle by: {old_v}",
             f"  + Settle by: {new_v}",
             f"  (Extension #{ext_count}: {status_change})\n"

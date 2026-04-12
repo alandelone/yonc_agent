@@ -26,29 +26,29 @@ except Exception as e:
 
 
 class SplitAbstractTask(dspy.Signature):
-    """浣犳槸涓撲负 INTP + ADHD 浜虹兢璁捐鐨勨€滃墠棰濆彾浠ｅ伩寮曟搸鈥濄€備綘鐨勫敮涓€鐩爣鏄細灏嗙敤鎴疯緭鍏ョ殑銆佸紩鍙戞墽琛屽姛鑳介殰纰嶇殑銆愬畯澶?鎶借薄浠诲姟銆戯紝闄嶇淮鎵撳嚮鎴愯繛鑽夊饱铏兘鑳芥墽琛岀殑銆愮墿鐞嗚倢鑲夊姩浣滄竻鍗曘€戙€?
+    """你是专为 INTP + ADHD 人群设计的“前额叶代偿引擎”。你的唯一目标是：将用户输入的、引发执行功能障碍的【宏大抽象任务】，降维打击成连草履虫都能执行的【物理肌肉动作清单】。
 
 # Core Rules (1-2-3 Framework)
-鎺ユ敹鍒扮敤鎴蜂换鍔″悗锛屼綘蹇呴』鍦ㄥ悗鍙颁弗鏍兼墽琛屼互涓?3 姝ヨ浆鍖栵紝鐒跺悗鍐嶈緭鍑虹粨鏋滐細
+接收到用户任务后，你必须在后台严格执行以下 3 步转化，然后再输出结果：
 
-**Step 1: 鍓ョ鎶借薄 (Identify & Destroy)**
-- 璇嗗埆骞跺交搴曟姽闄や换鍔′腑鐨勫畯澶у悕璇嶄笌缁撴灉瀵煎悜璇嶆眹锛堝锛氬涔犮€佽鍒掋€佹€荤粨銆佸ぇ绾层€佸畬缇庛€佸畬鎴愶級銆?
-- 涓ョ鍦ㄥ洖澶嶄腑閲嶅鐢ㄦ埛鐨勫畯澶х洰鏍囷紝鍒囨柇涓€鍒囧彲鑳藉紩鍙戔€滈瑙佹€х劍铏戔€濈殑瑙﹀彂鐐广€?
+**Step 1: 剥离抽象 (Identify & Destroy)**
+- 识别并彻底抹除任务中的宏大名词与结果导向词汇（如：复习、规划、总结、大纲、完美、完成）。
+- 严禁在回复中重复用户的宏大目标，切断一切可能引发“预见性焦虑”的触发点。
 
-**Step 2: 鐗╃悊闄嶆櫤 (Physical Translation)**
-- 寮哄埗灏嗘墍鏈夆€滆鐭ュ姩浣溾€濈炕璇戜负鏈€搴曞眰鐨勨€滆倢鑲夊姩浣溾€濄€?
-- 馃洃 缁濆绂佺敤璇嶏細鎯炽€佸喅瀹氥€佸垎绫汇€佸洖蹇嗐€佹瀯鎬濄€佽瘎浼般€佹暣鐞嗐€?
-- 鉁?寮哄埗浣跨敤璇嶏細璧板埌銆佸潗涓嬨€佹嬁璧枫€佹寜涓嬨€佺偣鍑汇€佹暡鍑汇€佽緭鍏ャ€佺炕寮€銆佹挄涓嬨€?
+**Step 2: 物理降智 (Physical Translation)**
+- 强制将所有“认知动作”翻译为最底层的“肌肉动作”。
+- 🚫 绝对禁用词：想、决定、分类、回忆、构思、评估、整理。
+- ✅ 强制使用词：走到、坐下、拿起、按下、点击、敲击、输入、翻开、撕下。
 
-**Step 3: 绾崇背鍒囧壊 (Nano-Slicing)**
-- 纭繚姣忎竴涓垏鍒嗗嚭鐨勬楠よ€楁椂缁濆 < 60 绉掋€?
-- 纭繚姣忎竴涓楠ゅ寘鍚?**0 涓喅绛栫偣**锛堜緥濡傦細涓嶈兘鍐欌€滄壘涓€鏈兂鐪嬬殑涔︹€濓紝蹇呴』鍐欌€滄嬁璧峰乏鎵嬭竟绗竴鏈功鈥濓級銆?
-- 绗?1 姝ュ繀椤绘槸鏋佸叿鈥滀井杈辨€р€濈殑绠€鍗曞姩浣滐紙濡傦細鈥滅珯璧锋潵鈥濇垨鈥滅湅涓€鐪煎睆骞曗€濓級銆?
+**Step 3: 纳米切割 (Nano-Slicing)**
+- 确保每一个切分出的步骤耗时绝对 < 60 秒。
+- 确保每一个步骤包含 **0 个决策点**（例如：不能写“找一本想看的书”，必须写“拿起左手边第一本书”）。
+- 第 1 步必须是极具“侮辱性”的简单动作（如：“站起来”或“看一眼屏幕”）。
 
-# Output Constraints (涓ユ牸閬靛畧)
-1. 鏁伴噺闄愬埗锛氭瘡娆℃渶澶氬彧杈撳嚭 5-7 涓楠ゃ€傜粷涓嶈杈撳嚭浠诲姟鐨勫畬鏁磋鍒掞紒鍙彁渚涒€滃惎鍔ㄥ眬閮ㄧ殑绗竴鍙ｂ€濄€?
-2. 鏋佺畝鍘熷垯锛氫竴涓簭鍙蜂笅鍙兘鍖呭惈 1 涓姩璇嶅姩浣溿€備弗绂佷娇鐢ㄢ€滃苟鈥濄€佲€滃拰鈥濄€佲€滅劧鍚庘€濆悎骞舵楠ゃ€?
-3. 鎯呯华鍩鸿皟锛氫笉瑕佹墦楦¤锛屼笉瑕佽澶ч亾鐞嗭紙INTP 璁ㄥ帉搴熻瘽锛夈€備繚鎸佹瀬搴﹀喎閰枫€佸瑙傘€佸共鐦殑鈥滅墿鐞嗘寚浠も€濋鏍笺€?
+# Output Constraints (严格遵守)
+1. 数量限制：每次最多只输出 5-7 个步骤。绝不要输出任务的完整计划！只提供“启动局部的第一口”。
+2. 极简原则：一个序号下只能包含 1 个动词动作。严禁使用“并”、“和”、“然后”合并步骤。
+3. 情绪基调：不要打鸡血，不要讲大道理（INTP 讨厌废话）。保持极度冷酷、客观、干瘪的“物理指令”风格。
 
 # Output Format
     """
@@ -154,7 +154,7 @@ def classify_task(task_title: str) -> WBSClassification:
         predictor = dspy.Predict(ClassifyTask)
         result = predictor(task_input=task_title, wbs_rules_context=WBS_CONTEXT)
         cls = result.classification
-        print(f"\n[馃 LLM LOG - Phase 1: Classification]")
+        print(f"\n[🤖 LLM LOG - Phase 1: Classification]")
         print(f"   Input : '{task_title}'")
         print(f"   Output: Level {cls.level} | Type {cls.task_type} | Rationale: {cls.rationale}")
         return cls
@@ -164,7 +164,7 @@ def classify_task(task_title: str) -> WBSClassification:
 
 def generate_l4_with_validation(task_title: str) -> List[str]:
     """Generates L4 activities and validates the 2-hour constraint."""
-    print(f"\n[馃 LLM LOG - Phase 2.3: Refine L3 -> L4]")
+    print(f"\n[🤖 LLM LOG - Phase 2.3: Refine L3 -> L4]")
     print(f"   Input (Work Package): '{task_title}'")
     
     predictor = dspy.Predict(RefineL3)
@@ -178,14 +178,14 @@ def generate_l4_with_validation(task_title: str) -> List[str]:
     # If any activity > 2 hours, recursively break it down or simply stringify it with a warning.
     for act in activities:
         if act.estimated_hours > 2.0:
-            print(f"   [鈿狅笍 LOG - Validation Rule Failed] Task '{act.title}' exceeds 2.0 hours limit. Forcing LLM to split further.")
+            print(f"   [⚠️ LOG - Validation Rule Failed] Task '{act.title}' exceeds 2.0 hours limit. Forcing LLM to split further.")
             # Fallback inline breakdown request
             sub_predictor = dspy.Predict(RefineL3)
             sub_result = sub_predictor(l3_work_package=f"Breakdown this >2hr task: {act.title}", wbs_rules_context=WBS_CONTEXT)
             sub_acts = getattr(sub_result.l4_output, 'activities', [])
             
             sub_acts_fmt = [f"{sub.title} ({sub.estimated_hours}h)" for sub in sub_acts]
-            print(f"   [馃敡 LOG - Re-split Output]: {sub_acts_fmt}")
+            print(f"   [🔄 LOG - Re-split Output]: {sub_acts_fmt}")
             
             for sub in sub_acts:
                  final_actions.append(f"[{sub.estimated_hours}h] {sub.title}")
@@ -202,14 +202,14 @@ def split_task(task_title: str, context: str = "") -> List[str]:
         # Step 2: Horizontal Refinement
         if cls_result.level == 1:
             if cls_result.task_type == "OKR":
-                print(f"\n[馃 LLM LOG - Phase 2.1: Refine L1 (OKR)]")
+                print(f"\n[🤖 LLM LOG - Phase 2.1: Refine L1 (OKR)]")
                 print(f"   Input (Exploratory Goal): '{task_title}'")
                 predictor = dspy.Predict(RefineL1OKR)
                 res = predictor(l1_exploratory_goal=task_title)
                 print(f"   Output: Objective='{res.okr_output.objective}' | KRs={res.okr_output.key_results}")
                 return [f"[Objective] {res.okr_output.objective}"] + [f"[KR] {kr}" for kr in res.okr_output.key_results]
             else:
-                print(f"\n[馃 LLM LOG - Phase 2.1: Refine L1 (WBS)]")
+                print(f"\n[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]")
                 print(f"   Input (Deterministic Goal): '{task_title}'")
                 predictor = dspy.Predict(RefineL1WBS)
                 res = predictor(l1_goal=task_title, wbs_rules_context=WBS_CONTEXT)
@@ -217,7 +217,7 @@ def split_task(task_title: str, context: str = "") -> List[str]:
                 return res.l2_output.deliverables
                 
         elif cls_result.level == 2:
-            print(f"\n[馃 LLM LOG - Phase 2.2: Refine L2]")
+            print(f"\n[🤖 LLM LOG - Phase 2.2: Refine L2]")
             print(f"   Input (Major Deliverable): '{task_title}'")
             predictor = dspy.Predict(RefineL2)
             res = predictor(l2_deliverable=task_title, wbs_rules_context=WBS_CONTEXT)
@@ -228,7 +228,7 @@ def split_task(task_title: str, context: str = "") -> List[str]:
             return generate_l4_with_validation(task_title)
             
         elif cls_result.level == 4:
-            print(f"\n[馃 LLM LOG - Phase 2.4: Refine L4]")
+            print(f"\n[🤖 LLM LOG - Phase 2.4: Refine L4]")
             print(f"   Input (Atomic Action): '{task_title}'")
             predictor = dspy.Predict(RefineL4)
             res = predictor(l4_action=task_title)
@@ -238,7 +238,7 @@ def split_task(task_title: str, context: str = "") -> List[str]:
         else:
             return [task_title]
     except Exception as e:
-        print(f"\n[馃洃 LLM LOG - Pipeline Error]: {e}. Falling back to default Predict.")
+        print(f"\n[🚫 LLM LOG - Pipeline Error]: {e}. Falling back to default Predict.")
         try:
             # Absolute fallback
             predictor = dspy.Predict(SplitAbstractTask)
@@ -694,6 +694,23 @@ def _extract_priority_options_in_order(config_dict: Dict[str, List[Any]]) -> Lis
     return ordered
 
 
+def _extract_priority_options_by_level(config_dict: Dict[str, List[Any]]) -> Dict[str, str]:
+    by_level: Dict[str, str] = {}
+    for raw in _extract_priority_options_in_order(config_dict):
+        text = str(raw or "").strip()
+        if not text:
+            continue
+        match = re.search(r"\((P[^)]+)\)", text, flags=re.IGNORECASE)
+        if match:
+            by_level[str(match.group(1)).strip().upper()] = text
+            continue
+
+        inline = re.search(r"\b(P\d+)\b", text, flags=re.IGNORECASE)
+        if inline:
+            by_level[str(inline.group(1)).strip().upper()] = text
+    return by_level
+
+
 def _resolve_wbs_tag_from_struct(structured_cfg: Dict[str, Any], level: int) -> str:
     levels = structured_cfg.get("wbs_levels", {})
     entry = levels.get(level)
@@ -900,8 +917,9 @@ def priority_pass(
 ) -> List[Dict[str, Any]]:
     """
     L2.3 pass:
-    - overwrite Priority for scoped tasks by TIMELINER rank
-    - quartile mapping (top rank gets highest priority option)
+    - overwrite Priority only for scoped tasks under TIMELINER main_projects
+    - use timeliner_state priority order and map to fixed buckets:
+      idx 0 -> P0, idx 1-2 -> P1, idx >=3 -> P2
     """
     scoped_ids = scoped_ids or set()
     rank_by_task_id = rank_by_task_id or {}
@@ -909,28 +927,41 @@ def priority_pass(
     if not priority_options:
         return local_state
 
-    scoped_tasks: List[Dict[str, Any]] = []
+    by_level = _extract_priority_options_by_level(config_dict)
+    p0_val = by_level.get("P0") or (priority_options[1] if len(priority_options) > 1 else priority_options[0])
+    p1_val = by_level.get("P1") or (priority_options[2] if len(priority_options) > 2 else priority_options[-1])
+    p2_val = by_level.get("P2") or (priority_options[3] if len(priority_options) > 3 else priority_options[-1])
+
+    main_scoped_tasks: List[Dict[str, Any]] = []
     for task in local_state:
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
-        if task_id and task_id in scoped_ids:
-            scoped_tasks.append(task)
+        section = str(task.get("timeliner_section", "") or "").strip().lower()
+        if task_id and task_id in scoped_ids and section == "main":
+            main_scoped_tasks.append(task)
 
-    scoped_tasks.sort(
+    def _to_int(value: Any, default: int = 10**9) -> int:
+        if isinstance(value, int):
+            return value
+        if isinstance(value, str) and value.strip().isdigit():
+            return int(value.strip())
+        return default
+
+    main_scoped_tasks.sort(
         key=lambda t: (
+            _to_int(t.get("timeliner_priority")),
             rank_by_task_id.get(str(t.get("notion_block_id") or t.get("id") or ""), 10**9),
-            int(t.get("depth", 0)) if str(t.get("depth", 0)).isdigit() else 0,
+            _to_int(t.get("depth", 0), 0),
             str(t.get("notion_block_id") or t.get("id") or ""),
         )
     )
 
-    total = len(scoped_tasks)
-    if total == 0:
-        return local_state
-
-    for idx, task in enumerate(scoped_tasks):
-        band = min(3, (idx * 4) // total)
-        mapped_idx = min(band, len(priority_options) - 1)
-        priority_val = priority_options[mapped_idx]
+    for idx, task in enumerate(main_scoped_tasks):
+        if idx == 0:
+            priority_val = p0_val
+        elif idx in (1, 2):
+            priority_val = p1_val
+        else:
+            priority_val = p2_val
         tags = task.get("tags") or {}
         tags["Priority"] = priority_val
         task["tags"] = tags

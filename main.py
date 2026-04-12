@@ -1,5 +1,6 @@
 import argparse
 import json
+import logging
 import time
 
 from config import POLL_INTERVAL_SECONDS
@@ -8,6 +9,18 @@ from flow_pipeline import run_flow, run_l1, run_l2, run_l3
 from state_manager import STATE_FILE, flatten_tree, load_state, merge_states, save_state
 from sync_engine import sync_from_notion
 from task_reader import fetch_and_build_task_tree
+
+
+def configure_cli_logging(level_name: str = "INFO") -> None:
+    import sys
+
+    level = getattr(logging, str(level_name).upper(), logging.INFO)
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+        stream=sys.stdout,
+        force=True,
+    )
 
 
 def cmd_show_config() -> None:
@@ -51,14 +64,17 @@ def cmd_flow() -> None:
 
 
 def cmd_flow_l1() -> None:
+    print("Running flow-l1 (L1 stage)...")
     run_l1()
 
 
 def cmd_flow_l2() -> None:
+    print("Running flow-l2 (L2 stage)...")
     run_l2()
 
 
 def cmd_flow_l3() -> None:
+    print("Running flow-l3 (L3 stage)...")
     run_l3()
 
 
@@ -174,6 +190,12 @@ def main() -> None:
 
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="Notion Task Management System")
+    parser.add_argument(
+        "--log-level",
+        default="INFO",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        help="CLI logging level",
+    )
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     subparsers.add_parser("flow", help="Run full staged flow (L1 -> L2 -> L3)")
@@ -194,6 +216,8 @@ def main() -> None:
     subparsers.add_parser("track", help="Track focus + update dashboard")
 
     args = parser.parse_args()
+    configure_cli_logging(args.log_level)
+
     if args.command == "flow":
         cmd_flow()
     elif args.command == "flow-l1":

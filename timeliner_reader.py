@@ -1,3 +1,5 @@
+import json
+import os
 import re
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional
@@ -21,6 +23,8 @@ class TimelineEntry:
     remaining_work_days: Optional[int]
     raw_text: str
     in_heading_scope: bool = False
+    priority: Optional[int] = None
+    scope_section: str = ""
 
 
 # Supports settle dates in both long form and ISO form.
@@ -47,6 +51,8 @@ def _detect_section_kind(text: str) -> Optional[str]:
         return "main"
     if normalized in {"subprojects", "subproject"}:
         return "sub"
+    if not normalized:
+        return "empty"
     return None
 
 
@@ -165,27 +171,34 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
             b_type = block.get("type", "")
             b_id = block.get("id", "")
 
-            # Heading 1 -> Main Project
             if b_type == "heading_1":
                 current_has_heading_context = True
                 heading_text = _block_text(block, "heading_1")
                 detected = _detect_section_kind(heading_text)
-                if detected:
+                if detected in ("main", "sub"):
                     current_section_kind = detected
                     if detected == "sub":
                         current_subproject = ""
+                elif detected == "empty" or not heading_text.strip():
+                    current_section_kind = None
+                    current_project = ""
+                    current_subproject = ""
                 else:
                     current_project = heading_text
                     current_subproject = ""
                     current_section_kind = "main"
 
-            # Heading 2 -> section marker OR Main Project (top-level) OR Sub Project
             elif b_type == "heading_2":
                 current_has_heading_context = True
                 heading_text = _block_text(block, "heading_2")
                 detected = _detect_section_kind(heading_text)
-                if detected:
+                if detected in ("main", "sub"):
                     current_section_kind = detected
+                    continue
+                elif detected == "empty" or not heading_text.strip():
+                    current_section_kind = None
+                    current_project = ""
+                    current_subproject = ""
                     continue
 
                 if current_section_kind == "sub" and current_project:
@@ -214,6 +227,8 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
                 if raw_text:
                     match = TIMELINER_PATTERN.search(raw_text)
                     if match:
+                        if current_section_kind not in ("main", "sub"):
+                            continue
                         data = match.groupdict()
 
                         takes_seg = data.get("takes_seg", "")
@@ -267,7 +282,106 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
     return entries
 
 
+def _load_entries_from_state_file() -> List[TimelineEntry]:
+    """
+    Reconstruct TimelineEntry objects from the locally-cached timeliner_state.json.
+    This file is written by `main.py timeliner` (sync_timeliner).  Reading it avoids
+    a second live Notion call during the flow pipeline and gives correct results even
+    when the Notion page structure cannot be parsed by the regex.
+    """
+    _DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+    state_path = os.path.join(_DATA_DIR, "timeliner_state.json")
+    if not os.path.exists(state_path):
+        return []
+    try:
+        with open(state_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return []
+
+    if not isinstance(data, dict):
+        return []
+
+    entries: List[TimelineEntry] = []
+    for section_key, section_kind in [("main_projects", "main"), ("sub_projects", "sub")]:
+        group = data.get(section_key, {})
+        if not isinstance(group, dict):
+            continue
+
+        # Sort by priority so ordered_keys in build_timeliner_scope reflects priority rank.
+        items = sorted(
+            group.items(),
+            key=lambda x: x[1].get("priority", 999) if isinstance(x[1], dict) else 999,
+        )
+
+        for title, meta in items:
+            if not isinstance(meta, dict):
+                continue
+
+            scope_key = str(meta.get("scope_key", "")).strip()
+            settle_date = str(meta.get("settle_date", "")).strip()
+            if not scope_key or not settle_date:
+                continue
+
+            # Parse scope_key: "project::subproject::subtheme"
+            parts = scope_key.split("::")
+            if len(parts) >= 3:
+                project = parts[0].strip()
+                subproject = parts[1].strip()
+                colour_subtheme = "::".join(parts[2:]).lstrip(":").strip()
+            elif len(parts) == 2:
+                project = parts[0].strip()
+                subproject = ""
+                colour_subtheme = parts[1].strip()
+            else:
+                project = ""
+                subproject = ""
+                colour_subtheme = scope_key
+
+            if not colour_subtheme:
+                continue
+
+            entries.append(
+                TimelineEntry(
+                    block_id="",
+                    project=project,
+                    subproject=subproject,
+                    colour_subtheme=colour_subtheme,
+                    status_emoji="🟢",
+                    settle_date=settle_date,
+                    time_expected_h=None,
+                    percent=0,
+                    remaining_work_days=None,
+                    raw_text=title,
+                    in_heading_scope=True,
+                    priority=(
+                        int(meta.get("priority"))
+                        if str(meta.get("priority", "")).strip().isdigit()
+                        else None
+                    ),
+                    scope_section=section_kind,
+                )
+            )
+
+    return entries
+
+
 def fetch_and_parse_timeliner() -> List[TimelineEntry]:
-    """Fetch the page and parse it into TimelineEntry objects."""
+    """
+    Return TimelineEntry objects for the flow pipeline.
+
+    Strategy (state-file-first):
+    1. Try loading from the locally-cached timeliner_state.json.
+       This file is written by ``main.py timeliner`` and avoids a redundant
+       Notion call that may return 0 results when the page structure doesn't
+       match the regex.
+    2. Fall back to a live Notion fetch + regex parse only when the state file
+       is absent or contains no entries.
+    """
+    entries = _load_entries_from_state_file()
+    if entries:
+        return entries
+
+    # Fallback: live Notion fetch.
     blocks = get_page_blocks(TIMELINER_PAGE_ID)
     return parse_timeliner_blocks(blocks)

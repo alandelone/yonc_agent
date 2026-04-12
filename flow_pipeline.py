@@ -1,4 +1,5 @@
 import copy
+import logging
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Set, Tuple
@@ -10,6 +11,170 @@ from state_manager import STATE_FILE, flatten_tree, merge_states, save_state
 from sync_engine import push_subtasks_to_notion, push_tags_to_notion, reparent_theme_containers, sync_from_notion
 from task_reader import fetch_and_build_task_tree
 from timeliner_reader import fetch_and_parse_timeliner
+
+LOGGER = logging.getLogger(__name__)
+
+
+def _log_stage(stage: str, message: str) -> None:
+    LOGGER.info("[%s] %s", stage, message)
+
+
+def _task_id(task: Dict[str, Any]) -> str:
+    return str(task.get("notion_block_id") or task.get("id") or "")
+
+
+def _task_title(task: Dict[str, Any]) -> str:
+    return str(task.get("original_notion_title") or task.get("title") or "").strip()
+
+
+def _preview(text: str, limit: int = 48) -> str:
+    raw = re.sub(r"\s+", " ", str(text or "")).strip()
+    if len(raw) <= limit:
+        return raw
+    return raw[: max(0, limit - 3)] + "..."
+
+
+def _extract_wbs_level(task: Dict[str, Any]) -> int | None:
+    level = task.get("wbs_level")
+    if isinstance(level, str) and level.isdigit():
+        level = int(level)
+    return level if isinstance(level, int) else None
+
+
+def _extract_priority(task: Dict[str, Any]) -> str:
+    tags = task.get("tags") or {}
+    return str(tags.get("Priority", "")).strip()
+
+
+def _snapshot_scoped_values(
+    state: List[Dict[str, Any]],
+    scoped_ids: Set[str],
+    extractor,
+) -> Dict[str, Any]:
+    snapshot: Dict[str, Any] = {}
+    for task in state:
+        tid = _task_id(task)
+        if not tid or tid not in scoped_ids:
+            continue
+        snapshot[tid] = extractor(task)
+    return snapshot
+
+
+def _format_change_samples(
+    changed: List[Tuple[str, Any, Any, str]],
+    max_items: int = 5,
+) -> str:
+    if not changed:
+        return "none"
+    parts: List[str] = []
+    for tid, before_v, after_v, title in changed[:max_items]:
+        parts.append(f"{tid[:8]} '{_preview(title, 30)}': {before_v or '-'} -> {after_v or '-'}")
+    return "; ".join(parts)
+
+
+def _log_wbs_change_details(
+    stage: str,
+    before_state: List[Dict[str, Any]],
+    after_state: List[Dict[str, Any]],
+    scoped_ids: Set[str],
+) -> None:
+    before_map = _snapshot_scoped_values(before_state, scoped_ids, _extract_wbs_level)
+    after_map = _snapshot_scoped_values(after_state, scoped_ids, _extract_wbs_level)
+    after_by_id = {_task_id(t): t for t in after_state if _task_id(t)}
+
+    changed: List[Tuple[str, Any, Any, str]] = []
+    manual_changed = 0
+    auto_changed = 0
+    for tid, after_level in after_map.items():
+        before_level = before_map.get(tid)
+        if before_level == after_level:
+            continue
+        task = after_by_id.get(tid, {})
+        changed.append((tid, before_level, after_level, _task_title(task)))
+        source = str(task.get("wbs_source", "")).strip().lower()
+        if source == "manual":
+            manual_changed += 1
+        else:
+            auto_changed += 1
+
+    _log_stage(
+        stage,
+        (
+            f"WBS pass complete: {len(changed)}/{len(scoped_ids)} scoped tasks changed "
+            f"(manual={manual_changed}, auto={auto_changed})"
+        ),
+    )
+    _log_stage(stage, f"WBS samples: {_format_change_samples(changed)}")
+
+
+def _log_priority_change_details(
+    stage: str,
+    before_state: List[Dict[str, Any]],
+    after_state: List[Dict[str, Any]],
+    scoped_ids: Set[str],
+) -> None:
+    before_map = _snapshot_scoped_values(before_state, scoped_ids, _extract_priority)
+    after_map = _snapshot_scoped_values(after_state, scoped_ids, _extract_priority)
+    after_by_id = {_task_id(t): t for t in after_state if _task_id(t)}
+
+    changed: List[Tuple[str, Any, Any, str]] = []
+    forced_last_changed = 0
+    for tid, after_priority in after_map.items():
+        before_priority = before_map.get(tid, "")
+        if before_priority == after_priority:
+            continue
+        task = after_by_id.get(tid, {})
+        changed.append((tid, before_priority, after_priority, _task_title(task)))
+        if bool(task.get("timeliner_is_subproject")):
+            forced_last_changed += 1
+
+    _log_stage(
+        stage,
+        (
+            f"Priority pass complete: {len(changed)}/{len(scoped_ids)} scoped tasks changed "
+            f"(subproject-forced={forced_last_changed})"
+        ),
+    )
+    _log_stage(stage, f"Priority samples: {_format_change_samples(changed)}")
+
+
+def _build_root_sequence(state: List[Dict[str, Any]]) -> Tuple[List[str], Dict[str, Dict[str, Any]]]:
+    if not state:
+        return [], {}
+    task_by_id, _ = build_state_indexes(state)
+    seen: Set[str] = set()
+    roots: List[str] = []
+    for task in state:
+        rid = _root_id(task, task_by_id)
+        if not rid or rid in seen:
+            continue
+        seen.add(rid)
+        roots.append(rid)
+    return roots, task_by_id
+
+
+def _log_reorder_details(
+    stage: str,
+    before_state: List[Dict[str, Any]],
+    after_state: List[Dict[str, Any]],
+) -> None:
+    before_roots, _ = _build_root_sequence(before_state)
+    after_roots, after_by_id = _build_root_sequence(after_state)
+    before_pos = {rid: idx for idx, rid in enumerate(before_roots)}
+    moved = sum(1 for idx, rid in enumerate(after_roots) if before_pos.get(rid, idx) != idx)
+
+    previews: List[str] = []
+    for rid in after_roots[:5]:
+        root_task = after_by_id.get(rid, {})
+        rank = root_task.get("timeliner_rank")
+        rank_display = rank if isinstance(rank, int) else "-"
+        previews.append(f"{rank_display}:{_preview(_task_title(root_task), 26)}")
+
+    _log_stage(
+        stage,
+        f"Root rank reorder complete: moved {moved}/{len(after_roots)} root tasks",
+    )
+    _log_stage(stage, f"Root order preview: {' | '.join(previews) if previews else 'none'}")
 
 
 def _normalize_scope_text(text: str) -> str:
@@ -47,13 +212,50 @@ def _pick_theme_key(task: Dict[str, Any]) -> str:
 
 def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[str, int], List[str]]:
     entries = fetch_and_parse_timeliner()
-    ordered_keys: List[str] = []
-    seen: Set[str] = set()
+
+    # Build per-entry matching anchors:
+    #   theme_anchor — the project or subproject that should appear in a task's theme field
+    #   subtheme_key — the colour_subtheme that should appear in a task's title
+    # Both must match for a task to be scoped (preserves the Theme+Title rule).
+    ScopeEntry = Dict[str, Any]  # type alias for clarity
+    scope_entries: List[ScopeEntry] = []
+    seen_subtheme: Set[str] = set()
+    ordered_keys: List[str] = []  # ordered list of colour_subtheme keys (for rank)
+
     for entry in entries:
-        raw = _normalize_scope_text(entry.colour_subtheme)
-        if raw and raw not in seen:
-            seen.add(raw)
-            ordered_keys.append(raw)
+        if isinstance(entry, dict):
+            raw_subtheme = entry.get("colour_subtheme", "")
+            raw_subproject = entry.get("subproject", "")
+            raw_project = entry.get("project", "")
+            raw_priority = entry.get("priority")
+            raw_scope_section = entry.get("scope_section", "")
+        else:
+            raw_subtheme = getattr(entry, "colour_subtheme", "")
+            raw_subproject = getattr(entry, "subproject", "")
+            raw_project = getattr(entry, "project", "")
+            raw_priority = getattr(entry, "priority", None)
+            raw_scope_section = getattr(entry, "scope_section", "")
+
+        sub_key = _normalize_scope_text(raw_subtheme)
+        if not sub_key:
+            continue
+        # theme_anchor: prefer subproject, fall back to project
+        subproject_txt = str(raw_subproject or "").strip()
+        project_txt = str(raw_project or "").strip()
+        anchor_raw = subproject_txt or project_txt
+        theme_anchor = _normalize_scope_text(anchor_raw)
+        scope_entries.append(
+            {
+                "subtheme_key": sub_key,
+                "theme_anchor": theme_anchor,
+                "is_subproject": bool(subproject_txt),
+                "priority": raw_priority,
+                "scope_section": str(raw_scope_section or "").strip().lower(),
+            }
+        )
+        if sub_key not in seen_subtheme:
+            seen_subtheme.add(sub_key)
+            ordered_keys.append(sub_key)
 
     scoped_ids: Set[str] = set()
     rank_by_task_id: Dict[str, int] = {}
@@ -76,22 +278,44 @@ def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[s
 
         matched_rank = None
         matched_key = None
-        for rank, key in enumerate(ordered_keys):
-            theme_ok = bool(key and key in theme_text)
-            title_ok = bool(key and key in title_text)
-            # Rule fixed by user: Theme+Title must BOTH match.
+        matched_is_subproject = None
+        matched_priority = None
+        matched_scope_section = ""
+        for rank, se in enumerate(scope_entries):
+            sub_key = se["subtheme_key"]
+            theme_anchor = se["theme_anchor"]
+
+            # title_ok: colour_subtheme must appear in the task title
+            title_ok = bool(sub_key and sub_key in title_text)
+
+            # theme_ok: entry's project/subproject must appear in task's theme field.
+            # If no anchor is available, fall back to sub_key (original behaviour).
+            if theme_anchor:
+                theme_ok = bool(theme_anchor in theme_text)
+            else:
+                theme_ok = bool(sub_key and sub_key in theme_text)
+
             if theme_ok and title_ok:
                 matched_rank = rank
-                matched_key = key
+                matched_key = sub_key
+                matched_is_subproject = bool(se.get("is_subproject"))
+                matched_priority = se.get("priority")
+                matched_scope_section = str(se.get("scope_section", "")).strip().lower()
                 break
 
         if matched_rank is None:
             task["timeliner_key"] = None
             task["timeliner_rank"] = None
+            task["timeliner_is_subproject"] = False
+            task["timeliner_priority"] = None
+            task["timeliner_section"] = ""
             continue
 
         task["timeliner_key"] = matched_key
         task["timeliner_rank"] = matched_rank
+        task["timeliner_is_subproject"] = bool(matched_is_subproject)
+        task["timeliner_priority"] = matched_priority
+        task["timeliner_section"] = matched_scope_section
         scoped_ids.add(task_id)
         rank_by_task_id[task_id] = matched_rank
 
@@ -163,10 +387,12 @@ def _split_scoped_tasks(
     state: List[Dict[str, Any]],
     structured_cfg: Dict[str, Any],
     scoped_ids: Set[str],
-) -> None:
+) -> Tuple[int, int]:
     if not scoped_ids:
-        return
+        return 0, 0
 
+    parent_task_count = 0
+    subtask_count = 0
     task_by_id, children_by_parent = build_state_indexes(state)
     for task in state:
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
@@ -228,67 +454,116 @@ def _split_scoped_tasks(
         push_subtasks_to_notion(task_id, deduped, parent_theme, parent_theme_color)
         task["split_stage"] = "suggested"
         task["split_batch_id"] = datetime.utcnow().isoformat() + "Z"
+        parent_task_count += 1
+        subtask_count += len(deduped)
+
+    return parent_task_count, subtask_count
 
 
 def run_l1() -> List[Dict[str, Any]]:
+    _log_stage("L1", "Starting L1 flow")
     config_dict, _, _, state = _load_merged_state()
     if not state:
+        _log_stage("L1", "No tasks found in Notion")
         print("No tasks found in Notion.")
         return []
 
+    _log_stage("L1", f"Loaded {len(state)} merged tasks")
     state = theme_pass(state, config_dict)
+    _log_stage("L1", "Theme pass complete")
     state = reparent_theme_containers(state, config_dict)
+    _log_stage("L1", "Theme container reparenting complete")
     push_tags_to_notion(state, config_dict)
+    _log_stage("L1", "Tag push to Notion complete")
 
     state = [task for task in state if not task.get("deleted")]
     save_state(state, STATE_FILE)
+    _log_stage("L1", f"Saved {len(state)} tasks to state")
     print("L1 flow complete.")
     return state
 
 
 def run_l2() -> List[Dict[str, Any]]:
+    _log_stage("L2", "Starting L2 flow")
     config_dict, structured_cfg, _, state = _load_merged_state()
     if not state:
+        _log_stage("L2", "No tasks found in Notion")
         print("No tasks found in Notion.")
         return []
 
+    _log_stage("L2", f"Loaded {len(state)} merged tasks")
     state = theme_pass(state, config_dict)
+    _log_stage("L2", "Theme pass complete")
     state = reparent_theme_containers(state, config_dict)
+    _log_stage("L2", "Theme container reparenting complete")
     scoped_ids, rank_by_task_id, _ = build_timeliner_scope(state)
+    _log_stage("L2", f"Scoped {len(scoped_ids)} tasks from TIMELINER")
 
+    before_wbs = copy.deepcopy(state)
     state = wbs_pass(state, config_dict, scoped_ids=scoped_ids)
+    _log_wbs_change_details("L2", before_wbs, state, scoped_ids)
+
+    before_priority = copy.deepcopy(state)
     state = priority_pass(state, config_dict, scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
+    _log_priority_change_details("L2", before_priority, state, scoped_ids)
+
+    before_reorder = copy.deepcopy(state)
     state = _reorder_state_by_root_rank(state)
+    _log_reorder_details("L2", before_reorder, state)
 
     # Push tag formatting first; split suggestions are generated after this push,
     # so newly created unchecked suggestions are not reviewed in the same run.
     push_tags_to_notion(state, config_dict)
+    _log_stage("L2", "Tag push to Notion complete")
     state = [task for task in state if not task.get("deleted")]
 
-    _split_scoped_tasks(state, structured_cfg, scoped_ids)
+    split_parent_count, split_subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+    _log_stage(
+        "L2",
+        f"Split suggestion pass complete: {split_subtask_count} subtasks across {split_parent_count} parent tasks",
+    )
     save_state(state, STATE_FILE)
+    _log_stage("L2", f"Saved {len(state)} tasks to state")
     print("L2 flow complete.")
     return state
 
 
 def run_l3() -> List[Dict[str, Any]]:
+    _log_stage("L3", "Starting L3 flow")
     config_dict, _, _, state = _load_merged_state()
     if not state:
+        _log_stage("L3", "No tasks found in Notion")
         print("No tasks found in Notion.")
         return []
 
+    _log_stage("L3", f"Loaded {len(state)} merged tasks")
     state = theme_pass(state, config_dict)
+    _log_stage("L3", "Theme pass complete")
     state = reparent_theme_containers(state, config_dict)
+    _log_stage("L3", "Theme container reparenting complete")
     scoped_ids, rank_by_task_id, _ = build_timeliner_scope(state)
+    _log_stage("L3", f"Scoped {len(scoped_ids)} tasks from TIMELINER")
 
+    before_wbs = copy.deepcopy(state)
     state = wbs_pass(state, config_dict, scoped_ids=scoped_ids)
+    _log_wbs_change_details("L3", before_wbs, state, scoped_ids)
+
+    before_priority = copy.deepcopy(state)
     state = priority_pass(state, config_dict, scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
+    _log_priority_change_details("L3", before_priority, state, scoped_ids)
+
     state = mode_tasktype_pass(state, config_dict, scoped_ids=scoped_ids)
+    _log_stage("L3", "Mode/TaskType pass complete")
+
+    before_reorder = copy.deepcopy(state)
     state = _reorder_state_by_root_rank(state)
+    _log_reorder_details("L3", before_reorder, state)
 
     push_tags_to_notion(state, config_dict)
+    _log_stage("L3", "Tag push to Notion complete")
     state = [task for task in state if not task.get("deleted")]
     save_state(state, STATE_FILE)
+    _log_stage("L3", f"Saved {len(state)} tasks to state")
     print("L3 flow complete.")
     return state
 
@@ -315,4 +590,3 @@ def run_flow() -> List[Dict[str, Any]]:
     save_state(state, STATE_FILE)
     print("Full flow complete.")
     return state
-

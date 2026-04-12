@@ -7,8 +7,8 @@ from llm_pipeline import WBSClassification, priority_pass, wbs_pass
 def _config():
     return {
         "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
-        "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
-        "Priority": ["🔥 | P1", "⚡ | P2", "📌 | P3", "🧊 | P4"],
+        "WBS level": ["1 | Level 1", "2 | Level 2", "3 | Level 3", "4 | Level 4"],
+        "Priority": ["CRIT | (P$)", "ALERT | (P0)", "HIGH | (P1)", "NORMAL | (P2)"],
     }
 
 
@@ -22,7 +22,7 @@ class TestWbsPriorityPasses(unittest.TestCase):
                 "original_notion_title": "Parent",
                 "parent_id": "page",
                 "depth": 0,
-                "tags": {"WBS level": "3️⃣ | Level 3"},
+                "tags": {"WBS level": "3 | Level 3"},
                 "wbs_level": 3,
             },
             {
@@ -45,28 +45,37 @@ class TestWbsPriorityPasses(unittest.TestCase):
         self.assertEqual(4, out[1]["wbs_level"])  # parent-first rule
         self.assertEqual("auto", out[1]["wbs_source"])
 
-    def test_priority_overwrite_uses_rank_quartiles(self):
+    def test_priority_overwrite_main_projects_uses_p0_p1_p2_buckets(self):
         state = []
         scoped = set()
         rank = {}
         for i in range(8):
             tid = f"t{i}"
-            state.append({"id": tid, "notion_block_id": tid, "depth": 0, "tags": {}})
+            state.append(
+                {
+                    "id": tid,
+                    "notion_block_id": tid,
+                    "depth": 0,
+                    "tags": {},
+                    "timeliner_section": "main",
+                    "timeliner_priority": i + 1,
+                }
+            )
             scoped.add(tid)
             rank[tid] = i
 
         out = priority_pass(state, _config(), scoped_ids=scoped, rank_by_task_id=rank)
         priorities = [t["tags"].get("Priority", "") for t in out]
 
-        # 8 tasks -> quartiles of 2 each
-        self.assertTrue(priorities[0].startswith("🔥"))
-        self.assertTrue(priorities[1].startswith("🔥"))
-        self.assertTrue(priorities[2].startswith("⚡"))
-        self.assertTrue(priorities[3].startswith("⚡"))
-        self.assertTrue(priorities[4].startswith("📌"))
-        self.assertTrue(priorities[5].startswith("📌"))
-        self.assertTrue(priorities[6].startswith("🧊"))
-        self.assertTrue(priorities[7].startswith("🧊"))
+        # idx 0 -> P0, idx 1-2 -> P1, idx >=3 -> P2
+        self.assertEqual("ALERT | (P0)", priorities[0])
+        self.assertEqual("HIGH | (P1)", priorities[1])
+        self.assertEqual("HIGH | (P1)", priorities[2])
+        self.assertEqual("NORMAL | (P2)", priorities[3])
+        self.assertEqual("NORMAL | (P2)", priorities[4])
+        self.assertEqual("NORMAL | (P2)", priorities[5])
+        self.assertEqual("NORMAL | (P2)", priorities[6])
+        self.assertEqual("NORMAL | (P2)", priorities[7])
 
 
 if __name__ == "__main__":

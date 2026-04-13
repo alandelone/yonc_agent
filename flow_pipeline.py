@@ -1,5 +1,6 @@
 import copy
 import logging
+import os
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Set, Tuple
@@ -11,6 +12,7 @@ from state_manager import STATE_FILE, flatten_tree, merge_states, save_state
 from sync_engine import push_subtasks_to_notion, push_tags_to_notion, reparent_theme_containers, sync_from_notion
 from task_reader import fetch_and_build_task_tree
 from timeliner_reader import fetch_and_parse_timeliner
+from timeliner_state import TIMELINER_STATE_FILE
 
 LOGGER = logging.getLogger(__name__)
 
@@ -183,6 +185,59 @@ def _normalize_scope_text(text: str) -> str:
     cleaned = cleaned.replace("`", "").replace("*", "")
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
     return cleaned
+
+
+def _has_cached_timeliner_scope() -> bool:
+    """
+    Return True when timeliner_state.json exists and has at least one scoped entry.
+    """
+    if not os.path.exists(TIMELINER_STATE_FILE):
+        return False
+
+    try:
+        import json
+
+        with open(TIMELINER_STATE_FILE, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except Exception:
+        return False
+
+    if not isinstance(payload, dict):
+        return False
+
+    main_projects = payload.get("main_projects", {})
+    sub_projects = payload.get("sub_projects", {})
+    return bool(main_projects) or bool(sub_projects)
+
+
+def _bootstrap_timeliner_state_if_needed(stage: str) -> None:
+    """
+    Ensure flow scope has stable TIMELINER cache. If absent/empty, run timeliner sync once.
+    """
+    if _has_cached_timeliner_scope():
+        _log_stage(stage, "TIMELINER cache found (timeliner_state.json)")
+        return
+
+    _log_stage(
+        stage,
+        (
+            "TIMELINER cache missing or empty; running timeliner bootstrap "
+            "(same as `python main.py timeliner`)"
+        ),
+    )
+    try:
+        from timeliner_sync import sync_timeliner
+
+        sync_timeliner()
+    except Exception as exc:
+        # Keep flow resilient; build_timeliner_scope still has live-Notion fallback.
+        _log_stage(stage, f"TIMELINER bootstrap failed: {exc}")
+        return
+
+    if _has_cached_timeliner_scope():
+        _log_stage(stage, "TIMELINER bootstrap complete; cache is now ready")
+    else:
+        _log_stage(stage, "TIMELINER bootstrap completed but cache is still empty")
 
 
 def _load_merged_state() -> Tuple[Dict[str, List[Any]], Dict[str, Any], List[Dict[str, Any]], List[Dict[str, Any]]]:
@@ -383,6 +438,75 @@ def _resolve_parent_theme_for_split(task: Dict[str, Any], structured_cfg: Dict[s
     return None, "default"
 
 
+def _register_generated_subtasks(
+    state: List[Dict[str, Any]],
+    parent_task: Dict[str, Any],
+    created_subtasks: List[Dict[str, str]],
+) -> None:
+    if not created_subtasks:
+        return
+
+    parent_id = str(parent_task.get("notion_block_id") or parent_task.get("id") or "")
+    if not parent_id:
+        return
+
+    existing_ids = {
+        str(t.get("notion_block_id") or t.get("id") or "")
+        for t in state
+    }
+    parent_depth = parent_task.get("depth")
+    try:
+        child_depth = int(parent_depth) + 1 if parent_depth is not None else 0
+    except (TypeError, ValueError):
+        child_depth = 0
+
+    parent_title = str(parent_task.get("title", "")).strip()
+    parent_context = str(parent_task.get("context_heading", "")).strip()
+
+    for created in created_subtasks:
+        child_id = str(created.get("id", "")).strip()
+        raw_title = str(created.get("title", "")).strip()
+        if not child_id or child_id in existing_ids:
+            continue
+
+        combined_title = f"{parent_title} {raw_title}".strip() if parent_title else raw_title
+        new_task = {
+            "id": child_id,
+            "notion_block_id": child_id,
+            "title": combined_title,
+            "original_notion_title": raw_title,
+            "context_heading": parent_context,
+            "parent_id": parent_id,
+            "depth": child_depth,
+            "wbs_level": None,
+            "type": "todo",
+            "notion_type": "to_do",
+            "annotations": {},
+            "checked": False,
+            "has_tag_style": False,
+            "created_by_id": "",
+            "last_edited_by_id": "",
+            "is_generated": True,
+            "origin": "generated",
+            "timeliner_key": None,
+            "timeliner_rank": None,
+            "wbs_source": None,
+            "split_stage": "none",
+            "split_batch_id": None,
+            "reviewed_once": False,
+            "tags": {},
+            "status": "todo",
+            "metrics": {
+                "estimated_time_h": None,
+                "actual_time_taken_h": None,
+                "interruption_count": 0,
+            },
+            "synced_tags": False,
+        }
+        state.append(new_task)
+        existing_ids.add(child_id)
+
+
 def _split_scoped_tasks(
     state: List[Dict[str, Any]],
     structured_cfg: Dict[str, Any],
@@ -394,7 +518,7 @@ def _split_scoped_tasks(
     parent_task_count = 0
     subtask_count = 0
     task_by_id, children_by_parent = build_state_indexes(state)
-    for task in state:
+    for task in list(state):
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if task_id not in scoped_ids:
             continue
@@ -451,7 +575,8 @@ def _split_scoped_tasks(
             continue
 
         parent_theme, parent_theme_color = _resolve_parent_theme_for_split(task, structured_cfg)
-        push_subtasks_to_notion(task_id, deduped, parent_theme, parent_theme_color)
+        created_subtasks = push_subtasks_to_notion(task_id, deduped, parent_theme, parent_theme_color)
+        _register_generated_subtasks(state, task, created_subtasks)
         task["split_stage"] = "suggested"
         task["split_batch_id"] = datetime.utcnow().isoformat() + "Z"
         parent_task_count += 1
@@ -485,6 +610,7 @@ def run_l1() -> List[Dict[str, Any]]:
 
 def run_l2() -> List[Dict[str, Any]]:
     _log_stage("L2", "Starting L2 flow")
+    _bootstrap_timeliner_state_if_needed("L2")
     config_dict, structured_cfg, _, state = _load_merged_state()
     if not state:
         _log_stage("L2", "No tasks found in Notion")

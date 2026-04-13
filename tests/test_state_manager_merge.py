@@ -76,6 +76,53 @@ class TestMergeStates(unittest.TestCase):
         self.assertEqual(1, len(merged))
         self.assertFalse(merged[0].get("synced_tags", False))
 
+    def test_preserves_local_generated_flags(self):
+        notion_tree = [
+            {
+                "id": "task-generated",
+                "title": "Task Generated",
+                "type": "to_do",
+                "depth": 1,
+                "parent_id": "task-parent",
+                "annotations": {},
+                "checked": False,
+                "children": [],
+            }
+        ]
+        local_state = [
+            {
+                "id": "task-generated",
+                "notion_block_id": "task-generated",
+                "title": "Task Parent Task Generated",
+                "original_notion_title": "Task Generated",
+                "context_heading": "",
+                "parent_id": "task-parent",
+                "depth": 1,
+                "wbs_level": None,
+                "type": "todo",
+                "notion_type": "to_do",
+                "annotations": {},
+                "checked": False,
+                "has_tag_style": False,
+                "created_by_id": "",
+                "last_edited_by_id": "",
+                "is_generated": True,
+                "origin": "generated",
+                "tags": {},
+                "status": "todo",
+                "metrics": {
+                    "estimated_time_h": None,
+                    "actual_time_taken_h": None,
+                    "interruption_count": 0,
+                },
+            }
+        ]
+
+        merged = merge_states(notion_tree, local_state)
+        self.assertEqual(1, len(merged))
+        self.assertTrue(merged[0].get("is_generated"))
+        self.assertEqual("generated", merged[0].get("origin"))
+
 
 if __name__ == "__main__":
     unittest.main()

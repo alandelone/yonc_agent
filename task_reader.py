@@ -1,5 +1,5 @@
 from typing import Dict, List, Any
-from notion_client import get_page_blocks, get_integration_user_id
+from notion_client import get_page_blocks
 from config_reader import parse_rich_text
 from config import DFORGE_LINESV2_PAGE_ID
 
@@ -16,7 +16,6 @@ def build_task_tree(
     depth: int = 0,
     parent_id: str = None,
     inherit_context: str = "",
-    integration_user_id: str = ""
 ) -> List[Dict[str, Any]]:
     """
     Recursively builds an in-memory tree of tasks from Notion blocks.
@@ -38,8 +37,10 @@ def build_task_tree(
             has_tag_style = _has_tag_style(rich_text)
             created_by_id = block.get("created_by", {}).get("id", "")
             last_edited_by_id = block.get("last_edited_by", {}).get("id", "")
-            is_generated = bool(integration_user_id and created_by_id == integration_user_id)
-            origin = "generated" if is_generated else "human"
+            # "generated" is a local LLM-origin signal, not a raw Notion metadata signal.
+            # New blocks from Notion are treated as human unless local state says otherwise.
+            is_generated = False
+            origin = "human"
             
             if not plain_text and not block.get("has_children"):
                 # Skip perfectly empty leaf nodes
@@ -77,7 +78,6 @@ def build_task_tree(
                     depth=depth + 1, 
                     parent_id=block_id,
                     inherit_context=current_context,
-                    integration_user_id=integration_user_id
                 )
                 
             task_tree.append(task_node)
@@ -90,7 +90,6 @@ def build_task_tree(
                 depth=depth,
                 parent_id=parent_id,
                 inherit_context=current_context,
-                integration_user_id=integration_user_id
             ))
             
     return task_tree
@@ -100,8 +99,7 @@ def fetch_and_build_task_tree() -> List[Dict[str, Any]]:
     Fetches the main task page blocks and builds the hierarchical task tree.
     """
     blocks = get_page_blocks(DFORGE_LINESV2_PAGE_ID)
-    integration_user_id = get_integration_user_id()
-    return build_task_tree(blocks, parent_id=DFORGE_LINESV2_PAGE_ID, integration_user_id=integration_user_id)
+    return build_task_tree(blocks, parent_id=DFORGE_LINESV2_PAGE_ID)
 
 if __name__ == "__main__":
     import json

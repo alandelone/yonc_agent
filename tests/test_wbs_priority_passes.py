@@ -77,6 +77,46 @@ class TestWbsPriorityPasses(unittest.TestCase):
         self.assertEqual("NORMAL | (P2)", priorities[6])
         self.assertEqual("NORMAL | (P2)", priorities[7])
 
+    def test_priority_fallback_uses_blank_section_non_subproject_when_main_missing(self):
+        state = [
+            {
+                "id": "m0",
+                "notion_block_id": "m0",
+                "depth": 0,
+                "tags": {},
+                "timeliner_section": "",
+                "timeliner_is_subproject": False,
+                "timeliner_priority": 1,
+            },
+            {
+                "id": "m1",
+                "notion_block_id": "m1",
+                "depth": 0,
+                "tags": {},
+                "timeliner_section": "",
+                "timeliner_is_subproject": False,
+                "timeliner_priority": 2,
+            },
+            {
+                "id": "s0",
+                "notion_block_id": "s0",
+                "depth": 0,
+                "tags": {},
+                "timeliner_section": "",
+                "timeliner_is_subproject": True,
+                "timeliner_priority": 0,
+            },
+        ]
+        scoped = {"m0", "m1", "s0"}
+        rank = {"m0": 0, "m1": 1, "s0": 2}
+
+        out = priority_pass(state, _config(), scoped_ids=scoped, rank_by_task_id=rank)
+        by_id = {t["notion_block_id"]: t for t in out}
+
+        self.assertEqual("ALERT | (P0)", by_id["m0"]["tags"].get("Priority", ""))
+        self.assertEqual("HIGH | (P1)", by_id["m1"]["tags"].get("Priority", ""))
+        self.assertEqual("", by_id["s0"]["tags"].get("Priority", ""))
+
 
 if __name__ == "__main__":
     unittest.main()

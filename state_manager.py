@@ -190,6 +190,8 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             notion_item["split_stage"] = existing.get("split_stage", "none")
             notion_item["split_batch_id"] = existing.get("split_batch_id")
             notion_item["reviewed_once"] = bool(existing.get("reviewed_once", False))
+            notion_item["is_generated"] = bool(existing.get("is_generated", notion_item.get("is_generated", False)))
+            notion_item["origin"] = "generated" if notion_item["is_generated"] else "human"
              
         merged_state.append(notion_item)
         

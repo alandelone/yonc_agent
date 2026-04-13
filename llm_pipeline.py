@@ -939,6 +939,17 @@ def priority_pass(
         if task_id and task_id in scoped_ids and section == "main":
             main_scoped_tasks.append(task)
 
+    # Fallback for runs without state-file section metadata:
+    # if no explicit "main" tasks are available, treat blank-section non-subproject
+    # tasks as main projects so Priority can still be assigned deterministically.
+    if not main_scoped_tasks:
+        for task in local_state:
+            task_id = str(task.get("notion_block_id") or task.get("id") or "")
+            section = str(task.get("timeliner_section", "") or "").strip().lower()
+            is_subproject = bool(task.get("timeliner_is_subproject"))
+            if task_id and task_id in scoped_ids and not section and not is_subproject:
+                main_scoped_tasks.append(task)
+
     def _to_int(value: Any, default: int = 10**9) -> int:
         if isinstance(value, int):
             return value

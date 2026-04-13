@@ -1134,9 +1134,17 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         except Exception as e:
             print(f"Failed to push tags to Notion for {block_id}: {e}")
 
-def push_subtasks_to_notion(task_id: str, subtasks: List[str], parent_theme: str = None, parent_theme_color: str = "default"):
-    """Creates physical to_do blocks under the parent abstract task."""
+def push_subtasks_to_notion(
+    task_id: str,
+    subtasks: List[str],
+    parent_theme: str = None,
+    parent_theme_color: str = "default"
+) -> List[Dict[str, Any]]:
+    """Creates physical to_do blocks under the parent abstract task and returns created block IDs/titles."""
     from notion_client import append_children
+    if not subtasks:
+        return []
+
     children_payload = []
     for st in subtasks:
         rich_text_array = []
@@ -1168,8 +1176,19 @@ def push_subtasks_to_notion(task_id: str, subtasks: List[str], parent_theme: str
             }
         })
     try:
-        append_children(task_id, children_payload, position="start")
+        append_res = append_children(task_id, children_payload, position="start")
+        results = append_res.get("results", []) if isinstance(append_res, dict) else []
+        created: List[Dict[str, Any]] = []
+        for idx, block in enumerate(results):
+            block_id = str(block.get("id") or "").strip()
+            if not block_id:
+                continue
+            title = subtasks[idx] if idx < len(subtasks) else ""
+            created.append({"id": block_id, "title": title})
+
         import sys
         sys.stdout.buffer.write(f"Added {len(subtasks)} physical subtasks to the top of {task_id}\n".encode('utf-8'))
+        return created
     except Exception as e:
         print(f"Failed to add subtasks to {task_id}: {e}")
+        return []

@@ -54,12 +54,28 @@ class SplitAbstractTask(dspy.Signature):
     """
     task_title = dspy.InputField(desc="Abstract task to decompose")
     context = dspy.InputField(desc="Parent task context if any")
-    sub_tasks: list[str] = dspy.OutputField(desc="List of concrete physical-action sub-tasks")
+    sub_tasks: list[str] = dspy.OutputField(desc="List of concrete physical-action sub-tasks. Each item MUST follow the format: 'title : description'. The title is a short action name (2-6 words), the description is a one-sentence clarification.")
 
 class TagTask(dspy.Signature):
     """Assign the best-matching tag from each config dimension."""
     task_title = dspy.InputField(desc="Task to tag")
     config_options = dspy.InputField(desc="Dict of config dimensions and their options as a JSON-like string")
+
+class CondenseTaskDescription(dspy.Signature):
+    """You are a bilingual Senior Software Engineer. Your task is to rewrite English technical descriptions into a highly condensed "Traditional Chinese + English Tech Jargon" format.
+    
+    Goal: Shorten the original text significantly to create concise, easy-to-skim notes while maintaining technical accuracy and this specific bilingual style.
+    
+    Instructions:
+    1. Keep Tech Jargon in English: Do not translate core technical terms, concepts, or system names (e.g., system design, microservices, data flow logic, software). Leave them exactly as they are.
+    2. Translate Connectors & Broad Concepts: Translate general descriptive words and architectural nouns into Chinese to make it shorter (e.g., Core Architecture -> 核心框架, foundational -> 基礎, central processing engine -> 中央處理引擎).
+    3. Use Chinese Grammar for Brevity: Restructure the sentence to follow compact native Chinese phrasing. (e.g., "the system design for [System X]" becomes "[System X] 的 system design").
+    4. Format and Punctuation: Use symbol to shorten (：). When translating lists, remove the filler words and use parentheses to enclose the list.
+    5. Maximize Brevity: Cut out unnecessary English fluff or filler words. The goal is maximum information density.
+    """
+    original_description = dspy.InputField(desc="The original verbose English description")
+    condensed_description = dspy.OutputField(desc="The condensed bilingual text (Traditional Chinese + English Tech Jargon)")
+
 from pydantic import BaseModel, Field
 
 # --- WBS Core Context ---
@@ -87,27 +103,35 @@ class WBSClassification(BaseModel):
     level: int = Field(description="Output EXACTLY ONE digit: 1, 2, 3, or 4 based on the definitions.")
     task_type: str = Field(description="Output 'WBS' (deterministic) or 'OKR' (exploratory) ONLY if level is 1. Else output 'N/A'.")
 
+class DeliverableItem(BaseModel):
+    """通用交付物条目，包含标题和描述。"""
+    title: str = Field(description="Short noun-phrase title of the deliverable (2-6 words)")
+    description: str = Field(description="One-sentence clarification of what this deliverable covers")
+
 class L2DeliverablesList(BaseModel):
-    deliverables: list[str] = Field(description="List of Level 2 Major Deliverables. Must be Nouns only.")
+    deliverables: list[DeliverableItem] = Field(description="List of Level 2 Major Deliverables. Each must have a title (Nouns only) and a description.")
 
 class OKRMilestonesList(BaseModel):
     objective: str = Field(description="The overarching Objective (O)")
-    key_results: list[str] = Field(description="List of verifiable Key Results (KRs)")
+    objective_description: str = Field(description="One-sentence clarification of the objective", default="")
+    key_results: list[DeliverableItem] = Field(description="List of verifiable Key Results (KRs). Each must have a title and a description.")
 
 class L3WorkPackagesList(BaseModel):
-    work_packages: list[str] = Field(description="List of Level 3 Work Packages. Must be Nouns only.")
+    work_packages: list[DeliverableItem] = Field(description="List of Level 3 Work Packages. Each must have a title (Nouns only) and a description.")
 
 class ActivityDesc(BaseModel):
-    title: str = Field(description="Physical action starting with a verb")
+    title: str = Field(description="Physical action starting with a verb (2-6 words)")
+    description: str = Field(description="One-sentence clarification of this activity", default="")
     estimated_hours: float = Field(description="Expected duration in hours. Must be <= 2.0")
 
 class L4ActivitiesList(BaseModel):
-    activities: list[ActivityDesc] = Field(description="List of physical action activities.")
+    activities: list[ActivityDesc] = Field(description="List of physical action activities. Each must have a title, description, and time estimate.")
 
 class AtomicAction(BaseModel):
     action_type: str = Field(description="Category of action (e.g., Focus, Routine, Communicate, Admin)")
     estimated_hours: float = Field(description="Time prediction in hours")
-    refined_action: str = Field(description="The highly specific, atomized physical action")
+    refined_action: str = Field(description="The highly specific, atomized physical action (2-6 words)")
+    description: str = Field(description="One-sentence clarification of this atomic action", default="")
 
 # --- Phase 1: Vertical Classification ---
 class ClassifyTask(dspy.Signature):
@@ -162,8 +186,30 @@ def classify_task(task_title: str) -> WBSClassification:
         print(f"Classification failed: {e}. Defaulting to WBS Level 1.")
         return WBSClassification(rationale="Fallback", level=1, task_type="WBS")
 
+def _condense_description(description: str) -> str:
+    """Invokes DSPy CondenseTaskDescription to compress English descriptions into bilingual jargon notes."""
+    if not description.strip():
+        return ""
+    try:
+        predictor = dspy.Predict(CondenseTaskDescription)
+        res = predictor(original_description=description)
+        return str(res.condensed_description).strip()
+    except Exception as e:
+        print(f"Failed to condense description: {e}. Using original.")
+        return description
+
+def _format_title_desc(title: str, description: str) -> str:
+    """将标题和描述格式化为 '{title} : {description}' 格式。并进行双语提炼。"""
+    title = str(title or "").strip()
+    description = str(description or "").strip()
+    if description:
+        condensed = _condense_description(description)
+        return f"{title} : {condensed}"
+    return title
+
+
 def generate_l4_with_validation(task_title: str) -> List[str]:
-    """Generates L4 activities and validates the 2-hour constraint."""
+    """生成 L4 活动并验证 2 小时约束，输出格式为 '{title} : {description}'。"""
     print(f"\n[🤖 LLM LOG - Phase 2.3: Refine L3 -> L4]")
     print(f"   Input (Work Package): '{task_title}'")
     
@@ -175,11 +221,10 @@ def generate_l4_with_validation(task_title: str) -> List[str]:
     print(f"   Output: {raw_acts_fmt}")
     
     final_actions = []
-    # If any activity > 2 hours, recursively break it down or simply stringify it with a warning.
+    # 超过 2 小时的活动会被递归拆分
     for act in activities:
         if act.estimated_hours > 2.0:
             print(f"   [⚠️ LOG - Validation Rule Failed] Task '{act.title}' exceeds 2.0 hours limit. Forcing LLM to split further.")
-            # Fallback inline breakdown request
             sub_predictor = dspy.Predict(RefineL3)
             sub_result = sub_predictor(l3_work_package=f"Breakdown this >2hr task: {act.title}", wbs_rules_context=WBS_CONTEXT)
             sub_acts = getattr(sub_result.l4_output, 'activities', [])
@@ -188,41 +233,50 @@ def generate_l4_with_validation(task_title: str) -> List[str]:
             print(f"   [🔄 LOG - Re-split Output]: {sub_acts_fmt}")
             
             for sub in sub_acts:
-                 final_actions.append(f"[{sub.estimated_hours}h] {sub.title}")
+                 final_actions.append(_format_title_desc(sub.title, getattr(sub, 'description', '')))
         else:
-            final_actions.append(f"[{act.estimated_hours}h] {act.title}")
+            final_actions.append(_format_title_desc(act.title, getattr(act, 'description', '')))
     return final_actions
 
 def split_task(task_title: str, context: str = "") -> List[str]:
-    """Uses DSPy to meticulously decompose a task into sub-tasks using the 4-Level WBS Pipeline."""
+    """使用 DSPy 4-Level WBS Pipeline 分解任务，输出格式统一为 '{title} : {description}'。"""
     try:
-        # Step 1: Vertical Classification
+        # Step 1: 垂直分类
         cls_result = classify_task(task_title)
         
-        # Step 2: Horizontal Refinement
+        # Step 2: 水平细化
         if cls_result.level == 1:
             if cls_result.task_type == "OKR":
                 print(f"\n[🤖 LLM LOG - Phase 2.1: Refine L1 (OKR)]")
                 print(f"   Input (Exploratory Goal): '{task_title}'")
                 predictor = dspy.Predict(RefineL1OKR)
                 res = predictor(l1_exploratory_goal=task_title)
-                print(f"   Output: Objective='{res.okr_output.objective}' | KRs={res.okr_output.key_results}")
-                return [f"[Objective] {res.okr_output.objective}"] + [f"[KR] {kr}" for kr in res.okr_output.key_results]
+                okr = res.okr_output
+                obj_desc = getattr(okr, 'objective_description', '')
+                print(f"   Output: Objective='{okr.objective}' | KRs={[kr.title for kr in okr.key_results]}")
+                results = [_format_title_desc(okr.objective, obj_desc)]
+                for kr in okr.key_results:
+                    kr_title = kr.title if isinstance(kr, DeliverableItem) else str(kr)
+                    kr_desc = kr.description if isinstance(kr, DeliverableItem) else ''
+                    results.append(_format_title_desc(kr_title, kr_desc))
+                return results
             else:
                 print(f"\n[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]")
                 print(f"   Input (Deterministic Goal): '{task_title}'")
                 predictor = dspy.Predict(RefineL1WBS)
                 res = predictor(l1_goal=task_title, wbs_rules_context=WBS_CONTEXT)
-                print(f"   Output: Deliverables={res.l2_output.deliverables}")
-                return res.l2_output.deliverables
+                deliverables = res.l2_output.deliverables
+                print(f"   Output: Deliverables={[d.title for d in deliverables]}")
+                return [_format_title_desc(d.title, d.description) for d in deliverables]
                 
         elif cls_result.level == 2:
             print(f"\n[🤖 LLM LOG - Phase 2.2: Refine L2]")
             print(f"   Input (Major Deliverable): '{task_title}'")
             predictor = dspy.Predict(RefineL2)
             res = predictor(l2_deliverable=task_title, wbs_rules_context=WBS_CONTEXT)
-            print(f"   Output: Work Packages={res.l3_output.work_packages}")
-            return res.l3_output.work_packages
+            work_packages = res.l3_output.work_packages
+            print(f"   Output: Work Packages={[wp.title for wp in work_packages]}")
+            return [_format_title_desc(wp.title, wp.description) for wp in work_packages]
             
         elif cls_result.level == 3:
             return generate_l4_with_validation(task_title)
@@ -232,15 +286,17 @@ def split_task(task_title: str, context: str = "") -> List[str]:
             print(f"   Input (Atomic Action): '{task_title}'")
             predictor = dspy.Predict(RefineL4)
             res = predictor(l4_action=task_title)
-            print(f"   Output: Type={res.atomic_output.action_type} | Hours={res.atomic_output.estimated_hours} | Action='{res.atomic_output.refined_action}'")
-            return [f"[{res.atomic_output.action_type} | {res.atomic_output.estimated_hours}h] {res.atomic_output.refined_action}"]
+            atomic = res.atomic_output
+            desc = getattr(atomic, 'description', '')
+            print(f"   Output: Type={atomic.action_type} | Hours={atomic.estimated_hours} | Action='{atomic.refined_action}'")
+            return [_format_title_desc(atomic.refined_action, desc)]
             
         else:
             return [task_title]
     except Exception as e:
         print(f"\n[🚫 LLM LOG - Pipeline Error]: {e}. Falling back to default Predict.")
         try:
-            # Absolute fallback
+            # 绝对兜底
             predictor = dspy.Predict(SplitAbstractTask)
             return getattr(predictor(task_title=task_title, context=context), 'sub_tasks', [])
         except:

@@ -201,6 +201,9 @@ class SmartMultiKeyLM(LM):
 
     def __call__(self, prompt=None, messages=None, **kwargs):
         """发送请求，自动轮换密钥和处理限流。"""
+        # 提取当前重试次数，默认0
+        retry_count = kwargs.pop('__multi_key_retry', 0)
+
         key, wait_time = self._get_available_key()
 
         if key is None:
@@ -231,10 +234,25 @@ class SmartMultiKeyLM(LM):
         except Exception as e:
             error_msg = str(e).lower()
             if any(x in error_msg for x in ["429", "quota", "resource_exhausted"]):
-                print(f"  [MultiKey] {label} 触发限流，自动切换...")
+                print(f"  [MultiKey] {label} 触发受限 (429/Quota) 自动处理: {str(e).splitlines()[0][:100]}")
                 self.usage_data["keys"][key]["last_used"] = time.time()
+                
+                # 如果明确是配额耗尽，将当前key的本地日限额直接拉满，避免今天再次使用
+                if "quota" in error_msg or "resource_exhausted" in error_msg:
+                    print(f"  [MultiKey] 判定为配额已尽，今日下线 {label}...")
+                    self.usage_data["keys"][key]["daily_reqs"] = self.limits["RPD"]
+                
                 self._save_usage()
-                return self.__call__(prompt, messages, **kwargs)
+                
+                # 限制最大连续重试次数，防止全部key都在遭遇429时死循环
+                max_retries = len(self.api_keys) * 3
+                if retry_count < max_retries:
+                    kwargs['__multi_key_retry'] = retry_count + 1
+                    time.sleep(1.5)  # 强制稍微退避一下
+                    return self.__call__(prompt, messages, **kwargs)
+                else:
+                    print(f"  [MultiKey] 达到最大重试次数 ({max_retries})，抛出异常。")
+                    raise
             else:
                 raise
 

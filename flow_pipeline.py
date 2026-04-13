@@ -9,7 +9,7 @@ from block_info_reader import build_split_context, build_state_indexes
 from config_reader import clean_task_title, load_config, structure_yonctask_config
 from llm_pipeline import mode_tasktype_pass, priority_pass, split_task, theme_pass, wbs_pass
 from state_manager import STATE_FILE, flatten_tree, merge_states, save_state
-from sync_engine import push_subtasks_to_notion, push_tags_to_notion, reparent_theme_containers, sync_from_notion
+from sync_engine import push_root_order_to_notion, push_subtasks_to_notion, push_tags_to_notion, reparent_theme_containers, sync_from_notion
 from task_reader import fetch_and_build_task_tree
 from timeliner_reader import fetch_and_parse_timeliner
 from timeliner_state import TIMELINER_STATE_FILE
@@ -425,17 +425,28 @@ def _reorder_state_by_root_rank(state: List[Dict[str, Any]]) -> List[Dict[str, A
 
 def _resolve_parent_theme_for_split(task: Dict[str, Any], structured_cfg: Dict[str, Any]) -> Tuple[str | None, str]:
     themes = structured_cfg.get("themes", {})
+    
+    # 1. 优先使用精确的显示标签 (theme_display_label)，它通常存储了子主题名
+    display = str(task.get("theme_display_label", "")).strip()
+    if display:
+        for main_theme, data in themes.items():
+            # 匹配主主题或子主题，以获取正确的颜色配置
+            if display == main_theme or display in data.get("sub_themes", []):
+                return display, data.get("color", "default")
+    
+    # 2. 回退：尝试从 Notion 标签中解析
     tags = task.get("tags") or {}
     theme_val = str(tags.get("Task Theme with colour", "")).strip()
     theme_key = str(theme_val).split()[0].strip() if theme_val else ""
     if theme_key in themes:
         return theme_key, themes[theme_key].get("color", "default")
 
-    display = str(task.get("theme_display_label", "")).strip()
-    if display in themes:
-        return display, themes[display].get("color", "default")
+    # 3. 最后回退：如果 display 存在但未匹配到配置，仍返回它（保持名称一致性）
+    if display:
+        return display, "default"
 
     return None, "default"
+
 
 
 def _register_generated_subtasks(
@@ -544,7 +555,7 @@ def _split_scoped_tasks(
 
         raw_title = task.get("original_notion_title", task.get("title", ""))
         clean_title = clean_task_title(raw_title, structured_cfg)
-        if len(clean_title) < 5:
+        if not any(c.isalnum() for c in clean_title):
             continue
 
         context_payload = build_split_context(state, task)
@@ -636,6 +647,7 @@ def run_l2() -> List[Dict[str, Any]]:
     before_reorder = copy.deepcopy(state)
     state = _reorder_state_by_root_rank(state)
     _log_reorder_details("L2", before_reorder, state)
+    state = push_root_order_to_notion(before_reorder, state)
 
     # Push tag formatting first; split suggestions are generated after this push,
     # so newly created unchecked suggestions are not reviewed in the same run.
@@ -643,7 +655,15 @@ def run_l2() -> List[Dict[str, Any]]:
     _log_stage("L2", "Tag push to Notion complete")
     state = [task for task in state if not task.get("deleted")]
 
-    split_parent_count, split_subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+    # Re-gather scoped IDs because physical reordering and tag pushing may have cloned
+    # blocks in Notion, assigning them new IDs that are no longer in the original `scoped_ids`.
+    current_scoped_ids = {
+        str(task.get("notion_block_id") or task.get("id") or "")
+        for task in state
+        if task.get("timeliner_rank") is not None
+    }
+
+    split_parent_count, split_subtask_count = _split_scoped_tasks(state, structured_cfg, current_scoped_ids)
     _log_stage(
         "L2",
         f"Split suggestion pass complete: {split_subtask_count} subtasks across {split_parent_count} parent tasks",
@@ -684,6 +704,7 @@ def run_l3() -> List[Dict[str, Any]]:
     before_reorder = copy.deepcopy(state)
     state = _reorder_state_by_root_rank(state)
     _log_reorder_details("L3", before_reorder, state)
+    state = push_root_order_to_notion(before_reorder, state)
 
     push_tags_to_notion(state, config_dict)
     _log_stage("L3", "Tag push to Notion complete")
@@ -707,7 +728,9 @@ def run_flow() -> List[Dict[str, Any]]:
     state = wbs_pass(state, config_dict, scoped_ids=scoped_ids)
     state = priority_pass(state, config_dict, scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
     state = mode_tasktype_pass(state, config_dict, scoped_ids=scoped_ids)
+    before_reorder = copy.deepcopy(state)
     state = _reorder_state_by_root_rank(state)
+    state = push_root_order_to_notion(before_reorder, state)
 
     push_tags_to_notion(state, config_dict)
     state = [task for task in state if not task.get("deleted")]

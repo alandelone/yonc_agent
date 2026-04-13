@@ -21,11 +21,29 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 FLOW_TRACE_COMMANDS = {"flow", "flow-l1", "flow-l2", "flow-l3", "push-sync", "split", "tag"}
 
 
+class TeeBuffer:
+    def __init__(self, streams):
+        self._streams = streams
+
+    def write(self, data: bytes):
+        text = data.decode("utf-8", errors="replace")
+        for stream in self._streams:
+            if hasattr(stream, "buffer") and callable(getattr(stream.buffer, "write", None)):
+                stream.buffer.write(data)
+            else:
+                stream.write(text)
+        return len(data)
+
+    def flush(self):
+        for stream in self._streams:
+            stream.flush()
+
 class TeeStream:
     """Write console output to multiple streams (terminal + trace logs)."""
 
     def __init__(self, *streams) -> None:
         self._streams = streams
+        self.buffer = TeeBuffer(streams)
 
     @property
     def encoding(self):

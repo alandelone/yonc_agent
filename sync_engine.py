@@ -23,6 +23,36 @@ def _normalize_uuid(raw_id: str) -> str:
         return f"{clean[:8]}-{clean[8:12]}-{clean[12:16]}-{clean[16:20]}-{clean[20:]}"
     return raw_id
 
+def _rebuild_notion_block_payload(block: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Rebuilds a valid Notion block creation payload from a raw block object.
+    Recursively handles children if they are present in 'children_blocks'.
+    """
+    b_type = block.get("type")
+    if not b_type:
+        return {}
+
+    type_data = block.get(b_type, {}).copy()
+    
+    # Remove system-generated fields that can't be set during creation
+    # rich_text usually contains 'plain_text', 'href' etc. in Notion objects,
+    # but the API usually ignores them if present in a creation call.
+    # To be safe, we could strip them, but Notion is usually lenient.
+    
+    payload = {
+        "object": "block",
+        "type": b_type,
+        b_type: type_data
+    }
+
+    # Handle nested children if they were fetched (recursive rebuild)
+    # This ensures that even nested manual notes are preserved during cloning.
+    children_blocks = block.get("children_blocks")
+    if children_blocks:
+        payload[b_type]["children"] = [_rebuild_notion_block_payload(child) for child in children_blocks]
+    
+    return payload
+
 DONE_MARK = "\u2705"
 
 def log_generated_preference_diff(
@@ -491,7 +521,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     Adds Theme and Mode as bold/code text, and removes [] from emojis.
     Senses "\u2705" as Done sign to format the text with strikethrough.
     """
-    from notion_client import update_block, replace_with_toggle_item, replace_with_bullet, delete_block
+    from notion_client import update_block, replace_with_toggle_item, replace_with_bullet, delete_block, get_page_blocks
     from config_reader import structure_yonctask_config
     import re
     
@@ -1039,6 +1069,15 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if not parent_id:
                 print(f"Cannot convert overflow task to toggle: missing parent_id for {block_id}")
             else:
+                # Component 2: Preserve existing children during conversion
+                existing_notion_children = []
+                try:
+                    # Fetch direct children from Notion to ensure we don't lose existing subtasks
+                    existing_notion_children = get_page_blocks(block_id)
+                except Exception as e:
+                    print(f"Warning: Failed to fetch existing children for {block_id} during overflow conversion: {e}")
+
+                # Build overflow quote as first child
                 overflow_children = [{
                     "object": "block",
                     "type": "quote",
@@ -1051,6 +1090,20 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "color": "gray"
                     }
                 }]
+                
+                # Append other children (filtering out previous overflow quotes if any)
+                for ech in existing_notion_children:
+                    etype = ech.get("type", "")
+                    if etype == "quote":
+                        # If the quote matches our overflow pattern (italic gray), skip it to avoid duplicates
+                        q_data = ech.get("quote", {})
+                        rt = q_data.get("rich_text", [])
+                        if rt and rt[0].get("annotations", {}).get("italic"):
+                            continue
+                    
+                    # Use shared utility to rebuild payload from raw Notion block
+                    overflow_children.append(_rebuild_notion_block_payload(ech))
+
                 try:
                     new_block = replace_with_toggle_item(
                         block_id,
@@ -1355,6 +1408,21 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
                 cloned_flat.extend(
                     _batch_clone_children(grandchildren, new_id, children_map)
                 )
+            
+            # Component 3: Clone orphan Notion children (quotes, manual notes) not in state
+            # We check if the block has children in Notion that weren't tracked as tasks.
+            try:
+                actual_notion_children = get_page_blocks(source_id)
+                # Filter for children not present in state (children_map)
+                state_child_ids = {str(t.get("notion_block_id") or t.get("id") or "") for t in grandchildren}
+                orphans = [c for c in actual_notion_children if str(c.get("id")) not in state_child_ids]
+                
+                if orphans:
+                    from notion_client import append_children
+                    orphan_payloads = [_rebuild_notion_block_payload(o) for o in orphans]
+                    append_children(_normalize_uuid(new_id), orphan_payloads)
+            except Exception as e:
+                print(f"Warning: Failed to clone orphan children for {source_id} -> {new_id}: {e}")
         return cloned_flat
 
     def _collect_subtree_ids(root_id: str, children_map: Dict[str, List[Dict[str, Any]]]) -> set:

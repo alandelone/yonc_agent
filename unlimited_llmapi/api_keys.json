@@ -6,7 +6,7 @@
         },
         {
             "key": "AIzaSyBqR25716ps7gxjXFxHzDYGv0zTItHkTUY",
-            "label": "key_2"
+            "label": "alansyling"
         },
         {
             "key": "AIzaSyCElp7OZU1-aRLpYDmqnJnbDuyd-FKF_iY",
@@ -21,7 +21,26 @@
             "label": "key_5"
         }
     ],
-    "default_model": "gemini/gemini-3.1-flash-lite",
-    "default_rpm": 15,
-    "default_rpd": 500
+    "models": [
+        {
+            "name": "gemini/gemini-3-flash-preview",
+            "rpm": 4,
+            "rpd": 20
+        },
+        {
+            "name": "gemini/gemini-3.1-flash-lite-preview",
+            "rpm": 14,
+            "rpd": 500
+        },
+        {
+            "name": "gemini/gemini-2.5-flash-preview",
+            "rpm": 4,
+            "rpd": 20
+        },
+        {
+            "name": "gemini/gemma-4-31b-it",
+            "rpm": 14,
+            "rpd": 1500
+        }
+    ]
 }

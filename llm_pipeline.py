@@ -8,17 +8,12 @@ from unlimited_llmapi import configure_dspy
 
 try:
     # Initialize the LM using the unlimited multi-key manager
+    # Passing 'model' here ensures it's used as the primary model if config doesn't specify otherwise
     lm = configure_dspy(model="gemini/gemini-3-flash-preview")
 except Exception as e:
-    print(f"Warning: Could not configure DSPy multi-key LM, falling back to basic setup: {e}")
-    from config import GEMINI_API_KEY
-    if GEMINI_API_KEY:
-        os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
-    else:
-        print("Warning: GEMINI_API_KEY not found in environment.")
-
+    print(f"Critical Error: Could not configure DSPy multi-key LM: {e}")
+    # Still attempt a basic setup if all else fails, but don't depend on non-existent config vars
     try:
-        # Initialize the LM using the new DSPy 2.x standard format
         lm = dspy.LM("gemini/gemini-3-flash-preview")
         dspy.configure(lm=lm)
     except Exception as inner_e:
@@ -68,13 +63,13 @@ class CondenseTaskDescription(dspy.Signature):
     
     Instructions:
     1. Keep Tech Jargon in English: Do not translate core technical terms, concepts, or system names (e.g., system design, microservices, data flow logic, software). Leave them exactly as they are.
-    2. Translate Connectors & Broad Concepts: Translate general descriptive words and architectural nouns into Chinese to make it shorter (e.g., Core Architecture -> 核心框架, foundational -> 基礎, central processing engine -> 中央處理引擎).
+    2. Translate Connectors & Broad Concepts: Translate general descriptive words and architectural nouns into Chinese to make it shorter (e.g., Core Architecture -> 核心架构, foundational -> 基础, central processing engine -> 中央处理引擎).
     3. Use Chinese Grammar for Brevity: Restructure the sentence to follow compact native Chinese phrasing. (e.g., "the system design for [System X]" becomes "[System X] 的 system design").
     4. Format and Punctuation: Use symbol to shorten (：). When translating lists, remove the filler words and use parentheses to enclose the list.
     5. Maximize Brevity: Cut out unnecessary English fluff or filler words. The goal is maximum information density.
     """
     original_description = dspy.InputField(desc="The original verbose English description")
-    condensed_description = dspy.OutputField(desc="The condensed bilingual text (Traditional Chinese + English Tech Jargon)")
+    condensed_description = dspy.OutputField(desc="The condensed bilingual text (Simplified Chinese + English Tech Jargon)")
 
 from pydantic import BaseModel, Field
 
@@ -190,6 +185,10 @@ def _condense_description(description: str) -> str:
     """Invokes DSPy CondenseTaskDescription to compress English descriptions into bilingual jargon notes."""
     if not description.strip():
         return ""
+    # Skip condensation for already-short descriptions to avoid unnecessary LLM calls.
+    # LLM-generated DeliverableItem descriptions are typically one concise sentence.
+    if len(description.strip()) < 60:
+        return description.strip()
     try:
         predictor = dspy.Predict(CondenseTaskDescription)
         res = predictor(original_description=description)

@@ -8,6 +8,7 @@ from .multikey_manager import (
     SmartMultiKeyLM,
     get_gemini_manager,
     configure_dspy,
+    configure_dspy_light,
     load_api_keys,
     load_config,
 )
@@ -16,6 +17,7 @@ __all__ = [
     "SmartMultiKeyLM",
     "get_gemini_manager",
     "configure_dspy",
+    "configure_dspy_light",
     "load_api_keys",
     "load_config",
 ]

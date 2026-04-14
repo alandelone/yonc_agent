@@ -42,5 +42,6 @@
             "rpm": 14,
             "rpd": 1500
         }
-    ]
+    ],
+    "light_model": "gemini/gemini-3.1-flash-lite-preview"
 }

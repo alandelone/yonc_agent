@@ -69,7 +69,7 @@ def load_config(keys_file: str | Path | None = None) -> dict:
     从 JSON 文件加载完整配置（密钥 + 模型列表）。
 
     Returns:
-        包含 keys, labels, models 的字典
+        包含 keys, labels, models, light_model 的字典
     """
     path = Path(keys_file) if keys_file else DEFAULT_KEYS_FILE
 
@@ -81,6 +81,7 @@ def load_config(keys_file: str | Path | None = None) -> dict:
         "keys": [entry["key"] for entry in keys_data],
         "labels": {entry["key"]: entry.get("label", f"key_{i+1}") for i, entry in enumerate(keys_data)},
         "models": data.get("models", []),
+        "light_model": data.get("light_model"),  # optional name of the light model
     }
 
 
@@ -310,6 +311,52 @@ def configure_dspy(
     return lm
 
 
+def configure_dspy_light(
+    keys_file: str | Path | None = None,
+    **kwargs
+) -> SmartMultiKeyLM:
+    """
+    配置专用于轻量级任务的 LM（如 compaction / CondenseTaskDescription）。
+
+    模型回退顺序：
+      1. light_model（配置文件中 light_model 字段指定，通常是高 RPD 的 lite 模型）
+      2. 若 light_model 配额耗尽，自动回退到 models 列表顺序中的其他模型
+
+    此 LM **不会**调用 dspy.configure()，需要用 dspy.context(lm=light_lm) 局部使用。
+
+    Args:
+        keys_file: 密钥 JSON 文件路径，默认 api_keys.json
+        **kwargs: 传递给 LM 的额外参数
+    """
+    config = load_config(keys_file)
+    all_models: list[dict] = config["models"]
+    light_model_name: str | None = config.get("light_model")
+
+    if light_model_name:
+        # Build model list: light model first, then the rest as fallback
+        light_cfg = next((m for m in all_models if m["name"] == light_model_name), None)
+        if light_cfg is None:
+            # light_model name not in models list — treat like a standalone entry
+            # with generous defaults (high RPD lite tier)
+            light_cfg = {"name": light_model_name, "rpm": 14, "rpd": 500}
+        others = [m for m in all_models if m["name"] != light_model_name]
+        light_models = [light_cfg] + others
+    else:
+        # No designated light model, fall back to full model list
+        light_models = all_models
+
+    lm = SmartMultiKeyLM(
+        api_keys=config["keys"],
+        models_config=light_models,
+        labels=config["labels"],
+        **kwargs,
+    )
+
+    short_names = [m["name"].split("/")[-1] for m in light_models]
+    print(f"[MultiKey-Light] 轻量 LM 已创建 | 密钥数: {len(config['keys'])} | 模型回退: {' -> '.join(short_names)}")
+    return lm
+
+
 # Alias for backward compatibility
 get_gemini_manager = configure_dspy
 
@@ -319,6 +366,7 @@ __all__ = [
     "SmartMultiKeyLM",
     "get_gemini_manager",
     "configure_dspy",
+    "configure_dspy_light",
     "load_api_keys",
     "load_config",
 ]

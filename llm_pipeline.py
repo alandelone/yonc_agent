@@ -4,7 +4,7 @@ import json
 import re
 from typing import List, Dict, Any, Optional, Set
 
-from unlimited_llmapi import configure_dspy
+from unlimited_llmapi import configure_dspy, configure_dspy_light
 
 try:
     # Initialize the LM using the unlimited multi-key manager
@@ -18,6 +18,16 @@ except Exception as e:
         dspy.configure(lm=lm)
     except Exception as inner_e:
         print(f"Warning: Could not configure fallback DSPy LM: {inner_e}")
+
+# Dedicated light-weight LM for cheap, high-frequency tasks
+# (compaction / CondenseTaskDescription / CondenseTaskTitle).
+# Uses the model labelled 'light_model' in api_keys.json as top priority,
+# falling back to the rest of the model chain if its quota is exhausted.
+try:
+    light_lm = configure_dspy_light()
+except Exception as e:
+    print(f"Warning: Could not create light LM, will use global lm as fallback: {e}")
+    light_lm = None
 
 
 class SplitAbstractTask(dspy.Signature):
@@ -205,7 +215,9 @@ def _condense_description(description: str) -> str:
         return description.strip()
     try:
         predictor = dspy.Predict(CondenseTaskDescription)
-        res = predictor(original_description=description)
+        ctx = {"lm": light_lm} if light_lm is not None else {}
+        with dspy.context(**ctx):
+            res = predictor(original_description=description)
         return str(res.condensed_description).strip()
     except Exception as e:
         print(f"Failed to condense description: {e}. Using original.")
@@ -220,7 +232,9 @@ def _condense_title(title: str) -> str:
         return title.strip()
     try:
         predictor = dspy.Predict(CondenseTaskTitle)
-        res = predictor(original_title=title)
+        ctx = {"lm": light_lm} if light_lm is not None else {}
+        with dspy.context(**ctx):
+            res = predictor(original_title=title)
         return str(res.condensed_title).strip()
     except Exception as e:
         print(f"Failed to condense title: {e}. Using original.")

@@ -71,6 +71,20 @@ class CondenseTaskDescription(dspy.Signature):
     original_description = dspy.InputField(desc="The original verbose English description")
     condensed_description = dspy.OutputField(desc="The condensed bilingual text (Simplified Chinese + English Tech Jargon)")
 
+class CondenseTaskTitle(dspy.Signature):
+    """You are a bilingual Senior Software Engineer. Your task is to rewrite English task titles into a highly condensed "Traditional Chinese + English Tech Jargon" format.
+    
+    Goal: Shorten the original task title significantly to create a concise, easy-to-skim title while maintaining technical accuracy and this specific bilingual style.
+    
+    Instructions:
+    1. Keep Tech Jargon in English: Do not translate core technical terms, concepts, or system names. Leave them exactly as they are.
+    2. Translate Actions & Broad Concepts: Translate general action verbs and nouns into Chinese to make it shorter.
+    3. Use Chinese Grammar for Brevity: Restructure the phrase to follow compact native Chinese phrasing.
+    4. Maximize Brevity: Cut out unnecessary English fluff or filler words. The title should be very short (e.g., 2-6 words).
+    """
+    original_title = dspy.InputField(desc="The original verbose English title")
+    condensed_title = dspy.OutputField(desc="The condensed bilingual title (Simplified Chinese + English Tech Jargon)")
+
 from pydantic import BaseModel, Field
 
 # --- WBS Core Context ---
@@ -197,10 +211,29 @@ def _condense_description(description: str) -> str:
         print(f"Failed to condense description: {e}. Using original.")
         return description
 
+def _condense_title(title: str) -> str:
+    """Invokes DSPy CondenseTaskTitle to compress English titles into bilingual jargon notes."""
+    if not title.strip():
+        return ""
+    # Skip condensation for already-short titles to avoid unnecessary LLM calls.
+    if len(title.strip()) < 20:
+        return title.strip()
+    try:
+        predictor = dspy.Predict(CondenseTaskTitle)
+        res = predictor(original_title=title)
+        return str(res.condensed_title).strip()
+    except Exception as e:
+        print(f"Failed to condense title: {e}. Using original.")
+        return title
+
 def _format_title_desc(title: str, description: str) -> str:
     """将标题和描述格式化为 '{title} : {description}' 格式。并进行双语提炼。"""
     title = str(title or "").strip()
     description = str(description or "").strip()
+    
+    if title:
+        title = _condense_title(title)
+        
     if description:
         condensed = _condense_description(description)
         return f"{title} : {condensed}"

@@ -69,7 +69,7 @@ def load_config(keys_file: str | Path | None = None) -> dict:
     从 JSON 文件加载完整配置（密钥 + 模型列表）。
 
     Returns:
-        包含 keys, labels, models, light_model 的字典
+        包含 keys, labels, models, light_models 的字典
     """
     path = Path(keys_file) if keys_file else DEFAULT_KEYS_FILE
 
@@ -77,11 +77,20 @@ def load_config(keys_file: str | Path | None = None) -> dict:
         data = json.load(f)
 
     keys_data = data.get("keys", [])
+
+    # 解析 light_models：支持新格式（对象数组）和旧格式（单个模型名字符串）
+    light_models_raw = data.get("light_models")  # 新格式优先
+    if light_models_raw is None:
+        # 向后兼容旧 light_model 字段
+        legacy = data.get("light_model")
+        if isinstance(legacy, str) and legacy:
+            light_models_raw = [legacy]
+
     return {
         "keys": [entry["key"] for entry in keys_data],
         "labels": {entry["key"]: entry.get("label", f"key_{i+1}") for i, entry in enumerate(keys_data)},
         "models": data.get("models", []),
-        "light_model": data.get("light_model"),  # optional name of the light model
+        "light_models": light_models_raw,  # list[dict] | list[str] | None
     }
 
 
@@ -125,6 +134,11 @@ class SmartMultiKeyLM(LM):
 
         # 用第一个模型初始化父类
         super().__init__(models_config[0]["name"], api_key=api_keys[0], **kwargs)
+
+        # 父类 LM.__init__ 会将 api_key 合并进 self.kwargs，
+        # 导致后续 dspy.LM(m_name, api_key=key, **self.kwargs) 出现重复参数。
+        # 必须在父类初始化后清理掉。
+        self.kwargs.pop("api_key", None)
 
         self.key_labels = labels or {k: f"Key#{i+1}" for i, k in enumerate(api_keys)}
 
@@ -258,8 +272,9 @@ class SmartMultiKeyLM(LM):
 
         except Exception as e:
             error_msg = str(e).lower()
-            if any(x in error_msg for x in ["429", "quota", "resource_exhausted"]):
-                print(f"  [MultiKey] {m_name} | {label} 触发受限: {str(e).splitlines()[0][:100]}")
+            # 瞬态错误：429 限流 / 配额耗尽 / 503 过载
+            if any(x in error_msg for x in ["429", "quota", "resource_exhausted", "503", "unavailable", "high demand", "overloaded"]):
+                print(f"  [MultiKey] {m_name} | {label} 触发受限: {str(e)}")
                 self.usage_data["usage"][m_name][key]["last_used"] = time.time()
                 
                 if "quota" in error_msg or "resource_exhausted" in error_msg:
@@ -319,8 +334,8 @@ def configure_dspy_light(
     配置专用于轻量级任务的 LM（如 compaction / CondenseTaskDescription）。
 
     模型回退顺序：
-      1. light_model（配置文件中 light_model 字段指定，通常是高 RPD 的 lite 模型）
-      2. 若 light_model 配额耗尽，自动回退到 models 列表顺序中的其他模型
+      1. light_models（配置文件中 light_models 字段，支持多模型各自独立 rpm/rpd）
+      2. 若 light_models 配额全部耗尽，自动回退到 models 列表中未出现的其他模型
 
     此 LM **不会**调用 dspy.configure()，需要用 dspy.context(lm=light_lm) 局部使用。
 
@@ -330,29 +345,35 @@ def configure_dspy_light(
     """
     config = load_config(keys_file)
     all_models: list[dict] = config["models"]
-    light_model_name: str | None = config.get("light_model")
+    light_models_raw = config.get("light_models")
 
-    if light_model_name:
-        # Build model list: light model first, then the rest as fallback
-        light_cfg = next((m for m in all_models if m["name"] == light_model_name), None)
-        if light_cfg is None:
-            # light_model name not in models list — treat like a standalone entry
-            # with generous defaults (high RPD lite tier)
-            light_cfg = {"name": light_model_name, "rpm": 14, "rpd": 500}
-        others = [m for m in all_models if m["name"] != light_model_name]
-        light_models = [light_cfg] + others
+    if light_models_raw:
+        # 标准化：每个条目可能是 dict（新格式）或 str（旧格式兼容）
+        light_chain: list[dict] = []
+        for entry in light_models_raw:
+            if isinstance(entry, dict):
+                light_chain.append(entry)
+            elif isinstance(entry, str):
+                # 旧格式：纯模型名，尝试从 models 列表中找匹配配置
+                matched = next((m for m in all_models if m["name"] == entry), None)
+                light_chain.append(matched or {"name": entry, "rpm": 14, "rpd": 500})
+
+        # 把 models 列表中未出现在 light_chain 里的模型追加为最终回退
+        light_names = {m["name"] for m in light_chain}
+        others = [m for m in all_models if m["name"] not in light_names]
+        final_models = light_chain + others
     else:
-        # No designated light model, fall back to full model list
-        light_models = all_models
+        # 没有配置 light_models，直接复用主模型列表
+        final_models = all_models
 
     lm = SmartMultiKeyLM(
         api_keys=config["keys"],
-        models_config=light_models,
+        models_config=final_models,
         labels=config["labels"],
         **kwargs,
     )
 
-    short_names = [m["name"].split("/")[-1] for m in light_models]
+    short_names = [m["name"].split("/")[-1] for m in final_models]
     print(f"[MultiKey-Light] 轻量 LM 已创建 | 密钥数: {len(config['keys'])} | 模型回退: {' -> '.join(short_names)}")
     return lm
 

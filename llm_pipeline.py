@@ -2,6 +2,7 @@ import dspy
 import os
 import json
 import re
+import time
 from typing import List, Dict, Any, Optional, Set
 
 from unlimited_llmapi import configure_dspy, configure_dspy_light
@@ -192,8 +193,60 @@ class RefineL4(dspy.Signature):
 # though we try to use the modern typing format directly in the Signature output annotations.
 # DSPy 2.x natively supports output typing.
 
+# 瞬态错误关键词（503 过载 / 429 限流）
+_TRANSIENT_KEYWORDS = ("503", "unavailable", "overloaded", "high demand", "429", "rate")
+_MAX_RETRIES = 3
+_BASE_BACKOFF = 5  # 秒，实际等待为 base * 2^attempt (5, 10, 20)
+
+
+def _retry_on_transient(fn, label: str, fallback, fallback_fn=None):
+    """对瞬态 API 错误（503/429）自动重试，指数退避。
+    
+    主函数 fn 重试 _MAX_RETRIES 次后，若提供了 fallback_fn（使用不同模型），
+    则切换到回退模型再重试 _MAX_RETRIES 次，全部耗尽才返回 fallback 原始值。
+    """
+    last_err = None
+    for attempt in range(_MAX_RETRIES):
+        try:
+            return fn()
+        except Exception as e:
+            last_err = e
+            msg = str(e).lower()
+            if any(kw in msg for kw in _TRANSIENT_KEYWORDS):
+                wait = _BASE_BACKOFF * (2 ** attempt)
+                print(f"  [Retry] {label} 遇到瞬态错误 (attempt {attempt + 1}/{_MAX_RETRIES})，{wait}s 后重试...")
+                time.sleep(wait)
+            else:
+                # 非瞬态错误，直接放弃
+                print(f"Failed to {label}: {e}. Using fallback.")
+                return fallback
+
+    # 主模型重试耗尽，切换到回退模型
+    if fallback_fn is not None:
+        print(f"  [Retry] {label} 主模型重试耗尽，切换到回退模型...")
+        for attempt in range(_MAX_RETRIES):
+            try:
+                return fallback_fn()
+            except Exception as e:
+                last_err = e
+                msg = str(e).lower()
+                if any(kw in msg for kw in _TRANSIENT_KEYWORDS):
+                    wait = _BASE_BACKOFF * (2 ** attempt)
+                    print(f"  [Retry] {label} 回退模型 (attempt {attempt + 1}/{_MAX_RETRIES})，{wait}s 后重试...")
+                    time.sleep(wait)
+                else:
+                    print(f"Failed to {label} (fallback model): {e}. Using original.")
+                    return fallback
+
+    # 全部耗尽
+    print(f"Failed to {label} after all retries: {last_err}. Using original.")
+    return fallback
+
+
+_DEFAULT_CLASSIFICATION = WBSClassification(rationale="Fallback", level=1, task_type="WBS")
+
 def classify_task(task_title: str) -> WBSClassification:
-    try:
+    def _call():
         predictor = dspy.Predict(ClassifyTask)
         result = predictor(task_input=task_title, wbs_rules_context=WBS_CONTEXT)
         cls = result.classification
@@ -201,9 +254,10 @@ def classify_task(task_title: str) -> WBSClassification:
         print(f"   Input : '{task_title}'")
         print(f"   Output: Level {cls.level} | Type {cls.task_type} | Rationale: {cls.rationale}")
         return cls
-    except Exception as e:
-        print(f"Classification failed: {e}. Defaulting to WBS Level 1.")
-        return WBSClassification(rationale="Fallback", level=1, task_type="WBS")
+
+    return _retry_on_transient(_call, "classify task", _DEFAULT_CLASSIFICATION)
+
+
 
 def _condense_description(description: str) -> str:
     """Invokes DSPy CondenseTaskDescription to compress English descriptions into bilingual jargon notes."""
@@ -213,15 +267,24 @@ def _condense_description(description: str) -> str:
     # LLM-generated DeliverableItem descriptions are typically one concise sentence.
     if len(description.strip()) < 60:
         return description.strip()
-    try:
+
+    def _call():
         predictor = dspy.Predict(CondenseTaskDescription)
         ctx = {"lm": light_lm} if light_lm is not None else {}
         with dspy.context(**ctx):
             res = predictor(original_description=description)
         return str(res.condensed_description).strip()
-    except Exception as e:
-        print(f"Failed to condense description: {e}. Using original.")
-        return description
+
+    def _call_global():
+        """回退到全局 lm（主模型链）。"""
+        predictor = dspy.Predict(CondenseTaskDescription)
+        res = predictor(original_description=description)
+        return str(res.condensed_description).strip()
+
+    return _retry_on_transient(
+        _call, "condense description", description,
+        fallback_fn=_call_global if light_lm is not None else None,
+    )
 
 def _condense_title(title: str) -> str:
     """Invokes DSPy CondenseTaskTitle to compress English titles into bilingual jargon notes."""
@@ -230,15 +293,24 @@ def _condense_title(title: str) -> str:
     # Skip condensation for already-short titles to avoid unnecessary LLM calls.
     if len(title.strip()) < 20:
         return title.strip()
-    try:
+
+    def _call():
         predictor = dspy.Predict(CondenseTaskTitle)
         ctx = {"lm": light_lm} if light_lm is not None else {}
         with dspy.context(**ctx):
             res = predictor(original_title=title)
         return str(res.condensed_title).strip()
-    except Exception as e:
-        print(f"Failed to condense title: {e}. Using original.")
-        return title
+
+    def _call_global():
+        """回退到全局 lm（主模型链）。"""
+        predictor = dspy.Predict(CondenseTaskTitle)
+        res = predictor(original_title=title)
+        return str(res.condensed_title).strip()
+
+    return _retry_on_transient(
+        _call, "condense title", title,
+        fallback_fn=_call_global if light_lm is not None else None,
+    )
 
 def _format_title_desc(title: str, description: str) -> str:
     """将标题和描述格式化为 '{title} : {description}' 格式。并进行双语提炼。"""
@@ -422,45 +494,17 @@ def tag_task(task_title: str, config_options: Dict[str, List[str]]) -> Dict[str,
     result = predictor(task_title=task_title, config_options=json.dumps(config_options, ensure_ascii=False))
     return result.tags
 
-def enrich_state_with_llm(
-    local_state: List[Dict[str, Any]],
-    config_dict: Dict[str, List[str]],
-    allow_llm: bool = True
-) -> List[Dict[str, Any]]:
+def theme_pass(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
     """
-    Iterates local state and normalizes tags.
-    When allow_llm=True, missing tags are generated via LLM first.
-    Regardless of allow_llm, deterministic rule corrections still run
-    (theme backfill by context/neighbor).
-    WBS stays empty by default unless it already exists or is added via LLM.
+    L1 deterministic pass:
+    - infer and normalize theme assignment
+    - keep only theme tag visible at this stage
     """
-    from config_reader import structure_yonctask_config, clean_task_title
+    from config_reader import structure_yonctask_config
+    import re
+    
     structured_cfg = structure_yonctask_config(config_dict)
     themes = structured_cfg.get("themes", {})
-
-    def _allowed_tag_keys(level: int) -> set:
-        if level == 1:
-            return {"Task Theme with colour", "WBS level"}
-        if level == 2:
-            return {"Task Theme with colour", "State of Parent Task", "WBS level"}
-        if level == 3:
-            return {"Task Theme with colour", "Priority", "WBS level"}
-        if level == 4:
-            return {"Modes", "Task Type", "WBS level"}
-        return {"Task Theme with colour", "Modes", "Priority", "State of Parent Task", "Task Type", "WBS level"}
-
-    def _resolve_wbs_tag(level: int) -> str:
-        levels = structured_cfg.get("wbs_levels", {})
-        entry = levels.get(level)
-        if isinstance(entry, dict):
-            return entry.get("raw") or entry.get("emoji", "")
-        for key, val in levels.items():
-            label = val.get("label", "") if isinstance(val, dict) else str(val)
-            if str(level) in str(key) or str(level) in label:
-                if isinstance(val, dict):
-                    return val.get("raw") or val.get("emoji", "")
-                return str(val)
-        return ""
 
     def _normalize_title_for_theme_match(text: str) -> str:
         t = str(text or "").strip()
@@ -546,41 +590,6 @@ def enrich_state_with_llm(
             return (best_main_match[2], best_main_match[3])
         return (None, None)
 
-    def _infer_wbs_level_from_existing_tags(tags: Dict[str, Any]) -> int | None:
-        wbs_text = str(tags.get("WBS level", "")).strip()
-        if not wbs_text:
-            return None
-
-        direct = re.search(r"([1-4])", wbs_text)
-        if direct:
-            return int(direct.group(1))
-
-        levels = structured_cfg.get("wbs_levels", {})
-        for key, val in levels.items():
-            candidates = [str(key)]
-            if isinstance(val, dict):
-                candidates.extend([
-                    str(val.get("raw", "")),
-                    str(val.get("emoji", "")),
-                    str(val.get("label", ""))
-                ])
-            else:
-                candidates.append(str(val))
-
-            for c in candidates:
-                candidate = c.strip()
-                if not candidate:
-                    continue
-                if wbs_text == candidate or candidate in wbs_text or wbs_text in candidate:
-                    key_level = re.search(r"([1-4])", str(key))
-                    if key_level:
-                        return int(key_level.group(1))
-                    if isinstance(val, dict):
-                        label_level = re.search(r"([1-4])", str(val.get("label", "")))
-                        if label_level:
-                            return int(label_level.group(1))
-        return None
-
     parent_ids = {
         str(t.get("parent_id"))
         for t in local_state
@@ -630,157 +639,91 @@ def enrich_state_with_llm(
         return (first_theme_key, first_match_text, consecutive_theme_ancestors)
 
     for idx, task in enumerate(local_state):
-        import sys
         title_words = task.get("original_notion_title", task.get("title", ""))
-        clean_title = clean_task_title(title_words, structured_cfg)
         tags = task.get("tags") or {}
-        existing_wbs_tag = str(tags.get("WBS level", "")).strip()
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         is_parent_container = bool(task_id and task_id in parent_ids)
         own_theme_key, own_theme_match = _match_theme_or_subtheme(title_words)
-        # Treat only top-level theme-name containers as structural.
-        # Sub-theme nodes (e.g. "3dpF") can be meaningful task rows and should still be taggable.
+        
         is_theme_container = bool(
             is_parent_container
             and own_theme_key
             and own_theme_match == own_theme_key
         )
 
-        # Treat explicit theme/sub-theme containers as structural nodes only:
-        # do not tag them in either push-sync or tag mode.
         if is_theme_container:
             task["wbs_level"] = None
             task["tags"] = {}
             continue
 
-        # Ensure WBS level is present
-        wbs_level = task.get("wbs_level")
-        if isinstance(wbs_level, str) and wbs_level.isdigit():
-            wbs_level = int(wbs_level)
-        had_wbs_level = isinstance(wbs_level, int)
-        had_wbs_signal = had_wbs_level or bool(existing_wbs_tag)
-
-        if not isinstance(wbs_level, int):
-            inferred_level = _infer_wbs_level_from_existing_tags(tags)
-            if isinstance(inferred_level, int):
-                wbs_level = inferred_level
-            elif allow_llm:
-                try:
-                    cls_result = classify_task(clean_title or task.get("title", ""))
-                    wbs_level = 1 if cls_result.task_type == "OKR" else cls_result.level
-                except Exception as e:
-                    print(f"Failed to classify WBS level: {e}")
-                    wbs_level = 1
-            else:
-                wbs_level = None
-        task["wbs_level"] = wbs_level
-
-        if isinstance(wbs_level, int):
-            allowed_keys = _allowed_tag_keys(wbs_level)
-        else:
-            allowed_keys = {"Task Theme with colour", "Modes", "Priority", "State of Parent Task", "Task Type"}
-
-        if existing_wbs_tag:
-            allowed_keys = set(allowed_keys)
-            allowed_keys.add("WBS level")
-
-        tags = {k: v for k, v in tags.items() if k in allowed_keys}
-
-        tag_keys_for_llm = [k for k in allowed_keys if k != "WBS level"]
-        missing_allowed = [k for k in tag_keys_for_llm if k not in tags]
-        should_call_llm = allow_llm and bool(missing_allowed)
-
-        if allow_llm and task.get("notion_type") in ["to_do", "todo"] and not task.get("has_tag_style", False):
-            should_call_llm = True
-
-        if allow_llm and should_call_llm and tag_keys_for_llm:
-            llm_config = {k: config_dict.get(k, []) for k in tag_keys_for_llm if k in config_dict}
-            if llm_config:
-                msg = f"Tagging task: {clean_title or task.get('title', '')}\n"
-                sys.stdout.buffer.write(msg.encode('utf-8', 'replace'))
-                try:
-                    generated = tag_task(clean_title, llm_config)
-                    for k, v in generated.items():
-                        if k not in tags:
-                            tags[k] = v
-                except Exception as e:
-                    print(f"Failed to tag: {e}")
-
         ancestor_theme_key, ancestor_match_text, theme_depth_offset = _find_theme_from_parent_chain(task)
         if theme_depth_offset > 0 and isinstance(task.get("depth"), int):
             task["depth"] = max(0, int(task.get("depth")) - theme_depth_offset)
 
-        # In push-sync mode (allow_llm=False), skip only explicit theme containers.
-        # Non-theme parent containers (e.g. "3dpF") should still inherit and display theme.
-        should_autofill_theme = not (is_theme_container and not allow_llm)
-        if should_autofill_theme and "Task Theme with colour" in allowed_keys:
-            context_heading = task.get("context_heading", "")
-            context_from_title_fallback = False
+        context_heading = task.get("context_heading", "")
+        context_from_title_fallback = False
 
-            found_theme_key = None
+        found_theme_key = None
 
-            # Priority 1: direct parent -> parent of parent chain
-            if ancestor_theme_key:
-                found_theme_key = ancestor_theme_key
-                if ancestor_match_text:
-                    context_heading = ancestor_match_text
+        # Priority 1: direct parent -> parent of parent chain
+        if ancestor_theme_key:
+            found_theme_key = ancestor_theme_key
+            if ancestor_match_text:
+                context_heading = ancestor_match_text
+                context_from_title_fallback = False
+
+        # Priority 2: explicit context heading parsing from the string natively
+        if not found_theme_key:
+            ancest_theme_key, ancest_match_text = _find_theme_from_ancestor_prefix(task)
+            if ancest_theme_key:
+                found_theme_key = ancest_theme_key
+                if ancest_match_text:
+                    context_heading = ancest_match_text
                     context_from_title_fallback = False
 
-            # Priority 2: explicit context heading parsing from the string natively
-            if not found_theme_key:
-                ancest_theme_key, ancest_match_text = _find_theme_from_ancestor_prefix(task)
-                if ancest_theme_key:
-                    found_theme_key = ancest_theme_key
-                    if ancest_match_text:
-                        context_heading = ancest_match_text
-                        context_from_title_fallback = False
+        # Priority 3: explicitly given context heading
+        if not found_theme_key and context_heading:
+            for t_name, t_data in themes.items():
+                if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
+                    found_theme_key = t_name
+                    break
 
-            # Priority 3: explicitly given context heading
-            if not found_theme_key and context_heading:
-                for t_name, t_data in themes.items():
-                    if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
-                        found_theme_key = t_name
-                        break
-
-            if not found_theme_key:
-                for offset in [1, -1, 2, -2]:
-                    neighbor_idx = idx + offset
-                    if 0 <= neighbor_idx < len(local_state):
-                        neighbor = local_state[neighbor_idx]
-                        if neighbor.get("type") == "paragraph":
-                            neighbor_title = neighbor.get("title", "").strip()
-                            if not neighbor_title:
-                                continue
-                            for t_name, t_data in themes.items():
-                                if neighbor_title == t_name or neighbor_title in t_data.get("sub_themes", []):
-                                    found_theme_key = t_name
-                                    context_heading = neighbor_title
-                                    context_from_title_fallback = False
-                                    break
-                            if found_theme_key:
+        if not found_theme_key:
+            for offset in [1, -1, 2, -2]:
+                neighbor_idx = idx + offset
+                if 0 <= neighbor_idx < len(local_state):
+                    neighbor = local_state[neighbor_idx]
+                    if neighbor.get("type") == "paragraph":
+                        neighbor_title = neighbor.get("title", "").strip()
+                        if not neighbor_title:
+                            continue
+                        for t_name, t_data in themes.items():
+                            if neighbor_title == t_name or neighbor_title in t_data.get("sub_themes", []):
+                                found_theme_key = t_name
+                                context_heading = neighbor_title
+                                context_from_title_fallback = False
                                 break
+                        if found_theme_key:
+                            break
 
-            if found_theme_key:
-                display_label = found_theme_key
-                if context_heading and not context_from_title_fallback and context_heading != found_theme_key:
-                    display_label = context_heading
-                task["theme_display_label"] = display_label
-                for raw_theme in config_dict.get("Task Theme with colour", []):
-                    raw_text = raw_theme.get("text", "") if isinstance(raw_theme, dict) else raw_theme
-                    if raw_text.startswith(found_theme_key):
-                        tags["Task Theme with colour"] = raw_text
-                        break
-            else:
-                task.pop("theme_display_label", None)
+        new_tags: Dict[str, Any] = {}
+        if found_theme_key:
+            display_label = found_theme_key
+            if context_heading and not context_from_title_fallback and context_heading != found_theme_key:
+                display_label = context_heading
+            task["theme_display_label"] = display_label
+            for raw_theme in config_dict.get("Task Theme with colour", []):
+                raw_text = raw_theme.get("text", "") if isinstance(raw_theme, dict) else raw_theme
+                if raw_text.startswith(found_theme_key):
+                    new_tags["Task Theme with colour"] = raw_text
+                    break
+        else:
+            task.pop("theme_display_label", None)
+            if "Task Theme with colour" in tags:
+                new_tags["Task Theme with colour"] = tags["Task Theme with colour"]
 
-        if isinstance(wbs_level, int) and (allow_llm or had_wbs_signal):
-            wbs_tag = _resolve_wbs_tag(wbs_level)
-            if wbs_tag:
-                tags["WBS level"] = wbs_tag
-        elif not existing_wbs_tag:
-            tags.pop("WBS level", None)
+        task["tags"] = new_tags
 
-        task["tags"] = tags
 
     return local_state
 
@@ -836,23 +779,6 @@ def _infer_wbs_from_text(value: str) -> Optional[int]:
         except ValueError:
             return None
     return None
-
-
-def theme_pass(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
-    """
-    L1 deterministic pass:
-    - infer and normalize theme assignment
-    - keep only theme tag visible at this stage
-    """
-    enriched = enrich_state_with_llm(local_state, config_dict, allow_llm=False)
-    for task in enriched:
-        tags = task.get("tags") or {}
-        new_tags: Dict[str, Any] = {}
-        if "Task Theme with colour" in tags:
-            new_tags["Task Theme with colour"] = tags["Task Theme with colour"]
-        task["tags"] = new_tags
-    return enriched
-
 
 def wbs_pass(
     local_state: List[Dict[str, Any]],

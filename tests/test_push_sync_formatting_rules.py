@@ -73,8 +73,10 @@ class TestPushSyncFormattingRules(unittest.TestCase):
         self.assertTrue(desc_segment[0]["annotations"].get("italic"))
         self.assertEqual("gray", desc_segment[0]["annotations"].get("color"))
 
-    def test_converts_overflow_text_into_toggle_quote_by_depth_limit(self):
-        long_text = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen"
+    def test_compacts_long_title_via_llm_instead_of_toggle_conversion(self):
+        """当标题 word count 超过限制时，应通过 LLM 压缩描述部分而非转换为 toggle。"""
+        long_desc = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen"
+        long_text = f"Setup Extruder : {long_desc}"
         state = [
             {
                 "id": "t-3",
@@ -92,17 +94,14 @@ class TestPushSyncFormattingRules(unittest.TestCase):
             }
         ]
 
-        with patch("notion_client.update_block", return_value={}) as mock_update, patch(
-            "notion_client.replace_with_toggle_item", return_value={"id": "new-toggle-id"}
-        ) as mock_toggle:
+        with patch("notion_client.update_block", return_value={}) as mock_update, \
+             patch("llm_pipeline._condense_description", return_value="compacted desc") as mock_condense:
             push_tags_to_notion(state, _raw_config())
 
-        self.assertFalse(mock_update.called, "Overflow item should be converted to toggle, not updated in-place.")
-        self.assertTrue(mock_toggle.called, "Overflow item should trigger replace_with_toggle_item.")
-
-        children = mock_toggle.call_args.kwargs.get("children", [])
-        self.assertTrue(children, "Toggle conversion should include quote child for overflow text.")
-        self.assertEqual("quote", children[0]["type"])
+        # 应该走 update_block 而不是 replace_with_toggle_item
+        self.assertTrue(mock_update.called, "Long title should be updated in-place, not converted to toggle.")
+        # LLM 压缩应被调用
+        self.assertTrue(mock_condense.called, "LLM _condense_description should be called for overflow title.")
 
 
 if __name__ == "__main__":

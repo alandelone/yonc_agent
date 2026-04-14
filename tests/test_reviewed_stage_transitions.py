@@ -35,18 +35,17 @@ class TestReviewedStageTransitions(unittest.TestCase):
             }
         ]
 
-        with patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}) as mock_bullet, patch(
-            "notion_client.replace_with_toggle_item", return_value={"id": "new-toggle"}
-        ) as mock_toggle, patch("notion_client.update_block", return_value={}), patch(
-            "notion_client.delete_block", return_value={}
-        ):
+        with patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}) as mock_bullet, \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.delete_block", return_value={}):
             push_tags_to_notion(state, _config())
 
         self.assertTrue(mock_bullet.called)
-        self.assertFalse(mock_toggle.called)
         self.assertEqual("bullet", state[0]["type"])
 
     def test_unchecked_generated_todo_is_deleted(self):
+        """selection_mode 需要同组至少 1 个 checked generated to_do 才激活。
+        添加 checked sibling 满足阈值，验证 unchecked 的被删除。"""
         state = [
             {
                 "id": "g2",
@@ -64,12 +63,29 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "checked": False,
                 "is_generated": True,
                 "origin": "generated",
-            }
+            },
+            {
+                "id": "g2-sibling",
+                "notion_block_id": "g2-sibling",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint sibling",
+                "original_notion_title": "sibling",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "2️⃣ | Level 2",
+                },
+                "wbs_level": 2,
+                "parent_id": "p1",
+                "checked": True,
+                "is_generated": True,
+                "origin": "generated",
+            },
         ]
 
-        with patch("notion_client.delete_block", return_value={}) as mock_delete, patch(
-            "notion_client.update_block", return_value={}
-        ):
+        with patch("notion_client.delete_block", return_value={}) as mock_delete, \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}):
             push_tags_to_notion(state, _config())
 
         self.assertTrue(mock_delete.called)

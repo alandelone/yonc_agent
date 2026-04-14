@@ -521,7 +521,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     Adds Theme and Mode as bold/code text, and removes [] from emojis.
     Senses "\u2705" as Done sign to format the text with strikethrough.
     """
-    from notion_client import update_block, replace_with_toggle_item, replace_with_bullet, delete_block, get_page_blocks
+    from notion_client import update_block, replace_with_bullet, delete_block
     from config_reader import structure_yonctask_config
     import re
     
@@ -610,48 +610,46 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         return main_theme_name
 
-    def _char_limit_for_depth(depth: Any) -> int:
-        try:
-            d = int(depth)
-        except (TypeError, ValueError):
-            d = 0
-        if d <= 0:
-            return 90
-        if d == 1:
-            return 90
-        return 80
+    # --- Word-count 辅助与 LLM 压缩 ---
+    WORD_LIMIT = 20  # 总行 word 上限（含 tag emoji / theme label）
 
-    def _split_title_with_limit(title: str, depth: Any, tag_char_count: int) -> tuple[str, str]:
+    def _word_count(text: str) -> int:
+        """统计 word 数量（CJK 每字算 1 word，英文按空格分词）。"""
+        import re as _re
+        cjk = len(_re.findall(r'[\u4e00-\u9fff\u3400-\u4dbf]', text))
+        ascii_words = len(_re.findall(r'[a-zA-Z0-9]+', text))
+        return cjk + ascii_words
+
+    def _compact_title_if_needed(title: str, tag_word_count: int) -> str:
+        """当标题 word count 超限时，用 LLM 压缩描述部分；否则原样返回。"""
+        from llm_pipeline import _condense_description, _condense_title
+
         raw_title = str(title or "").strip()
         if not raw_title:
-            return ("", "")
+            return ""
 
-        allowed_total = _char_limit_for_depth(depth)
-        try:
-            consumed_chars = int(tag_char_count)
-        except (TypeError, ValueError):
-            consumed_chars = 0
+        allowed = max(5, WORD_LIMIT - max(0, tag_word_count))
+        if _word_count(raw_title) <= allowed:
+            return raw_title  # 不需要压缩
 
-        allowed_title_chars = max(1, allowed_total - max(0, consumed_chars))
-        if len(raw_title) <= allowed_title_chars:
-            return (raw_title, "")
+        # 有 `:` 分隔符 → 只压缩描述部分
+        if ":" in raw_title:
+            task_part, desc_part = raw_title.split(":", 1)
+            task_part = task_part.strip()
+            desc_part = desc_part.strip()
+            if desc_part:
+                condensed_desc = _condense_description(desc_part)
+                result = f"{task_part} : {condensed_desc}"
+                if _word_count(result) <= allowed:
+                    return result
+                # 还是太长 → 同时压缩标题部分
+                condensed_t = _condense_title(task_part)
+                return f"{condensed_t} : {condensed_desc}"
+            # 只有 task_part
+            return _condense_title(task_part)
 
-        # Split only on whitespace so we never cut in the middle of a word.
-        split_at = raw_title.rfind(" ", 0, allowed_title_chars + 1)
-        if split_at > 0:
-            visible = raw_title[:split_at].rstrip()
-            overflow = raw_title[split_at + 1:].lstrip()
-            return (visible, overflow)
-
-        # No earlier whitespace; keep the first whole word even if it exceeds limit.
-        next_space = raw_title.find(" ", allowed_title_chars)
-        if next_space != -1:
-            visible = raw_title[:next_space].rstrip()
-            overflow = raw_title[next_space + 1:].lstrip()
-            return (visible, overflow)
-
-        # Single-word title: keep as-is (no mid-word split).
-        return (raw_title, "")
+        # 没有 `:` → 压缩整个标题
+        return _condense_title(raw_title)
 
     def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool):
         base_annos = {"strikethrough": is_done, "color": "gray" if is_done else "default"}
@@ -735,7 +733,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title: str,
         is_done: bool,
         depth: Any,
-    ) -> tuple[List[Dict[str, Any]], str, str]:
+    ) -> tuple[List[Dict[str, Any]], str]:
         emojis = _ordered_visible_tag_emojis(tags)
         if emojis:
             emojis_str = "".join(emojis)
@@ -747,23 +745,34 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
 
-        tag_char_count = sum(
-            len(str(rt.get("text", {}).get("content", "")))
+        # 根据 tag 占用的 word 数计算标题可用额度，超额则 LLM 压缩
+        tag_wc = sum(
+            _word_count(str(rt.get("text", {}).get("content", "")))
             for rt in rich_text
         )
-        visible_title, overflow_title = _split_title_with_limit(
+        compacted_title = _compact_title_if_needed(
             clean_title.strip(),
-            depth,
-            tag_char_count
+            tag_wc,
         )
-        _append_title_segments(rich_text, visible_title, is_done)
-        return rich_text, visible_title, overflow_title
+        _append_title_segments(rich_text, compacted_title, is_done)
+        return rich_text, compacted_title
 
     task_by_id: Dict[str, Dict[str, Any]] = {}
     for t in enriched_state:
         tid = str(t.get("notion_block_id") or t.get("id") or "")
         if tid:
             task_by_id[tid] = t
+
+    # 预计算：按 parent_id 统计 generated to_do 中 checked 的数量
+    # 只有同组 checked >= 2 时才认为人类进行了有意义的交互，才激活 selection_mode
+    from collections import defaultdict
+    _generated_checked_count_by_parent: Dict[str, int] = defaultdict(int)
+    for t in enriched_state:
+        t_type = t.get("notion_type") or t.get("type") or ""
+        if t_type in ("todo", "to_do") and bool(t.get("is_generated")) and bool(t.get("checked")):
+            pid = str(t.get("parent_id") or "")
+            if pid:
+                _generated_checked_count_by_parent[pid] += 1
     
     for task in enriched_state:
         tags = task.get("tags") or {}
@@ -839,7 +848,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
             
-        selection_mode = block_type == "to_do" and is_generated
+        # is_generated 的任务始终保持干净状态：不添加 Priority 和 WBS 标签
+        if is_generated:
+            tags.pop("Priority", None)
+            tags.pop("WBS level", None)
+
+        # selection_mode 仅在同一 parent 下 generated checked >= 1 时激活
+        # 确保人类已经进行了交互（至少勾选了一个）
+        _parent_id_for_sel = str(task.get("parent_id") or "")
+        _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
+        selection_mode = block_type == "to_do" and is_generated and _sibling_checked_count >= 1
 
         # Generated split tasks are treated as a preference selector:
         # - unchecked -> delete
@@ -902,15 +920,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         emojis_that_should_be_there = _ordered_visible_tag_emojis(tags)
         missing_emojis = any(e not in original_title for e in emojis_that_should_be_there)
 
-        # Check if the row might need colon-italic styling or overflow handling
+        # Check if the row might need colon-italic styling or word-count compaction
         needs_colon_formatting = ":" in original_title
-        char_limit = _char_limit_for_depth(task.get("depth", 0))
-        needs_overflow = len(str(original_title or "")) > char_limit
+        # word-count 超限检查（替代旧的字符数 overflow 检查）
+        _title_wc = _word_count(str(original_title or ""))
+        needs_compaction = _title_wc > WORD_LIMIT
 
         # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
         # we bypass the rich text reconstruction and API update.
-        # BUT we DO NOT bypass if it contains a colon, exceeds char limits, or has tag changes.
-        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_overflow and not missing_wbs and not has_stale_wbs and not missing_emojis:
+        # BUT we DO NOT bypass if it contains a colon, exceeds word limit, or has tag changes.
+        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_compaction and not missing_wbs and not has_stale_wbs and not missing_emojis:
             task["synced_tags"] = True
             continue
         # --------------------------------------------------------
@@ -1040,8 +1059,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "text": {"content": " "},
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
-        # 3. ordered visible tag emojis + title render
-        rich_text, _visible_title, overflow_title = _render_standard_row_tail(
+        # 3. ordered visible tag emojis + title render（含 word-count 压缩）
+        rich_text, _visible_title = _render_standard_row_tail(
             rich_text=rich_text,
             tags=tags,
             clean_title=clean_title,
@@ -1064,69 +1083,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
-        if overflow_title and not is_pending_selection_change:
-            parent_id = task.get("parent_id")
-            if not parent_id:
-                print(f"Cannot convert overflow task to toggle: missing parent_id for {block_id}")
-            else:
-                # Component 2: Preserve existing children during conversion
-                existing_notion_children = []
-                try:
-                    # Fetch direct children from Notion to ensure we don't lose existing subtasks
-                    existing_notion_children = get_page_blocks(block_id)
-                except Exception as e:
-                    print(f"Warning: Failed to fetch existing children for {block_id} during overflow conversion: {e}")
 
-                # Build overflow quote as first child
-                overflow_children = [{
-                    "object": "block",
-                    "type": "quote",
-                    "quote": {
-                        "rich_text": [{
-                            "type": "text",
-                            "text": {"content": overflow_title},
-                            "annotations": {"italic": True, "color": "gray"}
-                        }],
-                        "color": "gray"
-                    }
-                }]
-                
-                # Append other children (filtering out previous overflow quotes if any)
-                for ech in existing_notion_children:
-                    etype = ech.get("type", "")
-                    if etype == "quote":
-                        # If the quote matches our overflow pattern (italic gray), skip it to avoid duplicates
-                        q_data = ech.get("quote", {})
-                        rt = q_data.get("rich_text", [])
-                        if rt and rt[0].get("annotations", {}).get("italic"):
-                            continue
-                    
-                    # Use shared utility to rebuild payload from raw Notion block
-                    overflow_children.append(_rebuild_notion_block_payload(ech))
-
-                try:
-                    new_block = replace_with_toggle_item(
-                        block_id,
-                        parent_id,
-                        rich_text,
-                        color="gray" if is_done else "default",
-                        children=overflow_children
-                    )
-                    new_block_id = new_block.get("id")
-                    if new_block_id:
-                        task["id"] = new_block_id
-                        task["notion_block_id"] = new_block_id
-                    task["notion_type"] = "toggle"
-                    task["type"] = "toggle"
-                    task["checked"] = None
-                    task["synced_tags"] = True
-                    task["title"] = new_plain_title
-                    import sys
-                    msg = f"Converted overflow text to toggle for {block_id}: {new_plain_title}\n"
-                    sys.stdout.buffer.write(msg.encode('utf-8'))
-                    continue
-                except Exception as e:
-                    print(f"Failed to convert overflow task to toggle for {block_id}: {e}")
         should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
         if should_convert_to_bullet:
             parent_id = task.get("parent_id")

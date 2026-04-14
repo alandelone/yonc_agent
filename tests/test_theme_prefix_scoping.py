@@ -8,7 +8,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from llm_pipeline import enrich_state_with_llm
+from llm_pipeline import theme_pass
 from sync_engine import push_tags_to_notion
 
 
@@ -53,7 +53,7 @@ class TestThemePrefixScoping(unittest.TestCase):
             },
         ]
 
-        out = enrich_state_with_llm(state, _raw_config(), allow_llm=False)
+        out = theme_pass(state, _raw_config())
         theme_tag = out[0].get("tags", {}).get("Task Theme with colour", "")
         self.assertTrue(theme_tag.startswith("Maker"), "Parent container should be auto-tagged with Maker in push-sync.")
         self.assertEqual("Maker", out[0].get("theme_display_label"))
@@ -134,7 +134,7 @@ class TestThemePrefixScoping(unittest.TestCase):
             },
         ]
 
-        out = enrich_state_with_llm(state, config, allow_llm=False)
+        out = theme_pass(state, config)
         self.assertEqual("刚体", out[1].get("theme_display_label"))
 
     def test_dynamic_display_label_does_not_strip_same_word_from_title(self):
@@ -182,10 +182,10 @@ class TestThemePrefixScoping(unittest.TestCase):
             {"id": "leaf", "notion_block_id": "leaf", "title": "Theme Dynamic Dynamic theory", "original_notion_title": "Dynamic theory", "parent_id": "dyn", "depth": 2, "type": "bullet", "notion_type": "bulleted_list_item", "tags": {}, "wbs_level": None},
         ]
 
-        from llm_pipeline import enrich_state_with_llm
+        from llm_pipeline import theme_pass
         from sync_engine import reparent_theme_containers
 
-        enriched = enrich_state_with_llm(state, config, allow_llm=False)
+        enriched = theme_pass(state, config)
 
         counter = {"n": 0}
         def _fake_append(parent_id, children, after_id=None, position=None):

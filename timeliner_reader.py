@@ -366,7 +366,7 @@ def _load_entries_from_state_file() -> List[TimelineEntry]:
     return entries
 
 
-def fetch_and_parse_timeliner() -> List[TimelineEntry]:
+def fetch_and_parse_timeliner(force_live: bool = False) -> List[TimelineEntry]:
     """
     Return TimelineEntry objects for the flow pipeline.
 
@@ -378,9 +378,10 @@ def fetch_and_parse_timeliner() -> List[TimelineEntry]:
     2. Fall back to a live Notion fetch + regex parse only when the state file
        is absent or contains no entries.
     """
-    entries = _load_entries_from_state_file()
-    if entries:
-        return entries
+    if not force_live:
+        entries = _load_entries_from_state_file()
+        if entries:
+            return entries
 
     # Fallback: live Notion fetch.
     blocks = get_page_blocks(TIMELINER_PAGE_ID)

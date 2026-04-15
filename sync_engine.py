@@ -553,14 +553,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         cleaned = text
         if not known_prefix_emojis:
             return cleaned.strip()
-        changed = True
-        while changed:
-            changed = False
-            for e in known_prefix_emojis:
-                updated = re.sub(rf'^\s*{re.escape(e)}\s*', '', cleaned).strip()
-                if updated != cleaned:
-                    cleaned = updated
-                    changed = True
+        for e in known_prefix_emojis:
+            cleaned = cleaned.replace(e, "")
         return cleaned.strip()
 
     def _normalize_for_theme_match(text: str) -> str:
@@ -917,18 +911,25 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
         is_pending_selection_change = should_convert_to_bullet or should_reset_l4_to_unchecked
 
+        # Bypass formatting for unselected suggested tasks so they don't get compacted or restyled
+        if is_generated and not is_pending_selection_change:
+            task["synced_tags"] = True
+            continue
+
         # Check if WBS emoji or Priority emojis are missing or stale
         wbs_val = tags.get("WBS level", "")
         wbs_emoji = _extract_emoji(wbs_val)
         missing_wbs = bool(wbs_emoji and wbs_emoji not in original_title)
         
-        has_stale_prefix = False
-        if not wbs_emoji:
-            if _strip_stale_prefix_emojis(original_title) != original_title:
-                has_stale_prefix = True
-
         emojis_that_should_be_there = _ordered_visible_tag_emojis(tags)
         missing_emojis = any(e not in original_title for e in emojis_that_should_be_there)
+
+        # A prefix emoji is stale if it's in the title but no longer active in tags.
+        has_stale_prefix = False
+        for e in known_prefix_emojis:
+            if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
+                has_stale_prefix = True
+                break
 
         # Check if the row might need colon-italic styling or word-count compaction
         needs_colon_formatting = ":" in original_title
@@ -947,8 +948,10 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title = original_title
         # Remove [emoji_block] if any
         clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
-        # Remove stale leading emojis from older runs when current tags no longer carry them.
-        clean_title = _strip_stale_prefix_emojis(clean_title)
+        # Strip all known prefix emojis to ensure no stale or misplaced emojis remain
+        for e in known_prefix_emojis:
+            clean_title = clean_title.replace(e, "")
+        clean_title = clean_title.strip()
         
         rich_text = []
         wbs_val = tags.get("WBS level", "")

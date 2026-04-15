@@ -68,30 +68,30 @@ class TagTask(dspy.Signature):
     config_options = dspy.InputField(desc="Dict of config dimensions and their options as a JSON-like string")
 
 class CondenseTaskDescription(dspy.Signature):
-    """You are a bilingual Senior Software Engineer. Your task is to rewrite English technical descriptions into a highly condensed "Traditional Chinese + English Tech Jargon" format.
+    """You are a bilingual Senior Software Engineer. Your task is to rewrite English technical descriptions into a highly condensed "Simplified Chinese + English Tech Jargon" format.
     
     Goal: Shorten the original text significantly to create concise, easy-to-skim notes while maintaining technical accuracy and this specific bilingual style.
     
     Instructions:
-    1. Keep Tech Jargon in English: Do not translate core technical terms, concepts, or system names (e.g., system design, microservices, data flow logic, software). Leave them exactly as they are.
-    2. Translate Connectors & Broad Concepts: Translate general descriptive words and architectural nouns into Chinese to make it shorter (e.g., Core Architecture -> 核心架构, foundational -> 基础, central processing engine -> 中央处理引擎).
-    3. Use Chinese Grammar for Brevity: Restructure the sentence to follow compact native Chinese phrasing. (e.g., "the system design for [System X]" becomes "[System X] 的 system design").
-    4. Format and Punctuation: Use symbol to shorten (：). When translating lists, remove the filler words and use parentheses to enclose the list.
-    5. Maximize Brevity: Cut out unnecessary English fluff or filler words. The goal is maximum information density.
+    1. Prioritize Length Over Jargon: The absolute highest priority is to minimize character count. If an English technical term or phrase consumes too many characters, forcefully translate it to its shorter Chinese equivalent (e.g., "microservices" -> "微服务", "system design" -> "系统设计").
+    2. Retain Short English Acronyms: Keep well-known, concise English acronyms or terms ONLY if they save space (e.g., API, HTTP, LLM, PR, UI).
+    3. Translate Connectors & Broad Concepts: Translate general descriptive words and architectural nouns into Chinese to make it shorter (e.g., central processing engine -> 中央处理引擎).
+    4. Use Chinese Grammar for Brevity: Restructure the sentence to follow compact native Chinese phrasing.
+    5. Format and Punctuation: Use symbols to shorten (：). When translating lists, remove filler words and use parentheses to enclose the list.
     """
     original_description = dspy.InputField(desc="The original verbose English description")
     condensed_description = dspy.OutputField(desc="The condensed bilingual text (Simplified Chinese + English Tech Jargon)")
 
 class CondenseTaskTitle(dspy.Signature):
-    """You are a bilingual Senior Software Engineer. Your task is to rewrite English task titles into a highly condensed "Traditional Chinese + English Tech Jargon" format.
+    """You are a bilingual Senior Software Engineer. Your task is to rewrite English task titles into a highly condensed "Simplified Chinese + English Tech Jargon" format.
     
     Goal: Shorten the original task title significantly to create a concise, easy-to-skim title while maintaining technical accuracy and this specific bilingual style.
     
     Instructions:
-    1. Keep Tech Jargon in English: Do not translate core technical terms, concepts, or system names. Leave them exactly as they are.
-    2. Translate Actions & Broad Concepts: Translate general action verbs and nouns into Chinese to make it shorter.
+    1. Prioritize Length Over Jargon: If an English word or phrase is long, forcibly translate it to its shorter Chinese equivalent (e.g., "Optimization" -> "优化").
+    2. Retain Short English Acronyms: Keep well-known, concise English acronyms or terms (e.g., API, HTTP, LLM, UI).
     3. Use Chinese Grammar for Brevity: Restructure the phrase to follow compact native Chinese phrasing.
-    4. Maximize Brevity: Cut out unnecessary English fluff or filler words. The title should be very short (e.g., 2-6 words).
+    4. Maximize Brevity: Cut out unnecessary English fluff or filler words. The title should be extremely short (e.g., 2-6 words).
     """
     original_title = dspy.InputField(desc="The original verbose English title")
     condensed_title = dspy.OutputField(desc="The condensed bilingual title (Simplified Chinese + English Tech Jargon)")
@@ -845,7 +845,7 @@ def wbs_pass(
         else:
             if depth == 0:
                 level = 1
-            else:
+            elif depth == 1:
                 level = None
                 title_words = task.get("original_notion_title", task.get("title", ""))
                 clean_title = clean_task_title(title_words, structured_cfg)
@@ -861,6 +861,9 @@ def wbs_pass(
                 except Exception as exc:
                     print(f"Failed to classify WBS for {task_id}: {exc}")
                     level = None
+            else:
+                # depth > 1: Skip LLM classification and rely entirely on parent level fallback
+                level = None
 
             if not isinstance(level, int):
                 if isinstance(parent_level, int):

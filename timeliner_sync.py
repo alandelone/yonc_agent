@@ -400,7 +400,7 @@ def build_timeliner_rich_text(
 
 def sync_timeliner() -> None:
     print(f"Fetching timeline entries from Notion page {TIMELINER_PAGE_ID}...")
-    entries = fetch_and_parse_timeliner()
+    entries = fetch_and_parse_timeliner(force_live=True)
     if not entries:
         print("No timeline entries found.")
         return

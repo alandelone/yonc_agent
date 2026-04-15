@@ -189,13 +189,19 @@ def _normalize_scope_text(text: str) -> str:
 
 def _has_cached_timeliner_scope() -> bool:
     """
-    Return True when timeliner_state.json exists and has at least one scoped entry.
+    Return True when timeliner_state.json exists, is newer than 10 minutes,
+    and has at least one scoped entry.
     """
     if not os.path.exists(TIMELINER_STATE_FILE):
         return False
 
     try:
+        import time
         import json
+
+        mtime = os.path.getmtime(TIMELINER_STATE_FILE)
+        if time.time() - mtime > 600:
+            return False
 
         with open(TIMELINER_STATE_FILE, "r", encoding="utf-8") as f:
             payload = json.load(f)
@@ -215,13 +221,13 @@ def _bootstrap_timeliner_state_if_needed(stage: str) -> None:
     Ensure flow scope has stable TIMELINER cache. If absent/empty, run timeliner sync once.
     """
     if _has_cached_timeliner_scope():
-        _log_stage(stage, "TIMELINER cache found (timeliner_state.json)")
+        _log_stage(stage, "TIMELINER cache found and fresh (timeliner_state.json)")
         return
 
     _log_stage(
         stage,
         (
-            "TIMELINER cache missing or empty; running timeliner bootstrap "
+            "TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap "
             "(same as `python main.py timeliner`)"
         ),
     )

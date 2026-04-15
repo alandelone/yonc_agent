@@ -533,7 +533,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         match = emoji_pattern.search(str(val))
         return match.group() if match else ""
 
-    known_wbs_emojis = set()
+    known_prefix_emojis = set()
     for _, wbs_entry in structured_cfg.get("wbs_levels", {}).items():
         if isinstance(wbs_entry, dict):
             wbs_raw = wbs_entry.get("raw") or wbs_entry.get("emoji", "")
@@ -541,17 +541,23 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             wbs_raw = str(wbs_entry)
         e = _extract_emoji(wbs_raw)
         if e:
-            known_wbs_emojis.add(e)
+            known_prefix_emojis.add(e)
+            
+    for e in structured_cfg.get("priorities", {}).keys():
+        if e: known_prefix_emojis.add(str(e).strip())
+        
+    for e in structured_cfg.get("task_types", {}).keys():
+        if e: known_prefix_emojis.add(str(e).strip())
 
-    def _strip_stale_wbs_prefix(text: str) -> str:
+    def _strip_stale_prefix_emojis(text: str) -> str:
         cleaned = text
-        if not known_wbs_emojis:
+        if not known_prefix_emojis:
             return cleaned.strip()
         changed = True
         while changed:
             changed = False
-            for wbs_e in known_wbs_emojis:
-                updated = re.sub(rf'^\s*{re.escape(wbs_e)}\s*', '', cleaned).strip()
+            for e in known_prefix_emojis:
+                updated = re.sub(rf'^\s*{re.escape(e)}\s*', '', cleaned).strip()
                 if updated != cleaned:
                     cleaned = updated
                     changed = True
@@ -610,26 +616,28 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         return main_theme_name
 
-    # --- Word-count 辅助与 LLM 压缩 ---
-    WORD_LIMIT = 20  # 总行 word 上限（含 tag emoji / theme label）
+    # --- 字符数辅助与 LLM 压缩 ---
+    def _char_limit_for_depth(depth: Any) -> int:
+        try:
+            d = int(depth)
+        except (TypeError, ValueError):
+            d = 0
+        if d <= 0:   
+            return 90
+        if d == 1:
+            return 90
+        return 80
 
-    def _word_count(text: str) -> int:
-        """统计 word 数量（CJK 每字算 1 word，英文按空格分词）。"""
-        import re as _re
-        cjk = len(_re.findall(r'[\u4e00-\u9fff\u3400-\u4dbf]', text))
-        ascii_words = len(_re.findall(r'[a-zA-Z0-9]+', text))
-        return cjk + ascii_words
-
-    def _compact_title_if_needed(title: str, tag_word_count: int) -> str:
-        """当标题 word count 超限时，用 LLM 压缩描述部分；否则原样返回。"""
+    def _compact_title_if_needed(title: str, char_limit: int, tag_char_count: int) -> str:
+        """当标题长度超限时，用 LLM 压缩描述部分；否则原样返回。"""
         from llm_pipeline import _condense_description, _condense_title
 
         raw_title = str(title or "").strip()
         if not raw_title:
             return ""
 
-        allowed = max(5, WORD_LIMIT - max(0, tag_word_count))
-        if _word_count(raw_title) <= allowed:
+        allowed = max(10, char_limit - max(0, tag_char_count))
+        if len(raw_title) <= allowed:
             return raw_title  # 不需要压缩
 
         # 有 `:` 分隔符 → 只压缩描述部分
@@ -640,7 +648,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if desc_part:
                 condensed_desc = _condense_description(desc_part)
                 result = f"{task_part} : {condensed_desc}"
-                if _word_count(result) <= allowed:
+                if len(result) <= allowed:
                     return result
                 # 还是太长 → 同时压缩标题部分
                 condensed_t = _condense_title(task_part)
@@ -745,14 +753,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
 
-        # 根据 tag 占用的 word 数计算标题可用额度，超额则 LLM 压缩
-        tag_wc = sum(
-            _word_count(str(rt.get("text", {}).get("content", "")))
+        # 根据 tag 占用的字符数计算标题可用额度，超额则 LLM 压缩
+        char_limit = _char_limit_for_depth(depth)
+        tag_cc = sum(
+            len(str(rt.get("text", {}).get("content", "")))
             for rt in rich_text
         )
         compacted_title = _compact_title_if_needed(
             clean_title.strip(),
-            tag_wc,
+            char_limit,
+            tag_cc,
         )
         _append_title_segments(rich_text, compacted_title, is_done)
         return rich_text, compacted_title
@@ -803,7 +813,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 continue
 
             clean_title = re.sub(r'^\[.*?\]\s*', '', original_title).strip()
-            clean_title = _strip_stale_wbs_prefix(clean_title)
+            clean_title = _strip_stale_prefix_emojis(clean_title)
             should_normalize_style = bool(task.get("has_tag_style", False))
             if clean_title == original_title and not should_normalize_style:
                 continue
@@ -828,10 +838,10 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 if block_type == "to_do":
                     task["checked"] = bool(checked)
                 import sys
-                msg = f"Cleaned stale WBS prefix for {block_id}: {clean_title}\n"
+                msg = f"Cleaned stale prefix for {block_id}: {clean_title}\n"
                 sys.stdout.buffer.write(msg.encode('utf-8'))
             except Exception as e:
-                print(f"Failed to clean stale WBS prefix for {block_id}: {e}")
+                print(f"Failed to clean stale prefix for {block_id}: {e}")
             continue
              
         if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
@@ -912,24 +922,23 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         wbs_emoji = _extract_emoji(wbs_val)
         missing_wbs = bool(wbs_emoji and wbs_emoji not in original_title)
         
-        has_stale_wbs = False
+        has_stale_prefix = False
         if not wbs_emoji:
-            if _strip_stale_wbs_prefix(original_title) != original_title:
-                has_stale_wbs = True
+            if _strip_stale_prefix_emojis(original_title) != original_title:
+                has_stale_prefix = True
 
         emojis_that_should_be_there = _ordered_visible_tag_emojis(tags)
         missing_emojis = any(e not in original_title for e in emojis_that_should_be_there)
 
         # Check if the row might need colon-italic styling or word-count compaction
         needs_colon_formatting = ":" in original_title
-        # word-count 超限检查（替代旧的字符数 overflow 检查）
-        _title_wc = _word_count(str(original_title or ""))
-        needs_compaction = _title_wc > WORD_LIMIT
+        char_limit = _char_limit_for_depth(task.get("depth", 0))
+        needs_compaction = len(str(original_title or "")) > char_limit
 
         # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
         # we bypass the rich text reconstruction and API update.
         # BUT we DO NOT bypass if it contains a colon, exceeds word limit, or has tag changes.
-        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_compaction and not missing_wbs and not has_stale_wbs and not missing_emojis:
+        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_compaction and not missing_wbs and not has_stale_prefix and not missing_emojis:
             task["synced_tags"] = True
             continue
         # --------------------------------------------------------
@@ -938,8 +947,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title = original_title
         # Remove [emoji_block] if any
         clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
-        # Remove stale leading WBS emojis from older runs when current tags no longer carry WBS.
-        clean_title = _strip_stale_wbs_prefix(clean_title)
+        # Remove stale leading emojis from older runs when current tags no longer carry them.
+        clean_title = _strip_stale_prefix_emojis(clean_title)
         
         rich_text = []
         wbs_val = tags.get("WBS level", "")
@@ -994,7 +1003,9 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     parent_theme_key = str(parent_theme_val).split()[0].strip()
             if parent_theme_key and current_theme_key and parent_theme_key == current_theme_key:
                 # Parent already carries the same main theme, so avoid repeating it on the child row.
-                theme_str = ""
+                # Only clear it if the display label is the main theme. Keep sub-theme labels.
+                if theme_str == main_theme_name:
+                    theme_str = ""
                             
             # 移除所有已知主题名，防止之前错误推送的主题名残留
             for t_name in themes.keys():
@@ -1248,7 +1259,7 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
     Physical root rank reordering: diffs roots order, deep clones the misplaced ones to the correct spot,
     then deletes the originals.
     """
-    from notion_client import append_children, delete_block
+    from notion_client import append_children, delete_block, get_page_blocks
 
     def _task_id(task: Dict[str, Any]) -> str:
         return str(task.get("notion_block_id") or task.get("id") or "")

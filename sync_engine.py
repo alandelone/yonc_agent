@@ -852,9 +852,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
             
-        # is_generated 的任务始终保持干净状态：不添加 Priority 和 WBS 标签
+        # is_generated 的任务始终保持干净状态：默认不分配 WBS 标签，但如果用户手动加了 Priority 则保留
         if is_generated:
-            tags.pop("Priority", None)
             tags.pop("WBS level", None)
 
         # selection_mode 仅在同一 parent 下 generated checked >= 1 时激活

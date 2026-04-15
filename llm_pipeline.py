@@ -963,11 +963,38 @@ def priority_pass(
     p1_val = by_level.get("P1") or (priority_options[2] if len(priority_options) > 2 else priority_options[-1])
     p2_val = by_level.get("P2") or (priority_options[3] if len(priority_options) > 3 else priority_options[-1])
 
+    def _to_int(value: Any, default: int = 10**9) -> int:
+        if isinstance(value, int):
+            return value
+        if isinstance(value, str) and value.strip().isdigit():
+            return int(value.strip())
+        return default
+
+    emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
+    def _extract_emoji(val: Any) -> str:
+        match = emoji_pattern.search(str(val))
+        return match.group() if match else ""
+
+    # Parse manual priorities from Notion title for ALL tasks
+    for task in local_state:
+        title = task.get("original_notion_title", task.get("title", ""))
+        tags = task.get("tags") or {}
+        found_p = None
+        for opt in priority_options:
+            e = _extract_emoji(opt)
+            if e and e in title:
+                found_p = opt
+                break
+        if found_p is not None:
+            tags["Priority"] = found_p
+            task["tags"] = tags
+
     main_scoped_tasks: List[Dict[str, Any]] = []
     for task in local_state:
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         section = str(task.get("timeliner_section", "") or "").strip().lower()
-        if task_id and task_id in scoped_ids and section == "main":
+        is_root = _to_int(task.get("depth", 0), 0) == 0
+        if task_id and task_id in scoped_ids and section == "main" and is_root:
             main_scoped_tasks.append(task)
 
     # Fallback for runs without state-file section metadata:
@@ -978,15 +1005,9 @@ def priority_pass(
             task_id = str(task.get("notion_block_id") or task.get("id") or "")
             section = str(task.get("timeliner_section", "") or "").strip().lower()
             is_subproject = bool(task.get("timeliner_is_subproject"))
-            if task_id and task_id in scoped_ids and not section and not is_subproject:
+            is_root = _to_int(task.get("depth", 0), 0) == 0
+            if task_id and task_id in scoped_ids and not section and not is_subproject and is_root:
                 main_scoped_tasks.append(task)
-
-    def _to_int(value: Any, default: int = 10**9) -> int:
-        if isinstance(value, int):
-            return value
-        if isinstance(value, str) and value.strip().isdigit():
-            return int(value.strip())
-        return default
 
     main_scoped_tasks.sort(
         key=lambda t: (

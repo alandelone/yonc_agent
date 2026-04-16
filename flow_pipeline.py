@@ -511,6 +511,7 @@ def _register_generated_subtasks(
             "split_stage": "none",
             "split_batch_id": None,
             "reviewed_once": False,
+            "generated_selection_processed": False,
             "tags": {},
             "status": "todo",
             "metrics": {

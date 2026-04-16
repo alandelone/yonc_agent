@@ -786,6 +786,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         original_title = task.get("original_notion_title", task.get("title", ""))
         wbs_level = task.get("wbs_level")
         is_generated = bool(task.get("is_generated"))
+        generated_selection_processed = bool(task.get("generated_selection_processed", False))
         origin = task.get("origin", "unknown")
         if isinstance(wbs_level, str) and wbs_level.isdigit():
             wbs_level = int(wbs_level)
@@ -857,10 +858,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             tags.pop("WBS level", None)
 
         # selection_mode 仅在同一 parent 下 generated checked >= 1 时激活
+        # 已处理过的 generated selector 任务不再参与此流程，避免重复 reset/delete 循环
         # 确保人类已经进行了交互（至少勾选了一个）
         _parent_id_for_sel = str(task.get("parent_id") or "")
         _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
-        selection_mode = block_type == "to_do" and is_generated and _sibling_checked_count >= 1
+        selection_mode = (
+            block_type == "to_do"
+            and is_generated
+            and not generated_selection_processed
+            and _sibling_checked_count >= 1
+        )
 
         # Generated split tasks are treated as a preference selector:
         # - unchecked -> delete
@@ -1148,6 +1155,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if block_type == "to_do":
                 task["checked"] = checked_for_payload
             if should_reset_l4_to_unchecked:
+                task["generated_selection_processed"] = True
                 log_generated_preference_diff(
                     task=task,
                     action="convert_checked_l4_to_unchecked_todo",

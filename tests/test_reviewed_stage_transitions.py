@@ -32,6 +32,7 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "checked": True,
                 "is_generated": True,
                 "origin": "generated",
+                "generated_selection_processed": False,
             }
         ]
 
@@ -63,6 +64,7 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "checked": False,
                 "is_generated": True,
                 "origin": "generated",
+                "generated_selection_processed": False,
             },
             {
                 "id": "g2-sibling",
@@ -80,6 +82,7 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "checked": True,
                 "is_generated": True,
                 "origin": "generated",
+                "generated_selection_processed": False,
             },
         ]
 
@@ -109,6 +112,7 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "checked": True,
                 "is_generated": True,
                 "origin": "generated",
+                "generated_selection_processed": False,
             }
         ]
 
@@ -121,6 +125,56 @@ class TestReviewedStageTransitions(unittest.TestCase):
         payload = mock_update.call_args.args[1]
         self.assertIn("to_do", payload)
         self.assertFalse(payload["to_do"]["checked"])
+        self.assertTrue(state[0].get("generated_selection_processed"))
+
+    def test_processed_generated_l4_is_not_deleted_even_when_sibling_is_checked(self):
+        state = [
+            {
+                "id": "g4",
+                "notion_block_id": "g4",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task",
+                "original_notion_title": "task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "4锔忊儯 | Level 4",
+                },
+                "wbs_level": 4,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+            },
+            {
+                "id": "g4-sibling",
+                "notion_block_id": "g4-sibling",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint sibling",
+                "original_notion_title": "sibling",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "4锔忊儯 | Level 4",
+                },
+                "wbs_level": 4,
+                "parent_id": "p1",
+                "checked": True,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": False,
+            },
+        ]
+
+        with patch("notion_client.delete_block", return_value={}) as mock_delete, \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}):
+            push_tags_to_notion(state, _config())
+
+        self.assertFalse(state[0].get("deleted", False))
+        self.assertTrue(state[0].get("generated_selection_processed"))
+        self.assertFalse(mock_delete.called)
 
 
 if __name__ == "__main__":

@@ -56,6 +56,7 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "split_stage": "none",
             "split_batch_id": None,
             "reviewed_once": False,
+            "generated_selection_processed": False,
             # Default values for fields managed by LLM or User directly
             "tags": {},
             "status": "todo",
@@ -158,6 +159,8 @@ def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
         upgraded["split_batch_id"] = None
     if "reviewed_once" not in upgraded:
         upgraded["reviewed_once"] = False
+    if "generated_selection_processed" not in upgraded:
+        upgraded["generated_selection_processed"] = False
 
     return upgraded
 
@@ -190,6 +193,7 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             notion_item["split_stage"] = existing.get("split_stage", "none")
             notion_item["split_batch_id"] = existing.get("split_batch_id")
             notion_item["reviewed_once"] = bool(existing.get("reviewed_once", False))
+            notion_item["generated_selection_processed"] = bool(existing.get("generated_selection_processed", False))
             notion_item["is_generated"] = bool(existing.get("is_generated", notion_item.get("is_generated", False)))
             notion_item["origin"] = "generated" if notion_item["is_generated"] else "human"
              

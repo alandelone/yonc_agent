@@ -66,6 +66,12 @@ class TagTask(dspy.Signature):
     """Assign the best-matching tag from each config dimension."""
     task_title = dspy.InputField(desc="Task to tag")
     config_options = dspy.InputField(desc="Dict of config dimensions and their options as a JSON-like string")
+    tags = dspy.OutputField(
+        desc=(
+            "JSON object mapping each config dimension to a chosen option text. "
+            "Example: {\"Modes\": \"💻Focus\", \"Task Type\": \"🔍 Testing\"}."
+        )
+    )
 
 class CondenseTaskDescription(dspy.Signature):
     """You are a bilingual Senior Software Engineer. Your task is to rewrite English technical descriptions into a highly condensed "Simplified Chinese + English Tech Jargon" format.
@@ -490,9 +496,44 @@ def trigger_batch_optimization():
 
 def tag_task(task_title: str, config_options: Dict[str, List[str]]) -> Dict[str, str]:
     """Uses DSPy to assign emoji tags to a task based on available configs."""
+    def _normalize_prediction(raw: Any) -> Dict[str, str]:
+        if isinstance(raw, dict):
+            data = raw
+        elif isinstance(raw, str):
+            text = raw.strip()
+            if not text:
+                return {}
+            try:
+                data = json.loads(text)
+            except json.JSONDecodeError:
+                return {}
+        else:
+            return {}
+
+        cleaned: Dict[str, str] = {}
+        for key in config_options.keys():
+            val = data.get(key)
+            if isinstance(val, str):
+                val = val.strip()
+                if val:
+                    cleaned[key] = val
+        return cleaned
+
     predictor = dspy.Predict(TagTask)
     result = predictor(task_title=task_title, config_options=json.dumps(config_options, ensure_ascii=False))
-    return result.tags
+
+    # Structured output path.
+    normalized = _normalize_prediction(getattr(result, "tags", None))
+    if normalized:
+        return normalized
+
+    # Fallback path for providers that emit raw text into another field.
+    for attr in ("answer", "output", "response", "text"):
+        normalized = _normalize_prediction(getattr(result, attr, None))
+        if normalized:
+            return normalized
+
+    return {}
 
 def theme_pass(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[Any]]) -> List[Dict[str, Any]]:
     """

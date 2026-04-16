@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 from datetime import datetime
 from typing import List, Dict, Any
@@ -13,8 +13,8 @@ TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
 PREFERENCE_DIFF_FILE = os.path.join(DATA_DIR, "generated_preference_diffs.jsonl")
 
 def _normalize_uuid(raw_id: str) -> str:
-    """将 32 位无连字符的 hex ID 转换为标准 UUID 格式 (8-4-4-4-12)。
-    Notion API 要求 UUID 格式，但 page ID 在 config 中可能不带连字符。
+    """灏?32 浣嶆棤杩炲瓧绗︾殑 hex ID 杞崲涓烘爣鍑?UUID 鏍煎紡 (8-4-4-4-12)銆?
+    Notion API 瑕佹眰 UUID 鏍煎紡锛屼絾 page ID 鍦?config 涓彲鑳戒笉甯﹁繛瀛楃銆?
     """
     if not raw_id:
         return raw_id
@@ -220,7 +220,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
             for st in t_data.get("sub_themes", []):
                 if raw == st or normalized == st:
                     return (t_name, st)
-            # Fallback for previously prefixed rows, e.g. "鍛造Lab 鍛造Maker".
+            # Fallback for previously prefixed rows, e.g. "閸涢€燣ab 閸涢€燤aker".
             candidates = [t_name] + list(t_data.get("sub_themes", []))
             for candidate in candidates:
                 c = str(candidate or "").strip()
@@ -274,7 +274,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
 
     def _build_block_payload(task: Dict[str, Any]) -> Dict[str, Any]:
         block_type = _normalize_block_type(task)
-        # 将编号列表转为无序列表（用户要求子主题下所有内容使用 bullet 格式）
+        # 灏嗙紪鍙峰垪琛ㄨ浆涓烘棤搴忓垪琛紙鐢ㄦ埛瑕佹眰瀛愪富棰樹笅鎵€鏈夊唴瀹逛娇鐢?bullet 鏍煎紡锛?
         if block_type == "numbered_list_item":
             block_type = "bulleted_list_item"
         annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
@@ -349,15 +349,15 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         children_map: Dict[str, List[Dict[str, Any]]],
         after_id: str = None
     ) -> List[Dict[str, Any]]:
-        """批量将 source_tasks 内容创建到 new_parent_id 下，不使用 after 参数避免 ID 重用。
-        返回平展后的克隆任务列表。
+        """鎵归噺灏?source_tasks 鍐呭鍒涘缓鍒?new_parent_id 涓嬶紝涓嶄娇鐢?after 鍙傛暟閬垮厤 ID 閲嶇敤銆?
+        杩斿洖骞冲睍鍚庣殑鍏嬮殕浠诲姟鍒楄〃銆?
         """
         if not source_tasks:
             return []
 
         safe_parent_id = _normalize_uuid(new_parent_id)
 
-        # 一次性批量 append 所有 direct children（不带 after）以避免 ID 重用 bug
+        # 涓€娆℃€ф壒閲?append 鎵€鏈?direct children锛堜笉甯?after锛変互閬垮厤 ID 閲嶇敤 bug
         payloads = [_build_block_payload(t) for t in source_tasks]
 
         if dry_run:
@@ -395,7 +395,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
             )
             cloned_flat.append(cloned_root)
 
-            # 递归处理该节点的子节点（同样批量不带 after）
+            # 閫掑綊澶勭悊璇ヨ妭鐐圭殑瀛愯妭鐐癸紙鍚屾牱鎵归噺涓嶅甫 after锛?
             grandchildren = children_map.get(source_id, [])
             if grandchildren:
                 cloned_flat.extend(
@@ -413,7 +413,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         depth = task.get("_original_depth_for_reparent", task.get("depth"))
         if isinstance(depth, int) and depth > 1:
             # Only flatten shallow theme/sub-theme containers.
-            # Keep deeper hierarchy (e.g. 3dpF under 鍛造Maker) intact.
+            # Keep deeper hierarchy (e.g. 3dpF under 閸涢€燤aker) intact.
             return False
         title = task.get("original_notion_title", task.get("title", ""))
         
@@ -427,7 +427,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
                     return True
 
         # Dynamic fallback for "Theme SomeLabel" rows that are effectively
-        # one-child grouping wrappers (e.g. "我流方矩 刚体" -> "刚体打造和训练论").
+        # one-child grouping wrappers (e.g. "鎴戞祦鏂圭煩 鍒氫綋" -> "鍒氫綋鎵撻€犲拰璁粌璁?).
         pref_theme, pref_suffix = _extract_theme_prefixed_suffix(title)
         if pref_theme and pref_suffix:
             configured_subthemes = set(themes.get(pref_theme, {}).get("sub_themes", []))
@@ -459,7 +459,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         if not container_parent_id or not direct_children:
             break
 
-        # 解析容器匹配到的子主题名，用于传播给子节点的 theme_display_label
+        # 瑙ｆ瀽瀹瑰櫒鍖归厤鍒扮殑瀛愪富棰樺悕锛岀敤浜庝紶鎾粰瀛愯妭鐐圭殑 theme_display_label
         container_title = container.get("original_notion_title", container.get("title", ""))
         _, pref_suffix = _extract_theme_prefixed_suffix(container_title)
         if pref_suffix:
@@ -494,11 +494,11 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
             print(f"Failed to reparent theme container {container_id}: {e}")
             break
 
-        # 传播 theme_display_label 到直接子节点
-        # clone 后直接子节点的 parent_id == container_parent_id（容器的父级）
+        # 浼犳挱 theme_display_label 鍒扮洿鎺ュ瓙鑺傜偣
+        # clone 鍚庣洿鎺ュ瓙鑺傜偣鐨?parent_id == container_parent_id锛堝鍣ㄧ殑鐖剁骇锛?
         if container_matched_subtheme:
             for cloned in cloned_flat:
-                # 仅对直接子节点设置 label（深层子节点的 parent_id 不等于 container_parent_id）
+                # 浠呭鐩存帴瀛愯妭鐐硅缃?label锛堟繁灞傚瓙鑺傜偣鐨?parent_id 涓嶇瓑浜?container_parent_id锛?
                 if cloned.get("parent_id") == container_parent_id:
                     cloned["theme_display_label"] = container_matched_subtheme
 
@@ -548,6 +548,25 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
     for e in structured_cfg.get("task_types", {}).keys():
         if e: known_prefix_emojis.add(str(e).strip())
+
+    def _raw_wbs_value(level: Any) -> str:
+        if level is None:
+            return ""
+        wbs_levels = structured_cfg.get("wbs_levels", {})
+        candidates = [level]
+        try:
+            candidates.append(int(level))
+        except (TypeError, ValueError):
+            pass
+        candidates.append(str(level))
+        for key in candidates:
+            if key not in wbs_levels:
+                continue
+            val = wbs_levels.get(key)
+            if isinstance(val, dict):
+                return str(val.get("raw") or val.get("emoji") or "").strip()
+            return str(val or "").strip()
+        return ""
 
     def _strip_stale_prefix_emojis(text: str) -> str:
         cleaned = text
@@ -610,7 +629,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         return main_theme_name
 
-    # --- 字符数辅助与 LLM 压缩 ---
+    # --- 瀛楃鏁拌緟鍔╀笌 LLM 鍘嬬缉 ---
     def _char_limit_for_depth(depth: Any) -> int:
         try:
             d = int(depth)
@@ -623,7 +642,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         return 80
 
     def _compact_title_if_needed(title: str, char_limit: int, tag_char_count: int) -> str:
-        """当标题长度超限时，用 LLM 压缩描述部分；否则原样返回。"""
+        """Compact title text with LLM when visible length exceeds limit."""
         from llm_pipeline import _condense_description, _condense_title
 
         raw_title = str(title or "").strip()
@@ -632,9 +651,9 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         allowed = max(10, char_limit - max(0, tag_char_count))
         if len(raw_title) <= allowed:
-            return raw_title  # 不需要压缩
+            return raw_title  # 涓嶉渶瑕佸帇缂?
 
-        # 有 `:` 分隔符 → 只压缩描述部分
+        # 鏈?`:` 鍒嗛殧绗?鈫?鍙帇缂╂弿杩伴儴鍒?
         if ":" in raw_title:
             task_part, desc_part = raw_title.split(":", 1)
             task_part = task_part.strip()
@@ -644,13 +663,13 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 result = f"{task_part} : {condensed_desc}"
                 if len(result) <= allowed:
                     return result
-                # 还是太长 → 同时压缩标题部分
+                # 杩樻槸澶暱 鈫?鍚屾椂鍘嬬缉鏍囬閮ㄥ垎
                 condensed_t = _condense_title(task_part)
                 return f"{condensed_t} : {condensed_desc}"
-            # 只有 task_part
+            # 鍙湁 task_part
             return _condense_title(task_part)
 
-        # 没有 `:` → 压缩整个标题
+        # 娌℃湁 `:` 鈫?鍘嬬缉鏁翠釜鏍囬
         return _condense_title(raw_title)
 
     def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool):
@@ -747,7 +766,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
 
-        # 根据 tag 占用的字符数计算标题可用额度，超额则 LLM 压缩
+        # 鏍规嵁 tag 鍗犵敤鐨勫瓧绗︽暟璁＄畻鏍囬鍙敤棰濆害锛岃秴棰濆垯 LLM 鍘嬬缉
         char_limit = _char_limit_for_depth(depth)
         tag_cc = sum(
             len(str(rt.get("text", {}).get("content", "")))
@@ -767,8 +786,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if tid:
             task_by_id[tid] = t
 
-    # 预计算：按 parent_id 统计 generated to_do 中 checked 的数量
-    # 只有同组 checked >= 2 时才认为人类进行了有意义的交互，才激活 selection_mode
+    # 棰勮绠楋細鎸?parent_id 缁熻 generated to_do 涓?checked 鐨勬暟閲?
+    # 鍙湁鍚岀粍 checked >= 2 鏃舵墠璁や负浜虹被杩涜浜嗘湁鎰忎箟鐨勪氦浜掞紝鎵嶆縺娲?selection_mode
     from collections import defaultdict
     _generated_checked_count_by_parent: Dict[str, int] = defaultdict(int)
     for t in enriched_state:
@@ -840,8 +859,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             continue
              
         if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
-            # 只删除被 LLM 标记过的 paragraph/heading（已合并到子任务中的主题块）
-            # tags 为空的 paragraph 是用户手写的 section heading（如 "婚姻"），必须保留作为 context
+            # 鍙垹闄よ LLM 鏍囪杩囩殑 paragraph/heading锛堝凡鍚堝苟鍒板瓙浠诲姟涓殑涓婚鍧楋級
+            # tags 涓虹┖鐨?paragraph 鏄敤鎴锋墜鍐欑殑 section heading锛堝 "濠氬Щ"锛夛紝蹇呴』淇濈暀浣滀负 context
             if not tags:
                 continue
             try:
@@ -852,14 +871,20 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             except Exception as e:
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
-            
-        # is_generated 的任务始终保持干净状态：默认不分配 WBS 标签，但如果用户手动加了 Priority 则保留
+        # Generated tasks normally do not keep a visible WBS tag.
+        # Processed L4 selector tasks are the exception: keep/restore WBS level.
         if is_generated:
-            tags.pop("WBS level", None)
+            if generated_selection_processed and wbs_level == 4:
+                if not str(tags.get("WBS level", "")).strip():
+                    wbs_raw = _raw_wbs_value(4)
+                    if wbs_raw:
+                        tags["WBS level"] = wbs_raw
+                        task["tags"] = tags
+            else:
+                tags.pop("WBS level", None)
 
-        # selection_mode 仅在同一 parent 下 generated checked >= 1 时激活
-        # 已处理过的 generated selector 任务不再参与此流程，避免重复 reset/delete 循环
-        # 确保人类已经进行了交互（至少勾选了一个）
+        # selection_mode 浠呭湪鍚屼竴 parent 涓?generated checked >= 1 鏃舵縺娲?        # 宸插鐞嗚繃鐨?generated selector 浠诲姟涓嶅啀鍙備笌姝ゆ祦绋嬶紝閬垮厤閲嶅 reset/delete 寰幆
+        # 纭繚浜虹被宸茬粡杩涜浜嗕氦浜掞紙鑷冲皯鍕鹃€変簡涓€涓級
         _parent_id_for_sel = str(task.get("parent_id") or "")
         _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
         selection_mode = (
@@ -916,9 +941,39 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
         should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
         is_pending_selection_change = should_convert_to_bullet or should_reset_l4_to_unchecked
+        is_scoped_task = task.get("timeliner_rank") is not None
+        mode_val_for_restore = str(tags.get("Modes", "")).strip()
+        missing_mode_render = False
+        if mode_val_for_restore:
+            for mode_cfg in structured_cfg.get("modes", []):
+                mode_name = str(mode_cfg.get("mode_name", "")).strip()
+                if mode_name and mode_name in mode_val_for_restore and mode_name not in original_title:
+                    missing_mode_render = True
+                    break
+        task_type_emoji = _extract_emoji(tags.get("Task Type", ""))
+        missing_task_type_render = bool(task_type_emoji and task_type_emoji not in original_title)
+        needs_processed_l4_wbs_restore = (
+            is_generated
+            and generated_selection_processed
+            and wbs_level == 4
+            and bool(tags.get("WBS level"))
+            and _extract_emoji(tags.get("WBS level", "")) not in original_title
+        )
+        needs_processed_l4_mode_tasktype_restore = (
+            is_generated
+            and generated_selection_processed
+            and wbs_level == 4
+            and is_scoped_task
+            and (missing_mode_render or missing_task_type_render)
+        )
 
         # Bypass formatting for unselected suggested tasks so they don't get compacted or restyled
-        if is_generated and not is_pending_selection_change:
+        if (
+            is_generated
+            and not is_pending_selection_change
+            and not needs_processed_l4_wbs_restore
+            and not needs_processed_l4_mode_tasktype_restore
+        ):
             task["synced_tags"] = True
             continue
 
@@ -974,16 +1029,16 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             main_theme_name = original_theme_name
             context_heading = str(task.get("context_heading", "")).strip()
             
-            # Fallback 1: 用清理后的标题首词（去掉已有主题名和 mode 名）做 context
+            # Fallback 1: 鐢ㄦ竻鐞嗗悗鐨勬爣棰橀璇嶏紙鍘绘帀宸叉湁涓婚鍚嶅拰 mode 鍚嶏級鍋?context
             if not context_heading and clean_title:
-                # 先从 clean_title 中去掉所有已知主题名，避免之前错误推送的主题名循环传播
+                # 鍏堜粠 clean_title 涓幓鎺夋墍鏈夊凡鐭ヤ富棰樺悕锛岄伩鍏嶄箣鍓嶉敊璇帹閫佺殑涓婚鍚嶅惊鐜紶鎾?
                 fallback_title = clean_title
                 for t_name in themes.keys():
                     fallback_title = fallback_title.replace(t_name, "").strip()
                 if fallback_title:
                     context_heading = fallback_title.split()[0].strip()
             
-            # 仅当 LLM 返回的主题不是有效 config 主题时，才用 context_heading 覆盖
+            # 浠呭綋 LLM 杩斿洖鐨勪富棰樹笉鏄湁鏁?config 涓婚鏃讹紝鎵嶇敤 context_heading 瑕嗙洊
             if main_theme_name not in themes and context_heading:
                 for t_name, t_data in themes.items():
                     if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
@@ -1016,7 +1071,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 if theme_str == main_theme_name:
                     theme_str = ""
                             
-            # 移除所有已知主题名，防止之前错误推送的主题名残留
+            # 绉婚櫎鎵€鏈夊凡鐭ヤ富棰樺悕锛岄槻姝箣鍓嶉敊璇帹閫佺殑涓婚鍚嶆畫鐣?
             for t_name in themes.keys():
                 if t_name and t_name in clean_title:
                     clean_title = clean_title.replace(t_name, "").strip()
@@ -1079,7 +1134,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "text": {"content": " "},
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
-        # 3. ordered visible tag emojis + title render（含 word-count 压缩）
+        # 3. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
         rich_text, _visible_title = _render_standard_row_tail(
             rich_text=rich_text,
             tags=tags,
@@ -1222,15 +1277,15 @@ def push_subtasks_to_notion(
     try:
         from notion_client import append_children, get_page_blocks
         
-        # 获取父块的现有子块，用于确定插入位置
-        # 目标：将新子任务插到 quote/paragraph 说明块之后、其他内容之前
+        # 鑾峰彇鐖跺潡鐨勭幇鏈夊瓙鍧楋紝鐢ㄤ簬纭畾鎻掑叆浣嶇疆
+        # 鐩爣锛氬皢鏂板瓙浠诲姟鎻掑埌 quote/paragraph 璇存槑鍧椾箣鍚庛€佸叾浠栧唴瀹逛箣鍓?
         existing_children = []
         try:
             existing_children = get_page_blocks(task_id)
         except Exception:
             pass
             
-        # 扫描开头连续的 quote/paragraph 块，记录最后一个的 ID
+        # 鎵弿寮€澶磋繛缁殑 quote/paragraph 鍧楋紝璁板綍鏈€鍚庝竴涓殑 ID
         after_id = None
         for child in existing_children:
             ctype = child.get("type", "")
@@ -1240,11 +1295,11 @@ def push_subtasks_to_notion(
                 break
 
         if after_id:
-            # 有说明块：插入到最后一个 quote/paragraph 之后
+            # 鏈夎鏄庡潡锛氭彃鍏ュ埌鏈€鍚庝竴涓?quote/paragraph 涔嬪悗
             append_res = append_children(task_id, children_payload, after_id=after_id)
         else:
-            # 无说明块（空容器或直接是任务）：直接追加即可
-            # 注意：position="start" 需要 Notion API >= 2026-03-11，当前版本不支持
+            # 鏃犺鏄庡潡锛堢┖瀹瑰櫒鎴栫洿鎺ユ槸浠诲姟锛夛細鐩存帴杩藉姞鍗冲彲
+            # 娉ㄦ剰锛歱osition="start" 闇€瑕?Notion API >= 2026-03-11锛屽綋鍓嶇増鏈笉鏀寔
             append_res = append_children(task_id, children_payload)
             
         results = append_res.get("results", []) if isinstance(append_res, dict) else []
@@ -1467,4 +1522,5 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
 
     sys.stdout.buffer.write(f"Physical Root Rank Reordering complete.\n".encode('utf-8'))
     return state
+
 

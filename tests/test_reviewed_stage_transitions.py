@@ -176,6 +176,82 @@ class TestReviewedStageTransitions(unittest.TestCase):
         self.assertTrue(state[0].get("generated_selection_processed"))
         self.assertFalse(mock_delete.called)
 
+    def test_processed_generated_l4_rehydrates_wbs_level_tag(self):
+        state = [
+            {
+                "id": "g5",
+                "notion_block_id": "g5",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task",
+                "original_notion_title": "task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "wbs_level": 4,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+            }
+        ]
+
+        with patch("notion_client.delete_block", return_value={}), \
+             patch("notion_client.update_block", return_value={}) as mock_update, \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}):
+            push_tags_to_notion(state, _config())
+
+        self.assertIn("WBS level", state[0].get("tags", {}))
+        self.assertIn("Level 4", state[0]["tags"]["WBS level"])
+        self.assertTrue(mock_update.called)
+        payload = mock_update.call_args.args[1]
+        self.assertIn("to_do", payload)
+
+    def test_scoped_processed_generated_l4_renders_modes_and_task_type(self):
+        config = {
+            "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
+            "Modes": ["Lv3  Focus  Focused execution mode"],
+            "Task Type": ["🔍 | Testing"],
+            "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
+            "Priority": ["🔥 | P1"],
+        }
+        state = [
+            {
+                "id": "g6",
+                "notion_block_id": "g6",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task",
+                "original_notion_title": "task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "4️⃣ | Level 4",
+                    "Modes": "Focus",
+                    "Task Type": "🔍 | Testing",
+                },
+                "wbs_level": 4,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+                "timeliner_rank": 1,
+            }
+        ]
+
+        with patch("notion_client.delete_block", return_value={}), \
+             patch("notion_client.update_block", return_value={}) as mock_update, \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}):
+            push_tags_to_notion(state, config)
+
+        self.assertTrue(mock_update.called)
+        payload = mock_update.call_args.args[1]
+        rich_text = payload["to_do"]["rich_text"]
+        rendered = "".join(seg.get("text", {}).get("content", "") for seg in rich_text)
+        self.assertIn("Focus", rendered)
+        self.assertIn("🔍", rendered)
+
 
 if __name__ == "__main__":
     unittest.main()

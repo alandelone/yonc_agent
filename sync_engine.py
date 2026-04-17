@@ -1,4 +1,4 @@
-﻿import json
+import json
 import os
 from datetime import datetime
 from typing import List, Dict, Any
@@ -672,8 +672,25 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # 娌℃湁 `:` 鈫?鍘嬬缉鏁翠釜鏍囬
         return _condense_title(raw_title)
 
-    def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool):
-        base_annos = {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+    def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool, total_tracked_hours: float = 0.0, is_hierarchically_complete: bool = False):
+        if is_hierarchically_complete:
+            hours_str = f"💯✅ *{round(total_tracked_hours, 1)}h* "
+            rich_text.append({
+                "type": "text",
+                "text": {"content": hours_str},
+                "annotations": {
+                    "bold": False,
+                    "italic": False,
+                    "strikethrough": False,
+                    "underline": False,
+                    "code": False,
+                    "color": "gray_background"
+                }
+            })
+            base_annos = {"strikethrough": True, "color": "gray", "italic": True}
+        else:
+            base_annos = {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+
         title_text = str(visible_title or "").strip()
         if not title_text:
             rich_text.append({
@@ -754,19 +771,26 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         clean_title: str,
         is_done: bool,
         depth: Any,
+        total_tracked_hours: float = 0.0,
+        is_hierarchically_complete: bool = False
     ) -> tuple[List[Dict[str, Any]], str]:
         emojis = _ordered_visible_tag_emojis(tags)
         if emojis:
             emojis_str = "".join(emojis)
             for e in emojis:
                 clean_title = clean_title.replace(e, "").strip()
+            
+            # Note: tags emoji annotations shouldn't have the strikethrough logic if hierarchically complete, but we follow standard annotations if not
+            base_color = "gray" if (is_done or is_hierarchically_complete) else "default"
+            has_strike = bool(is_done or is_hierarchically_complete)
+            
             rich_text.append({
                 "type": "text",
                 "text": {"content": emojis_str + " "},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                "annotations": {"strikethrough": has_strike, "color": base_color}
             })
 
-        # 鏍规嵁 tag 鍗犵敤鐨勫瓧绗︽暟璁＄畻鏍囬鍙敤棰濆害锛岃秴棰濆垯 LLM 鍘嬬缉
+        # 根据 tag 占用的字符数计算标题可用额度，超额则 LLM 压缩
         char_limit = _char_limit_for_depth(depth)
         tag_cc = sum(
             len(str(rt.get("text", {}).get("content", "")))
@@ -777,16 +801,74 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             char_limit,
             tag_cc,
         )
-        _append_title_segments(rich_text, compacted_title, is_done)
+        _append_title_segments(rich_text, compacted_title, is_done, total_tracked_hours, is_hierarchically_complete)
         return rich_text, compacted_title
 
     task_by_id: Dict[str, Dict[str, Any]] = {}
+    children_map: Dict[str, List[Dict[str, Any]]] = {}
     for t in enriched_state:
         tid = str(t.get("notion_block_id") or t.get("id") or "")
+        pid = str(t.get("parent_id") or "")
         if tid:
             task_by_id[tid] = t
+        if pid:
+            children_map.setdefault(pid, []).append(t)
 
-    # 棰勮绠楋細鎸?parent_id 缁熻 generated to_do 涓?checked 鐨勬暟閲?
+    def _is_task_complete(task_id: str) -> bool:
+        if not task_id or task_id not in task_by_id:
+            return False
+        t = task_by_id[task_id]
+        level = t.get("wbs_level")
+        try:
+            level_num = int(level)
+        except (TypeError, ValueError):
+            level_num = None
+
+        if level_num == 4:
+            return bool(t.get("checked"))
+
+        if level_num in [1, 2, 3]:
+            direct_children = children_map.get(task_id, [])
+            if not direct_children:
+                return False
+            for child in direct_children:
+                if not _is_task_complete(str(child.get("notion_block_id") or child.get("id") or "")):
+                    return False
+            return True
+        return False
+
+    def _calculate_total_hours(task_id: str) -> float:
+        if not task_id or task_id not in task_by_id:
+            return 0.0
+        t = task_by_id[task_id]
+        total_hours = 0.0
+        
+        timetaken = t.get("metrics", {}).get("timetaken", [])
+        if isinstance(timetaken, list):
+            for period in timetaken:
+                try:
+                    if isinstance(period, (list, tuple)) and len(period) >= 2:
+                        start, end = period[0], period[1]
+                    elif isinstance(period, dict):
+                        start, end = period.get("start"), period.get("end")
+                    else:
+                        continue
+                    if start and end:
+                        if isinstance(start, (int, float)) and isinstance(end, (int, float)):
+                            total_hours += (float(end) - float(start)) / 3600.0
+                        else:
+                            dt_start = datetime.fromisoformat(str(start).replace('Z', '+00:00'))
+                            dt_end = datetime.fromisoformat(str(end).replace('Z', '+00:00'))
+                            total_hours += (dt_end - dt_start).total_seconds() / 3600.0
+                except Exception:
+                    pass
+                
+        for child in children_map.get(task_id, []):
+            total_hours += _calculate_total_hours(str(child.get("notion_block_id") or child.get("id") or ""))
+            
+        return total_hours
+
+    # 预计算：按 parent_id 统计 generated to_do 中 checked 的数量
     # 鍙湁鍚岀粍 checked >= 2 鏃舵墠璁や负浜虹被杩涜浜嗘湁鎰忎箟鐨勪氦浜掞紝鎵嶆縺娲?selection_mode
     from collections import defaultdict
     _generated_checked_count_by_parent: Dict[str, int] = defaultdict(int)
@@ -796,6 +878,13 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             pid = str(t.get("parent_id") or "")
             if pid:
                 _generated_checked_count_by_parent[pid] += 1
+
+    # Option A: Update parent's split_stage to 'processed' once at least one generated child is checked
+    for pid, count in _generated_checked_count_by_parent.items():
+        if count >= 1 and pid in task_by_id:
+            ptask = task_by_id[pid]
+            if str(ptask.get("split_stage", "none")) == "suggested":
+                ptask["split_stage"] = "processed"
     
     for task in enriched_state:
         tags = task.get("tags") or {}
@@ -1135,12 +1224,29 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
         # 3. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
+        is_hierarchically_complete = False
+        total_tracked_hours = 0.0
+
+        if wbs_level in [1, 2, 3]:
+            tags_synced = bool(task.get("synced_tags", False))
+            split_stage = task.get("split_stage", "none")
+            has_passed_stages = tags_synced and split_stage not in ["none", "suggested"]
+
+            is_valid_flow = (origin == "human" or generated_selection_processed) and has_passed_stages
+
+            if is_valid_flow:
+                if _is_task_complete(str(block_id)):
+                    is_hierarchically_complete = True
+                    total_tracked_hours = _calculate_total_hours(str(block_id))
+
         rich_text, _visible_title = _render_standard_row_tail(
             rich_text=rich_text,
             tags=tags,
             clean_title=clean_title,
             is_done=is_done,
             depth=task.get("depth", 0),
+            total_tracked_hours=total_tracked_hours,
+            is_hierarchically_complete=is_hierarchically_complete
         )
         
         content_payload = {
@@ -1182,6 +1288,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     task["type"] = "bullet"
                     task["checked"] = None
                     task["synced_tags"] = True
+                    task["generated_selection_processed"] = True
                     task["title"] = new_plain_title
                     log_generated_preference_diff(
                         task=task,

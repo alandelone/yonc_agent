@@ -64,6 +64,7 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
                 "estimated_time_h": None,
                 "actual_time_taken_h": None,
                 "interruption_count": 0,
+                "timetaken": []
             }
         }
         flat_list.append(flat_node)
@@ -124,7 +125,11 @@ def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
             "estimated_time_h": None,
             "actual_time_taken_h": None,
             "interruption_count": 0,
+            "timetaken": []
         }
+    
+    if "timetaken" not in metrics:
+        metrics["timetaken"] = []
 
     # Legacy time field mapping
     if "time_taken_h" in upgraded and metrics.get("actual_time_taken_h") is None:
@@ -184,6 +189,7 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
                 "estimated_time_h": None,
                 "actual_time_taken_h": None,
                 "interruption_count": 0,
+                "timetaken": []
             })
             notion_item["wbs_level"] = existing.get("wbs_level")
             notion_item["synced_tags"] = bool(existing.get("synced_tags", False))

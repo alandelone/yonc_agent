@@ -16,9 +16,18 @@ from state_manager import load_state, STATE_FILE
 from completion import DONE_PREFIX
 
 
-def calculate_progress_by_subtheme(flat_tasks: List[Dict[str, Any]]) -> Dict[str, Tuple[int, int]]:
-    """Returns a dict mapping subtheme -> (completed_count, total_count)."""
-    stats = defaultdict(lambda: [0, 0])
+def calculate_metrics_by_subtheme(flat_tasks: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    """Returns a dict mapping subtheme -> {'completed': int, 'total': int, 'time': float}."""
+    stats = defaultdict(lambda: {"completed": 0, "total": 0, "time": 0.0})
+
+    # Pre-compute children mapping to identify leaf nodes quickly
+    children_of = defaultdict(list)
+    for task in flat_tasks:
+        if task.get("type", "") in ["heading_2", "heading_3"]:
+            continue
+        pid = task.get("parent_id")
+        if pid:
+            children_of[pid].append(task.get("id"))
 
     for task in flat_tasks:
         if task.get("type", "") in ["heading_2", "heading_3"]:
@@ -29,32 +38,59 @@ def calculate_progress_by_subtheme(flat_tasks: List[Dict[str, Any]]) -> Dict[str
         if not theme_str:
             continue
 
+        tid = task.get("id")
+        is_leaf = len(children_of[tid]) == 0
+        if not is_leaf:
+            continue
+
         is_done = False
         if DONE_PREFIX in task.get("original_notion_title", "") or DONE_PREFIX in task.get("title", ""):
             is_done = True
         elif task.get("checked") is True or task.get("status") in ["done", "completed"]:
             is_done = True
 
-        stats[theme_str][1] += 1
+        stats[theme_str]["total"] += 1
         if is_done:
-            stats[theme_str][0] += 1
+            stats[theme_str]["completed"] += 1
 
-    return {k: (v[0], v[1]) for k, v in stats.items()}
+        time_h = 0.0
+        metrics = task.get("metrics", {})
+        est = metrics.get("estimated_time_h")
+        if est is not None:
+            time_h = float(est)
+        else:
+            wbs_level = task.get("wbs_level")
+            if wbs_level == 1:
+                time_h = 20.0
+            elif wbs_level == 2:
+                time_h = 10.0
+            elif wbs_level == 3:
+                time_h = 4.0
+            elif wbs_level is not None and wbs_level >= 4:
+                time_h = 1.0
+
+        stats[theme_str]["time"] += time_h
+
+    return dict(stats)
 
 
-def get_percentage(subtheme: str, theme_stats: Dict[str, Tuple[int, int]]) -> int:
-    """Find matching theme in stats and return percentage 0-100."""
+def get_theme_metrics(subtheme: str, theme_stats: Dict[str, Dict[str, Any]]) -> Tuple[int, float]:
+    """Find matching theme in stats and return (percentage 0-100, total_time)."""
     total_completed = 0
     total_tasks = 0
+    total_time = 0.0
 
-    for theme_str, (comp, tot) in theme_stats.items():
+    for theme_str, metrics in theme_stats.items():
         if subtheme in theme_str:
-            total_completed += comp
-            total_tasks += tot
+            total_completed += metrics["completed"]
+            total_tasks += metrics["total"]
+            total_time += metrics["time"]
 
-    if total_tasks == 0:
-        return 0
-    return int((total_completed / total_tasks) * 100)
+    pct = 0
+    if total_tasks > 0:
+        pct = int((total_completed / total_tasks) * 100)
+    
+    return pct, round(total_time, 1)
 
 
 def _with_strike(is_100: bool, extra: Dict[str, Any] = None) -> Dict[str, Any]:
@@ -337,7 +373,12 @@ def build_timeliner_rich_text(
         "annotations": _with_strike(is_100, style.get("task")),
     })
 
-    time_suffix = f"{entry.time_expected_h}h" if entry.time_expected_h is not None else "h"
+    time_suffix = "h"
+    if entry.time_expected_h is not None:
+        val = entry.time_expected_h
+        time_str = f"{int(val)}" if val == int(val) else f"{val:.1f}"
+        time_suffix = f"{time_str}h"
+
     rt.append({
         "type": "text",
         "text": {"content": f"🏁dates {time_suffix}"},
@@ -405,9 +446,9 @@ def sync_timeliner() -> None:
         print("No timeline entries found.")
         return
 
-    print("Loading task tree state for progress calculation...")
+    print("Loading task tree state for progress and expected time calculation...")
     flat_tasks = load_state(STATE_FILE)
-    theme_stats = calculate_progress_by_subtheme(flat_tasks)
+    theme_stats = calculate_metrics_by_subtheme(flat_tasks)
     theme_label_index = _build_task_theme_label_index(flat_tasks)
     original_title_index = _build_theme_original_title_index(flat_tasks)
 
@@ -474,8 +515,13 @@ def sync_timeliner() -> None:
         if new_status_emoji != entry.status_emoji:
             changed = True
 
-        new_percent = get_percentage(st, theme_stats)
+        theme_label = _resolve_theme_label_for_entry(entry, theme_label_index)
+        new_percent, new_time = get_theme_metrics(theme_label, theme_stats)
         if new_percent != entry.percent:
+            changed = True
+            
+        if new_time != entry.time_expected_h:
+            entry.time_expected_h = new_time
             changed = True
 
         if changed or enforce_format:
@@ -492,7 +538,6 @@ def sync_timeliner() -> None:
                 block_json = resp.json()
                 b_type = block_json.get("type")
                 existing_rt = block_json.get(b_type, {}).get("rich_text", [])
-                theme_label = _resolve_theme_label_for_entry(entry, theme_label_index)
                 resolved_task_label = _resolve_task_label_for_entry(entry, theme_label, original_title_index)
 
                 rt = build_timeliner_rich_text(

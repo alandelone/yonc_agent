@@ -183,6 +183,11 @@ def cmd_show_config() -> None:
 
 
 def cmd_sync() -> None:
+    from livetoday_sync import sync_livetoday_checks_to_livev2
+
+    print("Checking for dashboard updates...")
+    sync_livetoday_checks_to_livev2()
+
     print("Fetching tasks from Notion...")
     notion_tree = fetch_and_build_task_tree()
     flat_notion = flatten_tree(notion_tree)
@@ -250,17 +255,27 @@ def cmd_timeliner_diff() -> None:
     print_date_diff_all()
 
 
-def cmd_focus(move_to: int = None) -> None:
+def cmd_focus(move_to: int = None, synctime: bool = False) -> None:
     import sys
+    from config import LIVETODAY_PAGE_ID
+    from dashboard import write_dashboard
     from focus_tracker import (
         FOCUS_EMOJI,
-        find_focus_task,
         list_focusable_tasks,
         load_focus_log,
-        move_focus_emoji,
         record_focus_event,
         save_focus_log,
     )
+
+    # --synctime: sync focus_log history -> tasklist_state.json timetaken[]
+    if synctime:
+        from focus_time_sync import sync_focus_time_to_state
+
+        periods, tasks = sync_focus_time_to_state()
+        sys.stdout.buffer.write(
+            f"Synced {periods} focus period(s) across {tasks} task(s).\n".encode("utf-8")
+        )
+        return
 
     notion_tree = fetch_and_build_task_tree()
     if not notion_tree:
@@ -268,50 +283,69 @@ def cmd_focus(move_to: int = None) -> None:
         return
 
     tasks = list_focusable_tasks(notion_tree)
+
     if move_to is not None:
         target = next((t for t in tasks if t["index"] == move_to), None)
         if not target:
             print(f"Error: index {move_to} is out of range 1-{len(tasks)}")
             return
 
-        focus_info = find_focus_task(notion_tree)
-        if focus_info and focus_info["block_id"] == target["block_id"]:
+        log = load_focus_log()
+        prev_focus = log.get("current_focus")
+
+        if prev_focus and prev_focus.get("block_id") == target["block_id"]:
             sys.stdout.buffer.write(f"Already focused: {target['title']}\n".encode("utf-8"))
             return
 
-        if focus_info:
-            log = load_focus_log()
-            log = record_focus_event(log, focus_info["block_id"], focus_info["title"], "end")
-            log = record_focus_event(log, target["block_id"], target["title"], "start")
-            save_focus_log(log)
-            move_focus_emoji(focus_info["block_id"], target["block_id"])
-            sys.stdout.buffer.write(f"Focus moved to [{move_to}] {target['title']}\n".encode("utf-8"))
-        else:
-            from focus_tracker import _append_focus_to_block
+        # End previous focus, start new one
+        if prev_focus:
+            log = record_focus_event(log, prev_focus["block_id"], prev_focus["title"], "end")
+        log = record_focus_event(log, target["block_id"], target["title"], "start")
+        save_focus_log(log)
 
-            _append_focus_to_block(target["block_id"])
-            log = load_focus_log()
-            log = record_focus_event(log, target["block_id"], target["title"], "start")
-            save_focus_log(log)
-            sys.stdout.buffer.write(f"Focus set to [{move_to}] {target['title']}\n".encode("utf-8"))
+        # Rewrite dashboard with new focus marker
+        raw_cfg = load_config()
+        structured_cfg = structure_yonctask_config(raw_cfg)
+        working_state = load_state(STATE_FILE)
+        merged = merge_states(notion_tree, working_state)
+        block_count, _ = write_dashboard(
+            LIVETODAY_PAGE_ID, merged, structured_cfg,
+            focus_block_id=target["block_id"]
+        )
+        sys.stdout.buffer.write(
+            f"Focus moved to [{move_to}] {target['title']} (dashboard: {block_count} blocks)\n".encode("utf-8")
+        )
         return
+
+    # No args: display task list with focus indicator
+    log = load_focus_log()
+    current_focus_id = (log.get("current_focus") or {}).get("block_id")
 
     sys.stdout.buffer.write(f"\nTask List ({FOCUS_EMOJI} = current focus)\n".encode("utf-8"))
     sys.stdout.buffer.write(("-" * 50).encode("utf-8"))
     sys.stdout.buffer.write(b"\n")
     for task in tasks:
-        marker = f" {FOCUS_EMOJI}" if task["has_focus"] else ""
+        marker = f" {FOCUS_EMOJI}" if task["block_id"] == current_focus_id else ""
         line = f"  {task['index']:3d}. {task['title']}{marker}\n"
         sys.stdout.buffer.write(line.encode("utf-8"))
     sys.stdout.buffer.write(b"\n")
-    sys.stdout.buffer.write("Usage: python main.py focus --move <N>\n".encode("utf-8"))
+    sys.stdout.buffer.write(
+        "Usage: python main.py focus --move <N> | --synctime\n".encode("utf-8")
+    )
 
 
 def cmd_track() -> None:
     import sys
-    from config import DFORGE_LINESV2_PAGE_ID, LIVETODAY_PAGE_ID
-    from dashboard import write_dashboard
-    from focus_tracker import FOCUS_EMOJI, track_focus
+    from config import LIVETODAY_PAGE_ID
+    from dashboard import build_dashboard_blocks, write_dashboard
+    from focus_tracker import (
+        FOCUS_EMOJI,
+        detect_focus_from_livetoday,
+        load_focus_log,
+        record_focus_event,
+        save_focus_log,
+        track_focus,
+    )
 
     print("Fetching tasks from Notion...")
     notion_tree = fetch_and_build_task_tree()
@@ -319,19 +353,54 @@ def cmd_track() -> None:
         print("No tasks found in Notion.")
         return
 
-    current_focus = track_focus(notion_tree, DFORGE_LINESV2_PAGE_ID)
-    if current_focus:
-        sys.stdout.buffer.write(f"Current focus: {current_focus['title']}\n".encode("utf-8"))
-        sys.stdout.buffer.write(f"Started at: {current_focus['started_at']}\n".encode("utf-8"))
-    else:
-        sys.stdout.buffer.write(f"No task contains focus marker {FOCUS_EMOJI}\n".encode("utf-8"))
-
-    print("Updating dashboard...")
+    # Build the task state for dashboard
     raw_cfg = load_config()
     structured_cfg = structure_yonctask_config(raw_cfg)
     working_state = load_state(STATE_FILE)
     merged = merge_states(notion_tree, working_state)
-    block_count = write_dashboard(LIVETODAY_PAGE_ID, merged, structured_cfg)
+
+    # Build a provisional task_index_map (without focus) to detect user-moved emoji
+    _, provisional_map = build_dashboard_blocks(merged, structured_cfg)
+
+    # Detect focus from current LIVETODAY page (before clearing)
+    detected = detect_focus_from_livetoday(LIVETODAY_PAGE_ID, provisional_map)
+
+    # Compare with stored focus state
+    log = load_focus_log()
+    prev_focus = log.get("current_focus")
+    focus_block_id = None
+
+    if detected:
+        focus_block_id = detected["block_id"]
+        # If user moved the emoji on LIVETODAY, update the log
+        if prev_focus is None:
+            log = record_focus_event(log, detected["block_id"], detected["title"], "start")
+            save_focus_log(log)
+        elif prev_focus.get("block_id") != detected["block_id"]:
+            log = record_focus_event(log, prev_focus["block_id"], prev_focus["title"], "end")
+            log = record_focus_event(log, detected["block_id"], detected["title"], "start")
+            save_focus_log(log)
+    elif prev_focus:
+        # Emoji gone from LIVETODAY but log says we had focus — keep it
+        focus_block_id = prev_focus.get("block_id")
+
+    # If no focus at all after daily reset, default to first task (index 1)
+    if focus_block_id is None and provisional_map:
+        focus_block_id = provisional_map.get(1)
+
+    current_focus = log.get("current_focus")
+    if current_focus:
+        sys.stdout.buffer.write(f"Current focus: {current_focus['title']}\n".encode("utf-8"))
+        sys.stdout.buffer.write(f"Started at: {current_focus['started_at']}\n".encode("utf-8"))
+    else:
+        sys.stdout.buffer.write(f"No active focus session\n".encode("utf-8"))
+
+    # Rewrite dashboard with focus marker
+    print("Updating dashboard...")
+    block_count, _ = write_dashboard(
+        LIVETODAY_PAGE_ID, merged, structured_cfg,
+        focus_block_id=focus_block_id
+    )
     print(f"Dashboard updated: {block_count} blocks written.")
 
 
@@ -361,7 +430,7 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
     elif args.command == "timeliner-diff":
         cmd_timeliner_diff()
     elif args.command == "focus":
-        cmd_focus(move_to=args.move)
+        cmd_focus(move_to=args.move, synctime=args.synctime)
     elif args.command == "track":
         cmd_track()
     else:
@@ -394,8 +463,9 @@ def main() -> None:
     subparsers.add_parser("show-config", help="Print parsed YoncTask_config")
     subparsers.add_parser("timeliner", help="Sync TIMELINER page with progress")
     subparsers.add_parser("timeliner-diff", help="Show timeline date change history")
-    focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus")
+    focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus / sync time")
     focus_parser.add_argument("--move", type=int, default=None, help="Move focus to task number N")
+    focus_parser.add_argument("--synctime", action="store_true", default=False, help="Sync focus_log time periods to tasklist_state timetaken[]")
     subparsers.add_parser("track", help="Track focus + update dashboard")
 
     args = parser.parse_args()

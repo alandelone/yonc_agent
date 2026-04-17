@@ -5,6 +5,7 @@ focus_tracker 模块的单元测试。
 - 编号列表生成
 - 焦点事件记录
 - 每日重置检测
+- LIVETODAY 焦点检测（inline + child block）
 """
 import json
 import os
@@ -23,7 +24,8 @@ from focus_tracker import (
     load_focus_log,
     save_focus_log,
     _default_focus_log,
-    _find_last_empty_paragraph,
+    detect_focus_from_livetoday,
+    reset_focus_daily,
 )
 
 
@@ -206,41 +208,124 @@ class TestFocusLogPersistence:
             assert log["current_focus"] is None
 
 
-# ── _find_last_empty_paragraph 测试 ───────────────────────────
+# ── detect_focus_from_livetoday 测试 ──────────────────────────
 
-class TestFindLastEmptyParagraph:
-    def test_finds_last_empty(self):
-        """正确找到最后一个空白 paragraph"""
-        blocks = [
-            {"id": "p1", "type": "paragraph", "paragraph": {"rich_text": [{"plain_text": "有内容"}]}},
-            {"id": "p2", "type": "paragraph", "paragraph": {"rich_text": []}},
-            {"id": "b1", "type": "bulleted_list_item", "bulleted_list_item": {"rich_text": []}},
-            {"id": "p3", "type": "paragraph", "paragraph": {"rich_text": []}},
-        ]
-        result = _find_last_empty_paragraph(blocks)
-        assert result == "p3"
+class TestDetectFocusFromLivetoday:
+    """测试从 LIVETODAY 页面检测焦点位置"""
 
-    def test_no_empty_paragraph(self):
-        """没有空白 paragraph 时返回 None"""
+    def _make_notion_block(self, block_type, text):
+        """构造一个简单的 Notion block mock"""
+        return {
+            "type": block_type,
+            block_type: {
+                "rich_text": [{"plain_text": text}]
+            }
+        }
+
+    def test_pattern_a_inline_emoji(self):
+        """Pattern A: emoji 在任务标题末尾"""
         blocks = [
-            {"id": "b1", "type": "bulleted_list_item", "bulleted_list_item": {"rich_text": []}},
+            self._make_notion_block("heading_2", "By Modes"),
+            self._make_notion_block("numbered_list_item", "[1] Task Alpha"),
+            self._make_notion_block("numbered_list_item", f"[2] Task Beta {FOCUS_EMOJI}"),
+            self._make_notion_block("numbered_list_item", "[3] Task Gamma"),
         ]
-        result = _find_last_empty_paragraph(blocks)
+        task_index_map = {1: "bid-a", 2: "bid-b", 3: "bid-c"}
+
+        with patch("focus_tracker.get_page_blocks", return_value=blocks):
+            result = detect_focus_from_livetoday("page-id", task_index_map)
+
+        assert result is not None
+        assert result["block_id"] == "bid-b"
+        assert result["title"] == "Task Beta"
+        assert result["index"] == 2
+
+    def test_pattern_b_child_block_emoji(self):
+        """Pattern B: emoji 作为独立 block 在任务下方"""
+        blocks = [
+            self._make_notion_block("numbered_list_item", "[1] Task Alpha"),
+            self._make_notion_block("numbered_list_item", "[2] Task Beta"),
+            self._make_notion_block("paragraph", FOCUS_EMOJI),
+            self._make_notion_block("numbered_list_item", "[3] Task Gamma"),
+        ]
+        task_index_map = {1: "bid-a", 2: "bid-b", 3: "bid-c"}
+
+        with patch("focus_tracker.get_page_blocks", return_value=blocks):
+            result = detect_focus_from_livetoday("page-id", task_index_map)
+
+        assert result is not None
+        assert result["block_id"] == "bid-b"
+        assert result["title"] == "Task Beta"
+        assert result["index"] == 2
+
+    def test_no_emoji_found(self):
+        """没有 emoji 时返回 None"""
+        blocks = [
+            self._make_notion_block("numbered_list_item", "[1] Task Alpha"),
+            self._make_notion_block("numbered_list_item", "[2] Task Beta"),
+        ]
+        task_index_map = {1: "bid-a", 2: "bid-b"}
+
+        with patch("focus_tracker.get_page_blocks", return_value=blocks):
+            result = detect_focus_from_livetoday("page-id", task_index_map)
+
         assert result is None
 
+    def test_empty_page(self):
+        """空页面返回 None"""
+        with patch("focus_tracker.get_page_blocks", return_value=[]):
+            result = detect_focus_from_livetoday("page-id", {})
 
-# ── daily reset 日期检测测试 ──────────────────────────────────
+        assert result is None
 
-class TestDailyResetDetection:
+    def test_emoji_on_first_task(self):
+        """emoji 在第一个任务上（Pattern A）"""
+        blocks = [
+            self._make_notion_block("numbered_list_item", f"[1] First Task {FOCUS_EMOJI}"),
+            self._make_notion_block("numbered_list_item", "[2] Second Task"),
+        ]
+        task_index_map = {1: "bid-first", 2: "bid-second"}
+
+        with patch("focus_tracker.get_page_blocks", return_value=blocks):
+            result = detect_focus_from_livetoday("page-id", task_index_map)
+
+        assert result is not None
+        assert result["block_id"] == "bid-first"
+        assert result["index"] == 1
+
+
+# ── reset_focus_daily 测试 ────────────────────────────────────
+
+class TestResetFocusDaily:
     def test_same_day_no_reset(self):
         """同一天不触发重置"""
         log = _default_focus_log()
         log["last_reset_date"] = date.today().isoformat()
-        # last_reset_date 等于今天 → 不需要重置
-        assert log["last_reset_date"] == date.today().isoformat()
+        log = record_focus_event(log, "b1", "T1", "start")
+
+        updated_log, did_reset = reset_focus_daily(log)
+        assert did_reset is False
+        assert updated_log["current_focus"] is not None
 
     def test_new_day_triggers_reset(self):
-        """新的一天应触发重置"""
+        """新的一天应触发重置，结束当前焦点"""
         log = _default_focus_log()
-        log["last_reset_date"] = "2020-01-01"  # 旧日期
-        assert log["last_reset_date"] != date.today().isoformat()
+        log["last_reset_date"] = "2020-01-01"
+        log = record_focus_event(log, "b1", "T1", "start")
+
+        updated_log, did_reset = reset_focus_daily(log)
+        assert did_reset is True
+        assert updated_log["current_focus"] is None
+        assert len(updated_log["history"]) == 1
+        assert updated_log["history"][0]["block_id"] == "b1"
+        assert updated_log["last_reset_date"] == date.today().isoformat()
+
+    def test_reset_without_current_focus(self):
+        """没有当前焦点时重置不会崩溃"""
+        log = _default_focus_log()
+        log["last_reset_date"] = "2020-01-01"
+
+        updated_log, did_reset = reset_focus_daily(log)
+        assert did_reset is True
+        assert updated_log["current_focus"] is None
+        assert len(updated_log["history"]) == 0

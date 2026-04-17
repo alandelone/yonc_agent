@@ -2,13 +2,17 @@
 焦点追踪器模块。
 通过 💪🏿💪🏿💪🏿 emoji 标记当前聚焦任务，
 记录时间戳实现工时追踪，支持每日自动重置。
+
+焦点 emoji 显示在 LIVETODAY dashboard 页面上，
+通过 task_index_map 映射回 Lines V2 的原始 block_id。
 """
 import json
 import os
+import re
 from datetime import datetime, date
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 
-from notion_client import get_block, update_block, get_page_blocks
+from notion_client import get_page_blocks
 from config_reader import parse_rich_text
 
 # 聚焦 emoji 常量
@@ -99,119 +103,92 @@ def list_focusable_tasks(task_tree: List[Dict[str, Any]]) -> List[Dict[str, Any]
     return focusable
 
 
-def move_focus_emoji(from_block_id: str, to_block_id: str) -> None:
+def detect_focus_from_livetoday(
+    page_id: str,
+    task_index_map: Dict[int, str]
+) -> Optional[Dict[str, Any]]:
     """
-    通过 Notion API 将 💪🏿💪🏿💪🏿 从一个 block 移动到另一个 block。
-    1. 读取源 block 的 rich_text，移除末尾的 focus emoji
-    2. 读取目标 block 的 rich_text，在末尾追加 focus emoji
+    读取 LIVETODAY 页面 blocks，检测用户放置 💪🏿💪🏿💪🏿 的位置。
+
+    支持两种放置方式:
+      Pattern A (inline): emoji 追加在任务标题末尾
+        例: "[3] Some Task 💪🏿💪🏿💪🏿"
+      Pattern B (child block): emoji 作为独立 block 放在任务下方
+        例: "[3] Some Task"
+             "💪🏿💪🏿💪🏿"
+
+    返回 {"block_id": str, "title": str, "index": int} 或 None。
+    block_id 是通过 task_index_map 映射回的 Lines V2 原始 block_id。
     """
-    # 处理源 block：移除 emoji
-    _remove_focus_from_block(from_block_id)
-    # 处理目标 block：追加 emoji
-    _append_focus_to_block(to_block_id)
+    blocks = get_page_blocks(page_id)
+    if not blocks:
+        return None
+
+    last_task_index = None  # 最近一个 [N] 任务 block 的索引号
+    last_task_title = None  # 最近一个 [N] 任务 block 的标题
+
+    for block in blocks:
+        block_type = block.get("type", "")
+        type_content = block.get(block_type, {})
+        rich_text = type_content.get("rich_text", [])
+        text = parse_rich_text(rich_text).strip()
+
+        # 尝试解析 [N] 前缀
+        idx_match = re.match(r"^\[(\d+)\]\s*(.*)", text)
+
+        if idx_match:
+            task_num = int(idx_match.group(1))
+            task_title = idx_match.group(2).strip()
+
+            # Pattern A: emoji 在任务标题末尾（inline）
+            if FOCUS_EMOJI in task_title:
+                clean_title = task_title.replace(FOCUS_EMOJI, "").strip()
+                original_block_id = task_index_map.get(task_num)
+                if original_block_id:
+                    return {
+                        "block_id": original_block_id,
+                        "title": clean_title,
+                        "index": task_num
+                    }
+
+            # 记录当前任务作为 "最近的任务" 供 Pattern B 使用
+            last_task_index = task_num
+            last_task_title = task_title
+        else:
+            # Pattern B: 独立 block 仅包含 focus emoji
+            stripped = text.replace(" ", "").strip()
+            if FOCUS_EMOJI in stripped and last_task_index is not None:
+                original_block_id = task_index_map.get(last_task_index)
+                if original_block_id:
+                    return {
+                        "block_id": original_block_id,
+                        "title": (last_task_title or "").replace(FOCUS_EMOJI, "").strip(),
+                        "index": last_task_index
+                    }
+
+    return None
 
 
-def _remove_focus_from_block(block_id: str) -> None:
-    """从指定 block 的文本末尾移除 FOCUS_EMOJI。"""
-    block = get_block(block_id)
-    block_type = block.get("type", "")
-    type_content = block.get(block_type, {})
-    rich_text = type_content.get("rich_text", [])
-
-    if not rich_text:
-        return
-
-    # 在最后一个 rich_text 片段中移除 emoji
-    last_segment = rich_text[-1].copy()
-    text_content = last_segment.get("text", {}).get("content", "")
-    cleaned = text_content.replace(FOCUS_EMOJI, "").rstrip()
-    last_segment["text"] = {**last_segment.get("text", {}), "content": cleaned}
-
-    # 如果清理后为空，移除该片段
-    new_rich_text = rich_text[:-1]
-    if cleaned:
-        new_rich_text.append(last_segment)
-
-    payload = {
-        block_type: {
-            "rich_text": new_rich_text
-        }
-    }
-    update_block(block_id, payload)
-
-
-def _append_focus_to_block(block_id: str) -> None:
-    """在指定 block 的文本末尾追加 FOCUS_EMOJI。"""
-    block = get_block(block_id)
-    block_type = block.get("type", "")
-    type_content = block.get(block_type, {})
-    rich_text = type_content.get("rich_text", [])
-
-    # 追加一个新的 text 片段
-    rich_text.append({
-        "type": "text",
-        "text": {"content": f" {FOCUS_EMOJI}"},
-        "annotations": {
-            "bold": False, "italic": False, "strikethrough": False,
-            "underline": False, "code": False, "color": "default"
-        }
-    })
-
-    payload = {
-        block_type: {
-            "rich_text": rich_text
-        }
-    }
-    update_block(block_id, payload)
-
-
-def reset_focus_daily(task_tree: List[Dict[str, Any]], page_id: str) -> bool:
+def reset_focus_daily(log: Dict[str, Any]) -> Tuple[Dict[str, Any], bool]:
     """
-    每日自动重置：检测日期变化后将 💪🏿💪🏿💪🏿 移回页面底部空白 paragraph。
-    返回 True 如果执行了重置，False 如果未触发。
+    每日自动重置：检测日期变化后清除当前焦点。
+    焦点返回"默认位置"（index 1）由 dashboard 重写时处理。
+
+    返回 (更新后的 log, 是否执行了重置)。
     """
-    log = load_focus_log()
     today_str = date.today().isoformat()
 
     if log.get("last_reset_date") == today_str:
-        return False  # 今天已经重置过
+        return log, False  # 今天已经重置过
 
-    # 找到当前 focus 位置
-    focus_info = find_focus_task(task_tree)
-    if focus_info:
-        # 移除当前位置的 emoji
-        _remove_focus_from_block(focus_info["block_id"])
-
-        # 如果有正在进行的 focus 记录，结束它
-        if log.get("current_focus"):
-            log["current_focus"]["ended_at"] = datetime.now().astimezone().isoformat()
-            log["history"].append(log["current_focus"])
-            log["current_focus"] = None
-
-    # 找到页面底部最后一个空白 paragraph block
-    blocks = get_page_blocks(page_id)
-    last_empty_paragraph_id = _find_last_empty_paragraph(blocks)
-
-    if last_empty_paragraph_id:
-        _append_focus_to_block(last_empty_paragraph_id)
+    # 如果有正在进行的 focus 记录，结束它
+    if log.get("current_focus"):
+        log["current_focus"]["ended_at"] = datetime.now().astimezone().isoformat()
+        log["history"].append(log["current_focus"])
+        log["current_focus"] = None
 
     log["last_reset_date"] = today_str
-    save_focus_log(log)
-    return True
-
-
-def _find_last_empty_paragraph(blocks: List[Dict[str, Any]]) -> Optional[str]:
-    """从 blocks 列表中找到最后一个空白 paragraph block 的 ID。"""
-    last_empty_id = None
-    for block in blocks:
-        block_type = block.get("type", "")
-        if block_type == "paragraph":
-            type_content = block.get("paragraph", {})
-            rich_text = type_content.get("rich_text", [])
-            text = parse_rich_text(rich_text).strip()
-            if not text:
-                last_empty_id = block.get("id")
-    return last_empty_id
+    return log, True
 
 
 def record_focus_event(
@@ -242,39 +219,43 @@ def record_focus_event(
     return log
 
 
-def track_focus(task_tree: List[Dict[str, Any]], page_id: str) -> Optional[Dict[str, Any]]:
+def track_focus(
+    page_id: str,
+    task_index_map: Dict[int, str],
+    task_titles: Optional[Dict[str, str]] = None
+) -> Optional[Dict[str, Any]]:
     """
     主追踪函数：
     1. 加载日志
     2. 检查并执行每日重置
-    3. 检测焦点是否发生变化
+    3. 从 LIVETODAY 检测焦点是否发生变化
     4. 记录时间戳
     5. 保存日志
     返回当前焦点信息。
+
+    task_titles: 可选的 block_id → title 映射，用于 reset 后设置默认焦点显示名。
     """
     log = load_focus_log()
-    today_str = date.today().isoformat()
 
     # 每日自动重置
-    if log.get("last_reset_date") != today_str:
-        reset_focus_daily(task_tree, page_id)
-        # 重置后重新加载日志和任务树（树可能已经变化）
-        log = load_focus_log()
+    log, did_reset = reset_focus_daily(log)
+    if did_reset:
+        save_focus_log(log)
 
-    # 在当前树中查找 focus
-    focus_info = find_focus_task(task_tree)
+    # 从 LIVETODAY 检测当前焦点
+    focus_info = detect_focus_from_livetoday(page_id, task_index_map)
 
     if not focus_info:
-        # 没有找到 focus emoji，可能被重置到了空行
+        # 没有找到 focus emoji
         return log.get("current_focus")
 
     current_block_id = focus_info["block_id"]
-    current_title = focus_info["title"].replace(FOCUS_EMOJI, "").strip()
+    current_title = focus_info["title"]
 
     prev_focus = log.get("current_focus")
 
     if prev_focus is None:
-        # 首次追踪：记录 start
+        # 首次追踪或重置后：记录 start
         log = record_focus_event(log, current_block_id, current_title, "start")
     elif prev_focus.get("block_id") != current_block_id:
         # 焦点发生切换：结束旧的，开始新的
@@ -290,7 +271,6 @@ if __name__ == "__main__":
     import sys
     sys.stdout.reconfigure(encoding="utf-8")
     from task_reader import fetch_and_build_task_tree
-    from config import DFORGE_LINESV2_PAGE_ID
 
     tree = fetch_and_build_task_tree()
     focus = find_focus_task(tree)

@@ -10,72 +10,100 @@ import re
 
 emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
 
+# WBS level emoji prefixes to strip from original_notion_title
+_WBS_EMOJI_PREFIX = re.compile(r'^[🔸🔶🟧🏭⬛]\s*')
+
+
 def format_livetoday_title(counter: int, title_str: str, theme: str, remove_term: str = "") -> list:
-    rich_text = []
-    
-    # Strip existing [N]
-    title_str = re.sub(r'^\[\d+\]\s*', '', title_str)
-    
+    """
+    Build Notion rich_text list for a LIVETODAY task row.
+
+    Target output pattern:
+      **[N]**  **`theme`**  `mode_tag`  type_emoji  rest_of_primary : *description*
+
+    - counter   → bold
+    - theme     → bold + code  (e.g. 科研人)
+    - mode_tag  → code only    (e.g. 💻Focus)
+    - type_emoji→ plain        (e.g. ❓ 🔍)
+    - rest      → plain
+    - after ":" → italic
+    """
+    rich_text: list = []
+
+    # ── pre-process ──────────────────────────────────────────
+    # Strip existing [N] prefix
+    title_str = re.sub(r'^\[\d+\]\s*', '', title_str).strip()
+    # Strip WBS-level emoji prefix (🔸, 🔶, …)
+    title_str = _WBS_EMOJI_PREFIX.sub('', title_str).strip()
+    # Strip the remove_term (mode name in By-Modes, type emoji in By-Type)
     if remove_term:
-        title_str = title_str.replace(remove_term, "")
+        title_str = title_str.replace(remove_term, '', 1)
         title_str = re.sub(r'\s{2,}', ' ', title_str).strip()
-    
-    # 1. Counter
+
+    # ── [counter] ────────────────────────────────────────────
     rich_text.append({
         "type": "text",
         "text": {"content": f"[{counter}] "},
-        "annotations": {"bold": True, "code": False}
+        "annotations": {"bold": True}
     })
-    
+
+    # ── split primary : description ──────────────────────────
     if ":" in title_str:
         primary_part, desc_part = title_str.split(":", 1)
-        desc_part = ":" + desc_part
     else:
         primary_part = title_str
         desc_part = ""
-        
+
+    # ── tokenise primary part ────────────────────────────────
     words = primary_part.split()
-    title_start_idx = 0
-    
+    consumed = 0  # how many words consumed by prefix tags
+
     for i, word in enumerate(words):
+        # Theme word  →  bold + code
         if theme and word == theme:
             rich_text.append({
                 "type": "text",
                 "text": {"content": f"{word} "},
                 "annotations": {"bold": True, "code": True}
             })
-            title_start_idx = i + 1
-        elif emoji_pattern.search(word):
+            consumed = i + 1
+            continue
+
+        # Emoji-containing token (💻Focus, ❓, 🔍, …)
+        if emoji_pattern.search(word):
             has_alpha = bool(re.search(r'[A-Za-z]', word))
             rich_text.append({
                 "type": "text",
                 "text": {"content": f"{word} "},
-                "annotations": {"bold": False, "code": has_alpha}
+                "annotations": {"code": has_alpha}   # 💻Focus → code; ❓ → plain
             })
-            title_start_idx = i + 1
-        else:
-            break
-            
-    if title_start_idx < len(words):
-        rest_of_primary = " ".join(words[title_start_idx:])
+            consumed = i + 1
+            continue
+
+        # First non-tag word → stop consuming prefix
+        break
+
+    # ── remaining primary text ───────────────────────────────
+    if consumed < len(words):
+        rest = " ".join(words[consumed:])
         rich_text.append({
             "type": "text",
-            "text": {"content": f"{rest_of_primary} "},
-            "annotations": {"bold": False, "code": False}
+            "text": {"content": rest},
+            "annotations": {}
         })
-        
+
+    # ── description (after ":") ──────────────────────────────
     if desc_part:
-        # separate the colon space if possible, but keeping it simple
         rich_text.append({
             "type": "text",
-            "text": {"content": (" " + desc_part.strip()) if not rest_of_primary.endswith(" ") else desc_part.strip()},
-            "annotations": {"bold": False, "code": False, "italic": True}
+            "text": {"content": f" : {desc_part.strip()}"},
+            "annotations": {"italic": True}
         })
-        
+
+    # trim trailing whitespace on last block
     if rich_text:
-        last_block = rich_text[-1]
-        last_block["text"]["content"] = last_block["text"]["content"].rstrip()
-        
+        rich_text[-1]["text"]["content"] = rich_text[-1]["text"]["content"].rstrip()
+
     return rich_text
 from notion_client import get_page_blocks, delete_block, append_children
 
@@ -249,14 +277,17 @@ def build_dashboard_blocks(
     counter = 1  # 全局任务编号
     task_index_map: Dict[int, str] = {}  # counter → 原始 block_id
 
-    # Filter to only WBS Level 4 tasks that are assigned (have a Mode)
-    # AND are not marked as completed.
+    # Filter to only WBS Level 4 tasks that:
+    #  - are assigned (have a Mode)
+    #  - are not done / checked
+    #  - have been through generated_selection_processed
     l4_assigned_state = [
         t for t in flat_state 
         if t.get("wbs_level") == 4 
         and (t.get("tags") or {}).get("Modes")
         and not t.get("checked")
         and str(t.get("status", "")).lower() not in ["done", "completed"]
+        and t.get("generated_selection_processed", False)
     ]
 
     by_mode_blocks = []

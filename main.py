@@ -346,6 +346,11 @@ def cmd_track() -> None:
         save_focus_log,
         track_focus,
     )
+    from livetoday_sync import sync_livetoday_checks_to_livev2
+
+    # Sync any checked tasks from LIVETODAY → LIVEV2 BEFORE clearing the dashboard
+    print("Checking for dashboard updates...")
+    sync_livetoday_checks_to_livev2()
 
     print("Fetching tasks from Notion...")
     notion_tree = fetch_and_build_task_tree()
@@ -358,6 +363,9 @@ def cmd_track() -> None:
     structured_cfg = structure_yonctask_config(raw_cfg)
     working_state = load_state(STATE_FILE)
     merged = merge_states(notion_tree, working_state)
+    
+    from state_manager import save_state
+    save_state(merged, STATE_FILE)
 
     # Build a provisional task_index_map (without focus) to detect user-moved emoji
     _, provisional_map = build_dashboard_blocks(merged, structured_cfg)
@@ -382,11 +390,29 @@ def cmd_track() -> None:
             save_focus_log(log)
     elif prev_focus:
         # Emoji gone from LIVETODAY but log says we had focus — keep it
-        focus_block_id = prev_focus.get("block_id")
+        # BUT only if the focused task actually exists in the dashboard
+        prev_bid = prev_focus.get("block_id")
+        dashboard_block_ids = set(provisional_map.values()) if provisional_map else set()
+        if prev_bid in dashboard_block_ids:
+            focus_block_id = prev_bid
+        else:
+            # Stale focus: task is no longer on the dashboard — clear it
+            log = record_focus_event(log, prev_bid, prev_focus.get("title", ""), "end")
+            save_focus_log(log)
 
     # If no focus at all after daily reset, default to first task (index 1)
     if focus_block_id is None and provisional_map:
         focus_block_id = provisional_map.get(1)
+        # Start a new focus session for the default task
+        if focus_block_id:
+            default_title = next(
+                (t.get("original_notion_title", t.get("title", ""))
+                 for t in merged
+                 if (t.get("notion_block_id") or t.get("id", "")) == focus_block_id),
+                ""
+            )
+            log = record_focus_event(log, focus_block_id, default_title, "start")
+            save_focus_log(log)
 
     current_focus = log.get("current_focus")
     if current_focus:
@@ -402,6 +428,12 @@ def cmd_track() -> None:
         focus_block_id=focus_block_id
     )
     print(f"Dashboard updated: {block_count} blocks written.")
+
+    # Automatically sync completed focus time explicitly into state JSON
+    from focus_time_sync import sync_focus_time_to_state
+    periods, tasks = sync_focus_time_to_state()
+    if periods > 0:
+        print(f"Auto-synced {periods} completed focus session(s) to {tasks} task(s) timetaken metrics.")
 
 
 def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser) -> None:

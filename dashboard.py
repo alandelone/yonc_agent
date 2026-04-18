@@ -324,43 +324,28 @@ def build_dashboard_blocks(
     counter = 1  # 全局任务编号
     task_index_map: Dict[int, str] = {}  # counter → 原始 block_id
 
+    from livetoday_sync import get_dash_checked_today
+    todays_checked = get_dash_checked_today()
+
     # Filter to only WBS Level 4 tasks that:
     #  - are assigned (have a Mode)
-    #  - are not done / checked
+    #  - are not done / checked (UNLESS they were checked on LIVETODAY today)
     #  - have been through generated_selection_processed
-    l4_assigned_state = [
-        t for t in flat_state 
-        if t.get("wbs_level") == 4 
-        and (t.get("tags") or {}).get("Modes")
-        and not t.get("checked")
-        and str(t.get("status", "")).lower() not in ["done", "completed"]
-        and t.get("generated_selection_processed", False)
-    ]
+    l4_assigned_state = []
+    for t in flat_state:
+        if t.get("wbs_level") == 4 and (t.get("tags") or {}).get("Modes") and t.get("generated_selection_processed", False):
+            task_bid = t.get("notion_block_id") or t.get("id")
+            
+            is_done_globally = t.get("checked") or str(t.get("status", "")).lower() in ["done", "completed"]
+            
+            # Keep if it isn't done globally, or if it WAS checked on dashboard today!
+            if not is_done_globally or task_bid in todays_checked:
+                l4_assigned_state.append(t)
 
     by_mode_blocks = []
     
     # ── Section 1: By Modes ──────────────────────────────
     
-    # add focus single block
-    if focus_block_id:
-        focus_task = next((t for t in flat_state if (t.get("notion_block_id") or t.get("id", "")) == focus_block_id), None)
-        if focus_task:
-            by_mode_blocks.append({
-                "object": "block",
-                "type": "bulleted_list_item",
-                "bulleted_list_item": {
-                    "rich_text": [{
-                        "type": "text",
-                        "text": {"content": "💪🏿💪🏿💪🏿"},
-                        "annotations": {
-                            "bold": True, 
-                            "color": "blue_background",
-                            "code": True
-                        }
-                    }]
-                }
-            })
-
     mode_groups = group_tasks_by_mode(l4_assigned_state, structured_cfg)
 
     # 先按 config 中的 mode 顺序排列
@@ -392,15 +377,37 @@ def build_dashboard_blocks(
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
 
+            is_task_checked = task_bid in todays_checked
             by_mode_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
                     "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=mode_name),
-                    "checked": False
+                    "checked": is_task_checked
                 }
             })
+            
+            if task_bid == focus_block_id:
+                by_mode_blocks.append({
+                    "object": "block",
+                    "type": "bulleted_list_item",
+                    "bulleted_list_item": {
+                        "rich_text": [{
+                            "type": "text",
+                            "text": {"content": "💪🏿💪🏿💪🏿"},
+                            "annotations": {
+                                "bold": True, 
+                                "color": "blue_background",
+                                "code": True
+                            }
+                        }]
+                    }
+                })
+                
             counter += 1
+
+    # Create a reverse mapping so By Task Type uses the same numbers
+    bid_to_counter = {bid: cnt for cnt, bid in task_index_map.items()}
 
     # ── Section 2: By Task Type ──────────────────────────
     by_type_blocks = []
@@ -428,18 +435,19 @@ def build_dashboard_blocks(
             title = task.get("original_notion_title", task.get("title", ""))
             theme, theme_color = _resolve_theme_from_task(task, structured_cfg)
             task_bid = task.get("notion_block_id") or task.get("id", "")
-            task_index_map[counter] = task_bid
-
+            
+            display_counter = bid_to_counter.get(task_bid, -1)
+            
             remove_emoji = type_name.split()[0] if type_name else ""
+            is_task_checked = task_bid in todays_checked
             by_type_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=remove_emoji),
-                    "checked": False
+                    "rich_text": format_livetoday_title(display_counter, title, theme, theme_color=theme_color, remove_term=remove_emoji),
+                    "checked": is_task_checked
                 }
             })
-            counter += 1
 
     blocks.append({
         "object": "block",

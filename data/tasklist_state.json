@@ -599,7 +599,12 @@
       "estimated_time_h": null,
       "actual_time_taken_h": null,
       "interruption_count": 0,
-      "timetaken": []
+      "timetaken": [
+        {
+          "start": "2026-04-18T15:08:29.724885+08:00",
+          "end": "2026-04-18T15:38:13.449493+08:00"
+        }
+      ]
     },
     "synced_tags": true
   },
@@ -622,7 +627,7 @@
       "code": true,
       "color": "red"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
@@ -691,7 +696,12 @@
       "estimated_time_h": null,
       "actual_time_taken_h": null,
       "interruption_count": 0,
-      "timetaken": []
+      "timetaken": [
+        {
+          "start": "2026-04-18T15:38:13.450608+08:00",
+          "end": "2026-04-18T16:48:58.890945+08:00"
+        }
+      ]
     },
     "synced_tags": true
   },

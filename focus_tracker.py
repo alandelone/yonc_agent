@@ -124,10 +124,16 @@ def detect_focus_from_livetoday(
     if not blocks:
         return None
 
+    def iterate_all_blocks(block_list):
+        for b in block_list:
+            yield b
+            if "children_blocks" in b:
+                yield from iterate_all_blocks(b["children_blocks"])
+
     last_task_index = None  # 最近一个 [N] 任务 block 的索引号
     last_task_title = None  # 最近一个 [N] 任务 block 的标题
 
-    for block in blocks:
+    for block in iterate_all_blocks(blocks):
         block_type = block.get("type", "")
         type_content = block.get(block_type, {})
         rich_text = type_content.get("rich_text", [])

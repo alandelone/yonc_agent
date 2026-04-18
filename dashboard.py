@@ -14,19 +14,63 @@ emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E
 _WBS_EMOJI_PREFIX = re.compile(r'^[🔸🔶🟧🏭⬛]\s*')
 
 
-def format_livetoday_title(counter: int, title_str: str, theme: str, remove_term: str = "") -> list:
+def _resolve_theme_from_task(
+    task: Dict[str, Any],
+    structured_cfg: Dict[str, Any]
+) -> tuple:
+    """
+    Extract (theme_display_label, theme_color) for a task by matching
+    its title words against the sub_themes defined in the config.
+
+    Returns e.g. ("科研人", "red") or ("", "default").
+    """
+    title = task.get("original_notion_title", task.get("title", ""))
+    # Strip WBS emoji prefix before matching
+    title_clean = _WBS_EMOJI_PREFIX.sub('', re.sub(r'^\[\d+\]\s*', '', title)).strip()
+    title_words = title_clean.split()
+
+    themes = structured_cfg.get("themes", {})
+    # Also check legacy field first
+    explicit = str(task.get("theme_display_label", "")).strip()
+    if explicit:
+        # Find its color
+        for t_cfg in themes.values():
+            if explicit in t_cfg.get("sub_themes", []) or explicit == t_cfg.get("name", ""):
+                return explicit, t_cfg.get("color", "default")
+        return explicit, "default"
+
+    # Match by checking which sub_theme word appears at the start of the title
+    for _theme_key, t_cfg in themes.items():
+        color = t_cfg.get("color", "default")
+        for sub in t_cfg.get("sub_themes", []):
+            if sub in title_words:
+                return sub, color
+        # Also match the main theme name itself
+        if t_cfg.get("name", "") in title_words:
+            return t_cfg["name"], color
+
+    return "", "default"
+
+
+def format_livetoday_title(
+    counter: int,
+    title_str: str,
+    theme: str,
+    theme_color: str = "default",
+    remove_term: str = ""
+) -> list:
     """
     Build Notion rich_text list for a LIVETODAY task row.
 
     Target output pattern:
       **[N]**  **`theme`**  `mode_tag`  type_emoji  rest_of_primary : *description*
 
-    - counter   → bold
-    - theme     → bold + code  (e.g. 科研人)
-    - mode_tag  → code only    (e.g. 💻Focus)
-    - type_emoji→ plain        (e.g. ❓ 🔍)
-    - rest      → plain
-    - after ":" → italic
+    - counter    → bold
+    - theme      → bold + code + color  (e.g. 科研人 in red)
+    - mode_tag   → code only            (e.g. 💻Focus)
+    - type_emoji → plain                (e.g. ❓ 🔍)
+    - rest       → plain
+    - after ":"  → italic
     """
     rich_text: list = []
 
@@ -59,12 +103,15 @@ def format_livetoday_title(counter: int, title_str: str, theme: str, remove_term
     consumed = 0  # how many words consumed by prefix tags
 
     for i, word in enumerate(words):
-        # Theme word  →  bold + code
+        # Theme word  →  bold + code + color
         if theme and word == theme:
+            annots = {"bold": True, "code": True}
+            if theme_color and theme_color != "default":
+                annots["color"] = theme_color
             rich_text.append({
                 "type": "text",
                 "text": {"content": f"{word} "},
-                "annotations": {"bold": True, "code": True}
+                "annotations": annots
             })
             consumed = i + 1
             continue
@@ -341,7 +388,7 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
-            theme = task.get("theme_display_label", "")
+            theme, theme_color = _resolve_theme_from_task(task, structured_cfg)
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
 
@@ -349,7 +396,7 @@ def build_dashboard_blocks(
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme, remove_term=mode_name),
+                    "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=mode_name),
                     "checked": False
                 }
             })
@@ -379,7 +426,7 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
-            theme = task.get("theme_display_label", "")
+            theme, theme_color = _resolve_theme_from_task(task, structured_cfg)
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
 
@@ -388,7 +435,7 @@ def build_dashboard_blocks(
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme, remove_term=remove_emoji),
+                    "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=remove_emoji),
                     "checked": False
                 }
             })

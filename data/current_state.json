@@ -36,7 +36,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -76,14 +77,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-8183-8c04-c97e9782dcb9",
     "notion_block_id": "344e1eb5-ce57-8183-8c04-c97e9782dcb9",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)",
-    "original_notion_title": "🔶 科研人 💻Focus ❓ PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus 🔍 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)",
+    "original_notion_title": "🔶 科研人 💻Focus 🔍 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81c5-8a2b-c31b6226c286",
     "depth": 2,
@@ -116,13 +118,14 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-81f9-898a-c62de522d163",
     "notion_block_id": "344e1eb5-ce57-81f9-898a-c62de522d163",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期) 科研人 元数据提取 Engine : 核心算法与规则：识别提取解析文本 (标题, 作者, DOI, 出版日期)",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus 🔍 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期) 科研人 元数据提取 Engine : 核心算法与规则：识别提取解析文本 (标题, 作者, DOI, 出版日期)",
     "original_notion_title": "科研人 元数据提取 Engine : 核心算法与规则：识别提取解析文本 (标题, 作者, DOI, 出版日期)",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8183-8c04-c97e9782dcb9",
@@ -156,14 +159,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "notion_block_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)",
-    "original_notion_title": "🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81c5-8a2b-c31b6226c286",
     "depth": 2,
@@ -173,10 +177,10 @@
     "annotations": {
       "bold": false,
       "italic": false,
-      "strikethrough": false,
+      "strikethrough": true,
       "underline": false,
       "code": false,
-      "color": "default"
+      "color": "gray"
     },
     "checked": null,
     "has_tag_style": true,
@@ -196,14 +200,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-81b4-8ffb-f7a2413fb72d",
     "notion_block_id": "344e1eb5-ce57-81b4-8ffb-f7a2413fb72d",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献",
-    "original_notion_title": "🔸 科研人 PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 💻Focus ❓ PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献",
+    "original_notion_title": "🔸 科研人 💻Focus ❓ PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "depth": 3,
@@ -218,10 +223,10 @@
       "code": false,
       "color": "default"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "timeliner_key": null,
@@ -236,14 +241,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-8157-9dda-e3c527953027",
     "notion_block_id": "344e1eb5-ce57-8157-9dda-e3c527953027",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析",
-    "original_notion_title": "🔸 科研人 ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 💻Focus ❓ ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析",
+    "original_notion_title": "🔸 科研人 💻Focus ❓ ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "depth": 3,
@@ -258,10 +264,10 @@
       "code": false,
       "color": "default"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "timeliner_key": null,
@@ -276,14 +282,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-81a7-a797-dec306b59329",
     "notion_block_id": "344e1eb5-ce57-81a7-a797-dec306b59329",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。",
-    "original_notion_title": "🔸 科研人 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 💻Focus ❓ 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。",
+    "original_notion_title": "🔸 科研人 💻Focus ❓ 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "depth": 3,
@@ -298,10 +305,10 @@
       "code": false,
       "color": "default"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "timeliner_key": null,
@@ -316,14 +323,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-81e8-8473-eeea572bdff4",
     "notion_block_id": "344e1eb5-ce57-81e8-8473-eeea572bdff4",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。",
-    "original_notion_title": "🔸 科研人 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 💻Focus ❓ 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。",
+    "original_notion_title": "🔸 科研人 💻Focus ❓ 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "depth": 3,
@@ -338,10 +346,10 @@
       "code": false,
       "color": "default"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "timeliner_key": null,
@@ -356,14 +364,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
     "id": "344e1eb5-ce57-8151-9974-c07bfd3dcdf5",
     "notion_block_id": "344e1eb5-ce57-8151-9974-c07bfd3dcdf5",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。",
-    "original_notion_title": "🔸 科研人 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取） 🔶 科研人 💻Focus ❓ 跨平台 API Connector : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv) 🔸 科研人 💻Focus 🔍 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。",
+    "original_notion_title": "🔸 科研人 💻Focus 🔍 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-8156-9bb6-e807b02d7f5f",
     "depth": 3,
@@ -378,10 +387,10 @@
       "code": false,
       "color": "default"
     },
-    "checked": false,
+    "checked": true,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "timeliner_key": null,
@@ -396,7 +405,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -436,14 +446,712 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8127-8983-d81ab2e763c4",
-    "notion_block_id": "344e1eb5-ce57-8127-8983-d81ab2e763c4",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 描述性统计分析引擎 : 包含均值、标准差、分布特征及常用参数化指标计算逻辑的核心代码模块。",
-    "original_notion_title": "科研人 描述性统计分析引擎 : 包含均值、标准差、分布特征及常用参数化指标计算逻辑的核心代码模块。",
+    "id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "notion_block_id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8171-8768-d1eaede1639a",
+    "notion_block_id": "345e1eb5-ce57-8171-8768-d1eaede1639a",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。 科研人 💻Focus ❓ 核心可视化渲染引擎 : 基础架构：提供底层渲染与全组件基础配置。",
+    "original_notion_title": "科研人 💻Focus ❓ 核心可视化渲染引擎 : 基础架构：提供底层渲染与全组件基础配置。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81a6-8802-faa0fb3dc7c8",
+    "notion_block_id": "345e1eb5-ce57-81a6-8802-faa0fb3dc7c8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。 科研人 💻Focus ❓ 多维统计 Charts : 科学分析可视化组件：(散点图, 热力图, 动态趋势图)",
+    "original_notion_title": "科研人 💻Focus ❓ 多维统计 Charts : 科学分析可视化组件：(散点图, 热力图, 动态趋势图)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81f3-b145-c31c6c493872",
+    "notion_block_id": "345e1eb5-ce57-81f3-b145-c31c6c493872",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。 科研人 💻Focus ❓ 交互导航与筛选模块 : 可复用 UI 模块：支持用户交互 (缩放, 平移, 动态范围选择)",
+    "original_notion_title": "科研人 💻Focus ❓ 交互导航与筛选模块 : 可复用 UI 模块：支持用户交互 (缩放, 平移, 动态范围选择)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8184-948f-c7663fe7ca12",
+    "notion_block_id": "345e1eb5-ce57-8184-948f-c7663fe7ca12",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。 科研人 💻Focus ❓ 数据处理与映射 Utils : 工具：解析复杂科学数据 $\\rightarrow$ 映射视觉维度。",
+    "original_notion_title": "科研人 💻Focus ❓ 数据处理与映射 Utils : 工具：解析复杂科学数据 $\\rightarrow$ 映射视觉维度。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8181-a36e-c872f24c987a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "notion_block_id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8108-af30-f30704f006f5",
+    "notion_block_id": "345e1eb5-ce57-8108-af30-f30704f006f5",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。 科研人 学术 Vis 样式库 : 视觉预设：优化日志可读性 (色板, 字体, 布局)",
+    "original_notion_title": "科研人 学术 Vis 样式库 : 视觉预设：优化日志可读性 (色板, 字体, 布局)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81c8-920b-eb792a05a5e1",
+    "notion_block_id": "345e1eb5-ce57-81c8-920b-eb792a05a5e1",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。 科研人 多平台脚本 Config : 主流科研软件配置脚本/样式表 (Matplotlib, R ggplot2, GraphPad Prism)",
+    "original_notion_title": "科研人 多平台脚本 Config : 主流科研软件配置脚本/样式表 (Matplotlib, R ggplot2, GraphPad Prism)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81d2-b03a-ca1fdca4427b",
+    "notion_block_id": "345e1eb5-ce57-81d2-b03a-ca1fdca4427b",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。 科研人 期刊 Export 规范 : 出版标准：高清矢量/位图导出参数与预设",
+    "original_notion_title": "科研人 期刊 Export 规范 : 出版标准：高清矢量/位图导出参数与预设",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81b7-8a8c-e46772e75a80",
+    "notion_block_id": "345e1eb5-ce57-81b7-8a8c-e46772e75a80",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。 科研人 用户文档 & Examples : 详细手册与可视化样例：演示跨学科模板应用",
+    "original_notion_title": "科研人 用户文档 & Examples : 详细手册与可视化样例：演示跨学科模板应用",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-815a-b890-c8b9222c4161",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "notion_block_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8173-a9a5-f24c7b94e0e3",
+    "notion_block_id": "345e1eb5-ce57-8173-a9a5-f24c7b94e0e3",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。 科研人 多格式 Data Connector : 专用Parser：导入 (CSV, Excel, 科学仪器原文件)",
+    "original_notion_title": "科研人 多格式 Data Connector : 专用Parser：导入 (CSV, Excel, 科学仪器原文件)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81d8-a299-cb3b862212a3",
+    "notion_block_id": "345e1eb5-ce57-81d8-a299-cb3b862212a3",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。 科研人 数据清洗映射引擎 : 核心处理模块：数据归一化、错误处理、结构转换。",
+    "original_notion_title": "科研人 数据清洗映射引擎 : 核心处理模块：数据归一化、错误处理、结构转换。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8169-bbe6-d32b9c802f1e",
+    "notion_block_id": "345e1eb5-ce57-8169-bbe6-d32b9c802f1e",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。 科研人 映射配置与模板库 : 用户规则与可复用 Schema：对齐异构数据源至标准研究格式。",
+    "original_notion_title": "科研人 映射配置与模板库 : 用户规则与可复用 Schema：对齐异构数据源至标准研究格式。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8119-ab75-ecb25d4543c6",
+    "notion_block_id": "345e1eb5-ce57-8119-ab75-ecb25d4543c6",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。 科研人 集成 API : 编程/用户入口：控制适配器及访问处理数据流。",
+    "original_notion_title": "科研人 集成 API : 编程/用户入口：控制适配器及访问处理数据流。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81af-9347-c6434d9db777",
+    "notion_block_id": "345e1eb5-ce57-81af-9347-c6434d9db777",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 🔶 科研人 💻Focus ❓ 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。 科研人 技术文档 & 验证包 : 用户手册、技术规范、验证报告：确保数据处理可靠性。",
+    "original_notion_title": "科研人 技术文档 & 验证包 : 用户手册、技术规范、验证报告：确保数据处理可靠性。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8193-9281-f63124c6b86c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81dd-b4f1-f00265d6718c",
+    "notion_block_id": "345e1eb5-ce57-81dd-b4f1-f00265d6718c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 💻Focus ❓ 分析结果自动化总结报告 : 根据统计输出自动生成的包含关键结论描述与图表排版的结构化文档。",
+    "original_notion_title": "科研人 💻Focus ❓ 分析结果自动化总结报告 : 根据统计输出自动生成的包含关键结论描述与图表排版的结构化文档。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8172-b04c-ea8026194ab2",
+    "notion_block_id": "345e1eb5-ce57-8172-b04c-ea8026194ab2",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 核心统计分析引擎 : 一套涵盖描述性统计、推断性统计及相关性分析计算逻辑的标准化程序模块。",
+    "original_notion_title": "科研人 核心统计分析引擎 : 一套涵盖描述性统计、推断性统计及相关性分析计算逻辑的标准化程序模块。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
     "depth": 2,
@@ -476,14 +1184,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-811e-8661-dacd871a714e",
-    "notion_block_id": "344e1eb5-ce57-811e-8661-dacd871a714e",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。",
-    "original_notion_title": "科研人 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。",
+    "id": "345e1eb5-ce57-81ed-bc90-fda89658ecc2",
+    "notion_block_id": "345e1eb5-ce57-81ed-bc90-fda89658ecc2",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 科研专题可视化图表库 : 包含散点图、热力图、箱线图及误差条图等符合科研出版标准的图形渲染组件。",
+    "original_notion_title": "科研人 科研专题可视化图表库 : 包含散点图、热力图、箱线图及误差条图等符合科研出版标准的图形渲染组件。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
     "depth": 2,
@@ -516,14 +1225,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8102-85cf-de7cdd00708a",
-    "notion_block_id": "344e1eb5-ce57-8102-85cf-de7cdd00708a",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。",
-    "original_notion_title": "科研人 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。",
+    "id": "345e1eb5-ce57-8109-baf3-dce8bf7eca8f",
+    "notion_block_id": "345e1eb5-ce57-8109-baf3-dce8bf7eca8f",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 数据预处理与特征转换器 : 用于数据清洗、归一化、离群值处理及维度转换的功能性操作界面与逻辑。",
+    "original_notion_title": "科研人 数据预处理与特征转换器 : 用于数据清洗、归一化、离群值处理及维度转换的功能性操作界面与逻辑。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
     "depth": 2,
@@ -556,14 +1266,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-810f-8661-e5a2b0cf5ce4",
-    "notion_block_id": "344e1eb5-ce57-810f-8661-e5a2b0cf5ce4",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。",
-    "original_notion_title": "科研人 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。",
+    "id": "345e1eb5-ce57-819d-93a4-cbd8eb5e9ba8",
+    "notion_block_id": "345e1eb5-ce57-819d-93a4-cbd8eb5e9ba8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 动态参数交互控制器 : 支持用户通过滑块、过滤条件实时调整分析参数并同步更新视图的交互组件。",
+    "original_notion_title": "科研人 动态参数交互控制器 : 支持用户通过滑块、过滤条件实时调整分析参数并同步更新视图的交互组件。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
     "depth": 2,
@@ -596,14 +1307,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8159-9055-d9c53793ae74",
-    "notion_block_id": "344e1eb5-ce57-8159-9055-d9c53793ae74",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 分析结果自动化总结报告 : 根据统计输出自动生成的包含关键结论描述与图表排版的结构化文档。",
-    "original_notion_title": "科研人 分析结果自动化总结报告 : 根据统计输出自动生成的包含关键结论描述与图表排版的结构化文档。",
+    "id": "345e1eb5-ce57-81f6-bc47-e787ecfcd9e8",
+    "notion_block_id": "345e1eb5-ce57-81f6-bc47-e787ecfcd9e8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。 科研人 多格式成果导出模块 : 支持将统计结果及高分辨率可视化图表导出为CSV、PDF或SVG矢量格式的输出工具。",
+    "original_notion_title": "科研人 多格式成果导出模块 : 支持将统计结果及高分辨率可视化图表导出为CSV、PDF或SVG矢量格式的输出工具。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d5-b848-ca30e04bcea0",
     "depth": 2,
@@ -636,7 +1348,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -676,14 +1389,1122 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8156-9c01-fe2a82cc5e54",
-    "notion_block_id": "344e1eb5-ce57-8156-9c01-fe2a82cc5e54",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。",
-    "original_notion_title": "科研人 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。",
+    "id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "notion_block_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8124-8dfa-c54a9d5a35ba",
+    "notion_block_id": "345e1eb5-ce57-8124-8dfa-c54a9d5a35ba",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 Profile 线框图设计 : 设计 Low-fi 布局：用户 Profile Header 及基础信息区",
+    "original_notion_title": "科研人 Profile 线框图设计 : 设计 Low-fi 布局：用户 Profile Header 及基础信息区",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-813a-b155-f25fb3b0a9ad",
+    "notion_block_id": "345e1eb5-ce57-813a-b155-f25fb3b0a9ad",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 活动流 UI 设计 : 研究动态 feed 高保真设计 (卡片/列表)",
+    "original_notion_title": "科研人 活动流 UI 设计 : 研究动态 feed 高保真设计 (卡片/列表)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-813e-8b55-c950886c35a8",
+    "notion_block_id": "345e1eb5-ce57-813e-8b55-c950886c35a8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 资产管理入口 Icons : 设计研究资产管理导航图标/按钮",
+    "original_notion_title": "科研人 资产管理入口 Icons : 设计研究资产管理导航图标/按钮",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8153-bdb5-c4a3b53e0484",
+    "notion_block_id": "345e1eb5-ce57-8153-bdb5-c4a3b53e0484",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 构建 Page Shell : 开发个人门户：响应式容器及 Grid 结构",
+    "original_notion_title": "科研人 构建 Page Shell : 开发个人门户：响应式容器及 Grid 结构",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-819d-9bd7-e9ad4e0145a1",
+    "notion_block_id": "345e1eb5-ce57-819d-9bd7-e9ad4e0145a1",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 实现 Profile Card 组件 : 开发前端组件：显示用户头像、Title、Bio",
+    "original_notion_title": "科研人 实现 Profile Card 组件 : 开发前端组件：显示用户头像、Title、Bio",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-816a-8b87-e7432faf3a66",
+    "notion_block_id": "345e1eb5-ce57-816a-8b87-e7432faf3a66",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 活动 Feed 开发 : 实现活动流研究动态 UI 组件。",
+    "original_notion_title": "科研人 活动 Feed 开发 : 实现活动流研究动态 UI 组件。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81db-97fa-dd9ea1826897",
+    "notion_block_id": "345e1eb5-ce57-81db-97fa-dd9ea1826897",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 构建资产 Portal : 实现研究资产管理：导航与Dashboard入口。",
+    "original_notion_title": "科研人 构建资产 Portal : 实现研究资产管理：导航与Dashboard入口。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81f8-8a22-c51625e75a38",
+    "notion_block_id": "345e1eb5-ce57-81f8-8a22-c51625e75a38",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。 科研人 集成 Mock 服务 : 前端接 mock 数据：验证 UI 渲染及布局。",
+    "original_notion_title": "科研人 集成 Mock 服务 : 前端接 mock 数据：验证 UI 渲染及布局。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81bb-8f05-e82b8f4cc202",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "notion_block_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8143-8024-fd5803cb5784",
+    "notion_block_id": "345e1eb5-ce57-8143-8024-fd5803cb5784",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。 科研人 功能菜单与格式化工具栏 : 集成了文字格式化、段落调整及编辑器功能指令的交互式导航与快捷操作界面。",
+    "original_notion_title": "科研人 功能菜单与格式化工具栏 : 集成了文字格式化、段落调整及编辑器功能指令的交互式导航与快捷操作界面。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8164-96fd-ffede4400601",
+    "notion_block_id": "345e1eb5-ce57-8164-96fd-ffede4400601",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。 科研人 富文本交互编辑核心画布 : 支持用户实时文本输入、基础样式即时反馈以及文档内容承载的交互式编辑区域。",
+    "original_notion_title": "科研人 富文本交互编辑核心画布 : 支持用户实时文本输入、基础样式即时反馈以及文档内容承载的交互式编辑区域。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81d0-be69-fab98e765236",
+    "notion_block_id": "345e1eb5-ce57-81d0-be69-fab98e765236",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。 科研人 Markdown 语法渲染预览模块 : 将 Markdown 源码实时解析并呈现为结构化排版样式的可视化文档预览界面。",
+    "original_notion_title": "科研人 Markdown 语法渲染预览模块 : 将 Markdown 源码实时解析并呈现为结构化排版样式的可视化文档预览界面。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81bd-abd1-ce1e402228d8",
+    "notion_block_id": "345e1eb5-ce57-81bd-abd1-ce1e402228d8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。 科研人 数学公式编辑与排版组件 : 支持 LaTeX 语法输入、科研级数学公式精准渲染及交互式公式插入的专用功能模块。",
+    "original_notion_title": "科研人 数学公式编辑与排版组件 : 支持 LaTeX 语法输入、科研级数学公式精准渲染及交互式公式插入的专用功能模块。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81ff-a133-e368e80f6a42",
+    "notion_block_id": "345e1eb5-ce57-81ff-a133-e368e80f6a42",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。 科研人 响应式编辑器界面布局框架 : 统筹编辑器侧边栏、状态显示栏及多设备适配逻辑的整体 UI 结构底座。",
+    "original_notion_title": "科研人 响应式编辑器界面布局框架 : 统筹编辑器侧边栏、状态显示栏及多设备适配逻辑的整体 UI 结构底座。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8185-a8d3-e7ca69139109",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "notion_block_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81b4-ae09-f8d52a3679c7",
+    "notion_block_id": "345e1eb5-ce57-81b4-ae09-f8d52a3679c7",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。 科研人 历史版本列表展示组件 : 包含文档版本号、创建时间、编辑人及备注信息的清单化展示界面。",
+    "original_notion_title": "科研人 历史版本列表展示组件 : 包含文档版本号、创建时间、编辑人及备注信息的清单化展示界面。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8194-be7b-eafa485f7401",
+    "notion_block_id": "345e1eb5-ce57-8194-be7b-eafa485f7401",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。 科研人 文档差异化对比视图 : 通过高亮方式展示两个选定版本之间文本增减与结构变更的可视化对比界面。",
+    "original_notion_title": "科研人 文档差异化对比视图 : 通过高亮方式展示两个选定版本之间文本增减与结构变更的可视化对比界面。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8144-9728-e4bdff287cea",
+    "notion_block_id": "345e1eb5-ce57-8144-9728-e4bdff287cea",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。 科研人 版本回滚逻辑触发器 : 负责接收用户指令并将文档当前状态恢复至指定历史版本的执行机制与后台服务。",
+    "original_notion_title": "科研人 版本回滚逻辑触发器 : 负责接收用户指令并将文档当前状态恢复至指定历史版本的执行机制与后台服务。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8196-97f3-e2472a7a0252",
+    "notion_block_id": "345e1eb5-ce57-8196-97f3-e2472a7a0252",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。 科研人 版本元数据存储架构 : 用于记录版本快照索引、变更摘要及文件存储路径的数据库结构与管理模块。",
+    "original_notion_title": "科研人 版本元数据存储架构 : 用于记录版本快照索引、变更摘要及文件存储路径的数据库结构与管理模块。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81f3-afeb-f763c187fe74",
+    "notion_block_id": "345e1eb5-ce57-81f3-afeb-f763c187fe74",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。 科研人 差异计算后端引擎 : 负责解析两个版本间的内容差异并生成对比数据的服务端算法模块。",
+    "original_notion_title": "科研人 差异计算后端引擎 : 负责解析两个版本间的内容差异并生成对比数据的服务端算法模块。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-81e2-9df4-da9731f76d7b",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "notion_block_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8186-9d15-f61d6f69fb3a",
+    "notion_block_id": "345e1eb5-ce57-8186-9d15-f61d6f69fb3a",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。 科研人 实时即时消息通讯模块 : 提供点对点及群组聊天的功能界面，支持文字、文件传输及多媒体信息的实时交互。",
+    "original_notion_title": "科研人 实时即时消息通讯模块 : 提供点对点及群组聊天的功能界面，支持文字、文件传输及多媒体信息的实时交互。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8140-86be-cf6b7f17355b",
+    "notion_block_id": "345e1eb5-ce57-8140-86be-cf6b7f17355b",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。 科研人 编辑器内容评论标注系统 : 集成在编辑器内部的锚点化标注工具，允许用户针对特定文本或段落进行异步反馈。",
+    "original_notion_title": "科研人 编辑器内容评论标注系统 : 集成在编辑器内部的锚点化标注工具，允许用户针对特定文本或段落进行异步反馈。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-815a-9a36-e1a4e4d9a026",
+    "notion_block_id": "345e1eb5-ce57-815a-9a36-e1a4e4d9a026",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。 科研人 全域团队通知中心界面 : 汇总系统提醒、协作提及及任务动态的集中式看板，确保团队成员获取最新资讯。",
+    "original_notion_title": "科研人 全域团队通知中心界面 : 汇总系统提醒、协作提及及任务动态的集中式看板，确保团队成员获取最新资讯。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8154-847f-f7dacdc139e2",
+    "notion_block_id": "345e1eb5-ce57-8154-847f-f7dacdc139e2",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。 科研人 跨平台组件集成接口层 : 确保通讯组件无缝嵌入科研门户与各类编辑器的标准前端框架与数据交换协议。",
+    "original_notion_title": "科研人 跨平台组件集成接口层 : 确保通讯组件无缝嵌入科研门户与各类编辑器的标准前端框架与数据交换协议。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81ad-9a8f-e7aeaa4be70b",
+    "notion_block_id": "345e1eb5-ce57-81ad-9a8f-e7aeaa4be70b",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 🔶 科研人 💻Focus ❓ 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。 科研人 协作成员在线状态组件 : 实时展示团队成员的活跃情况与当前操作位置的视觉提示与状态同步模块。",
+    "original_notion_title": "科研人 协作成员在线状态组件 : 实时展示团队成员的活跃情况与当前操作位置的视觉提示与状态同步模块。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8163-8804-f32cc7ca152a",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81df-aba3-c0c5eb845988",
+    "notion_block_id": "345e1eb5-ce57-81df-aba3-c0c5eb845988",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 用户 Dashboard 及任务概览 : 统一入口：项目摘要、最近活动、协作任务。",
+    "original_notion_title": "科研人 用户 Dashboard 及任务概览 : 统一入口：项目摘要、最近活动、协作任务。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
     "depth": 2,
@@ -716,14 +2537,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8114-85d3-dde062a22bc9",
-    "notion_block_id": "344e1eb5-ce57-8114-85d3-dde062a22bc9",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。",
-    "original_notion_title": "科研人 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。",
+    "id": "345e1eb5-ce57-8184-b188-de68c71b2ee8",
+    "notion_block_id": "345e1eb5-ce57-8184-b188-de68c71b2ee8",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 协作文档 Workspace : 主富文本编辑器：支持多人协作与格式化。",
+    "original_notion_title": "科研人 协作文档 Workspace : 主富文本编辑器：支持多人协作与格式化。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
     "depth": 2,
@@ -756,14 +2578,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-815b-b7c4-c620fe080234",
-    "notion_block_id": "344e1eb5-ce57-815b-b7c4-c620fe080234",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。",
-    "original_notion_title": "科研人 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。",
+    "id": "345e1eb5-ce57-813b-8d40-c51369143fe7",
+    "notion_block_id": "345e1eb5-ce57-813b-8d40-c51369143fe7",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 文档版本历史 UI : 历史版本视图：浏览、检查、恢复研究文档及元数据",
+    "original_notion_title": "科研人 文档版本历史 UI : 历史版本视图：浏览、检查、恢复研究文档及元数据",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
     "depth": 2,
@@ -796,14 +2619,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8105-9ebe-d31d2f9af3b3",
-    "notion_block_id": "344e1eb5-ce57-8105-9ebe-d31d2f9af3b3",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。",
-    "original_notion_title": "科研人 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。",
+    "id": "345e1eb5-ce57-813e-87f7-fee0917527f0",
+    "notion_block_id": "345e1eb5-ce57-813e-87f7-fee0917527f0",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 合并冲突解决模块 : 文档版本对比UI：识别差异、解决同步冲突。",
+    "original_notion_title": "科研人 合并冲突解决模块 : 文档版本对比UI：识别差异、解决同步冲突。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
     "depth": 2,
@@ -836,14 +2660,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8184-b796-d4030a4f96ae",
-    "notion_block_id": "344e1eb5-ce57-8184-b796-d4030a4f96ae",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 科研协作仪表盘 : 展示团队项目进度、任务分配状态及共同研究成果的数据可视化统计界面。",
-    "original_notion_title": "科研人 科研协作仪表盘 : 展示团队项目进度、任务分配状态及共同研究成果的数据可视化统计界面。",
+    "id": "345e1eb5-ce57-81f4-a5e8-cc01c52e29b4",
+    "notion_block_id": "345e1eb5-ce57-81f4-a5e8-cc01c52e29b4",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 实时聊天 Sidebar : 通讯面板：团队IM、项目公告。",
+    "original_notion_title": "科研人 实时聊天 Sidebar : 通讯面板：团队IM、项目公告。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
     "depth": 2,
@@ -876,7 +2701,90 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-817b-a577-fc96f4f04170",
+    "notion_block_id": "345e1eb5-ce57-817b-a577-fc96f4f04170",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 上下文评论标注系统 : 文档章节反馈UI (创建/查看/解决)",
+    "original_notion_title": "科研人 上下文评论标注系统 : 文档章节反馈UI (创建/查看/解决)",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-817c-afa6-c5910baae62e",
+    "notion_block_id": "345e1eb5-ce57-817c-afa6-c5910baae62e",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。 科研人 用户资料与安全 Portal : 界面模块：研究员身份、账户偏好、协作权限管理",
+    "original_notion_title": "科研人 用户资料与安全 Portal : 界面模块：研究员身份、账户偏好、协作权限管理",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81d0-9b6d-f1374df7713a",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -916,14 +2824,917 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-81e2-affe-ec9302339904",
-    "notion_block_id": "344e1eb5-ce57-81e2-affe-ec9302339904",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 静态数据加密模块 : 包含数据库字段加密方案与磁盘存储加密机制，确保科研敏感数据在静止状态下的机密性。",
-    "original_notion_title": "科研人 静态数据加密模块 : 包含数据库字段加密方案与磁盘存储加密机制，确保科研敏感数据在静止状态下的机密性。",
+    "id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "notion_block_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-812c-88c1-f3f04824d64f",
+    "notion_block_id": "345e1eb5-ce57-812c-88c1-f3f04824d64f",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 生成私钥与CSR : OpenSSL 生成 2048位 RSA 私钥及 CSR (传输链路)。",
+    "original_notion_title": "科研人 生成私钥与CSR : OpenSSL 生成 2048位 RSA 私钥及 CSR (传输链路)。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81c8-870e-fd84df3e118e",
+    "notion_block_id": "345e1eb5-ce57-81c8-870e-fd84df3e118e",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 获取 SSL 证书 : 提交CSR至CA，获取服务端点证书。",
+    "original_notion_title": "科研人 获取 SSL 证书 : 提交CSR至CA，获取服务端点证书。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8138-ad3c-d08d6459c8bc",
+    "notion_block_id": "345e1eb5-ce57-8138-ad3c-d08d6459c8bc",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 配置服务器 TLS : 修改服务器配置：启用 TLS 1.2/1.3，禁用旧版。",
+    "original_notion_title": "科研人 配置服务器 TLS : 修改服务器配置：启用 TLS 1.2/1.3，禁用旧版。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81d2-9ffb-eee1757a1e79",
+    "notion_block_id": "345e1eb5-ce57-81d2-9ffb-eee1757a1e79",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 定义安全 Cipher Suites : SSL/TLS 握手：设定强加密算法优先级",
+    "original_notion_title": "科研人 定义安全 Cipher Suites : SSL/TLS 握手：设定强加密算法优先级",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-811b-ad90-f67462bace1c",
+    "notion_block_id": "345e1eb5-ce57-811b-ad90-f67462bace1c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 Endpoints 证书部署 : 安装签名证书/私钥：Web服务器/应用网关。",
+    "original_notion_title": "科研人 Endpoints 证书部署 : 安装签名证书/私钥：Web服务器/应用网关。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8117-8fa9-e686737af7e7",
+    "notion_block_id": "345e1eb5-ce57-8117-8fa9-e686737af7e7",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 开启 HSTS : 实现 HSTS：强制 HTTPS。",
+    "original_notion_title": "科研人 开启 HSTS : 实现 HSTS：强制 HTTPS。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8180-974f-fca3118e3932",
+    "notion_block_id": "345e1eb5-ce57-8180-974f-fca3118e3932",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 配置 Client Trust Store : 更新客户端/OS：信任内/公有CA根证书",
+    "original_notion_title": "科研人 配置 Client Trust Store : 更新客户端/OS：信任内/公有CA根证书",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81f7-8d32-e133c76f075b",
+    "notion_block_id": "345e1eb5-ce57-81f7-8d32-e133c76f075b",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 验证加密 Handshake 状态 : 诊断工具确认：连接加密、证书链有效。",
+    "original_notion_title": "科研人 验证加密 Handshake 状态 : 诊断工具确认：连接加密、证书链有效。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8104-a7b0-d0e7fdd2ec88",
+    "notion_block_id": "345e1eb5-ce57-8104-a7b0-d0e7fdd2ec88",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。 科研人 文档加密 Link 参数 : 安全手册记录：协议版本、加密套件、证书到期日。",
+    "original_notion_title": "科研人 文档加密 Link 参数 : 安全手册记录：协议版本、加密套件、证书到期日。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-811e-936f-dced8106c574",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "notion_block_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81a3-8f4c-ee0aefd8acae",
+    "notion_block_id": "345e1eb5-ce57-81a3-8f4c-ee0aefd8acae",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。 科研人 用户 IAM 框架 : 集中存储与逻辑层 (用户 Profile, 数字 ID, 权限层级)",
+    "original_notion_title": "科研人 用户 IAM 框架 : 集中存储与逻辑层 (用户 Profile, 数字 ID, 权限层级)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8121-be90-cfe4d3c4b9c2",
+    "notion_block_id": "345e1eb5-ce57-8121-be90-cfe4d3c4b9c2",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。 科研人 Auth 验证模块 : 集成组件：校验 (密码, 生物签名, 动态令牌)",
+    "original_notion_title": "科研人 Auth 验证模块 : 集成组件：校验 (密码, 生物签名, 动态令牌)",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8196-9ce3-ec2ac7d727e4",
+    "notion_block_id": "345e1eb5-ce57-8196-9ce3-ec2ac7d727e4",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。 科研人 MFA 编排逻辑引擎 : 核心单元：定义认证流程，基于 MFA 判定访问合法性。",
+    "original_notion_title": "科研人 MFA 编排逻辑引擎 : 核心单元：定义认证流程，基于 MFA 判定访问合法性。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8133-b1e3-de339995370d",
+    "notion_block_id": "345e1eb5-ce57-8133-b1e3-de339995370d",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。 科研人 安全审计 Log : 追踪机制：记录 (认证尝试, 系统事件, 安全合规数据)。",
+    "original_notion_title": "科研人 安全审计 Log : 追踪机制：记录 (认证尝试, 系统事件, 安全合规数据)。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-810b-a01a-c6931fc5fa09",
+    "notion_block_id": "345e1eb5-ce57-810b-a01a-c6931fc5fa09",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。 科研人 系统管理策略Portal : 管理界面：配置认证规则、用户 onboarding 及全局安全设置。",
+    "original_notion_title": "科研人 系统管理策略Portal : 管理界面：配置认证规则、用户 onboarding 及全局安全设置。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-8175-98fc-c61f80d0506d",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "notion_block_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。",
+    "original_notion_title": "🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。",
+    "context_heading": "",
+    "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-81c0-8c3b-dc925d9d6567",
+    "notion_block_id": "345e1eb5-ce57-81c0-8c3b-dc925d9d6567",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。 科研人 身份角色管理 Schema : 数据模型与管理接口：研究员身份、组织角色及层级关系",
+    "original_notion_title": "科研人 身份角色管理 Schema : 数据模型与管理接口：研究员身份、组织角色及层级关系",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-810c-bb18-fb0c5a514bf7",
+    "notion_block_id": "345e1eb5-ce57-810c-bb18-fb0c5a514bf7",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。 科研人 权限资源 Registry : 系统资源目录：含各类型细粒度权限",
+    "original_notion_title": "科研人 权限资源 Registry : 系统资源目录：含各类型细粒度权限",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8170-9cd3-c4d456b77d6c",
+    "notion_block_id": "345e1eb5-ce57-8170-9cd3-c4d456b77d6c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。 科研人 Auth 决策引擎 : 核心逻辑：实时比对角色与权限策略，评估访问请求。",
+    "original_notion_title": "科研人 Auth 决策引擎 : 核心逻辑：实时比对角色与权限策略，评估访问请求。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8117-833c-ebfd6cf34bdd",
+    "notion_block_id": "345e1eb5-ce57-8117-833c-ebfd6cf34bdd",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。 科研人 权限集成 API : REST API及中间件：外部系统身份授权校验",
+    "original_notion_title": "科研人 权限集成 API : REST API及中间件：外部系统身份授权校验",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-817a-b222-d4c2d8464d5c",
+    "notion_block_id": "345e1eb5-ce57-817a-b222-d4c2d8464d5c",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 🔶 科研人 💻Focus ❓ 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。 科研人 安全审计监控 : 日志报告框架：记录授权决策与安全事件（合规/排障）。",
+    "original_notion_title": "科研人 安全审计监控 : 日志报告框架：记录授权决策与安全事件（合规/排障）。",
+    "context_heading": "",
+    "parent_id": "345e1eb5-ce57-812f-8a1e-f7d9a7283a3c",
+    "depth": 3,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "checked": false,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "345e1eb5-ce57-8199-b54a-f5f3a9be1d4d",
+    "notion_block_id": "345e1eb5-ce57-8199-b54a-f5f3a9be1d4d",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 数据加密与保护机制 : 覆盖科研数据在静态存储与动态传输过程中的高强度加密协议部署与密钥管理体系。",
+    "original_notion_title": "科研人 数据加密与保护机制 : 覆盖科研数据在静态存储与动态传输过程中的高强度加密协议部署与密钥管理体系。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
     "depth": 2,
@@ -956,14 +3767,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-8178-b505-ce090fd5383a",
-    "notion_block_id": "344e1eb5-ce57-8178-b505-ce090fd5383a",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。",
-    "original_notion_title": "科研人 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。",
+    "id": "345e1eb5-ce57-81d3-8913-e32f9bee7168",
+    "notion_block_id": "345e1eb5-ce57-81d3-8913-e32f9bee7168",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 多因素身份核验系统 : 集成密码、生物识别及第三方令牌的统一身份验证门户与权限映射引擎。",
+    "original_notion_title": "科研人 多因素身份核验系统 : 集成密码、生物识别及第三方令牌的统一身份验证门户与权限映射引擎。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
     "depth": 2,
@@ -996,14 +3808,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-81f6-9ebf-cc4df40df29b",
-    "notion_block_id": "344e1eb5-ce57-81f6-9ebf-cc4df40df29b",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。",
-    "original_notion_title": "科研人 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。",
+    "id": "345e1eb5-ce57-8170-950f-cacd00b9cbaf",
+    "notion_block_id": "345e1eb5-ce57-8170-950f-cacd00b9cbaf",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 IP合规准入与过滤配置 : 基于地理位置、机构白名单及异常流量监测的细粒度网络访问控制列表。",
+    "original_notion_title": "科研人 IP合规准入与过滤配置 : 基于地理位置、机构白名单及异常流量监测的细粒度网络访问控制列表。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
     "depth": 2,
@@ -1036,14 +3849,15 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
-    "id": "344e1eb5-ce57-813f-a60c-ddfddec53af9",
-    "notion_block_id": "344e1eb5-ce57-813f-a60c-ddfddec53af9",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射关系的授权系统，实现基于身份的精细化资源访问限制。",
-    "original_notion_title": "科研人 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射关系的授权系统，实现基于身份的精细化资源访问限制。",
+    "id": "345e1eb5-ce57-81cc-be77-f2738735ed5e",
+    "notion_block_id": "345e1eb5-ce57-81cc-be77-f2738735ed5e",
+    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 安全行为审计与日志库 : 用于满足合规要求的核心操作追踪、安全事件记录及不可篡改的日志存储系统。",
+    "original_notion_title": "科研人 安全行为审计与日志库 : 用于满足合规要求的核心操作追踪、安全事件记录及不可篡改的日志存储系统。",
     "context_heading": "",
     "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
     "depth": 2,
@@ -1076,87 +3890,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
-    }
-  },
-  {
-    "id": "344e1eb5-ce57-810e-a79b-c41de7039d65",
-    "notion_block_id": "344e1eb5-ce57-810e-a79b-c41de7039d65",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 IP地理围栏与白名单策略 : 针对特定地理区域或指定公网IP段的访问过滤规则，防止非法属地的网络连接。",
-    "original_notion_title": "科研人 IP地理围栏与白名单策略 : 针对特定地理区域或指定公网IP段的访问过滤规则，防止非法属地的网络连接。",
-    "context_heading": "",
-    "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "checked": false,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0
-    }
-  },
-  {
-    "id": "344e1eb5-ce57-811d-81ee-efaf41891add",
-    "notion_block_id": "344e1eb5-ce57-811d-81ee-efaf41891add",
-    "title": "🏭 科研人 🚨 RstV4 🟧 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规) 科研人 异常访问行为审计日志 : 记录所有登录活动及IP访问轨迹的安全审计数据库，用于合规性溯源与威胁分析。",
-    "original_notion_title": "科研人 异常访问行为审计日志 : 记录所有登录活动及IP访问轨迹的安全审计数据库，用于合规性溯源与威胁分析。",
-    "context_heading": "",
-    "parent_id": "344e1eb5-ce57-81e8-9dfd-ee599c762b90",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "checked": false,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1196,7 +3931,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1236,7 +3972,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1276,7 +4013,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1316,7 +4054,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1356,7 +4095,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1396,7 +4136,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1436,7 +4177,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1476,7 +4218,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1516,7 +4259,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1556,7 +4300,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1596,7 +4341,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1636,7 +4382,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1676,7 +4423,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1716,7 +4464,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1756,7 +4505,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1796,7 +4546,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1836,7 +4587,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1876,7 +4628,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1916,7 +4669,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1956,7 +4710,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -1996,7 +4751,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2036,7 +4792,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2076,7 +4833,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2116,7 +4874,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2156,7 +4915,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2196,7 +4956,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2236,7 +4997,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2276,7 +5038,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2316,7 +5079,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2356,7 +5120,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2396,7 +5161,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2436,7 +5202,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2476,7 +5243,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2516,7 +5284,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2556,7 +5325,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2596,7 +5366,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2636,7 +5407,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2676,7 +5448,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2716,7 +5489,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2756,7 +5530,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2796,7 +5571,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2836,7 +5612,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2876,7 +5653,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2916,7 +5694,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2956,7 +5735,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -2996,7 +5776,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3036,7 +5817,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3076,7 +5858,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3116,7 +5899,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3156,7 +5940,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3196,7 +5981,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3236,7 +6022,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3276,7 +6063,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3316,7 +6104,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3356,7 +6145,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3396,7 +6186,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3436,7 +6227,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   },
   {
@@ -3476,7 +6268,8 @@
     "metrics": {
       "estimated_time_h": null,
       "actual_time_taken_h": null,
-      "interruption_count": 0
+      "interruption_count": 0,
+      "timetaken": []
     }
   }
 ]

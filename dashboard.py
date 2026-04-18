@@ -6,7 +6,70 @@ Live Dashboard 模块。
 支持 💪🏿💪🏿💪🏿 焦点标记渲染。
 """
 from typing import Dict, List, Any, Optional, Tuple
+import re
 
+emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
+
+def format_livetoday_title(counter: int, title_str: str, theme: str) -> list:
+    rich_text = []
+    
+    # 1. Counter
+    rich_text.append({
+        "type": "text",
+        "text": {"content": f"[{counter}] "},
+        "annotations": {"bold": True, "code": False}
+    })
+    
+    if ":" in title_str:
+        primary_part, desc_part = title_str.split(":", 1)
+        desc_part = ":" + desc_part
+    else:
+        primary_part = title_str
+        desc_part = ""
+        
+    words = primary_part.split()
+    title_start_idx = 0
+    
+    for i, word in enumerate(words):
+        if theme and word == theme:
+            rich_text.append({
+                "type": "text",
+                "text": {"content": f"{word} "},
+                "annotations": {"bold": True, "code": True}
+            })
+            title_start_idx = i + 1
+        elif emoji_pattern.search(word):
+            has_alpha = bool(re.search(r'[A-Za-z]', word))
+            rich_text.append({
+                "type": "text",
+                "text": {"content": f"{word} "},
+                "annotations": {"bold": False, "code": has_alpha}
+            })
+            title_start_idx = i + 1
+        else:
+            break
+            
+    if title_start_idx < len(words):
+        rest_of_primary = " ".join(words[title_start_idx:])
+        rich_text.append({
+            "type": "text",
+            "text": {"content": f"{rest_of_primary} "},
+            "annotations": {"bold": False, "code": False}
+        })
+        
+    if desc_part:
+        # separate the colon space if possible, but keeping it simple
+        rich_text.append({
+            "type": "text",
+            "text": {"content": (" " + desc_part.strip()) if not rest_of_primary.endswith(" ") else desc_part.strip()},
+            "annotations": {"bold": False, "code": False, "italic": True}
+        })
+        
+    if rich_text:
+        last_block = rich_text[-1]
+        last_block["text"]["content"] = last_block["text"]["content"].rstrip()
+        
+    return rich_text
 from notion_client import get_page_blocks, delete_block, append_children
 
 
@@ -180,42 +243,37 @@ def build_dashboard_blocks(
     task_index_map: Dict[int, str] = {}  # counter → 原始 block_id
 
     # Filter to only WBS Level 4 tasks that are assigned (have a Mode)
+    # AND are not marked as completed.
     l4_assigned_state = [
         t for t in flat_state 
-        if t.get("wbs_level") == 4 and (t.get("tags") or {}).get("Modes")
+        if t.get("wbs_level") == 4 
+        and (t.get("tags") or {}).get("Modes")
+        and not t.get("checked")
+        and str(t.get("status", "")).lower() not in ["done", "completed"]
     ]
 
+    by_mode_blocks = []
+    
     # ── Section 1: By Modes ──────────────────────────────
-    blocks.append({
-        "object": "block",
-        "type": "heading_2",
-        "heading_2": {
-            "rich_text": [{"type": "text", "text": {"content": "By Modes"}}],
-            "color": "blue_background"
-        }
-    })
-
+    
     # add focus single block
     if focus_block_id:
         focus_task = next((t for t in flat_state if (t.get("notion_block_id") or t.get("id", "")) == focus_block_id), None)
         if focus_task:
-            focus_title = focus_task.get("original_notion_title", focus_task.get("title", ""))
-            status = focus_task.get("status", "todo")
-            is_checked = status in ("done", "completed") or bool(focus_task.get("checked"))
-            blocks.append({
+            by_mode_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
                     "rich_text": [{
                         "type": "text",
-                        "text": {"content": f"💪🏿💪🏿💪🏿 {focus_title}"},
+                        "text": {"content": "💪🏿💪🏿💪🏿"},
                         "annotations": {
                             "bold": True, 
                             "color": "blue_background",
                             "code": True
                         }
                     }],
-                    "checked": is_checked
+                    "checked": False
                 }
             })
 
@@ -231,7 +289,7 @@ def build_dashboard_blocks(
 
     for mode_name in sorted_mode_keys:
         tasks = mode_groups[mode_name]
-        blocks.append({
+        by_mode_blocks.append({
             "object": "block",
             "type": "paragraph",
             "paragraph": {
@@ -246,34 +304,22 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
+            theme = task.get("theme_display_label", "")
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
-            status = task.get("status", "todo")
-            is_checked = status in ("done", "completed") or bool(task.get("checked"))
 
-            blocks.append({
+            by_mode_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": [{
-                        "type": "text",
-                        "text": {"content": f"[{counter}] {title}"},
-                        "annotations": {"code": True}
-                    }],
-                    "checked": is_checked
+                    "rich_text": format_livetoday_title(counter, title, theme),
+                    "checked": False
                 }
             })
             counter += 1
 
     # ── Section 2: By Task Type ──────────────────────────
-    blocks.append({
-        "object": "block",
-        "type": "heading_2",
-        "heading_2": {
-            "rich_text": [{"type": "text", "text": {"content": "By Task Type"}}],
-            "color": "blue_background"
-        }
-    })
+    by_type_blocks = []
 
     type_groups = group_tasks_by_task_type(l4_assigned_state, structured_cfg)
 
@@ -281,7 +327,7 @@ def build_dashboard_blocks(
 
     for type_name in sorted_type_keys:
         tasks = type_groups[type_name]
-        blocks.append({
+        by_type_blocks.append({
             "object": "block",
             "type": "paragraph",
             "paragraph": {
@@ -296,24 +342,60 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
+            theme = task.get("theme_display_label", "")
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
-            status = task.get("status", "todo")
-            is_checked = status in ("done", "completed") or bool(task.get("checked"))
 
-            blocks.append({
+            by_type_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": [{
-                        "type": "text",
-                        "text": {"content": f"[{counter}] {title}"},
-                        "annotations": {"code": True}
-                    }],
-                    "checked": is_checked
+                    "rich_text": format_livetoday_title(counter, title, theme),
+                    "checked": False
                 }
             })
             counter += 1
+
+    blocks.append({
+        "object": "block",
+        "type": "column_list",
+        "column_list": {
+            "children": [
+                {
+                    "object": "block",
+                    "type": "column",
+                    "column": {
+                        "children": [
+                            {
+                                "object": "block",
+                                "type": "heading_2",
+                                "heading_2": {
+                                    "rich_text": [{"type": "text", "text": {"content": "By Modes"}}],
+                                    "color": "blue_background"
+                                }
+                            }
+                        ] + by_mode_blocks
+                    }
+                },
+                {
+                    "object": "block",
+                    "type": "column",
+                    "column": {
+                        "children": [
+                            {
+                                "object": "block",
+                                "type": "heading_2",
+                                "heading_2": {
+                                    "rich_text": [{"type": "text", "text": {"content": "By Task Type"}}],
+                                    "color": "blue_background"
+                                }
+                            }
+                        ] + by_type_blocks
+                    }
+                }
+            ]
+        }
+    })
 
     return blocks, task_index_map
 

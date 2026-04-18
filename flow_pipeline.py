@@ -541,7 +541,12 @@ def _split_scoped_tasks(
         if task_id not in scoped_ids:
             continue
 
-        if str(task.get("split_stage", "none")) == "suggested":
+        split_stage = str(task.get("split_stage", "none")).lower()
+        if split_stage in ["suggested", "processed"]:
+            continue
+
+        raw_title = task.get("original_notion_title", task.get("title", ""))
+        if task.get("checked") or "💯✅" in raw_title:
             continue
 
         if task.get("is_generated"):

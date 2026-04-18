@@ -10,8 +10,15 @@ import re
 
 emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
 
-def format_livetoday_title(counter: int, title_str: str, theme: str) -> list:
+def format_livetoday_title(counter: int, title_str: str, theme: str, remove_term: str = "") -> list:
     rich_text = []
+    
+    # Strip existing [N]
+    title_str = re.sub(r'^\[\d+\]\s*', '', title_str)
+    
+    if remove_term:
+        title_str = title_str.replace(remove_term, "")
+        title_str = re.sub(r'\s{2,}', ' ', title_str).strip()
     
     # 1. Counter
     rich_text.append({
@@ -311,7 +318,7 @@ def build_dashboard_blocks(
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme),
+                    "rich_text": format_livetoday_title(counter, title, theme, remove_term=mode_name),
                     "checked": False
                 }
             })
@@ -345,11 +352,12 @@ def build_dashboard_blocks(
             task_bid = task.get("notion_block_id") or task.get("id", "")
             task_index_map[counter] = task_bid
 
+            remove_emoji = type_name.split()[0] if type_name else ""
             by_type_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme),
+                    "rich_text": format_livetoday_title(counter, title, theme, remove_term=remove_emoji),
                     "checked": False
                 }
             })

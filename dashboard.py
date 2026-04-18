@@ -262,8 +262,8 @@ def build_dashboard_blocks(
         if focus_task:
             by_mode_blocks.append({
                 "object": "block",
-                "type": "to_do",
-                "to_do": {
+                "type": "bulleted_list_item",
+                "bulleted_list_item": {
                     "rich_text": [{
                         "type": "text",
                         "text": {"content": "💪🏿💪🏿💪🏿"},
@@ -272,8 +272,7 @@ def build_dashboard_blocks(
                             "color": "blue_background",
                             "code": True
                         }
-                    }],
-                    "checked": False
+                    }]
                 }
             })
 

@@ -376,6 +376,19 @@ def cmd_track() -> None:
     # Compare with stored focus state
     log = load_focus_log()
     prev_focus = log.get("current_focus")
+    
+    # Auto-stop on completion feature:
+    # If the user checks off the task while focusing on it, force it into the idle state.
+    if detected:
+        is_focused_task_done = False
+        for t in merged:
+            if (t.get("notion_block_id") or t.get("id", "")) == detected["block_id"]:
+                if t.get("checked") or str(t.get("status", "")).lower() in ["done", "completed"]:
+                    is_focused_task_done = True
+                break
+        if is_focused_task_done:
+            detected = None
+
     focus_block_id = None
 
     if detected:
@@ -389,30 +402,11 @@ def cmd_track() -> None:
             log = record_focus_event(log, detected["block_id"], detected["title"], "start")
             save_focus_log(log)
     elif prev_focus:
-        # Emoji gone from LIVETODAY but log says we had focus — keep it
-        # BUT only if the focused task actually exists in the dashboard
-        prev_bid = prev_focus.get("block_id")
-        dashboard_block_ids = set(provisional_map.values()) if provisional_map else set()
-        if prev_bid in dashboard_block_ids:
-            focus_block_id = prev_bid
-        else:
-            # Stale focus: task is no longer on the dashboard — clear it
-            log = record_focus_event(log, prev_bid, prev_focus.get("title", ""), "end")
-            save_focus_log(log)
-
-    # If no focus at all after daily reset, default to first task (index 1)
-    if focus_block_id is None and provisional_map:
-        focus_block_id = provisional_map.get(1)
-        # Start a new focus session for the default task
-        if focus_block_id:
-            default_title = next(
-                (t.get("original_notion_title", t.get("title", ""))
-                 for t in merged
-                 if (t.get("notion_block_id") or t.get("id", "")) == focus_block_id),
-                ""
-            )
-            log = record_focus_event(log, focus_block_id, default_title, "start")
-            save_focus_log(log)
+        # User either deleted the emoji or moved it to the top idle zone.
+        # End the previous session and clear the focus.
+        log = record_focus_event(log, prev_focus["block_id"], prev_focus["title"], "end")
+        save_focus_log(log)
+        focus_block_id = None
 
     current_focus = log.get("current_focus")
     if current_focus:

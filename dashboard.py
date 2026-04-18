@@ -346,6 +346,24 @@ def build_dashboard_blocks(
     
     # ── Section 1: By Modes ──────────────────────────────
     
+    if not focus_block_id:
+        # Render the idle focus marker at the top if no task is focused
+        by_mode_blocks.append({
+            "object": "block",
+            "type": "bulleted_list_item",
+            "bulleted_list_item": {
+                "rich_text": [{
+                    "type": "text",
+                    "text": {"content": "💪🏿💪🏿💪🏿"},
+                    "annotations": {
+                        "bold": True, 
+                        "color": "blue_background",
+                        "code": True
+                    }
+                }]
+            }
+        })
+
     mode_groups = group_tasks_by_mode(l4_assigned_state, structured_cfg)
 
     # 先按 config 中的 mode 顺序排列
@@ -378,17 +396,17 @@ def build_dashboard_blocks(
             task_index_map[counter] = task_bid
 
             is_task_checked = task_bid in todays_checked
-            by_mode_blocks.append({
+            task_node = {
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
                     "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=mode_name),
                     "checked": is_task_checked
                 }
-            })
+            }
             
             if task_bid == focus_block_id:
-                by_mode_blocks.append({
+                task_node["to_do"]["children"] = [{
                     "object": "block",
                     "type": "bulleted_list_item",
                     "bulleted_list_item": {
@@ -402,7 +420,9 @@ def build_dashboard_blocks(
                             }
                         }]
                     }
-                })
+                }]
+                
+            by_mode_blocks.append(task_node)
                 
             counter += 1
 

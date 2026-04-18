@@ -163,7 +163,11 @@ def detect_focus_from_livetoday(
         else:
             # Pattern B: 独立 block 仅包含 focus emoji
             stripped = text.replace(" ", "").strip()
-            if FOCUS_EMOJI in stripped and last_task_index is not None:
+            if FOCUS_EMOJI in stripped:
+                if last_task_index is None:
+                    # Emoji placed before any task (the top default idle zone)
+                    return None
+                
                 original_block_id = task_index_map.get(last_task_index)
                 if original_block_id:
                     return {

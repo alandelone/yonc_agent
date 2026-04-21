@@ -16,6 +16,7 @@ from flow_pipeline import run_flow, run_l1, run_l2, run_l3
 from state_manager import STATE_FILE, flatten_tree, load_state, merge_states, save_state
 from sync_engine import sync_from_notion
 from task_reader import fetch_and_build_task_tree
+from dashboard import group_tasks_by_mode
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 FLOW_TRACE_COMMANDS = {"flow", "flow-l1", "flow-l2", "flow-l3", "push-sync", "split", "tag"}
@@ -243,6 +244,100 @@ def cmd_poll() -> None:
         print("\nPolling stopped.")
 
 
+def cmd_suggest(level: float = None, max_level: float = None) -> None:
+    """根据能量等级过滤 dashboard 任务列表，输出编号建议清单。"""
+    import sys
+
+    raw_cfg = load_config()
+    structured_cfg = structure_yonctask_config(raw_cfg)
+    state = load_state(STATE_FILE)
+
+    if not state:
+        print("No task state found. Run 'sync' or 'track' first.")
+        return
+
+    # 从 config modes 中查找匹配能量等级的 mode 名称
+    all_modes = structured_cfg.get("modes", [])
+
+    if level is None and max_level is None:
+        # 没有指定任何 level，展示可用的能量等级列表然后退出
+        sys.stdout.buffer.write(b"\n")
+        sys.stdout.buffer.write("Available energy levels (from YONCTASK_CONFIG Modes):\n".encode("utf-8"))
+        sys.stdout.buffer.write(("─" * 60 + "\n").encode("utf-8"))
+        for m in sorted(all_modes, key=lambda x: x.get("level", 0), reverse=True):
+            line = f"  Lv{m['level']:<5}  {m['mode_name']:<15}  {m.get('description', '')}\n"
+            sys.stdout.buffer.write(line.encode("utf-8"))
+        sys.stdout.buffer.write(b"\n")
+        sys.stdout.buffer.write(
+            "Usage: python main.py suggest --level <N> | --max-level <N>\n".encode("utf-8")
+        )
+        return
+
+    # 确定匹配的 mode 名称集合
+    matched_mode_names: set[str] = set()
+    for m in all_modes:
+        m_level = m.get("level", 0)
+        if level is not None and m_level == level:
+            matched_mode_names.add(m["mode_name"])
+        elif max_level is not None and m_level <= max_level:
+            matched_mode_names.add(m["mode_name"])
+
+    if not matched_mode_names:
+        target = level if level is not None else max_level
+        print(f"No modes found for energy level {target}. Use 'suggest' without args to see available levels.")
+        return
+
+    # 过滤 L4 已分配且 processed 的任务（与 dashboard 同一口径）
+    l4_tasks = [
+        t for t in state
+        if t.get("wbs_level") == 4
+        and (t.get("tags") or {}).get("Modes")
+        and t.get("generated_selection_processed", False)
+        and not t.get("checked")
+        and str(t.get("status", "")).lower() not in ["done", "completed"]
+    ]
+
+    # 通过 mode_name 匹配任务 tag
+    known_modes = [m_obj["mode_name"] for m_obj in all_modes]
+    filtered_tasks = []
+    for t in l4_tasks:
+        mode_val = (t.get("tags") or {}).get("Modes", "")
+        for mode_name in known_modes:
+            if mode_name in mode_val and mode_name in matched_mode_names:
+                filtered_tasks.append((t, mode_name))
+                break
+
+    if not filtered_tasks:
+        label = f"Lv{level}" if level is not None else f"≤Lv{max_level}"
+        print(f"No active tasks found for energy level {label}.")
+        return
+
+    # 按 mode 分组输出
+    from collections import OrderedDict
+    by_mode: OrderedDict[str, list] = OrderedDict()
+    for t, mode_name in filtered_tasks:
+        by_mode.setdefault(mode_name, []).append(t)
+
+    label = f"Lv{level}" if level is not None else f"≤Lv{max_level}"
+    sys.stdout.buffer.write(b"\n")
+    sys.stdout.buffer.write(f"Suggested tasks for energy {label}  ({len(filtered_tasks)} tasks)\n".encode("utf-8"))
+    sys.stdout.buffer.write(("═" * 60 + "\n").encode("utf-8"))
+
+    counter = 1
+    for mode_name, tasks in by_mode.items():
+        # 找到该 mode 的 level
+        mode_level = next((m["level"] for m in all_modes if m["mode_name"] == mode_name), "?")
+        header = f"\n  ── {mode_name} (Lv{mode_level}, {len(tasks)} tasks) ──\n"
+        sys.stdout.buffer.write(header.encode("utf-8"))
+        for t in tasks:
+            title = t.get("original_notion_title", t.get("title", ""))
+            line = f"    {counter:3d}. {title}\n"
+            sys.stdout.buffer.write(line.encode("utf-8"))
+            counter += 1
+
+    sys.stdout.buffer.write(b"\n")
+
+
 def cmd_timeliner() -> None:
     from timeliner_sync import sync_timeliner
 
@@ -255,7 +350,7 @@ def cmd_timeliner_diff() -> None:
     print_date_diff_all()
 
 
-def cmd_focus(move_to: int = None, synctime: bool = False) -> None:
+def cmd_focus(move_to: int = None, synctime: bool = False, done: bool = False) -> None:
     import sys
     from config import LIVETODAY_PAGE_ID
     from dashboard import write_dashboard
@@ -274,6 +369,52 @@ def cmd_focus(move_to: int = None, synctime: bool = False) -> None:
         periods, tasks = sync_focus_time_to_state()
         sys.stdout.buffer.write(
             f"Synced {periods} focus period(s) across {tasks} task(s).\n".encode("utf-8")
+        )
+        return
+
+    # --done: 结束当前焦点会话 + 在 Notion 上勾选该任务
+    if done:
+        from focus_time_sync import sync_focus_time_to_state
+        from notion_client import update_block
+
+        log = load_focus_log()
+        current = log.get("current_focus")
+        if not current:
+            sys.stdout.buffer.write(b"No active focus to mark as done.\n")
+            return
+
+        block_id = current["block_id"]
+        title = current["title"]
+
+        # 结束焦点计时
+        log = record_focus_event(log, block_id, title, "end")
+        save_focus_log(log)
+
+        # 同步已完成的 focus 时间到 tasklist_state
+        sync_focus_time_to_state()
+
+        # 在 Notion 上勾选 to_do checkbox
+        try:
+            update_block(block_id, {"to_do": {"checked": True}})
+        except Exception as e:
+            sys.stdout.buffer.write(
+                f"Warning: failed to check task in Notion: {e}\n".encode("utf-8")
+            )
+
+        # 重写 dashboard（清除 focus marker）
+        notion_tree = fetch_and_build_task_tree()
+        if notion_tree:
+            raw_cfg = load_config()
+            structured_cfg = structure_yonctask_config(raw_cfg)
+            working_state = load_state(STATE_FILE)
+            merged = merge_states(notion_tree, working_state)
+            write_dashboard(
+                LIVETODAY_PAGE_ID, merged, structured_cfg,
+                focus_block_id=None
+            )
+
+        sys.stdout.buffer.write(
+            f"Done: {title}\n".encode("utf-8")
         )
         return
 
@@ -315,6 +456,33 @@ def cmd_focus(move_to: int = None, synctime: bool = False) -> None:
         sys.stdout.buffer.write(
             f"Focus moved to [{move_to}] {target['title']} (dashboard: {block_count} blocks)\n".encode("utf-8")
         )
+
+        # 计算预期剩余时长 = estimated_time_h - 累计 timetaken，null 默认 30min
+        task_state = next(
+            (t for t in working_state
+             if (t.get("notion_block_id") or t.get("id", "")) == target["block_id"]),
+            None
+        )
+        if task_state:
+            metrics = task_state.get("metrics", {})
+            estimated_h = metrics.get("estimated_time_h")
+            timetaken = metrics.get("timetaken", [])
+
+            total_spent_min = 0.0
+            for period in timetaken:
+                start_str = period.get("start")
+                end_str = period.get("end")
+                if start_str and end_str:
+                    start_dt = datetime.fromisoformat(start_str)
+                    end_dt = datetime.fromisoformat(end_str)
+                    total_spent_min += (end_dt - start_dt).total_seconds() / 60
+
+            estimated_min = (estimated_h * 60) if estimated_h is not None else 30
+            remaining_min = max(0, int(estimated_min - total_spent_min))
+            sys.stdout.buffer.write(
+                f"duration: {remaining_min}min\n".encode("utf-8")
+            )
+
         return
 
     # No args: display task list with focus indicator
@@ -456,9 +624,11 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
     elif args.command == "timeliner-diff":
         cmd_timeliner_diff()
     elif args.command == "focus":
-        cmd_focus(move_to=args.move, synctime=args.synctime)
+        cmd_focus(move_to=args.move, synctime=args.synctime, done=args.done)
     elif args.command == "track":
         cmd_track()
+    elif args.command == "suggest":
+        cmd_suggest(level=args.level, max_level=args.max_level)
     else:
         parser.print_help()
 
@@ -492,7 +662,11 @@ def main() -> None:
     focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus / sync time")
     focus_parser.add_argument("--move", type=int, default=None, help="Move focus to task number N")
     focus_parser.add_argument("--synctime", action="store_true", default=False, help="Sync focus_log time periods to tasklist_state timetaken[]")
+    focus_parser.add_argument("--done", action="store_true", default=False, help="Mark current focus task as done (check in Notion + end session)")
     subparsers.add_parser("track", help="Track focus + update dashboard")
+    suggest_parser = subparsers.add_parser("suggest", help="Show filtered task list by energy level (Mode level from config)")
+    suggest_parser.add_argument("--level", type=float, default=None, help="Exact energy level to filter (e.g. 3.3, 2, 1)")
+    suggest_parser.add_argument("--max-level", type=float, default=None, help="Show tasks at or below this energy level")
 
     args = parser.parse_args()
     app_log_path = configure_cli_logging(args.log_level, args.command)

@@ -338,6 +338,149 @@ def cmd_suggest(level: float = None, max_level: float = None) -> None:
     sys.stdout.buffer.write(b"\n")
 
 
+def cmd_daily(
+    mode: str = "read",
+    prop_name: str = None,
+    value: str = None,
+    date_str: str = None,
+) -> None:
+    """Read/write properties on the DailyState database.
+
+    Modes:
+      read   – show today's (or --date) page properties
+      write  – update a property on today's page
+      schema – show database schema with multi_select options
+    """
+    import sys
+    from datetime import date as date_cls
+    from config import DAILYSTATE_DB_ID
+    from notion_db_utils import (
+        extract_all_properties,
+        get_database_schema,
+        query_page_by_date,
+        build_property_payload,
+        update_page_properties,
+    )
+
+    target_date = date_str or date_cls.today().isoformat()
+
+    # ── schema mode ──
+    if mode == "schema":
+        schema = get_database_schema(DAILYSTATE_DB_ID)
+        sys.stdout.buffer.write(f"\n Database Schema ({len(schema)} properties)\n".encode("utf-8"))
+        sys.stdout.buffer.write(("═" * 60 + "\n").encode("utf-8"))
+        for name, prop in sorted(schema.items(), key=lambda x: x[0]):
+            ptype = prop.get("type", "?")
+            line = f"  {name:30s}  [{ptype}]"
+            if ptype == "multi_select":
+                options = prop.get("multi_select", {}).get("options", [])
+                opt_names = [o["name"] for o in options]
+                line += f"  options: {opt_names}"
+            sys.stdout.buffer.write((line + "\n").encode("utf-8"))
+        sys.stdout.buffer.write(b"\n")
+        return
+
+    # ── find the target page (matches date-mention titles via plain_text) ──
+    page = query_page_by_date(DAILYSTATE_DB_ID, target_date)
+    if not page:
+        sys.stdout.buffer.write(
+            f"No page found for date: {target_date}\n".encode("utf-8")
+        )
+        return
+    page_id = page["id"]
+
+    # ── read mode ──
+    if mode == "read":
+        props = extract_all_properties(page)
+
+        # If --prop is given, show only that single property
+        if prop_name:
+            if prop_name not in props:
+                sys.stdout.buffer.write(
+                    f"Error: property '{prop_name}' not found.\n".encode("utf-8")
+                )
+                sys.stdout.buffer.write(
+                    f"Available: {sorted(props.keys())}\n".encode("utf-8")
+                )
+                return
+            val = props[prop_name]
+            ptype = page["properties"][prop_name].get("type", "?")
+            display = val if val != "" else "(empty)"
+            if isinstance(val, list):
+                display = ", ".join(val) if val else "(none)"
+            sys.stdout.buffer.write(
+                f"{prop_name} [{ptype}] = {display}\n".encode("utf-8")
+            )
+            return
+
+        # No --prop: show all properties
+        sys.stdout.buffer.write(
+            f"\n DailyState for {target_date}  (page: ...{page_id[-6:]})\n".encode("utf-8")
+        )
+        sys.stdout.buffer.write(("═" * 60 + "\n").encode("utf-8"))
+        for name, val in sorted(props.items(), key=lambda x: x[0]):
+            ptype = page["properties"][name].get("type", "?")
+            display = val if val != "" else "(empty)"
+            if isinstance(val, list):
+                display = ", ".join(val) if val else "(none)"
+            line = f"  {name:30s}  [{ptype:12s}]  = {display}\n"
+            sys.stdout.buffer.write(line.encode("utf-8"))
+        sys.stdout.buffer.write(b"\n")
+        return
+
+    # ── write mode ──
+    if mode == "write":
+        if not prop_name:
+            sys.stdout.buffer.write(b"Error: --prop is required for write mode.\n")
+            return
+        if value is None:
+            sys.stdout.buffer.write(b"Error: --value is required for write mode.\n")
+            return
+
+        # Auto-detect property type from schema
+        schema = get_database_schema(DAILYSTATE_DB_ID)
+        prop_schema = schema.get(prop_name)
+        if not prop_schema:
+            sys.stdout.buffer.write(
+                f"Error: property '{prop_name}' not found in database.\n".encode("utf-8")
+            )
+            sys.stdout.buffer.write(
+                f"Available: {list(schema.keys())}\n".encode("utf-8")
+            )
+            return
+
+        prop_type = prop_schema.get("type")
+
+        # Parse the string value into the correct Python type
+        if prop_type == "checkbox":
+            parsed = value.lower() in ("true", "1", "yes", "on")
+        elif prop_type == "number":
+            parsed = None if value.lower() in ("none", "null", "") else (
+                float(value) if "." in value else int(value)
+            )
+        elif prop_type == "multi_select":
+            # Accept comma-separated names: "Reading,Gym"
+            parsed = [v.strip() for v in value.split(",") if v.strip()]
+        elif prop_type == "rich_text":
+            parsed = value
+        else:
+            sys.stdout.buffer.write(
+                f"Error: unsupported property type '{prop_type}' for write.\n".encode("utf-8")
+            )
+            return
+
+        payload = build_property_payload(prop_name, prop_type, parsed)
+        update_page_properties(page_id, payload)
+        sys.stdout.buffer.write(
+            f"✅ Updated '{prop_name}' = {parsed}  (page: ...{page_id[-6:]})\n".encode("utf-8")
+        )
+        return
+
+    sys.stdout.buffer.write(
+        f"Unknown mode: '{mode}'. Use: read, write, schema\n".encode("utf-8")
+    )
+
+
 def cmd_timeliner() -> None:
     from timeliner_sync import sync_timeliner
 
@@ -629,6 +772,13 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         cmd_track()
     elif args.command == "suggest":
         cmd_suggest(level=args.level, max_level=args.max_level)
+    elif args.command == "daily":
+        cmd_daily(
+            mode=args.mode,
+            prop_name=args.prop,
+            value=args.value,
+            date_str=args.date,
+        )
     else:
         parser.print_help()
 
@@ -667,6 +817,16 @@ def main() -> None:
     suggest_parser = subparsers.add_parser("suggest", help="Show filtered task list by energy level (Mode level from config)")
     suggest_parser.add_argument("--level", type=float, default=None, help="Exact energy level to filter (e.g. 3.3, 2, 1)")
     suggest_parser.add_argument("--max-level", type=float, default=None, help="Show tasks at or below this energy level")
+
+    daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties")
+    daily_parser.add_argument("mode", nargs="?", default="read", choices=["read", "write", "schema"],
+                              help="Operation mode (default: read)")
+    daily_parser.add_argument("--prop", type=str, default=None,
+                              help="Property name to update (write mode)")
+    daily_parser.add_argument("--value", type=str, default=None,
+                              help="Value to set (write mode). For multi_select use comma-separated: 'Tag1,Tag2'")
+    daily_parser.add_argument("--date", type=str, default=None,
+                              help="Target date (YYYY-MM-DD). Defaults to today.")
 
     args = parser.parse_args()
     app_log_path = configure_cli_logging(args.log_level, args.command)

@@ -1,5 +1,4 @@
 data/logs/
 __pycache__/
 *.pyc
-.env
 unlimited_llmapi/key_usage.json

@@ -343,13 +343,19 @@ def cmd_daily(
     prop_name: str = None,
     value: str = None,
     date_str: str = None,
+    time_str: str = None,
+    cron_name: str = None,
+    cron_type: str = None,
 ) -> None:
     """Read/write properties on the DailyState database.
 
     Modes:
-      read   – show today's (or --date) page properties
-      write  – update a property on today's page
-      schema – show database schema with multi_select options
+      read       – show today's (or --date) page properties
+      write      – update a property on today's page
+      schema     – show database schema with multi_select options
+      cron-dash  – list upcoming crons within 1.5h time window
+      cron-query – query cron details by name or type
+      cron-post  – check/update a cron property
     """
     import sys
     from datetime import date as date_cls
@@ -363,6 +369,39 @@ def cmd_daily(
     )
 
     target_date = date_str or date_cls.today().isoformat()
+
+    # ── cron-dash mode ──
+    if mode == "cron-dash":
+        from cron_manager import get_upcoming_crons, format_dash_output
+
+        crons = get_upcoming_crons(time_str=time_str)
+        if not crons:
+            sys.stdout.buffer.write(b"No pending crons in the current time window.\n")
+            return
+        output = format_dash_output(crons, time_str=time_str)
+        sys.stdout.buffer.write((output + "\n").encode("utf-8"))
+        return
+
+    # ── cron-query mode ──
+    if mode == "cron-query":
+        from cron_manager import query_cron as _query_cron
+
+        output = _query_cron(cron_name=cron_name, cron_type=cron_type)
+        sys.stdout.buffer.write((output + "\n").encode("utf-8"))
+        return
+
+    # ── cron-post mode ──
+    if mode == "cron-post":
+        from cron_manager import post_cron
+
+        if not cron_name:
+            sys.stdout.buffer.write(
+                b"Error: --cron-name is required for cron-post mode.\n"
+            )
+            return
+        output = post_cron(name_in_db=cron_name, value=value)
+        sys.stdout.buffer.write((output + "\n").encode("utf-8"))
+        return
 
     # ── schema mode ──
     if mode == "schema":
@@ -477,7 +516,7 @@ def cmd_daily(
         return
 
     sys.stdout.buffer.write(
-        f"Unknown mode: '{mode}'. Use: read, write, schema\n".encode("utf-8")
+        f"Unknown mode: '{mode}'. Use: read, write, schema, cron-dash, cron-query, cron-post\n".encode("utf-8")
     )
 
 
@@ -778,6 +817,9 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
             prop_name=args.prop,
             value=args.value,
             date_str=args.date,
+            time_str=args.time,
+            cron_name=args.cron_name,
+            cron_type=args.cron_type,
         )
     else:
         parser.print_help()
@@ -818,15 +860,22 @@ def main() -> None:
     suggest_parser.add_argument("--level", type=float, default=None, help="Exact energy level to filter (e.g. 3.3, 2, 1)")
     suggest_parser.add_argument("--max-level", type=float, default=None, help="Show tasks at or below this energy level")
 
-    daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties")
-    daily_parser.add_argument("mode", nargs="?", default="read", choices=["read", "write", "schema"],
+    daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties & cron management")
+    daily_parser.add_argument("mode", nargs="?", default="read",
+                              choices=["read", "write", "schema", "cron-dash", "cron-query", "cron-post"],
                               help="Operation mode (default: read)")
     daily_parser.add_argument("--prop", type=str, default=None,
-                              help="Property name to update (write mode)")
+                              help="Property name to read/write")
     daily_parser.add_argument("--value", type=str, default=None,
-                              help="Value to set (write mode). For multi_select use comma-separated: 'Tag1,Tag2'")
+                              help="Value to set. For multi_select use comma-separated: 'Tag1,Tag2'")
     daily_parser.add_argument("--date", type=str, default=None,
                               help="Target date (YYYY-MM-DD). Defaults to today.")
+    daily_parser.add_argument("--time", type=str, default=None,
+                              help="Override current time (HH:MM) for cron-dash")
+    daily_parser.add_argument("--cron-name", type=str, default=None, dest="cron_name",
+                              help="Cron name (name_in_db) for cron-query / cron-post")
+    daily_parser.add_argument("--cron-type", type=str, default=None, dest="cron_type",
+                              help="Cron type filter for cron-query (e.g. trace, traceXlt)")
 
     args = parser.parse_args()
     app_log_path = configure_cli_logging(args.log_level, args.command)

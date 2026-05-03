@@ -1,0 +1,14 @@
+original_title: 科研人 领域之鹰 : 深厚专业知识体系
+t_name checked: ['PhDSettle✒', '鍛造Lab', '3rdWeek', '4thWeek', '小事业们', '我流方矩', '大事纪', '关系', 'Unknown']
+clean_title after strip t_name: 科研人 领域之鹰 : 深厚专业知识体系
+theme_str evaluated to: PhDSettle✒
+parent_id: 318e1eb5ce57808ea334c9365174d477, parent_theme_key: 
+flags: has_tag_style=True, synced_tags=None
+
+original_title: 科研人 领域之鹰 : 深厚专业知识体系
+t_name checked: ['PhDSettle✒', '鍛造Lab', '3rdWeek', '4thWeek', '小事业们', '我流方矩', '大事纪', '关系', 'Unknown']
+clean_title after strip t_name: 领域之鹰 : 深厚专业知识体系
+theme_str evaluated to: 科研人
+parent_id: 318e1eb5ce57808ea334c9365174d477, parent_theme_key: 
+flags: has_tag_style=True, synced_tags=None
+

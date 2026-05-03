@@ -1,0 +1,58 @@
+{
+    "keys": [
+        {
+            "key": "AIzaSyDiY7Otu_q9J_27wNfl7ysg_RU4UUOy_5Q",
+            "label": "key_1"
+        },
+        {
+            "key": "AIzaSyBqR25716ps7gxjXFxHzDYGv0zTItHkTUY",
+            "label": "alansyling"
+        },
+        {
+            "key": "AIzaSyCElp7OZU1-aRLpYDmqnJnbDuyd-FKF_iY",
+            "label": "key_3"
+        },
+        {
+            "key": "AIzaSyDOk6R1r6FKRHVxkTSy5cMIIW1j4mmxoZ4",
+            "label": "conny"
+        },
+        {
+            "key": "AIzaSyAgOXEjxsSNFsKsY8KbPBPsmSMavTtCjpQ",
+            "label": "key_5"
+        }
+    ],
+    "models": [
+        {
+            "name": "gemini/gemini-3-flash-preview",
+            "rpm": 4,
+            "rpd": 20
+        },
+        {
+            "name": "gemini/gemma-4-31b-it",
+            "rpm": 14,
+            "rpd": 1500
+        },
+        {
+            "name": "gemini/gemini-3.1-flash-lite-preview",
+            "rpm": 14,
+            "rpd": 500
+        },
+        {
+            "name": "gemini/gemini-2.5-flash-preview",
+            "rpm": 4,
+            "rpd": 20
+        }
+    ],
+    "light_models": [
+        {
+            "name": "gemini/gemma-4-31b-it",
+            "rpm": 14,
+            "rpd": 1500
+        },
+        {
+            "name": "gemini/gemini-2.5-flash-lite",
+            "rpm": 14,
+            "rpd": 500
+        }
+    ]
+}

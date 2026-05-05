@@ -184,6 +184,159 @@ def evaluate_block_state(
     return BlockState.READY
 
 
+# ─── Phase 子排序 ────────────────────────────────────────────
+
+
+def _reorder_children_by_phase(state: List[Dict[str, Any]]) -> int:
+    """
+    在每个项目内部，按 Phase emoji (0️⃣~9️⃣) 对 depth=1 子模块做物理排序。
+
+    工作方式：
+    1. 按 parent_id 分组所有 depth=1 且标题带 Phase emoji 的 block
+    2. 在每组内比较当前物理顺序与按 Phase 排列的期望顺序
+    3. 如果不一致，使用 Notion API 逐个移动到正确位置
+
+    Returns: 实际移动的 block 数量
+    """
+    from collections import defaultdict
+    from notion_client import append_children, delete_block, get_page_blocks
+
+    # 收集所有 depth=1 且带 Phase emoji 的 block，按 parent 分组
+    groups: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    for task in state:
+        depth = task.get("depth", 0)
+        try:
+            depth = int(depth)
+        except (TypeError, ValueError):
+            depth = 0
+        if depth != 1:
+            continue
+
+        title = _task_title(task)
+        phase = detect_phase_emoji(title)
+        if phase is None:
+            continue
+
+        parent_id = str(task.get("parent_id") or "")
+        if not parent_id:
+            continue
+
+        groups[parent_id].append(task)
+
+    total_moved = 0
+
+    for parent_id, children in groups.items():
+        if len(children) < 2:
+            continue
+
+        # 当前物理顺序（按它们在 state 列表中的出现先后）
+        state_index = {_task_id(t): idx for idx, t in enumerate(state) if _task_id(t)}
+        current_order = sorted(children, key=lambda t: state_index.get(_task_id(t), 0))
+        current_ids = [_task_id(t) for t in current_order]
+
+        # 期望顺序：按 Phase 数字升序，同 Phase 保持原顺序
+        desired_order = sorted(
+            children,
+            key=lambda t: (
+                detect_phase_emoji(_task_title(t)) or 99,
+                state_index.get(_task_id(t), 0),
+            ),
+        )
+        desired_ids = [_task_id(t) for t in desired_order]
+
+        # 如果顺序已经正确，跳过
+        if current_ids == desired_ids:
+            continue
+
+        # 逐个移动不在正确位置的 block
+        # 策略：从第二个开始，确保每个 block 在其前一个 block 之后
+        import sys
+
+        for i in range(1, len(desired_order)):
+            prev_id = _task_id(desired_order[i - 1])
+            curr_task = desired_order[i]
+            curr_id = _task_id(curr_task)
+
+            # 检查在 Notion 中 curr_id 是否已经在 prev_id 之后
+            # 如果当前顺序中 curr_id 的位置已经正确，跳过
+            if i < len(current_ids) and current_ids[i] == curr_id:
+                continue
+
+            # 构建 block payload 以重新创建
+            block_type = curr_task.get("notion_type") or curr_task.get("type") or ""
+            if block_type == "todo":
+                block_type = "to_do"
+            elif block_type == "bullet":
+                block_type = "bulleted_list_item"
+
+            title = str(
+                curr_task.get("original_notion_title", curr_task.get("title", "")) or ""
+            ).strip() or " "
+            rich_text = [{"type": "text", "text": {"content": title}}]
+
+            if block_type == "to_do":
+                new_block_payload = {
+                    "object": "block",
+                    "type": "to_do",
+                    "to_do": {
+                        "rich_text": rich_text,
+                        "checked": bool(curr_task.get("checked")),
+                    },
+                }
+            else:
+                safe_type = (
+                    block_type
+                    if block_type
+                    in (
+                        "bulleted_list_item",
+                        "numbered_list_item",
+                        "toggle",
+                        "paragraph",
+                    )
+                    else "bulleted_list_item"
+                )
+                new_block_payload = {
+                    "object": "block",
+                    "type": safe_type,
+                    safe_type: {"rich_text": rich_text},
+                }
+
+            try:
+                # 在 prev_id 之后插入新 block
+                append_res = append_children(
+                    parent_id, [new_block_payload], after_id=prev_id
+                )
+                results = append_res.get("results", [])
+                if results:
+                    new_id = str(results[0].get("id", ""))
+                    # 删除原始 block
+                    delete_block(curr_id)
+
+                    # 更新 state 中的 ID
+                    curr_task["id"] = new_id
+                    curr_task["notion_block_id"] = new_id
+
+                    # 更新 desired_order 中后续引用
+                    for j in range(i + 1, len(desired_order)):
+                        if _task_id(desired_order[j]) == curr_id:
+                            desired_order[j]["id"] = new_id
+                            desired_order[j]["notion_block_id"] = new_id
+
+                    total_moved += 1
+                    phase_num = detect_phase_emoji(_task_title(curr_task))
+                    sys.stdout.buffer.write(
+                        f"  -> Phase {phase_num}: moved '{title[:30]}' after prev block\n".encode(
+                            "utf-8"
+                        )
+                    )
+            except Exception as e:
+                sys.stdout.buffer.write(
+                    f"  -> Failed to move phase block {curr_id}: {e}\n".encode("utf-8")
+                )
+
+    return total_moved
+
+
 # ─── 主评估循环 ────────────────────────────────────────────
 
 

@@ -98,6 +98,10 @@ def log_conflict(task_id: str, task_title: str, field: str, old_value: Any, new_
     with open(TUNABLE_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
 
+def _is_llm_generated_task(task: Dict[str, Any]) -> bool:
+    """Return True when a local task is known to have come from LLM generation."""
+    return bool(task.get("is_generated")) or task.get("origin") == "generated"
+
 def compute_diff(current_state: List[Dict[str, Any]], new_notion_state: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Compares the last snapshot against the freshly fetched Notion state.
@@ -114,7 +118,8 @@ def compute_diff(current_state: List[Dict[str, Any]], new_notion_state: List[Dic
             # Simple text diff detecting manual text overrides in Notion
             title_changed = new_item.get("title") != curr_item.get("title")
             checked_changed = new_item.get("checked") != curr_item.get("checked")
-            if title_changed:
+            should_log_tunable = _is_llm_generated_task(curr_item)
+            if should_log_tunable and title_changed:
                 log_conflict(
                     b_id, 
                     curr_item.get("title"), 
@@ -123,7 +128,7 @@ def compute_diff(current_state: List[Dict[str, Any]], new_notion_state: List[Dic
                     new_item.get("title"), 
                     "notion_manual"
                 )
-            if checked_changed:
+            if should_log_tunable and checked_changed:
                 log_conflict(
                     b_id,
                     curr_item.get("title"),

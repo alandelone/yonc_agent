@@ -7,7 +7,18 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 
-def _install_stub_modules() -> None:
+def _install_stub_modules() -> dict:
+    stubbed_names = [
+        "flow_pipeline",
+        "config",
+        "config_reader",
+        "state_manager",
+        "sync_engine",
+        "task_reader",
+        "dashboard",
+    ]
+    previous_modules = {name: sys.modules.get(name) for name in stubbed_names}
+
     flow_mod = types.ModuleType("flow_pipeline")
     flow_mod.run_flow = lambda: None
     flow_mod.run_l1 = lambda: None
@@ -40,9 +51,24 @@ def _install_stub_modules() -> None:
     task_reader_mod.fetch_and_build_task_tree = lambda: []
     sys.modules["task_reader"] = task_reader_mod
 
+    dashboard_mod = types.ModuleType("dashboard")
+    dashboard_mod.group_tasks_by_mode = lambda *_args, **_kwargs: {}
+    sys.modules["dashboard"] = dashboard_mod
 
-_install_stub_modules()
+    return previous_modules
+
+
+def _restore_modules(previous_modules: dict) -> None:
+    for name, module in previous_modules.items():
+        if module is None:
+            sys.modules.pop(name, None)
+        else:
+            sys.modules[name] = module
+
+
+_PREVIOUS_MODULES = _install_stub_modules()
 import main
+_restore_modules(_PREVIOUS_MODULES)
 
 
 class TestMainFlowTraceLogging(unittest.TestCase):

@@ -10,6 +10,19 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Iterator
 
+# 在早期导入 DSPy 之前，静默不必要的警告和日志
+os.environ["DSPY_CACHEDIR"] = "/tmp/dspy_cache" # 避免由于缺失 Deno 缓存目录而产生的警告
+import warnings
+warnings.filterwarnings("ignore", module=".*dspy.*")
+import logging
+logging.getLogger("dspy.primitives.python_interpreter").setLevel(logging.ERROR)
+logging.getLogger("LiteLLM").setLevel(logging.ERROR)
+try:
+    import dspy
+    dspy.settings.configure(log_level="error")
+except ImportError:
+    pass
+
 from config import POLL_INTERVAL_SECONDS
 from config_reader import load_config, structure_yonctask_config
 from flow_pipeline import run_flow, run_l1, run_l2, run_l3

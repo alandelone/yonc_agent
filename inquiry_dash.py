@@ -173,7 +173,8 @@ def cmd_inquiry(
             opts = c.get("options_desc", "")
             opts_part = f"  {opts}" if opts else ""
 
-            line = f"  {counter:3d}. {status}{c['name_in_db']} — {desc_part}{opts_part}"
+            type_label = f"({c.get('cron_type', 'unknown')}) "
+            line = f"  {counter:3d}. {status}{c['name_in_db']} {type_label}— {desc_part}{opts_part}"
             lines.append(line)
             counter += 1
     else:
@@ -205,6 +206,22 @@ def cmd_inquiry(
     # Tired 模式底部提示
     if tired:
         lines.append("\n🛌 能量较低，建议完成定时任务后休息。")
+
+    # ── 添加 Agent 执行指南 (Guidelines) ──
+    pending_types = set(c.get("cron_type", "") for c in pending_crons)
+    if pending_types:
+        if len(pending_types) == 1:
+            ctype = list(pending_types)[0]
+            if ctype == "alert":
+                lines.append("\n💡 [AGENT GUIDELINE]: Just alert the user. If user acknowledges, run `daily cron-post`.")
+            elif ctype == "trace":
+                lines.append("\n💡 [AGENT GUIDELINE]: Ask the user (Q>A). If user confirms, run `daily cron-post`.")
+            elif ctype == "traceXlt":
+                lines.append("\n💡 [AGENT GUIDELINE]: This is a recurring check. Ask the user's status. Record their answer via `daily cron-post`.")
+            else:
+                lines.append(f"\n💡 [AGENT GUIDELINE]: Handle the pending {ctype} task and run `daily cron-post`.")
+        else:
+            lines.append("\n💡 [AGENT GUIDELINE]: You have multiple types. Alert the user for `alert`, ask for `trace`/`traceXlt` status, then use `daily cron-post` when they reply.")
 
     lines.append("")  # 结尾空行
 

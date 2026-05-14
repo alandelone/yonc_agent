@@ -47,9 +47,9 @@ def parse_cron_entries(raw_cron_list: list[str]) -> list[dict]:
     """
     entries: list[dict] = []
 
-    # 匹配 hour 部分: `8.1` 或 `9-18.3`
+    # 匹配 hour 部分: `8.1` 或 `9-18.3` 或 `9,12,15,18.1`
     hour_pattern = re.compile(
-        r"^\s*(?P<start>\d+)(?:-(?P<end>\d+))?\.(?P<section>\d+)\s*$"
+        r"^\s*(?P<start>\d+)(?:(?P<sep>[-|,])(?P<end>[\d,]+))?\.(?P<section>\d+)\s*$"
     )
 
     for raw_line in raw_cron_list:
@@ -69,7 +69,13 @@ def parse_cron_entries(raw_cron_list: list[str]) -> list[dict]:
             continue
 
         start_hour = int(m.group("start"))
-        end_hour = int(m.group("end")) if m.group("end") else None
+        sep = m.group("sep")
+        if sep == "-":
+            end_hour = int(m.group("end"))
+        elif sep == ",":
+            end_hour = [int(x.strip()) for x in m.group("end").split(",") if x.strip()]
+        else:
+            end_hour = None
         section = int(m.group("section"))
 
         entries.append({
@@ -223,21 +229,31 @@ def get_upcoming_crons(
     for e in entries:
         start_h = e["start_hour"]
         end_h = e["end_hour"]
+        cron_type = e.get("cron_type", "").lower()
 
-        # 任务还没到时间 → 跳过
-        if start_h > now_hour:
+        # 隐藏 Trighear 类型的任务 (它只在特定条件下被查询，不在常规面板中显示)
+        if cron_type == "trighear":
             continue
 
-        # 已超过时间窗口 → 跳过
-        if (now_hour - start_h) > window_hours:
-            # 但如果有 end_hour 且当前仍在有效区间内，则保留
-            if end_h is not None and now_hour <= end_h:
-                pass  # 保留
-            else:
-                continue
+        is_valid = False
+        
+        # 1. 检查 start_hour 窗口
+        if start_h <= now_hour and (now_hour - start_h) <= window_hours:
+            is_valid = True
+            
+        # 2. 如果不满足 start_hour，检查 end_hour
+        elif isinstance(end_h, list):
+            # 对于多触发点的列表：[12, 15, 18]，只要满足任意一个即可
+            for h in end_h:
+                if h <= now_hour and (now_hour - h) <= window_hours:
+                    is_valid = True
+                    break
+        elif end_h is not None:
+            # 对于范围区间：9-18，只要当前时间在区间结束之前，且已过开始时间，则一直保留
+            if start_h <= now_hour <= end_h:
+                is_valid = True
 
-        # 有 end_hour 的任务: 已过结束时间 → 跳过
-        if end_h is not None and now_hour > end_h:
+        if not is_valid:
             continue
 
         filtered.append(e.copy())
@@ -283,7 +299,11 @@ def format_dash_output(crons: list[dict], time_str: str | None = None) -> str:
         prop_info = f", {c['prop_type']}" if c.get("prop_type") else ""
         hour_label = f"{c['start_hour']:02d}:00"
         if c["end_hour"] is not None:
-            hour_label = f"{c['start_hour']:02d}-{c['end_hour']:02d}"
+            if isinstance(c["end_hour"], list):
+                end_str = ",".join(str(x) for x in c["end_hour"])
+                hour_label = f"{c['start_hour']:02d},{end_str}"
+            else:
+                hour_label = f"{c['start_hour']:02d}-{c['end_hour']:02d}"
         # 描述字段: 截取前 40 字符避免过长
         desc = c.get("description", "")
         desc_part = f"  — {desc[:40]}" if desc else ""
@@ -413,7 +433,11 @@ def query_cron(
     for e in matched:
         hour_label = f"{e['start_hour']:02d}:00"
         if e["end_hour"] is not None:
-            hour_label = f"{e['start_hour']:02d}:00 - {e['end_hour']:02d}:00"
+            if isinstance(e["end_hour"], list):
+                end_str = ",".join(str(x) for x in e["end_hour"])
+                hour_label = f"{e['start_hour']:02d}:00, {end_str} (points)"
+            else:
+                hour_label = f"{e['start_hour']:02d}:00 - {e['end_hour']:02d}:00"
 
         prop_type = _get_prop_type(e["name_in_db"])
         prop_info = f"  db_type: {prop_type}" if prop_type else "  db_type: (none)"

@@ -20,9 +20,6 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-import logging
-
-logger = logging.getLogger(__name__)
 import dspy
 from dspy.clients.lm import LM
 
@@ -161,7 +158,7 @@ class SmartMultiKeyLM(LM):
 
                 # 如果日期不同，或者数据格式是旧的，则重置
                 if data.get("date") != today or "usage" not in data:
-                    logger.info(f"[MultiKey] 新的一天 ({today}) 或格式更新，重置统计。")
+                    print(f"[MultiKey] 新的一天 ({today}) 或格式更新，重置统计。")
                     return self._fresh_usage(today)
 
                 return data
@@ -241,7 +238,7 @@ class SmartMultiKeyLM(LM):
         if key is None:
             if current_model_idx + 1 < len(self.models_config):
                 next_model = self.models_config[current_model_idx + 1]["name"]
-                logger.info(f"  [MultiKey] 模型 {m_name} 已达限额，切换到回退模型: {next_model}")
+                print(f"  [MultiKey] 模型 {m_name} 已达限额，切换到回退模型: {next_model}")
                 kwargs['__current_model_idx'] = current_model_idx + 1
                 return self.__call__(prompt, messages, **kwargs)
             else:
@@ -250,7 +247,7 @@ class SmartMultiKeyLM(LM):
         label = self.key_labels.get(key, key[:12])
 
         if wait_time > 0:
-            logger.info(f"  [Throttling] {m_name} 冷却中，{label} 将在 {wait_time:.1f}s 后就绪...")
+            print(f"  [Throttling] {m_name} 冷却中，{label} 将在 {wait_time:.1f}s 后就绪...")
             time.sleep(wait_time)
 
         # 获取或初始化客户端
@@ -261,7 +258,7 @@ class SmartMultiKeyLM(LM):
 
         try:
             current_count = self.usage_data["usage"][m_name][key]["daily_reqs"] + 1
-            logger.info(f"[MultiKey] 请求中... (模型: {m_name} | Key: {label} | 今日: {current_count}/{m_cfg['rpd']})")
+            print(f"[MultiKey] 请求中... (模型: {m_name} | Key: {label} | 今日: {current_count}/{m_cfg['rpd']})")
 
             response = client(prompt=prompt, messages=messages, **kwargs)
 
@@ -277,11 +274,11 @@ class SmartMultiKeyLM(LM):
             error_msg = str(e).lower()
             # 瞬态错误：429 限流 / 配额耗尽 / 503 过载
             if any(x in error_msg for x in ["429", "quota", "resource_exhausted", "503", "unavailable", "high demand", "overloaded"]):
-                logger.info(f"  [MultiKey] {m_name} | {label} 触发受限: {str(e)}")
+                print(f"  [MultiKey] {m_name} | {label} 触发受限: {str(e)}")
                 self.usage_data["usage"][m_name][key]["last_used"] = time.time()
                 
                 if "quota" in error_msg or "resource_exhausted" in error_msg:
-                    logger.info(f"  [MultiKey] 判定为模型 {m_name} 的配额已尽，今日下线 {label}...")
+                    print(f"  [MultiKey] 判定为模型 {m_name} 的配额已尽，今日下线 {label}...")
                     self.usage_data["usage"][m_name][key]["daily_reqs"] = m_cfg["rpd"]
                 
                 self._save_usage()
@@ -325,7 +322,7 @@ def configure_dspy(
 
     dspy.configure(lm=lm)
     m_names = [m["name"].split("/")[-1] for m in (models or config["models"])]
-    logger.info(f"[MultiKey] DSPy 已配置 | 密钥数: {len(config['keys'])} | 模型列表: {' -> '.join(m_names)}")
+    print(f"[MultiKey] DSPy 已配置 | 密钥数: {len(config['keys'])} | 模型列表: {' -> '.join(m_names)}")
     return lm
 
 
@@ -377,7 +374,7 @@ def configure_dspy_light(
     )
 
     short_names = [m["name"].split("/")[-1] for m in final_models]
-    logger.info(f"[MultiKey-Light] 轻量 LM 已创建 | 密钥数: {len(config['keys'])} | 模型回退: {' -> '.join(short_names)}")
+    print(f"[MultiKey-Light] 轻量 LM 已创建 | 密钥数: {len(config['keys'])} | 模型回退: {' -> '.join(short_names)}")
     return lm
 
 

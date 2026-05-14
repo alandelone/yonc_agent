@@ -284,98 +284,11 @@ def format_dash_output(crons: list[dict], time_str: str | None = None) -> str:
         hour_label = f"{c['start_hour']:02d}:00"
         if c["end_hour"] is not None:
             hour_label = f"{c['start_hour']:02d}-{c['end_hour']:02d}"
-        # 描述字段: 截取前 40 字符避免过长
-        desc = c.get("description", "")
-        desc_part = f"  — {desc[:40]}" if desc else ""
         lines.append(
-            f"  {status} {c['name_in_db']}  ({type_info}{prop_info})  @{hour_label}{desc_part}"
+            f"  {status} {c['name_in_db']}  ({type_info}{prop_info})  @{hour_label}"
         )
 
     return "\n".join(lines)
-
-
-# ═══════════════════════════════════════════════════════════
-# 3.5 Skip — 跳过/忽略 Cron（本地当天记录）
-# ═══════════════════════════════════════════════════════════
-
-SKIP_FILE = PROJECT_ROOT / "data" / "cron_skip_today.json"
-
-
-def load_skip_list() -> set[str]:
-    """加载今日的 skip 列表；若日期不匹配则返回空集并清理过期文件。"""
-    if not SKIP_FILE.exists():
-        return set()
-    try:
-        data = json.loads(SKIP_FILE.read_text(encoding="utf-8"))
-        if data.get("date") != date.today().isoformat():
-            # 过期记录，清理
-            SKIP_FILE.unlink(missing_ok=True)
-            return set()
-        return set(data.get("skipped", []))
-    except (json.JSONDecodeError, ValueError):
-        return set()
-
-
-def save_skip_list(names: set[str]) -> None:
-    """保存今日 skip 列表到本地 JSON 文件。"""
-    SKIP_FILE.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "date": date.today().isoformat(),
-        "skipped": sorted(names),
-    }
-    SKIP_FILE.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
-
-
-def skip_cron(name_in_db: str) -> str:
-    """将指定 cron 标记为今日跳过。返回状态消息。"""
-    entries = load_cron_cache()
-    matched = [e for e in entries if e["name_in_db"] == name_in_db]
-    if not matched:
-        return f"❌ Cron '{name_in_db}' not found."
-
-    skipped = load_skip_list()
-    skipped.add(name_in_db)
-    save_skip_list(skipped)
-    return f"❌ {name_in_db} — SKIPPED for today"
-
-
-def is_cron_skipped(name_in_db: str) -> bool:
-    """检查指定 cron 是否已被今日跳过。"""
-    return name_in_db in load_skip_list()
-
-
-def get_cron_options_desc(name_in_db: str) -> str:
-    """为非 checkbox/rich_text 类型的 cron 属性生成选项描述。
-
-    格式: (opt1|opt2|opt3) — 仅 multi_select 类型有选项。
-    checkbox/rich_text 返回类型提示: (checkbox → ✅/❌) 或 (rich_text → 需要输入文字)。
-    """
-    prop_type = _get_prop_type(name_in_db)
-    if not prop_type:
-        return ""
-
-    if prop_type == "checkbox":
-        return "(checkbox → ✅/❌)"
-    elif prop_type == "rich_text":
-        return "(rich_text → 需要输入文字)"
-    elif prop_type == "number":
-        return "(number → 输入数字)"
-    elif prop_type == "multi_select":
-        schema = _get_schema()
-        options = schema.get(name_in_db, {}).get("multi_select", {}).get("options", [])
-        # 提取不重复的 task_name（去掉 "N X " 前缀）
-        opt_names = _extract_multiselect_task_names(options)
-        if opt_names:
-            return f"({' | '.join(opt_names)})"
-        # 如果没有 "N X name" 格式，直接用原始 option name
-        raw_names = [o["name"] for o in options]
-        if raw_names:
-            return f"({' | '.join(raw_names)})"
-        return "(multi_select → 无可用选项)"
-    return ""
 
 
 # ═══════════════════════════════════════════════════════════
@@ -490,11 +403,8 @@ def _increment_multiselect(
 def post_cron(
     name_in_db: str,
     value: str | None = None,
-    skip: bool = False,
 ) -> str:
     """根据 DB 属性类型自动执行打卡/更新操作。
-
-    skip=True 时仅在本地 JSON 中标记为今日跳过，不修改 Notion DB。
 
     无 value:
       - checkbox → 设为 True
@@ -508,9 +418,6 @@ def post_cron(
       - rich_text → 写入 value
       - multi_select → 匹配 task_name 并递增计数
     """
-    # 跳过模式: 仅本地记录，不写 Notion
-    if skip:
-        return skip_cron(name_in_db)
     from notion_db_utils import (
         build_property_payload,
         extract_all_properties,

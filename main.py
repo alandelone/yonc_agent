@@ -10,11 +10,6 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Iterator
 
-# 在早期导入 DSPy 之前，静默不必要的警告和日志
-os.environ["DSPY_CACHEDIR"] = "/tmp/dspy_cache" # 避免由于缺失 Deno 缓存目录而产生的警告
-import warnings
-warnings.filterwarnings("ignore", module=".*dspy.*")
-
 from config import POLL_INTERVAL_SECONDS
 from config_reader import load_config, structure_yonctask_config
 from flow_pipeline import run_flow, run_l1, run_l2, run_l3
@@ -24,7 +19,7 @@ from task_reader import fetch_and_build_task_tree
 from dashboard import group_tasks_by_mode
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-FLOW_TRACE_COMMANDS = {"flow", "flow-l1", "flow-l2", "flow-l3", "push-sync", "split", "tag"}
+FLOW_TRACE_COMMANDS = {"flow", "flow-l1", "flow-l2", "flow-l3", "push-sync", "split", "tag", "phase"}
 
 
 class TeeBuffer:
@@ -153,38 +148,22 @@ def configure_cli_logging(level_name: str = "INFO", command_name: str | None = N
     log_dir.mkdir(parents=True, exist_ok=True)
     app_log_path = log_dir / "yonc_agent.log"
 
-    console_handler = logging.StreamHandler(sys.stdout)
-    # 默认隐藏 INFO，仅在 DEBUG 级别时才向控制台输出详细日志
-    console_level = logging.DEBUG if level == logging.DEBUG else logging.WARNING
-    console_handler.setLevel(console_level)
-
-    file_handler = RotatingFileHandler(
-        app_log_path,
-        maxBytes=5 * 1024 * 1024,
-        backupCount=5,
-        encoding="utf-8",
-    )
-    file_handler.setLevel(level)
+    handlers = [
+        logging.StreamHandler(sys.stdout),
+        RotatingFileHandler(
+            app_log_path,
+            maxBytes=5 * 1024 * 1024,
+            backupCount=5,
+            encoding="utf-8",
+        ),
+    ]
 
     logging.basicConfig(
-        level=logging.DEBUG, # base 必须最低，实际由 handler 过滤
+        level=level,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-        handlers=[console_handler, file_handler],
+        handlers=handlers,
         force=True,
     )
-    
-    # 抑制 DSPy 内置警告
-    try:
-        import dspy
-        dspy_logger = logging.getLogger("dspy")
-        dspy_logger.setLevel(logging.ERROR)
-        dspy_logger.handlers.clear()
-        dspy_logger.propagate = False
-        
-        logging.getLogger("dspy.primitives.python_interpreter").setLevel(logging.ERROR)
-    except ImportError:
-        pass
-    
     if command_name:
         logging.getLogger(__name__).info(
             "CLI command '%s' started (pid=%s, cwd=%s)",
@@ -237,7 +216,9 @@ def cmd_tag() -> None:
 
 
 def cmd_flow() -> None:
-    run_flow()
+    from state_evaluator import run_evaluator
+
+    run_evaluator()
 
 
 def cmd_flow_l1() -> None:
@@ -253,6 +234,17 @@ def cmd_flow_l2() -> None:
 def cmd_flow_l3() -> None:
     print("Running flow-l3 (L3 stage)...")
     run_l3()
+
+
+def cmd_phase(list_only: bool = False) -> None:
+    """交互式 Phase 分配工具。"""
+    from phase_manager import interactive_phase_assignment, list_phasing_tasks
+
+    if list_only:
+        list_phasing_tasks()
+    else:
+        list_phasing_tasks()
+        interactive_phase_assignment()
 
 
 def cmd_poll() -> None:
@@ -367,7 +359,6 @@ def cmd_daily(
     time_str: str = None,
     cron_name: str = None,
     cron_type: str = None,
-    skip: bool = False,
 ) -> None:
     """Read/write properties on the DailyState database.
 
@@ -421,7 +412,7 @@ def cmd_daily(
                 b"Error: --cron-name is required for cron-post mode.\n"
             )
             return
-        output = post_cron(name_in_db=cron_name, value=value, skip=skip)
+        output = post_cron(name_in_db=cron_name, value=value)
         sys.stdout.buffer.write((output + "\n").encode("utf-8"))
         return
 
@@ -833,13 +824,6 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         cmd_track()
     elif args.command == "suggest":
         cmd_suggest(level=args.level, max_level=args.max_level)
-    elif args.command == "inquiry":
-        from inquiry_dash import cmd_inquiry
-        cmd_inquiry(
-            level=args.level,
-            tired=args.tired,
-            time_str=args.time,
-        )
     elif args.command == "daily":
         cmd_daily(
             mode=args.mode,
@@ -849,8 +833,9 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
             time_str=args.time,
             cron_name=args.cron_name,
             cron_type=args.cron_type,
-            skip=getattr(args, 'skip', False),
         )
+    elif args.command == "phase":
+        cmd_phase(list_only=args.list)
     else:
         parser.print_help()
 
@@ -868,10 +853,10 @@ def main() -> None:
     )
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    subparsers.add_parser("flow", help="Run full staged flow (L1 -> L2 -> L3)")
-    subparsers.add_parser("flow-l1", help="Run L1 stage")
-    subparsers.add_parser("flow-l2", help="Run L2 stage")
-    subparsers.add_parser("flow-l3", help="Run L3 stage")
+    subparsers.add_parser("flow", help="Run state-driven flow evaluator (replaces L1/L2/L3)")
+    subparsers.add_parser("flow-l1", help="Legacy: Run L1 stage only")
+    subparsers.add_parser("flow-l2", help="Legacy: Run L2 stage only")
+    subparsers.add_parser("flow-l3", help="Legacy: Run L3 stage only")
 
     subparsers.add_parser("sync", help="Sync state from Notion")
     subparsers.add_parser("push-sync", help="Legacy wrapper to L1 flow")
@@ -890,11 +875,6 @@ def main() -> None:
     suggest_parser.add_argument("--level", type=float, default=None, help="Exact energy level to filter (e.g. 3.3, 2, 1)")
     suggest_parser.add_argument("--max-level", type=float, default=None, help="Show tasks at or below this energy level")
 
-    inquiry_parser = subparsers.add_parser("inquiry", help="STATE 1 unified dash: cron-dash + suggest (energy-aware)")
-    inquiry_parser.add_argument("--level", type=float, default=None, help="Energy level for suggest filter (e.g. 3.3, 2, 1)")
-    inquiry_parser.add_argument("--tired", action="store_true", default=False, help="Tired mode: show cron only, skip suggest")
-    inquiry_parser.add_argument("--time", type=str, default=None, help="Override current time (HH:MM) for cron-dash")
-
     daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties & cron management")
     daily_parser.add_argument("mode", nargs="?", default="read",
                               choices=["read", "write", "schema", "cron-dash", "cron-query", "cron-post"],
@@ -911,8 +891,10 @@ def main() -> None:
                               help="Cron name (name_in_db) for cron-query / cron-post")
     daily_parser.add_argument("--cron-type", type=str, default=None, dest="cron_type",
                               help="Cron type filter for cron-query (e.g. trace, traceXlt)")
-    daily_parser.add_argument("--skip", action="store_true", default=False,
-                              help="Skip/ignore a cron task for today (cron-post mode only)")
+
+    phase_parser = subparsers.add_parser("phase", help="Assign execution phase emojis to Depth=1 blocks")
+    phase_parser.add_argument("--list", action="store_true", default=False,
+                              help="List tasks waiting for phase assignment without entering interactive mode")
 
     args = parser.parse_args()
     app_log_path = configure_cli_logging(args.log_level, args.command)
@@ -920,12 +902,8 @@ def main() -> None:
 
     if _is_flow_trace_command(args.command):
         with capture_flow_trace(str(args.command), sys.argv):
-            import warnings
-            warnings.filterwarnings("ignore", module=".*dspy.*")
             _dispatch_command(args, parser)
     else:
-        import warnings
-        warnings.filterwarnings("ignore", module=".*dspy.*")
         _dispatch_command(args, parser)
 
 

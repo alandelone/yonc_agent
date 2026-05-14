@@ -914,6 +914,15 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         checked = task.get("checked") if block_type == "to_do" else None
         is_done = (DONE_MARK in original_title) or bool(checked)
+        _parent_id_for_sel = str(task.get("parent_id") or "")
+        _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
+        selection_mode = (
+            block_type == "to_do"
+            and is_generated
+            and not generated_selection_processed
+            and _sibling_checked_count >= 1
+        )
+        is_selected_generated_l4 = selection_mode and bool(checked) and wbs_level == 4
 
         # No tags: only do a lightweight cleanup for stale WBS prefix text.
         if not tags:
@@ -968,7 +977,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # Generated tasks normally do not keep a visible WBS tag.
         # Processed L4 selector tasks are the exception: keep/restore WBS level.
         if is_generated:
-            if generated_selection_processed and wbs_level == 4:
+            if (generated_selection_processed and wbs_level == 4) or is_selected_generated_l4:
                 if not str(tags.get("WBS level", "")).strip():
                     wbs_raw = _raw_wbs_value(4)
                     if wbs_raw:
@@ -979,15 +988,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         # selection_mode 浠呭湪鍚屼竴 parent 涓?generated checked >= 1 鏃舵縺娲?        # 宸插鐞嗚繃鐨?generated selector 浠诲姟涓嶅啀鍙備笌姝ゆ祦绋嬶紝閬垮厤閲嶅 reset/delete 寰幆
         # 纭繚浜虹被宸茬粡杩涜浜嗕氦浜掞紙鑷冲皯鍕鹃€変簡涓€涓級
-        _parent_id_for_sel = str(task.get("parent_id") or "")
-        _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
-        selection_mode = (
-            block_type == "to_do"
-            and is_generated
-            and not generated_selection_processed
-            and _sibling_checked_count >= 1
-        )
-
         # Generated split tasks are treated as a preference selector:
         # - unchecked -> delete
         # - checked L1-L3 -> convert to toggle
@@ -1032,9 +1032,19 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if is_already_themed:
                 break
                 
-        should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+        should_convert_selected_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+        should_convert_non_selector_non_l4_to_bullet = (
+            block_type == "to_do"
+            and isinstance(wbs_level, int)
+            and wbs_level in (1, 2, 3)
+            and not (is_generated and not generated_selection_processed)
+        )
         should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
-        is_pending_selection_change = should_convert_to_bullet or should_reset_l4_to_unchecked
+        is_pending_selection_change = (
+            should_convert_selected_non_l4_to_bullet
+            or should_convert_non_selector_non_l4_to_bullet
+            or should_reset_l4_to_unchecked
+        )
         is_scoped_task = task.get("timeliner_rank") is not None
         mode_val_for_restore = str(tags.get("Modes", "")).strip()
         missing_mode_render = False
@@ -1270,7 +1280,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # Stop if no update needed (compare raw string loosely)
         new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
 
-        should_convert_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+        should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
         if should_convert_to_bullet:
             parent_id = task.get("parent_id")
             if not parent_id:
@@ -1282,7 +1292,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     before = {
                         "task_id": block_id,
                         "block_type": "to_do",
-                        "checked": True,
+                        "checked": bool(checked),
                         "wbs_level": wbs_level,
                         "origin": origin
                     }
@@ -1293,21 +1303,23 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     task["type"] = "bullet"
                     task["checked"] = None
                     task["synced_tags"] = True
-                    task["generated_selection_processed"] = True
+                    if should_convert_selected_non_l4_to_bullet:
+                        task["generated_selection_processed"] = True
                     task["title"] = new_plain_title
-                    log_generated_preference_diff(
-                        task=task,
-                        action="convert_checked_non_l4_to_bullet",
-                        before=before,
-                        after={
-                            "block_type": "bulleted_list_item",
-                            "checked": None,
-                            "new_task_id": new_block_id
-                        }
-                    )
+                    if should_convert_selected_non_l4_to_bullet:
+                        log_generated_preference_diff(
+                            task=task,
+                            action="convert_checked_non_l4_to_bullet",
+                            before=before,
+                            after={
+                                "block_type": "bulleted_list_item",
+                                "checked": None,
+                                "new_task_id": new_block_id
+                            }
+                        )
                     
                     import sys
-                    msg = f"Converted checked to-do to bullet for {block_id}: {new_plain_title}\n"
+                    msg = f"Converted non-L4 to-do to bullet for {block_id}: {new_plain_title}\n"
                     sys.stdout.buffer.write(msg.encode('utf-8'))
                     continue
                 except Exception as e:

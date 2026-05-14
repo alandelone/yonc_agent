@@ -184,10 +184,11 @@ if isinstance(wbs_level, int) and wbs_level < 4:
 | **Pattern (Parent)** | `split_stage == "suggested"` **AND** at least one child block has `is_generated == True` **AND** `generated_selection_processed == False`. |
 | **Pattern (Leaf)** | `wbs_level == 4` **AND** `is_generated == True` **AND** `generated_selection_processed == False`. |
 | **Meaning** | The LLM has generated candidate subtasks (or this IS a generated candidate). The system is waiting for the human to review them in Notion. The human signals approval by checking the `to_do` checkbox on preferred suggestions. |
-| **System Action** | **Halt.** No further processing on this branch. Reported in the state distribution summary. |
+| **System Action** | **Halt until human selection.** On the next `flow` run, `push_tags_to_notion()` handles the review confirmation before the Mode/TaskType pass runs. |
 | **Human Action Required** | Open Notion → Review the generated `to_do` items → Check ☑️ the ones you want to keep. Unchecked items will be deleted on next `flow` run. |
 | **What Happens After Human Acts** | On next `flow` run, `sync_engine.py` detects that ≥1 generated child is checked. It sets `split_stage = "processed"` on the parent. Checked non-L4 items are converted to `bulleted_list_item`. Checked L4 items are reset to `checked=False` (unchecked todo, ready for actual execution). Both get `generated_selection_processed = True`. Unchecked generated items are **deleted**. |
 | **Advances To** | `PHASING_WAIT` (for depth=1 modules) or `ACTIONABLE_PENDING` (for L4 leaves) |
+| **Generated L4 WBS Restore** | When the selected item is a generated L4 task, `push_tags_to_notion()` restores `tags["WBS level"]` during the same confirmation render. That means the visible WBS prefix should reappear together with Mode/TaskType formatting after review. |
 
 **The selection mode lifecycle in detail**:
 
@@ -201,6 +202,8 @@ graph TD
     D --> G["generated_selection_processed = True"]
     E --> G
 ```
+
+For generated L4 selections, the same confirmation render restores the WBS tag before the row is rewritten. The later Mode/TaskType render should therefore include the WBS prefix instead of leaving it hidden.
 
 ---
 
@@ -232,6 +235,7 @@ graph TD
 | **Meaning** | A leaf-level executable action that is ready for work, but the system hasn't yet determined what energy mode or action type it requires. |
 | **System Action** | **Execution Context Inference** (`mode_tasktype_pass`): Calls LLM `tag_task()` with available Mode options (e.g., `💻Focus`, `🚶Commute`, `😴Rest`) and TaskType options (e.g., `🔍 Testing`, `📝 Drafting`) from `YONCTASK_CONFIG`. |
 | **Fields Written** | `tags["Modes"]`, `tags["Task Type"]` |
+| **Generated L4 Rendering Note** | If this task was just selected from `HUMAN_REVIEW`, `push_tags_to_notion()` rehydrates `tags["WBS level"]` before rendering. The visible WBS prefix should appear in Notion together with Mode and TaskType once this pass completes. |
 | **Advances To** | `READY` |
 | **LLM Cost** | 1 API call per block. |
 
@@ -261,7 +265,7 @@ When you run `python main.py flow`, the evaluator executes these steps **sequent
 | 2 | `build_timeliner_scope` + `wbs_pass` | `STRUCTURED` → `SCOPED` → `SEQUENCED` |
 | 3 | `priority_pass` | `SEQUENCED` → next |
 | 4 | `_reorder_state_by_root_rank` + `_reorder_children_by_phase` | Physical sort |
-| 5 | `push_tags_to_notion` | Write visual formatting |
+| 5 | `push_tags_to_notion` | Write visual formatting; process generated-task review selections and restore WBS for selected generated L4 tasks |
 | 6 | `split_task` loop (scoped + first-time only) | `EXPANDING` → `HUMAN_REVIEW` |
 | 7 | `mode_tasktype_pass` (only for `ACTIONABLE_PENDING` blocks) | `ACTIONABLE_PENDING` → `READY` |
 | 8 | State distribution report | Summary log |

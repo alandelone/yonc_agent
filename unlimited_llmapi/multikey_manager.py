@@ -14,14 +14,19 @@
     lm = configure_dspy(model="gemini/gemini-2.0-flash", rpm=30, rpd=500)
 """
 
-import time
-import json
+import logging
 import os
+import json
+import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 import dspy
 from dspy.clients.lm import LM
+
+# 模块级 logger，替代 print，方便下游调用者控制日志级别
+logger = logging.getLogger(__name__)
 
 # 默认 Gemini 免费层限制
 DEFAULT_LIMITS = {
@@ -29,6 +34,17 @@ DEFAULT_LIMITS = {
     "RPD": 20,             # 每日请求数
     "MIN_INTERVAL": 60.0 / 5  # 请求间最小间隔（秒）
 }
+
+# 瞬态错误的匹配模式集合（避免散落各处的 magic string）
+TRANSIENT_ERROR_PATTERNS = frozenset({
+    "429", "quota", "resource_exhausted",
+    "503", "unavailable", "high demand", "overloaded",
+})
+
+# 配额耗尽的匹配模式子集
+QUOTA_EXHAUSTED_PATTERNS = frozenset({
+    "quota", "resource_exhausted",
+})
 
 # 密钥使用情况持久化文件（与 api_keys.json 同目录）
 _MODULE_DIR = Path(__file__).parent.absolute()
@@ -68,10 +84,23 @@ def load_config(keys_file: str | Path | None = None) -> dict:
     """
     从 JSON 文件加载完整配置（密钥 + 模型列表）。
 
+    Args:
+        keys_file: JSON 文件路径，默认为同目录下的 api_keys.json
+
     Returns:
         包含 keys, labels, models, light_models 的字典
+
+    Raises:
+        FileNotFoundError: 配置文件不存在时抛出友好的错误提示
     """
     path = Path(keys_file) if keys_file else DEFAULT_KEYS_FILE
+
+    # #8 修复：与 load_api_keys 保持一致的错误处理
+    if not path.exists():
+        raise FileNotFoundError(
+            f"密钥配置文件未找到: {path}\n"
+            f"请创建 api_keys.json 文件，格式参考 README。"
+        )
 
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -120,16 +149,14 @@ class SmartMultiKeyLM(LM):
 
         self.api_keys = api_keys
         self.models_config = models_config
-        self.kwargs = kwargs
         
         # 预计算每个模型的限制
         for m in self.models_config:
             m["min_interval"] = 60.0 / m.get("rpm", 5)
 
-        # Remove 'model' and 'api_key' from kwargs to avoid conflict with positional arguments in LM.__init__
+        # #10 修复：避免 kwargs 冲突，只赋值一次
         kwargs.pop("model", None)
         kwargs.pop("api_key", None)
-        
         self.kwargs = kwargs
 
         # 用第一个模型初始化父类
@@ -150,22 +177,25 @@ class SmartMultiKeyLM(LM):
     def _load_usage(self) -> dict:
         """从磁盘加载密钥使用记录，新的一天自动重置配额。"""
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        
-        if USAGE_FILE.exists():
-            try:
-                with open(USAGE_FILE, "r", encoding="utf-8") as f:
-                    data = json.load(f)
 
-                # 如果日期不同，或者数据格式是旧的，则重置
-                if data.get("date") != today or "usage" not in data:
-                    print(f"[MultiKey] 新的一天 ({today}) 或格式更新，重置统计。")
-                    return self._fresh_usage(today)
+        # #4 修复：直接 try/open，避免 TOCTOU 竞态条件
+        try:
+            with open(USAGE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
 
-                return data
-            except (json.JSONDecodeError, KeyError, Exception):
-                pass
+            # 如果日期不同，或者数据格式是旧的，则重置
+            if data.get("date") != today or "usage" not in data:
+                logger.info("新的一天 (%s) 或格式更新，重置统计。", today)
+                return self._fresh_usage(today)
 
-        return self._fresh_usage(today)
+            return data
+        except FileNotFoundError:
+            # 首次运行，文件不存在
+            return self._fresh_usage(today)
+        except (json.JSONDecodeError, KeyError) as e:
+            # #5 修复：捕获具体异常并记录日志，而非裸 pass
+            logger.warning("无法加载 %s，将重新初始化: %s", USAGE_FILE, e)
+            return self._fresh_usage(today)
 
     def _fresh_usage(self, date: str) -> dict:
         """创建全新的使用记录，支持多模型。"""
@@ -180,9 +210,27 @@ class SmartMultiKeyLM(LM):
         }
 
     def _save_usage(self) -> None:
-        """持久化使用记录到磁盘。"""
-        with open(USAGE_FILE, "w", encoding="utf-8") as f:
-            json.dump(self.usage_data, f, indent=2)
+        """
+        持久化使用记录到磁盘。
+
+        使用先写临时文件再 os.replace 的原子写入模式，
+        避免进程崩溃时留下截断的 JSON 文件。
+        """
+        # #6 修复：原子写入
+        tmp_fd, tmp_path = tempfile.mkstemp(
+            dir=USAGE_FILE.parent, suffix=".tmp"
+        )
+        try:
+            with os.fdopen(tmp_fd, "w", encoding="utf-8") as f:
+                json.dump(self.usage_data, f, indent=2)
+            os.replace(tmp_path, USAGE_FILE)
+        except Exception:
+            # 写入失败时清理临时文件
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+            raise
 
     def _get_available_key(self, model_name: str, rpm_limit: int, rpd_limit: int) -> tuple[str | None, float]:
         """
@@ -220,80 +268,92 @@ class SmartMultiKeyLM(LM):
 
         return best_key, max(0, min_wait)
 
+    def _is_transient_error(self, error_msg: str) -> bool:
+        """判断是否为瞬态错误（限流 / 配额耗尽 / 过载）。"""
+        return any(pattern in error_msg for pattern in TRANSIENT_ERROR_PATTERNS)
+
+    def _is_quota_exhausted(self, error_msg: str) -> bool:
+        """判断是否为配额耗尽错误。"""
+        return any(pattern in error_msg for pattern in QUOTA_EXHAUSTED_PATTERNS)
+
     def __call__(self, prompt=None, messages=None, **kwargs):
-        """发送请求，支持模型回退。"""
-        # 内部重试标记
-        retry_count = kwargs.pop('__multi_key_retry', 0)
-        current_model_idx = kwargs.pop('__current_model_idx', 0)
+        """
+        发送请求，支持密钥轮换和多模型回退。
 
-        if current_model_idx >= len(self.models_config):
-            raise RuntimeError("所有配置的模型及其 API 密钥已达每日限额。")
+        使用 while 循环代替递归，避免栈溢出风险和 kwargs 污染。
+        """
+        # #2 修复：递归 → while 循环
+        retry_count = 0
+        current_model_idx = 0
+        max_retries = len(self.api_keys) * 2
 
-        m_cfg = self.models_config[current_model_idx]
-        m_name = m_cfg["name"]
-        
-        key, wait_time = self._get_available_key(m_name, m_cfg["rpm"], m_cfg["rpd"])
+        while True:
+            if current_model_idx >= len(self.models_config):
+                raise RuntimeError("所有配置的模型及其 API 密钥已达每日限额。")
 
-        # 如果当前模型所有密钥都不可用，尝试下一个模型
-        if key is None:
-            if current_model_idx + 1 < len(self.models_config):
-                next_model = self.models_config[current_model_idx + 1]["name"]
-                print(f"  [MultiKey] 模型 {m_name} 已达限额，切换到回退模型: {next_model}")
-                kwargs['__current_model_idx'] = current_model_idx + 1
-                return self.__call__(prompt, messages, **kwargs)
-            else:
-                raise RuntimeError(f"所有 API 密钥及模型已达每日限额，最后尝试的模型是: {m_name}")
+            m_cfg = self.models_config[current_model_idx]
+            m_name = m_cfg["name"]
+            
+            key, wait_time = self._get_available_key(m_name, m_cfg["rpm"], m_cfg["rpd"])
 
-        label = self.key_labels.get(key, key[:12])
+            # 如果当前模型所有密钥都不可用，尝试下一个模型
+            if key is None:
+                if current_model_idx + 1 < len(self.models_config):
+                    next_model = self.models_config[current_model_idx + 1]["name"]
+                    logger.info("模型 %s 已达限额，切换到回退模型: %s", m_name, next_model)
+                    current_model_idx += 1
+                    continue
+                else:
+                    raise RuntimeError(f"所有 API 密钥及模型已达每日限额，最后尝试的模型是: {m_name}")
 
-        if wait_time > 0:
-            print(f"  [Throttling] {m_name} 冷却中，{label} 将在 {wait_time:.1f}s 后就绪...")
-            time.sleep(wait_time)
+            label = self.key_labels.get(key, key[:12])
 
-        # 获取或初始化客户端
-        client_key = (m_name, key)
-        if client_key not in self.clients:
-            self.clients[client_key] = dspy.LM(m_name, api_key=key, **self.kwargs)
-        client = self.clients[client_key]
+            if wait_time > 0:
+                logger.info("[Throttling] %s 冷却中，%s 将在 %.1fs 后就绪...", m_name, label, wait_time)
+                time.sleep(wait_time)
 
-        try:
-            current_count = self.usage_data["usage"][m_name][key]["daily_reqs"] + 1
-            print(f"[MultiKey] 请求中... (模型: {m_name} | Key: {label} | 今日: {current_count}/{m_cfg['rpd']})")
+            # 获取或初始化客户端
+            client_key = (m_name, key)
+            if client_key not in self.clients:
+                self.clients[client_key] = dspy.LM(m_name, api_key=key, **self.kwargs)
+            client = self.clients[client_key]
 
-            response = client(prompt=prompt, messages=messages, **kwargs)
+            try:
+                current_count = self.usage_data["usage"][m_name][key]["daily_reqs"] + 1
+                logger.info("请求中... (模型: %s | Key: %s | 今日: %d/%d)", m_name, label, current_count, m_cfg["rpd"])
 
-            # 更新使用记录
-            self.usage_data["usage"][m_name][key]["daily_reqs"] += 1
-            self.usage_data["usage"][m_name][key]["last_used"] = time.time()
-            self._save_usage()
+                response = client(prompt=prompt, messages=messages, **kwargs)
 
-            self.history.append(client.history[-1])
-            return response
-
-        except Exception as e:
-            error_msg = str(e).lower()
-            # 瞬态错误：429 限流 / 配额耗尽 / 503 过载
-            if any(x in error_msg for x in ["429", "quota", "resource_exhausted", "503", "unavailable", "high demand", "overloaded"]):
-                print(f"  [MultiKey] {m_name} | {label} 触发受限: {str(e)}")
+                # 更新使用记录
+                self.usage_data["usage"][m_name][key]["daily_reqs"] += 1
                 self.usage_data["usage"][m_name][key]["last_used"] = time.time()
-                
-                if "quota" in error_msg or "resource_exhausted" in error_msg:
-                    print(f"  [MultiKey] 判定为模型 {m_name} 的配额已尽，今日下线 {label}...")
-                    self.usage_data["usage"][m_name][key]["daily_reqs"] = m_cfg["rpd"]
-                
                 self._save_usage()
-                
-                # 重试（可能触发切换 Key 或切换模型）
-                max_retries = len(self.api_keys) * 2
-                if retry_count < max_retries:
-                    kwargs['__multi_key_retry'] = retry_count + 1
-                    kwargs['__current_model_idx'] = current_model_idx # 保持当前模型索引，逻辑会自动在 _get_available_key 中切换 key 或切换模型
-                    time.sleep(1.0)
-                    return self.__call__(prompt, messages, **kwargs)
+
+                self.history.append(client.history[-1])
+                return response
+
+            except Exception as e:
+                error_msg = str(e).lower()
+                # #7 修复：使用常量集合匹配瞬态错误
+                if self._is_transient_error(error_msg):
+                    logger.warning("%s | %s 触发受限: %s", m_name, label, e)
+                    self.usage_data["usage"][m_name][key]["last_used"] = time.time()
+                    
+                    if self._is_quota_exhausted(error_msg):
+                        logger.warning("判定为模型 %s 的配额已尽，今日下线 %s...", m_name, label)
+                        self.usage_data["usage"][m_name][key]["daily_reqs"] = m_cfg["rpd"]
+                    
+                    self._save_usage()
+                    
+                    # 重试（循环会自动在 _get_available_key 中切换 key 或切换模型）
+                    if retry_count < max_retries:
+                        retry_count += 1
+                        time.sleep(1.0)
+                        continue
+                    else:
+                        raise
                 else:
                     raise
-            else:
-                raise
 
 
 
@@ -322,7 +382,7 @@ def configure_dspy(
 
     dspy.configure(lm=lm)
     m_names = [m["name"].split("/")[-1] for m in (models or config["models"])]
-    print(f"[MultiKey] DSPy 已配置 | 密钥数: {len(config['keys'])} | 模型列表: {' -> '.join(m_names)}")
+    logger.info("DSPy 已配置 | 密钥数: %d | 模型列表: %s", len(config["keys"]), " -> ".join(m_names))
     return lm
 
 
@@ -374,40 +434,32 @@ def configure_dspy_light(
     )
 
     short_names = [m["name"].split("/")[-1] for m in final_models]
-    print(f"[MultiKey-Light] 轻量 LM 已创建 | 密钥数: {len(config['keys'])} | 模型回退: {' -> '.join(short_names)}")
+    logger.info("轻量 LM 已创建 | 密钥数: %d | 模型回退: %s", len(config["keys"]), " -> ".join(short_names))
     return lm
 
 
-# Alias for backward compatibility
+# 向后兼容别名
 get_gemini_manager = configure_dspy
 
 
-# --- 包 __init__ 导出 ---
-__all__ = [
-    "SmartMultiKeyLM",
-    "get_gemini_manager",
-    "configure_dspy",
-    "configure_dspy_light",
-    "load_api_keys",
-    "load_config",
-]
-
-
 if __name__ == "__main__":
-    print("--- 多密钥 Gemini Manager 测试 ---")
+    # 为直接运行配置基础日志输出
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    logger.info("--- 多密钥 Gemini Manager 测试 ---")
 
     # 从 api_keys.json 自动加载并配置
     lm = configure_dspy()
 
-    print("\n[测试] 发送 3 个快速请求：")
+    logger.info("\n[测试] 发送 3 个快速请求：")
     try:
         for i in range(1, 4):
-            print(f"\n--- 请求 {i} ---")
+            logger.info("\n--- 请求 %d ---", i)
             try:
                 dspy.ChainOfThought("question -> answer")(question=f"Test Q{i}")
             except Exception as e:
-                print(f"(预期错误): {e}")
+                logger.info("(预期错误): %s", e)
     except KeyboardInterrupt:
-        print("\n测试被用户中断。")
+        logger.info("\n测试被用户中断。")
 
-    print("\n完成。查看 key_usage.json 了解使用统计。")
+    logger.info("\n完成。查看 key_usage.json 了解使用统计。")

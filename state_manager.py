@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime, timezone
 from typing import List, Dict, Any
 
 import os
@@ -9,6 +10,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 STATE_FILE = os.path.join(DATA_DIR, "tasklist_state.json")
 CURRENT_STATE_FILE = os.path.join(DATA_DIR, "current_state.json")
+TASKLIST_HISTORY_FILE = os.path.join(DATA_DIR, "tasklist_history.jsonl")
 
 def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inherit_context: str = "") -> List[Dict[str, Any]]:
     """
@@ -75,10 +77,102 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             
     return flat_list
 
-def save_state(state: List[Dict[str, Any]], filename: str = STATE_FILE):
+def _read_raw_state(filename: str) -> List[Dict[str, Any]]:
+    if not os.path.exists(filename):
+        return []
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        return raw if isinstance(raw, list) else []
+    except (json.JSONDecodeError, OSError):
+        return []
+
+def _task_identity(task: Dict[str, Any]) -> str:
+    return str(task.get("notion_block_id") or task.get("id") or "")
+
+def _task_label(task: Dict[str, Any]) -> str:
+    return str(task.get("title") or task.get("original_notion_title") or "")
+
+def _diff_task_states(before: List[Dict[str, Any]], after: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    before_by_id = {_task_identity(item): item for item in before if _task_identity(item)}
+    after_by_id = {_task_identity(item): item for item in after if _task_identity(item)}
+    changes: List[Dict[str, Any]] = []
+
+    for task_id in sorted(after_by_id.keys() - before_by_id.keys()):
+        task = after_by_id[task_id]
+        changes.append({
+            "type": "added",
+            "task_id": task_id,
+            "title": _task_label(task),
+            "after": task,
+        })
+
+    for task_id in sorted(before_by_id.keys() - after_by_id.keys()):
+        task = before_by_id[task_id]
+        changes.append({
+            "type": "deleted",
+            "task_id": task_id,
+            "title": _task_label(task),
+            "before": task,
+        })
+
+    for task_id in sorted(before_by_id.keys() & after_by_id.keys()):
+        old_task = before_by_id[task_id]
+        new_task = after_by_id[task_id]
+        field_changes = {}
+        for field in sorted(set(old_task.keys()) | set(new_task.keys())):
+            old_value = old_task.get(field)
+            new_value = new_task.get(field)
+            if old_value != new_value:
+                field_changes[field] = {
+                    "before": old_value,
+                    "after": new_value,
+                }
+        if field_changes:
+            changes.append({
+                "type": "updated",
+                "task_id": task_id,
+                "title": _task_label(new_task) or _task_label(old_task),
+                "fields": field_changes,
+            })
+
+    return changes
+
+def _should_record_tasklist_history(filename: str) -> bool:
+    return os.path.abspath(filename) == os.path.abspath(STATE_FILE)
+
+def _append_tasklist_history(before: List[Dict[str, Any]], after: List[Dict[str, Any]], filename: str):
+    changes = _diff_task_states(before, after)
+    if not changes:
+        return
+
+    added = sum(1 for change in changes if change["type"] == "added")
+    updated = sum(1 for change in changes if change["type"] == "updated")
+    deleted = sum(1 for change in changes if change["type"] == "deleted")
+    entry = {
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "event": "tasklist_state_changed",
+        "state_file": os.path.relpath(filename, os.path.dirname(__file__)),
+        "summary": {
+            "added": added,
+            "updated": updated,
+            "deleted": deleted,
+            "total_changes": len(changes),
+        },
+        "changes": changes,
+    }
+    with open(TASKLIST_HISTORY_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+def save_state(state: List[Dict[str, Any]], filename: str | None = None):
     """Write the flattened state to a JSON file."""
+    if filename is None:
+        filename = STATE_FILE
+    before = _read_raw_state(filename) if _should_record_tasklist_history(filename) else []
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
+    if _should_record_tasklist_history(filename):
+        _append_tasklist_history(before, state, filename)
 
 def load_state(filename: str = STATE_FILE) -> List[Dict[str, Any]]:
     """Read the flattened state from a JSON file."""

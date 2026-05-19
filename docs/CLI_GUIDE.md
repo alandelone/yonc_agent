@@ -937,6 +937,7 @@ All state files live in the `data/` directory:
 | File | Format | Description |
 |------|--------|-------------|
 | `tasklist_state.json` | JSON Array | Master task state — each task has `id`, `title`, `wbs_level`, `tags`, `metrics`, etc. |
+| `tasklist_history.jsonl` | JSONL | Append-only audit log of `tasklist_state.json` additions, updates, and deletions |
 | `timeliner_state.json` | JSON Object | Cached TIMELINER scope with `main_projects`, `sub_projects`, and last sync time |
 | `timeliner_audit.jsonl` | JSONL | Append-only audit log of deadline changes |
 | `focus_log.json` | JSON Object | Current focus session (`current_focus`) and completed sessions (`history[]`) |

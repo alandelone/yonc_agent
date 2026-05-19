@@ -161,20 +161,24 @@ def configure_cli_logging(level_name: str = "INFO", command_name: str | None = N
     log_dir.mkdir(parents=True, exist_ok=True)
     app_log_path = log_dir / "yonc_agent.log"
 
-    handlers = [
-        logging.StreamHandler(sys.stdout),
-        RotatingFileHandler(
-            app_log_path,
-            maxBytes=5 * 1024 * 1024,
-            backupCount=5,
-            encoding="utf-8",
-        ),
-    ]
+    console_handler = logging.StreamHandler(sys.stdout)
+    if level == logging.DEBUG or _is_flow_trace_command(command_name):
+        console_handler.setLevel(logging.DEBUG)
+    else:
+        console_handler.setLevel(logging.WARNING)
+
+    file_handler = RotatingFileHandler(
+        app_log_path,
+        maxBytes=5 * 1024 * 1024,
+        backupCount=5,
+        encoding="utf-8",
+    )
+    file_handler.setLevel(level)
 
     logging.basicConfig(
-        level=level,
+        level=logging.DEBUG,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-        handlers=handlers,
+        handlers=[console_handler, file_handler],
         force=True,
     )
     if command_name:
@@ -372,6 +376,7 @@ def cmd_daily(
     time_str: str = None,
     cron_name: str = None,
     cron_type: str = None,
+    skip: bool = False,
 ) -> None:
     """Read/write properties on the DailyState database.
 
@@ -425,7 +430,7 @@ def cmd_daily(
                 b"Error: --cron-name is required for cron-post mode.\n"
             )
             return
-        output = post_cron(name_in_db=cron_name, value=value)
+        output = post_cron(name_in_db=cron_name, value=value, skip=skip)
         sys.stdout.buffer.write((output + "\n").encode("utf-8"))
         return
 
@@ -837,6 +842,13 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         cmd_track()
     elif args.command == "suggest":
         cmd_suggest(level=args.level, max_level=args.max_level)
+    elif args.command == "inquiry":
+        from inquiry_dash import cmd_inquiry
+        cmd_inquiry(
+            level=args.level,
+            tired=args.tired,
+            time_str=args.time,
+        )
     elif args.command == "daily":
         cmd_daily(
             mode=args.mode,
@@ -846,6 +858,7 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
             time_str=args.time,
             cron_name=args.cron_name,
             cron_type=args.cron_type,
+            skip=getattr(args, "skip", False),
         )
     elif args.command == "phase":
         cmd_phase(list_only=args.list)
@@ -888,6 +901,11 @@ def main() -> None:
     suggest_parser.add_argument("--level", type=float, default=None, help="Exact energy level to filter (e.g. 3.3, 2, 1)")
     suggest_parser.add_argument("--max-level", type=float, default=None, help="Show tasks at or below this energy level")
 
+    inquiry_parser = subparsers.add_parser("inquiry", help="STATE 1 unified dash: cron-dash + suggest (energy-aware)")
+    inquiry_parser.add_argument("--level", type=float, default=None, help="Energy level for suggest filter (e.g. 3.3, 2, 1)")
+    inquiry_parser.add_argument("--tired", action="store_true", default=False, help="Tired mode: show cron only, skip suggest")
+    inquiry_parser.add_argument("--time", type=str, default=None, help="Override current time (HH:MM) for cron-dash")
+
     daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties & cron management")
     daily_parser.add_argument("mode", nargs="?", default="read",
                               choices=["read", "write", "schema", "cron-dash", "cron-query", "cron-post"],
@@ -904,6 +922,8 @@ def main() -> None:
                               help="Cron name (name_in_db) for cron-query / cron-post")
     daily_parser.add_argument("--cron-type", type=str, default=None, dest="cron_type",
                               help="Cron type filter for cron-query (e.g. trace, traceXlt)")
+    daily_parser.add_argument("--skip", action="store_true", default=False,
+                              help="Skip/ignore a cron task for today (cron-post mode only)")
 
     phase_parser = subparsers.add_parser("phase", help="Assign execution phase emojis to Depth=1 blocks")
     phase_parser.add_argument("--list", action="store_true", default=False,

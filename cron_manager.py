@@ -20,6 +20,7 @@ from config import DAILYSTATE_DB_ID
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 CACHE_FILE = PROJECT_ROOT / "data" / "cron_cache.json"
+SKIP_FILE = PROJECT_ROOT / "data" / "cron_skip_today.json"
 CACHE_MAX_AGE_SECONDS = 86400  # 缓存有效期: 1 天
 
 
@@ -162,6 +163,76 @@ def _get_prop_type(name_in_db: str) -> str | None:
 # ═══════════════════════════════════════════════════════════
 # 3. Dash — 当前时间窗口内的 Cron 列表
 # ═══════════════════════════════════════════════════════════
+
+def load_skip_list() -> set[str]:
+    """Load today's locally skipped cron names."""
+    if not SKIP_FILE.exists():
+        return set()
+    try:
+        data = json.loads(SKIP_FILE.read_text(encoding="utf-8"))
+        if data.get("date") != date.today().isoformat():
+            SKIP_FILE.unlink(missing_ok=True)
+            return set()
+        return set(data.get("skipped", []))
+    except (json.JSONDecodeError, ValueError):
+        return set()
+
+
+def save_skip_list(names: set[str]) -> None:
+    """Save today's locally skipped cron names."""
+    SKIP_FILE.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "date": date.today().isoformat(),
+        "skipped": sorted(names),
+    }
+    SKIP_FILE.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def skip_cron(name_in_db: str) -> str:
+    """Mark a cron as skipped for today without writing to Notion."""
+    entries = load_cron_cache()
+    matched = [e for e in entries if e["name_in_db"] == name_in_db]
+    if not matched:
+        return f"Cron '{name_in_db}' not found."
+
+    skipped = load_skip_list()
+    skipped.add(name_in_db)
+    save_skip_list(skipped)
+    return f"{name_in_db} - SKIPPED for today"
+
+
+def is_cron_skipped(name_in_db: str) -> bool:
+    """Return whether a cron is marked skipped for today."""
+    return name_in_db in load_skip_list()
+
+
+def get_cron_options_desc(name_in_db: str) -> str:
+    """Return a short input hint for a cron property."""
+    prop_type = _get_prop_type(name_in_db)
+    if not prop_type:
+        return ""
+
+    if prop_type == "checkbox":
+        return "(checkbox)"
+    if prop_type == "rich_text":
+        return "(rich_text -> text)"
+    if prop_type == "number":
+        return "(number)"
+    if prop_type == "multi_select":
+        schema = _get_schema()
+        options = schema.get(name_in_db, {}).get("multi_select", {}).get("options", [])
+        opt_names = _extract_multiselect_task_names(options)
+        if opt_names:
+            return f"({' | '.join(opt_names)})"
+        raw_names = [o["name"] for o in options]
+        if raw_names:
+            return f"({' | '.join(raw_names)})"
+        return "(multi_select)"
+    return ""
+
 
 def _read_daily_prop(name_in_db: str, target_date: str | None = None) -> Any:
     """读取今日 DailyState 的单个属性值。"""
@@ -430,6 +501,7 @@ def _increment_multiselect(
 def post_cron(
     name_in_db: str,
     value: str | None = None,
+    skip: bool = False,
 ) -> str:
     """根据 DB 属性类型自动执行打卡/更新操作。
 
@@ -445,6 +517,9 @@ def post_cron(
       - rich_text → 写入 value
       - multi_select → 匹配 task_name 并递增计数
     """
+    if skip:
+        return skip_cron(name_in_db)
+
     from notion_db_utils import (
         build_property_payload,
         extract_all_properties,

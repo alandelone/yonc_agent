@@ -21,6 +21,7 @@ from config import DAILYSTATE_DB_ID
 PROJECT_ROOT = Path(__file__).resolve().parent
 CACHE_FILE = PROJECT_ROOT / "data" / "cron_cache.json"
 SKIP_FILE = PROJECT_ROOT / "data" / "cron_skip_today.json"
+DONE_FILE = PROJECT_ROOT / "data" / "cron_done_today.json"
 CACHE_MAX_AGE_SECONDS = 86400  # 缓存有效期: 1 天
 
 
@@ -191,6 +192,45 @@ def save_skip_list(names: set[str]) -> None:
     )
 
 
+def load_done_list() -> set[str]:
+    """Load today's locally completed cron names."""
+    if not DONE_FILE.exists():
+        return set()
+    try:
+        data = json.loads(DONE_FILE.read_text(encoding="utf-8"))
+        if data.get("date") != date.today().isoformat():
+            DONE_FILE.unlink(missing_ok=True)
+            return set()
+        return set(data.get("done", []))
+    except (json.JSONDecodeError, ValueError):
+        return set()
+
+
+def save_done_list(names: set[str]) -> None:
+    """Save today's locally completed cron names."""
+    DONE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "date": date.today().isoformat(),
+        "done": sorted(names),
+    }
+    DONE_FILE.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def mark_cron_done(name_in_db: str) -> None:
+    """Record that this cron was completed by a successful post today."""
+    done = load_done_list()
+    done.add(name_in_db)
+    save_done_list(done)
+
+
+def is_cron_marked_done(name_in_db: str) -> bool:
+    """Return whether a cron was completed by a successful post today."""
+    return name_in_db in load_done_list()
+
+
 def skip_cron(name_in_db: str) -> str:
     """Mark a cron as skipped for today without writing to Notion."""
     entries = load_cron_cache()
@@ -250,16 +290,16 @@ def _is_cron_done(name_in_db: str, prop_type: str | None, current_value: Any) ->
     """根据属性类型判断该 Cron 是否已完成。
 
     - checkbox: True = done
-    - number: > 0 = done
-    - multi_select: 有选项 = done
+    - number: cannot infer from existing cumulative value
+    - multi_select: cannot infer from existing cumulative tags
     - rich_text: 非空 = done
     """
     if prop_type == "checkbox":
         return bool(current_value)
     elif prop_type == "number":
-        return current_value is not None and current_value > 0
+        return False
     elif prop_type == "multi_select":
-        return bool(current_value)  # 非空列表
+        return False
     elif prop_type == "rich_text":
         return bool(current_value and str(current_value).strip())
     # 无法判断 → 视为未完成
@@ -346,7 +386,7 @@ def get_upcoming_crons(
 
         e["prop_type"] = prop_type
         e["current_value"] = current_value
-        e["done"] = _is_cron_done(name, prop_type, current_value)
+        e["done"] = is_cron_marked_done(name) or _is_cron_done(name, prop_type, current_value)
 
     # 按 start_hour + section 排序
     filtered.sort(key=lambda x: (x["start_hour"], x["section"]))
@@ -456,10 +496,21 @@ def _extract_multiselect_task_names(options: list[dict]) -> list[str]:
     names: set[str] = set()
     pattern = re.compile(r"^\d+\s*X\s*(.+)$")
     for opt in options:
-        m = pattern.match(opt.get("name", ""))
+        raw_name = opt.get("name", "").strip()
+        if not raw_name:
+            continue
+        m = pattern.match(raw_name)
         if m:
             names.add(m.group(1).strip())
+        else:
+            names.add(raw_name)
     return sorted(names)
+
+
+def _is_multiselect_counter_mode(options: list[dict]) -> bool:
+    """Return True when a multi_select schema uses counter-style options."""
+    pattern = re.compile(r"^\d+\s*X\s*.+$")
+    return any(pattern.match(opt.get("name", "").strip()) for opt in options)
 
 
 def _increment_multiselect(
@@ -479,12 +530,17 @@ def _increment_multiselect(
 
     # 索引现有 tags: task_name → (index, current_num)
     tag_map: dict[str, tuple[int, int]] = {}
+    plain_tag_map: dict[str, int] = {}
     for i, tag in enumerate(current_tags):
         m = pattern.match(tag)
         if m:
             num = int(m.group(1))
             name = m.group(2).strip()
             tag_map[name] = (i, num)
+        else:
+            plain_name = tag.strip()
+            if plain_name:
+                plain_tag_map[plain_name] = i
 
     result = list(current_tags)
 
@@ -492,9 +548,26 @@ def _increment_multiselect(
         if target in tag_map:
             idx, old_num = tag_map[target]
             result[idx] = f"{old_num + 1} X {target}"
+        elif target in plain_tag_map:
+            idx = plain_tag_map[target]
+            result[idx] = f"1 X {target}"
         else:
             result.append(f"1 X {target}")
 
+    return result
+
+
+def _add_multiselect_set_values(
+    current_tags: list[str],
+    target_names: list[str],
+) -> list[str]:
+    """Add plain multi_select tags without incrementing or duplicating."""
+    result = list(current_tags)
+    existing = set(current_tags)
+    for target in target_names:
+        if target not in existing:
+            result.append(target)
+            existing.add(target)
     return result
 
 
@@ -546,6 +619,7 @@ def post_cron(
     if prop_type == "checkbox":
         payload = build_property_payload(name_in_db, "checkbox", True)
         update_page_properties(page_id, payload)
+        mark_cron_done(name_in_db)
         return f"✅ {name_in_db} (checkbox) = True"
 
     # ── number ──
@@ -555,6 +629,7 @@ def post_cron(
             num_val = float(value) if "." in value else int(value)
             payload = build_property_payload(name_in_db, "number", num_val)
             update_page_properties(page_id, payload)
+            mark_cron_done(name_in_db)
             return f"✅ {name_in_db} (number) = {num_val}"
         else:
             # 无 value → 当前值 +1
@@ -562,6 +637,7 @@ def post_cron(
             new_val = old + 1
             payload = build_property_payload(name_in_db, "number", new_val)
             update_page_properties(page_id, payload)
+            mark_cron_done(name_in_db)
             return f"✅ {name_in_db} (number) = {old} → {new_val}"
 
     # ── rich_text ──
@@ -569,6 +645,7 @@ def post_cron(
         if value is not None:
             payload = build_property_payload(name_in_db, "rich_text", value)
             update_page_properties(page_id, payload)
+            mark_cron_done(name_in_db)
             return f"✅ {name_in_db} (rich_text) = \"{value}\""
         else:
             return f"📝 {name_in_db} (rich_text) requires --value. Current: \"{current_value or ''}\""
@@ -578,6 +655,7 @@ def post_cron(
         schema = _get_schema()
         options = schema.get(name_in_db, {}).get("multi_select", {}).get("options", [])
         available_names = _extract_multiselect_task_names(options)
+        counter_mode = _is_multiselect_counter_mode(options)
 
         if value is not None:
             # 解析 value（可能逗号分隔: "断水,30腹式呼吸"）
@@ -592,11 +670,17 @@ def post_cron(
                 )
 
             current_tags = current_value if isinstance(current_value, list) else []
-            new_tags = _increment_multiselect(current_tags, target_names)
+            if counter_mode:
+                new_tags = _increment_multiselect(current_tags, target_names)
+                mode_label = "counter"
+            else:
+                new_tags = _add_multiselect_set_values(current_tags, target_names)
+                mode_label = "set"
             payload = build_property_payload(name_in_db, "multi_select", new_tags)
             update_page_properties(page_id, payload)
+            mark_cron_done(name_in_db)
             return (
-                f"✅ {name_in_db} (multi_select) updated\n"
+                f"✅ {name_in_db} (multi_select/{mode_label}) updated\n"
                 f"   before: {current_tags}\n"
                 f"   after:  {new_tags}"
             )

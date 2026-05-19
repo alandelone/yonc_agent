@@ -2,3 +2,6 @@ data/
 __pycache__/
 *.pyc
 unlimited_llmapi/key_usage.json
+/.uv_cache/
+/.uv_python/
+/.*/

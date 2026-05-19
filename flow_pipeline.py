@@ -36,6 +36,18 @@ def _preview(text: str, limit: int = 48) -> str:
     return raw[: max(0, limit - 3)] + "..."
 
 
+def _split_dedupe_key(title: str, structured_cfg: Dict[str, Any]) -> str:
+    """Normalize human-styled and generated split titles for duplicate checks."""
+    text = str(title or "")
+    text = re.sub(r"~~(.*?)~~", r"\1", text)
+    text = text.replace("**", "").replace("*", "").replace("`", "")
+    text = clean_task_title(text, structured_cfg)
+    text = re.split(r"\s*[:：]\s*", text, maxsplit=1)[0]
+    text = re.sub(r"^[^\w\s\x00-\x7F]+", "", text).strip()
+    text = re.sub(r"\s+", " ", text).strip().lower()
+    return text
+
+
 def _extract_wbs_level(task: Dict[str, Any]) -> int | None:
     level = task.get("wbs_level")
     if isinstance(level, str) and level.isdigit():
@@ -582,13 +594,13 @@ def _split_scoped_tasks(
 
         existing_children = children_by_parent.get(task_id, [])
         existing_titles = {
-            str(c.get("original_notion_title", c.get("title", ""))).strip().lower()
+            _split_dedupe_key(c.get("original_notion_title", c.get("title", "")), structured_cfg)
             for c in existing_children
-            if str(c.get("original_notion_title", c.get("title", ""))).strip()
+            if _split_dedupe_key(c.get("original_notion_title", c.get("title", "")), structured_cfg)
         }
         deduped = []
         for s in suggested:
-            key = str(s or "").strip().lower()
+            key = _split_dedupe_key(str(s or ""), structured_cfg)
             if not key or key in existing_titles:
                 continue
             existing_titles.add(key)

@@ -47,6 +47,65 @@ class TestSplitGeneratedRegistration(unittest.TestCase):
         self.assertEqual("generated", inserted.get("origin"))
         self.assertEqual("to_do", inserted.get("notion_type"))
 
+    def test_split_skips_existing_human_styled_child(self):
+        state = [
+            {
+                "id": "parent-1",
+                "notion_block_id": "parent-1",
+                "title": "Thesis",
+                "original_notion_title": "Thesis",
+                "context_heading": "",
+                "parent_id": "page-root",
+                "depth": 0,
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "annotations": {},
+                "checked": None,
+                "has_tag_style": False,
+                "is_generated": False,
+                "origin": "human",
+                "split_stage": "none",
+                "wbs_level": 2,
+                "tags": {},
+            },
+            {
+                "id": "manual-1",
+                "notion_block_id": "manual-1",
+                "title": "Thesis 绘制方法论图",
+                "original_notion_title": "🔸 **`Thesis`** `💻Focus` ❓ 绘制方法论图 : *为专家委绘制研究流程详图/。*",
+                "context_heading": "",
+                "parent_id": "parent-1",
+                "depth": 1,
+                "type": "todo",
+                "notion_type": "to_do",
+                "annotations": {},
+                "checked": False,
+                "has_tag_style": False,
+                "is_generated": False,
+                "origin": "human",
+                "split_stage": "none",
+                "wbs_level": 4,
+                "tags": {},
+            },
+        ]
+        structured_cfg = {
+            "themes": {"Thesis": {"color": "default", "sub_themes": []}},
+            "modes": [{"mode_name": "Focus"}],
+        }
+        scoped_ids = {"parent-1"}
+
+        with patch("flow_pipeline.clean_task_title", side_effect=lambda title, _cfg: str(title).replace("Thesis", "").replace("Focus", "")), patch(
+            "flow_pipeline.build_split_context", return_value={}
+        ), patch("flow_pipeline.split_task", return_value=["绘制方法论图 : 为专家委绘制研究流程详图"]), patch(
+            "flow_pipeline.push_subtasks_to_notion",
+            return_value=[{"id": "child-1", "title": "绘制方法论图 : 为专家委绘制研究流程详图"}],
+        ) as push_mock:
+            parent_count, subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+
+        self.assertEqual(0, parent_count)
+        self.assertEqual(0, subtask_count)
+        push_mock.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

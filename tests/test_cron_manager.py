@@ -7,6 +7,7 @@ from cron_manager import (
     _is_cron_done,
     is_cron_marked_done,
     mark_cron_done,
+    parse_cron_entries,
     post_cron,
 )
 
@@ -22,6 +23,42 @@ def test_multiselect_value_does_not_imply_cron_done():
 def test_checkbox_and_rich_text_still_indicate_done():
     assert _is_cron_done("Checked", "checkbox", True) is True
     assert _is_cron_done("Response", "rich_text", "done") is True
+
+
+def test_comma_hours_without_section_default_tracexlt_to_section_three():
+    entries = parse_cron_entries([
+        "9,12,15,18 | traceXlt | Workout | where are you today?",
+    ])
+
+    assert entries == [
+        {
+            "start_hour": 9,
+            "end_hour": [12, 15, 18],
+            "section": 3,
+            "cron_type": "traceXlt",
+            "name_in_db": "Workout",
+            "description": "where are you today?",
+            "raw": "9,12,15,18 | traceXlt | Workout | where are you today?",
+        }
+    ]
+
+
+def test_comma_hours_with_section_keep_explicit_section():
+    entries = parse_cron_entries([
+        "9,12,15,18.3 | traceXlt | Workout | where are you today?",
+    ])
+
+    assert entries[0]["start_hour"] == 9
+    assert entries[0]["end_hour"] == [12, 15, 18]
+    assert entries[0]["section"] == 3
+
+
+def test_comma_hours_without_section_default_other_types_to_section_one():
+    entries = parse_cron_entries([
+        "9,12,15,18 | trace | Workout | where are you today?",
+    ])
+
+    assert entries[0]["section"] == 1
 
 
 def test_multiselect_options_accept_counter_and_plain_names():

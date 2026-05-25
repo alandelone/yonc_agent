@@ -49,9 +49,9 @@ def parse_cron_entries(raw_cron_list: list[str]) -> list[dict]:
     """
     entries: list[dict] = []
 
-    # 匹配 hour 部分: `8.1` 或 `9-18.3` 或 `9,12,15,18.1`
+    # Match hour specs like `8.1`, `9-18.3`, `9,12,15,18.1`, or `9,12,15,18`.
     hour_pattern = re.compile(
-        r"^\s*(?P<start>\d+)(?:(?P<sep>[-|,])(?P<end>[\d,]+))?\.(?P<section>\d+)\s*$"
+        r"^\s*(?P<start>\d+)(?:(?P<sep>[-,])(?P<end>[\d,]+))?(?:\.(?P<section>\d+))?\s*$"
     )
 
     for raw_line in raw_cron_list:
@@ -78,7 +78,11 @@ def parse_cron_entries(raw_cron_list: list[str]) -> list[dict]:
             end_hour = [int(x.strip()) for x in m.group("end").split(",") if x.strip()]
         else:
             end_hour = None
-        section = int(m.group("section"))
+        section_raw = m.group("section")
+        if section_raw:
+            section = int(section_raw)
+        else:
+            section = 3 if cron_type.strip().lower() == "tracexlt" else 1
 
         entries.append({
             "start_hour": start_hour,
@@ -126,7 +130,11 @@ def load_cron_cache() -> list[dict]:
         data = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
         return data.get("entries", [])
 
-    # 缓存过期或不存在 → 重新拉取
+    return refresh_cron_cache()
+
+
+def refresh_cron_cache() -> list[dict]:
+    """Force reload Cron settings from YONCTASK_CONFIG and update the local cache."""
     from config_reader import load_config
 
     raw_cfg = load_config()

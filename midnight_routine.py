@@ -85,12 +85,12 @@ def _build_cron_expr(start_hour, end_hour):
 
 
 def register_crons():
-    logger.info("Registering crons to nanobot action.jsonl...")
+    logger.info("Refreshing cron settings and registering crons to nanobot action.jsonl...")
     try:
-        from cron_manager import load_cron_cache
-        entries = load_cron_cache()
+        from cron_manager import refresh_cron_cache
+        entries = refresh_cron_cache()
     except Exception as e:
-        logger.error(f"Failed to load cron cache: {e}")
+        logger.error(f"Failed to refresh cron settings: {e}")
         return
         
     target_types = {"alert", "trace", "tracexlt"}

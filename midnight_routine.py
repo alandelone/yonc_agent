@@ -2,7 +2,7 @@ import json
 import logging
 import os
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 
 # 配置日志
@@ -17,6 +17,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 WORKSPACE_ROOT = PROJECT_ROOT.parent
 DAILYSTATE_DIR = WORKSPACE_ROOT / "sessions" / "dailystate"
 ACTION_JSONL_PATH = WORKSPACE_ROOT / "cron" / "action.jsonl"
+LOCAL_TZ = timezone(timedelta(hours=8))
 
 def push_yesterday_dailystate():
     yesterday = date.today() - timedelta(days=1)
@@ -84,8 +85,25 @@ def _build_cron_expr(start_hour, end_hour):
     return f"0 {start_hour} * * *"
 
 
+def _expand_schedule_hours(start_hour, end_hour) -> list[int]:
+    if end_hour is None:
+        hours = [start_hour]
+    elif isinstance(end_hour, list):
+        hours = [start_hour] + end_hour
+    elif isinstance(end_hour, int):
+        hours = list(range(start_hour, end_hour + 1))
+    else:
+        hours = [start_hour]
+
+    return sorted({h for h in hours if isinstance(h, int) and 0 <= h <= 23})
+
+
+def _build_once_at(today: date, hour: int) -> str:
+    return datetime.combine(today, time(hour=hour), tzinfo=LOCAL_TZ).isoformat()
+
+
 def register_crons():
-    logger.info("Refreshing cron settings and registering crons to nanobot action.jsonl...")
+    logger.info("Refreshing cron settings and registering one-time crons to nanobot action.jsonl...")
     try:
         from cron_manager import refresh_cron_cache
         entries = refresh_cron_cache()
@@ -95,6 +113,7 @@ def register_crons():
         
     target_types = {"alert", "trace", "tracexlt"}
     actions_to_append = []
+    today = date.today()
     
     for entry in entries:
         cron_type = entry.get("cron_type", "").lower()
@@ -106,33 +125,31 @@ def register_crons():
         name_in_db = entry.get("name_in_db", "unknown")
         section = entry.get("section", 1)
         description = entry.get("description", "")
-        
-        expr = _build_cron_expr(start_hour, end_hour)
-        
-        job_id = f"cron_{name_in_db}_{section}"
-        
-        action_payload = {
-            "action": "add",
-            "params": {
-                "id": job_id,
-                "name": name_in_db,
-                "enabled": True,
-                "schedule": {
-                    "kind": "cron",
-                    "expr": expr,
-                    "tz": "Asia/Kuala_Lumpur"
+
+        for hour in _expand_schedule_hours(start_hour, end_hour):
+            job_id = f"cron_{name_in_db}_{section}_{today.isoformat()}_{hour:02d}"
+            action_payload = {
+                "action": "add",
+                "params": {
+                    "id": job_id,
+                    "name": name_in_db,
+                    "enabled": True,
+                    "schedule": {
+                        "kind": "at",
+                        "at": _build_once_at(today, hour),
+                        "tz": "Asia/Kuala_Lumpur"
+                    },
+                    "payload": {
+                        "kind": "agent_turn",
+                        "message": f"[{entry.get('cron_type')}] {name_in_db}: {description}",
+                        "deliver": True,
+                        "channel": "telegram",
+                        "to": "1055853620"
+                    },
+                    "delete_after_run": True
                 },
-                "payload": {
-                    "kind": "agent_turn",
-                    "message": f"[{entry.get('cron_type')}] {name_in_db}: {description}",
-                    "deliver": True,
-                    "channel": "telegram",
-                    "to": "1055853620"
-                },
-                "delete_after_run": False
             }
-        }
-        actions_to_append.append(json.dumps(action_payload, ensure_ascii=False))
+            actions_to_append.append(json.dumps(action_payload, ensure_ascii=False))
 
     if actions_to_append:
         try:

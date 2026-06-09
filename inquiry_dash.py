@@ -1,36 +1,119 @@
 """
-STATE 1 — Agentic Inquiry & Task Matrix 统一面板。
+STATE 1 - Agentic Inquiry & Task Matrix unified panel.
 
-将 cron-dash 和 suggest 合并为单一命令输出，
-根据 energy level 决定是否包含 suggest 任务。
-
-用法:
-  python main.py inquiry --level 3.3     # Normal+ energy, cron + suggest
-  python main.py inquiry --tired         # Tired mode, cron only
+Combines cron-dash and energy-aware task suggestions into one command:
+  python main.py inquiry --level 3.3
+  python main.py inquiry --tired
 """
 
+import json
 import sys
+from collections import OrderedDict
 from datetime import date, datetime
+from pathlib import Path
 from typing import Any
 
 from config_reader import load_config, structure_yonctask_config
 from cron_manager import (
     get_cron_options_desc,
     get_upcoming_crons,
-    is_cron_skipped,
     load_skip_list,
 )
 from state_manager import STATE_FILE, load_state
 
 
-def _build_cron_items(
-    time_str: str | None = None,
-) -> list[dict[str, Any]]:
-    """获取当前时间窗口内的 cron 列表，标注 skip 状态和选项描述。
+PROJECT_ROOT = Path(__file__).resolve().parent
+INQUIRY_EXPORT_FILE = PROJECT_ROOT.parent / "yonc_inquiry_codes.json"
 
-    返回每项包含:
-      - name_in_db, description, done, skipped, options_desc, prop_type, ...
-    """
+
+def _status_label(item: dict[str, Any]) -> str:
+    if item.get("skipped"):
+        return "skip"
+    if item.get("done"):
+        return "done"
+    return "pending"
+
+
+def _with_codes(items: list[dict[str, Any]], prefix: str) -> list[dict[str, Any]]:
+    coded: list[dict[str, Any]] = []
+    for index, item in enumerate(items, start=1):
+        entry = dict(item)
+        entry["code"] = f"{prefix}{index}"
+        entry["arrangement_index"] = index
+        coded.append(entry)
+    return coded
+
+
+def _compact_cron_item(item: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "code": item["code"],
+        "arrangement_index": item.get("arrangement_index"),
+        "description": item.get("description", ""),
+        "name_in_db": item.get("name_in_db", ""),
+        "cron_type": item.get("cron_type", ""),
+        "status": _status_label(item),
+        "options_desc": item.get("options_desc", ""),
+        "start_hour": item.get("start_hour"),
+        "end_hour": item.get("end_hour"),
+        "section": item.get("section"),
+        "raw": item.get("raw", ""),
+    }
+
+
+def _compact_task_item(item: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "code": item["code"],
+        "arrangement_index": item.get("arrangement_index"),
+        "description": item.get("title", ""),
+        "title": item.get("title", ""),
+        "mode_name": item.get("mode_name", ""),
+        "mode_level": item.get("mode_level", ""),
+        "source": item.get("source", "suggest"),
+    }
+
+
+def _write_inquiry_export(
+    *,
+    today_label: str,
+    now_label: str,
+    energy_label: str,
+    level: float | None,
+    tired: bool,
+    cron_items: list[dict[str, Any]],
+    task_items: list[dict[str, Any]],
+) -> Path:
+    export = {
+        "cron_section": {
+            item["code"]: _compact_cron_item(item)
+            for item in cron_items
+        },
+        "tasklist_section": {
+            item["code"]: _compact_task_item(item)
+            for item in task_items
+        },
+        "_meta": {
+            "generated_at": datetime.now().isoformat(timespec="seconds"),
+            "date": today_label,
+            "time": now_label,
+            "energy": {
+                "label": energy_label,
+                "level": level,
+                "tired": tired,
+            },
+            "code_rules": {
+                "cron_section": "Cron tasks are addressed as C1, C2, C3 in display order.",
+                "tasklist_section": "Tasklist/suggest tasks are addressed as T1, T2, T3 in display order.",
+            },
+        },
+    }
+    INQUIRY_EXPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with INQUIRY_EXPORT_FILE.open("w", encoding="utf-8") as f:
+        json.dump(export, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    return INQUIRY_EXPORT_FILE
+
+
+def _build_cron_items(time_str: str | None = None) -> list[dict[str, Any]]:
     crons = get_upcoming_crons(time_str=time_str)
     skipped_set = load_skip_list()
 
@@ -44,14 +127,7 @@ def _build_cron_items(
     return items
 
 
-def _build_suggest_items(
-    max_level: float,
-) -> list[dict[str, Any]]:
-    """获取 suggest 任务列表（复用 cmd_suggest 的核心过滤逻辑）。
-
-    返回每项包含:
-      - title, mode_name, mode_level
-    """
+def _build_suggest_items(max_level: float) -> list[dict[str, Any]]:
     raw_cfg = load_config()
     structured_cfg = structure_yonctask_config(raw_cfg)
     state = load_state(STATE_FILE)
@@ -60,39 +136,35 @@ def _build_suggest_items(
         return []
 
     all_modes = structured_cfg.get("modes", [])
-
-    # 根据 max_level 收集匹配的 mode 名称
     matched_mode_names: set[str] = set()
-    for m in all_modes:
-        m_level = m.get("level", 0)
-        if m_level <= max_level:
-            matched_mode_names.add(m["mode_name"])
+    for mode in all_modes:
+        mode_level = mode.get("level", 0)
+        if mode_level <= max_level:
+            matched_mode_names.add(mode["mode_name"])
 
     if not matched_mode_names:
         return []
 
-    # 过滤 L4 已分配且 processed 的任务
     l4_tasks = [
-        t for t in state
-        if t.get("wbs_level") == 4
-        and (t.get("tags") or {}).get("Modes")
-        and t.get("generated_selection_processed", False)
-        and not t.get("checked")
-        and str(t.get("status", "")).lower() not in ["done", "completed"]
+        task for task in state
+        if task.get("wbs_level") == 4
+        and (task.get("tags") or {}).get("Modes")
+        and task.get("generated_selection_processed", False)
+        and not task.get("checked")
+        and str(task.get("status", "")).lower() not in ["done", "completed"]
     ]
 
-    # 匹配 mode_name
-    known_modes = [m_obj["mode_name"] for m_obj in all_modes]
+    known_modes = [mode["mode_name"] for mode in all_modes]
     items: list[dict[str, Any]] = []
-    for t in l4_tasks:
-        mode_val = (t.get("tags") or {}).get("Modes", "")
+    for task in l4_tasks:
+        mode_val = (task.get("tags") or {}).get("Modes", "")
         for mode_name in known_modes:
             if mode_name in mode_val and mode_name in matched_mode_names:
                 mode_level = next(
-                    (m["level"] for m in all_modes if m["mode_name"] == mode_name),
+                    (mode["level"] for mode in all_modes if mode["mode_name"] == mode_name),
                     "?",
                 )
-                title = t.get("original_notion_title", t.get("title", ""))
+                title = task.get("original_notion_title", task.get("title", ""))
                 items.append({
                     "title": title,
                     "mode_name": mode_name,
@@ -109,17 +181,10 @@ def cmd_inquiry(
     tired: bool = False,
     time_str: str | None = None,
 ) -> None:
-    """STATE 1 统一面板: 合并 cron-dash + suggest 输出。
-
-    Args:
-        level: 能量等级数字 (e.g. 3.3)，用于过滤 suggest 任务
-        tired: True 时仅输出 cron（不拉 suggest）
-        time_str: 覆盖当前时间 (HH:MM)，用于调试
-    """
+    """STATE 1 unified panel: cron-dash plus energy-aware task suggestions."""
     now_label = time_str or datetime.now().strftime("%H:%M")
     today_label = date.today().isoformat()
 
-    # 确定 energy 标签
     if tired:
         energy_label = "Tired"
     elif level is not None:
@@ -127,103 +192,93 @@ def cmd_inquiry(
     else:
         energy_label = "Normal"
 
-    # ── 获取 cron 列表 ──
-    cron_items = _build_cron_items(time_str=time_str)
-
-    # 统计: 排除 done 和 skipped 的 pending 数
+    cron_items = _with_codes(_build_cron_items(time_str=time_str), "C")
     pending_crons = [
-        c for c in cron_items
-        if not c["done"] and not c["skipped"]
+        cron for cron in cron_items
+        if not cron["done"] and not cron["skipped"]
     ]
     total_crons = len(cron_items)
 
-    # ── 获取 suggest 列表（仅非 tired 模式）──
     suggest_items: list[dict[str, Any]] = []
     if not tired and level is not None:
-        suggest_items = _build_suggest_items(max_level=level)
+        suggest_items = _with_codes(_build_suggest_items(max_level=level), "T")
 
-    # ── 格式化输出 ──
+    export_path = _write_inquiry_export(
+        today_label=today_label,
+        now_label=now_label,
+        energy_label=energy_label,
+        level=level,
+        tired=tired,
+        cron_items=cron_items,
+        task_items=suggest_items,
+    )
+
     lines: list[str] = [
         f"INQUIRY | {today_label} {now_label} | Energy: {energy_label}",
-        "═" * 60,
+        "=" * 60,
     ]
 
-    # Cron 区块
     if cron_items:
-        lines.append(
-            f"\n⏰ 定时任务 ({len(pending_crons)} pending / {total_crons} total)"
-        )
-        lines.append("─" * 55)
-
-        counter = 1
-        for c in cron_items:
-            # 状态标记
-            if c["skipped"]:
-                status = "❌ SKIP "
-            elif c["done"]:
-                status = "✅ DONE "
+        lines.append(f"\nCron section ({len(pending_crons)} pending / {total_crons} total)")
+        lines.append("-" * 55)
+        for cron in cron_items:
+            if cron["skipped"]:
+                status = "SKIP "
+            elif cron["done"]:
+                status = "DONE "
             else:
-                status = "        "
+                status = "     "
 
-            # 描述（截取前 40 字符）
-            desc = c.get("description", "")
+            desc = cron.get("description", "")
             desc_part = desc[:40] if desc else ""
-
-            # 选项描述（非 checkbox/text 类型追加选项）
-            opts = c.get("options_desc", "")
+            opts = cron.get("options_desc", "")
             opts_part = f"  {opts}" if opts else ""
-
-            type_label = f"({c.get('cron_type', 'unknown')}) "
-            line = f"  {counter:3d}. {status}{c['name_in_db']} {type_label}— {desc_part}{opts_part}"
+            type_label = f"({cron.get('cron_type', 'unknown')}) "
+            line = f"  {cron['code']:>3}. {status}{cron['name_in_db']} {type_label}- {desc_part}{opts_part}"
             lines.append(line)
-            counter += 1
     else:
-        lines.append("\n⏰ 当前时间窗口内无定时任务。")
-        counter = 1
+        lines.append("\nCron section: no cron tasks in the current time window.")
 
-    # Suggest 区块
     if suggest_items:
-        lines.append(f"\n💻 建议任务 (≤Lv{level}, {len(suggest_items)} tasks)")
-        lines.append("─" * 55)
+        lines.append(f"\nTasklist section (<= Lv{level}, {len(suggest_items)} tasks)")
+        lines.append("-" * 55)
 
-        # 按 mode 分组
-        from collections import OrderedDict
-        by_mode: OrderedDict[str, list] = OrderedDict()
+        by_mode: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
         for item in suggest_items:
             by_mode.setdefault(item["mode_name"], []).append(item)
 
         for mode_name, tasks in by_mode.items():
-            mode_lv = tasks[0]["mode_level"]
-            lines.append(f"\n  ── {mode_name} (Lv{mode_lv}, {len(tasks)} tasks) ──")
-            for t in tasks:
-                # 编号延续 cron 区块的 counter
-                line = f"  {counter:3d}. {t['title']}"
-                lines.append(line)
-                counter += 1
+            mode_level = tasks[0]["mode_level"]
+            lines.append(f"\n  -- {mode_name} (Lv{mode_level}, {len(tasks)} tasks) --")
+            for task in tasks:
+                lines.append(f"  {task['code']:>3}. {task['title']}")
     elif not tired and level is not None:
-        lines.append(f"\n💻 无可用建议任务 (≤Lv{level})")
+        lines.append(f"\nTasklist section: no available suggested tasks (<= Lv{level}).")
 
-    # Tired 模式底部提示
     if tired:
-        lines.append("\n🛌 能量较低，建议完成定时任务后休息。")
+        lines.append("\nLow energy: finish required cron tasks first, then rest.")
 
-    # ── 添加 Agent 执行指南 (Guidelines) ──
-    pending_types = set(c.get("cron_type", "") for c in pending_crons)
+    pending_types = set(cron.get("cron_type", "") for cron in pending_crons)
     if pending_types:
         if len(pending_types) == 1:
-            ctype = list(pending_types)[0]
-            if ctype == "alert":
-                lines.append("\n💡 [AGENT GUIDELINE]: Just alert the user. If user acknowledges, run `daily cron-post`.")
-            elif ctype == "trace":
-                lines.append("\n💡 [AGENT GUIDELINE]: Ask the user (Q>A). If user confirms, run `daily cron-post`.")
-            elif ctype == "traceXlt":
-                lines.append("\n💡 [AGENT GUIDELINE]: This is a recurring check. Ask the user's status. Record their answer via `daily cron-post`.")
+            cron_type = list(pending_types)[0]
+            if cron_type == "alert":
+                lines.append("\n[AGENT GUIDELINE]: Just alert the user. If user acknowledges, run `daily cron-post`.")
+            elif cron_type == "trace":
+                lines.append("\n[AGENT GUIDELINE]: Ask the user (Q>A). If user confirms, run `daily cron-post`.")
+            elif cron_type == "traceXlt":
+                lines.append("\n[AGENT GUIDELINE]: This is a recurring check. Ask the user's status. Record their answer via `daily cron-post`.")
             else:
-                lines.append(f"\n💡 [AGENT GUIDELINE]: Handle the pending {ctype} task and run `daily cron-post`.")
+                lines.append(f"\n[AGENT GUIDELINE]: Handle the pending {cron_type} task and run `daily cron-post`.")
         else:
-            lines.append("\n💡 [AGENT GUIDELINE]: You have multiple types. Alert the user for `alert`, ask for `trace`/`traceXlt` status, then use `daily cron-post` when they reply.")
+            lines.append("\n[AGENT GUIDELINE]: You have multiple types. Alert the user for `alert`, ask for `trace`/`traceXlt` status, then use `daily cron-post` when they reply.")
 
-    lines.append("")  # 结尾空行
+    lines.append(
+        f"\n[AGENT GUIDELINE]: Read `{export_path}` once after this command. "
+        "Use C# for cron_section items and T# for tasklist_section items when discussing or acting on tasks."
+    )
+    lines.append(f"[JSON EXPORT]: {export_path}")
+    lines.append("")
 
     output = "\n".join(lines)
     sys.stdout.buffer.write(output.encode("utf-8"))

@@ -12,14 +12,14 @@ def test_calculate_progress():
         {"type": "heading_2", "tags": {"Task Theme with colour": "Hide"}},
     ]
 
-    stats = timeliner_sync.calculate_progress_by_subtheme(tasks)
-    assert stats["Maker Fitness"] == (1, 2)
-    assert stats["Study"] == (1, 1)
+    stats = timeliner_sync.calculate_metrics_by_subtheme(tasks)
+    assert stats["Maker Fitness"] == {"completed": 1, "total": 2, "time": 0.0}
+    assert stats["Study"] == {"completed": 1, "total": 1, "time": 0.0}
     assert "Hide" not in stats
 
-    assert timeliner_sync.get_percentage("Fitness", stats) == 50
-    assert timeliner_sync.get_percentage("Study", stats) == 100
-    assert timeliner_sync.get_percentage("Unknown", stats) == 0
+    assert timeliner_sync.get_theme_metrics("Fitness", stats)[0] == 50
+    assert timeliner_sync.get_theme_metrics("Study", stats)[0] == 100
+    assert timeliner_sync.get_theme_metrics("Unknown", stats)[0] == 0
 
 
 def test_build_rich_text():
@@ -98,7 +98,7 @@ def test_sync_timeliner_uses_audit_only_and_state_heading_only(monkeypatch):
     pushed_blocks = []
     saved_payload = {}
 
-    monkeypatch.setattr(timeliner_sync, "fetch_and_parse_timeliner", lambda: entries)
+    monkeypatch.setattr(timeliner_sync, "fetch_and_parse_timeliner", lambda **kwargs: entries)
     monkeypatch.setattr(timeliner_sync, "load_state", lambda *_: [])
     monkeypatch.setattr(
         timeliner_sync,
@@ -174,7 +174,7 @@ def test_sync_timeliner_first_observation_skips_audit(monkeypatch):
     called = {"record": 0}
     saved_payload = {}
 
-    monkeypatch.setattr(timeliner_sync, "fetch_and_parse_timeliner", lambda: entries)
+    monkeypatch.setattr(timeliner_sync, "fetch_and_parse_timeliner", lambda **kwargs: entries)
     monkeypatch.setattr(timeliner_sync, "load_state", lambda *_: [])
     monkeypatch.setattr(timeliner_sync, "load_latest_audit_dates", lambda: ({}, {}))
     monkeypatch.setattr(timeliner_sync, "resolve_status_emoji", lambda *_: "A")

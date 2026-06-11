@@ -1,0 +1,1140 @@
+{
+  "daystyles": [
+    {
+      "dayStyle": "Uni Research",
+      "description": "Normal working day focused on research and university work.",
+      "block_id": "37ce1eb5-ce57-8095-b2de-d411ae904027",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-808a-b681-c7a9e6bb4dc8"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-80ec-ad37-cf3ddc651c3e"
+        },
+        {
+          "location": "DeepWorkSpace",
+          "block_id": "37ce1eb5-ce57-80a7-b3a5-ceeebc8e48be"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80d5-b71d-d1830acd2f07"
+        },
+        {
+          "location": "DeepWorkSpace",
+          "block_id": "37ce1eb5-ce57-80b5-abf0-ef4e5d744809"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-8056-80c6-df52a89861b0"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80fb-8974-f34a64bc0550"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "07:00",
+          "activity": "WakeUp",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-801a-8a66-c22755f1fe52",
+          "raw": "time: \"07:00\" || activity: WakeUp || location: Home || energy: 3"
+        },
+        {
+          "time": "07:15",
+          "activity": "CookMeal",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80cd-ba3c-f95345c86714",
+          "raw": "time: \"07:15\" || activity: CookMeal || location: Home || energy: 3"
+        },
+        {
+          "time": "08:00",
+          "activity": "Drive",
+          "location": "Transit",
+          "energy": 4,
+          "tasktype": [
+            "Thinking",
+            "VoiceCapture"
+          ],
+          "block_id": "37ce1eb5-ce57-80ce-93bf-dd015180cb5e",
+          "raw": "time: \"08:00\" || activity: Drive || location: Transit || energy: 4 || tasktype: Thinking, VoiceCapture"
+        },
+        {
+          "time": "09:00",
+          "activity": "ResearchWork",
+          "location": "DeepWorkSpace",
+          "energy": 5,
+          "tasktype": [
+            "Research",
+            "DeepWork",
+            "Writing"
+          ],
+          "block_id": "37ce1eb5-ce57-802a-89dc-c9d2df835d6e",
+          "raw": "time: \"09:00\" || activity: ResearchWork || location: DeepWorkSpace || energy: 5 || tasktype: Research, DeepWork, Writing"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80ef-a6c5-fd6766a1a3f9",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "13:00",
+          "activity": "ResearchWork",
+          "location": "DeepWorkSpace",
+          "energy": 4,
+          "tasktype": [
+            "Research",
+            "DeepWork"
+          ],
+          "block_id": "37ce1eb5-ce57-80bc-8e9f-ffd5fc7efd37",
+          "raw": "time: \"13:00\" || activity: ResearchWork || location: DeepWorkSpace || energy: 4 || tasktype: Research, DeepWork"
+        },
+        {
+          "time": "18:00",
+          "activity": "Drive",
+          "location": "Transit",
+          "energy": 3,
+          "tasktype": [
+            "Thinking"
+          ],
+          "block_id": "37ce1eb5-ce57-802f-8826-d5d63cf895d1",
+          "raw": "time: \"18:00\" || activity: Drive || location: Transit || energy: 3 || tasktype: Thinking"
+        },
+        {
+          "time": "19:00",
+          "activity": "CookMeal",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-807b-ad7c-cce1ed2537f5",
+          "raw": "time: \"19:00\" || activity: CookMeal || location: Home || energy: 3"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Home",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8064-bc5b-e9241eb44210",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Home || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Usual Friday",
+      "description": "University or library day combined with partner time.",
+      "block_id": "37ce1eb5-ce57-8094-9b85-f6977126cc19",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8090-9c7b-f192a10fa3ee"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-8015-9e09-c03d5662b706"
+        },
+        {
+          "location": "FocusSpace",
+          "block_id": "37ce1eb5-ce57-807c-8f50-dfb06a2e4ce5"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-801d-a400-f4226aadedab"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80c0-bc73-f32f7258ca3b"
+        },
+        {
+          "location": "FocusSpace",
+          "block_id": "37ce1eb5-ce57-80bb-85fc-f69aa67174ea"
+        },
+        {
+          "location": "ExerciseSpace",
+          "block_id": "37ce1eb5-ce57-8013-8f28-fb320ae874b9"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-804c-a634-dbb3f1d4f1cc"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-8024-a233-f02a7be34f84"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80ff-8b9d-cb9b64112e11"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "07:30",
+          "activity": "WakeUp",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8092-8d9c-ff9bcf7ede0e",
+          "raw": "time: \"07:30\" || activity: WakeUp || location: Home || energy: 3"
+        },
+        {
+          "time": "08:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80c8-8503-effee85e76d8",
+          "raw": "time: \"08:00\" || activity: EatMeal || location: Eat || energy: 4"
+        },
+        {
+          "time": "09:00",
+          "activity": "Study",
+          "location": "FocusSpace",
+          "energy": 5,
+          "tasktype": [
+            "Reading",
+            "Research",
+            "DeepWork"
+          ],
+          "block_id": "37ce1eb5-ce57-8092-a36c-d5a03f66b61f",
+          "raw": "time: \"09:00\" || activity: Study || location: FocusSpace || energy: 5 || tasktype: Reading, Research, DeepWork"
+        },
+        {
+          "time": "11:45",
+          "activity": "FetchPartner",
+          "location": "Transit",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8097-ade8-f15e284ff3df",
+          "raw": "time: \"11:45\" || activity: FetchPartner || location: Transit || energy: 4"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8032-821c-fef3a4c9472f",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 4"
+        },
+        {
+          "time": "14:00",
+          "activity": "Study",
+          "location": "FocusSpace",
+          "energy": 4,
+          "tasktype": [
+            "Reading",
+            "Writing",
+            "Planning"
+          ],
+          "block_id": "37ce1eb5-ce57-80bb-b6d8-d0d0c3b9894f",
+          "raw": "time: \"14:00\" || activity: Study || location: FocusSpace || energy: 4 || tasktype: Reading, Writing, Planning"
+        },
+        {
+          "time": "17:00",
+          "activity": "WalkExercise",
+          "location": "ExerciseSpace",
+          "energy": 4,
+          "tasktype": [
+            "Exercise",
+            "Thinking"
+          ],
+          "block_id": "37ce1eb5-ce57-8029-bf7d-c13687d26c64",
+          "raw": "time: \"17:00\" || activity: WalkExercise || location: ExerciseSpace || energy: 4 || tasktype: Exercise, Thinking"
+        },
+        {
+          "time": "18:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80ec-aaa0-fe8e94a736da",
+          "raw": "time: \"18:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Home",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8055-a615-c4ea49be59cd",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Home || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Kuching Weekend Free",
+      "description": "Relaxed weekend with flexible personal activities.",
+      "block_id": "37ce1eb5-ce57-8013-a854-e6d0437dc49c",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8084-8a4c-cc3b71d756ab"
+        },
+        {
+          "location": "ShoppingArea",
+          "block_id": "37ce1eb5-ce57-8051-9559-c1bd3da24378"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80b3-bd88-d20c94cf7e47"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80cc-879a-cfd92664809c"
+        },
+        {
+          "location": "RestSpace",
+          "block_id": "37ce1eb5-ce57-802a-8e2e-ff233cd0e7ac"
+        },
+        {
+          "location": "ExerciseSpace",
+          "block_id": "37ce1eb5-ce57-80b2-89f3-f184e400dae1"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-809d-bcbc-d576f7ba900c"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-800c-ae85-fccdb6d5b092"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "08:30",
+          "activity": "WakeUp",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-808a-8164-f1560435916e",
+          "raw": "time: \"08:30\" || activity: WakeUp || location: Home || energy: 3"
+        },
+        {
+          "time": "10:00",
+          "activity": "GeneralShopping",
+          "location": "ShoppingArea",
+          "energy": 4,
+          "tasktype": [
+            "Shopping"
+          ],
+          "block_id": "37ce1eb5-ce57-8033-9e6e-c9257c0f0e8c",
+          "raw": "time: \"10:00\" || activity: GeneralShopping || location: ShoppingArea || energy: 4 || tasktype: Shopping"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80f8-a5d3-f91bbd646006",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 4"
+        },
+        {
+          "time": "14:00",
+          "activity": "Nap",
+          "location": "RestSpace",
+          "energy": 2,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80df-b421-c8b4b0c31bd6",
+          "raw": "time: \"14:00\" || activity: Nap || location: RestSpace || energy: 2"
+        },
+        {
+          "time": "17:00",
+          "activity": "Swim",
+          "location": "ExerciseSpace",
+          "energy": 4,
+          "tasktype": [
+            "Exercise"
+          ],
+          "block_id": "37ce1eb5-ce57-80f0-bfeb-ee9e322f327a",
+          "raw": "time: \"17:00\" || activity: Swim || location: ExerciseSpace || energy: 4 || tasktype: Exercise"
+        },
+        {
+          "time": "19:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-800f-8077-ccc55805d1f3",
+          "raw": "time: \"19:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Home",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80ad-a42c-eb4c60963beb",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Home || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Kuching Weekend Event",
+      "description": "Weekend containing event preparation and event execution.",
+      "block_id": "37ce1eb5-ce57-808a-a25a-c1a9a56b0713",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80a6-ba6c-f4c9bc764739"
+        },
+        {
+          "location": "ShoppingArea",
+          "block_id": "37ce1eb5-ce57-8042-91a7-d79a202b8ebd"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80ab-be75-fc44c874d55a"
+        },
+        {
+          "location": "EventVenue",
+          "block_id": "37ce1eb5-ce57-80da-8569-ccfac39c3576"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80b0-b2d6-e3daec3f51f6"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8018-9bfe-e9f554c5f171"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "08:30",
+          "activity": "WakeUp",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8088-b10e-f76d7e04225d",
+          "raw": "time: \"08:30\" || activity: WakeUp || location: Home || energy: 3"
+        },
+        {
+          "time": "10:00",
+          "activity": "GeneralShopping",
+          "location": "ShoppingArea",
+          "energy": 4,
+          "tasktype": [
+            "Shopping"
+          ],
+          "block_id": "37ce1eb5-ce57-809e-b705-ce0eee5dcf21",
+          "raw": "time: \"10:00\" || activity: GeneralShopping || location: ShoppingArea || energy: 4 || tasktype: Shopping"
+        },
+        {
+          "time": "11:00",
+          "activity": "EventPreparation",
+          "location": "Home",
+          "energy": 4,
+          "tasktype": [
+            "EventOps",
+            "Planning"
+          ],
+          "block_id": "37ce1eb5-ce57-80df-8730-c48c0f4c0e8f",
+          "raw": "time: \"11:00\" || activity: EventPreparation || location: Home || energy: 4 || tasktype: EventOps, Planning"
+        },
+        {
+          "time": "15:00",
+          "activity": "EventOperation",
+          "location": "EventVenue",
+          "energy": 5,
+          "tasktype": [
+            "EventOps",
+            "Social"
+          ],
+          "block_id": "37ce1eb5-ce57-80ec-9e94-eb9253c86740",
+          "raw": "time: \"15:00\" || activity: EventOperation || location: EventVenue || energy: 5 || tasktype: EventOps, Social"
+        },
+        {
+          "time": "19:30",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-807a-a972-ece6782c62b8",
+          "raw": "time: \"19:30\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Home",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-808c-9438-d146a1daee28",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Home || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Miri Free",
+      "description": "A super free day",
+      "block_id": "37ce1eb5-ce57-803d-b413-cc4761372741",
+      "trajectory": [
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-8099-8d37-cb5d19086420"
+        },
+        {
+          "location": "ShoppingArea",
+          "block_id": "37ce1eb5-ce57-8038-8509-ed60b83b3c33"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-8012-9989-dc791f6ea4fb"
+        },
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-8004-8109-f2d676cf406b"
+        },
+        {
+          "location": "RestSpace",
+          "block_id": "37ce1eb5-ce57-806d-9a67-f7a74d0217b7"
+        },
+        {
+          "location": "ExerciseSpace",
+          "block_id": "37ce1eb5-ce57-8067-936b-cb61e06c64a3"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-8000-af6e-f34af8516909"
+        },
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-806d-98ee-fc09e9584ce7"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "08:30",
+          "activity": "WakeUp",
+          "location": "Accommodation",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80fa-843a-f6162f682230",
+          "raw": "time: \"08:30\" || activity: WakeUp || location: Accommodation || energy: 3"
+        },
+        {
+          "time": "10:00",
+          "activity": "GeneralShopping",
+          "location": "ShoppingArea",
+          "energy": 4,
+          "tasktype": [
+            "Shopping"
+          ],
+          "block_id": "37ce1eb5-ce57-80b7-ad8e-dd8c30f49bdd",
+          "raw": "time: \"10:00\" || activity: GeneralShopping || location: ShoppingArea || energy: 4 || tasktype: Shopping"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-806d-9e04-fb997e05b990",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 4"
+        },
+        {
+          "time": "14:00",
+          "activity": "Nap",
+          "location": "RestSpace",
+          "energy": 2,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80ba-9ec2-f874ab8ee38d",
+          "raw": "time: \"14:00\" || activity: Nap || location: RestSpace || energy: 2"
+        },
+        {
+          "time": "17:00",
+          "activity": "WalkExercise",
+          "location": "ExerciseSpace",
+          "energy": 4,
+          "tasktype": [
+            "Exercise"
+          ],
+          "block_id": "37ce1eb5-ce57-8023-b8d6-efb52283e36b",
+          "raw": "time: \"17:00\" || activity: WalkExercise || location: ExerciseSpace || energy: 4 || tasktype: Exercise"
+        },
+        {
+          "time": "19:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8046-b7ee-f475fe528001",
+          "raw": "time: \"19:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Accommodation",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-804c-885a-c1cf44f00059",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Accommodation || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Miri Handy Work",
+      "description": "Full day focused on physical project work.",
+      "block_id": "37ce1eb5-ce57-80ee-aaec-f6735fda1fec",
+      "trajectory": [
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-80c0-ab5f-e76629a8f462"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-804f-816f-c49937c15fa4"
+        },
+        {
+          "location": "Workshop",
+          "block_id": "37ce1eb5-ce57-807d-b3e8-c41911bfa202"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-8005-be18-ebc72b6408f7"
+        },
+        {
+          "location": "Workshop",
+          "block_id": "37ce1eb5-ce57-8071-b286-cc82fda524fb"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80da-a2e7-de5146ede343"
+        },
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-809e-a442-e44201349227"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "07:00",
+          "activity": "WakeUp",
+          "location": "Accommodation",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8041-8e77-c2fe2fbe9ca3",
+          "raw": "time: \"07:00\" || activity: WakeUp || location: Accommodation || energy: 3"
+        },
+        {
+          "time": "08:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 4,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80c8-86b5-d980c7863755",
+          "raw": "time: \"08:00\" || activity: EatMeal || location: Eat || energy: 4"
+        },
+        {
+          "time": "09:00",
+          "activity": "Build",
+          "location": "Workshop",
+          "energy": 5,
+          "tasktype": [
+            "HandyWork"
+          ],
+          "block_id": "37ce1eb5-ce57-80bc-ae93-d866cd910005",
+          "raw": "time: \"09:00\" || activity: Build || location: Workshop || energy: 5 || tasktype: HandyWork"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8021-9883-f78ddc08472f",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "13:00",
+          "activity": "Build",
+          "location": "Workshop",
+          "energy": 4,
+          "tasktype": [
+            "HandyWork"
+          ],
+          "block_id": "37ce1eb5-ce57-806b-af3f-ecfc3407245a",
+          "raw": "time: \"13:00\" || activity: Build || location: Workshop || energy: 4 || tasktype: HandyWork"
+        },
+        {
+          "time": "18:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 2,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-801a-bdea-cffdd5d6899d",
+          "raw": "time: \"18:00\" || activity: EatMeal || location: Eat || energy: 2"
+        },
+        {
+          "time": "19:00",
+          "activity": "Build",
+          "location": "Workshop",
+          "energy": 3,
+          "tasktype": [
+            "HandyWork"
+          ],
+          "block_id": "37ce1eb5-ce57-8094-bf3d-e9c35da40c59",
+          "raw": "time: \"19:00\" || activity: Build || location: Workshop || energy: 3 || tasktype: HandyWork"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Accommodation",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-800f-82c2-fc3d59076a1f",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Accommodation || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Event Day",
+      "description": "Full-day event participation, support, or operations.",
+      "block_id": "37ce1eb5-ce57-803e-9896-ea4326e83210",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8023-816e-ecc2c8236281"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-80ea-8b3e-f4ed1a5002b4"
+        },
+        {
+          "location": "EventVenue",
+          "block_id": "37ce1eb5-ce57-8077-8ae8-f488418051c1"
+        },
+        {
+          "location": "Eat",
+          "block_id": "37ce1eb5-ce57-80cb-a6b2-ef5c229f75f3"
+        },
+        {
+          "location": "EventVenue",
+          "block_id": "37ce1eb5-ce57-8046-a292-e77e45e06b8d"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-80f2-a2e7-d92851744153"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8023-9f7a-c956129833f3"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "07:30",
+          "activity": "WakeUp",
+          "location": "Home",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8001-b9b7-e3434d3c7e49",
+          "raw": "time: \"07:30\" || activity: WakeUp || location: Home || energy: 3"
+        },
+        {
+          "time": "09:00",
+          "activity": "EventOperation",
+          "location": "EventVenue",
+          "energy": 5,
+          "tasktype": [
+            "EventOps",
+            "Social"
+          ],
+          "block_id": "37ce1eb5-ce57-8058-9839-df7fc8adf8a3",
+          "raw": "time: \"09:00\" || activity: EventOperation || location: EventVenue || energy: 5 || tasktype: EventOps, Social"
+        },
+        {
+          "time": "12:00",
+          "activity": "EatMeal",
+          "location": "Eat",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8036-b564-f47e65a6056d",
+          "raw": "time: \"12:00\" || activity: EatMeal || location: Eat || energy: 3"
+        },
+        {
+          "time": "13:00",
+          "activity": "EventOperation",
+          "location": "EventVenue",
+          "energy": 4,
+          "tasktype": [
+            "EventOps",
+            "Social"
+          ],
+          "block_id": "37ce1eb5-ce57-800a-ac71-c5b63703e70d",
+          "raw": "time: \"13:00\" || activity: EventOperation || location: EventVenue || energy: 4 || tasktype: EventOps, Social"
+        },
+        {
+          "time": "18:00",
+          "activity": "Rest",
+          "location": "Home",
+          "energy": 2,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80a4-8156-f775acea0692",
+          "raw": "time: \"18:00\" || activity: Rest || location: Home || energy: 2"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Home",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8078-9bf0-c67ea8cfd181",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Home || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Travelling",
+      "description": "Travel day with limited tools and mobile-first workflow.",
+      "block_id": "37ce1eb5-ce57-80e5-8103-ee26e3021f6a",
+      "trajectory": [
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-8054-9ae7-e7c0802f60fe"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-80a1-a470-d433b274a7e2"
+        },
+        {
+          "location": "TransitHub",
+          "block_id": "37ce1eb5-ce57-8070-89e3-cd363fdb2e8b"
+        },
+        {
+          "location": "Transit",
+          "block_id": "37ce1eb5-ce57-8088-9ee7-d791abe3d3a6"
+        },
+        {
+          "location": "Accommodation",
+          "block_id": "37ce1eb5-ce57-8020-a909-ea7f145f179b"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "08:00",
+          "activity": "WakeUp",
+          "location": "Accommodation",
+          "energy": 3,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-80f4-a1e7-f351dd26b177",
+          "raw": "time: \"08:00\" || activity: WakeUp || location: Accommodation || energy: 3"
+        },
+        {
+          "time": "09:00",
+          "activity": "WaitTransit",
+          "location": "TransitHub",
+          "energy": 3,
+          "tasktype": [
+            "Reading",
+            "Planning"
+          ],
+          "block_id": "37ce1eb5-ce57-803a-8a11-edf19d684ad8",
+          "raw": "time: \"09:00\" || activity: WaitTransit || location: TransitHub || energy: 3 || tasktype: Reading, Planning"
+        },
+        {
+          "time": "10:00",
+          "activity": "Fly",
+          "location": "Transit",
+          "energy": 3,
+          "tasktype": [
+            "Thinking",
+            "Reading"
+          ],
+          "block_id": "37ce1eb5-ce57-8096-b8dc-f6a9df123ec0",
+          "raw": "time: \"10:00\" || activity: Fly || location: Transit || energy: 3 || tasktype: Thinking, Reading"
+        },
+        {
+          "time": "15:00",
+          "activity": "WaitTransit",
+          "location": "TransitHub",
+          "energy": 2,
+          "tasktype": [
+            "Reading"
+          ],
+          "block_id": "37ce1eb5-ce57-8058-b9fc-f8436b0362b5",
+          "raw": "time: \"15:00\" || activity: WaitTransit || location: TransitHub || energy: 2 || tasktype: Reading"
+        },
+        {
+          "time": "18:00",
+          "activity": "Travel",
+          "location": "Transit",
+          "energy": 2,
+          "tasktype": [
+            "Thinking"
+          ],
+          "block_id": "37ce1eb5-ce57-80a1-bb6b-c33b80b8aee8",
+          "raw": "time: \"18:00\" || activity: Travel || location: Transit || energy: 2 || tasktype: Thinking"
+        },
+        {
+          "time": "23:00",
+          "activity": "Sleep",
+          "location": "Accommodation",
+          "energy": 1,
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-805e-889a-cb749678e762",
+          "raw": "time: \"23:00\" || activity: Sleep || location: Accommodation || energy: 1"
+        }
+      ]
+    },
+    {
+      "dayStyle": "Unusual",
+      "description": "Day does not match any predefined DayStyle. Used for exceptional, disrupted, or unpredictable schedules.",
+      "block_id": "37ce1eb5-ce57-80b3-88f7-f35d4e33c949",
+      "trajectory": [
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-80e3-9c99-fc3d39f63de4"
+        },
+        {
+          "location": "Variable",
+          "block_id": "37ce1eb5-ce57-80d8-86e5-c80abb509fa0"
+        },
+        {
+          "location": "Variable",
+          "block_id": "37ce1eb5-ce57-8003-820f-f3123b475673"
+        },
+        {
+          "location": "Variable",
+          "block_id": "37ce1eb5-ce57-8052-b706-eb9ac1dca1fb"
+        },
+        {
+          "location": "Home",
+          "block_id": "37ce1eb5-ce57-8029-89e2-c16de5b75e3b"
+        }
+      ],
+      "expectedStateTimeline": [
+        {
+          "time": "Variable",
+          "activity": "Variable",
+          "location": "Variable",
+          "energy": "Variable",
+          "tasktype": [],
+          "block_id": "37ce1eb5-ce57-8075-9920-dc0b548ef61f",
+          "raw": "time: \"Variable\" || activity: Variable || location: Variable || energy: Variable"
+        }
+      ]
+    }
+  ],
+  "daystyle_dicts": {
+    "Location_Dict": {
+      "Home": {
+        "sub_items": [
+          "Miri House",
+          "Kuching Apartment"
+        ],
+        "block_id": "37ce1eb5-ce57-8037-a21c-e3446ae650a9"
+      },
+      "Accommodation": {
+        "sub_items": [
+          "Hotel",
+          "Homestay",
+          "Temporary Stay"
+        ],
+        "block_id": "37ce1eb5-ce57-8012-818b-f55e01ad10ab"
+      },
+      "Transit": {
+        "sub_items": [
+          "Car",
+          "Plane"
+        ],
+        "block_id": "37ce1eb5-ce57-80ee-96d9-ca8c6b67c063"
+      },
+      "TransitHub": {
+        "sub_items": [
+          "Airport"
+        ],
+        "block_id": "37ce1eb5-ce57-80fd-902d-c19ec0f709df"
+      },
+      "DeepWorkSpace": {
+        "sub_items": [
+          "My Room",
+          "UNIMAS Lab"
+        ],
+        "block_id": "37ce1eb5-ce57-80cc-a754-e4ed87b4de84"
+      },
+      "FocusSpace": {
+        "sub_items": [
+          "Library",
+          "Cafe"
+        ],
+        "block_id": "37ce1eb5-ce57-804d-b624-ffd4ed4af407"
+      },
+      "Eat": {
+        "sub_items": [
+          "Home Dining",
+          "Restaurant",
+          "Food Court"
+        ],
+        "block_id": "37ce1eb5-ce57-80ea-9731-e0430b76bff7"
+      },
+      "ExerciseSpace": {
+        "sub_items": [
+          "Park",
+          "Swimming Pool",
+          "Gym"
+        ],
+        "block_id": "37ce1eb5-ce57-80a9-9213-cfa201910082"
+      },
+      "Workshop": {
+        "sub_items": [
+          "Farm",
+          "Garage",
+          "Construction Site",
+          "Project Site"
+        ],
+        "block_id": "37ce1eb5-ce57-8097-a416-dffb426d193f"
+      },
+      "EventVenue": {
+        "sub_items": [
+          "Exhibition",
+          "Conference",
+          "Competition",
+          "Community Event"
+        ],
+        "block_id": "37ce1eb5-ce57-8065-88d9-fc9164b4fed0"
+      },
+      "ShoppingArea": {
+        "sub_items": [
+          "Mall",
+          "Hardware Shop",
+          "Supermarket"
+        ],
+        "block_id": "37ce1eb5-ce57-809c-b4bf-c20eec7868ae"
+      },
+      "RestSpace": {
+        "sub_items": [
+          "Home",
+          "Hotel Room"
+        ],
+        "block_id": "37ce1eb5-ce57-802f-9288-dc3708c7e6a4"
+      },
+      "Variable": {
+        "sub_items": [
+          "Unknown",
+          "Mixed Activities",
+          "Emergency",
+          "VehicleMaintenance"
+        ],
+        "block_id": "37ce1eb5-ce57-807a-95c7-e9a023663c7b"
+      }
+    },
+    "Activity_Dict": {
+      "Morning Routine": {
+        "sub_items": [
+          "WakeUp"
+        ],
+        "block_id": "37ce1eb5-ce57-807c-a2bf-d021a8efc6d7"
+      },
+      "Meal": {
+        "sub_items": [
+          "CookMeal",
+          "EatMeal",
+          "PrepareMaterial"
+        ],
+        "block_id": "37ce1eb5-ce57-8097-8b11-ef1c1606c7da"
+      },
+      "Transit": {
+        "sub_items": [
+          "Drive",
+          "Fly"
+        ],
+        "block_id": "37ce1eb5-ce57-80e6-b57b-d14ff8056b96"
+      },
+      "Work": {
+        "sub_items": [
+          "ResearchWork",
+          "Study",
+          "Read",
+          "Write",
+          "Code",
+          "Plan",
+          "Think",
+          "RecordVoiceNote",
+          "AttendMeeting",
+          "AdminWork"
+        ],
+        "block_id": "37ce1eb5-ce57-80d4-abe1-d6e8d455418d"
+      },
+      "Relationship": {
+        "sub_items": [
+          "FetchPartner",
+          "SpendTimeWithPartner",
+          "FamilyTime"
+        ],
+        "block_id": "37ce1eb5-ce57-80d2-aae2-d343c320db24"
+      },
+      "Shopping": {
+        "sub_items": [
+          "GroceryShopping",
+          "HardwareShopping",
+          "GeneralShopping"
+        ],
+        "block_id": "37ce1eb5-ce57-801c-90cf-fb9fd3e8935e"
+      },
+      "Exercise": {
+        "sub_items": [
+          "WalkExercise",
+          "Jog",
+          "Swim",
+          "GymWorkout"
+        ],
+        "block_id": "37ce1eb5-ce57-807d-9871-e8cdef6db118"
+      },
+      "Handy Work": {
+        "sub_items": [
+          "Repair",
+          "Build",
+          "Fabricate",
+          "Install",
+          "Maintain",
+          "Inspect"
+        ],
+        "block_id": "37ce1eb5-ce57-8058-9e51-ec41e351c997"
+      },
+      "Event": {
+        "sub_items": [
+          "EventPreparation",
+          "EventSetup",
+          "EventOperation",
+          "EventTeardown",
+          "Networking"
+        ],
+        "block_id": "37ce1eb5-ce57-8037-8ae1-c31097c70588"
+      },
+      "Home": {
+        "sub_items": [
+          "HouseCleaning",
+          "Laundry",
+          "OrganizeRoom"
+        ],
+        "block_id": "37ce1eb5-ce57-80b0-988d-cef674e21b74"
+      },
+      "Rest": {
+        "sub_items": [
+          "Rest",
+          "Nap",
+          "WatchContent",
+          "BrowsePhone"
+        ],
+        "block_id": "37ce1eb5-ce57-80ea-b0b0-d333999cb7d5"
+      },
+      "Sleep": {
+        "sub_items": [
+          "Sleep"
+        ],
+        "block_id": "37ce1eb5-ce57-802a-a169-f99075372609"
+      }
+    }
+  }
+}

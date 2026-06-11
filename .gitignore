@@ -1,7 +1,19 @@
-data/
 __pycache__/
 *.pyc
 unlimited_llmapi/key_usage.json
 /.uv_cache/
 /.uv_python/
 /.*/
+
+# Temporary scratch and inspection files
+.holidays_update_check
+block_inspection.txt
+parsed_daystyles.txt
+toggles_inspection.txt
+scratch_*.py
+yonctask_config_blocks.json
+
+# Exclude log files
+data/logs/
+data/*.log
+

@@ -942,11 +942,21 @@ def mode_tasktype_pass(
     scoped_ids = scoped_ids or set()
     structured_cfg = structure_yonctask_config(config_dict)
 
-    llm_options: Dict[str, List[Any]] = {}
+    llm_options: Dict[str, List[str]] = {}
     if "Modes" in config_dict:
-        llm_options["Modes"] = config_dict.get("Modes", [])
+        mode_options = []
+        for m in structured_cfg.get("modes", []):
+            name = m.get("mode_name", "")
+            desc = m.get("description", "")
+            lv = m.get("level", 0)
+            mode_options.append(f"Lv{lv} {name} - {desc}" if desc else f"Lv{lv} {name}")
+        llm_options["Modes"] = mode_options
     if "Task Type" in config_dict:
-        llm_options["Task Type"] = config_dict.get("Task Type", [])
+        tt_options = []
+        for key, info in structured_cfg.get("task_types", {}).items():
+            desc = info.get("description", "")
+            tt_options.append(f"{key} : {desc}" if desc else key)
+        llm_options["Task Type"] = tt_options
     if not llm_options:
         return local_state
 
@@ -969,10 +979,37 @@ def mode_tasktype_pass(
             generated = tag_task(clean_title, llm_options)
             mode_val = generated.get("Modes")
             type_val = generated.get("Task Type")
+            
             if mode_val:
-                tags["Modes"] = mode_val
+                mode_names = [m.get("mode_name", "") for m in structured_cfg.get("modes", [])]
+                best_match = None
+                for m_name in mode_names:
+                    if m_name in mode_val or mode_val in m_name:
+                        best_match = m_name
+                        break
+                if not best_match:
+                    import difflib
+                    matches = difflib.get_close_matches(mode_val, mode_names, n=1, cutoff=0.3)
+                    if matches:
+                        best_match = matches[0]
+                if best_match:
+                    tags["Modes"] = best_match
+                    
             if type_val:
-                tags["Task Type"] = type_val
+                type_keys = list(structured_cfg.get("task_types", {}).keys())
+                best_match = None
+                for t_key in type_keys:
+                    if t_key in type_val or type_val in t_key:
+                        best_match = t_key
+                        break
+                if not best_match:
+                    import difflib
+                    matches = difflib.get_close_matches(type_val, type_keys, n=1, cutoff=0.3)
+                    if matches:
+                        best_match = matches[0]
+                if best_match:
+                    tags["Task Type"] = best_match
+                    
         except Exception as exc:
             print(f"Failed mode/task-type tagging for {task_id}: {exc}")
 

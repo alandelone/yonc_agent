@@ -17,7 +17,94 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 WORKSPACE_ROOT = PROJECT_ROOT.parent
 DAILYSTATE_DIR = WORKSPACE_ROOT / "sessions" / "dailystate"
 ACTION_JSONL_PATH = WORKSPACE_ROOT / "cron" / "action.jsonl"
+TODAY_STATUS_PATH = WORKSPACE_ROOT / "today_status.json"
 LOCAL_TZ = timezone(timedelta(hours=8))
+
+DEFAULT_TODAY_STATUS = {
+    "current_state": 0,
+    "day_mode": "",
+    "max_energy_lv": 5.0,
+    "current_location": "",
+    "state_checklist": {
+        "STATE_0": {
+            "initialized": False,
+            "context_read": False,
+            "mode_resolved": False,
+            "options_cached": False,
+            "user_notified": False,
+        },
+        "STATE_1": {
+            "metrics_loaded": False,
+            "matrix_compiled": False,
+            "speculative_cache_written": False,
+            "user_prompted": False,
+        },
+        "STATE_2": {
+            "intent_parsed": False,
+            "backend_allocated": False,
+            "ledger_opened": False,
+            "interrupt_scheduled": False,
+        },
+        "STATE_3": {
+            "polling_active": True,
+            "interrupt_cache_written": False,
+        },
+        "STATE_4": {
+            "ledger_closed": False,
+            "energy_recalculated": False,
+            "db_posted": False,
+            "remote_synced": False,
+        },
+    },
+}
+
+def archive_day_mode():
+    """Read day_mode from today_status.json and append it as a metadata
+    line to yesterday's JSONL ledger BEFORE resetting."""
+    if not TODAY_STATUS_PATH.exists():
+        logger.info("No today_status.json found, skipping day_mode archive.")
+        return
+    try:
+        status = json.loads(TODAY_STATUS_PATH.read_text(encoding="utf-8"))
+    except Exception as e:
+        logger.error(f"Failed to read today_status.json for day_mode archive: {e}")
+        return
+
+    day_mode_raw = status.get("day_mode", "")
+    if not day_mode_raw:
+        logger.info("No day_mode set in today_status.json, skipping archive.")
+        return
+
+    # Extract the dayStyle name string
+    if isinstance(day_mode_raw, dict):
+        day_mode_name = day_mode_raw.get("dayStyle", str(day_mode_raw))
+    else:
+        day_mode_name = str(day_mode_raw)
+
+    yesterday = date.today() - timedelta(days=1)
+    file_path = DAILYSTATE_DIR / f"{yesterday.isoformat()}.jsonl"
+    if not file_path.exists():
+        logger.info(f"Yesterday's JSONL {file_path} does not exist, skipping day_mode archive.")
+        return
+
+    now_iso = datetime.now(LOCAL_TZ).isoformat()
+    meta_entry = {
+        "activity": "__day_mode_record__",
+        "activity_type": "metadata",
+        "day_mode": day_mode_name,
+        "started_at": now_iso,
+        "ended_at": now_iso,
+        "energy_lv": 0,
+        "LIJ": 0,
+        "location": ""
+    }
+    try:
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(meta_entry, ensure_ascii=False) + "\n")
+        logger.info(f"Archived day_mode '{day_mode_name}' to {file_path}")
+    except Exception as e:
+        logger.error(f"Failed to archive day_mode: {e}")
+
 
 def push_yesterday_dailystate():
     yesterday = date.today() - timedelta(days=1)
@@ -66,6 +153,17 @@ def touch_today_dailystate():
         logger.info(f"Created today's dailystate file: {file_path}")
     else:
         logger.info(f"Today's dailystate file already exists: {file_path}")
+
+
+def reset_today_status():
+    try:
+        TODAY_STATUS_PATH.write_text(
+            json.dumps(DEFAULT_TODAY_STATUS, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        logger.info(f"Reset today status file: {TODAY_STATUS_PATH}")
+    except Exception as e:
+        logger.error(f"Failed to reset today status file: {e}")
 
 
 def _build_cron_expr(start_hour, end_hour):
@@ -165,8 +263,10 @@ def register_crons():
 
 def main():
     logger.info("Starting midnight routine...")
-    push_yesterday_dailystate()
+    archive_day_mode()            # NEW: preserve day_mode FIRST
+    push_yesterday_dailystate()   # Then push to Notion (now includes day_mode)
     touch_today_dailystate()
+    reset_today_status()          # Now safe to reset
     register_crons()
     logger.info("Midnight routine finished.")
 

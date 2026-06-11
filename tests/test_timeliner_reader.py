@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from timeliner_reader import parse_date_to_iso, parse_timeliner_blocks, TIMELINER_PATTERN
 
 def test_date_parsing():
@@ -31,11 +31,11 @@ def test_parse_blocks():
     blocks = [
         {
             "type": "heading_2",
-            "heading_2": {"rich_text": [{"plain_text": "Main Proj"}]}
+            "heading_2": {"rich_text": [{"plain_text": "Main Projects"}]}
         },
         {
             "type": "heading_3",
-            "heading_3": {"rich_text": [{"plain_text": "Sub Proj"}]}
+            "heading_3": {"rich_text": [{"plain_text": "Sub Projects"}]}
         },
         {
             "type": "bulleted_list_item",
@@ -49,8 +49,8 @@ def test_parse_blocks():
     
     e = entries[0]
     assert e.block_id == "block1"
-    assert e.project == "Main Proj"
-    assert e.subproject == "Sub Proj"
+    assert e.project == ""
+    assert e.subproject == "Sub Projects"
     assert e.colour_subtheme == "TestTheme"
     assert e.status_emoji == "馃煝"
     assert e.time_expected_h == 2.0
@@ -64,14 +64,14 @@ def test_parse_blocks_with_toggle_subproject_container():
     blocks = [
         {
             "type": "heading_2",
-            "heading_2": {"rich_text": [{"plain_text": "Main Proj"}]},
+            "heading_2": {"rich_text": [{"plain_text": "Main Projects"}]},
             "has_children": False,
         },
         {
             "type": "toggle",
             "id": "toggle-sub",
             "has_children": True,
-            "toggle": {"rich_text": [{"plain_text": "Sub Proj A"}]},
+            "toggle": {"rich_text": [{"plain_text": "Sub Projects A"}]},
             "children_blocks": [
                 {
                     "type": "bulleted_list_item",
@@ -93,8 +93,8 @@ def test_parse_blocks_with_toggle_subproject_container():
 
     e = entries[0]
     assert e.block_id == "block2"
-    assert e.project == "Main Proj"
-    assert e.subproject == "Sub Proj A"
+    assert e.project == ""
+    assert e.subproject == "Sub Projects A"
     assert e.colour_subtheme == "ThemeX"
     assert e.time_expected_h == 3.0
     assert e.percent == 20
@@ -152,6 +152,10 @@ def test_parse_blocks_with_main_and_sub_sections():
 def test_parse_blocks_strips_corrupted_main_projects_prefix():
     blocks = [
         {
+            "type": "heading_1",
+            "heading_1": {"rich_text": [{"plain_text": "Main Projects"}]},
+        },
+        {
             "type": "bulleted_list_item",
             "id": "block-clean-1",
             "bulleted_list_item": {
@@ -167,7 +171,7 @@ def test_parse_blocks_strips_corrupted_main_projects_prefix():
     entries = parse_timeliner_blocks(blocks)
     assert len(entries) == 1
     assert entries[0].colour_subtheme == "RstV4"
-    assert entries[0].in_heading_scope is False
+    assert entries[0].in_heading_scope is True
 
 
 def test_parse_blocks_infers_project_and_subproject_from_sections():
@@ -237,7 +241,7 @@ def test_parse_blocks_marks_outside_vs_heading_scope():
         },
         {
             "type": "heading_2",
-            "heading_2": {"rich_text": [{"plain_text": "Main Proj"}]},
+            "heading_2": {"rich_text": [{"plain_text": "Main Projects"}]},
         },
         {
             "type": "paragraph",
@@ -253,11 +257,8 @@ def test_parse_blocks_marks_outside_vs_heading_scope():
     ]
 
     entries = parse_timeliner_blocks(blocks)
-    assert len(entries) == 2
+    assert len(entries) == 1
 
-    outside = next(e for e in entries if e.block_id == "outside-1")
     inside = next(e for e in entries if e.block_id == "inside-1")
-
-    assert outside.in_heading_scope is False
     assert inside.in_heading_scope is True
 

@@ -3,7 +3,7 @@ STATE 1 - Agentic Inquiry & Task Matrix unified panel.
 
 Combines cron-dash and energy-aware task suggestions into one command:
   python main.py inquiry --level 3.3
-  python main.py inquiry --tired
+  python main.py inquiry --mode handy,小Do
 """
 
 import json
@@ -78,7 +78,7 @@ def _write_inquiry_export(
     now_label: str,
     energy_label: str,
     level: float | None,
-    tired: bool,
+    mode_filter: str | None,
     cron_items: list[dict[str, Any]],
     task_items: list[dict[str, Any]],
 ) -> Path:
@@ -98,7 +98,7 @@ def _write_inquiry_export(
             "energy": {
                 "label": energy_label,
                 "level": level,
-                "tired": tired,
+                "mode_filter": mode_filter,
             },
             "code_rules": {
                 "cron_section": "Cron tasks are addressed as C1, C2, C3 in display order.",
@@ -127,7 +127,10 @@ def _build_cron_items(time_str: str | None = None) -> list[dict[str, Any]]:
     return items
 
 
-def _build_suggest_items(max_level: float) -> list[dict[str, Any]]:
+def _build_suggest_items(
+    max_level: float | None = None,
+    mode_filter: str | None = None,
+) -> list[dict[str, Any]]:
     raw_cfg = load_config()
     structured_cfg = structure_yonctask_config(raw_cfg)
     state = load_state(STATE_FILE)
@@ -136,11 +139,33 @@ def _build_suggest_items(max_level: float) -> list[dict[str, Any]]:
         return []
 
     all_modes = structured_cfg.get("modes", [])
+
+    # Parse and normalize target mode names if filter is provided
+    target_modes = None
+    if mode_filter:
+        target_modes = {
+            "".join(c for c in m if c.isalnum() or '\u4e00' <= c <= '\u9fff').lower()
+            for m in mode_filter.split(",") if m.strip()
+        }
+
     matched_mode_names: set[str] = set()
     for mode in all_modes:
-        mode_level = mode.get("level", 0)
-        if mode_level <= max_level:
-            matched_mode_names.add(mode["mode_name"])
+        mode_name = mode["mode_name"]
+        
+        # Check level condition if level is set
+        level_ok = True
+        if max_level is not None:
+            mode_level = mode.get("level", 0)
+            level_ok = (mode_level <= max_level)
+            
+        # Check mode name condition if filter is set
+        name_ok = True
+        if target_modes is not None:
+            norm_name = "".join(c for c in mode_name if c.isalnum() or '\u4e00' <= c <= '\u9fff').lower()
+            name_ok = (norm_name in target_modes)
+            
+        if level_ok and name_ok:
+            matched_mode_names.add(mode_name)
 
     if not matched_mode_names:
         return []
@@ -178,15 +203,18 @@ def _build_suggest_items(max_level: float) -> list[dict[str, Any]]:
 
 def cmd_inquiry(
     level: float | None = None,
-    tired: bool = False,
+    mode_filter: str | None = None,
     time_str: str | None = None,
 ) -> None:
     """STATE 1 unified panel: cron-dash plus energy-aware task suggestions."""
     now_label = time_str or datetime.now().strftime("%H:%M")
     today_label = date.today().isoformat()
 
-    if tired:
-        energy_label = "Tired"
+    if mode_filter is not None:
+        if level is not None:
+            energy_label = f"Normal (Lv{level}) + Mode: {mode_filter}"
+        else:
+            energy_label = f"Mode: {mode_filter}"
     elif level is not None:
         energy_label = f"Normal (Lv{level})"
     else:
@@ -200,15 +228,15 @@ def cmd_inquiry(
     total_crons = len(cron_items)
 
     suggest_items: list[dict[str, Any]] = []
-    if not tired and level is not None:
-        suggest_items = _with_codes(_build_suggest_items(max_level=level), "T")
+    if level is not None or mode_filter is not None:
+        suggest_items = _with_codes(_build_suggest_items(max_level=level, mode_filter=mode_filter), "T")
 
     export_path = _write_inquiry_export(
         today_label=today_label,
         now_label=now_label,
         energy_label=energy_label,
         level=level,
-        tired=tired,
+        mode_filter=mode_filter,
         cron_items=cron_items,
         task_items=suggest_items,
     )
@@ -239,8 +267,16 @@ def cmd_inquiry(
     else:
         lines.append("\nCron section: no cron tasks in the current time window.")
 
+    def _filter_desc() -> str:
+        parts = []
+        if level is not None:
+            parts.append(f"<= Lv{level}")
+        if mode_filter is not None:
+            parts.append(f"Mode: {mode_filter}")
+        return " + ".join(parts) if parts else "All"
+
     if suggest_items:
-        lines.append(f"\nTasklist section (<= Lv{level}, {len(suggest_items)} tasks)")
+        lines.append(f"\nTasklist section ({_filter_desc()}, {len(suggest_items)} tasks)")
         lines.append("-" * 55)
 
         by_mode: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
@@ -252,11 +288,8 @@ def cmd_inquiry(
             lines.append(f"\n  -- {mode_name} (Lv{mode_level}, {len(tasks)} tasks) --")
             for task in tasks:
                 lines.append(f"  {task['code']:>3}. {task['title']}")
-    elif not tired and level is not None:
-        lines.append(f"\nTasklist section: no available suggested tasks (<= Lv{level}).")
-
-    if tired:
-        lines.append("\nLow energy: finish required cron tasks first, then rest.")
+    elif level is not None or mode_filter is not None:
+        lines.append(f"\nTasklist section: no available suggested tasks ({_filter_desc()}).")
 
     pending_types = set(cron.get("cron_type", "") for cron in pending_crons)
     if pending_types:

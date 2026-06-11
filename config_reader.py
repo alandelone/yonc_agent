@@ -14,8 +14,13 @@ def parse_options_from_block(block: Dict[str, Any], current_heading: str = "") -
     Otherwise, we return a string.
     """
     block_type = block.get("type", "")
+    
+    if block_type == "toggle" and current_heading in ("DayStyle", "DayStyle_Dict"):
+        return [block]
+        
     content = ""
     color = "default"
+    rich_text = []
     
     if block_type in ["paragraph", "bulleted_list_item", "numbered_list_item", "to_do"]:
         type_content = block.get(block_type, {})
@@ -50,6 +55,13 @@ def parse_options_from_block(block: Dict[str, Any], current_heading: str = "") -
         if "color" not in annos: annos["color"] = color
         # Also include the raw rich_text so we can parse multiple modes per line
         return [{"text": line, "annotations": annos, "rich_text": rich_text} for line in lines]
+    elif "Task Type" in current_heading:
+        tag = ""
+        for rt in rich_text:
+            if rt.get("annotations", {}).get("code") is True:
+                tag = rt.get("text", {}).get("content", rt.get("plain_text", "")).strip()
+                break
+        return [{"text": line, "tag": tag} for line in lines]
     else:
         return lines
 
@@ -121,21 +133,36 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
             emoji, desc = map(str.strip, item.split("|", 1))
             structured["task_states"][emoji] = desc
 
-    # 3. Parse Task Types (Regex extraction)
-    # Matches format: 🔍 (测试): Stress & Load Testing
-    type_pattern = re.compile(r"^(.*?)\s*\((.*?)\):\s*(.*)$")
+    # 3. Parse Task Types
     for item in raw_config.get("Task Type", []):
-        if "---" in item: continue # skip dividers
-        match = type_pattern.match(item)
-        if match:
-            emoji, name_cn, desc = match.groups()
-            structured["task_types"][emoji.strip()] = {
-                "name_cn": name_cn.strip(),
-                "description": desc.strip()
+        text = item.get("text", "") if isinstance(item, dict) else item
+        tag = item.get("tag", "") if isinstance(item, dict) else ""
+        if not text or "---" in text:
+            continue
+            
+        # Parse new format: 🔬| Research : description
+        pipe_match = re.match(r"^([^|]+)\|\s*([^:]+)\s*:\s*(.*)$", text)
+        if pipe_match:
+            emoji, name, desc = pipe_match.groups()
+            key = f"{emoji.strip()}| {name.strip()}"
+            structured["task_types"][key] = {
+                "name": name.strip(),
+                "name_cn": name.strip(),  # backward compatibility
+                "description": desc.strip(),
+                "tag": tag
             }
-        elif ":" in item: # fallback for unknown types
-             parts = item.split(":", 1)
-             structured["task_types"][parts[0].strip()] = {"description": parts[1].strip()}
+            continue
+            
+        # Fallback: {emoji} : {name_or_desc} (e.g. ❓ : Unknown TYPE)
+        colon_match = re.match(r"^([^:]+)\s*:\s*(.*)$", text)
+        if colon_match:
+            emoji_part, name_or_desc = colon_match.groups()
+            structured["task_types"][emoji_part.strip()] = {
+                "name": name_or_desc.strip(),
+                "name_cn": name_or_desc.strip(),  # backward compatibility
+                "description": "",
+                "tag": tag
+            }
 
     # 3.5 Parse WBS Levels (Split by " | ")
     wbs_key = None
@@ -162,7 +189,7 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
                 "raw": f"{emoji} | {level_label}"
             }
 
-    # 4. Parse Modes (Regex for Level, Tags, Description)
+    # 4. Parse Modes (Level, Tags, Description)
     for item in raw_config.get("Modes", []):
         text = item.get("text", "") if isinstance(item, dict) else item
         annos = item.get("annotations", {"color": "default", "bold": False, "code": False, "italic": False, "strikethrough": False, "underline": False}) if isinstance(item, dict) else {"color": "default", "bold": False, "code": False, "italic": False, "strikethrough": False, "underline": False}
@@ -170,9 +197,9 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
         
         if not text: continue
         
-        # Must start with Lv
+        # Must start with Lv or Level (case-insensitive, optional space)
         clean_prefix = text.lstrip("*").strip()
-        if not clean_prefix.startswith("Lv"): continue
+        if not re.match(r'^(?:Level|Lv)\s*\d', clean_prefix, re.IGNORECASE): continue
         
         if rich_text:
             level = 0
@@ -194,9 +221,9 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
                     current_mode_text += rt_text
                 else:
                     if current_mode_text:
-                        mode_name = current_mode_text.strip()
-                        if mode_name:
-                            parsed_modes.append({"mode_name": mode_name, "annotations": current_mode_annos})
+                        mode_names = [m.strip() for m in current_mode_text.split() if m.strip()]
+                        for m_name in mode_names:
+                            parsed_modes.append({"mode_name": m_name, "annotations": current_mode_annos})
                         current_mode_text = ""
                         current_mode_annos = None
                         
@@ -204,19 +231,18 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
                     if not clean_text:
                         continue
                         
-                    if "Lv" in rt_text:
-                        match = re.search(r'Lv([\d\.]+)', rt_text)
-                        if match:
-                            lv_str = match.group(1)
-                            try: level = float(lv_str) if "." in lv_str else int(lv_str)
-                            except ValueError: pass
+                    lv_match = re.search(r'(?:Level|Lv)\s*([\d\.]+)', rt_text, re.IGNORECASE)
+                    if lv_match:
+                        lv_str = lv_match.group(1)
+                        try: level = float(lv_str) if "." in lv_str else int(lv_str)
+                        except ValueError: pass
                     else:
                         description_parts.append(clean_text)
                         
             if current_mode_text:
-                mode_name = current_mode_text.strip()
-                if mode_name:
-                    parsed_modes.append({"mode_name": mode_name, "annotations": current_mode_annos})
+                mode_names = [m.strip() for m in current_mode_text.split() if m.strip()]
+                for m_name in mode_names:
+                    parsed_modes.append({"mode_name": m_name, "annotations": current_mode_annos})
                     
             desc = " ".join(description_parts).replace(" | ", " | ").strip()
             
@@ -232,18 +258,22 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
                 
         # Fallback text parsing if no rich_text or no modes found
         parts = [p.strip() for p in re.split(r'\s{2,}', text)]
-        level_str = parts[0].replace("*", "").replace("Lv", "").strip()
+        level_str = parts[0].replace("*", "").strip()
+        level_str = re.sub(r'^(?:Level|Lv)\s*', '', level_str, flags=re.IGNORECASE).strip()
         try: level = float(level_str) if '.' in level_str else int(level_str)
         except ValueError: level = 0
         
-        mode_name = parts[1] if len(parts) > 1 else ""
+        mode_names_raw = parts[1] if len(parts) > 1 else ""
+        mode_names = [m.strip() for m in mode_names_raw.split() if m.strip()]
         description = " ".join(p.replace("*", "").strip() for p in parts[2:]) if len(parts) > 2 else ""
             
-        structured["modes"].append({
-            "level": level,
-            "mode_name": mode_name,
-            "description": description,            "annotations": annos
-        })
+        for mode_name in mode_names:
+            structured["modes"].append({
+                "level": level,
+                "mode_name": mode_name,
+                "description": description,
+                "annotations": annos
+            })
 
     # 5. Parse Themes
     for item in raw_config.get("Task Theme with colour", []):
@@ -268,6 +298,128 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
         }
 
     return structured
+
+def _parse_timeline_entry(text: str) -> dict:
+    """Parse: time: "07:00" || activity: WakeUp || location: Home || energy: 3 [|| tasktype: X, Y]"""
+    entry = {}
+    fields = [f.strip() for f in text.split("||")]
+    for field in fields:
+        if ":" not in field:
+            continue
+        key, val = field.split(":", 1)
+        key = key.strip().lower()
+        val = val.strip().strip('"')
+        if key == "energy":
+            try: val = int(val)
+            except ValueError: pass
+        elif key == "tasktype":
+            val = [t.strip() for t in val.split(",") if t.strip()]
+        entry[key] = val
+    if "tasktype" not in entry:
+        entry["tasktype"] = []
+    return entry
+
+def parse_daystyles(blocks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    daystyles = []
+    for block in blocks:
+        if block.get("type") != "toggle":
+            continue
+            
+        toggle_data = block.get("toggle", {})
+        title_text = parse_rich_text(toggle_data.get("rich_text", [])).strip()
+        if not title_text:
+            continue
+            
+        # Split title by ":" to get name and description
+        if ":" in title_text:
+            name, desc = title_text.split(":", 1)
+            name = name.strip()
+            desc = desc.strip()
+        else:
+            name = title_text
+            desc = ""
+            
+        children = block.get("children_blocks", [])
+        
+        trajectory = []
+        timeline = []
+        current_section = None
+        
+        for child in children:
+            child_type = child.get("type", "")
+            if child_type == "heading_4":
+                h_text = parse_rich_text(child.get("heading_4", {}).get("rich_text", [])).strip()
+                if "Trajectory" in h_text:
+                    current_section = "trajectory"
+                elif "Expected State Timeline" in h_text:
+                    current_section = "timeline"
+                else:
+                    current_section = None
+            elif current_section == "trajectory" and child_type == "bulleted_list_item":
+                loc_text = parse_rich_text(child.get("bulleted_list_item", {}).get("rich_text", [])).strip()
+                if loc_text:
+                    trajectory.append({
+                        "location": loc_text,
+                        "block_id": child.get("id")
+                    })
+            elif current_section == "timeline" and child_type == "paragraph":
+                line_text = parse_rich_text(child.get("paragraph", {}).get("rich_text", [])).strip()
+                if line_text:
+                    entry = _parse_timeline_entry(line_text)
+                    entry["block_id"] = child.get("id")
+                    entry["raw"] = line_text
+                    timeline.append(entry)
+                    
+        daystyles.append({
+            "dayStyle": name,
+            "description": desc,
+            "block_id": block.get("id"),
+            "trajectory": trajectory,
+            "expectedStateTimeline": timeline
+        })
+    return daystyles
+
+def parse_block_text(block: Dict[str, Any]) -> str:
+    b_type = block.get("type", "")
+    if not b_type:
+        return ""
+    type_data = block.get(b_type, {})
+    return parse_rich_text(type_data.get("rich_text", [])).strip()
+
+def parse_daystyle_dicts(blocks: List[Dict[str, Any]]) -> Dict[str, Any]:
+    dicts = {}
+    for block in blocks:
+        if block.get("type") != "toggle":
+            continue
+        dict_name = parse_block_text(block)
+        if not dict_name:
+            continue
+            
+        dict_data = {}
+        children = block.get("children_blocks", [])
+        for child in children:
+            child_type = child.get("type", "")
+            if child_type not in ("toggle", "bulleted_list_item"):
+                continue
+            sub_name = parse_block_text(child)
+            if not sub_name:
+                continue
+                
+            sub_children = child.get("children_blocks", [])
+            sub_items = []
+            for sub_child in sub_children:
+                sub_child_type = sub_child.get("type", "")
+                if sub_child_type in ("toggle", "bulleted_list_item"):
+                    item_text = parse_block_text(sub_child)
+                    if item_text:
+                        sub_items.append(item_text)
+                        
+            dict_data[sub_name] = {
+                "sub_items": sub_items,
+                "block_id": child.get("id")
+            }
+        dicts[dict_name] = dict_data
+    return dicts
 
 if __name__ == "__main__":
     import json

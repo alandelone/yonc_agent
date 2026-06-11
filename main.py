@@ -846,7 +846,7 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         from inquiry_dash import cmd_inquiry
         cmd_inquiry(
             level=args.level,
-            tired=args.tired,
+            mode_filter=args.mode,
             time_str=args.time,
         )
     elif args.command == "daily":
@@ -862,6 +862,33 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         )
     elif args.command == "phase":
         cmd_phase(list_only=args.list)
+    elif args.command == "daystyle":
+        from daystyle_manager import read_daystyles, write_today_daystyle, edit_daystyle, analyze_daystyles
+        if args.mode == "read":
+            result = read_daystyles()
+            print("\n================== DayStyles ==================")
+            for ds in result.get("daystyles", []):
+                print(f" - {ds['dayStyle']:25s} : {ds['description']}")
+            print("\n================ DayStyle Dicts ================")
+            dicts = result.get("daystyle_dicts", {})
+            for dict_name, dict_data in dicts.items():
+                print(f" {dict_name}:")
+                for key, val in dict_data.items():
+                    print(f"   - {key}: {', '.join(val.get('sub_items', []))}")
+        elif args.mode == "write":
+            if not args.name:
+                print("Error: --name is required for write mode.")
+            else:
+                write_today_daystyle(args.name)
+        elif args.mode == "edit":
+            if not args.name or not args.field:
+                print("Error: --name and --field are required for edit mode.")
+            elif args.action in ("update", "add", "reorder") and args.value is None:
+                print(f"Error: --value is required for '{args.action}' action.")
+            else:
+                edit_daystyle(args.name, args.field, args.value, args.index, args.action)
+        elif args.mode == "analyze":
+            analyze_daystyles(name=args.name)
     else:
         parser.print_help()
 
@@ -903,7 +930,7 @@ def main() -> None:
 
     inquiry_parser = subparsers.add_parser("inquiry", help="STATE 1 unified dash: cron-dash + suggest (energy-aware)")
     inquiry_parser.add_argument("--level", type=float, default=None, help="Energy level for suggest filter (e.g. 3.3, 2, 1)")
-    inquiry_parser.add_argument("--tired", action="store_true", default=False, help="Tired mode: show cron only, skip suggest")
+    inquiry_parser.add_argument("--mode", type=str, default=None, help="Filter suggest section directly by mode names (comma-separated, ignoring emojis)")
     inquiry_parser.add_argument("--time", type=str, default=None, help="Override current time (HH:MM) for cron-dash")
 
     daily_parser = subparsers.add_parser("daily", help="Read/write DailyState database properties & cron management")
@@ -928,6 +955,23 @@ def main() -> None:
     phase_parser = subparsers.add_parser("phase", help="Assign execution phase emojis to Depth=1 blocks")
     phase_parser.add_argument("--list", action="store_true", default=False,
                               help="List tasks waiting for phase assignment without entering interactive mode")
+
+    daystyle_parser = subparsers.add_parser("daystyle", help="DayStyle and DayStyle_Dict operations")
+    daystyle_parser.add_argument("mode", nargs="?", default="read",
+                                 choices=["read", "write", "edit", "analyze"],
+                                 help="Operation mode (default: read)")
+    daystyle_parser.add_argument("--name", type=str, default=None,
+                                 help="DayStyle name to write or edit")
+    daystyle_parser.add_argument("--field", type=str, default=None,
+                                 choices=["description", "trajectory", "expectedStateTimeline"],
+                                 help="Field of the DayStyle to edit")
+    daystyle_parser.add_argument("--value", type=str, default=None,
+                                 help="New value for the edited field")
+    daystyle_parser.add_argument("--index", type=int, default=None,
+                                 help="Zero-based index of the list element for trajectory or expectedStateTimeline")
+    daystyle_parser.add_argument("--action", type=str, default="update",
+                                 choices=["update", "add", "delete", "reorder"],
+                                 help="Edit action: update, add, delete, or reorder (default: update)")
 
     args = parser.parse_args()
     app_log_path = configure_cli_logging(args.log_level, args.command)

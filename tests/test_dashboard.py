@@ -38,6 +38,8 @@ def _mock_flat_state():
         {
             "id": "t1", "title": "Task Focus A",
             "original_notion_title": "Task Focus A",
+            "wbs_level": 4,
+            "generated_selection_processed": True,
             "tags": {
                 "Modes": "💻Focus",
                 "Task Theme with colour": "PhDSettle✒ Research",
@@ -46,6 +48,8 @@ def _mock_flat_state():
         {
             "id": "t2", "title": "Task Focus B",
             "original_notion_title": "Task Focus B",
+            "wbs_level": 4,
+            "generated_selection_processed": True,
             "tags": {
                 "Modes": "💻Focus",
                 "Task Theme with colour": "鍛造Lab Maker",
@@ -54,6 +58,8 @@ def _mock_flat_state():
         {
             "id": "t3", "title": "Task Handy",
             "original_notion_title": "Task Handy",
+            "wbs_level": 4,
+            "generated_selection_processed": True,
             "tags": {
                 "Modes": "Handy🤘🏻",
                 "Task Type": "🔍 测试",
@@ -63,11 +69,15 @@ def _mock_flat_state():
         {
             "id": "t4", "title": "Untagged Task",
             "original_notion_title": "Untagged Task",
+            "wbs_level": 4,
+            "generated_selection_processed": True,
             "tags": {}
         },
         {
             "id": "t5", "title": "Only Theme Task",
             "original_notion_title": "Only Theme Task",
+            "wbs_level": 4,
+            "generated_selection_processed": True,
             "tags": {
                 "Task Theme with colour": "PhDSettle✒ Thesis",
             }
@@ -157,7 +167,13 @@ class TestBuildDashboardBlocks:
         """生成的 blocks 包含 heading_2 主标题"""
         cfg = _mock_cfg()
         state = _mock_flat_state()
-        blocks = build_dashboard_blocks(state, cfg)
+        blocks, _ = build_dashboard_blocks(state, cfg)
+        if blocks and blocks[0].get('type') == 'column_list':
+            cols = blocks[0]['column_list']['children']
+            inner_blocks = []
+            for col in cols:
+                inner_blocks.extend(col['column']['children'])
+            blocks = inner_blocks
 
         heading_blocks = [b for b in blocks if b.get("type") == "heading_2"]
         assert len(heading_blocks) == 2
@@ -172,14 +188,26 @@ class TestBuildDashboardBlocks:
 
     def test_headings_have_blue_background(self):
         """主标题使用 blue_background"""
-        blocks = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        blocks, _ = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        if blocks and blocks[0].get('type') == 'column_list':
+            cols = blocks[0]['column_list']['children']
+            inner_blocks = []
+            for col in cols:
+                inner_blocks.extend(col['column']['children'])
+            blocks = inner_blocks
         heading_blocks = [b for b in blocks if b.get("type") == "heading_2"]
         for hb in heading_blocks:
             assert hb["heading_2"]["color"] == "blue_background"
 
     def test_subheadings_bold_blue(self):
         """子标题（mode/type 名称）使用 bold + blue_background"""
-        blocks = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        blocks, _ = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        if blocks and blocks[0].get('type') == 'column_list':
+            cols = blocks[0]['column_list']['children']
+            inner_blocks = []
+            for col in cols:
+                inner_blocks.extend(col['column']['children'])
+            blocks = inner_blocks
         sub_headings = [
             b for b in blocks
             if b.get("type") == "paragraph"
@@ -192,7 +220,13 @@ class TestBuildDashboardBlocks:
 
     def test_global_numbering(self):
         """任务编号全局连续"""
-        blocks = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        blocks, _ = build_dashboard_blocks(_mock_flat_state(), _mock_cfg())
+        if blocks and blocks[0].get('type') == 'column_list':
+            cols = blocks[0]['column_list']['children']
+            inner_blocks = []
+            for col in cols:
+                inner_blocks.extend(col['column']['children'])
+            blocks = inner_blocks
         numbered_blocks = [
             b for b in blocks
             if b.get("type") == "numbered_list_item"
@@ -212,6 +246,12 @@ class TestBuildDashboardBlocks:
 
     def test_empty_state_still_has_headings(self):
         """即使无任务，仍应有两个主标题"""
-        blocks = build_dashboard_blocks([], _mock_cfg())
+        blocks, _ = build_dashboard_blocks([], _mock_cfg())
+        if blocks and blocks[0].get('type') == 'column_list':
+            cols = blocks[0]['column_list']['children']
+            inner_blocks = []
+            for col in cols:
+                inner_blocks.extend(col['column']['children'])
+            blocks = inner_blocks
         heading_blocks = [b for b in blocks if b.get("type") == "heading_2"]
         assert len(heading_blocks) == 2

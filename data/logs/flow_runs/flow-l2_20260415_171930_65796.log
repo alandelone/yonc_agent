@@ -1,0 +1,47 @@
+=== Flow Trace Start (2026-04-15T17:19:30) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 65796
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260415_171930_65796.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-15 17:19:30,866 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-15 17:19:30,867 | INFO | flow_pipeline | [L2] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Loading task tree state for progress calculation...
+Loading timeliner date audit baselines...
+Pushing updates for 科研人 / 🏭 科研人 🚨 RstV4 (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80b7-ba3c-c63f2df772d6 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+TIMELINER sync complete.
+2026-04-15 17:19:33,857 | INFO | flow_pipeline | [L2] TIMELINER bootstrap complete; cache is now ready
+Detected 21 changes in Notion.
+2026-04-15 17:19:41,774 | INFO | flow_pipeline | [L2] Loaded 87 merged tasks
+2026-04-15 17:19:41,776 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-15 17:19:41,776 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-15 17:19:41,777 | INFO | flow_pipeline | [L2] Scoped 23 tasks from TIMELINER
+2026-04-15 17:19:41,778 | INFO | flow_pipeline | [L2] WBS pass complete: 18/23 scoped tasks changed (manual=0, auto=18)
+2026-04-15 17:19:41,778 | INFO | flow_pipeline | [L2] WBS samples: 343e1eb5 '科研人 描述性统计 Engine : 计算模组：自动计...': - -> 3; 343e1eb5 '科研人 Inferential Hypothesis ...': - -> 3; 343e1eb5 '科研人 Correlation & Regressio...': - -> 3; 343e1eb5 '科研人 多元分析 Library : 高级处理工具：(...': - -> 3; 343e1eb5 '科研人 标准学术 Plot Templates : 预...': - -> 3
+2026-04-15 17:19:41,781 | INFO | flow_pipeline | [L2] Priority pass complete: 23/23 scoped tasks changed (subproject-forced=0)
+2026-04-15 17:19:41,781 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0); 343e1eb5 '🟧 科研人 2️⃣ 数据分析可视化 Toolkit :...': - -> 2️⃣| (P2); 343e1eb5 '科研人 描述性统计 Engine : 计算模组：自动计...': - -> 2️⃣| (P2); 343e1eb5 '科研人 Inferential Hypothesis ...': - -> 2️⃣| (P2); 343e1eb5 '科研人 Correlation & Regressio...': - -> 2️⃣| (P2)
+2026-04-15 17:19:41,782 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/44 root tasks
+2026-04-15 17:19:41,782 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:根任务 (Depth 0/1): 限制为 90... | -:子任务 (Depth > 1): 限制为 80... | -:根任务 (Depth 0/1): 限制为 90...
+Pushed formatted tags to Notion for 343e1eb5-ce57-819e-82ab-f339859e339c: 🟧 科研人 2️⃣ 数据分析可视化 Toolkit : 分析组件：(统计工具, 数据可视化)
+Converted checked to-do to bullet for 343e1eb5-ce57-8114-b33a-c61ffc99c601: 科研人 描述性统计 Engine : 计算模组：自计数据集(集中趋势, 离散度, 正态分布)
+Converted checked to-do to bullet for 343e1eb5-ce57-817a-8f22-e2bc9e61e2f7: 科研人 Inferential Hypothesis Testing 模块 : 统计工具：参数/非参数检验 (T-test, ANOVA, 卡方)
+Converted checked to-do to bullet for 343e1eb5-ce57-81a2-89d8-d8fa8543cadd: 科研人 Correlation & Regression 框架 : 处理引擎：计算(线性, 多元回归, 相关系数)
+Converted checked to-do to bullet for 343e1eb5-ce57-81c2-ad70-fab6703a8c1d: 科研人 多元分析 Library : 高级处理工具：(Factor Analysis, PCA, clustering algorithms)
+Deleted unchecked generated to-do 343e1eb5-ce57-81a6-86b2-fbb76026e1ad: 科研人 标准学术 Plot Templates : 预设图表集：(scatter plots, box-and-whisker diagrams, error bar charts)
+Deleted unchecked generated to-do 343e1eb5-ce57-81ef-bec9-e94158b0be99: 科研人 交互式 Data Exploration 界面 : 动态 visualization component：支持 graphical data representation 的 (filter, zoom, drill down)。
+Deleted unchecked generated to-do 343e1eb5-ce57-8181-b18d-e8355425aecc: 科研人 高清 Export 组件 : Rendering engine：生成出版级 visual assets (vector (SVG/PDF) & high-DPI raster formats)
+Pushed formatted tags to Notion for 343e1eb5-ce57-8164-b8d3-e16413a75ec7: 🟧 科研人 1️⃣ 协作 Research Interface : 用户 Portal：(文档编辑, 版本控制, 团队沟通)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 86/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 82/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 87/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 88/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 89/1500)
+2026-04-15 17:22:13,589 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-15 17:22:13,589 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-15 17:22:13,592 | INFO | flow_pipeline | [L2] Saved 84 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-15T17:22:13

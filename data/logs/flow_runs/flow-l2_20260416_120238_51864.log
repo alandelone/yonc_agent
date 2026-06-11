@@ -1,0 +1,33 @@
+=== Flow Trace Start (2026-04-16T12:02:38) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 51864
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_120238_51864.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 12:02:38,688 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 12:02:38,688 | INFO | flow_pipeline | [L2] TIMELINER cache found and fresh (timeliner_state.json)
+Detected 4 changes in Notion.
+2026-04-16 12:02:46,673 | INFO | flow_pipeline | [L2] Loaded 65 merged tasks
+2026-04-16 12:02:46,674 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 12:02:46,675 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 12:02:46,675 | INFO | flow_pipeline | [L2] Scoped 7 tasks from TIMELINER
+2026-04-16 12:02:46,676 | INFO | flow_pipeline | [L2] WBS pass complete: 0/7 scoped tasks changed (manual=0, auto=0)
+2026-04-16 12:02:46,676 | INFO | flow_pipeline | [L2] WBS samples: none
+2026-04-16 12:02:46,678 | INFO | flow_pipeline | [L2] Priority pass complete: 1/7 scoped tasks changed (subproject-forced=0)
+2026-04-16 12:02:46,678 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 12:02:46,679 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 12:02:46,679 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Deleted unchecked generated to-do 344e1eb5-ce57-818e-b5ed-f58deaf2503c: 科研人 系统架构与 Core Infra : 基础框架：(数据库Schema, API结构, 服务端配置)
+Converted checked to-do to bullet for 344e1eb5-ce57-8134-9153-e15ebcfaed6d: 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取）
+Converted checked to-do to bullet for 344e1eb5-ce57-81d4-b688-e87c8fd87a56: 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。
+Converted checked to-do to bullet for 344e1eb5-ce57-8107-9270-ed9b03cf2c58: 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。
+Converted checked to-do to bullet for 344e1eb5-ce57-81d7-a10e-e7cd5b706ca1: 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规)
+Deleted unchecked generated to-do 344e1eb5-ce57-81aa-a775-d4d232965097: 科研人 用户文档与支持 : 用户文档：技术手册、上手指南、帮助文档。
+2026-04-16 12:03:04,871 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 12:03:04,872 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 12:03:04,873 | INFO | flow_pipeline | [L2] Saved 63 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T12:03:04

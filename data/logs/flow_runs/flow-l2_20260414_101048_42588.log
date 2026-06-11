@@ -1,0 +1,288 @@
+=== Flow Trace Start (2026-04-14T10:10:48) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 42588
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_101048_42588.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 10:10:48,061 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 10:10:48,061 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+2026-04-14 10:10:56,523 | INFO | flow_pipeline | [L2] Loaded 80 merged tasks
+2026-04-14 10:10:56,525 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 10:10:56,525 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 10:10:56,526 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026/04/14 10:10:56 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+2026-04-14 10:10:56,750 | INFO | flow_pipeline | [L2] WBS pass complete: 29/29 scoped tasks changed (manual=0, auto=29)
+2026-04-14 10:10:56,751 | INFO | flow_pipeline | [L2] WBS samples: 341e1eb5 '🏭 科研人 🚨 RstV4': - -> 1; 341e1eb5 '科研人 Core Application Interf...': - -> 2; 341e1eb5 '科研人 Intelligent Analysis En...': - -> 2; 341e1eb5 '科研人 Knowledge Management Sy...': - -> 2; 341e1eb5 '科研人 External Data Integrati...': - -> 2
+2026-04-14 10:10:56,751 | INFO | flow_pipeline | [L2] Priority pass complete: 21/29 scoped tasks changed (subproject-forced=0)
+2026-04-14 10:10:56,751 | INFO | flow_pipeline | [L2] Priority samples: 341e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0); 341e1eb5 '科研人 Core Application Interf...': - -> 2️⃣| (P2); 341e1eb5 '科研人 Intelligent Analysis En...': - -> 1️⃣ | (P1); 341e1eb5 '科研人 Knowledge Management Sy...': - -> 2️⃣| (P2); 341e1eb5 '科研人 External Data Integrati...': - -> 1️⃣ | (P1)
+2026-04-14 10:10:56,754 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/39 root tasks
+2026-04-14 10:10:56,754 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | 1:🏭 Thesis 1️⃣ Phd Logic ... | 2:🏭 Thesis 1️⃣ proposal d... | 3:🏭 Thesis 2️⃣ thesis wri... | 4:🏭 Dev 2️⃣ AI Solar & Cl...
+Pushed formatted tags to Notion for 341e1eb5-ce57-8180-a986-eee4306ddb0c: 🏭 科研人 🚨 RstV4
+Converted overflow text to toggle for 341e1eb5-ce57-81f8-8109-f90342bb24e7: 🟧 2️⃣ 科研人 Core Application Interface : Web & Mobile UI：提供 research tools 與 personal
+Converted overflow text to toggle for 341e1eb5-ce57-8100-aa79-e216f8d5e710: 🟧 1️⃣ 科研人 Intelligent Analysis Engine : AI 驅動處理單元：(文獻 summarization, information
+Converted overflow text to toggle for 341e1eb5-ce57-818f-a996-fddeaa19fc3e: 🟧 2️⃣ 科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user
+Converted overflow text to toggle for 341e1eb5-ce57-8132-92d2-d9bcd9a1e12c: 🟧 1️⃣ 科研人 External Data Integration Gateway : Platform 連接層：串接全球 academic
+Converted overflow text to toggle for 341e1eb5-ce57-81e9-a529-d6ae5ab47a2d: 🟧 2️⃣ 科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的
+Converted overflow text to toggle for 341e1eb5-ce57-8152-a1a6-ead001fd5afa: 🟧 2️⃣ 科研人 Technical Documentation and Deployment Suite : Final release 完整文件：user
+Converted overflow text to toggle for 341e1eb5-ce57-810f-b598-c4bf0779ab4d: 🏭 Thesis 2️⃣ 1️⃣ Phd Logic : clear justification on research gap, methods and validation
+Converted overflow text to toggle for 341e1eb5-ce57-813d-ac62-cbcef1206d2f: 🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide : Very clear for non expert and expert to
+Pushed formatted tags to Notion for 341e1eb5-ce57-81ae-b5e9-d0c709b43848: 🏭 Thesis 2️⃣ thesis writing : Full thesis
+Pushed formatted tags to Notion for 341e1eb5-ce57-8114-a4cd-c3b6ece8b81d: 🏭 Dev 2️⃣ AI Solar & Cloud Forecast prototyping
+Pushed formatted tags to Notion for 341e1eb5-ce57-81dd-b31f-d49ccc760596: 🏭 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 341e1eb5-ce57-8142-9229-e77ea4eaf826: 🟧 Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 341e1eb5-ce57-81a1-90a3-e61ae9f49fc3: 🔶 BOM recap || 3dp Priting || Method Plan & Resource
+Pushed formatted tags to Notion for 341e1eb5-ce57-815a-a350-cbdb991d7822: 🔶 日志system build up || Basic Maker Lab
+Pushed formatted tags to Notion for 341e1eb5-ce57-8155-82af-c050c8b6f406: 🔶 Asembly Extruder
+Pushed formatted tags to Notion for 341e1eb5-ce57-81b4-9608-d63f1ca13aa6: 🟧 Phase2 : 3kg Filament Roller + auto feeder
+Pushed formatted tags to Notion for 341e1eb5-ce57-8159-b6d4-cf8f28a36639: 🟧 Phase3 : Mini shredder mach
+Pushed formatted tags to Notion for 341e1eb5-ce57-8162-adfb-f41eec308081: 🟧 Phase4 : Production Line Setup
+Merged and deleted theme block 333e1eb5-ce57-80b3-90da-dc36c3c654f6: 
+Failed to convert overflow task to toggle for 341e1eb5-ce57-817b-bfb5-c9f4312a25b2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-817b-bfb5-c9f4312a25b2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-817b-bfb5-c9f4312a25b2
+Failed to push tags to Notion for 341e1eb5-ce57-8186-b4c8-e1ea00e09108: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8186-b4c8-e1ea00e09108
+Failed to push tags to Notion for 341e1eb5-ce57-8191-ba0b-c44981690cdc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8191-ba0b-c44981690cdc
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8138-88d3-d94aa61a7fcc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8138-88d3-d94aa61a7fcc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8138-88d3-d94aa61a7fcc
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8125-a3a3-e19eb7ce85b6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8125-a3a3-e19eb7ce85b6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8125-a3a3-e19eb7ce85b6
+Failed to push tags to Notion for 341e1eb5-ce57-81ef-bb34-c978a70c6c19: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81ef-bb34-c978a70c6c19
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81e7-80c0-c06675133b06: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-81e7-80c0-c06675133b06: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81e7-80c0-c06675133b06
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81c7-9e5b-d390cb1ecd67: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-81c7-9e5b-d390cb1ecd67: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81c7-9e5b-d390cb1ecd67
+Failed to push tags to Notion for 341e1eb5-ce57-81d8-a70d-ddcfb2297671: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81d8-a70d-ddcfb2297671
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8101-9632-dfc73c07b0af: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8101-9632-dfc73c07b0af: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8101-9632-dfc73c07b0af
+Failed to push tags to Notion for 341e1eb5-ce57-81f5-ac69-dab75ba093f3: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81f5-ac69-dab75ba093f3
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8142-9dcf-d94af951ba49: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8142-9dcf-d94af951ba49: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8142-9dcf-d94af951ba49
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8155-9e19-ff645480204a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8155-9e19-ff645480204a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8155-9e19-ff645480204a
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8179-9c71-cd44a95f21bd: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8179-9c71-cd44a95f21bd: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8179-9c71-cd44a95f21bd
+2026-04-14 10:12:07,977 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人  RstV4'
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 Core Application Interface : Web & Mobile UI提供 research tools 與 personal workspaces 的視覺化存取介面'
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 Intelligent Analysis Engine : AI 驅動處理單元(文獻 summarization, information extraction, 自動 drafting)'
+2026/04/14 10:12:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user libraries, document metadata, 分類 research notes)'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 External Data Integration Gateway : Platform 連接層串接全球 academic databasescitation managers 及 third-party APIs'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的 server-side logicdatabase management 及 authentication protocols'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 Technical Documentation and Deployment Suite : Final release 完整文件user manualsAPI documentation 及 cloud deployment configurations'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Thesis  Phd Logic : clear justification on research gap, methods and validation of'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Thesis  proposal defense Slide : Very clear for non expert and expert to understand'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Thesis  thesis writing : Full thesis'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Dev  AI Solar & Cloud Forecast prototyping'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '鍛造Maker 3dpF : 3d printing filament Extruder'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Phase1 : Setup Extruder only with exisiting BOM'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'BOM recap || 3dp Priting || Method Plan & Resource'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '日志system build up || Basic Maker Lab'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Asembly Extruder'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Phase2 : 3kg Filament Roller + auto feeder'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Phase3 : Mini shredder mach'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Classification failed: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Defaulting to WBS Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'Phase4 : Production Line Setup'
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+
+[🚫 LLM LOG - Pipeline Error]: dspy.clients.lm.LM() got multiple values for keyword argument 'api_key'. Falling back to default Predict.
+2026/04/14 10:12:08 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2026-04-14 10:12:08,136 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-14 10:12:08,139 | INFO | flow_pipeline | [L2] Saved 80 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-14T10:12:08

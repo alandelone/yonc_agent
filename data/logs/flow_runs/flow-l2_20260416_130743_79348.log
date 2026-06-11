@@ -1,0 +1,27 @@
+=== Flow Trace Start (2026-04-16T13:07:43) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 79348
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_130743_79348.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 13:07:43,577 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 13:07:43,577 | INFO | flow_pipeline | [L2] TIMELINER cache found and fresh (timeliner_state.json)
+Detected 7 changes in Notion.
+2026-04-16 13:07:54,346 | INFO | flow_pipeline | [L2] Loaded 87 merged tasks
+2026-04-16 13:07:54,347 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 13:07:54,347 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 13:07:54,349 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+2026-04-16 13:07:54,350 | INFO | flow_pipeline | [L2] WBS pass complete: 0/29 scoped tasks changed (manual=0, auto=0)
+2026-04-16 13:07:54,350 | INFO | flow_pipeline | [L2] WBS samples: none
+2026-04-16 13:07:54,352 | INFO | flow_pipeline | [L2] Priority pass complete: 1/29 scoped tasks changed (subproject-forced=0)
+2026-04-16 13:07:54,352 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 13:07:54,354 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 13:07:54,354 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+2026-04-16 13:07:54,355 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 13:07:54,355 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 13:07:54,359 | INFO | flow_pipeline | [L2] Saved 87 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T13:07:54

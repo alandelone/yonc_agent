@@ -1,0 +1,26 @@
+=== Flow Trace Start (2026-04-16T11:42:49) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 34380
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_114249_34380.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 11:42:49,044 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 11:42:49,044 | INFO | flow_pipeline | [L2] TIMELINER cache found and fresh (timeliner_state.json)
+2026-04-16 11:42:58,744 | INFO | flow_pipeline | [L2] Loaded 99 merged tasks
+2026-04-16 11:42:58,745 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 11:42:58,746 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 11:42:58,747 | INFO | flow_pipeline | [L2] Scoped 0 tasks from TIMELINER
+2026-04-16 11:42:58,748 | INFO | flow_pipeline | [L2] WBS pass complete: 0/0 scoped tasks changed (manual=0, auto=0)
+2026-04-16 11:42:58,748 | INFO | flow_pipeline | [L2] WBS samples: none
+2026-04-16 11:42:58,750 | INFO | flow_pipeline | [L2] Priority pass complete: 0/0 scoped tasks changed (subproject-forced=0)
+2026-04-16 11:42:58,750 | INFO | flow_pipeline | [L2] Priority samples: none
+2026-04-16 11:42:58,751 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 11:42:58,751 | INFO | flow_pipeline | [L2] Root order preview: -:科研人 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+2026-04-16 11:42:58,753 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 11:42:58,753 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 11:42:58,755 | INFO | flow_pipeline | [L2] Saved 99 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T11:42:58

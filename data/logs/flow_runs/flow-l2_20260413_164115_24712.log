@@ -1,0 +1,237 @@
+=== Flow Trace Start (2026-04-13T16:41:15) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 24712
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260413_164115_24712.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-13 16:41:15,236 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-13 16:41:15,236 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+Detected 26 changes in Notion.
+2026-04-13 16:41:22,461 | INFO | flow_pipeline | [L2] Loaded 58 merged tasks
+2026-04-13 16:41:22,462 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-13 16:41:22,462 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-13 16:41:22,464 | INFO | flow_pipeline | [L2] Scoped 13 tasks from TIMELINER
+[MultiKey] 请求中... (key_1 | 今日: 48/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase3 : Mini shredder mach
+{"task_id": "33be1eb5-ce57-8110-9fc8-d3f449e48cde", "title": "Phase3", "description": "Mini shredder mach", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "Mini shredder mach", "char_count": 18}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase3: Mini shredder mach' represents a major component or a specific developmental stage of the overarching project '鍛造Maker 3dpF'. According to WBS rules, Level 1 is the ultimate project goal, while Level 2 represents core modules or major deliverables. Since this is a 'Phase' or a specific machine module within a larger system, it functions as a Level 2 deliverable. It is phrased as a noun ('Mini shredder mach'), which is appropriate for this level.
+[MultiKey] 请求中... (key_2 | 今日: 43/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase2 : 3kg Filament Roller + auto feeder
+{"task_id": "33be1eb5-ce57-8150-809a-c69f46213515", "title": "Phase2", "description": "3kg Filament Roller + auto feeder", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "3kg Filament Roller + auto feeder", "char_count": 33}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase2: 3kg Filament Roller + auto feeder' represents a major deliverable or functional module within the broader '鍛造Maker 3dpF' (3D printing filament extruder) project. According to the WBS rules, Level 1 is the final outcome (the complete machine), and Level 2 consists of core modules or major components. This task describes specific sub-systems (Roller and Feeder) that contribute to the 100% rule of the parent project. It uses noun phrases ('Roller', 'feeder') rather than action verbs, fitting the Level 2 criteria for a major deliverable. It is not Level 1 because it is a phase/component of a larger machine, and not Level 3/4 as it describes a system rather than a specific 8-80 hour work package or a 2-hour activity.
+[MultiKey] 请求中... (key_3 | 今日: 18/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase4 : Production Line Setup
+{"task_id": "33be1eb5-ce57-81a4-94f3-df427257aafe", "title": "Phase4", "description": "Production Line Setup", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "Production Line Setup", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase4: Production Line Setup' represents a major deliverable within the larger project '鍛造Maker 3dpF'. According to the hierarchical decomposition rules, Level 1 is the project goal (the 3d printing filament Extruder), and Level 2 consists of core modules or major project phases that represent deliverables. 'Production Line Setup' is a noun-based grouping of work that describes a specific part of the project scope. It is not Level 3 because it describes a broad phase rather than a specific 8-80 hour work package, and it is not Level 4 because it is not a specific action/verb-noun activity.
+[MultiKey] 请求中... (conny | 今日: 11/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase1 : Setup Extruder only with exisiting BOM
+{"task_id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [{"id": "33be1eb5-ce57-814c-98a3-daa6c22bc23d", "title": "BOM recap || 3dp Priting || Method Plan & Resource", "description": "", "type": "bulleted_list_item", "checked": null}, {"id": "33be1eb5-ce57-8122-9c08-dd45ded09e1c", "title": "日志system build up || Basic Maker Lab", "description": "", "type": "bulleted_list_item", "checked": null}, {"id": "33be1eb5-ce57-814e-afaf-ff4510a08338", "title": "Asembly Extruder", "description": "", "type": "bulleted_list_item", "checked": null}], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "children", "location": "direct_children", "content": "BOM recap || 3dp Priting || Method Plan & Resource; 日志system build up || Basic Maker Lab; Asembly Extruder", "char_count": 106}, {"source": "description", "location": "current_block", "content": "Setup Extruder only with exisiting BOM", "char_count": 38}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase1: Setup Extruder only with exisiting BOM' represents a major phase or core module within the broader '3d printing filament Extruder' project. It serves as a Level 2 deliverable because it decomposes the main goal into a specific, high-level structural component (Phase 1). While the title contains a verb ('Setup'), its functional role in the hierarchy is a Major Deliverable that contains multiple sub-tasks (Work Packages) like 'Assembly Extruder' and 'BOM recap'. It is not the final project goal (Level 1) nor is it a singular work package (Level 3) or a granular action (Level 4).
+[MultiKey] 请求中... (key_5 | 今日: 9/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '日志system build up || Basic Maker Lab
+{"task_id": "33be1eb5-ce57-8122-9c08-dd45ded09e1c", "title": "日志system build up || Basic Maker Lab", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '日志system build up' (Log system buildup) represents a core module or major deliverable within 'Phase 1' of the '3d printing filament Extruder' project. According to the hierarchy, Level 1 is the project goal (3dpF), and Level 2 is the major functional component or phase deliverable (Phase 1 components). While the title contains a verb-like phrase ('build up'), it functions as a noun-based component (a Log System) in the context of the project structure. It is not an activity (Level 4) because it is a significant module, and it is not a Level 3 work package because it encompasses the entire logging architecture for the lab setup.
+  [Throttling] 所有密钥冷却中，key_1 将在 4.0s 后就绪...
+[MultiKey] 请求中... (key_1 | 今日: 49/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'BOM recap || 3dp Priting || Method Plan & Resource
+{"task_id": "33be1eb5-ce57-814c-98a3-daa6c22bc23d", "title": "BOM recap || 3dp Priting || Method Plan & Resource", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'BOM recap || 3dp Priting || Method Plan & Resource' represents a Work Package within the project hierarchy. It is nested under 'Phase 1' (Level 2) of the '3dpF Extruder' project (Level 1). The title describes a specific deliverable (a consolidated document or 'recap' of parts and resources) rather than a high-level project goal or a granular action. It uses noun-based phrasing ('BOM recap', 'Method Plan', 'Resource') consistent with Level 3 requirements, representing a tangible outcome that would typically take between 8-80 hours to compile and verify for a mechanical project.
+  [Throttling] 所有密钥冷却中，key_2 将在 0.0s 后就绪...
+[MultiKey] 请求中... (key_2 | 今日: 44/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Asembly Extruder
+{"task_id": "33be1eb5-ce57-814e-afaf-ff4510a08338", "title": "Asembly Extruder", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Assembly Extruder' (likely intended as 'Assembled Extruder') represents a specific, physical work package within 'Phase 1' of the '3d printing filament Extruder' project. According to the WBS hierarchy: Level 1 is the main project (3dpF), Level 2 is the Phase (Phase 1), and Level 3 is the Work Package. While the input uses the word 'Assembly' (a verb/gerund), in this context, it identifies a major sub-assembly or deliverable module of the hardware. It is too broad for a Level 4 'Activity' (which would be < 2 hours and a specific action like 'Tighten M3 bolts'), making Level 3 the most appropriate classification.
+2026-04-13 16:41:26,621 | INFO | flow_pipeline | [L2] WBS pass complete: 13/13 scoped tasks changed (manual=0, auto=13)
+2026-04-13 16:41:26,621 | INFO | flow_pipeline | [L2] WBS samples: 33be1eb5 'Thesis proposal defense Sli...': - -> 1; 33be1eb5 'Thesis thesis writing : Ful...': - -> 1; 33ce1eb5 'Thesis Phd Logic : clear ju...': - -> 1; 33be1eb5 'Dev AI Solar & Cloud Foreca...': - -> 1; 33be1eb5 '科研人 RstV4': - -> 1
+2026-04-13 16:41:26,623 | INFO | flow_pipeline | [L2] Priority pass complete: 5/13 scoped tasks changed (subproject-forced=0)
+2026-04-13 16:41:26,623 | INFO | flow_pipeline | [L2] Priority samples: 33be1eb5 'Thesis proposal defense Sli...': - -> 1️⃣ | (P1); 33be1eb5 'Thesis thesis writing : Ful...': - -> 2️⃣| (P2); 33ce1eb5 'Thesis Phd Logic : clear ju...': - -> 1️⃣ | (P1); 33be1eb5 'Dev AI Solar & Cloud Foreca...': - -> 2️⃣| (P2); 33be1eb5 '科研人 RstV4': - -> 🚨 | (P0)
+2026-04-13 16:41:26,623 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 23/38 root tasks
+2026-04-13 16:41:26,624 | INFO | flow_pipeline | [L2] Root order preview: 0:科研人 RstV4 | 1:Thesis Phd Logic : clea... | 2:Thesis proposal defense... | 3:Thesis thesis writing :... | 4:Dev AI Solar & Cloud Fo...
+Physical Root Rank Reordering: synchronizing order to Notion...
+  -> Moving block '科研人 RstV4' to physical position 0
+  -> Moving block 'Thesis Phd Logic : c' to physical position 1
+  -> Moving block 'Thesis proposal defe' to physical position 2
+  -> Moving block 'Thesis thesis writin' to physical position 3
+  -> Moving block 'Dev AI Solar & Cloud' to physical position 4
+  -> Moving block '鍛造Maker 3dpF :  3d p' to physical position 5
+Physical Root Rank Reordering complete.
+Pushed formatted tags to Notion for 341e1eb5-ce57-812c-9941-dba33b9cc808: 🏭 科研人 🚨 RstV4
+Converted overflow text to toggle for 341e1eb5-ce57-8122-9856-ed33d376dd20: 🏭 Thesis 1️⃣ Phd Logic : clear justification on research gap, methods and validation of
+Pushed formatted tags to Notion for 341e1eb5-ce57-8184-8857-c6c26631f720: 🏭 Thesis 1️⃣ proposal defense Slide : Very clear for non expert and expert to understand
+Pushed formatted tags to Notion for 341e1eb5-ce57-8174-8dd6-dec82f2831f3: 🏭 Thesis 2️⃣ thesis writing : Full thesis
+Pushed formatted tags to Notion for 341e1eb5-ce57-8161-afcd-d5bfc1362471: 🏭 Dev 2️⃣ AI Solar & Cloud Forecast prototyping
+Pushed formatted tags to Notion for 341e1eb5-ce57-815b-90e7-c78468e7617f: 🏭 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 341e1eb5-ce57-81ce-ad7b-d5d261b917ee: 🟧 Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 341e1eb5-ce57-819a-8e37-dba986984e3b: 🔶 BOM recap || 3dp Priting || Method Plan & Resource
+Pushed formatted tags to Notion for 341e1eb5-ce57-8170-86c9-e15e752145e0: 🔶 日志system build up || Basic Maker Lab
+Pushed formatted tags to Notion for 341e1eb5-ce57-8153-b6b7-c36b6949be2f: 🔶 Asembly Extruder
+Pushed formatted tags to Notion for 341e1eb5-ce57-8150-9b8d-e331fa75712b: 🟧 Phase2 : 3kg Filament Roller + auto feeder
+Pushed formatted tags to Notion for 341e1eb5-ce57-81cb-8799-da34c57ace50: 🟧 Phase3 : Mini shredder mach
+Pushed formatted tags to Notion for 341e1eb5-ce57-81d8-a1ff-c661f0c86617: 🟧 Phase4 : Production Line Setup
+2026-04-13 16:41:57,733 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+Added 6 physical subtasks to the top of 341e1eb5-ce57-812c-9941-dba33b9cc808
+Added 6 physical subtasks to the top of 333e1eb5-ce57-80b3-90da-dc36c3c654f6
+Added 8 physical subtasks to the top of 341e1eb5-ce57-8184-8857-c6c26631f720
+Added 5 physical subtasks to the top of 341e1eb5-ce57-8174-8dd6-dec82f2831f3
+Added 5 physical subtasks to the top of 341e1eb5-ce57-8161-afcd-d5bfc1362471
+Added 7 physical subtasks to the top of 341e1eb5-ce57-815b-90e7-c78468e7617f
+Added 6 physical subtasks to the top of 341e1eb5-ce57-81ce-ad7b-d5d261b917ee
+[MultiKey] 请求中... (key_1 | 今日: 50/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 RstV4'
+   Output: Level 1 | Type WBS | Rationale: The input '科研人 RstV4' (Researcher RstV4) represents the name of a specific project, product, or versioned release. It functions as the highest-level noun phrase defining the final outcome or the project identity itself. As it identifies the entire scope of the version 4 release, it fits the criteria for Level 1 (Goal).
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 RstV4'
+[MultiKey] 请求中... (key_2 | 今日: 45/500)
+   Output: Deliverables=['Software Core Architecture', 'User Experience Interface', 'Data Management System', 'Functional Feature Modules', 'Security and Compliance Framework', 'Technical Documentation and Support']
+[MultiKey] 请求中... (key_1 | 今日: 51/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Phd Logic : clear justification on research gap, methods and validation of the'
+   Output: Level 2 | Type N/A | Rationale: The task describes 'Thesis PhD Logic', which constitutes a Major Deliverable (Core Module) of the overall PhD project. It identifies specific structural components (research gap, methods, validation) that contribute to the whole but are not the final goal itself. The phrasing is noun-based ('Thesis Phd Logic'), which aligns with Level 2 requirements. It is too broad to be a Work Package (Level 3) as developing the logic, methods, and validation for a PhD thesis exceeds the 80-hour limit, and it is not a specific physical action (Level 4).
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): 'Thesis Phd Logic : clear justification on research gap, methods and validation of the'
+[MultiKey] 请求中... (key_2 | 今日: 46/500)
+   Output: Work Packages=['Systematic Literature Review Synthesis', 'Research Gap Statement', 'Methodological Framework Design', 'Instrument and Tool Specifications', 'Validation Protocol and Metrics', 'Comparative Analysis Report']
+[MultiKey] 请求中... (key_1 | 今日: 52/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis proposal defense Slide : Very clear for non expert and expert to understand'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis proposal defense Slide' describes a specific, tangible deliverable that contributes to a larger project (the Thesis). It represents a 'Work Package' because it is a verifiable result (a slide deck) that typically requires substantial effort (often within the 8-80 hour range) to ensure it meets the criteria of being clear for both experts and non-experts. It is expressed as a noun phrase rather than an action-oriented verb, fitting Level 3 requirements.
+
+[🤖 LLM LOG - Phase 2.3: Refine L3 -> L4]
+   Input (Work Package): 'Thesis proposal defense Slide : Very clear for non expert and expert to understand'
+[MultiKey] 请求中... (key_3 | 今日: 19/500)
+   Output: ['Outline core slide narrative (1.5h)', 'Draft problem statement visuals (2.0h)', 'Synthesize technical methodology slides (2.0h)', 'Design key terminology glossary (1.0h)', 'Refine slide typography and contrast (1.5h)', 'Insert high-resolution data visualizations (2.0h)', 'Review slide accessibility transitions (1.0h)', 'Perform peer clarity check (1.5h)']
+[MultiKey] 请求中... (key_1 | 今日: 53/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis thesis writing : Full thesis'
+   Output: Level 1 | Type OKR | Rationale: The task 'Thesis thesis writing : Full thesis' represents the final outcome or the ultimate project goal. According to the hierarchy, Level 1 is the overarching goal or result, usually expressed as a noun phrase. While 'writing' is a verb, the context clarifies the deliverable is the 'Full thesis', which is the final SMART outcome of the project.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (OKR)]
+   Input (Exploratory Goal): 'Thesis thesis writing : Full thesis'
+[MultiKey] 请求中... (key_2 | 今日: 47/500)
+   Output: Objective='Complete a high-quality full-length academic thesis ready for final submission' | KRs=['Comprehensive Literature Review', 'Data Analysis and Methodology', 'Full Manuscript Draft', 'Final Revision and Proofreading']
+[MultiKey] 请求中... (key_1 | 今日: 54/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Dev AI Solar & Cloud Forecast prototyping'
+   Output: Level 1 | Type OKR | Rationale: The task 'Dev AI Solar & Cloud Forecast prototyping' represents a high-level goal or a project's final outcome. It describes a strategic objective (an AI-driven forecasting system) rather than a specific component or a granular action. Although it contains a verb-like prefix ('Dev'), in this context, it identifies the project scope. Because it is exploratory and innovative in nature (prototyping), it is classified as a Level 1 Goal.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (OKR)]
+   Input (Exploratory Goal): 'Dev AI Solar & Cloud Forecast prototyping'
+[MultiKey] 请求中... (key_3 | 今日: 20/500)
+   Output: Objective='Prototype an Integrated AI Forecasting Engine for Solar Yield and Cloud Coverage' | KRs=['Data Pipeline Architecture', 'Cloud Motion Vector Model', 'Solar Yield Prediction Accuracy', 'Prototype Cloud Infrastructure']
+[MultiKey] 请求中... (key_1 | 今日: 55/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '鍛造Maker 3dpF :  3d printing filament Extruder'
+   Output: Level 1 | Type WBS | Rationale: The task '鍛造Maker 3dpF : 3d printing filament Extruder' represents the final outcome/end-product of the project. It is phrased as a noun (the name of the device) rather than an action or a sub-component. As it defines the complete system being built, it functions as the Level 1 (Goal) in a WBS hierarchy.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '鍛造Maker 3dpF :  3d printing filament Extruder'
+[MultiKey] 请求中... (key_2 | 今日: 48/500)
+   Output: Deliverables=['Raw Material Feeding System', 'Extrusion and Thermal Unit', 'Cooling and Calibration Module', 'Puller and Tensioning Mechanism', 'Winding and Spooling Assembly', 'Control Electronics and Firmware', 'Structural Frame and Enclosure']
+[MultiKey] 请求中... (key_1 | 今日: 56/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase1 : Setup Extruder only with exisiting BOM'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase 1: Setup Extruder only with existing BOM' represents a major deliverable or a core module of a larger project. It describes a specific component ('Extruder') within a larger phase, which fits the definition of Level 2 (Major Deliverables). While it contains the word 'Setup', in this context it functions as a noun-heavy descriptor of a specific assembly state rather than a high-level goal (Level 1) or a granular work package (Level 3). It is not Level 4 because it is not a singular physical action with a 2-hour limit.
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): 'Phase1 : Setup Extruder only with exisiting BOM'
+[MultiKey] 请求中... (key_3 | 今日: 21/500)
+   Output: Work Packages=['Verified Existing Bill of Materials (BOM)', 'Extruder Base Frame Assembly', 'Extruder Drive and Motor Unit', 'Heating and Barrel Sub-system', 'Screw and Feed Throat Assembly', 'Local Control Panel Hardware']
+[MultiKey] 请求中... (key_2 | 今日: 49/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'BOM recap || 3dp Priting || Method Plan & Resource'
+   Output: Level 2 | Type N/A | Rationale: The task 'BOM recap || 3dp Priting || Method Plan & Resource' describes a Major Deliverable or core module within a larger project (likely a manufacturing or engineering project). It consists of several noun-based components (BOM, Method Plan, Resource) that define a specific area of work. It is not the ultimate project goal (Level 1), but it represents a high-level grouping of deliverables rather than a specific work package under 80 hours (Level 3) or a discrete 2-hour physical action (Level 4).
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]Added 5 physical subtasks to the top of 341e1eb5-ce57-819a-8e37-dba986984e3b
+Added 5 physical subtasks to the top of 341e1eb5-ce57-8170-86c9-e15e752145e0
+Added 1 physical subtasks to the top of 341e1eb5-ce57-8153-b6b7-c36b6949be2f
+Added 5 physical subtasks to the top of 341e1eb5-ce57-8150-9b8d-e331fa75712b
+Added 6 physical subtasks to the top of 341e1eb5-ce57-81cb-8799-da34c57ace50
+Added 7 physical subtasks to the top of 341e1eb5-ce57-81d8-a1ff-c661f0c86617
+
+   Input (Major Deliverable): 'BOM recap || 3dp Priting || Method Plan & Resource'
+[MultiKey] 请求中... (conny | 今日: 12/500)
+   Output: Work Packages=['Consolidated Bill of Materials', '3D Printing Process Specification', 'Production Method Statement', 'Resource Allocation Matrix', 'Tooling and Consumables Inventory']
+[MultiKey] 请求中... (key_5 | 今日: 10/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '日志system build up || Basic Maker Lab'
+   Output: Level 1 | Type OKR | Rationale: The task '日志system build up' (Log system build up) represents a high-level project goal or final outcome. While 'build up' is a verb phrase, in this context it defines the creation of a complete system (Log System), which is the primary deliverable. It sits at the top of the hierarchy for the 'Basic Maker Lab' project scope, making it a Level 1 entry. Since it involves an exploratory/constructive effort to establish a system, it is categorized as an OKR (exploratory/objective-driven) rather than a purely deterministic WBS node.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (OKR)]
+   Input (Exploratory Goal): '日志system build up || Basic Maker Lab'
+  [Throttling] 所有密钥冷却中，key_1 将在 1.2s 后就绪...
+[MultiKey] 请求中... (key_1 | 今日: 57/500)
+   Output: Objective='Establish a Foundational Logging Infrastructure for the Basic Maker Lab' | KRs=['Log Collection Framework Deployment', 'Centralized Storage Backend Setup', 'Real-time Monitoring Dashboard', 'Error Notification System']
+[MultiKey] 请求中... (key_2 | 今日: 50/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Asembly Extruder'
+   Output: Level 4 | Type N/A | Rationale: The task 'Asembly Extruder' (Assembly Extruder) uses a Verb-Noun syntax which describes a physical action rather than a static deliverable. According to the WBS rules context, Level 4 is defined by 'Physical Actions' using 'Verb + Noun' phrasing. Levels 1-3 strictly require noun phrases to describe deliverables. Therefore, this is a discrete activity (Level 4) rather than a high-level outcome.
+
+[🤖 LLM LOG - Phase 2.4: Refine L4]
+   Input (Atomic Action): 'Asembly Extruder'
+[MultiKey] 请求中... (key_3 | 今日: 22/500)
+   Output: Type=Focus | Hours=0.75 | Action='Mount extruder motor and gears'
+[MultiKey] 请求中... (key_1 | 今日: 58/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase2 : 3kg Filament Roller + auto feeder'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase2 : 3kg Filament Roller + auto feeder' represents a major component or sub-system of a larger 3D printing infrastructure project. It is structured as a noun phrase identifying a specific module (Level 2) rather than the final project goal (Level 1) or a discrete work package (Level 3). It groups multiple deliverables (Roller and Feeder) that contribute to the overall phase.
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): 'Phase2 : 3kg Filament Roller + auto feeder'
+[MultiKey] 请求中... (conny | 今日: 13/500)
+   Output: Work Packages=['Reinforced 3kg Roller Base Assembly', 'Auto-Feeder Drive Unit', 'Filament Detection and Guidance Module', 'Integrated Feeder Control Electronics', 'External Enclosure and Mounting Hardware']
+[MultiKey] 请求中... (key_5 | 今日: 11/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase3 : Mini shredder mach'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase3 : Mini shredder mach' represents a major component or a specific stage of a larger project (the complete machine development). It uses a noun phrase ('Mini shredder mach') rather than a verb, aligning it with a Level 2 Major Deliverable or Core Module. It is not the final goal (Level 1) because it is explicitly labeled as 'Phase3', suggesting it is part of a broader hierarchy. It is too broad to be a Work Package (Level 3) or a specific Activity (Level 4).
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): 'Phase3 : Mini shredder mach'
+  [Throttling] 所有密钥冷却中，key_2 将在 1.0s 后就绪...
+[MultiKey] 请求中... (key_2 | 今日: 51/500)
+   Output: Work Packages=['Structural Steel Frame', 'Cutting Blade Assembly', 'Power Transmission System', 'Loading Hopper and Discharge Chute', 'Control Panel and Electrical Circuitry', 'Safety Shielding and Guards']
+[MultiKey] 请求中... (key_1 | 今日: 59/500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase4 : Production Line Setup'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase 4: Production Line Setup' represents a major component or phase of a larger project. Since it describes a core module/deliverable (the production line) and not the final ultimate project goal (Level 1), it fits the definition of Level 2. While 'Setup' can imply action, in WBS terminology it identifies a major deliverable state. It is too broad to be a Level 3 Work Package (which requires 8-80 hours) and is not an activity (Level 4).
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): 'Phase4 : Production Line Setup'
+[MultiKey] 请求中... (key_3 | 今日: 23/500)
+   Output: Work Packages=['Facility Flooring and Utility Connections', 'Assembly Station Hardware and Tooling', 'Conveyor and Material Handling System', 'Quality Control Inspection Booth', 'Production Line Control Software', 'Safety Signage and Protective Barriers', 'Operator Station Documentation Sets']
+2026-04-13 16:44:44,418 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 72 subtasks across 13 parent tasks
+2026-04-13 16:44:44,421 | INFO | flow_pipeline | [L2] Saved 130 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-13T16:44:44

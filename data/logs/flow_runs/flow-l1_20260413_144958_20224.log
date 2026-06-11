@@ -1,0 +1,76 @@
+=== Flow Trace Start (2026-04-13T14:49:58) ===
+command: flow-l1
+argv: main.py flow-l1
+pid: 20224
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l1_20260413_144958_20224.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l1 (L1 stage)...
+2026-04-13 14:49:58,262 | INFO | flow_pipeline | [L1] Starting L1 flow
+2026-04-13 14:50:22,837 | INFO | flow_pipeline | [L1] Loaded 77 merged tasks
+2026-04-13 14:50:22,839 | INFO | flow_pipeline | [L1] Theme pass complete
+Reparented and removed 19 theme container block(s).
+2026-04-13 14:51:38,116 | INFO | flow_pipeline | [L1] Theme container reparenting complete
+Failed to push tags to Notion for 341e1eb5-ce57-8191-afea-f9d000e691c0: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81ba-8889-c6a802f1db33: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81a0-8706-d6911715ff88: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8138-8fb5-dcaf53370e93: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8134-bcba-e3ca0152ef48: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81e8-88c3-ee9d9e215328: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8164-a54a-d2568be204b6: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-815c-ac8e-e7fb7fdacf40: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81a5-8412-ef5930c1436e: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81bd-89b3-c88b4abe8e7b: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8150-bcfb-f5d011ed3604: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-819c-8411-dbc14d38abf1: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8166-826a-de03e6bfc034: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-816f-9928-f0f536b7a022: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-817b-b0b8-eb28f77525c5: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81a3-ab46-f184c0ab935a: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-813c-b4f0-d54a566d7e30: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-815d-a276-c0f32ddf6ce0: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-811e-9ece-fa6db94271d8: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-817c-9f0c-c4ad38f7c498: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81de-9c3a-fad64ba662f4: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8111-b0d5-de0eb8351f71: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81be-b6d5-ff1a624d5760: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-815d-80cc-ce198008bfe0: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81bb-aa2f-c684507d9c04: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8114-9e21-f160e61b2278: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8193-9358-caf555bf68d4: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8146-8cfe-d37a3e339510: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81e4-8b07-f1d41c780c94: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-812d-89b2-dd6bfaa4f32e: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-810f-b973-f50b9ad871fa: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-814e-80a1-dc4ca4dc2b1e: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-813e-99e8-dae6749d8679: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81ef-aa11-cac667d1b0ed: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-816c-bc49-dc5c1add3c73: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-818e-bf33-c66b07f8b0b3: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-817c-ab14-e44e72bbef62: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81fd-bb8b-c8d7a83539c1: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81fd-bb8b-c8d7a83539c1
+Failed to push tags to Notion for 341e1eb5-ce57-817e-8f41-f8cfe8d3b5fd: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-817e-8f41-f8cfe8d3b5fd
+Failed to push tags to Notion for 341e1eb5-ce57-8149-baef-e70cb643a3c6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8149-baef-e70cb643a3c6
+Failed to push tags to Notion for 341e1eb5-ce57-81b5-a9f9-d2f424b5291b: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81b8-a64e-e041575dfaef: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8137-8483-f4be0a7a4b1a: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81ca-b5dd-d5afc7fc0bda: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-810a-9e95-e01d4e0233be: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81e7-ad90-dd157c7ba142: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81d3-a142-fdac08e9bb6c: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8144-a2fa-fe88d3fe144a: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-814b-a443-d33365d4ac26: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-815e-a936-d71d5452f5f9: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8165-9dc8-d064a9a871b2: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8112-b4b1-f68c7dfedbae: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-8122-b7c1-ced98f8617fc: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-814b-b0fd-ce3cb408622a: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81f5-a066-ed4ace8ea4c3: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-81fe-bcb6-f21755ed3bd1: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 341e1eb5-ce57-816c-96e5-dab7b82c7472: 'TeeStream' object has no attribute 'buffer'
+Failed to push tags to Notion for 31ae1eb5-ce57-8074-b87e-ef22800f3894: 'TeeStream' object has no attribute 'buffer'
+2026-04-13 14:52:37,244 | INFO | flow_pipeline | [L1] Tag push to Notion complete
+2026-04-13 14:52:37,246 | INFO | flow_pipeline | [L1] Saved 58 tasks to state
+L1 flow complete.
+[trace] Flow run completed at 2026-04-13T14:52:37

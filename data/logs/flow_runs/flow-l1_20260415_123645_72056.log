@@ -1,0 +1,51 @@
+=== Flow Trace Start (2026-04-15T12:36:45) ===
+command: flow-l1
+argv: main.py flow-l1
+pid: 72056
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l1_20260415_123645_72056.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l1 (L1 stage)...
+2026-04-15 12:36:45,508 | INFO | flow_pipeline | [L1] Starting L1 flow
+Detected 58 changes in Notion.
+2026-04-15 12:36:50,986 | INFO | flow_pipeline | [L1] Loaded 58 merged tasks
+2026-04-15 12:36:50,987 | INFO | flow_pipeline | [L1] Theme pass complete
+2026-04-15 12:36:50,987 | INFO | flow_pipeline | [L1] Theme container reparenting complete
+Pushed formatted tags to Notion for 342e1eb5-ce57-81f1-82c8-ea15e89d1892: 科研人 🚨 RstV4
+Pushed formatted tags to Notion for 342e1eb5-ce57-814a-965b-f606789e5fc3: Thesis 1️⃣ Phd Logic : clear justification on research gap, methods and validation of the
+Pushed formatted tags to Notion for 342e1eb5-ce57-81ca-aa55-fe711c8aed59: Thesis 1️⃣ proposal defense Slide : Very clear for non expert and expert to understand
+Pushed formatted tags to Notion for 342e1eb5-ce57-81d3-acba-dc72195235b7: Thesis 2️⃣ thesis writing : Full thesis
+Pushed formatted tags to Notion for 342e1eb5-ce57-81d1-90ef-c564c946408a: Dev 2️⃣ AI Solar & Cloud Forecast prototyping
+Pushed formatted tags to Notion for 342e1eb5-ce57-812b-b648-dee412f25dce: 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 342e1eb5-ce57-8189-b60c-ffa11c77ecfc: 鍛造Maker Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 342e1eb5-ce57-818f-a319-cafd49e884e9: 鍛造Maker BOM recap || 3dp Priting || Method Plan & Resource
+Pushed formatted tags to Notion for 342e1eb5-ce57-8140-95cc-e7c855931e68: 鍛造Maker 日志system build up || Basic Maker Lab
+Pushed formatted tags to Notion for 342e1eb5-ce57-8170-8a38-eb9902f9ec88: 鍛造Maker Asembly Extruder
+Pushed formatted tags to Notion for 342e1eb5-ce57-8140-8514-c2f43ca4a694: 鍛造Maker Phase2 : 3kg Filament Roller + auto feeder
+Pushed formatted tags to Notion for 342e1eb5-ce57-8132-9242-d0ed606c3607: 鍛造Maker Phase3 : Mini shredder mach
+Pushed formatted tags to Notion for 342e1eb5-ce57-8133-924f-f726ebb9f35b: 鍛造Maker Phase4 : Production Line Setup
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8173-ab39-e1864af6d512: Dev SolarPV 仪器原型 : 明确 justification：(research gap, methods, result validation)
+Pushed formatted tags to Notion for 33be1eb5-ce57-81a1-966b-fe8416463b4b: 科研人 领域之鹰 : 深厚专业知识体系
+Pushed formatted tags to Notion for 33be1eb5-ce57-81f7-9369-f0bdafbf56bf: 科研人 知识体系的flow
+Pushed formatted tags to Notion for 33be1eb5-ce57-8180-8cb6-fcbeceed0fe7: 科研人 知识体系Framewrok Decide
+Pushed formatted tags to Notion for 33be1eb5-ce57-8159-b653-d2591b688242: 科研人 知识体系Dev
+Pushed formatted tags to Notion for 33be1eb5-ce57-8197-90d4-f1abbe7c98d6: 科研人 H100 index : 速出有质量的论文
+Pushed formatted tags to Notion for 33be1eb5-ce57-81aa-b2bb-c1f59e1e26a9: 科研人 成熟速HighQ写作技巧论
+Pushed formatted tags to Notion for 33be1eb5-ce57-8105-b5db-eee09d240039: 科研人 成熟review体系method论
+Pushed formatted tags to Notion for 33be1eb5-ce57-8102-a767-e33fb9fadca9: 科研人 锁定目标期刊/会议List
+Pushed formatted tags to Notion for 33be1eb5-ce57-81e0-af0b-cb86667c89fb: 科研人 Publication Technique > Citation Strategy
+Pushed formatted tags to Notion for 33be1eb5-ce57-815e-9ef9-e1a987ebcac8: 科研人 科研素质 : 科研內功
+Pushed formatted tags to Notion for 33be1eb5-ce57-8145-83e3-d188d305696b: 科研人 科研の道 （ Phd is what || Rs || Rv ）
+Pushed formatted tags to Notion for 33be1eb5-ce57-8199-ae30-c4070cddb256: 科研人 科研习惯 （ 1h daily || 读Papers || 拓展知识网边界 || 看现况 || 内化）
+Pushed formatted tags to Notion for 33be1eb5-ce57-81fa-9b11-ce5be5181eae: DZaoSpaceV1 phase 1 mini pellet loop
+Pushed formatted tags to Notion for 33be1eb5-ce57-81ef-bbfd-d885b8cdd56a: DZaoSpaceV1 Phase 2 250ms good abs
+Pushed formatted tags to Notion for 33be1eb5-ce57-814d-ab8d-df32ec73e2e1: DZaoSpaceV1 Phase 3 dual head PA self sustained
+Pushed formatted tags to Notion for 33be1eb5-ce57-81b0-8f85-df1a27439247: DZaoSpaceV1 Phase 4 multi colour self sustained
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8142-aea3-f82649b824fc: DZaoSpaceV1 filter air system human : system human system human system human system
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+2026-04-15 12:37:59,300 | INFO | flow_pipeline | [L1] Tag push to Notion complete
+2026-04-15 12:37:59,302 | INFO | flow_pipeline | [L1] Saved 58 tasks to state
+L1 flow complete.
+[trace] Flow run completed at 2026-04-15T12:37:59

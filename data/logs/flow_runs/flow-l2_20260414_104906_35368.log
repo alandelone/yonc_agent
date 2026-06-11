@@ -1,0 +1,150 @@
+=== Flow Trace Start (2026-04-14T10:49:06) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 35368
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_104906_35368.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 10:49:06,696 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 10:49:06,696 | INFO | flow_pipeline | [L2] TIMELINER cache missing or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Loading task tree state for progress calculation...
+Loading timeliner date audit baselines...
+Pushing updates for 科研人 / RstV4 (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80b7-ba3c-c63f2df772d6 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Pushing updates for 科研人 / Phd Logic (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803d-a919-decac5e5f315 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Pushing updates for Thesis / proposal defense Slide (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Pushing updates for Thesis / thesis writing (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Pushing updates for Dev / AI Solar & Cloud Forecast prototyping (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ca-a4fd-e2f2f1863a60 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Pushing updates for 鍛造Maker / 3dpF (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80df-98fe-fd6dc3575bb5 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+TIMELINER sync complete.
+2026-04-14 10:49:17,929 | INFO | flow_pipeline | [L2] TIMELINER bootstrap complete; cache is now ready
+Detected 80 changes in Notion.
+2026-04-14 10:49:26,685 | INFO | flow_pipeline | [L2] Loaded 80 merged tasks
+2026-04-14 10:49:26,686 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 10:49:26,687 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 10:49:26,688 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Intelligent Analysis Engine : AI 驅動處理單元(文獻 summarization, information extraction, 自動 drafting)
+{"task_id": "341e1eb5-ce57-8100-aa79-e216f8d5e710", "title": "科研人 Intelligent Analysis Engine", "description": "AI 驅動處理單元：(文獻 summarization, information extraction, 自動 drafting)", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "AI 驅動處理單元：(文獻 summarization, information extraction, 自動 drafting)", "char_count": 65}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 Intelligent Analysis Engine' represents a major functional module of the parent system (科研人). It identifies a core deliverable (the Analysis Engine) and specifies its components (summarization, extraction, drafting). Since it serves as a primary component of the larger project goal but requires further decomposition into specific work packages (Level 3), it fits the definition of Level 2 (Major Deliverables). The syntax is noun-oriented, describing 'what' the unit is.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 External Data Integration Gateway : Platform 連接層串接全球 academic databasescitation managers 及 third-party APIs
+{"task_id": "341e1eb5-ce57-8132-92d2-d9bcd9a1e12c", "title": "科研人 External Data Integration Gateway", "description": "Platform 連接層：串接全球 academic databases、citation managers 及 third-party APIs", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "Platform 連接層：串接全球 academic databases、citation managers 及 third-party APIs", "char_count": 73}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'External Data Integration Gateway' represents a major component or module of the overall project ('科焔人'). It identifies a specific architectural layer (Platform 連接層) that is broad in scope, covering multiple global databases and APIs. This fits the definition of Level 2 (Major Deliverables/Core Modules) because it is a significant subsystem that must be further decomposed into specific work packages (e.g., specific API connectors) to reach the 8-80 hour effort threshold. It is expressed as a noun phrase ('Gateway').
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user libraries, document metadata, 分類 research notes)
+{"task_id": "341e1eb5-ce57-818f-a996-fddeaa19fc3e", "title": "科研人 Knowledge Management System", "description": "安全 storage & retrieval architecture (管理 user libraries, document metadata, 分類 research notes)", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "安全 storage & retrieval architecture (管理 user libraries, document metadata, 分類 research notes)", "char_count": 93}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 Knowledge Management System: 安全 storage & retrieval architecture' describes a major functional module or technical subsystem of a larger parent project ('科研人 🚨 RstV4'). It focuses on a core deliverable component (Storage & Retrieval Architecture) and includes noun-based descriptions of what is being managed (libraries, metadata, notes). Since it is a structural component of the overall project and not the final product itself, it fits Level 2 (Major Deliverables/Core Modules).
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的 server-side logicdatabase management 及 authentication protocols
+{"task_id": "341e1eb5-ce57-81e9-a529-d6ae5ab47a2d", "title": "科研人 System Backend Infrastructure", "description": "支援 platform stability 與 user security 的 server-side logic、database management 及 authentication protocols。", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "支援 platform stability 與 user security 的 server-side logic、database management 及 authentication protocols。", "char_count": 105}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 System Backend Infrastructure' represents a major functional component of the overall project ('科研人 🚨 RstV4'). It serves as a core module encompassing several sub-domains: server-side logic, database management, and authentication protocols. As it describes a broad deliverable category (a noun-based module) rather than the final project goal (Level 1) or a specific, small-scale work package (Level 3), it is classified as Level 2.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Core Application Interface : Web & Mobile UI提供 research tools 與 personal workspaces 的視覺化存取介面
+{"task_id": "341e1eb5-ce57-81f8-8109-f90342bb24e7", "title": "科研人 Core Application Interface", "description": "Web & Mobile UI：提供 research tools 與 personal workspaces 的視覺化存取介面。", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "Web & Mobile UI：提供 research tools 與 personal workspaces 的視覺化存取介面。", "char_count": 65}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: 1. The task '科研人 Core Application Interface' represents a major component or module of the overarching project (科研人 🚨 RstV4).
+2. It follows the Noun Phrase convention required for Levels 1-2, focusing on a specific deliverable (UI for Web & Mobile) rather than an action.
+3. It serves as a structural subdivision of the main project, which is typical for Level 2 (Major Deliverables/Core Modules).
+4. It is not Level 1 because it is a component of a larger system, and not Level 3 because it describes a broad interface rather than a discrete work package estimated at 8-80 hours.
+2026-04-14 10:49:32,058 | INFO | flow_pipeline | [L2] WBS pass complete: 7/29 scoped tasks changed (manual=0, auto=7)
+2026-04-14 10:49:32,058 | INFO | flow_pipeline | [L2] WBS samples: 341e1eb5 '科研人 Core Application Interf...': - -> 2; 341e1eb5 '科研人 Intelligent Analysis En...': - -> 2; 341e1eb5 '科研人 Knowledge Management Sy...': - -> 2; 341e1eb5 '科研人 External Data Integrati...': - -> 2; 341e1eb5 '科研人 System Backend Infrastr...': - -> 2
+2026-04-14 10:49:32,060 | INFO | flow_pipeline | [L2] Priority pass complete: 21/29 scoped tasks changed (subproject-forced=0)
+2026-04-14 10:49:32,060 | INFO | flow_pipeline | [L2] Priority samples: 341e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0); 341e1eb5 '科研人 Core Application Interf...': - -> 2️⃣| (P2); 341e1eb5 '科研人 Intelligent Analysis En...': - -> 1️⃣ | (P1); 341e1eb5 '科研人 Knowledge Management Sy...': - -> 2️⃣| (P2); 341e1eb5 '科研人 External Data Integrati...': - -> 1️⃣ | (P1)
+2026-04-14 10:49:32,062 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/39 root tasks
+2026-04-14 10:49:32,062 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | 1:🏭 Thesis 1️⃣ Phd Logic ... | 2:🏭 Thesis 1️⃣ proposal d... | 3:🏭 Thesis 2️⃣ thesis wri... | 4:🏭 Dev 2️⃣ AI Solar & Cl...
+Converted overflow text to toggle for 341e1eb5-ce57-81f8-8109-f90342bb24e7: 🟧 2️⃣ 科研人 Core Application Interface : Web & Mobile UI：提供 research tools 與 personal
+Converted overflow text to toggle for 341e1eb5-ce57-8100-aa79-e216f8d5e710: 🟧 1️⃣ 科研人 Intelligent Analysis Engine : AI 驅動處理單元：(文獻 summarization, information
+Converted overflow text to toggle for 341e1eb5-ce57-818f-a996-fddeaa19fc3e: 🟧 2️⃣ 科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user
+Converted overflow text to toggle for 341e1eb5-ce57-8132-92d2-d9bcd9a1e12c: 🟧 1️⃣ 科研人 External Data Integration Gateway : Platform 連接層：串接全球 academic
+Converted overflow text to toggle for 341e1eb5-ce57-81e9-a529-d6ae5ab47a2d: 🟧 2️⃣ 科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的
+Converted overflow text to toggle for 341e1eb5-ce57-8152-a1a6-ead001fd5afa: 🟧 2️⃣ 科研人 Technical Documentation and Deployment Suite : Final release 完整文件：user
+Converted overflow text to toggle for 341e1eb5-ce57-810f-b598-c4bf0779ab4d: 🏭 Thesis 2️⃣ 1️⃣ Phd Logic : clear justification on research gap, methods and validation
+Converted overflow text to toggle for 341e1eb5-ce57-813d-ac62-cbcef1206d2f: 🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide : Very clear for non expert and expert to
+Pushed formatted tags to Notion for 341e1eb5-ce57-8155-82af-c050c8b6f406: 🔶 Asembly Extruder
+Merged and deleted theme block 333e1eb5-ce57-80b3-90da-dc36c3c654f6: 
+Failed to convert overflow task to toggle for 341e1eb5-ce57-817b-bfb5-c9f4312a25b2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-817b-bfb5-c9f4312a25b2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-817b-bfb5-c9f4312a25b2
+Failed to push tags to Notion for 341e1eb5-ce57-8186-b4c8-e1ea00e09108: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8186-b4c8-e1ea00e09108
+Failed to push tags to Notion for 341e1eb5-ce57-8191-ba0b-c44981690cdc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8191-ba0b-c44981690cdc
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8138-88d3-d94aa61a7fcc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8138-88d3-d94aa61a7fcc: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8138-88d3-d94aa61a7fcc
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8125-a3a3-e19eb7ce85b6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8125-a3a3-e19eb7ce85b6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8125-a3a3-e19eb7ce85b6
+Failed to push tags to Notion for 341e1eb5-ce57-81ef-bb34-c978a70c6c19: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81ef-bb34-c978a70c6c19
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81e7-80c0-c06675133b06: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-81e7-80c0-c06675133b06: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81e7-80c0-c06675133b06
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81c7-9e5b-d390cb1ecd67: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-81c7-9e5b-d390cb1ecd67: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81c7-9e5b-d390cb1ecd67
+Failed to push tags to Notion for 341e1eb5-ce57-81d8-a70d-ddcfb2297671: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81d8-a70d-ddcfb2297671
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8101-9632-dfc73c07b0af: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-813d-ac62-cbcef1206d2f/children
+Failed to push tags to Notion for 341e1eb5-ce57-8101-9632-dfc73c07b0af: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8101-9632-dfc73c07b0af
+Failed to push tags to Notion for 341e1eb5-ce57-81f5-ac69-dab75ba093f3: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81f5-ac69-dab75ba093f3
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8142-9dcf-d94af951ba49: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8142-9dcf-d94af951ba49: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8142-9dcf-d94af951ba49
+Failed to convert overflow task to toggle for 341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-81e1-a2ce-d0e17d5b1ded
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8155-9e19-ff645480204a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8155-9e19-ff645480204a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8155-9e19-ff645480204a
+Failed to convert overflow task to toggle for 341e1eb5-ce57-8179-9c71-cd44a95f21bd: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/333e1eb5-ce57-80b3-90da-dc36c3c654f6/children
+Failed to push tags to Notion for 341e1eb5-ce57-8179-9c71-cd44a95f21bd: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/341e1eb5-ce57-8179-9c71-cd44a95f21bd
+2026-04-14 10:50:18,628 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人  RstV4'
+   Output: Level 1 | Type WBS | Rationale: The input '科研人 RstV4' (Researcher/Scientific Researcher RstV4) represents the primary subject or the name of a high-level project/product version. It serves as the final outcome or the identity of the system being developed. It is a noun phrase acting as the overarching goal for all subsequent decomposition. As it defines the broad project scope without specifying individual modules or actions, it is classified as Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人  RstV4'
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+   Output: Deliverables=['System Architecture and Core Infrastructure', 'Literature Management and Retrieval Engine', 'Data Analysis and Visualization Toolkit', 'Collaborative Research Interface', 'Security and Compliance Framework', 'User Documentation and Support Materials']
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+2026/04/14 10:51:20 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+Failed to condense title: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Using original.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+2026/04/14 10:53:13 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+Failed to condense description: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Using original.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+2026/04/14 10:56:11 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+Failed to condense title: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Using original.
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)

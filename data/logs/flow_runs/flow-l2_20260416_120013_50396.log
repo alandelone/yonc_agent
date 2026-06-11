@@ -1,0 +1,72 @@
+=== Flow Trace Start (2026-04-16T12:00:13) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 50396
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_120013_50396.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 12:00:13,667 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 12:00:13,667 | INFO | flow_pipeline | [L2] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Loading task tree state for progress calculation...
+Loading timeliner date audit baselines...
+Pushing updates for 科研人 / 🏭 科研人 🚨 RstV4 (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80b7-ba3c-c63f2df772d6 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+TIMELINER sync complete.
+2026-04-16 12:00:18,808 | INFO | flow_pipeline | [L2] TIMELINER bootstrap complete; cache is now ready
+Detected 59 changes in Notion.
+2026-04-16 12:00:25,668 | INFO | flow_pipeline | [L2] Loaded 59 merged tasks
+2026-04-16 12:00:25,669 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 12:00:25,669 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 12:00:25,670 | INFO | flow_pipeline | [L2] Scoped 1 tasks from TIMELINER
+2026-04-16 12:00:25,671 | INFO | flow_pipeline | [L2] WBS pass complete: 1/1 scoped tasks changed (manual=0, auto=1)
+2026-04-16 12:00:25,671 | INFO | flow_pipeline | [L2] WBS samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 1
+2026-04-16 12:00:25,674 | INFO | flow_pipeline | [L2] Priority pass complete: 1/1 scoped tasks changed (subproject-forced=0)
+2026-04-16 12:00:25,674 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 12:00:25,675 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 12:00:25,675 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Pushed formatted tags to Notion for 342e1eb5-ce57-81f1-82c8-ea15e89d1892: 🏭 科研人 🚨 RstV4
+Pushed formatted tags to Notion for 343e1eb5-ce57-813c-83ab-fe900db9c6a6: 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 343e1eb5-ce57-81a8-92b7-dcab4ea01c9c: 鍛造Maker Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 343e1eb5-ce57-8161-a114-f8eacf2be2ac: 鍛造Maker Phase2 : 3kg Filament Roller + auto feeder
+Pushed formatted tags to Notion for 343e1eb5-ce57-812a-a869-e99cddc4eb0b: 鍛造Maker Phase3 : Mini shredder mach
+Pushed formatted tags to Notion for 343e1eb5-ce57-811f-8de1-e360f3805b7a: 鍛造Maker Phase4 : Production Line Setup
+Pushed formatted tags to Notion for 342e1eb5-ce57-814a-965b-f606789e5fc3: Thesis Phd Logic : clear justification on research gap, methods and validation of the
+Pushed formatted tags to Notion for 342e1eb5-ce57-81ca-aa55-fe711c8aed59: Thesis proposal defense Slide : Very clear for non expert and expert to understand
+Pushed formatted tags to Notion for 342e1eb5-ce57-81d3-acba-dc72195235b7: Thesis thesis writing : Full thesis
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8173-ab39-e1864af6d512: Dev SolarPV 仪器原型 : 明确 justification：(research gap, methods, result validation)
+Pushed formatted tags to Notion for 33be1eb5-ce57-81a1-966b-fe8416463b4b: 科研人 领域之鹰 : 深厚专业知识体系
+Pushed formatted tags to Notion for 33be1eb5-ce57-8197-90d4-f1abbe7c98d6: 科研人 H100 index : 速出有质量的论文
+Pushed formatted tags to Notion for 33be1eb5-ce57-815e-9ef9-e1a987ebcac8: 科研人 科研素质 : 科研內功
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8142-aea3-f82649b824fc: DZaoSpaceV1 filter air system human : system human system human system human system
+2026-04-16 12:00:42,101 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+Added 6 physical subtasks to the top of 342e1eb5-ce57-81f1-82c8-ea15e89d1892
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 7/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人  RstV4'
+   Output: Level 1 | Type WBS | Rationale: The input '科研人 RstV4' (Researcher/Scientific Researcher RstV4) represents the primary subject or the name of a high-level project/product version. It serves as the final outcome or the identity of the system being developed. It is a noun phrase acting as the overarching goal for all subsequent decomposition. As it defines the broad project scope without specifying individual modules or actions, it is classified as Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人  RstV4'
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 6/20)
+   Output: Deliverables=['System Architecture and Core Infrastructure', 'Literature Management and Retrieval Engine', 'Data Analysis and Visualization Toolkit', 'Collaborative Research Interface', 'Security and Compliance Framework', 'User Documentation and Support Materials']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 10/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 3/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 3/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 3/1500)
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 11/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 4/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 4/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 4/1500)
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 12/1500)
+2026-04-16 12:00:52,922 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 6 subtasks across 1 parent tasks
+2026-04-16 12:00:52,925 | INFO | flow_pipeline | [L2] Saved 65 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T12:00:52

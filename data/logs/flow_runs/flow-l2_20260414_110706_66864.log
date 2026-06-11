@@ -1,0 +1,118 @@
+=== Flow Trace Start (2026-04-14T11:07:06) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 66864
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_110706_66864.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 11:07:06,615 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 11:07:06,616 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+Detected 43 changes in Notion.
+2026-04-14 11:07:19,015 | INFO | flow_pipeline | [L2] Loaded 74 merged tasks
+2026-04-14 11:07:19,017 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 11:07:19,017 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 11:07:19,019 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_1 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_1...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+  [MultiKey] gemini/gemini-3-flash-preview | alansyling 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 alansyling...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 2/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_3 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_3...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 2/20)
+  [MultiKey] gemini/gemini-3-flash-preview | conny 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 conny...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的
+{"task_id": "342e1eb5-ce57-8100-ae99-fe851bd7d0c8", "title": "🟧 2️⃣ 科研人 System Backend Infrastructure", "description": "支援 platform stability 與 user security 的", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "支援 platform stability 與 user security 的", "char_count": 39}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 System Backend Infrastructure' represents a major functional module or sub-system within the larger project '科研人 🚨 RstV4'. It describes a component (the infrastructure) rather than the final project goal (Level 1) or a specific work package (Level 3). It is phrased as a noun, adhering to the Level 2 requirement for Major Deliverables. It serves to group related sub-deliverables like stability and security features, but is still broad enough to require further decomposition.
+  [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 15.0s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 3/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_5 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_5...
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+2026/04/14 11:08:22 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+Classification failed: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Defaulting to WBS Level 1.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+2026/04/14 11:09:29 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+Classification failed: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Defaulting to WBS Level 1.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_1 | 今日: 1/500)
+  [MultiKey] gemini/gemini-3.1-flash-lite-preview | key_1 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  [MultiKey] 判定为模型 gemini/gemini-3.1-flash-lite-preview 的配额已尽，今日下线 key_1...
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+2026/04/14 11:10:03 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+Classification failed: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Defaulting to WBS Level 1.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+2026/04/14 11:11:22 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+Classification failed: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Defaulting to WBS Level 1.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+2026/04/14 11:13:18 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+Classification failed: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Defaulting to WBS Level 1.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)

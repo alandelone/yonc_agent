@@ -1,0 +1,19 @@
+=== Flow Trace Start (2026-04-15T12:39:15) ===
+command: flow-l1
+argv: main.py flow-l1
+pid: 71480
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l1_20260415_123915_71480.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l1 (L1 stage)...
+2026-04-15 12:39:15,978 | INFO | flow_pipeline | [L1] Starting L1 flow
+Detected 28 changes in Notion.
+2026-04-15 12:39:22,122 | INFO | flow_pipeline | [L1] Loaded 59 merged tasks
+2026-04-15 12:39:22,124 | INFO | flow_pipeline | [L1] Theme pass complete
+2026-04-15 12:39:22,124 | INFO | flow_pipeline | [L1] Theme container reparenting complete
+Pushed formatted tags to Notion for 343e1eb5-ce57-80a0-9f57-f3d4586455e7: 鍛造Maker Basic Maker Lab
+2026-04-15 12:39:22,807 | INFO | flow_pipeline | [L1] Tag push to Notion complete
+2026-04-15 12:39:22,810 | INFO | flow_pipeline | [L1] Saved 59 tasks to state
+L1 flow complete.
+[trace] Flow run completed at 2026-04-15T12:39:22

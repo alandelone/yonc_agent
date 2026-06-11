@@ -1,0 +1,71 @@
+=== Flow Trace Start (2026-04-16T11:45:33) ===
+command: flow-l1
+argv: main.py flow-l1
+pid: 74244
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l1_20260416_114533_74244.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l1 (L1 stage)...
+2026-04-16 11:45:33,581 | INFO | flow_pipeline | [L1] Starting L1 flow
+Detected 99 changes in Notion.
+2026-04-16 11:45:42,383 | INFO | flow_pipeline | [L1] Loaded 99 merged tasks
+2026-04-16 11:45:42,385 | INFO | flow_pipeline | [L1] Theme pass complete
+2026-04-16 11:45:42,386 | INFO | flow_pipeline | [L1] Theme container reparenting complete
+Pushed formatted tags to Notion for 344e1eb5-ce57-818e-93dd-eea5ae0efc41: 科研人 系统架构与 Core Infra : 基础框架：(数据库Schema, API结构, 服务端配置)
+Pushed formatted tags to Notion for 344e1eb5-ce57-810f-98c8-db6e92c04c7d: 科研人 RDBMS 模式 : 包含核心实体表结构、外键关联、索引设计及初始化SQL脚本的完整数据库定义。
+Pushed formatted tags to Notion for 344e1eb5-ce57-819e-b9cb-e74e5773af2a: 科研人 REST/GraphQL 契约 : 定义服务端与客户端交互的 API 协议文档，包含端点、请求参数及响应格式规范。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8106-9993-eb76884a0341: 科研人 容器化运行环境配置 : 服务端环境配置 (Dockerfile, Docker Compose, K8s)
+Pushed formatted tags to Notion for 344e1eb5-ce57-8144-bc6e-c2d80e621071: 科研人 中间件与缓存架构配置 : Redis 缓存策略、消息队列参数以及负载均衡器等基础支撑组件的详细配置参数。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81d2-bccd-cb51d79acb9b: 科研人 应用安全与权限模型 : 包含 JWT 鉴权流程、RBAC 权限控制逻辑以及敏感数据加密方案的架构定义。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8191-b797-e7a50c7f3983: 科研人 日志与性能监控体系 : 分布式链路追踪、ELK 日志收集以及系统指标监控告警的集成配置方案。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8176-97dc-c700acf3b088: 科研人 文献管理检索 Engine : 论文索引、搜索与组织模块（支持 metadata 提取）
+Pushed formatted tags to Notion for 344e1eb5-ce57-818d-b1c4-df70667e7811: 科研人 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)
+Pushed formatted tags to Notion for 344e1eb5-ce57-81c5-8bf9-d9b00de80ed1: 科研人 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)
+Pushed formatted tags to Notion for 344e1eb5-ce57-81f5-901b-d83cbc10ccd4: 科研人 统一元数据 Schema 库 : DB Schema与存储层：统一维护跨文档类型文献信息。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8191-a355-f10c6dcfd1cd: 科研人 去重合并逻辑 : 算法组件：查重并合并 metadata，确保索引唯一。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81a3-a98a-e208f95f5a3e: 科研人 全文索引 Search 服务 : 高性能索引服务：基于元数据与文档内容实现快速关键词搜索。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81cf-9f0a-dbe188b3de4c: 科研人 文献 Tag 管理系统 : 论文分类子系统：(层级文件夹、自定义标签、元数据关联)
+Pushed formatted tags to Notion for 344e1eb5-ce57-8134-a5b5-ed222f283e2b: 科研人 数据分析可视化 Toolkit : 分析组件：研究数据统计及可视化。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81c6-bc2b-dc49ad0f4358: 科研人 描述性统计分析引擎 : 包含均值、标准差、分布特征及常用参数化指标计算逻辑的核心代码模块。
+Pushed formatted tags to Notion for 344e1eb5-ce57-816b-83d9-e1d78009e73f: 科研人 交互式多维可视化组件库 : 提供散点图、热力图及动态趋势图等支持缩放与筛选功能的图表组件集合。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81aa-b4f5-c7f49fd31f33: 科研人 科研专用图形渲染模板 : 符合国际主流学术期刊投稿要求的图表样式配置与导出格式规范集。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8169-9ef9-dcd49757144a: 科研人 多源实验数据接口适配器 : 支持CSV、Excel及科研仪器常用原始格式的数据读取与清洗映射工具。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81c5-85e9-ff35426fbc56: 科研人 分析结果自动化总结报告 : 根据统计输出自动生成的包含关键结论描述与图表排版的结构化文档。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8188-b63e-cd5b40c6837c: 科研人 协作研究 UI : 用户门户：文档编辑、版本控制、团队沟通。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8169-82c3-cf110476bf9e: 科研人 用户门户个人主页界面 : 包含个人资料展示、研究动态流以及科研资产管理入口的UI设计与前端组件。
+Pushed formatted tags to Notion for 344e1eb5-ce57-812b-b935-f7e9284c3097: 科研人 在线文档编辑器交互界面 : 支持富文本编辑、Markdown渲染及科研公式排版功能的文档编辑操作界面。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81c1-8588-df4c7cf3647f: 科研人 文档版本管理控制台 : 提供历史版本列表查看、差异化对比视图及版本回滚触发器的管理模块。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81e8-b98e-e54237be6a24: 科研人 团队实时协作通讯组件 : 集成在编辑器及门户内的即时消息、评论标注及团队通知中心界面。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8121-9d43-ca6e84641abd: 科研人 科研协作仪表盘 : 展示团队项目进度、任务分配状态及共同研究成果的数据可视化统计界面。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8172-89f0-e29a06b50b39: 科研人 安全合规框架 : 安全层：(数据加密, 用户认证, IP合规)
+Pushed formatted tags to Notion for 344e1eb5-ce57-81e6-9da5-e4bd1d8c7484: 科研人 静态数据加密模块 : 包含数据库字段加密方案与磁盘存储加密机制，确保科研敏感数据在静止状态下的机密性。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81b8-a468-da755c0b0de6: 科研人 传输链路加密协议 : 基于SSL/TLS的端到端数据传输加密配置，保障数据在网络流动过程中的安全性。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81a0-8917-c9a049271d31: 科研人 多因素用户认证系统 : 集成密码、生物识别或动态令牌的多维度身份核验机制，确保用户访问权限的合法性。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81bc-afc3-d72c7f9846fc: 科研人 角色访问控制(RBAC)引擎 : 定义用户角色与权限映射的授权系统，实现基于身份的精细化资源访问限制。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8124-a10c-ccd5e87fdb48: 科研人 IP地理围栏与白名单策略 : 针对特定地理区域或指定公网IP段的访问过滤规则，防止非法属地的网络连接。
+Pushed formatted tags to Notion for 344e1eb5-ce57-815f-bc47-c2e09b2f701d: 科研人 异常访问行为审计日志 : 记录所有登录活动及IP访问轨迹的安全审计数据库，用于合规性溯源与威胁分析。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8170-a0ae-dfbb6bfa4ca2: 科研人 用户文档与支持 : 用户文档：技术手册、上手指南、帮助文档。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8132-b672-ecb9c713ac3b: 科研人 系统安装与环境配置手册 : 包含软件系统安装步骤、软硬件环境要求以及初始参数配置的详细指导文档。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8182-800b-e08ed88139f1: 科研人 核心功能模块操作指南 : 针对数据采集、文献分析及实验建模等核心业务模块的具体使用流程与功能说明文档。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81ac-ab82-e85c62674068: 科研人 新手快速入门图解教程 : 通过图文或流程图形式展示系统核心路径的极简上手指南，旨在帮助新用户半小时内完成首个科研任务。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8192-851c-cea3ebf60759: 科研人 API 接口与二次开发文档 : 面向高级用户及开发者的技术规格说明书，包含接口参数定义、调用示例及扩展插件开发标准。
+Pushed formatted tags to Notion for 344e1eb5-ce57-812a-85e1-e997bbb54880: 科研人 常见问题与故障排查库 : 汇总用户常见操作误区、系统报错代码及其对应解决方案的检索式维护手册。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8143-9084-ffbd81143bc6: 科研人 在线交互式帮助中心系统 : 集成在软件内部的可检索 HTML 帮助文档，包含上下文敏感的浮窗提示与搜索功能。
+Pushed formatted tags to Notion for 343e1eb5-ce57-813c-83ab-fe900db9c6a6: 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 343e1eb5-ce57-81a8-92b7-dcab4ea01c9c: 鍛造Maker Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 343e1eb5-ce57-8161-a114-f8eacf2be2ac: 鍛造Maker Phase2 : 3kg Filament Roller + auto feeder
+Pushed formatted tags to Notion for 343e1eb5-ce57-812a-a869-e99cddc4eb0b: 鍛造Maker Phase3 : Mini shredder mach
+Pushed formatted tags to Notion for 343e1eb5-ce57-811f-8de1-e360f3805b7a: 鍛造Maker Phase4 : Production Line Setup
+Pushed formatted tags to Notion for 342e1eb5-ce57-814a-965b-f606789e5fc3: Thesis Phd Logic : clear justification on research gap, methods and validation of the
+Pushed formatted tags to Notion for 342e1eb5-ce57-81ca-aa55-fe711c8aed59: Thesis proposal defense Slide : Very clear for non expert and expert to understand
+Pushed formatted tags to Notion for 342e1eb5-ce57-81d3-acba-dc72195235b7: Thesis thesis writing : Full thesis
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8173-ab39-e1864af6d512: Dev SolarPV 仪器原型 : 明确 justification：(research gap, methods, result validation)
+Pushed formatted tags to Notion for 33be1eb5-ce57-81a1-966b-fe8416463b4b: 科研人 领域之鹰 : 深厚专业知识体系
+Pushed formatted tags to Notion for 33be1eb5-ce57-8197-90d4-f1abbe7c98d6: 科研人 H100 index : 速出有质量的论文
+Pushed formatted tags to Notion for 33be1eb5-ce57-815e-9ef9-e1a987ebcac8: 科研人 科研素质 : 科研內功
+Pushed formatted tags to Notion for 33ce1eb5-ce57-8142-aea3-f82649b824fc: DZaoSpaceV1 filter air system human : system human system human system human system
+2026-04-16 11:46:53,396 | INFO | flow_pipeline | [L1] Tag push to Notion complete
+2026-04-16 11:46:53,399 | INFO | flow_pipeline | [L1] Saved 99 tasks to state
+L1 flow complete.
+[trace] Flow run completed at 2026-04-16T11:46:53

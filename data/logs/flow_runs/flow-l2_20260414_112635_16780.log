@@ -1,0 +1,459 @@
+=== Flow Trace Start (2026-04-14T11:26:35) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 16780
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_112635_16780.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 11:26:35,028 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 11:26:35,029 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+2026-04-14 11:26:47,751 | INFO | flow_pipeline | [L2] Loaded 74 merged tasks
+2026-04-14 11:26:47,752 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 11:26:47,753 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 11:26:47,754 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的
+{"task_id": "342e1eb5-ce57-8100-ae99-fe851bd7d0c8", "title": "🟧 2️⃣ 科研人 System Backend Infrastructure", "description": "支援 platform stability 與 user security 的", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "支援 platform stability 與 user security 的", "char_count": 39}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 System Backend Infrastructure' represents a major functional module or sub-system within the larger project '科研人 🚨 RstV4'. It describes a component (the infrastructure) rather than the final project goal (Level 1) or a specific work package (Level 3). It is phrased as a noun, adhering to the Level 2 requirement for Major Deliverables. It serves to group related sub-deliverables like stability and security features, but is still broad enough to require further decomposition.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+  [MultiKey] gemini/gemini-3-flash-preview | alansyling 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 8.184153737s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "8s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 alansyling...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_3 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 3.459041832s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-3-flash"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "3s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_3...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+  [MultiKey] gemini/gemini-3-flash-preview | conny 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 58.787374529s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-3-flash"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "58s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 conny...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_5 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 54.088612359s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-3-flash"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "54s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_5...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_1 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 49.437572146s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "49s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_1...
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user
+{"task_id": "342e1eb5-ce57-8118-b12d-fb6a18f47e23", "title": "🟧 2️⃣ 科研人 Knowledge Management System", "description": "安全 storage & retrieval architecture (管理 user", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "安全 storage & retrieval architecture (管理 user", "char_count": 44}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '科研人 Knowledge Management System' refers to a core module or major deliverable within the larger project '🏭 科研人 🚨 RstV4'. It is expressed as a noun phrase, focusing on the deliverable (the system) rather than specific activities or the final project goal, which aligns with the definition of Level 2 (Major Deliverables).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Proofread slide text : 檢核全份 deck slidesspellinggrammar 及 consistent formatting
+{"task_id": "342e1eb5-ce57-813f-a91b-cb2687d13a0b", "title": "Thesis Proofread slide text", "description": "檢核全份 deck slides：spelling、grammar 及 consistent formatting。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "檢核全份 deck slides：spelling、grammar 及 consistent formatting。", "char_count": 58}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task 'Thesis Proofread slide text' (檢核全份 deck slides) describes a specific action—proofreading and checking for spelling, grammar, and formatting. Since it starts with a verb ('Proofread' / '檢核') and represents a concrete physical action rather than a noun-based deliverable, it aligns with the definition of Level 4 (Activities).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 2/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Illustrate complex concepts : 製作 graphics 與 analogies 向 non-experts 解釋 technical theories
+{"task_id": "342e1eb5-ce57-8148-83b5-c63cae961fbb", "title": "Thesis Illustrate complex concepts", "description": "製作 graphics 與 analogies 向 non-experts 解釋 technical theories。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "製作 graphics 與 analogies 向 non-experts 解釋 technical theories。", "char_count": 60}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task describes a specific activity ('Illustrate complex concepts' and '製作 graphics' / create graphics) rather than a static deliverable. It is nested under a parent block ('proposal defense Slide'), indicating it is a granular action required to complete that deliverable. The use of verbs ('Illustrate', '製作') aligns with the Level 4 definition of physical actions (Verb + Noun).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 2/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Audit jargon usage : 識別並處理過量 tech jargon (定義或移除)以維持整體 clarity
+{"task_id": "342e1eb5-ce57-815f-aabb-ecd5a0d7b610", "title": "Thesis Audit jargon usage", "description": "識別並處理過量 tech jargon (定義或移除)，以維持整體 clarity。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "識別並處理過量 tech jargon (定義或移除)，以維持整體 clarity。", "char_count": 42}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task 'Thesis Audit jargon usage' is phrased as an activity (Verb 'Audit' + Noun 'jargon usage'), and the description '識別並處理' (Identify and handle) explicitly defines a physical action. According to the WBS rules, Levels 1-3 must be Nouns (deliverables), while Level 4 consists of physical actions (Verb + Noun). Given its scope as a specific step to refine the 'proposal defense Slide' parent deliverable, it fits the criteria for Level 4.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 3/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Design visual theme : 建立一致 color palette 與 typography提升專業度與 readability
+{"task_id": "342e1eb5-ce57-8165-962e-d8a91600bf22", "title": "Thesis Design visual theme", "description": "建立一致 color palette 與 typography：提升專業度與 readability。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "建立一致 color palette 與 typography：提升專業度與 readability。", "char_count": 51}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis Design visual theme' is expressed as a noun phrase representing a specific deliverable (the visual identity/theme). It is a sub-component of the parent 'Proposal Defense Slide', which serves as the higher-level deliverable. Since it represents a verifiable outcome (the defined palette and typography) rather than a granular activity (Level 4) or a high-level goal (Level 1), it is classified as a Work Package (Level 3).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Intelligent Analysis Engine : AI 驅動處理單元(文獻 summarization, information
+{"task_id": "342e1eb5-ce57-8186-9869-fe86550d59eb", "title": "🟧 1️⃣ 科研人 Intelligent Analysis Engine", "description": "AI 驅動處理單元：(文獻 summarization, information", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "AI 驅動處理單元：(文獻 summarization, information", "char_count": 40}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Intelligent Analysis Engine' acts as a major module or core deliverable under the parent project '科研人 🚨 RstV4'. It is phrased as a noun and describes a high-level component (the AI engine) that would be further decomposed into specific work packages (like the mentioned summarization and information processing functions), which aligns with the definition of Level 2.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 4/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Document expected contributions : 詳述 thesis project 的 predicted findings 與 significance
+{"task_id": "342e1eb5-ce57-8187-b9df-f8deaf351add", "title": "Thesis Document expected contributions", "description": "詳述 thesis project 的 predicted findings 與 significance。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "詳述 thesis project 的 predicted findings 與 significance。", "char_count": 54}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task is a sub-component of the 'Proposal defense Slide'. While the title is phrased as a noun ('Thesis Document expected contributions'), the description explicitly defines the task as an action: '詳述' (to detail/elaborate). In the WBS hierarchy, since the parent is already a specific deliverable (the Slide deck), the act of detailing a specific section within that deck constitutes a physical action/activity. This fits the Level 4 definition (Verb + Noun) and represents a small, focused effort.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Summarize existing literature : 彙整 previous research定義 context 與 gap
+{"task_id": "342e1eb5-ce57-818b-9d1b-ef89f21fde47", "title": "Thesis Summarize existing literature", "description": "彙整 previous research：定義 context 與 gap。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "彙整 previous research：定義 context 與 gap。", "char_count": 38}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task 'Summarize existing literature' follows a 'Verb + Noun' structure, which explicitly defines an activity/physical action rather than a noun-based deliverable. Since it is a sub-task contributing to the creation of the 'proposal defense Slide' (the higher-level deliverable), it fits the criteria for Level 4.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Write introduction content : 總結研究 background 與 motivation (面向廣大學術 audience)
+{"task_id": "342e1eb5-ce57-818f-b697-c50b0ac7cb9d", "title": "Thesis Write introduction content", "description": "總結研究 background 與 motivation (面向廣大學術 audience)。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "總結研究 background 與 motivation (面向廣大學術 audience)。", "char_count": 47}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task 'Thesis Write introduction content' uses verb-driven phrasing ('Write', '總結' meaning summarize), which characterizes it as a physical action rather than a noun-based deliverable. It is a specific step performed to contribute to the parent deliverable ('proposal defense Slide'), fitting the definition of a Level 4 Activity.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Core Application Interface : Web & Mobile UI提供 research tools 與 personal
+{"task_id": "342e1eb5-ce57-8198-9da8-cc4205b58597", "title": "🟧 2️⃣ 科研人 Core Application Interface", "description": "Web & Mobile UI：提供 research tools 與 personal", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "Web & Mobile UI：提供 research tools 與 personal", "char_count": 44}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Core Application Interface' is a child of the project goal '科研人 🚨 RstV4'. It describes a major functional module (Web & Mobile UI) using noun phrases, which aligns with the definition of Level 2 (Major Deliverables). It is too broad to be a Level 3 work package and does not contain the verb-led action syntax required for Level 4.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Technical Documentation and Deployment Suite : Final release 完整文件user
+{"task_id": "342e1eb5-ce57-81af-bce8-fb771d4bd8a5", "title": "🟧 2️⃣ 科研人 Technical Documentation and Deployment Suite", "description": "Final release 完整文件：user", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "Final release 完整文件：user", "char_count": 23}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task title 'Technical Documentation and Deployment Suite' is a noun phrase, which excludes it from being a Level 4 activity (which requires Verb + Noun). It is a component of a larger parent project ('🏭 科研人 🚨 RstV4'), meaning it is not the Level 1 overall goal. Given that it describes a 'Suite' (a collection of major deliverables) and is prefixed with '2️⃣', it functions as a Major Deliverable/Core Module, aligning with the Level 2 definition.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 External Data Integration Gateway : Platform 連接層串接全球 academic
+{"task_id": "342e1eb5-ce57-81b7-9cc9-f8dc313116f9", "title": "🟧 1️⃣ 科研人 External Data Integration Gateway", "description": "Platform 連接層：串接全球 academic", "parent_blocks": [{"id": "341e1eb5-ce57-8180-a986-eee4306ddb0c", "title": "🏭 科研人 🚨 RstV4", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": true, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 🚨 RstV4", "char_count": 13}, {"source": "description", "location": "current_block", "content": "Platform 連接層：串接全球 academic", "char_count": 26}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'External Data Integration Gateway' (Platform 連接層) represents a major functional module or a core deliverable of the parent project '科研人 RstV4'. It is phrased as a noun ('Gateway', 'Connection Layer'), identifying 'what' is being built rather than 'how' it is being done, which aligns with the definition of Level 2 (Major Deliverables).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Diagram research methodology : 製作 technical processes 視覺化 flowchart 供專家委員會 review
+{"task_id": "342e1eb5-ce57-81b7-aa3c-cf8fee7fa4f6", "title": "Thesis Diagram research methodology", "description": "製作 technical processes 視覺化 flowchart 供專家委員會 review。", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "製作 technical processes 視覺化 flowchart 供專家委員會 review。", "char_count": 51}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task description '製作 technical processes 視覺化 flowchart' (Produce technical processes visualization flowchart) starts with a verb ('製作' - Produce), which characterizes it as a physical action/activity rather than a deliverable. It is a specific step required to complete the 'proposal defense Slide' (the parent), fitting the definition of Level 4 (Verb + Noun).
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis  presentation outline : 核心章節結構化(introduction, problem statement, methodology, expected results)
+{"task_id": "342e1eb5-ce57-81cc-912e-c834d242797c", "title": "Thesis Draft presentation outline", "description": "核心章節結構化：(introduction, problem statement, methodology, expected results)", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "核心章節結構化：(introduction, problem statement, methodology, expected results)", "char_count": 72}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis presentation outline' is a specific deliverable (a noun) that constitutes a part of a larger deliverable ('Proposal defense Slide'). It describes the 'what' (the structured outline) rather than a short-term action (the 'how'), placing it at Level 3 as a Work Package.
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Review technical terminology : 校對 specialized language 準確性滿足 expert committee 需求
+{"task_id": "342e1eb5-ce57-81e2-b4bc-d878a50cc65b", "title": "Thesis Review technical terminology", "description": "校對 specialized language 準確性：滿足 expert committee 需求", "parent_blocks": [{"id": "342e1eb5-ce57-812f-9610-eae00884ad0a", "title": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "description": "Very clear for non expert and expert to"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide", "char_count": 39}, {"source": "description", "location": "current_block", "content": "校對 specialized language 準確性：滿足 expert committee 需求", "char_count": 50}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task 'Thesis Review technical terminology' with the description '校對 specialized language 準確性' (Proofread specialized language accuracy) specifies a concrete action (Proofread/校對) rather than a deliverable. It is a granular step nested under a larger deliverable ('proposal defense Slide'). According to the WBS rules, Level 4 consists of activities defined by 'Verb + Noun' and represents physical actions, which aligns with the nature of proofreading technical terms.
+2026-04-14 11:33:21,012 | INFO | flow_pipeline | [L2] WBS pass complete: 18/29 scoped tasks changed (manual=0, auto=18)
+2026-04-14 11:33:21,012 | INFO | flow_pipeline | [L2] WBS samples: 342e1eb5 '🟧 2️⃣ 科研人 Core Application ...': - -> 2; 342e1eb5 '🟧 1️⃣ 科研人 Intelligent Analy...': - -> 2; 342e1eb5 '🟧 2️⃣ 科研人 Knowledge Managem...': - -> 2; 342e1eb5 '🟧 1️⃣ 科研人 External Data Int...': - -> 2; 342e1eb5 '🟧 2️⃣ 科研人 System Backend In...': - -> 2
+2026-04-14 11:33:21,015 | INFO | flow_pipeline | [L2] Priority pass complete: 21/29 scoped tasks changed (subproject-forced=0)
+2026-04-14 11:33:21,016 | INFO | flow_pipeline | [L2] Priority samples: 341e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0); 342e1eb5 '🟧 2️⃣ 科研人 Core Application ...': - -> 2️⃣| (P2); 342e1eb5 '🟧 1️⃣ 科研人 Intelligent Analy...': - -> 2️⃣| (P2); 342e1eb5 '🟧 2️⃣ 科研人 Knowledge Managem...': - -> 1️⃣ | (P1); 342e1eb5 '🟧 1️⃣ 科研人 External Data Int...': - -> 2️⃣| (P2)
+2026-04-14 11:33:21,017 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-14 11:33:21,017 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | 1:🏭 Thesis 2️⃣ 1️⃣ Phd Lo... | 2:🏭 Thesis 2️⃣ 1️⃣ propos... | 3:🏭 Thesis 2️⃣ thesis wri... | 4:🏭 Dev 2️⃣ AI Solar & Cl...
+Pushed formatted tags to Notion for 342e1eb5-ce57-8198-9da8-cc4205b58597: 🟧 2️⃣ 科研人 Core Application Interface : Web & Mobile UI：提供 research tools 與 personal
+Pushed formatted tags to Notion for 342e1eb5-ce57-8186-9869-fe86550d59eb: 🟧 2️⃣ 1️⃣ 科研人 Intelligent Analysis Engine : AI 驅動處理單元：(文獻 summarization, information
+Pushed formatted tags to Notion for 342e1eb5-ce57-8118-b12d-fb6a18f47e23: 🟧 1️⃣ 2️⃣ 科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user
+Pushed formatted tags to Notion for 342e1eb5-ce57-81b7-9cc9-f8dc313116f9: 🟧 2️⃣ 1️⃣ 科研人 External Data Integration Gateway : Platform 連接層：串接全球 academic
+Pushed formatted tags to Notion for 342e1eb5-ce57-8100-ae99-fe851bd7d0c8: 🟧 1️⃣ 2️⃣ 科研人 System Backend Infrastructure : 支援 platform stability 與 user security 的
+Pushed formatted tags to Notion for 342e1eb5-ce57-81af-bce8-fb771d4bd8a5: 🟧 2️⃣ 科研人 Technical Documentation and Deployment Suite : Final release 完整文件：user
+Pushed formatted tags to Notion for 342e1eb5-ce57-81c6-a0cc-f9439a976211: 🏭 Thesis 2️⃣ 1️⃣ Phd Logic : clear justification on research gap, methods and validation
+Pushed formatted tags to Notion for 342e1eb5-ce57-812f-9610-eae00884ad0a: 🏭 Thesis 2️⃣ 1️⃣ proposal defense Slide : Very clear for non expert and expert to
+Converted overflow text to toggle for 342e1eb5-ce57-81cc-912e-c834d242797c: 🔶 2️⃣ Thesis Draft presentation outline : 核心章節結構化：(introduction, problem statement,
+Pushed formatted tags to Notion for 342e1eb5-ce57-8165-962e-d8a91600bf22: 🔶 2️⃣ Thesis Design visual theme : 建立一致 color palette 與 typography：提升專業度與 readability。
+Pushed formatted tags to Notion for 342e1eb5-ce57-818f-b697-c50b0ac7cb9d: 🔸 2️⃣ Thesis Write introduction content : 總結研究 background 與 motivation (面向廣大學術 audience)。
+Converted overflow text to toggle for 342e1eb5-ce57-81b7-aa3c-cf8fee7fa4f6: 🔸 2️⃣ Thesis Diagram research methodology : 製作 technical processes 視覺化 flowchart 供專家委員會
+Converted overflow text to toggle for 342e1eb5-ce57-8148-83b5-c63cae961fbb: 🔸 2️⃣ Thesis Illustrate complex concepts : 製作 graphics 與 analogies 向 non-experts 解釋
+Pushed formatted tags to Notion for 342e1eb5-ce57-818b-9d1b-ef89f21fde47: 🔸 2️⃣ Thesis Summarize existing literature : 彙整 previous research：定義 context 與 gap。
+Converted overflow text to toggle for 342e1eb5-ce57-8187-b9df-f8deaf351add: 🔸 2️⃣ Thesis Document expected contributions : 詳述 thesis project 的 predicted findings 與
+Converted overflow text to toggle for 342e1eb5-ce57-81e2-b4bc-d878a50cc65b: 🔸 2️⃣ Thesis Review technical terminology : 校對 specialized language 準確性：滿足 expert
+Pushed formatted tags to Notion for 342e1eb5-ce57-815f-aabb-ecd5a0d7b610: 🔸 2️⃣ Thesis Audit jargon usage : 識別並處理過量 tech jargon (定義或移除)，以維持整體 clarity。
+Converted overflow text to toggle for 342e1eb5-ce57-813f-a91b-cb2687d13a0b: 🔸 2️⃣ Thesis Proofread slide text : 檢核全份 deck slides：spelling、grammar 及 consistent
+2026-04-14 11:33:49,881 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+Added 5 physical subtasks to the top of 341e1eb5-ce57-8180-a986-eee4306ddb0c
+Added 7 physical subtasks to the top of 342e1eb5-ce57-8198-9da8-cc4205b58597
+Added 6 physical subtasks to the top of 342e1eb5-ce57-8186-9869-fe86550d59eb
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人  RstV4'
+   Output: Level 1 | Type WBS | Rationale: The input '科研人 RstV4' is a noun phrase designating a specific project, system, or product version. It represents the highest level of aggregation (the final outcome/goal) and lacks any action-oriented verbs, fitting the definition of a Level 1 Goal.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人  RstV4'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+   Output: Deliverables=['Requirement and Design Specifications', 'Backend Core Engine', 'Frontend User Interface', 'Quality Assurance Suite', 'Deployment and User Documentation']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 2/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 2/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 3/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 4/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Core Application Interface : Web & Mobile UI提供 research tools 與 personal'
+   Output: Level 2 | Type N/A | Rationale: The input '科研人 Core Application Interface : Web & Mobile UI' is a noun phrase describing a major component of the system. It functions as a core module (Core Application Interface) encompassing multiple platforms (Web & Mobile), which aligns with the definition of a Level 2 Major Deliverable. It is too broad to be a specific work package (Level 3) and does not contain action verbs required for Level 4 activities.
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): '科研人 Core Application Interface : Web & Mobile UI提供 research tools 與 personal'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+   Output: Work Packages=['Unified Design System', 'Personal Management Module UI', 'Personalized Dashboard Interface', 'Research Tool Suite Interface', 'Literature Management Interface', 'Collaboration and Sharing Interface', 'Responsive Layout Specifications']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 10/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 11/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Intelligent Analysis Engine : AI 驅動處理單元(文獻 summarization, information'
+   Output: Level 2 | Type N/A | Rationale: The task input describes a core module ('AI-driven processing unit') within a larger system ('Intelligent Analysis Engine'). The phrasing consists of nouns and describes a major deliverable/component rather than a high-level goal (Level 1), a specific small-scale work package (Level 3), or a physical action (Level 4).
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): '科研人 Intelligent Analysis Engine : AI 驅動處理單元(文獻 summarization, information'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 10/1500)
+   Output: Work Packages=['Document Preprocessing Module', 'Literature Summarization Engine', 'Information Extraction Engine', 'Analysis Pipeline Orchestrator', 'Output Data Schema', 'Engine Performance Benchmark']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 13/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 12/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 14/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 13/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 15/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 14/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 16/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 15/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 17/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 16/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 18/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user'
+   Output: Level 2 | Type N/A | Rationale: The input specifies a 'storage & retrieval architecture', which serves as a core module or major deliverable within the broader '科研人 Knowledge Management System'. It is phrased as a noun, focusing on 'what' is being delivered rather than a specific activity. Because it is a decomposition of the Level 1 system goal into a primary architectural component, it fits the criteria for Level 2.
+
+[🤖 LLM LOG - Phase 2.2: Refine L2]
+   Input (Major Deliverable): '科研人 Knowledge Management System : 安全 storage & retrieval architecture (管理 user'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 11/1500)
+   Output: Work Packages=['Data Encryption Framework', 'Secure Database Schema', 'User Access Control Module', 'High-Efficiency Retrieval Engine', 'Data Backup and Recovery Protocol', 'API Security Layer']Added 6 physical subtasks to the top of 342e1eb5-ce57-8118-b12d-fb6a18f47e23
+
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 19/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 17/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 20/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 18/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 21/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 19/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 22/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 20/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 23/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 21/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 24/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 13/1500)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 External Data Integration Gateway : Platform 連接層串接全球 academic'
+   Output: Level 1 | Type WBS | Rationale: The task input '科研人 External Data Integration Gateway' is a noun phrase that describes a high-level final outcome or a complete system. It defines the overall goal of the project (integrating global academic data via a platform connection layer) rather than a specific module, a work package, or an activity. According to the WBS rules, final outcomes described as noun phrases are categorized as Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人 External Data Integration Gateway : Platform 連接層串接全球 academic'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 12/1500)
+   Output: Deliverables=['External Data Connectors', 'Data Normalization Engine', 'Integration API Layer', 'Access Management Module', 'Gateway Monitoring System']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 25/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 22/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 26/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 23/1500)

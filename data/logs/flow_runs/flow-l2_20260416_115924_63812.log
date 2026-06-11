@@ -1,0 +1,58 @@
+=== Flow Trace Start (2026-04-16T11:59:24) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 63812
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_115924_63812.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 11:59:24,252 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 11:59:24,253 | INFO | flow_pipeline | [L2] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Loading task tree state for progress calculation...
+Loading timeliner date audit baselines...
+Pushing updates for 科研人 / 🏭 科研人 🚨 RstV4 (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80b7-ba3c-c63f2df772d6 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+TIMELINER sync complete.
+2026-04-16 11:59:28,880 | INFO | flow_pipeline | [L2] TIMELINER bootstrap complete; cache is now ready
+Detected 41 changes in Notion.
+2026-04-16 11:59:34,119 | INFO | flow_pipeline | [L2] Loaded 59 merged tasks
+2026-04-16 11:59:34,120 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 11:59:34,120 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 11:59:34,121 | INFO | flow_pipeline | [L2] Scoped 1 tasks from TIMELINER
+2026-04-16 11:59:34,121 | INFO | flow_pipeline | [L2] WBS pass complete: 1/1 scoped tasks changed (manual=0, auto=1)
+2026-04-16 11:59:34,121 | INFO | flow_pipeline | [L2] WBS samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 1
+2026-04-16 11:59:34,124 | INFO | flow_pipeline | [L2] Priority pass complete: 1/1 scoped tasks changed (subproject-forced=0)
+2026-04-16 11:59:34,124 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 11:59:34,125 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 11:59:34,125 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+2026-04-16 11:59:34,125 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+Added 6 physical subtasks to the top of 342e1eb5-ce57-81f1-82c8-ea15e89d1892
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 7/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人  RstV4'
+   Output: Level 1 | Type WBS | Rationale: The input '科研人 RstV4' (Researcher/Scientific Researcher RstV4) represents the primary subject or the name of a high-level project/product version. It serves as the final outcome or the identity of the system being developed. It is a noun phrase acting as the overarching goal for all subsequent decomposition. As it defines the broad project scope without specifying individual modules or actions, it is classified as Level 1.
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): '科研人  RstV4'
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 6/20)
+   Output: Deliverables=['System Architecture and Core Infrastructure', 'Literature Management and Retrieval Engine', 'Data Analysis and Visualization Toolkit', 'Collaborative Research Interface', 'Security and Compliance Framework', 'User Documentation and Support Materials']
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 1/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 1/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 1/1500)
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 2/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 2/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 2/1500)
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+2026-04-16 11:59:45,008 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 6 subtasks across 1 parent tasks
+2026-04-16 11:59:45,010 | INFO | flow_pipeline | [L2] Saved 65 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T11:59:45

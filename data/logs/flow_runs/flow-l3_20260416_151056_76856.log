@@ -1,0 +1,85 @@
+=== Flow Trace Start (2026-04-16T15:10:56) ===
+command: flow-l3
+argv: main.py flow-l3
+pid: 76856
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l3_20260416_151056_76856.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l3 (L3 stage)...
+2026-04-16 15:10:56,512 | INFO | flow_pipeline | [L3] Starting L3 flow
+Detected 8 changes in Notion.
+2026-04-16 15:11:05,363 | INFO | flow_pipeline | [L3] Loaded 87 merged tasks
+2026-04-16 15:11:05,364 | INFO | flow_pipeline | [L3] Theme pass complete
+2026-04-16 15:11:05,364 | INFO | flow_pipeline | [L3] Theme container reparenting complete
+2026-04-16 15:11:05,366 | INFO | flow_pipeline | [L3] Scoped 29 tasks from TIMELINER
+2026-04-16 15:11:05,367 | INFO | flow_pipeline | [L3] WBS pass complete: 0/29 scoped tasks changed (manual=0, auto=0)
+2026-04-16 15:11:05,367 | INFO | flow_pipeline | [L3] WBS samples: none
+2026-04-16 15:11:05,369 | INFO | flow_pipeline | [L3] Priority pass complete: 1/29 scoped tasks changed (subproject-forced=0)
+2026-04-16 15:11:05,369 | INFO | flow_pipeline | [L3] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 49/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 48/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 5/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 50/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 49/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 5/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 5/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 6/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 51/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 50/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 6/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 6/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 7/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 52/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 51/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 7/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 7/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 8/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 53/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 52/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 8/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 8/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 4.3s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 9/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+  [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 0.0s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 54/1500)
+2026-04-16 15:12:19,853 | INFO | flow_pipeline | [L3] Mode/TaskType pass complete
+2026-04-16 15:12:19,856 | INFO | flow_pipeline | [L3] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 15:12:19,856 | INFO | flow_pipeline | [L3] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Pushed formatted tags to Notion for 344e1eb5-ce57-8183-8c04-c97e9782dcb9: 🔶 科研人 💻Focus 🔍 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)
+Pushed formatted tags to Notion for 344e1eb5-ce57-81b4-8ffb-f7a2413fb72d: 🔸 科研人 💻Focus ❓ PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献
+Pushed formatted tags to Notion for 344e1eb5-ce57-8157-9dda-e3c527953027: 🔸 科研人 💻Focus ❓ ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析
+Pushed formatted tags to Notion for 344e1eb5-ce57-81a7-a797-dec306b59329: 🔸 科研人 💻Focus ❓ 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81e8-8473-eeea572bdff4: 🔸 科研人 💻Focus ❓ 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8151-9974-c07bfd3dcdf5: 🔸 科研人 💻Focus 🔍 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。
+2026-04-16 15:12:33,007 | INFO | flow_pipeline | [L3] Tag push to Notion complete
+2026-04-16 15:12:33,011 | INFO | flow_pipeline | [L3] Saved 87 tasks to state
+L3 flow complete.
+[trace] Flow run completed at 2026-04-16T15:12:33

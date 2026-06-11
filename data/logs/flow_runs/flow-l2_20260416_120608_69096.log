@@ -1,0 +1,33 @@
+=== Flow Trace Start (2026-04-16T12:06:08) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 69096
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_120608_69096.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 12:06:08,515 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 12:06:08,515 | INFO | flow_pipeline | [L2] TIMELINER cache found and fresh (timeliner_state.json)
+Detected 26 changes in Notion.
+2026-04-16 12:06:15,787 | INFO | flow_pipeline | [L2] Loaded 85 merged tasks
+2026-04-16 12:06:15,788 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 12:06:15,788 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 12:06:15,790 | INFO | flow_pipeline | [L2] Scoped 27 tasks from TIMELINER
+2026-04-16 12:06:15,791 | INFO | flow_pipeline | [L2] WBS pass complete: 22/27 scoped tasks changed (manual=0, auto=22)
+2026-04-16 12:06:15,792 | INFO | flow_pipeline | [L2] WBS samples: 344e1eb5 '科研人 PDF元数据提取引擎 : 学术 PDF 自动解...': - -> 3; 344e1eb5 '科研人 跨平台 API 连接器 : 外部文献数据获取同...': - -> 3; 344e1eb5 '科研人 统一元数据 Schema 库 : DB Sch...': - -> 3; 344e1eb5 '科研人 去重合并逻辑 : 算法组件：查重并合并 met...': - -> 3; 344e1eb5 '科研人 全文索引 Search 服务 : 高性能索引服...': - -> 3
+2026-04-16 12:06:15,794 | INFO | flow_pipeline | [L2] Priority pass complete: 1/27 scoped tasks changed (subproject-forced=0)
+2026-04-16 12:06:15,794 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 12:06:15,795 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 12:06:15,795 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Converted checked to-do to bullet for 344e1eb5-ce57-8195-990a-f25fba21e790: 科研人 PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)
+Converted checked to-do to bullet for 344e1eb5-ce57-8131-8f46-e6d5b45e7943: 科研人 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)
+Deleted unchecked generated to-do 344e1eb5-ce57-81c9-8278-eb610c265c0a: 科研人 统一元数据 Schema 库 : DB Schema与存储层：统一维护跨文档类型文献信息。
+Deleted unchecked generated to-do 344e1eb5-ce57-8154-bc09-fa2afd141e67: 科研人 去重合并逻辑 : 算法组件：查重并合并 metadata，确保索引唯一。
+Deleted unchecked generated to-do 344e1eb5-ce57-81fd-9e6e-d5a2bd0d3dfa: 科研人 全文索引 Search 服务 : 高性能索引服务：基于元数据与文档内容实现快速关键词搜索。
+Deleted unchecked generated to-do 344e1eb5-ce57-819b-a978-d725596f0464: 科研人 文献 Tag 管理系统 : 论文分类子系统：(层级文件夹、自定义标签、元数据关联)
+2026-04-16 12:06:31,817 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 12:06:31,817 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 12:06:31,819 | INFO | flow_pipeline | [L2] Saved 81 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T12:06:31

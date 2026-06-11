@@ -1,0 +1,175 @@
+=== Flow Trace Start (2026-04-16T13:15:00) ===
+command: flow-l3
+argv: main.py flow-l3
+pid: 76432
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l3_20260416_131500_76432.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l3 (L3 stage)...
+2026-04-16 13:15:00,253 | INFO | flow_pipeline | [L3] Starting L3 flow
+2026-04-16 13:15:11,594 | INFO | flow_pipeline | [L3] Loaded 87 merged tasks
+2026-04-16 13:15:11,595 | INFO | flow_pipeline | [L3] Theme pass complete
+2026-04-16 13:15:11,596 | INFO | flow_pipeline | [L3] Theme container reparenting complete
+2026-04-16 13:15:11,597 | INFO | flow_pipeline | [L3] Scoped 29 tasks from TIMELINER
+2026-04-16 13:15:11,597 | INFO | flow_pipeline | [L3] WBS pass complete: 0/29 scoped tasks changed (manual=0, auto=0)
+2026-04-16 13:15:11,598 | INFO | flow_pipeline | [L3] WBS samples: none
+2026-04-16 13:15:11,600 | INFO | flow_pipeline | [L3] Priority pass complete: 1/29 scoped tasks changed (subproject-forced=0)
+2026-04-16 13:15:11,600 | INFO | flow_pipeline | [L3] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 14/20)
+  [MultiKey] gemini/gemini-3-flash-preview | conny 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 44.187923264s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "44s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 conny...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 12/20)
+Failed mode/task-type tagging for 344e1eb5-ce57-8183-8c04-c97e9782dcb9: 'Prediction' object has no attribute 'tags'
+  [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 15.0s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 13/20)
+  [MultiKey] gemini/gemini-3-flash-preview | key_5 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 8.17550889s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "8s"
+      }
+    ]
+  }
+}
+
+  [MultiKey] 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_5...
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 25/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81f9-898a-c62de522d163: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 25/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8156-9bb6-e807b02d7f5f: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 26/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81b4-8ffb-f7a2413fb72d: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 26/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8157-9dda-e3c527953027: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 27/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81a7-a797-dec306b59329: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 27/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81e8-8473-eeea572bdff4: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 28/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8151-9974-c07bfd3dcdf5: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 28/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8127-8983-d81ab2e763c4: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 29/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-811e-8661-dacd871a714e: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 29/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8102-85cf-de7cdd00708a: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 30/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-810f-8661-e5a2b0cf5ce4: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 30/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8159-9055-d9c53793ae74: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 31/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8156-9c01-fe2a82cc5e54: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 31/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8114-85d3-dde062a22bc9: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 32/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-815b-b7c4-c620fe080234: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 32/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8105-9ebe-d31d2f9af3b3: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 33/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8184-b796-d4030a4f96ae: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 33/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81e2-affe-ec9302339904: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 34/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-8178-b505-ce090fd5383a: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 34/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-81f6-9ebf-cc4df40df29b: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 35/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-813f-a60c-ddfddec53af9: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 35/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-810e-a79b-c41de7039d65: 'Prediction' object has no attribute 'tags'
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 36/1500)
+Failed mode/task-type tagging for 344e1eb5-ce57-811d-81ee-efaf41891add: 'Prediction' object has no attribute 'tags'
+2026-04-16 13:22:38,238 | INFO | flow_pipeline | [L3] Mode/TaskType pass complete
+2026-04-16 13:22:38,240 | INFO | flow_pipeline | [L3] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 13:22:38,240 | INFO | flow_pipeline | [L3] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+2026-04-16 13:22:38,241 | INFO | flow_pipeline | [L3] Tag push to Notion complete
+2026-04-16 13:22:38,244 | INFO | flow_pipeline | [L3] Saved 87 tasks to state
+L3 flow complete.
+[trace] Flow run completed at 2026-04-16T13:22:38

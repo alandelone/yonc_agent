@@ -1,0 +1,33 @@
+=== Flow Trace Start (2026-04-16T10:14:27) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 68672
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_101427_68672.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 10:14:27,990 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 10:14:27,990 | INFO | flow_pipeline | [L2] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+Loading task tree state for progress calculation...
+Loading timeliner date audit baselines...
+Pushing updates for 科研人 / 🏭 科研人 🚨 RstV4 (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80b7-ba3c-c63f2df772d6 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+TIMELINER sync complete.
+2026-04-16 10:14:33,828 | INFO | flow_pipeline | [L2] TIMELINER bootstrap complete; cache is now ready
+Detected 25 changes in Notion.
+2026-04-16 10:14:43,478 | INFO | flow_pipeline | [L2] Loaded 59 merged tasks
+2026-04-16 10:14:43,479 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 10:14:43,480 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 10:14:43,480 | INFO | flow_pipeline | [L2] Scoped 1 tasks from TIMELINER
+2026-04-16 10:14:43,481 | INFO | flow_pipeline | [L2] WBS pass complete: 0/1 scoped tasks changed (manual=0, auto=0)
+2026-04-16 10:14:43,482 | INFO | flow_pipeline | [L2] WBS samples: none
+2026-04-16 10:14:43,484 | INFO | flow_pipeline | [L2] Priority pass complete: 1/1 scoped tasks changed (subproject-forced=0)
+2026-04-16 10:14:43,484 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 10:14:43,485 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 10:14:43,485 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+2026-04-16 10:14:43,486 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 10:14:43,486 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 10:14:43,488 | INFO | flow_pipeline | [L2] Saved 59 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T10:14:43

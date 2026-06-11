@@ -1,0 +1,31 @@
+=== Flow Trace Start (2026-04-16T13:10:58) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 47128
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260416_131058_47128.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-16 13:10:58,257 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-16 13:10:58,257 | INFO | flow_pipeline | [L2] TIMELINER cache found and fresh (timeliner_state.json)
+2026-04-16 13:11:07,819 | INFO | flow_pipeline | [L2] Loaded 87 merged tasks
+2026-04-16 13:11:07,821 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-16 13:11:07,821 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-16 13:11:07,822 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+2026-04-16 13:11:07,824 | INFO | flow_pipeline | [L2] WBS pass complete: 0/29 scoped tasks changed (manual=0, auto=0)
+2026-04-16 13:11:07,824 | INFO | flow_pipeline | [L2] WBS samples: none
+2026-04-16 13:11:07,825 | INFO | flow_pipeline | [L2] Priority pass complete: 1/29 scoped tasks changed (subproject-forced=0)
+2026-04-16 13:11:07,825 | INFO | flow_pipeline | [L2] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+2026-04-16 13:11:07,828 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 13:11:07,828 | INFO | flow_pipeline | [L2] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Pushed formatted tags to Notion for 344e1eb5-ce57-81b4-8ffb-f7a2413fb72d: 🔸 科研人 PubMed API 集成模块 : 对接 PubMed/Entrez API 检索生物医学文献
+Pushed formatted tags to Notion for 344e1eb5-ce57-8157-9dda-e3c527953027: 🔸 科研人 ArXiv API 集成模块 : ArXiv API 预印本数据：访问解析
+Pushed formatted tags to Notion for 344e1eb5-ce57-81a7-a797-dec306b59329: 🔸 科研人 统一文献 Schema : 标准化数据模型：将 (CrossRef, PubMed, ArXiv) 异构字段映射至统一内部格式。
+Pushed formatted tags to Notion for 344e1eb5-ce57-81e8-8473-eeea572bdff4: 🔸 科研人 数据 Sync 编排层 : 多 API 数据更新调度：管理时机、频率及顺序。
+Pushed formatted tags to Notion for 344e1eb5-ce57-8151-9974-c07bfd3dcdf5: 🔸 科研人 API 限流与报错框架 : 韧性通信层：管理 API 配额、重试逻辑及提供方超时/错误。
+2026-04-16 13:11:16,231 | INFO | flow_pipeline | [L2] Tag push to Notion complete
+2026-04-16 13:11:16,231 | INFO | flow_pipeline | [L2] Split suggestion pass complete: 0 subtasks across 0 parent tasks
+2026-04-16 13:11:16,234 | INFO | flow_pipeline | [L2] Saved 87 tasks to state
+L2 flow complete.
+[trace] Flow run completed at 2026-04-16T13:11:16

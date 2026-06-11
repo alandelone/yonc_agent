@@ -1,0 +1,75 @@
+=== Flow Trace Start (2026-04-16T14:02:11) ===
+command: flow-l3
+argv: main.py flow-l3
+pid: 51752
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l3_20260416_140211_51752.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l3 (L3 stage)...
+2026-04-16 14:02:11,595 | INFO | flow_pipeline | [L3] Starting L3 flow
+2026-04-16 14:02:22,725 | INFO | flow_pipeline | [L3] Loaded 87 merged tasks
+2026-04-16 14:02:22,727 | INFO | flow_pipeline | [L3] Theme pass complete
+2026-04-16 14:02:22,727 | INFO | flow_pipeline | [L3] Theme container reparenting complete
+2026-04-16 14:02:22,728 | INFO | flow_pipeline | [L3] Scoped 29 tasks from TIMELINER
+2026-04-16 14:02:22,730 | INFO | flow_pipeline | [L3] WBS pass complete: 0/29 scoped tasks changed (manual=0, auto=0)
+2026-04-16 14:02:22,730 | INFO | flow_pipeline | [L3] WBS samples: none
+2026-04-16 14:02:22,731 | INFO | flow_pipeline | [L3] Priority pass complete: 1/29 scoped tasks changed (subproject-forced=0)
+2026-04-16 14:02:22,733 | INFO | flow_pipeline | [L3] Priority samples: 342e1eb5 '🏭 科研人 🚨 RstV4': - -> 🚨 | (P0)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 37/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 36/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 38/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 37/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 39/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 38/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 40/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 39/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 41/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 40/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 42/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 41/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 43/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 42/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 44/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 43/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 45/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 44/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 46/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 45/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 47/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 46/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 48/1500)
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+[MultiKey] 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 47/1500)
+2026-04-16 14:10:32,212 | INFO | flow_pipeline | [L3] Mode/TaskType pass complete
+2026-04-16 14:10:32,213 | INFO | flow_pipeline | [L3] Root rank reorder complete: moved 0/38 root tasks
+2026-04-16 14:10:32,213 | INFO | flow_pipeline | [L3] Root order preview: 0:🏭 科研人 🚨 RstV4 | -:鍛造Maker 3dpF : 3d print... | -:Thesis Phd Logic : clea... | -:Thesis proposal defense... | -:Thesis thesis writing :...
+Pushed formatted tags to Notion for 344e1eb5-ce57-8183-8c04-c97e9782dcb9: 🔶 科研人 💻Focus ❓ PDF元数据提取引擎 : 学术 PDF 自动解析器：提取(标题, 作者, DOI, 出版日期)
+Pushed formatted tags to Notion for 344e1eb5-ce57-8156-9bb6-e807b02d7f5f: 🔶 科研人 💻Focus ❓ 跨平台 API 连接器 : 外部文献数据获取同步 API (CrossRef, PubMed, ArXiv)
+2026-04-16 14:10:34,646 | INFO | flow_pipeline | [L3] Tag push to Notion complete
+2026-04-16 14:10:34,649 | INFO | flow_pipeline | [L3] Saved 87 tasks to state
+L3 flow complete.
+[trace] Flow run completed at 2026-04-16T14:10:34

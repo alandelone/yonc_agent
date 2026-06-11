@@ -1,0 +1,35 @@
+=== Flow Trace Start (2026-04-14T11:20:54) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 38472
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_112054_38472.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 11:20:54,058 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 11:20:54,058 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+2026-04-14 11:21:14,427 | INFO | flow_pipeline | [L2] Loaded 74 merged tasks
+2026-04-14 11:21:14,428 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 11:21:14,429 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 11:21:14,429 | INFO | flow_pipeline | [L2] Scoped 29 tasks from TIMELINER
+  [MultiKey] 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemini-3.1-flash-lite-preview
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)
+  [MultiKey] gemini/gemini-3.1-flash-lite-preview | alansyling 触发受限: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: key_3 | 今日: 1/500)
+  [MultiKey] gemini/gemini-3.1-flash-lite-preview | key_3 触发受限: litellm.ServiceUnavailableError: GeminiException - {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[MultiKey] 请求中... (模型: gemini/gemini-3.1-flash-lite-preview | Key: alansyling | 今日: 1/500)

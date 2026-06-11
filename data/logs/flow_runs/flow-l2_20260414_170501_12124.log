@@ -1,0 +1,95 @@
+=== Flow Trace Start (2026-04-14T17:05:01) ===
+command: flow-l2
+argv: main.py flow-l2
+pid: 12124
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow-l2_20260414_170501_12124.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+Running flow-l2 (L2 stage)...
+2026-04-14 17:05:01,477 | INFO | flow_pipeline | [L2] Starting L2 flow
+2026-04-14 17:05:01,477 | INFO | flow_pipeline | [L2] TIMELINER cache found (timeliner_state.json)
+Detected 42 changes in Notion.
+2026-04-14 17:05:10,807 | INFO | flow_pipeline | [L2] Loaded 58 merged tasks
+2026-04-14 17:05:10,808 | INFO | flow_pipeline | [L2] Theme pass complete
+2026-04-14 17:05:10,808 | INFO | flow_pipeline | [L2] Theme container reparenting complete
+2026-04-14 17:05:10,809 | INFO | flow_pipeline | [L2] Scoped 13 tasks from TIMELINER
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase3 : Mini shredder mach
+{"task_id": "33be1eb5-ce57-8110-9fc8-d3f449e48cde", "title": "Phase3", "description": "Mini shredder mach", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "Mini shredder mach", "char_count": 18}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase3: Mini shredder mach' represents a major component or a specific developmental stage of the overarching project '鍛造Maker 3dpF'. According to WBS rules, Level 1 is the ultimate project goal, while Level 2 represents core modules or major deliverables. Since this is a 'Phase' or a specific machine module within a larger system, it functions as a Level 2 deliverable. It is phrased as a noun ('Mini shredder mach'), which is appropriate for this level.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase2 : 3kg Filament Roller + auto feeder
+{"task_id": "33be1eb5-ce57-8150-809a-c69f46213515", "title": "Phase2", "description": "3kg Filament Roller + auto feeder", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "3kg Filament Roller + auto feeder", "char_count": 33}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase2: 3kg Filament Roller + auto feeder' represents a major deliverable or functional module within the broader '鍛造Maker 3dpF' (3D printing filament extruder) project. According to the WBS rules, Level 1 is the final outcome (the complete machine), and Level 2 consists of core modules or major components. This task describes specific sub-systems (Roller and Feeder) that contribute to the 100% rule of the parent project. It uses noun phrases ('Roller', 'feeder') rather than action verbs, fitting the Level 2 criteria for a major deliverable. It is not Level 1 because it is a phase/component of a larger machine, and not Level 3/4 as it describes a system rather than a specific 8-80 hour work package or a 2-hour activity.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase4 : Production Line Setup
+{"task_id": "33be1eb5-ce57-81a4-94f3-df427257aafe", "title": "Phase4", "description": "Production Line Setup", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "description", "location": "current_block", "content": "Production Line Setup", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase4: Production Line Setup' represents a major deliverable within the larger project '鍛造Maker 3dpF'. According to the hierarchical decomposition rules, Level 1 is the project goal (the 3d printing filament Extruder), and Level 2 consists of core modules or major project phases that represent deliverables. 'Production Line Setup' is a noun-based grouping of work that describes a specific part of the project scope. It is not Level 3 because it describes a broad phase rather than a specific 8-80 hour work package, and it is not Level 4 because it is not a specific action/verb-noun activity.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Phase1 : Setup Extruder only with exisiting BOM
+{"task_id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}], "child_blocks": [{"id": "33be1eb5-ce57-814c-98a3-daa6c22bc23d", "title": "BOM recap || 3dp Priting || Method Plan & Resource", "description": "", "type": "bulleted_list_item", "checked": null}, {"id": "33be1eb5-ce57-8122-9c08-dd45ded09e1c", "title": "日志system build up || Basic Maker Lab", "description": "", "type": "bulleted_list_item", "checked": null}, {"id": "33be1eb5-ce57-814e-afaf-ff4510a08338", "title": "Asembly Extruder", "description": "", "type": "bulleted_list_item", "checked": null}], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF", "char_count": 12}, {"source": "children", "location": "direct_children", "content": "BOM recap || 3dp Priting || Method Plan & Resource; 日志system build up || Basic Maker Lab; Asembly Extruder", "char_count": 106}, {"source": "description", "location": "current_block", "content": "Setup Extruder only with exisiting BOM", "char_count": 38}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Phase1: Setup Extruder only with exisiting BOM' represents a major phase or core module within the broader '3d printing filament Extruder' project. It serves as a Level 2 deliverable because it decomposes the main goal into a specific, high-level structural component (Phase 1). While the title contains a verb ('Setup'), its functional role in the hierarchy is a Major Deliverable that contains multiple sub-tasks (Work Packages) like 'Assembly Extruder' and 'BOM recap'. It is not the final project goal (Level 1) nor is it a singular work package (Level 3) or a granular action (Level 4).
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '日志system build up || Basic Maker Lab
+{"task_id": "33be1eb5-ce57-8122-9c08-dd45ded09e1c", "title": "日志system build up || Basic Maker Lab", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task '日志system build up' (Log system buildup) represents a core module or major deliverable within 'Phase 1' of the '3d printing filament Extruder' project. According to the hierarchy, Level 1 is the project goal (3dpF), and Level 2 is the major functional component or phase deliverable (Phase 1 components). While the title contains a verb-like phrase ('build up'), it functions as a noun-based component (a Log System) in the context of the project structure. It is not an activity (Level 4) because it is a significant module, and it is not a Level 3 work package because it encompasses the entire logging architecture for the lab setup.
+  [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'BOM recap || 3dp Priting || Method Plan & Resource
+{"task_id": "33be1eb5-ce57-814c-98a3-daa6c22bc23d", "title": "BOM recap || 3dp Priting || Method Plan & Resource", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'BOM recap || 3dp Priting || Method Plan & Resource' represents a Work Package within the project hierarchy. It is nested under 'Phase 1' (Level 2) of the '3dpF Extruder' project (Level 1). The title describes a specific deliverable (a consolidated document or 'recap' of parts and resources) rather than a high-level project goal or a granular action. It uses noun-based phrasing ('BOM recap', 'Method Plan', 'Resource') consistent with Level 3 requirements, representing a tangible outcome that would typically take between 8-80 hours to compile and verify for a mechanical project.
+[MultiKey] 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Asembly Extruder
+{"task_id": "33be1eb5-ce57-814e-afaf-ff4510a08338", "title": "Asembly Extruder", "description": "", "parent_blocks": [{"id": "33be1eb5-ce57-818b-b6ba-cc07013d812a", "title": "鍛造Maker 3dpF", "description": "3d printing filament Extruder"}, {"id": "33be1eb5-ce57-81d2-82b2-d9aeb3592a90", "title": "Phase1", "description": "Setup Extruder only with exisiting BOM"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "鍛造Maker 3dpF > Phase1", "char_count": 21}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Assembly Extruder' (likely intended as 'Assembled Extruder') represents a specific, physical work package within 'Phase 1' of the '3d printing filament Extruder' project. According to the WBS hierarchy: Level 1 is the main project (3dpF), Level 2 is the Phase (Phase 1), and Level 3 is the Work Package. While the input uses the word 'Assembly' (a verb/gerund), in this context, it identifies a major sub-assembly or deliverable module of the hardware. It is too broad for a Level 4 'Activity' (which would be < 2 hours and a specific action like 'Tighten M3 bolts'), making Level 3 the most appropriate classification.
+2026-04-14 17:05:25,969 | INFO | flow_pipeline | [L2] WBS pass complete: 13/13 scoped tasks changed (manual=0, auto=13)
+2026-04-14 17:05:25,969 | INFO | flow_pipeline | [L2] WBS samples: 33be1eb5 'Thesis proposal defense Sli...': - -> 1; 33be1eb5 'Thesis thesis writing : Ful...': - -> 1; 33ce1eb5 'Thesis Phd Logic : clear ju...': - -> 1; 33be1eb5 'Dev AI Solar & Cloud Foreca...': - -> 1; 33be1eb5 '科研人 RstV4': - -> 1
+2026-04-14 17:05:25,971 | INFO | flow_pipeline | [L2] Priority pass complete: 5/13 scoped tasks changed (subproject-forced=0)
+2026-04-14 17:05:25,971 | INFO | flow_pipeline | [L2] Priority samples: 33be1eb5 'Thesis proposal defense Sli...': - -> 1️⃣ | (P1); 33be1eb5 'Thesis thesis writing : Ful...': - -> 2️⃣| (P2); 33ce1eb5 'Thesis Phd Logic : clear ju...': - -> 1️⃣ | (P1); 33be1eb5 'Dev AI Solar & Cloud Foreca...': - -> 2️⃣| (P2); 33be1eb5 '科研人 RstV4': - -> 🚨 | (P0)
+2026-04-14 17:05:25,972 | INFO | flow_pipeline | [L2] Root rank reorder complete: moved 23/38 root tasks
+2026-04-14 17:05:25,972 | INFO | flow_pipeline | [L2] Root order preview: 0:科研人 RstV4 | 1:Thesis Phd Logic : clea... | 2:Thesis proposal defense... | 3:Thesis thesis writing :... | 4:Dev AI Solar & Cloud Fo...
+Physical Root Rank Reordering: synchronizing order to Notion...
+  -> Moving block '科研人 RstV4' to physical position 0
+  -> Moving block 'Thesis Phd Logic : c' to physical position 1
+  -> Moving block 'Thesis proposal defe' to physical position 2
+  -> Moving block 'Thesis thesis writin' to physical position 3
+  -> Moving block 'Dev AI Solar & Cloud' to physical position 4
+  -> Moving block '鍛造Maker 3dpF :  3d p' to physical position 5
+Physical Root Rank Reordering complete.
+Pushed formatted tags to Notion for 342e1eb5-ce57-8155-a75e-d4cd4673b2fa: 🏭 科研人 🚨 RstV4
+Pushed formatted tags to Notion for 342e1eb5-ce57-8174-aa12-f2099dfecb89: 🏭 Thesis 1️⃣ Phd Logic : clear justification on research gap, methods and validation of the
+Pushed formatted tags to Notion for 342e1eb5-ce57-81ad-9a34-eda33515dbc0: 🏭 Thesis 1️⃣ proposal defense Slide : Very clear for non expert and expert to understand
+Pushed formatted tags to Notion for 342e1eb5-ce57-81df-a1ff-ca3d5a9e5628: 🏭 Thesis 2️⃣ thesis writing : Full thesis
+Pushed formatted tags to Notion for 342e1eb5-ce57-8161-afc0-f8a99c287cec: 🏭 Dev 2️⃣ AI Solar & Cloud Forecast prototyping
+Pushed formatted tags to Notion for 342e1eb5-ce57-8165-b393-fc8d5e45de3a: 🏭 鍛造Maker 3dpF : 3d printing filament Extruder
+Pushed formatted tags to Notion for 342e1eb5-ce57-81f2-a676-f94fe9e460d3: 🟧 Phase1 : Setup Extruder only with exisiting BOM
+Pushed formatted tags to Notion for 342e1eb5-ce57-8160-9496-da0ab703b14f: 🔶 BOM recap || 3dp Priting || Method Plan & Resource
+Pushed formatted tags to Notion for 342e1eb5-ce57-81df-867d-ee25ba13265d: 🔶 日志system build up || Basic Maker Lab
+Warning: Failed to clone orphan children for 33be1eb5-ce57-8130-a8ec-c6e0817c08dc -> 342e1eb5-ce57-8155-a75e-d4cd4673b2fa: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33ce1eb5-ce57-81e6-9729-f39ce3199948 -> 342e1eb5-ce57-8174-aa12-f2099dfecb89: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-81ed-9fab-d7e35c8987d4 -> 342e1eb5-ce57-81ad-9a34-eda33515dbc0: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-81da-bc0d-f21a3c805274 -> 342e1eb5-ce57-81df-a1ff-ca3d5a9e5628: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-8105-acf4-cc9f50feda10 -> 342e1eb5-ce57-8161-afc0-f8a99c287cec: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-814c-98a3-daa6c22bc23d -> 342e1eb5-ce57-8160-9496-da0ab703b14f: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-8122-9c08-dd45ded09e1c -> 342e1eb5-ce57-81df-867d-ee25ba13265d: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-814e-afaf-ff4510a08338 -> 342e1eb5-ce57-81ba-8cb8-d8df8213428d: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-81d2-82b2-d9aeb3592a90 -> 342e1eb5-ce57-81f2-a676-f94fe9e460d3: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-8150-809a-c69f46213515 -> 342e1eb5-ce57-8148-8f56-cd7f68342bb3: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-8110-9fc8-d3f449e48cde -> 342e1eb5-ce57-81dd-98a0-fadf4744aac0: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-81a4-94f3-df427257aafe -> 342e1eb5-ce57-81be-a718-e69f28150a1a: name 'get_page_blocks' is not defined
+Warning: Failed to clone orphan children for 33be1eb5-ce57-818b-b6ba-cc07013d812a -> 342e1eb5-ce57-8165-b393-fc8d5e45de3a: name 'get_page_blocks' is not defined

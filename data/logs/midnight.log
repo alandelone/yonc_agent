@@ -1,0 +1,156 @@
+2026-05-22 00:01:01,291 | INFO | midnight_routine | Starting midnight routine...
+2026-05-22 00:01:01,291 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-21.jsonl
+2026-05-22 00:01:01,291 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-22 00:01:01,291 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-22.jsonl
+2026-05-22 00:01:01,291 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-22 00:01:01,301 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-22 00:01:01,301 | INFO | midnight_routine | Midnight routine finished.
+2026-05-23 00:01:01,850 | INFO | midnight_routine | Starting midnight routine...
+2026-05-23 00:01:01,850 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-22.jsonl
+2026-05-23 00:01:01,851 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-23 00:01:01,851 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-23.jsonl
+2026-05-23 00:01:01,851 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-23 00:01:02,666 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-23 00:01:02,666 | INFO | midnight_routine | Midnight routine finished.
+2026-05-24 00:01:01,219 | INFO | midnight_routine | Starting midnight routine...
+2026-05-24 00:01:01,219 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-23.jsonl
+2026-05-24 00:01:01,220 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-24 00:01:01,220 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-24.jsonl
+2026-05-24 00:01:01,220 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-24 00:01:01,230 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-24 00:01:01,230 | INFO | midnight_routine | Midnight routine finished.
+2026-05-25 00:01:01,786 | INFO | midnight_routine | Starting midnight routine...
+2026-05-25 00:01:01,787 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-24.jsonl
+2026-05-25 00:01:01,787 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-25 00:01:01,787 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-25.jsonl
+2026-05-25 00:01:01,787 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-25 00:01:22,043 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)')))
+2026-05-25 00:01:22,043 | INFO | midnight_routine | Midnight routine finished.
+2026-05-26 00:01:01,893 | INFO | midnight_routine | Starting midnight routine...
+2026-05-26 00:01:01,894 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-25.jsonl
+2026-05-26 00:01:01,894 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-26 00:01:01,894 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-26.jsonl
+2026-05-26 00:01:01,894 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-26 00:01:08,472 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-26 00:01:08,472 | INFO | midnight_routine | Midnight routine finished.
+2026-05-27 00:01:01,922 | INFO | midnight_routine | Starting midnight routine...
+2026-05-27 00:01:01,923 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-26.jsonl
+2026-05-27 00:01:01,923 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-27 00:01:01,923 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-27.jsonl
+2026-05-27 00:01:01,923 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-27 00:01:01,934 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-27 00:01:01,934 | INFO | midnight_routine | Midnight routine finished.
+2026-05-28 00:01:01,360 | INFO | midnight_routine | Starting midnight routine...
+2026-05-28 00:01:01,360 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-27.jsonl
+2026-05-28 00:01:01,360 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-28 00:01:01,360 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-28.jsonl
+2026-05-28 00:01:01,360 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-28 00:01:01,371 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-28 00:01:01,371 | INFO | midnight_routine | Midnight routine finished.
+2026-05-29 00:01:01,802 | INFO | midnight_routine | Starting midnight routine...
+2026-05-29 00:01:01,802 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-28.jsonl
+2026-05-29 00:01:01,802 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-29 00:01:01,802 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-29.jsonl
+2026-05-29 00:01:01,802 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-29 00:01:01,813 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-05-29 00:01:01,813 | INFO | midnight_routine | Midnight routine finished.
+2026-05-30 00:01:01,244 | INFO | midnight_routine | Starting midnight routine...
+2026-05-30 00:01:01,244 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-29.jsonl
+2026-05-30 00:01:01,244 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-30 00:01:01,244 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-30.jsonl
+2026-05-30 00:01:01,244 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-30 00:01:01,318 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x794fd606cd10>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-05-30 00:01:01,318 | INFO | midnight_routine | Midnight routine finished.
+2026-05-31 00:01:01,762 | INFO | midnight_routine | Starting midnight routine...
+2026-05-31 00:01:01,762 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-30.jsonl
+2026-05-31 00:01:01,763 | INFO | midnight_routine | File is empty. Deleting it.
+2026-05-31 00:01:01,763 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-31.jsonl
+2026-05-31 00:01:01,763 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-05-31 00:01:01,838 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7eeff39ee690>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-05-31 00:01:01,838 | INFO | midnight_routine | Midnight routine finished.
+2026-06-01 00:01:01,283 | INFO | midnight_routine | Starting midnight routine...
+2026-06-01 00:01:01,284 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-05-31.jsonl
+2026-06-01 00:01:01,284 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-01 00:01:01,284 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-01.jsonl
+2026-06-01 00:01:01,284 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-01 00:01:01,359 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x734266da4c50>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-01 00:01:01,359 | INFO | midnight_routine | Midnight routine finished.
+2026-06-02 00:01:01,801 | INFO | midnight_routine | Starting midnight routine...
+2026-06-02 00:01:01,802 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-01.jsonl
+2026-06-02 00:01:01,802 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-02 00:01:01,802 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-02.jsonl
+2026-06-02 00:01:01,802 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-02 00:01:01,875 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7113698ac740>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-02 00:01:01,875 | INFO | midnight_routine | Midnight routine finished.
+2026-06-03 00:01:01,327 | INFO | midnight_routine | Starting midnight routine...
+2026-06-03 00:01:01,327 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-02.jsonl
+2026-06-03 00:01:01,327 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-03 00:01:01,327 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-03.jsonl
+2026-06-03 00:01:01,327 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-03 00:01:01,402 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x71673f364ec0>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-03 00:01:01,402 | INFO | midnight_routine | Midnight routine finished.
+2026-06-04 00:01:01,820 | INFO | midnight_routine | Starting midnight routine...
+2026-06-04 00:01:01,820 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-03.jsonl
+2026-06-04 00:01:01,820 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-04 00:01:01,820 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-04.jsonl
+2026-06-04 00:01:01,820 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-04 00:01:01,902 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x72240c764e30>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-04 00:01:01,903 | INFO | midnight_routine | Midnight routine finished.
+2026-06-05 00:01:01,346 | INFO | midnight_routine | Starting midnight routine...
+2026-06-05 00:01:01,346 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-04.jsonl
+2026-06-05 00:01:01,346 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-05 00:01:01,346 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-05.jsonl
+2026-06-05 00:01:01,346 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-05 00:01:01,422 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7ee3aea6cec0>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-05 00:01:01,422 | INFO | midnight_routine | Midnight routine finished.
+2026-06-06 00:01:01,107 | INFO | midnight_routine | Starting midnight routine...
+2026-06-06 00:01:01,107 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-05.jsonl
+2026-06-06 00:01:01,107 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-06 00:01:01,107 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-06.jsonl
+2026-06-06 00:01:01,107 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-06 00:01:01,117 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-06-06 00:01:01,118 | INFO | midnight_routine | Midnight routine finished.
+2026-06-07 00:01:01,692 | INFO | midnight_routine | Starting midnight routine...
+2026-06-07 00:01:01,692 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-06.jsonl
+2026-06-07 00:01:01,692 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-07 00:01:01,692 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-07.jsonl
+2026-06-07 00:01:01,693 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-07 00:01:01,770 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x73bb7e940740>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-07 00:01:01,770 | INFO | midnight_routine | Midnight routine finished.
+2026-06-08 00:01:01,331 | INFO | midnight_routine | Starting midnight routine...
+2026-06-08 00:01:01,331 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-07.jsonl
+2026-06-08 00:01:01,331 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-08 00:01:01,331 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-08.jsonl
+2026-06-08 00:01:01,331 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-08 00:01:01,404 | ERROR | midnight_routine | Failed to load cron cache: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7bffaa8aa6f0>: Failed to resolve 'api.notion.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-06-08 00:01:01,404 | INFO | midnight_routine | Midnight routine finished.
+2026-06-09 00:01:01,504 | INFO | midnight_routine | Starting midnight routine...
+2026-06-09 00:01:01,505 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-08.jsonl
+2026-06-09 00:01:01,505 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-09 00:01:01,505 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-09.jsonl
+2026-06-09 00:01:01,505 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-09 00:01:01,515 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-06-09 00:01:01,515 | INFO | midnight_routine | Midnight routine finished.
+2026-06-10 00:01:01,985 | INFO | midnight_routine | Starting midnight routine...
+2026-06-10 00:01:01,985 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-09.jsonl
+2026-06-10 00:01:01,985 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-10 00:01:01,985 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-10.jsonl
+2026-06-10 00:01:01,985 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-10 00:01:03,446 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-06-10 00:01:03,446 | INFO | midnight_routine | Midnight routine finished.
+2026-06-11 00:01:01,862 | INFO | midnight_routine | Starting midnight routine...
+2026-06-11 00:01:01,862 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-10.jsonl
+2026-06-11 00:01:01,862 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-11 00:01:01,863 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-11.jsonl
+2026-06-11 00:01:01,863 | INFO | midnight_routine | Registering crons to nanobot action.jsonl...
+2026-06-11 00:01:01,874 | INFO | midnight_routine | Appended 9 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-06-11 00:01:01,874 | INFO | midnight_routine | Midnight routine finished.
+2026-06-12 00:01:01,959 | INFO | midnight_routine | Starting midnight routine...
+2026-06-12 00:01:01,959 | INFO | midnight_routine | No today_status.json found, skipping day_mode archive.
+2026-06-12 00:01:01,959 | INFO | midnight_routine | Checking yesterday's dailystate: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-11.jsonl
+2026-06-12 00:01:01,960 | INFO | midnight_routine | File is empty. Deleting it.
+2026-06-12 00:01:01,960 | INFO | midnight_routine | Created today's dailystate file: /home/alandelone/.nanobot/workspace/sessions/dailystate/2026-06-12.jsonl
+2026-06-12 00:01:01,960 | INFO | midnight_routine | Reset today status file: /home/alandelone/.nanobot/workspace/today_status.json
+2026-06-12 00:01:01,960 | INFO | midnight_routine | Refreshing cron settings and registering one-time crons to nanobot action.jsonl...
+2026-06-12 00:01:39,656 | INFO | midnight_routine | Appended 13 actions to /home/alandelone/.nanobot/workspace/cron/action.jsonl
+2026-06-12 00:01:39,656 | INFO | midnight_routine | Midnight routine finished.

@@ -896,3 +896,7 @@
 2026-06-11 18:14:14,655 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
 2026-06-11 18:15:58,217 | INFO | __main__ | CLI command 'daystyle' started (pid=55908, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
 2026-06-11 18:15:58,217 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-12 09:03:40,008 | INFO | __main__ | CLI command 'daystyle' started (pid=16512, cwd=/home/alandelone/.nanobot/workspace)
+2026-06-12 09:03:40,008 | INFO | __main__ | Application log file: /home/alandelone/.nanobot/workspace/yonc_agent-master/data/logs/yonc_agent.log
+2026-06-12 09:05:01,110 | INFO | __main__ | CLI command 'daystyle' started (pid=16614, cwd=/home/alandelone/.nanobot/workspace)
+2026-06-12 09:05:01,110 | INFO | __main__ | Application log file: /home/alandelone/.nanobot/workspace/yonc_agent-master/data/logs/yonc_agent.log

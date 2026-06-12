@@ -1,0 +1,6 @@
+=== Flow Trace Start (2026-05-25T09:10:52) ===
+command: flow
+argv: yonc_agent-master/main.py flow
+pid: 92043
+cwd: /home/alandelone/.nanobot/workspace
+

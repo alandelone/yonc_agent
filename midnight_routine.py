@@ -234,8 +234,7 @@ def register_crons():
                     "enabled": True,
                     "schedule": {
                         "kind": "at",
-                        "at": _build_once_at(today, hour),
-                        "tz": "Asia/Kuala_Lumpur"
+                        "at_ms": int(datetime.combine(today, time(hour=hour), tzinfo=LOCAL_TZ).timestamp() * 1000),
                     },
                     "payload": {
                         "kind": "agent_turn",

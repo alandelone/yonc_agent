@@ -46,12 +46,15 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "type": task_type,
             "notion_type": block_type,
             "annotations": node.get("annotations", {}),
+            "notion_rich_text": node.get("notion_rich_text", []),
+            "links": node.get("links", []),
             "checked": node.get("checked"),
             "has_tag_style": node.get("has_tag_style", False),
             "created_by_id": node.get("created_by_id", ""),
             "last_edited_by_id": node.get("last_edited_by_id", ""),
             "is_generated": node.get("is_generated", False),
             "origin": node.get("origin", "human"),
+            "is_content_block": block_type in {"quote"},
             "timeliner_key": None,
             "timeliner_rank": None,
             "wbs_source": None,
@@ -260,6 +263,13 @@ def upgrade_task_schema(item: Dict[str, Any]) -> Dict[str, Any]:
         upgraded["reviewed_once"] = False
     if "generated_selection_processed" not in upgraded:
         upgraded["generated_selection_processed"] = False
+    if "notion_rich_text" not in upgraded:
+        upgraded["notion_rich_text"] = []
+    if "links" not in upgraded:
+        upgraded["links"] = []
+    if "is_content_block" not in upgraded:
+        notion_type = upgraded.get("notion_type") or upgraded.get("type")
+        upgraded["is_content_block"] = notion_type in {"quote"}
 
     return upgraded
 

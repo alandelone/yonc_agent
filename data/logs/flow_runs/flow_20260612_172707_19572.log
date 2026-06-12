@@ -1,0 +1,996 @@
+=== Flow Trace Start (2026-06-12T17:27:07) ===
+command: flow
+argv: main.py flow
+pid: 19572
+cwd: C:\test_codespace\yonc_agent
+
+[trace] Flow output is being saved to: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_20260612_172707_19572.log
+[trace] Latest flow trace shortcut: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_latest.log
+2026-06-12 17:27:07,239 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-12 17:27:07,245 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:08,084 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children HTTP/11" 200 None
+2026-06-12 17:27:08,089 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:08,624 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8095-b2de-d411ae904027/children HTTP/11" 200 None
+2026-06-12 17:27:08,632 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:09,142 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8094-9b85-f6977126cc19/children HTTP/11" 200 None
+2026-06-12 17:27:09,150 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:09,783 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8013-a854-e6d0437dc49c/children HTTP/11" 200 None
+2026-06-12 17:27:09,789 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:10,484 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-808a-a25a-c1a9a56b0713/children HTTP/11" 200 None
+2026-06-12 17:27:10,493 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:11,029 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803d-b413-cc4761372741/children HTTP/11" 200 None
+2026-06-12 17:27:11,040 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:11,646 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-aaec-f6735fda1fec/children HTTP/11" 200 None
+2026-06-12 17:27:11,654 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:12,174 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9896-ea4326e83210/children HTTP/11" 200 None
+2026-06-12 17:27:12,179 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:12,793 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e5-8103-ee26e3021f6a/children HTTP/11" 200 None
+2026-06-12 17:27:12,798 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:13,297 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b3-88f7-f35d4e33c949/children HTTP/11" 200 None
+2026-06-12 17:27:13,354 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:13,831 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8015-844f-dab5573db53b/children HTTP/11" 200 None
+2026-06-12 17:27:13,831 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:14,418 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-a21c-e3446ae650a9/children HTTP/11" 200 None
+2026-06-12 17:27:14,423 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:14,894 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8012-818b-f55e01ad10ab/children HTTP/11" 200 None
+2026-06-12 17:27:14,898 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:15,383 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-96d9-ca8c6b67c063/children HTTP/11" 200 None
+2026-06-12 17:27:15,389 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:15,990 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80fd-902d-c19ec0f709df/children HTTP/11" 200 None
+2026-06-12 17:27:15,993 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:16,505 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80cc-a754-e4ed87b4de84/children HTTP/11" 200 None
+2026-06-12 17:27:16,509 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:17,168 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-804d-b624-ffd4ed4af407/children HTTP/11" 200 None
+2026-06-12 17:27:17,172 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:17,831 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-9731-e0430b76bff7/children HTTP/11" 200 None
+2026-06-12 17:27:17,839 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:18,352 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80a9-9213-cfa201910082/children HTTP/11" 200 None
+2026-06-12 17:27:18,357 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:18,881 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-a416-dffb426d193f/children HTTP/11" 200 None
+2026-06-12 17:27:18,884 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:19,424 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8065-88d9-fc9164b4fed0/children HTTP/11" 200 None
+2026-06-12 17:27:19,430 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:19,907 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-809c-b4bf-c20eec7868ae/children HTTP/11" 200 None
+2026-06-12 17:27:19,912 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:20,385 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802f-9288-dc3708c7e6a4/children HTTP/11" 200 None
+2026-06-12 17:27:20,394 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:20,894 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807a-95c7-e9a023663c7b/children HTTP/11" 200 None
+2026-06-12 17:27:20,900 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:21,409 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-bb6a-ceed52613f84/children HTTP/11" 200 None
+2026-06-12 17:27:21,409 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:21,875 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807c-a2bf-d021a8efc6d7/children HTTP/11" 200 None
+2026-06-12 17:27:21,879 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:22,360 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-8b11-ef1c1606c7da/children HTTP/11" 200 None
+2026-06-12 17:27:22,372 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:22,940 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e6-b57b-d14ff8056b96/children HTTP/11" 200 None
+2026-06-12 17:27:22,944 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:23,595 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d4-abe1-d6e8d455418d/children HTTP/11" 200 None
+2026-06-12 17:27:23,597 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:26,416 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d2-aae2-d343c320db24/children HTTP/11" 200 None
+2026-06-12 17:27:26,420 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:26,979 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-801c-90cf-fb9fd3e8935e/children HTTP/11" 200 None
+2026-06-12 17:27:26,983 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:27,562 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807d-9871-e8cdef6db118/children HTTP/11" 200 None
+2026-06-12 17:27:27,567 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:28,641 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8058-9e51-ec41e351c997/children HTTP/11" 200 None
+2026-06-12 17:27:28,653 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:29,133 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8ae1-c31097c70588/children HTTP/11" 200 None
+2026-06-12 17:27:29,141 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:29,745 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b0-988d-cef674e21b74/children HTTP/11" 200 None
+2026-06-12 17:27:29,763 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:30,368 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-b0b0-d333999cb7d5/children HTTP/11" 200 None
+2026-06-12 17:27:30,376 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:31,265 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802a-a169-f99075372609/children HTTP/11" 200 None
+2026-06-12 17:27:31,276 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:34,377 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/11" 200 None
+2026-06-12 17:27:34,385 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:35,159 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:27:35,165 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:35,696 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4/children HTTP/11" 200 None
+2026-06-12 17:27:35,719 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:36,226 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:27:36,229 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:36,908 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 17:27:36,913 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:37,411 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab/children HTTP/11" 200 None
+2026-06-12 17:27:37,415 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:37,848 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d/children HTTP/11" 200 None
+2026-06-12 17:27:38,003 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:38,445 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891/children HTTP/11" 200 None
+2026-06-12 17:27:38,455 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:39,169 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a/children HTTP/11" 200 None
+2026-06-12 17:27:39,175 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:39,702 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a/children HTTP/11" 200 None
+2026-06-12 17:27:39,711 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:40,225 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891/children HTTP/11" 200 None
+2026-06-12 17:27:40,238 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:40,869 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b/children HTTP/11" 200 None
+2026-06-12 17:27:40,876 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:41,326 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17/children HTTP/11" 200 None
+2026-06-12 17:27:41,336 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:41,863 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/11" 200 None
+2026-06-12 17:27:41,869 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:42,431 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/11" 200 None
+2026-06-12 17:27:42,435 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:42,868 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/11" 200 None
+Detected 90 changes in Notion.
+2026-06-12 17:27:42,912 | INFO | state_evaluator | [Evaluator] Loaded 90 merged tasks
+2026-06-12 17:27:42,912 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-12 17:27:42,917 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-12 17:27:42,917 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-12 17:27:42,917 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 17:27:42,933 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:43,447 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/11" 200 None
+2026-06-12 17:27:43,454 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:43,906 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/11" 200 None
+2026-06-12 17:27:43,913 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:44,366 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/11" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis / 🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 17:27:44,379 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:44,831 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+2026-06-12 17:27:44,846 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:46,303 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 17:27:46,311 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:46,820 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+2026-06-12 17:27:46,828 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:48,225 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 thesis writing : Full thesis (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 17:27:48,238 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:48,666 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+2026-06-12 17:27:48,674 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:49,516 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+Pushing updates for SolarMan / 🏭 SolarMan Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 17:27:49,525 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:50,104 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+2026-06-12 17:27:50,109 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:27:51,547 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+TIMELINER sync complete.
+2026-06-12 17:27:51,609 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-12 17:27:51,645 | INFO | state_evaluator | [Evaluator] Scoped 37 tasks from TIMELINER
+2026-06-12 17:27:53,478 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 5/20)
+2026-06-12 17:27:54,133 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 17:27:54,246 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFCAF1640>
+2026-06-12 17:27:54,246 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 17:27:54,320 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFCAF15B0>
+2026-06-12 17:27:54,320 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:27:54,320 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:27:54,325 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:27:54,327 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:27:54,327 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:32:34,888 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:32:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=280497'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:32:34,899 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:32:34,903 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:32:34,915 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:32:34,915 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan SKM Program Material Prepare
+{"task_id": "362e1eb5-ce57-803c-a8e2-e17c712194ab", "title": "🟧 SolarMan SKM Program Material Prepare", "description": "", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [{"id": "362e1eb5-ce57-808a-a20e-c20c33c14212", "title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表", "description": "how to use each tools", "type": "bulleted_list_item", "checked": null}, {"id": "37ce1eb5-ce57-803e-9c85-d1dfbb44255d", "title": "🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use", "description": "", "type": "bulleted_list_item", "checked": null}], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "children", "location": "direct_children", "content": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表; 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use", "char_count": 90}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan SKM Program Material Prepare' serves as a major deliverable category within the 'SolarMan Apparatus Learning' project. It decomposes into specific work packages (Level 3 deliverables) such as Technical Manuals, Safety Guides, and Checklists for the SKM program. Following the hierarchical decomposition rules, since the child elements are specific deliverables (Work Packages), this task represents a Level 2 Major Deliverable container. Although the title contains a verb ('Prepare'), its structural position and scope define it as the grouping for all SKM-related documentation deliverables.
+2026-06-12 17:32:34,998 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 5/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构
+{"task_id": "36be1eb5-ce57-810f-9ef7-d6f0c5a080ff", "title": "Thesis 理论研究框架", "description": "博士假设与研究方向的概念模型及逻辑结构。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "博士假设与研究方向的概念模型及逻辑结构。", "char_count": 20}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Thesis 理论研究框架' (Theoretical Research Framework) is a major structural module of a PhD project. It is phrased as a noun, adhering to the rules for Levels 1-3. It sits below the overall goal of the thesis (Level 1) but represents a high-level deliverable rather than a specific work package (Level 3) or a discrete physical activity (Level 4). It defines a core component of the project's logic and structure, making it a Level 2 Major Deliverable.
+2026-06-12 17:32:35,019 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)
+{"task_id": "36be1eb5-ce57-8116-a65e-f4a87d956376", "title": "Thesis 方法论 Design Spec", "description": "详述(研究范式, 数据采集工具, 分析流程)。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "详述(研究范式, 数据采集工具, 分析流程)。", "char_count": 23}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task title 'Thesis 方法论 Design Spec' is a noun phrase representing a specific deliverable (a specification document). According to the WBS rules, Level 1 is the overall goal (The Thesis), and Level 2 represents major modules (e.g., Methodology, Literature Review). This task acts as a Work Package (Level 3) because it is a concrete, verifiable outcome within the Methodology module that requires substantial effort (8-80 hours) and covers multiple sub-components (paradigm, tools, process). It is not Level 4 because it describes the 'what' (a spec) rather than a granular 'how' action (a verb-led task taking <2 hours).
+2026-06-12 17:32:35,047 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 4/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Thesis 起草与定稿 : 高质量论文满足院校答辩要求
+{"task_id": "36be1eb5-ce57-813e-87cc-ce1f9e507641", "title": "Thesis Thesis 起草与定稿", "description": "高质量论文：满足院校答辩要求。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "高质量论文：满足院校答辩要求。", "char_count": 15}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent block '🏭 Thesis 💣 thesis writing' represents the high-level project goal (Level 1). The current task 'Drafting and Finalizing' (起草与定稿) is a major deliverable or core module within that project. It encompasses the creation of the actual manuscript, which is a significant, verifiable product required to meet the institutional defense requirements. As a major phase that will eventually be broken down into specific chapters or sections (Level 3), it correctly identifies as Level 2.
+2026-06-12 17:32:35,064 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 4/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+{"task_id": "36be1eb5-ce57-8143-9804-da6ea52aaf0c", "title": "Thesis V&V 协议", "description": "验证结果(准确/可靠/显著)的标准与逻辑测试", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "验证结果(准确/可靠/显著)的标准与逻辑测试", "char_count": 22}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis V&V Protocol' (验证结果协议) represents a specific Work Package within the broader 'Phd Logic' module (Level 2). It is a deliverable-oriented noun phrase that defines a verifiable result—a set of standards and logic tests. It is not the ultimate project goal (Level 1) nor a major core module (Level 2), but rather a detailed component of the methodology. Since it describes the 'what' (a protocol/standard) rather than a specific 'how' (a micro-activity under 2 hours), it fits the criteria for Level 3.
+2026-06-12 17:32:35,092 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 14.9s 后就绪...
+2026-06-12 17:32:49,976 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 6/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis   起草入门Slides : 类比+白话解释研究背景及意义Scripting
+{"task_id": "36be1eb5-ce57-814c-991f-dddc7b407a50", "title": "Thesis 💻Focus ❓ 起草入门Slides", "description": "类比+白话解释研究背景及意义，Scripting。", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "类比+白话解释研究背景及意义，Scripting。", "char_count": 25}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task '起草入门Slides' (Drafting/Scripting introductory slides) is an action-oriented activity (Verb + Noun). The parent block 'Thesis proposal defense Slide' represents a major deliverable (Level 2). This task focus on the specific 'How' (scripting/drafting content with analogies) rather than just the 'What' (the deliverable itself). It is a granular task that fits the definition of a Level 4 Activity.
+2026-06-12 17:32:50,001 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-12 17:32:50,011 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 6/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 文献综述与 Framework : 综述研究构建论文核心理论基础
+{"task_id": "36be1eb5-ce57-8161-90b8-fad696b78173", "title": "Thesis 文献综述与 Framework", "description": "综述研究：构建论文核心理论基础。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "综述研究：构建论文核心理论基础。", "char_count": 16}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent task 'Thesis 💣 thesis writing' represents the overall project goal (Level 1). The current task, 'Thesis 文献综述与 Framework', identifies a major core module or deliverable necessary to complete the thesis. As a major section of the final product, it fits the definition of a Level 2 Major Deliverable. It is phrased as a noun, consistent with the 'Nouns over Verbs' rule for Level 2.
+2026-06-12 17:32:50,036 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 5/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis   重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+{"task_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff", "title": "Thesis 💻Focus ❓ 重绘复杂 INfoDiagrams", "description": "复杂技术图表>简化视觉辅助", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "复杂技术图表>简化视觉辅助", "char_count": 13}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task '重绘复杂 INfoDiagrams' (Redrawing complex InfoDiagrams) follows a verb-noun syntax ('Redraw' + 'Diagrams'), which is the defining characteristic of Level 4 (Activities). According to the WBS rules, Levels 1-3 must be noun-phrase deliverables, whereas Level 4 represents the physical actions taken to produce those deliverables. The task describes a specific work step required to refine the 'Thesis proposal defense Slide' (the parent block), focusing on the 'How' rather than just the 'What'.
+2026-06-12 17:32:50,063 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 5/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis   起草 PPT 大纲 : 构建逻辑流(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+{"task_id": "36be1eb5-ce57-817b-8b62-e10612371657", "title": "Thesis 💻Focus ❓ 起草 PPT 大纲", "description": "构建逻辑流：(研究问题, 方法, 预期结果) guide with 科研人 の知行", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行", "char_count": 42}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task '起草 PPT 大纲' (Drafting PPT Outline) follows the 'Verb + Noun' syntax characteristic of an activity. The parent task is the 'Thesis proposal defense Slide', which represents a major deliverable (Level 2 or 3). Drafting the outline is a specific physical action/step required to produce that deliverable, fitting the definition of a Level 4 Activity.
+2026-06-12 17:32:50,091 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 5/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 核心讨论  完成 : 综合结果回答核心研究问题及假设
+{"task_id": "36be1eb5-ce57-8197-a510-de4d2d8ed946", "title": "Thesis 核心讨论 Draft 完成", "description": "综合结果：回答核心研究问题及假设。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "综合结果：回答核心研究问题及假设。", "char_count": 17}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis 核心讨论 Draft 完成' (Thesis Core Discussion Draft) represents a major component or chapter of the overall thesis. In a WBS hierarchy, if the Thesis itself is Level 1 and 'Thesis writing' is Level 2 (Major Deliverable/Phase), then a specific chapter draft constitutes a Work Package (Level 3). It describes a verifiable outcome (the draft) that requires substantial intellectual effort (estimated 8-80 hours), distinguishing it from Level 4 activities which are physical actions limited to 2 hours. Although it uses the word '完成' (Complete), the core of the task is the 'Draft' itself, a noun-based deliverable.
+2026-06-12 17:32:50,118 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 14.9s 后就绪...
+2026-06-12 17:33:04,985 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 7/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 结构逻辑 Mapping : 对齐矩阵确保一致性研究目标方法结论
+{"task_id": "36be1eb5-ce57-81c2-86f6-dea5eb9c9a81", "title": "Thesis 结构逻辑 Mapping", "description": "对齐矩阵：确保一致性（研究目标、方法、结论）", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "对齐矩阵：确保一致性（研究目标、方法、结论）", "char_count": 22}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis Structural Logic Mapping' (Alignment Matrix) represents a specific, verifiable deliverable within the broader scope of 'Thesis PhD Logic'. In a standard WBS hierarchy for a PhD project, the entire 'Thesis' would be Level 1 (Goal). The 'PhD Logic' or 'Theoretical Framework' serves as a Level 2 Major Deliverable (Module). Therefore, the 'Alignment Matrix'—a concrete document/artifact ensuring consistency between research goals, methods, and conclusions—is a Level 3 Work Package. It represents a discrete unit of work that produces a tangible outcome, adhering to the 8-80 hour effort guideline for Level 3.
+2026-06-12 17:33:04,997 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-12 17:33:05,018 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 7/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 稿件定稿校对 : 整合为单文档遵循学术格式及引用标准
+{"task_id": "36be1eb5-ce57-81c8-9ad4-ce486792c1c5", "title": "Thesis 稿件定稿校对", "description": "整合为单文档：遵循学术格式及引用标准。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "整合为单文档：遵循学术格式及引用标准。", "char_count": 19}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis 稿件定稿校对' (Final Proofreading of Thesis Manuscript) serves as a Work Package. It is a sub-component of the 'Thesis writing' phase (Level 2). The description specifies a deliverable (an integrated single document following academic standards), which represents a verifiable result that typically requires 8-80 hours of effort. It sits above the level of specific physical actions (Level 4 activities like 'merge files' or 'check citations') and below the major module of the entire writing process (Level 2).
+2026-06-12 17:33:05,027 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-12 17:33:05,048 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 6/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 方法与数据分析 : 记录研究设计完成初/次级数据系统分析
+{"task_id": "36be1eb5-ce57-81de-aef1-d3d85bf47ab2", "title": "Thesis 方法与数据分析", "description": "记录研究设计：完成初/次级数据系统分析。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "记录研究设计：完成初/次级数据系统分析。", "char_count": 20}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent block 'Thesis writing' represents the overall project goal (Level 1). 'Thesis 方法与数据分析' (Methodology and Data Analysis) is a major structural module or chapter of the thesis, identifying it as a Level 2 Major Deliverable. It is deliverable-oriented and serves as a core component of the final product.
+2026-06-12 17:33:05,057 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.0s 后就绪...
+2026-06-12 17:33:05,073 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 6/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Research Gap 综述 : 文献综述识别学术 Gap
+{"task_id": "36be1eb5-ce57-81ea-97f9-f610364b2c3c", "title": "Thesis Research Gap 综述", "description": "文献综述：识别学术 Gap", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "文献综述：识别学术 Gap", "char_count": 13}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent task 'Thesis Phd Logic' represents the overall project (Level 1). 'Thesis Research Gap 综述' (Literature Review/Research Gap Identification) is a core module or major deliverable necessary to achieve the final goal. It uses a noun-based syntax (Literature Review) rather than a verb-based action. It is too broad to be a Level 3 work package (which requires 8-80 hours) or a Level 4 activity, as identifying a research gap for a PhD thesis is a significant milestone consisting of multiple sub-tasks and synthesis phases.
+2026-06-12 17:33:05,085 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-12 17:33:05,099 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 6/20)
+2026-06-12 17:33:05,104 | DEBUG | httpcore.connection | close.started
+2026-06-12 17:33:05,104 | DEBUG | httpcore.connection | close.complete
+2026-06-12 17:33:05,104 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 17:33:05,210 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD91E990>
+2026-06-12 17:33:05,218 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 17:33:05,312 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD320A40>
+2026-06-12 17:33:05,312 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:33:05,312 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:33:05,312 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:33:05,312 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:33:05,312 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:33:10,722 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:33:10 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=5321'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:33:10,734 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:33:10,773 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:33:10,779 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:33:10,810 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan T&C report express filling flow : data to report direct
+{"task_id": "37ce1eb5-ce57-8067-a639-f1316bb66d0a", "title": "🟧 SolarMan T&C report express filling flow", "description": "data to report direct", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [{"id": "37ce1eb5-ce57-80e9-a7ae-df5b128b374f", "title": "🔶 SolarMan ExpressFlow Draw", "description": "How? DataSource 2 report with exe/docker", "type": "bulleted_list_item", "checked": null}, {"id": "37ce1eb5-ce57-8037-8991-d62be4faefb2", "title": "🔶 SolarMan power quality meter", "description": "Buildup BOM prepare & design", "type": "bulleted_list_item", "checked": null}, {"id": "37ce1eb5-ce57-80e8-bc97-cd2041d5850a", "title": "🔶 SolarMan IoT portable dash", "description": "BuildDev BOM prepare & design", "type": "bulleted_list_item", "checked": null}, {"id": "37ce1eb5-ce57-8017-8f54-e489e8d1f891", "title": "🔶 SolarMan BLE connection testing of UNI-T device", "description": "", "type": "bulleted_list_item", "checked": null}], "extra_info": {"is_toggle": false, "links": [{"text": "express filling flow", "url": "/37ce1eb5ce5780f0a46fcfb8a22d83c7"}], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "children", "location": "direct_children", "content": "🔶 SolarMan ExpressFlow Draw; 🔶 SolarMan power quality meter; 🔶 SolarMan IoT portable dash; 🔶 SolarMan BLE connection testing of UNI-T device", "char_count": 140}, {"source": "description", "location": "current_block", "content": "data to report direct", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan T&C report express filling flow' functions as a major deliverable or functional module within the broader 'SolarMan Apparatus Learning' project. It is described using a noun phrase and is decomposed into several specific work packages (children) such as BOM preparation, design drawing, and device testing, which align with Level 3 definitions. Since it sits between the high-level project goal (Level 1) and the work packages (Level 3), it is classified as Level 2.
+2026-06-12 17:33:10,852 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-12 17:33:10,852 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-12 17:33:10,885 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-12 17:33:10,885 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-12 17:33:10,905 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-12 17:33:10,905 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-12 17:33:10,905 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:11,917 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2 HTTP/11" 200 None
+Pushed formatted tags to Notion for 365e1eb5-ce57-818a-9644-d7dab69216a2: 🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the
+2026-06-12 17:33:11,935 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:12,592 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:33:12,600 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:13,389 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81ea-97f9-f610364b2c3c HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81ea-97f9-f610364b2c3c: 🟧 Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+2026-06-12 17:33:13,397 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:14,460 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:33:14,476 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:15,827 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-810f-9ef7-d6f0c5a080ff HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-810f-9ef7-d6f0c5a080ff: 🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+2026-06-12 17:33:15,833 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:17,253 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:33:17,270 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:18,558 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8116-a65e-f4a87d956376 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8116-a65e-f4a87d956376: 🔶 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+2026-06-12 17:33:18,563 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:20,106 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:33:20,113 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:21,638 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8143-9804-da6ea52aaf0c HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8143-9804-da6ea52aaf0c: 🔶 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+2026-06-12 17:33:21,651 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:22,860 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 17:33:22,862 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:23,885 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 🔶 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+2026-06-12 17:33:23,901 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:24,983 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-809a-8b98-f3877701cdc4: 🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand
+2026-06-12 17:33:24,996 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:26,434 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-817b-8b62-e10612371657 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-817b-8b62-e10612371657: 🔸 Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+2026-06-12 17:33:26,444 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:27,103 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-814c-991f-dddc7b407a50 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-814c-991f-dddc7b407a50: 🔸 Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+2026-06-12 17:33:27,116 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:28,210 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-8177-98c8-fd0ab3397bff HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-8177-98c8-fd0ab3397bff: 🔸 Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+2026-06-12 17:33:28,212 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:28,966 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-8006-ae00-e591724dd968: 🏭 Thesis 💣 thesis writing : Full thesis
+2026-06-12 17:33:28,973 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:30,537 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:33:30,542 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:31,701 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-813e-87cc-ce1f9e507641 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-813e-87cc-ce1f9e507641: 🟧 Thesis 起草与定稿 : 高质量论文：满足院校答辩要求。
+2026-06-12 17:33:31,709 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:32,999 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:33:33,005 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:34,295 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8161-90b8-fad696b78173 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8161-90b8-fad696b78173: 🟧 Thesis 文献综述与 Framework : 综述研究：构建论文核心理论基础。
+2026-06-12 17:33:34,306 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:35,638 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:33:35,640 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:36,951 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81de-aef1-d3d85bf47ab2 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81de-aef1-d3d85bf47ab2: 🟧 Thesis 方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+2026-06-12 17:33:36,959 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:39,349 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:33:39,351 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:40,689 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8197-a510-de4d2d8ed946 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8197-a510-de4d2d8ed946: 🔶 Thesis 核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+2026-06-12 17:33:40,695 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:42,016 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 17:33:42,016 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:43,309 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+2026-06-12 17:33:43,309 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:44,287 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80a4-8b64-c2dfba3f0232: 🏭 SolarMan Apparatus Learning
+2026-06-12 17:33:44,292 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:45,521 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-803c-a8e2-e17c712194ab: 🟧 SolarMan 🚨 SKM Program Material Prepare
+2026-06-12 17:33:45,524 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:47,195 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-808a-a20e-c20c33c14212: 🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+2026-06-12 17:33:47,208 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:48,227 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-803e-9c85-d1dfbb44255d: 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use
+2026-06-12 17:33:48,240 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:49,155 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8099-a3e8-d50dc30c1891: 🔸 SolarMan 🚨 Format Cute Manual : Ob
+2026-06-12 17:33:49,162 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:50,267 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e0-aab8-d09f844023f0 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e0-aab8-d09f844023f0: 🔸 SolarMan 🚨 error response , precaution
+2026-06-12 17:33:50,376 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:51,994 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e1-b0ad-d97f92b16a67 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e1-b0ad-d97f92b16a67: 🔸 SolarMan 🚨 Each mode for what , expected result , below above how much
+2026-06-12 17:33:52,009 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:52,899 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8029-a2b3-e0a96e73ef26 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8029-a2b3-e0a96e73ef26: 🔸 SolarMan 🚨 action domain
+2026-06-12 17:33:52,983 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:53,718 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6: 🔸 SolarMan 🚨 Draft in my Word
+2026-06-12 17:33:53,719 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:54,457 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8055-b29e-e7aaee446a62 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8055-b29e-e7aaee446a62: 🔸 SolarMan 🚨 GPTImg Prompt Gen Refining
+2026-06-12 17:33:54,470 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:55,287 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ab-9670-f99fb4445972 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ab-9670-f99fb4445972: 🔸 SolarMan 🚨 Final Img Refine Tune
+2026-06-12 17:33:55,302 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:56,544 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8067-a639-f1316bb66d0a: 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct
+2026-06-12 17:33:56,544 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:57,622 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e9-a7ae-df5b128b374f HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e9-a7ae-df5b128b374f: 🔶 SolarMan 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+2026-06-12 17:33:57,634 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:33:58,824 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8037-8991-d62be4faefb2: 🔶 SolarMan 🚨 power quality meter : Buildup BOM prepare & design
+2026-06-12 17:33:58,824 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:00,267 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e8-bc97-cd2041d5850a: 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design
+2026-06-12 17:34:00,281 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:01,544 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ba-ab06-da7261c000c3 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ba-ab06-da7261c000c3: 🔸 SolarMan 🚨 Template4锻造Project Filling : Graph visual, Concept, BOM,Schematic
+2026-06-12 17:34:01,553 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:02,909 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48: 🔸 SolarMan 🚨 solar irradiance module selection
+2026-06-12 17:34:02,915 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:03,697 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80be-8ecb-daf1b16f9789 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80be-8ecb-daf1b16f9789: 🔸 SolarMan 🚨 BOM list with links，price and cost
+2026-06-12 17:34:03,705 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:04,890 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8017-8f54-e489e8d1f891: 🔶 SolarMan 🚨 BLE connection testing of UNI-T device
+2026-06-12 17:34:04,894 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:05,577 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf: 🔸 SolarMan 🚨 phone version both simutenously
+2026-06-12 17:34:05,583 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:06,784 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22: 🔸 SolarMan 🚨 comp version : replicate phone version in comp
+2026-06-12 17:34:06,800 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:07,882 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-809a-b42d-d5874a13293b: 鍛造Maker 3dpF : 3d printing filament Extruder
+2026-06-12 17:34:07,888 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:09,188 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-806c-8dd6-f80a41edbc17: 鍛造Maker Phase1 : Setup Extruder only with exisiting BOM
+2026-06-12 17:34:09,196 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:10,656 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-804d-99f1-c5f9b1407ce1 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-804d-99f1-c5f9b1407ce1: 鍛造Maker Phase2 : 3kg Filament Roller + auto feeder
+2026-06-12 17:34:10,665 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:12,354 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8086-9cb3-fc605e2d86d4 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-8086-9cb3-fc605e2d86d4: 鍛造Maker Phase3 : Mini shredder mach
+2026-06-12 17:34:12,364 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:13,399 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80fa-bf6b-fa76773b14bb HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80fa-bf6b-fa76773b14bb: 鍛造Maker Phase4 : Production Line Setup
+2026-06-12 17:34:13,404 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:14,530 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80ea-8c50-df62fc91cfe4 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80ea-8c50-df62fc91cfe4: Dev SolarPV 仪器原型 : 明确 justification：(research gap, methods, result validation)
+2026-06-12 17:34:14,535 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:16,139 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80ce-ba7b-fa343a732e03: 科研人 领域之鹰 : 深厚专业知识体系
+2026-06-12 17:34:16,146 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:17,248 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80d6-95d4-dabb6d317b8b: 科研人 H100 index : 速出有质量的论文
+2026-06-12 17:34:17,264 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:34:18,504 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a6-b92f-cd3d1efd946d HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-80a6-b92f-cd3d1efd946d: DZaoSpaceV1 filter air system human : system human system human system human system
+2026-06-12 17:34:18,509 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-12 17:34:18,509 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-12 17:34:18,517 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 8/20)
+2026-06-12 17:34:18,525 | DEBUG | httpcore.connection | close.started
+2026-06-12 17:34:18,525 | DEBUG | httpcore.connection | close.complete
+2026-06-12 17:34:18,525 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 17:34:18,857 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFCA8A330>
+2026-06-12 17:34:18,857 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 17:34:19,130 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFC996C30>
+2026-06-12 17:34:19,130 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:34:19,133 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:34:19,134 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:34:19,134 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:34:19,134 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:34:29,749 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:34:29 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=10533'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:34:29,753 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:34:29,757 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:34:29,757 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:34:29,759 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools'
+   Output: Level 1 | Type WBS | Rationale: The task input defines the final outcome of a project, which is the creation of a specific documentation suite (Technical Manual, Safety Guide, and Quick Reference) for the 'SolarMan' tools. It is structured as a noun phrase and represents the highest level of the deliverable hierarchy for this scope of work. Because the deliverables are tangible, verifiable products rather than exploratory objectives, the task type is deterministic (WBS).
+
+[🤖 LLM LOG - Phase 2.1: Refine L1 (WBS)]
+   Input (Deterministic Goal): 'SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools'
+2026-06-12 17:34:29,778 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 8/20)
+2026-06-12 17:34:29,789 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:34:29,789 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:34:29,789 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:34:29,792 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:34:29,792 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:34:52,776 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:34:52 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=22890'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:34:52,786 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:34:52,790 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:34:52,790 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:34:52,790 | DEBUG | httpcore.http11 | response_closed.complete
+   Output: Deliverables=['Technical Operation Manuals', 'Safety and Regulatory Guides', 'Quick Reference Tool Sheets', 'Integrated Visual Asset Library']
+2026-06-12 17:34:52,829 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+2026-06-12 17:34:52,841 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:34:52,841 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:34:52,841 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:34:52,841 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:34:52,856 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:35:04,209 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:35:04 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=11291'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:35:04,217 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:35:04,219 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:35:04,221 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:35:04,221 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:35:04,671 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+2026-06-12 17:35:04,799 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:35:04,838 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:35:04,841 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:35:04,856 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:35:04,858 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:35:20,932 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:35:21 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=15999'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:35:20,932 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:35:20,942 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:35:20,942 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:35:20,942 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:35:20,985 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 2/1500)
+2026-06-12 17:35:20,998 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:35:21,003 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:35:21,006 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:35:21,006 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:35:21,009 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:02,298 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:36:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=41236'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:36:02,305 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:36:02,305 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:36:02,305 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:36:02,305 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:36:02,344 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 2/1500)
+2026-06-12 17:36:02,349 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:02,349 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:36:02,357 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:36:02,360 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:36:02,360 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:23,459 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:36:23 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=21044'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:36:23,459 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:36:23,474 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:36:23,474 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:36:23,474 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:36:23,506 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 3/1500)
+2026-06-12 17:36:23,506 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:23,522 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:36:23,522 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:36:23,522 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:36:23,522 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:39,580 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:36:39 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=16013'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:36:39,580 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:36:39,580 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:36:39,596 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:36:39,598 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:36:39,631 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+2026-06-12 17:36:39,644 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:39,644 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:36:39,649 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:36:39,649 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:36:39,649 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:58,817 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:36:58 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=18977'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:36:58,819 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:36:58,822 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:36:58,824 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:36:58,825 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:36:58,869 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 4/1500)
+2026-06-12 17:36:58,879 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:36:58,885 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:36:58,885 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:36:58,885 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:36:58,890 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:37:15,035 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:37:15 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=16087'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:37:15,040 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:37:15,041 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:37:15,041 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:37:15,041 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:37:15,061 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+2026-06-12 17:37:15,061 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:37:15,061 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:37:15,061 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:37:15,061 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:37:15,061 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:37:28,850 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:37:29 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=13701'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:37:28,855 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:37:28,858 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:37:28,860 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:37:28,860 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:37:28,874 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:37:29,483 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212/children HTTP/11" 200 None
+2026-06-12 17:37:29,490 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:37:31,141 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212/children HTTP/11" 200 None
+Added 4 physical subtasks to the top of 362e1eb5-ce57-808a-a20e-c20c33c14212
+2026-06-12 17:37:31,170 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 9/20)
+2026-06-12 17:37:31,178 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:37:31,180 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:37:31,183 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:37:31,185 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:37:31,185 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:47:31,194 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-12 17:47:31,194 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:47:31,210 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:47:31,493 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 17:47:31,618 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD210F50>
+2026-06-12 17:47:31,620 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 17:47:31,743 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD210E30>
+2026-06-12 17:47:31,745 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:47:31,749 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:47:31,749 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:47:31,751 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:47:31,753 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:48:58,868 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:48:59 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=87039'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:48:58,915 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:48:58,937 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:48:58,950 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:48:58,950 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker'
+   Output: Level 4 | Type N/A | Rationale: The task input describes a highly specific technical implementation detail rather than a broad project goal or major module. The phrasing 'How?' indicates an inquiry into the process or a step-by-step action, which aligns with Level 4 (Activities). Furthermore, it includes specific technical constraints ('DataSource 2', 'exe/docker') that are characteristic of granular tasks. Since Levels 1-3 strictly require Noun phrases and this input focuses on the methodology ('How') and specific deployment actions, it is classified as an Activity (Level 4).
+
+[🤖 LLM LOG - Phase 2.4: Refine L4]
+   Input (Atomic Action): 'SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker'
+2026-06-12 17:48:59,279 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 9/20)
+2026-06-12 17:48:59,291 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:48:59,293 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:48:59,294 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:48:59,295 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:48:59,295 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:49:02,780 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:49:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=3408'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:49:02,818 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:49:02,837 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:49:02,850 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:49:02,860 | DEBUG | httpcore.http11 | response_closed.complete
+   Output: Type=Focus | Hours=1.5 | Action='Configure SolarMan Docker execution'
+2026-06-12 17:49:03,005 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+2026-06-12 17:49:03,082 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:49:03,089 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:49:03,150 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:49:03,166 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:49:03,183 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:49:13,955 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:49:14 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=10785'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:49:13,959 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:49:13,962 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:49:13,964 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:49:13,965 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:49:14,033 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+2026-06-12 17:49:14,064 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 17:49:14,065 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 17:49:14,067 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 17:49:14,068 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 17:49:14,072 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 17:49:29,739 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 09:49:29 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=15564'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 17:49:29,745 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 17:49:29,934 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 17:49:29,936 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 17:49:29,938 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 17:49:30,232 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 17:49:30,272 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+Failed to add subtasks to 37ce1eb5-ce57-80e9-a7ae-df5b128b374f: HTTPSConnectionPool(host='api.notion.com', port=443): Max retries exceeded with url: /v1/blocks/37ce1eb5-ce57-80e9-a7ae-df5b128b374f/children (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000019EFD2133E0>: Failed to resolve 'api.notion.com' ([Errno 11001] getaddrinfo failed)"))
+2026-06-12 18:59:52,034 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 10/20)
+2026-06-12 18:59:53,094 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 18:59:53,102 | DEBUG | httpcore.connection | connect_tcp.failed exception=ConnectError(gaierror(11001, 'getaddrinfo failed'))
+2026-06-12 18:59:55,148 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 18:59:55,289 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD211280>
+2026-06-12 18:59:55,300 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 18:59:55,952 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD211460>
+2026-06-12 18:59:55,957 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 18:59:55,960 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 18:59:55,964 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 18:59:55,968 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 18:59:55,971 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:16,920 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=RemoteProtocolError('Server disconnected without sending a response.')
+2026-06-12 19:03:16,951 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:03:16,957 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:03:18,461 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 19:03:18,573 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD228980>
+2026-06-12 19:03:18,579 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 19:03:18,748 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD228710>
+2026-06-12 19:03:18,750 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:18,754 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:03:18,754 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:03:18,755 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:03:18,755 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:26,077 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:03:26 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=7258'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:03:26,093 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:03:26,108 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:03:26,108 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:03:26,108 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan power quality meter : Buildup BOM prepare & design'
+   Output: Level 4 | Type N/A | Rationale: The input task 'Buildup BOM prepare & design' uses verbs ('prepare' and 'design') directed at a specific component ('BOM'). According to the WBS rules, Levels 1, 2, and 3 must be noun-based phrases focusing on deliverables. Level 4 is specifically defined as 'Physical Actions' using a 'Verb + Noun' structure. Although the effort for a BOM design might exceed the 2-hour guideline in some contexts, the syntactic structure is clearly that of an activity rather than a deliverable noun phrase.
+
+[🤖 LLM LOG - Phase 2.4: Refine L4]
+   Input (Atomic Action): 'SolarMan power quality meter : Buildup BOM prepare & design'
+2026-06-12 19:03:26,219 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 10/20)
+2026-06-12 19:03:26,219 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:26,219 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:03:26,219 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:03:26,219 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:03:26,219 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:29,907 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:03:30 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=3566'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:03:29,907 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:03:29,907 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:03:29,907 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:03:29,907 | DEBUG | httpcore.http11 | response_closed.complete
+   Output: Type=Focus | Hours=2.5 | Action='Compile power meter BOM'
+2026-06-12 19:03:29,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+2026-06-12 19:03:29,929 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:29,929 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:03:29,929 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:03:29,929 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:03:29,929 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:44,307 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:03:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=14297'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:03:44,310 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:03:44,311 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:03:44,312 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:03:44,312 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:03:44,325 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+2026-06-12 19:03:44,332 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:03:44,333 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:03:44,333 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:03:44,334 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:03:44,334 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:15,998 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:04:16 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=31602'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:04:16,006 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:04:16,012 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:04:16,019 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:04:16,021 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:04:16,101 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:04:16,700 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2/children HTTP/11" 200 None
+2026-06-12 19:04:16,716 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:04:17,707 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2/children HTTP/11" 200 None
+Added 1 physical subtasks to the top of 37ce1eb5-ce57-8037-8991-d62be4faefb2
+2026-06-12 19:04:17,959 | INFO | state_evaluator | [Evaluator] Split pass: 6 subtasks across 3 parents
+2026-06-12 19:04:17,959 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-12 19:04:18,313 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 11/20)
+2026-06-12 19:04:18,400 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:18,404 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:04:18,404 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:04:18,406 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:04:18,408 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:33,012 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:04:33 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=14568'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:04:33,015 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:04:33,027 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:04:33,027 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:04:33,027 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:04:33,047 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 11/20)
+2026-06-12 19:04:33,127 | DEBUG | httpcore.connection | close.started
+2026-06-12 19:04:33,131 | DEBUG | httpcore.connection | close.complete
+2026-06-12 19:04:33,142 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:33,146 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:04:33,152 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:04:33,155 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:04:33,157 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:39,975 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:04:40 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=6779'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:04:39,979 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:04:39,983 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:04:39,984 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:04:39,985 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:04:40,009 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 7/20)
+2026-06-12 19:04:40,024 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:40,026 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:04:40,026 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:04:40,028 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:04:40,029 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:48,701 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:04:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=8608'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:04:48,701 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:04:48,706 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:04:48,707 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:04:48,707 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:04:48,738 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 12/20)
+2026-06-12 19:04:48,743 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:04:48,747 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:04:48,747 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:04:48,748 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:04:48,748 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:01,730 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=12933'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:01,731 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:01,738 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:01,738 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:01,738 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:01,747 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 12/20)
+2026-06-12 19:05:01,747 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:01,747 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:01,747 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:01,747 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:01,747 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:11,337 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:11 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=9535'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:11,338 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:11,339 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:11,339 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:11,340 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:11,354 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 8/20)
+2026-06-12 19:05:11,359 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:11,360 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:11,360 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:11,361 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:11,361 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:17,766 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:18 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=6362'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:17,770 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:17,774 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:17,774 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:17,777 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:17,794 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 13/20)
+2026-06-12 19:05:17,801 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:17,809 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:17,809 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:17,811 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:17,813 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:25,202 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:25 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=7339'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:25,202 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:25,204 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:25,204 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:25,206 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:25,233 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 7/20)
+2026-06-12 19:05:25,233 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:25,233 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:25,233 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:25,240 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:25,240 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:31,612 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:31 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=6303'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:31,614 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:31,616 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:31,618 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:31,618 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:31,661 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 13/20)
+2026-06-12 19:05:31,670 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:31,670 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:31,670 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:31,670 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:31,670 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:38,719 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:39 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=7000'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:38,725 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:38,731 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:38,737 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:38,745 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:38,763 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 9/20)
+2026-06-12 19:05:38,774 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:38,778 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:38,780 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:38,782 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:38,796 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:50,115 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:05:50 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=11297'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:05:50,115 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:05:50,131 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:05:50,131 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:05:50,131 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:05:50,148 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 14/20)
+2026-06-12 19:05:50,151 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:05:50,151 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:05:50,151 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:05:50,151 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:05:50,151 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:04,631 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:06:04 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=14432'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:06:04,639 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:06:04,647 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:06:04,647 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:06:04,647 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:06:04,663 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 14/20)
+2026-06-12 19:06:04,663 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:04,663 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:06:04,663 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:06:04,663 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:06:04,663 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:09,152 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:06:09 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=4435'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:06:09,153 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:06:09,156 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:06:09,156 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:06:09,157 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:06:09,169 | INFO | state_evaluator | [Evaluator] Mode/TaskType inferred for 12 tasks
+2026-06-12 19:06:09,180 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:09,645 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81
+2026-06-12 19:06:09,661 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:10,067 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81
+2026-06-12 19:06:10,069 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:10,592 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81
+2026-06-12 19:06:10,596 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:11,233 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81
+2026-06-12 19:06:11,250 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:11,969 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37de1eb5-ce57-81ec-8120-de01cd31bdbb HTTP/11" 200 None
+Pushed formatted tags to Notion for 37de1eb5-ce57-81ec-8120-de01cd31bdbb: 🔶 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+2026-06-12 19:06:11,980 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:13,491 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-817b-8b62-e10612371657 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-817b-8b62-e10612371657: 🔸 Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+2026-06-12 19:06:13,500 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:14,408 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-814c-991f-dddc7b407a50 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-814c-991f-dddc7b407a50: 🔸 Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+2026-06-12 19:06:14,408 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:15,771 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-8177-98c8-fd0ab3397bff HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-8177-98c8-fd0ab3397bff: 🔸 Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+2026-06-12 19:06:15,773 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:16,311 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5
+2026-06-12 19:06:16,319 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:16,692 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5
+2026-06-12 19:06:16,696 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:17,179 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5
+2026-06-12 19:06:17,181 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:17,666 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 400 201
+Failed to push tags to Notion for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5
+2026-06-12 19:06:17,668 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:20,915 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b HTTP/11" 200 None
+Pushed formatted tags to Notion for 37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b: 🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+2026-06-12 19:06:20,915 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:22,128 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-803c-a8e2-e17c712194ab: 🟧 SolarMan 🚨 SKM Program Material Prepare
+2026-06-12 19:06:22,133 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:23,434 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212 HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-808a-a20e-c20c33c14212: 🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+2026-06-12 19:06:23,441 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:24,767 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-803e-9c85-d1dfbb44255d: 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use
+2026-06-12 19:06:24,781 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:25,730 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8099-a3e8-d50dc30c1891: 🔸 SolarMan 💻Focus 🚨✍️ Format Cute Manual : Ob
+2026-06-12 19:06:25,736 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:26,827 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e0-aab8-d09f844023f0 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e0-aab8-d09f844023f0: 🔸 SolarMan 💻Focus 🚨✍️ error response , precaution
+2026-06-12 19:06:26,842 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+2026-06-12 19:06:26,846 | DEBUG | httpcore.connection | close.started
+2026-06-12 19:06:26,850 | DEBUG | httpcore.connection | close.complete
+2026-06-12 19:06:26,850 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 19:06:26,911 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD210A10>
+2026-06-12 19:06:26,911 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 19:06:27,061 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD210D70>
+2026-06-12 19:06:27,061 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:27,061 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:06:27,061 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:06:27,061 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:06:27,061 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:44,272 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:06:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=17164'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:06:44,275 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:06:44,277 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:06:44,277 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:06:44,277 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:06:44,298 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:45,459 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e1-b0ad-d97f92b16a67 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e1-b0ad-d97f92b16a67: 🔸 SolarMan 💻Focus 🚨🗺️ Mode定义/预期值/阈值
+2026-06-12 19:06:45,467 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:45,877 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8029-a2b3-e0a96e73ef26 HTTP/11" 400 201
+Failed to push tags to Notion for 37ce1eb5-ce57-8029-a2b3-e0a96e73ef26: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8029-a2b3-e0a96e73ef26
+2026-06-12 19:06:45,883 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:47,052 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6: 🔸 SolarMan 💻Focus 🚨✍️ Draft in my Word
+2026-06-12 19:06:47,065 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:47,874 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8055-b29e-e7aaee446a62 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8055-b29e-e7aaee446a62: 🔸 SolarMan 💻Focus 🚨✍️ GPTImg Prompt Gen Refining
+2026-06-12 19:06:47,882 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:49,387 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ab-9670-f99fb4445972 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ab-9670-f99fb4445972: 🔸 SolarMan 💻Focus 🚨🎯 Final Img Refine Tune
+2026-06-12 19:06:49,390 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:50,304 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8067-a639-f1316bb66d0a: 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct
+2026-06-12 19:06:50,304 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:51,058 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e9-a7ae-df5b128b374f HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e9-a7ae-df5b128b374f: 🔶 SolarMan 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+2026-06-12 19:06:51,063 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:51,639 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8037-8991-d62be4faefb2: 🔶 SolarMan 🚨 power quality meter : Buildup BOM prepare & design
+2026-06-12 19:06:51,639 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:06:52,887 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80e8-bc97-cd2041d5850a: 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design
+2026-06-12 19:06:52,935 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+2026-06-12 19:06:52,939 | DEBUG | httpcore.connection | close.started
+2026-06-12 19:06:52,939 | DEBUG | httpcore.connection | close.complete
+2026-06-12 19:06:52,939 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 19:06:52,983 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD22BFB0>
+2026-06-12 19:06:52,983 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000019EEDFA8B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 19:06:53,058 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000019EFD2289B0>
+2026-06-12 19:06:53,060 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 19:06:53,060 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 19:06:53,060 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 19:06:53,062 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 19:06:53,062 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 19:07:39,989 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:07:40 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=46853'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 19:07:40,009 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 19:07:40,039 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 19:07:40,055 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 19:07:40,056 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-12 19:07:40,105 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:41,649 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ba-ab06-da7261c000c3 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ba-ab06-da7261c000c3: 🔸 SolarMan 💻Focus 🚨🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+2026-06-12 19:07:41,661 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:42,448 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48: 🔸 SolarMan 💻Focus 🚨🔬 solar irradiance module selection
+2026-06-12 19:07:42,455 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:45,044 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80be-8ecb-daf1b16f9789 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80be-8ecb-daf1b16f9789: 🔸 SolarMan 🧟Zombie 🚨🛒 BOM list with links，price and cost
+2026-06-12 19:07:45,052 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:46,443 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8017-8f54-e489e8d1f891: 🔶 SolarMan 🚨 BLE connection testing of UNI-T device
+2026-06-12 19:07:46,451 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:48,024 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf: 🔸 SolarMan 小Do📱 🚨💻 phone version both simutenously
+2026-06-12 19:07:48,029 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 19:07:49,101 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22 HTTP/11" 200 None
+Pushed formatted tags to Notion for 37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22: 🔸 SolarMan 💻Focus 🚨💻 comp version : replicate phone version in comp
+2026-06-12 19:07:49,127 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 19, 'SEQUENCED': 14, 'PHASING_WAIT': 2, 'HUMAN_REVIEW': 2, 'STRUCTURED': 53, 'RAW': 5}
+2026-06-12 19:07:49,129 | INFO | state_evaluator | [Evaluator] Halted blocks requiring human action (4):
+2026-06-12 19:07:49,133 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🟧 SolarMan SKM Program Material Prepare
+2026-06-12 19:07:49,135 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : 
+2026-06-12 19:07:49,140 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🟧 SolarMan T&C report express filling fl
+2026-06-12 19:07:49,145 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan power quality meter : Buildup
+2026-06-12 19:07:49,269 | INFO | state_evaluator | [Evaluator] Saved 95 tasks to state
+Flow complete. State distribution: {'READY': 19, 'SEQUENCED': 14, 'PHASING_WAIT': 2, 'HUMAN_REVIEW': 2, 'STRUCTURED': 53, 'RAW': 5}
+[trace] Flow run completed at 2026-06-12T19:07:49

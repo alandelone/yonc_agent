@@ -23,6 +23,39 @@ def _normalize_uuid(raw_id: str) -> str:
         return f"{clean[:8]}-{clean[8:12]}-{clean[12:16]}-{clean[16:20]}-{clean[20:]}"
     return raw_id
 
+def _sanitize_rich_text_for_create(rich_text: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Keep Notion rich_text fields that are valid in create/update payloads."""
+    sanitized: List[Dict[str, Any]] = []
+    for rt in rich_text or []:
+        if not isinstance(rt, dict):
+            continue
+        item_type = rt.get("type", "text")
+        if item_type != "text":
+            continue
+        text_obj = rt.get("text") if isinstance(rt.get("text"), dict) else {}
+        content = text_obj.get("content") or rt.get("plain_text") or ""
+        if not content:
+            continue
+        clean: Dict[str, Any] = {
+            "type": "text",
+            "text": {"content": str(content)},
+        }
+        link_obj = text_obj.get("link")
+        url = link_obj.get("url") if isinstance(link_obj, dict) else None
+        if url:
+            clean["text"]["link"] = {"url": str(url)}
+        if isinstance(rt.get("annotations"), dict):
+            clean["annotations"] = rt["annotations"].copy()
+        sanitized.append(clean)
+    return sanitized
+
+def _rich_text_for_task_creation(task: Dict[str, Any], fallback_title: str) -> List[Dict[str, Any]]:
+    rich_text = _sanitize_rich_text_for_create(task.get("notion_rich_text") or [])
+    if rich_text:
+        return rich_text
+    title = str(fallback_title or "").strip() or " "
+    return [{"type": "text", "text": {"content": title}}]
+
 def _rebuild_notion_block_payload(block: Dict[str, Any]) -> Dict[str, Any]:
     """
     Rebuilds a valid Notion block creation payload from a raw block object.
@@ -285,12 +318,7 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
         annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
         color = annotations.get("color", "default")
         title = str(task.get("original_notion_title", task.get("title", "")) or "").strip()
-        if not title:
-            title = " "
-        rich_text = [{
-            "type": "text",
-            "text": {"content": title}
-        }]
+        rich_text = _rich_text_for_task_creation(task, title)
 
         if block_type == "to_do":
             return {
@@ -677,7 +705,43 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # 娌℃湁 `:` 鈫?鍘嬬缉鏁翠釜鏍囬
         return _condense_title(raw_title)
 
-    def _append_title_segments(rich_text: List[Dict[str, Any]], visible_title: str, is_done: bool, total_tracked_hours: float = 0.0, is_hierarchically_complete: bool = False):
+    def _link_for_segment(content: str, links: List[Dict[str, str]]) -> Dict[str, str] | None:
+        normalized_content = str(content or "").strip()
+        if not normalized_content:
+            return None
+        for link in links or []:
+            link_text = str(link.get("text") or "").strip()
+            url = str(link.get("url") or "").strip()
+            if not link_text or not url:
+                continue
+            if link_text in normalized_content or normalized_content in link_text:
+                return {"url": url}
+        return None
+
+    def _append_text_segment(
+        rich_text: List[Dict[str, Any]],
+        content: str,
+        annotations: Dict[str, Any],
+        links: List[Dict[str, str]] | None = None,
+    ) -> None:
+        text_obj: Dict[str, Any] = {"content": content}
+        link = _link_for_segment(content, links or [])
+        if link:
+            text_obj["link"] = link
+        rich_text.append({
+            "type": "text",
+            "text": text_obj,
+            "annotations": annotations.copy(),
+        })
+
+    def _append_title_segments(
+        rich_text: List[Dict[str, Any]],
+        visible_title: str,
+        is_done: bool,
+        total_tracked_hours: float = 0.0,
+        is_hierarchically_complete: bool = False,
+        links: List[Dict[str, str]] | None = None,
+    ):
         if is_hierarchically_complete:
             hours_str = f"💯✅ *{round(total_tracked_hours, 1)}h* "
             rich_text.append({
@@ -698,19 +762,11 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         title_text = str(visible_title or "").strip()
         if not title_text:
-            rich_text.append({
-                "type": "text",
-                "text": {"content": " "},
-                "annotations": base_annos.copy()
-            })
+            _append_text_segment(rich_text, " ", base_annos, links)
             return
 
         if ":" not in title_text:
-            rich_text.append({
-                "type": "text",
-                "text": {"content": title_text},
-                "annotations": base_annos.copy()
-            })
+            _append_text_segment(rich_text, title_text, base_annos, links)
             return
 
         task_part, desc_part = title_text.split(":", 1)
@@ -718,27 +774,15 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         desc_part = desc_part.strip()
 
         if task_part:
-            rich_text.append({
-                "type": "text",
-                "text": {"content": f"{task_part} : "},
-                "annotations": base_annos.copy()
-            })
+            _append_text_segment(rich_text, f"{task_part} : ", base_annos, links)
         else:
-            rich_text.append({
-                "type": "text",
-                "text": {"content": ": "},
-                "annotations": base_annos.copy()
-            })
+            _append_text_segment(rich_text, ": ", base_annos, links)
 
         if desc_part:
             desc_annos = base_annos.copy()
             desc_annos["italic"] = True
             desc_annos["color"] = "gray"
-            rich_text.append({
-                "type": "text",
-                "text": {"content": desc_part},
-                "annotations": desc_annos
-            })
+            _append_text_segment(rich_text, desc_part, desc_annos, links)
 
     def _ordered_visible_tag_emojis(tags: Dict[str, Any]) -> List[str]:
         emojis: List[str] = []
@@ -777,7 +821,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         is_done: bool,
         depth: Any,
         total_tracked_hours: float = 0.0,
-        is_hierarchically_complete: bool = False
+        is_hierarchically_complete: bool = False,
+        links: List[Dict[str, str]] | None = None
     ) -> tuple[List[Dict[str, Any]], str]:
         emojis = _ordered_visible_tag_emojis(tags)
         if emojis:
@@ -806,7 +851,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             char_limit,
             tag_cc,
         )
-        _append_title_segments(rich_text, compacted_title, is_done, total_tracked_hours, is_hierarchically_complete)
+        _append_title_segments(
+            rich_text,
+            compacted_title,
+            is_done,
+            total_tracked_hours,
+            is_hierarchically_complete,
+            links=links,
+        )
         return rich_text, compacted_title
 
     task_by_id: Dict[str, Dict[str, Any]] = {}
@@ -818,6 +870,47 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             task_by_id[tid] = t
         if pid:
             children_map.setdefault(pid, []).append(t)
+
+    def _normalize_state_block_type(task: Dict[str, Any]) -> str:
+        block_type = str(task.get("notion_type") or task.get("type") or "paragraph")
+        if block_type in ("todo", "to_do"):
+            return "to_do"
+        if block_type in ("bullet", "bulleted_list_item", "numbered_list_item"):
+            return "bulleted_list_item"
+        if block_type in ("toggle", "quote", "paragraph", "heading_1", "heading_2", "heading_3"):
+            return block_type
+        return "paragraph"
+
+    def _state_task_to_block_payload(task: Dict[str, Any]) -> Dict[str, Any]:
+        block_type = _normalize_state_block_type(task)
+        title = str(task.get("original_notion_title", task.get("title", "")) or "").strip()
+        rich_text = _rich_text_for_task_creation(task, title)
+        annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
+        color = annotations.get("color", "default")
+        payload: Dict[str, Any] = {
+            "object": "block",
+            "type": block_type,
+            block_type: {
+                "rich_text": rich_text,
+                "color": color,
+            },
+        }
+        if block_type == "to_do":
+            payload[block_type]["checked"] = bool(task.get("checked"))
+        children = [
+            _state_task_to_block_payload(child)
+            for child in children_map.get(str(task.get("notion_block_id") or task.get("id") or ""), [])
+        ]
+        if children:
+            payload[block_type]["children"] = children
+        return payload
+
+    def _child_payloads_for_replacement(task_id: str) -> List[Dict[str, Any]]:
+        return [_state_task_to_block_payload(child) for child in children_map.get(task_id, [])]
+
+    def _repoint_descendants(old_parent_id: str, new_parent_id: str) -> None:
+        for child in children_map.get(old_parent_id, []):
+            child["parent_id"] = new_parent_id
 
     def _is_task_complete(task_id: str) -> bool:
         if not task_id or task_id not in task_by_id:
@@ -910,6 +1003,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             block_type = "bulleted_list_item"
 
         if not block_type or not block_id:
+            continue
+        if task.get("is_content_block") or block_type == "quote":
             continue
 
         checked = task.get("checked") if block_type == "to_do" else None
@@ -1015,8 +1110,11 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Failed to delete unchecked generated to-do {block_id}: {e}")
             continue
 
-        # For generated selector to-do, checked does not imply completion.
-        is_done = (DONE_MARK in original_title) or (bool(checked) and not selection_mode)
+        # For generated non-L4 rows, checked is a review/selection signal, not completion.
+        is_generated_non_l4 = is_generated and isinstance(wbs_level, int) and wbs_level != 4
+        is_done = (DONE_MARK in original_title) or (
+            bool(checked) and not selection_mode and not is_generated_non_l4
+        )
         
         # --- Fast pass if already formatted with Theme/SubTheme ---
         is_already_themed = False
@@ -1261,7 +1359,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             is_done=is_done,
             depth=task.get("depth", 0),
             total_tracked_hours=total_tracked_hours,
-            is_hierarchically_complete=is_hierarchically_complete
+            is_hierarchically_complete=is_hierarchically_complete,
+            links=task.get("links") if isinstance(task.get("links"), list) else None,
         )
         
         content_payload = {
@@ -1287,7 +1386,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 print(f"Cannot convert to bullet: missing parent_id for {block_id}")
             else:
                 try:
-                    new_block = replace_with_bullet(block_id, parent_id, rich_text, color="gray" if is_done else "default")
+                    child_payloads = _child_payloads_for_replacement(str(block_id))
+                    new_block = replace_with_bullet(
+                        block_id,
+                        parent_id,
+                        rich_text,
+                        color="gray" if is_done else "default",
+                        children=child_payloads,
+                    )
                     new_block_id = new_block.get("id")
                     before = {
                         "task_id": block_id,
@@ -1299,6 +1405,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     if new_block_id:
                         task["id"] = new_block_id
                         task["notion_block_id"] = new_block_id
+                        _repoint_descendants(str(block_id), str(new_block_id))
                     task["notion_type"] = "bulleted_list_item"
                     task["type"] = "bullet"
                     task["checked"] = None
@@ -1501,12 +1608,7 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
         annotations = task.get("annotations", {}) if isinstance(task.get("annotations"), dict) else {}
         color = annotations.get("color", "default")
         title = str(task.get("original_notion_title", task.get("title", "")) or "").strip()
-        if not title:
-            title = " "
-        rich_text = [{
-            "type": "text",
-            "text": {"content": title}
-        }]
+        rich_text = _rich_text_for_task_creation(task, title)
 
         if block_type == "to_do":
             return {
@@ -1646,5 +1748,3 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
 
     sys.stdout.buffer.write(f"Physical Root Rank Reordering complete.\n".encode('utf-8'))
     return state
-
-

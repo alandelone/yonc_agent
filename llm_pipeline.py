@@ -7,6 +7,9 @@ from typing import List, Dict, Any, Optional, Set
 
 from unlimited_llmapi import configure_dspy, configure_dspy_light
 
+def _is_content_block(task: Dict[str, Any]) -> bool:
+    return bool(task.get("is_content_block")) or (task.get("notion_type") or task.get("type")) == "quote"
+
 try:
     # Initialize the LM using the unlimited multi-key manager
     # Passing 'model' here ensures it's used as the primary model if config doesn't specify otherwise
@@ -680,6 +683,8 @@ def theme_pass(local_state: List[Dict[str, Any]], config_dict: Dict[str, List[An
         return (first_theme_key, first_match_text, consecutive_theme_ancestors)
 
     for idx, task in enumerate(local_state):
+        if _is_content_block(task):
+            continue
         title_words = task.get("original_notion_title", task.get("title", ""))
         tags = task.get("tags") or {}
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
@@ -839,6 +844,8 @@ def wbs_pass(
     structured_cfg = structure_yonctask_config(config_dict)
     by_id: Dict[str, Dict[str, Any]] = {}
     for task in local_state:
+        if _is_content_block(task):
+            continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if task_id:
             by_id[task_id] = task
@@ -852,6 +859,8 @@ def wbs_pass(
     )
 
     for task in tasks_sorted:
+        if _is_content_block(task):
+            continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if not task_id or task_id not in scoped_ids:
             continue
@@ -961,6 +970,8 @@ def mode_tasktype_pass(
         return local_state
 
     for task in local_state:
+        if _is_content_block(task):
+            continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if not task_id or task_id not in scoped_ids:
             continue
@@ -1055,6 +1066,8 @@ def priority_pass(
 
     # Parse manual priorities from Notion title for ALL tasks
     for task in local_state:
+        if _is_content_block(task):
+            continue
         title = task.get("original_notion_title", task.get("title", ""))
         tags = task.get("tags") or {}
         found_p = None
@@ -1069,6 +1082,8 @@ def priority_pass(
 
     main_scoped_tasks: List[Dict[str, Any]] = []
     for task in local_state:
+        if _is_content_block(task):
+            continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         section = str(task.get("timeliner_section", "") or "").strip().lower()
         is_root = _to_int(task.get("depth", 0), 0) == 0
@@ -1080,6 +1095,8 @@ def priority_pass(
     # tasks as main projects so Priority can still be assigned deterministically.
     if not main_scoped_tasks:
         for task in local_state:
+            if _is_content_block(task):
+                continue
             task_id = str(task.get("notion_block_id") or task.get("id") or "")
             section = str(task.get("timeliner_section", "") or "").strip().lower()
             is_subproject = bool(task.get("timeliner_is_subproject"))
@@ -1106,5 +1123,35 @@ def priority_pass(
         tags = task.get("tags") or {}
         tags["Priority"] = priority_val
         task["tags"] = tags
+
+    def _priority_from_order_value(task: Dict[str, Any]) -> str:
+        raw_order = task.get("timeliner_priority")
+        order_val = _to_int(raw_order, 10**9)
+        if order_val == 10**9:
+            order_val = rank_by_task_id.get(str(task.get("notion_block_id") or task.get("id") or ""), 10**9) + 1
+        if order_val <= 1:
+            return p0_val
+        if order_val <= 3:
+            return p1_val
+        return p2_val
+
+    # Main projects are overwritten above. Scoped descendants/sub-project rows keep
+    # manual priorities, but get a calculated fallback when missing so they can
+    # progress to L4 Mode/TaskType formatting.
+    for task in local_state:
+        if _is_content_block(task):
+            continue
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if not task_id or task_id not in scoped_ids:
+            continue
+        tags = task.get("tags") or {}
+        if str(tags.get("Priority", "")).strip():
+            continue
+        section = str(task.get("timeliner_section", "") or "").strip().lower()
+        is_subproject = bool(task.get("timeliner_is_subproject"))
+        is_descendant = _to_int(task.get("depth", 0), 0) > 0
+        if is_descendant and (section == "sub" or is_subproject):
+            tags["Priority"] = _priority_from_order_value(task)
+            task["tags"] = tags
 
     return local_state

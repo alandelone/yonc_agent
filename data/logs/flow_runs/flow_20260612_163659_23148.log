@@ -1,0 +1,494 @@
+=== Flow Trace Start (2026-06-12T16:36:59) ===
+command: flow
+argv: main.py flow
+pid: 23148
+cwd: C:\test_codespace\yonc_agent
+
+[trace] Flow output is being saved to: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_20260612_163659_23148.log
+[trace] Latest flow trace shortcut: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_latest.log
+2026-06-12 16:36:59,182 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-12 16:36:59,183 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:00,160 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children HTTP/11" 200 None
+2026-06-12 16:37:00,166 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:00,735 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8095-b2de-d411ae904027/children HTTP/11" 200 None
+2026-06-12 16:37:00,737 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:01,374 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8094-9b85-f6977126cc19/children HTTP/11" 200 None
+2026-06-12 16:37:01,376 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:02,014 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8013-a854-e6d0437dc49c/children HTTP/11" 200 None
+2026-06-12 16:37:02,017 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:02,644 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-808a-a25a-c1a9a56b0713/children HTTP/11" 200 None
+2026-06-12 16:37:02,648 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:03,293 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803d-b413-cc4761372741/children HTTP/11" 200 None
+2026-06-12 16:37:03,296 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:03,933 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-aaec-f6735fda1fec/children HTTP/11" 200 None
+2026-06-12 16:37:03,936 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:05,115 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9896-ea4326e83210/children HTTP/11" 200 None
+2026-06-12 16:37:05,118 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:05,598 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e5-8103-ee26e3021f6a/children HTTP/11" 200 None
+2026-06-12 16:37:05,600 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:06,174 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b3-88f7-f35d4e33c949/children HTTP/11" 200 None
+2026-06-12 16:37:06,178 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:06,818 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8015-844f-dab5573db53b/children HTTP/11" 200 None
+2026-06-12 16:37:06,822 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:07,293 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-a21c-e3446ae650a9/children HTTP/11" 200 None
+2026-06-12 16:37:07,296 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:07,756 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8012-818b-f55e01ad10ab/children HTTP/11" 200 None
+2026-06-12 16:37:07,766 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:08,413 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-96d9-ca8c6b67c063/children HTTP/11" 200 None
+2026-06-12 16:37:08,415 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:09,687 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80fd-902d-c19ec0f709df/children HTTP/11" 200 None
+2026-06-12 16:37:09,692 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:10,291 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80cc-a754-e4ed87b4de84/children HTTP/11" 200 None
+2026-06-12 16:37:10,297 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:10,814 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-804d-b624-ffd4ed4af407/children HTTP/11" 200 None
+2026-06-12 16:37:10,819 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:11,453 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-9731-e0430b76bff7/children HTTP/11" 200 None
+2026-06-12 16:37:11,458 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:12,093 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80a9-9213-cfa201910082/children HTTP/11" 200 None
+2026-06-12 16:37:12,096 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:12,726 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-a416-dffb426d193f/children HTTP/11" 200 None
+2026-06-12 16:37:12,728 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:13,231 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8065-88d9-fc9164b4fed0/children HTTP/11" 200 None
+2026-06-12 16:37:13,242 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:13,846 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-809c-b4bf-c20eec7868ae/children HTTP/11" 200 None
+2026-06-12 16:37:13,850 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:14,466 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802f-9288-dc3708c7e6a4/children HTTP/11" 200 None
+2026-06-12 16:37:14,469 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:14,918 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807a-95c7-e9a023663c7b/children HTTP/11" 200 None
+2026-06-12 16:37:14,922 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:15,453 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-bb6a-ceed52613f84/children HTTP/11" 200 None
+2026-06-12 16:37:15,456 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:15,933 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807c-a2bf-d021a8efc6d7/children HTTP/11" 200 None
+2026-06-12 16:37:15,935 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:16,413 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-8b11-ef1c1606c7da/children HTTP/11" 200 None
+2026-06-12 16:37:16,416 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:16,862 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e6-b57b-d14ff8056b96/children HTTP/11" 200 None
+2026-06-12 16:37:16,866 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:17,373 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d4-abe1-d6e8d455418d/children HTTP/11" 200 None
+2026-06-12 16:37:17,376 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:17,839 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d2-aae2-d343c320db24/children HTTP/11" 200 None
+2026-06-12 16:37:17,841 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:18,332 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-801c-90cf-fb9fd3e8935e/children HTTP/11" 200 None
+2026-06-12 16:37:18,335 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:18,792 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807d-9871-e8cdef6db118/children HTTP/11" 200 None
+2026-06-12 16:37:18,795 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:19,293 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8058-9e51-ec41e351c997/children HTTP/11" 200 None
+2026-06-12 16:37:19,296 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:19,778 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8ae1-c31097c70588/children HTTP/11" 200 None
+2026-06-12 16:37:19,781 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:20,405 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b0-988d-cef674e21b74/children HTTP/11" 200 None
+2026-06-12 16:37:20,408 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:20,863 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-b0b0-d333999cb7d5/children HTTP/11" 200 None
+2026-06-12 16:37:20,865 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:21,543 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802a-a169-f99075372609/children HTTP/11" 200 None
+2026-06-12 16:37:21,554 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:22,174 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/11" 200 None
+2026-06-12 16:37:22,179 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:22,813 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:37:22,818 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:23,453 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4/children HTTP/11" 200 None
+2026-06-12 16:37:23,457 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:23,917 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:37:23,920 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:24,596 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:37:24,599 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:25,223 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:37:25,225 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:25,685 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab/children HTTP/11" 200 None
+2026-06-12 16:37:25,691 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:26,258 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d/children HTTP/11" 200 None
+2026-06-12 16:37:26,260 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:28,121 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891/children HTTP/11" 200 None
+2026-06-12 16:37:28,132 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:28,578 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a/children HTTP/11" 200 None
+2026-06-12 16:37:28,583 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:29,030 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a/children HTTP/11" 200 None
+2026-06-12 16:37:29,035 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:30,181 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891/children HTTP/11" 200 None
+2026-06-12 16:37:30,185 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:31,133 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b/children HTTP/11" 200 None
+2026-06-12 16:37:31,136 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:31,773 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17/children HTTP/11" 200 None
+2026-06-12 16:37:31,778 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:32,227 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/11" 200 None
+2026-06-12 16:37:32,230 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:32,725 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/11" 200 None
+2026-06-12 16:37:32,729 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:33,186 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/11" 200 None
+Detected 9 changes in Notion.
+2026-06-12 16:37:33,230 | INFO | state_evaluator | [Evaluator] Loaded 100 merged tasks
+2026-06-12 16:37:33,230 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-12 16:37:33,238 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-12 16:37:33,239 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-12 16:37:33,240 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:33,248 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:33,850 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/11" 200 None
+2026-06-12 16:37:33,854 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:34,293 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/11" 200 None
+2026-06-12 16:37:34,296 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:34,761 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/11" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis / Phd Logic (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:34,827 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:35,293 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+2026-06-12 16:37:35,303 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:37,678 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+Pushing updates for Thesis / proposal defense Slide (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:37,683 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:38,172 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+2026-06-12 16:37:38,176 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:39,119 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+Pushing updates for Thesis / thesis writing (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:39,124 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:39,613 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+2026-06-12 16:37:39,619 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:41,389 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+Pushing updates for 科研人 / 科研素质 (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-80d3-ab90-d51a951ddf72 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:41,395 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:41,841 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-80d3-ab90-d51a951ddf72 HTTP/11" 200 None
+2026-06-12 16:37:41,846 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:43,547 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-80d3-ab90-d51a951ddf72 HTTP/11" 200 None
+Pushing updates for SolarMan / Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-12 16:37:43,553 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:43,979 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+2026-06-12 16:37:43,989 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:37:45,027 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+TIMELINER sync complete.
+2026-06-12 16:37:45,112 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-12 16:37:45,121 | INFO | state_evaluator | [Evaluator] Scoped 47 tasks from TIMELINER
+2026-06-12 16:37:47,537 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan SKM Program Material Prepare
+{"task_id": "362e1eb5-ce57-803c-a8e2-e17c712194ab", "title": "🟧 SolarMan SKM Program Material Prepare", "description": "", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [{"id": "362e1eb5-ce57-808a-a20e-c20c33c14212", "title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表", "description": "how to use each tools", "type": "to_do", "checked": false}, {"id": "37ce1eb5-ce57-803e-9c85-d1dfbb44255d", "title": "🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use", "description": "", "type": "to_do", "checked": false}], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "children", "location": "direct_children", "content": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表; 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use", "char_count": 90}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan SKM Program Material Prepare' is a direct decomposition of the parent block 'SolarMan Apparatus Learning' (the Level 1 goal). It categorizes major deliverables (manuals and guides) into a specific module ('Program Materials'). According to WBS rules, Level 2 represents major deliverables or core modules that satisfy the 100% rule for the goal. The children of this task are specific work packages (Level 3), making this task the middle layer of the hierarchy.
+2026-06-12 16:37:47,556 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构
+{"task_id": "36be1eb5-ce57-810f-9ef7-d6f0c5a080ff", "title": "Thesis 理论研究框架", "description": "博士假设与研究方向的概念模型及逻辑结构。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "博士假设与研究方向的概念模型及逻辑结构。", "char_count": 20}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Thesis 理论研究框架' (Theoretical Research Framework) is a major structural module of a PhD project. It is phrased as a noun, adhering to the rules for Levels 1-3. It sits below the overall goal of the thesis (Level 1) but represents a high-level deliverable rather than a specific work package (Level 3) or a discrete physical activity (Level 4). It defines a core component of the project's logic and structure, making it a Level 2 Major Deliverable.
+2026-06-12 16:37:47,576 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)
+{"task_id": "36be1eb5-ce57-8116-a65e-f4a87d956376", "title": "Thesis 方法论 Design Spec", "description": "详述(研究范式, 数据采集工具, 分析流程)。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "详述(研究范式, 数据采集工具, 分析流程)。", "char_count": 23}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task title 'Thesis 方法论 Design Spec' is a noun phrase representing a specific deliverable (a specification document). According to the WBS rules, Level 1 is the overall goal (The Thesis), and Level 2 represents major modules (e.g., Methodology, Literature Review). This task acts as a Work Package (Level 3) because it is a concrete, verifiable outcome within the Methodology module that requires substantial effort (8-80 hours) and covers multiple sub-components (paradigm, tools, process). It is not Level 4 because it describes the 'what' (a spec) rather than a granular 'how' action (a verb-led task taking <2 hours).
+2026-06-12 16:37:47,595 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Thesis 起草与定稿 : 高质量论文满足院校答辩要求
+{"task_id": "36be1eb5-ce57-813e-87cc-ce1f9e507641", "title": "Thesis Thesis 起草与定稿", "description": "高质量论文：满足院校答辩要求。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "高质量论文：满足院校答辩要求。", "char_count": 15}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent block '🏭 Thesis 💣 thesis writing' represents the high-level project goal (Level 1). The current task 'Drafting and Finalizing' (起草与定稿) is a major deliverable or core module within that project. It encompasses the creation of the actual manuscript, which is a significant, verifiable product required to meet the institutional defense requirements. As a major phase that will eventually be broken down into specific chapters or sections (Level 3), it correctly identifies as Level 2.
+2026-06-12 16:37:47,614 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+{"task_id": "36be1eb5-ce57-8143-9804-da6ea52aaf0c", "title": "Thesis V&V 协议", "description": "验证结果(准确/可靠/显著)的标准与逻辑测试", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "验证结果(准确/可靠/显著)的标准与逻辑测试", "char_count": 22}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis V&V Protocol' (验证结果协议) represents a specific Work Package within the broader 'Phd Logic' module (Level 2). It is a deliverable-oriented noun phrase that defines a verifiable result—a set of standards and logic tests. It is not the ultimate project goal (Level 1) nor a major core module (Level 2), but rather a detailed component of the methodology. Since it describes the 'what' (a protocol/standard) rather than a specific 'how' (a micro-activity under 2 hours), it fits the criteria for Level 3.
+2026-06-12 16:37:47,642 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 14.9s 后就绪...
+2026-06-12 16:38:02,545 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan 技术文档综合 : 评审总结SolarMan系统(技术手册, 安全协议, 架构规范)
+{"task_id": "36be1eb5-ce57-8143-a877-fceb8e8bce19", "title": "SolarMan 技术文档综合", "description": "评审总结SolarMan系统：(技术手册, 安全协议, 架构规范)", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "description", "location": "current_block", "content": "评审总结SolarMan系统：(技术手册, 安全协议, 架构规范)", "char_count": 33}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'SolarMan 技术文档综合' (Technical Documentation Synthesis) represents a Work Package. It is a deliverable-oriented node that sits under the parent 'SolarMan Apparatus Learning' (likely Level 2). It focuses on a verifiable product (a synthesis/summary of three specific documents: Technical Manual, Security Protocol, and Architecture Specification). Given the scope of reviewing and summarizing three distinct technical domains, it exceeds the 2-hour limit for a Level 4 activity and falls within the 8-80 hour range typical for a Level 3 Work Package. It is not Level 1 as it is a component of a larger learning phase.
+2026-06-12 16:38:02,553 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-12 16:38:02,560 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 提升科研 Core Competency : 通过系统化的思维训练和方法论建设强化科研人员在选题逻辑写作及规范方面的基本功为高质量研究产出奠定坚实基础
+{"task_id": "36be1eb5-ce57-8144-b9b5-f5f72133c107", "title": "科研人 提升科研 Core Competency", "description": "通过系统化的思维训练和方法论建设，强化科研人员在选题、逻辑、写作及规范方面的基本功，为高质量研究产出奠定坚实基础。", "parent_blocks": [{"id": "362e1eb5-ce57-80df-959b-f795527d84b9", "title": "🏭 科研人 💯✅科研素质", "description": "科研內功"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 💯✅科研素质", "char_count": 12}, {"source": "description", "location": "current_block", "content": "通过系统化的思维训练和方法论建设，强化科研人员在选题、逻辑、写作及规范方面的基本功，为高质量研究产出奠定坚实基础。", "char_count": 57}], "compacted": false}'
+   Output: Level 1 | Type OKR | Rationale: The task '科研人 提升科研 Core Competency' (Enhancing Researcher Core Competency) defines a high-level strategic goal or final outcome for a specific initiative. It sets the scope for systematic training and methodology construction. As a top-level objective that is outcome-oriented and qualitative ('Enhancing'), it fits the definition of a Level 1 goal. Because the nature of the task is exploratory and focused on performance/capability improvement rather than a single deterministic product, the task type is OKR.
+2026-06-12 16:38:02,567 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-12 16:38:02,582 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 强化科学问题定义与严密逻辑推演能力 : 通过定期的逻辑拆解训练掌握如何精准识别学术痛点并构建具备高度说服力的研究假设
+{"task_id": "36be1eb5-ce57-8149-a269-d19cb7967b64", "title": "科研人 强化科学问题定义与严密逻辑推演能力", "description": "通过定期的逻辑拆解训练，掌握如何精准识别学术痛点并构建具备高度说服力的研究假设。", "parent_blocks": [{"id": "362e1eb5-ce57-80df-959b-f795527d84b9", "title": "🏭 科研人 💯✅科研素质", "description": "科研內功"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 💯✅科研素质", "char_count": 12}, {"source": "description", "location": "current_block", "content": "通过定期的逻辑拆解训练，掌握如何精准识别学术痛点并构建具备高度说服力的研究假设。", "char_count": 40}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: 1. **Scope and Hierarchy**: The task '强化科学问题定义与严密逻辑推演能力' is nested under the parent block '科研素质' (Research Qualities). In a hierarchical structure, '科研素质' represents the project or domain, while this task represents one of its core pillars or modules, aligning with the definition of Level 2 (Major Deliverables/Core Modules).
+2. **Decomposition**: The task defines a broad capability area. To be executed, it needs to be broken down into specific work packages (Level 3), such as '逻辑拆解训练营' or '研究假设案例分析', and subsequently into physical activities (Level 4).
+3. **Effort and Duration**: Achieving mastery in scientific problem definition and logic is a significant undertaking that exceeds the 80-hour threshold of a Level 3 Work Package, reinforcing its status as a Level 2 module.
+4. **Task Type**: As the level is 2, the Task Type is N/A according to the rules.
+2026-06-12 16:38:02,592 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.0s 后就绪...
+2026-06-12 16:38:02,599 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 精进学术表达与高水平成果产出技巧 : 掌握顶级学术期刊的写作规范与逻辑架构提升论文投稿成功率及学术影响力
+{"task_id": "36be1eb5-ce57-815b-aea3-c0f927f78543", "title": "科研人 精进学术表达与高水平成果产出技巧", "description": "掌握顶级学术期刊的写作规范与逻辑架构，提升论文投稿成功率及学术影响力。", "parent_blocks": [{"id": "362e1eb5-ce57-80df-959b-f795527d84b9", "title": "🏭 科研人 💯✅科研素质", "description": "科研內功"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 💯✅科研素质", "char_count": 12}, {"source": "description", "location": "current_block", "content": "掌握顶级学术期刊的写作规范与逻辑架构，提升论文投稿成功率及学术影响力。", "char_count": 35}], "compacted": false}'
+   Output: Level 1 | Type OKR | Rationale: The task '精进学术表达与高水平成果产出技巧' (Refining Academic Expression and High-level Achievement Output Skills) defines a high-level strategic objective. It describes the desired final outcome (mastery of journal standards and increased publication success) rather than a discrete work package or physical activity. According to the WBS rules, Level 1 represents the overall goal. Since the task involves qualitative improvement, skill acquisition, and exploratory growth (refining and mastering) rather than a deterministic construction process, it is classified as an OKR.
+2026-06-12 16:38:02,606 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-12 16:38:02,620 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 2/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 文献综述与 Framework : 综述研究构建论文核心理论基础
+{"task_id": "36be1eb5-ce57-8161-90b8-fad696b78173", "title": "Thesis 文献综述与 Framework", "description": "综述研究：构建论文核心理论基础。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "综述研究：构建论文核心理论基础。", "char_count": 16}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent task 'Thesis 💣 thesis writing' represents the overall project goal (Level 1). The current task, 'Thesis 文献综述与 Framework', identifies a major core module or deliverable necessary to complete the thesis. As a major section of the final product, it fits the definition of a Level 2 Major Deliverable. It is phrased as a noun, consistent with the 'Nouns over Verbs' rule for Level 2.
+2026-06-12 16:38:02,627 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 14.9s 后就绪...
+2026-06-12 16:38:17,548 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan 运维能力 Milestone : 独立完成设备3次E2E循环记录性能指标
+{"task_id": "36be1eb5-ce57-8165-9a85-f1233f523ad8", "title": "SolarMan 运维能力 Milestone", "description": "独立完成设备3次E2E循环：记录性能指标。", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "description", "location": "current_block", "content": "独立完成设备3次E2E循环：记录性能指标。", "char_count": 21}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: 1. Hierarchy: The task is nested under 'SolarMan Apparatus Learning', which serves as a Level 2 Major Deliverable (Module) within a broader training or operational project. 
+2. Deliverable Focus: The task is explicitly labeled as a 'Milestone' and aims for a verifiable result (3 completed E2E cycles with recorded metrics), which aligns with the Level 3 'Work Package' definition as the lowest deliverable level.
+3. Effort & Scope: Completing three end-to-end cycles of apparatus operation and recording performance data is a substantial unit of work likely falling within the 8-80 hour range, distinguishing it from a simple <2-hour activity (Level 4).
+4. Syntax: While the description contains verbs, the primary title 'SolarMan 运维能力 Milestone' is a noun-focused phrase representing a state of achievement/deliverable.
+2026-06-12 16:38:17,557 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-12 16:38:17,563 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan SolarMan 设备精通 : SolarMan 运维优化构建技术实践基础
+{"task_id": "36be1eb5-ce57-8191-a4ab-e191fb39ca93", "title": "SolarMan SolarMan 设备精通", "description": "SolarMan 运维优化：构建技术实践基础。", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "description", "location": "current_block", "content": "SolarMan 运维优化：构建技术实践基础。", "char_count": 23}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan 设备精通' (SolarMan Device Mastery) represents a major deliverable or core functional module within the broader 'SolarMan Apparatus Learning' project. It is structured as a noun phrase focusing on a specific state of mastery and technical foundation rather than the overall project goal (Level 1) or a discrete, low-level action (Level 4). Since it provides a framework for '运维优化' (O&M optimization), it serves as a Level 2 component that would likely be decomposed into specific work packages such as documentation, configuration, or testing.
+2026-06-12 16:38:17,570 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-12 16:38:17,586 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 3/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 核心讨论  完成 : 综合结果回答核心研究问题及假设
+{"task_id": "36be1eb5-ce57-8197-a510-de4d2d8ed946", "title": "Thesis 核心讨论 Draft 完成", "description": "综合结果：回答核心研究问题及假设。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "综合结果：回答核心研究问题及假设。", "char_count": 17}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis 核心讨论 Draft 完成' (Thesis Core Discussion Draft) represents a major component or chapter of the overall thesis. In a WBS hierarchy, if the Thesis itself is Level 1 and 'Thesis writing' is Level 2 (Major Deliverable/Phase), then a specific chapter draft constitutes a Work Package (Level 3). It describes a verifiable outcome (the draft) that requires substantial intellectual effort (estimated 8-80 hours), distinguishing it from Level 4 activities which are physical actions limited to 2 hours. Although it uses the word '完成' (Complete), the core of the task is the 'Draft' itself, a noun-based deliverable.
+2026-06-12 16:38:17,593 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.0s 后就绪...
+2026-06-12 16:38:17,601 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 3/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '科研人 构建系统化的知识管理与文献情报处理体系 : 建立高效的文献检索分类阅读深度复盘及知识库构建流程提升科研输入端的处理质量
+{"task_id": "36be1eb5-ce57-81de-9d67-ca911a1fa363", "title": "科研人 构建系统化的知识管理与文献情报处理体系", "description": "建立高效的文献检索、分类阅读、深度复盘及知识库构建流程，提升科研输入端的处理质量。", "parent_blocks": [{"id": "362e1eb5-ce57-80df-959b-f795527d84b9", "title": "🏭 科研人 💯✅科研素质", "description": "科研內功"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 科研人 💯✅科研素质", "char_count": 12}, {"source": "description", "location": "current_block", "content": "建立高效的文献检索、分类阅读、深度复盘及知识库构建流程，提升科研输入端的处理质量。", "char_count": 41}], "compacted": false}'
+   Output: Level 1 | Type OKR | Rationale: The task '构建系统化的知识管理与文献情报处理体系' (Building a systematic knowledge management and literature intelligence processing system) represents a high-level goal or final outcome. It defines the overall scope of a project within the broader category of 'Research Literacy'. The description outlines multiple core modules (retrieval, reading, review, and knowledge base) that require further decomposition into Level 2 deliverables. Because the objective focuses on qualitative improvements ('efficient', 'quality') and establishing a complex system, it is classified as Level 1 OKR (Exploratory).
+2026-06-12 16:38:17,607 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-12 16:38:17,623 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 3/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 方法与数据分析 : 记录研究设计完成初/次级数据系统分析
+{"task_id": "36be1eb5-ce57-81de-aef1-d3d85bf47ab2", "title": "Thesis 方法与数据分析", "description": "记录研究设计：完成初/次级数据系统分析。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis 💣 thesis writing", "description": "Full thesis"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 thesis writing", "char_count": 25}, {"source": "description", "location": "current_block", "content": "记录研究设计：完成初/次级数据系统分析。", "char_count": 20}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent block 'Thesis writing' represents the overall project goal (Level 1). 'Thesis 方法与数据分析' (Methodology and Data Analysis) is a major structural module or chapter of the thesis, identifying it as a Level 2 Major Deliverable. It is deliverable-oriented and serves as a core component of the final product.
+2026-06-12 16:38:17,630 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 14.9s 后就绪...
+2026-06-12 16:38:32,553 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 4/20)
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis Research Gap 综述 : 文献综述识别学术 Gap
+{"task_id": "36be1eb5-ce57-81ea-97f9-f610364b2c3c", "title": "Thesis Research Gap 综述", "description": "文献综述：识别学术 Gap", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "文献综述：识别学术 Gap", "char_count": 13}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The parent task 'Thesis Phd Logic' represents the overall project (Level 1). 'Thesis Research Gap 综述' (Literature Review/Research Gap Identification) is a core module or major deliverable necessary to achieve the final goal. It uses a noun-based syntax (Literature Review) rather than a verb-based action. It is too broad to be a Level 3 work package (which requires 8-80 hours) or a Level 4 activity, as identifying a research gap for a PhD thesis is a significant milestone consisting of multiple sub-tasks and synthesis phases.
+2026-06-12 16:38:32,562 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-12 16:38:32,565 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 4/20)
+2026-06-12 16:38:32,916 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-12 16:38:33,038 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001DF32377050>
+2026-06-12 16:38:33,038 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001DF23858B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-12 16:38:33,109 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001DF3241D5E0>
+2026-06-12 16:38:33,111 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-12 16:38:33,115 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-12 16:38:33,116 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-12 16:38:33,117 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-12 16:38:33,117 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-12 16:38:38,937 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 08:38:38 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=5518'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-12 16:38:38,938 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-12 16:38:38,939 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-12 16:38:38,939 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-12 16:38:38,940 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'SolarMan T&C report express filling flow : data to report direct
+{"task_id": "37ce1eb5-ce57-8067-a639-f1316bb66d0a", "title": "🟧 SolarMan T&C report express filling flow", "description": "data to report direct", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [{"id": "37ce1eb5-ce57-80e9-a7ae-df5b128b374f", "title": "🔶 SolarMan ExpressFlow Draw", "description": "How? DataSource 2 report with exe/docker", "type": "to_do", "checked": false}, {"id": "37ce1eb5-ce57-8037-8991-d62be4faefb2", "title": "🔶 SolarMan power quality meter", "description": "Buildup BOM prepare & design", "type": "to_do", "checked": false}, {"id": "37ce1eb5-ce57-80e8-bc97-cd2041d5850a", "title": "🔶 SolarMan IoT portable dash", "description": "BuildDev BOM prepare & design", "type": "to_do", "checked": false}, {"id": "37ce1eb5-ce57-8017-8f54-e489e8d1f891", "title": "🔶 SolarMan BLE connection testing of UNI-T device", "description": "", "type": "to_do", "checked": false}], "extra_info": {"is_toggle": false, "links": [{"text": "express filling flow", "url": "/37ce1eb5ce5780f0a46fcfb8a22d83c7"}], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "children", "location": "direct_children", "content": "🔶 SolarMan ExpressFlow Draw; 🔶 SolarMan power quality meter; 🔶 SolarMan IoT portable dash; 🔶 SolarMan BLE connection testing of UNI-T device", "char_count": 140}, {"source": "description", "location": "current_block", "content": "data to report direct", "char_count": 21}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan T&C report express filling flow' functions as a major deliverable or functional module within the broader 'SolarMan Apparatus Learning' project. It groups several distinct sub-tasks (drawing flows, hardware BOM preparation, and testing) which represent the next layer of decomposition. According to WBS rules, Level 2 represents major deliverables or core modules expressed as noun phrases, which matches this task's structure and its relationship to its parent and children.
+2026-06-12 16:38:38,963 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-12 16:38:38,963 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-12 16:38:38,970 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-12 16:38:38,971 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-12 16:38:38,977 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-12 16:38:38,978 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-12 16:38:38,980 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:40,535 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:38:40,539 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:41,486 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81ea-97f9-f610364b2c3c HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81ea-97f9-f610364b2c3c: 🟧 Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+2026-06-12 16:38:41,490 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:43,078 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:38:43,080 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:44,141 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-810f-9ef7-d6f0c5a080ff HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-810f-9ef7-d6f0c5a080ff: 🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+2026-06-12 16:38:44,145 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:45,656 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:38:45,661 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:48,726 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8116-a65e-f4a87d956376 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8116-a65e-f4a87d956376: 🔶 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+2026-06-12 16:38:48,728 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:50,324 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:38:50,327 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:51,773 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8143-9804-da6ea52aaf0c HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8143-9804-da6ea52aaf0c: 🔶 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+2026-06-12 16:38:51,785 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:52,996 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-12 16:38:52,999 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:55,044 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81c2-86f6-dea5eb9c9a81 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81c2-86f6-dea5eb9c9a81: 🔶 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+2026-06-12 16:38:55,050 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:56,300 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-817b-8b62-e10612371657 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-817b-8b62-e10612371657: 🔸 Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+2026-06-12 16:38:56,307 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:57,684 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-814c-991f-dddc7b407a50 HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-814c-991f-dddc7b407a50: 🔸 Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+2026-06-12 16:38:57,689 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:38:58,680 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-8177-98c8-fd0ab3397bff HTTP/11" 200 None
+Pushed formatted tags to Notion for 36be1eb5-ce57-8177-98c8-fd0ab3397bff: 🔸 Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+2026-06-12 16:38:58,684 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:00,397 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:39:00,401 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:02,146 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-813e-87cc-ce1f9e507641 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-813e-87cc-ce1f9e507641: 🟧 Thesis 起草与定稿 : 高质量论文：满足院校答辩要求。
+2026-06-12 16:39:02,150 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:04,135 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:39:04,138 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:05,362 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8161-90b8-fad696b78173 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8161-90b8-fad696b78173: 🟧 Thesis 文献综述与 Framework : 综述研究：构建论文核心理论基础。
+2026-06-12 16:39:05,366 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:07,768 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:39:07,770 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:09,665 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81de-aef1-d3d85bf47ab2 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81de-aef1-d3d85bf47ab2: 🟧 Thesis 方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+2026-06-12 16:39:09,669 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:10,852 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:39:10,858 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:12,029 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8197-a510-de4d2d8ed946 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8197-a510-de4d2d8ed946: 🔶 Thesis 核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+2026-06-12 16:39:12,032 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:14,459 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-12 16:39:14,462 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:15,297 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81c8-9ad4-ce486792c1c5 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81c8-9ad4-ce486792c1c5: 🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+2026-06-12 16:39:15,305 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:16,794 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:39:16,799 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:18,074 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8144-b9b5-f5f72133c107 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8144-b9b5-f5f72133c107: 🟧 科研人 提升科研 Core Competency : 通过系统化的思维训练和方法论建设，强化员在选题、逻辑、写作及规范方面的基本功，为高质量研究产出奠定坚实基础。
+2026-06-12 16:39:18,079 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:19,312 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:39:19,316 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:20,706 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-81de-9d67-ca911a1fa363 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-81de-9d67-ca911a1fa363: 🟧 科研人 构建系统化的知识管理与文献情报处理体系 : 建立高效的文献检索、分类阅读、深度复盘及知识库构建流程，提升科研输入端的处理质量。
+2026-06-12 16:39:20,709 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:22,069 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:39:22,087 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:23,176 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8149-a269-d19cb7967b64 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8149-a269-d19cb7967b64: 🟧 科研人 强化科学问题定义与严密逻辑推演能力 : 通过定期的逻辑拆解训练，掌握如何精准识别学术痛点并构建具备高度说服力的研究假设。
+2026-06-12 16:39:23,180 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:24,275 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:39:24,281 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:24,953 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-815b-aea3-c0f927f78543 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-815b-aea3-c0f927f78543: 🟧 科研人 精进学术表达与高水平成果产出技巧 : 掌握顶级学术期刊的写作规范与逻辑架构，提升论文投稿成功率及学术影响力。
+2026-06-12 16:39:24,958 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:26,440 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80df-959b-f795527d84b9/children HTTP/11" 200 None
+2026-06-12 16:39:26,445 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:27,754 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-816b-a901-ed3086a4cb96 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-816b-a901-ed3086a4cb96: 🟧 科研人 深化科研诚信意识与流程规范管理 : 确保科研活动全程符合学术伦理标准，并实现实验数据与文档的全生命周期规范化存档。
+2026-06-12 16:39:27,759 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:28,204 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 400 332
+Failed to convert to bullet for 362e1eb5-ce57-803c-a8e2-e17c712194ab: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children
+2026-06-12 16:39:28,208 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:28,991 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab HTTP/11" 200 None
+Pushed formatted tags to Notion for 362e1eb5-ce57-803c-a8e2-e17c712194ab: 🟧 SolarMan SKM Program Material Prepare
+2026-06-12 16:39:28,998 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:30,291 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab/children HTTP/11" 200 None
+2026-06-12 16:39:30,298 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:31,677 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 362e1eb5-ce57-808a-a20e-c20c33c14212: 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+2026-06-12 16:39:31,690 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:32,904 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab/children HTTP/11" 200 None
+2026-06-12 16:39:32,907 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:34,098 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 37ce1eb5-ce57-803e-9c85-d1dfbb44255d: 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use
+2026-06-12 16:39:34,100 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:34,531 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8099-a3e8-d50dc30c1891: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891
+2026-06-12 16:39:34,535 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:35,008 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e0-aab8-d09f844023f0 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80e0-aab8-d09f844023f0: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80e0-aab8-d09f844023f0
+2026-06-12 16:39:35,013 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:35,456 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e1-b0ad-d97f92b16a67 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80e1-b0ad-d97f92b16a67: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80e1-b0ad-d97f92b16a67
+2026-06-12 16:39:35,459 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:36,391 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8029-a2b3-e0a96e73ef26 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8029-a2b3-e0a96e73ef26: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8029-a2b3-e0a96e73ef26
+2026-06-12 16:39:36,395 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:36,897 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-804c-9e9f-ea6f7b7c72d6
+2026-06-12 16:39:36,900 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:37,630 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8055-b29e-e7aaee446a62 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8055-b29e-e7aaee446a62: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8055-b29e-e7aaee446a62
+2026-06-12 16:39:37,637 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:38,033 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ab-9670-f99fb4445972 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80ab-9670-f99fb4445972: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80ab-9670-f99fb4445972
+2026-06-12 16:39:38,036 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:38,978 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:39:38,983 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:40,100 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 37ce1eb5-ce57-8067-a639-f1316bb66d0a: 🟧 SolarMan T&C report express filling flow : data to report direct
+2026-06-12 16:39:40,104 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:40,632 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children HTTP/11" 400 251
+Failed to convert to bullet for 37ce1eb5-ce57-80e9-a7ae-df5b128b374f: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children
+2026-06-12 16:39:40,635 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:41,087 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e9-a7ae-df5b128b374f HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80e9-a7ae-df5b128b374f: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80e9-a7ae-df5b128b374f
+2026-06-12 16:39:41,091 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:41,507 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children HTTP/11" 400 251
+Failed to convert to bullet for 37ce1eb5-ce57-8037-8991-d62be4faefb2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children
+2026-06-12 16:39:41,511 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:41,952 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8037-8991-d62be4faefb2: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2
+2026-06-12 16:39:41,955 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:42,415 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children HTTP/11" 400 251
+Failed to convert to bullet for 37ce1eb5-ce57-80e8-bc97-cd2041d5850a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children
+2026-06-12 16:39:42,419 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:42,843 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80e8-bc97-cd2041d5850a: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a
+2026-06-12 16:39:42,848 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:43,231 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ba-ab06-da7261c000c3 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80ba-ab06-da7261c000c3: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80ba-ab06-da7261c000c3
+2026-06-12 16:39:43,235 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:43,673 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80a4-9a41-c2b4ca8c1e48
+2026-06-12 16:39:43,677 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:44,096 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80be-8ecb-daf1b16f9789 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80be-8ecb-daf1b16f9789: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80be-8ecb-daf1b16f9789
+2026-06-12 16:39:44,101 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:44,519 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children HTTP/11" 400 251
+Failed to convert to bullet for 37ce1eb5-ce57-8017-8f54-e489e8d1f891: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957/children
+2026-06-12 16:39:44,523 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:45,053 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8017-8f54-e489e8d1f891: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891
+2026-06-12 16:39:45,058 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:45,530 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-8049-b3b1-ed6cddfdbfcf
+2026-06-12 16:39:45,536 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:45,941 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22 HTTP/11" 400 226
+Failed to push tags to Notion for 37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22: 400 Client Error: Bad Request for url: https://api.notion.com/v1/blocks/37ce1eb5-ce57-80ee-a5c5-e04f1dac9f22
+2026-06-12 16:39:45,946 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:46,978 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:39:46,981 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:48,227 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8191-a4ab-e191fb39ca93 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8191-a4ab-e191fb39ca93: 🟧 SolarMan 设备精通 : 运维优化：构建技术实践基础。
+2026-06-12 16:39:48,236 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:49,424 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:39:49,429 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:50,776 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8143-a877-fceb8e8bce19 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8143-a877-fceb8e8bce19: 🔶 SolarMan 技术文档综合 : 评审总结系统：(技术手册, 安全协议, 架构规范)
+2026-06-12 16:39:50,782 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:53,821 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:39:53,824 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:55,341 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-8165-9a85-f1233f523ad8 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-8165-9a85-f1233f523ad8: 🔶 SolarMan 运维能力 Milestone : 独立完成设备3次E2E循环：记录性能指标。
+2026-06-12 16:39:55,347 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:57,011 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/11" 200 None
+2026-06-12 16:39:57,015 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-12 16:39:58,618 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/36be1eb5-ce57-815d-a28b-d67a1c489957 HTTP/11" 200 None
+Converted non-L4 to-do to bullet for 36be1eb5-ce57-815d-a28b-d67a1c489957: 🔶 SolarMan 运维排障 Playbook : 编写内部指南：(错误码、诊断流程、日常维护)
+2026-06-12 16:39:58,622 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-12 16:39:58,623 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-12 16:39:58,624 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-12 16:39:58,624 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-12 16:39:58,625 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-12 16:39:58,626 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 3, 'SEQUENCED': 44, 'STRUCTURED': 53}
+2026-06-12 16:39:58,676 | INFO | state_evaluator | [Evaluator] Saved 100 tasks to state
+Flow complete. State distribution: {'READY': 3, 'SEQUENCED': 44, 'STRUCTURED': 53}
+[trace] Flow run completed at 2026-06-12T16:39:58

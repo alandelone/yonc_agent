@@ -150,31 +150,3 @@ Detected 12 changes in Notion.
 2026-06-12 19:22:59,585 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
 2026-06-12 19:22:59,585 | DEBUG | httpcore.http11 | send_request_body.complete
 2026-06-12 19:22:59,585 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  2026-06-12 19:16:29,624 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
-2026-06-12 19:16:29,656 | DEBUG | httpcore.http11 | response_closed.started
-2026-06-12 19:16:29,656 | DEBUG | httpcore.http11 | response_closed.complete
-2026-06-12 19:16:29,894 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
-2026-06-12 19:16:30,054 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A2298C6E70>
-2026-06-12 19:16:30,054 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001A218E88B50> server_hostname='generativelanguage.googleapis.com' timeout=600.0
-2026-06-12 19:16:30,183 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A2298C6D80>
-2026-06-12 19:16:30,183 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
-2026-06-12 19:16:30,199 | DEBUG | httpcore.http11 | send_request_headers.complete
-2026-06-12 19:16:30,199 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
-2026-06-12 19:16:30,199 | DEBUG | httpcore.http11 | send_request_body.complete
-2026-06-12 19:16:30,199 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
-2026-06-12 19:23:05,224 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 12 Jun 2026 11:23:05 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=394842'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
-2026-06-12 19:23:05,256 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
-2026-06-12 19:23:05,256 | DEBUG | httpcore.http11 | receive_response_body.complete
-2026-06-12 19:23:05,256 | DEBUG | httpcore.http11 | response_closed.started
-2026-06-12 19:23:05,256 | DEBUG | httpcore.http11 | response_closed.complete
-
-[🤖 LLM LOG - Phase 1: Classification]
-   Input : 'SolarMan  SKM Program Material Prepare
-{"task_id": "362e1eb5-ce57-803c-a8e2-e17c712194ab", "title": "🟧 SolarMan 🚨 SKM Program Material Prepare", "description": "", "parent_blocks": [{"id": "362e1eb5-ce57-80a4-8b64-c2dfba3f0232", "title": "🏭 SolarMan Apparatus Learning", "description": ""}], "child_blocks": [{"id": "362e1eb5-ce57-808a-a20e-c20c33c14212", "title": "🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表", "description": "how to use each tools", "type": "bulleted_list_item", "checked": null}, {"id": "37ce1eb5-ce57-803e-9c85-d1dfbb44255d", "title": "🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use", "description": "", "type": "bulleted_list_item", "checked": null}], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 SolarMan Apparatus Learning", "char_count": 29}, {"source": "children", "location": "direct_children", "content": "🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表; 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use", "char_count": 94}], "compacted": false}'
-   Output: Level 2 | Type N/A | Rationale: The task 'SolarMan SKM Program Material Prepare' functions as a major deliverable category within the broader 'SolarMan Apparatus Learning' project (Level 1). It organizes a specific set of deliverables (the program materials) and contains children that represent individual work packages such as technical manuals and safety guides (Level 3). As a major component or module of the overall goal, it is classified as Level 2.
-2026-06-12 19:23:05,398 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 14/20)
-2026-06-12 19:23:05,398 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
-2026-06-12 19:23:05,398 | DEBUG | httpcore.http11 | send_request_headers.complete
-2026-06-12 19:23:05,398 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
-2026-06-12 19:23:05,398 | DEBUG | httpcore.http11 | send_request_body.complete
-2026-06-12 19:23:05,398 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>

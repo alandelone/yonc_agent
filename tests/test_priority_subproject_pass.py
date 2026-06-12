@@ -81,3 +81,34 @@ def test_subproject_only_scope_is_not_changed():
     priorities = [(t.get("tags") or {}).get("Priority", "") for t in out]
 
     assert priorities == ["KEEP-1", "KEEP-2"]
+
+
+def test_missing_subproject_priority_gets_fallback_without_overwriting_manual():
+    state = [
+        {
+            "id": "s1",
+            "notion_block_id": "s1",
+            "depth": 1,
+            "tags": {},
+            "timeliner_section": "sub",
+            "timeliner_is_subproject": True,
+            "timeliner_priority": 2,
+        },
+        {
+            "id": "s2",
+            "notion_block_id": "s2",
+            "depth": 1,
+            "tags": {"Priority": "KEEP"},
+            "timeliner_section": "sub",
+            "timeliner_is_subproject": True,
+            "timeliner_priority": 4,
+        },
+    ]
+    scoped_ids = {"s1", "s2"}
+    rank_by_task_id = {"s1": 0, "s2": 1}
+
+    out = priority_pass(state, _config(), scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
+    tags_by_id = {str(t.get("id")): (t.get("tags") or {}).get("Priority", "") for t in out}
+
+    assert tags_by_id["s1"] == "HIGH | (P1)"
+    assert tags_by_id["s2"] == "KEEP"

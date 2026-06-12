@@ -16,6 +16,8 @@ def build_state_indexes(tasks: List[Dict[str, Any]]) -> Tuple[Dict[str, Dict[str
     children_by_parent: Dict[str, List[Dict[str, Any]]] = {}
 
     for task in tasks:
+        if task.get("is_content_block") or (task.get("notion_type") or task.get("type")) == "quote":
+            continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if not task_id:
             continue

@@ -106,6 +106,77 @@ class TestSplitGeneratedRegistration(unittest.TestCase):
         self.assertEqual(0, subtask_count)
         push_mock.assert_not_called()
 
+    def test_reviewed_generated_non_l4_can_continue_splitting(self):
+        state = [
+            {
+                "id": "generated-l3",
+                "notion_block_id": "generated-l3",
+                "title": "Thesis Research Gap source mapping",
+                "original_notion_title": "Research Gap source mapping",
+                "context_heading": "",
+                "parent_id": "parent-1",
+                "depth": 1,
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "annotations": {},
+                "checked": None,
+                "has_tag_style": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+                "split_stage": "none",
+                "wbs_level": 3,
+                "tags": {},
+            }
+        ]
+        structured_cfg = {"themes": {}}
+        scoped_ids = {"generated-l3"}
+
+        with patch("flow_pipeline.clean_task_title", return_value="Research Gap source mapping"), patch(
+            "flow_pipeline.build_split_context", return_value={}
+        ), patch("flow_pipeline.split_task", return_value=["extract paper gap claims"]), patch(
+            "flow_pipeline.push_subtasks_to_notion",
+            return_value=[{"id": "generated-l4", "title": "extract paper gap claims"}],
+        ):
+            parent_count, subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+
+        self.assertEqual(1, parent_count)
+        self.assertEqual(1, subtask_count)
+        self.assertEqual("suggested", state[0]["split_stage"])
+
+    def test_unreviewed_generated_non_l4_still_waits_for_review(self):
+        state = [
+            {
+                "id": "generated-l3",
+                "notion_block_id": "generated-l3",
+                "title": "Thesis Research Gap source mapping",
+                "original_notion_title": "Research Gap source mapping",
+                "context_heading": "",
+                "parent_id": "parent-1",
+                "depth": 1,
+                "type": "todo",
+                "notion_type": "to_do",
+                "annotations": {},
+                "checked": False,
+                "has_tag_style": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": False,
+                "split_stage": "none",
+                "wbs_level": 3,
+                "tags": {},
+            }
+        ]
+        structured_cfg = {"themes": {}}
+        scoped_ids = {"generated-l3"}
+
+        with patch("flow_pipeline.split_task", return_value=["extract paper gap claims"]) as split_mock:
+            parent_count, subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+
+        self.assertEqual(0, parent_count)
+        self.assertEqual(0, subtask_count)
+        split_mock.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

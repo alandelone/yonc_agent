@@ -561,7 +561,7 @@ def _split_scoped_tasks(
         if task.get("checked") or "💯✅" in raw_title:
             continue
 
-        if task.get("is_generated"):
+        if task.get("is_generated") and not task.get("generated_selection_processed"):
             continue
 
         notion_type = task.get("notion_type") or task.get("type")

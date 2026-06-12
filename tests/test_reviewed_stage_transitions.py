@@ -76,6 +76,107 @@ class TestReviewedStageTransitions(unittest.TestCase):
         self.assertEqual("bulleted_list_item", state[0]["notion_type"])
         self.assertIsNone(state[0]["checked"])
 
+    def test_manual_non_l4_todo_conversion_preserves_children(self):
+        state = [
+            {
+                "id": "manual-l2",
+                "notion_block_id": "manual-l2",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint manually keyed module",
+                "original_notion_title": "manually keyed module",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "2 | Level 2",
+                },
+                "wbs_level": 2,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": False,
+                "origin": "human",
+                "generated_selection_processed": False,
+            },
+            {
+                "id": "child-quote",
+                "notion_block_id": "child-quote",
+                "type": "quote",
+                "notion_type": "quote",
+                "title": "manual note",
+                "original_notion_title": "manual note",
+                "parent_id": "manual-l2",
+                "checked": None,
+                "annotations": {"color": "default"},
+                "tags": {},
+            },
+        ]
+
+        with patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}) as mock_bullet, \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.delete_block", return_value={}):
+            push_tags_to_notion(state, _config())
+
+        self.assertTrue(mock_bullet.called)
+        self.assertEqual("new-bullet", state[1]["parent_id"])
+        kwargs = mock_bullet.call_args.kwargs
+        self.assertEqual("manual note", kwargs["children"][0]["quote"]["rich_text"][0]["text"]["content"])
+
+    def test_rendered_title_restores_matching_rich_text_link(self):
+        state = [
+            {
+                "id": "linked-l2",
+                "notion_block_id": "linked-l2",
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "title": "Maker Sprint report flow : data to report direct",
+                "original_notion_title": "report flow : data to report direct",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "2 | Level 2",
+                },
+                "wbs_level": 2,
+                "parent_id": "p1",
+                "checked": None,
+                "is_generated": False,
+                "origin": "human",
+                "generated_selection_processed": False,
+                "links": [{"text": "data to report direct", "url": "https://example.com/report"}],
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update, \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}), \
+             patch("notion_client.delete_block", return_value={}):
+            push_tags_to_notion(state, _config())
+
+        rich_text = mock_update.call_args.args[1]["bulleted_list_item"]["rich_text"]
+        linked = [rt for rt in rich_text if rt.get("text", {}).get("link")]
+        self.assertEqual("https://example.com/report", linked[0]["text"]["link"]["url"])
+
+    def test_quote_content_block_is_not_formatted(self):
+        state = [
+            {
+                "id": "quote-1",
+                "notion_block_id": "quote-1",
+                "type": "quote",
+                "notion_type": "quote",
+                "title": "Format Cute Manual",
+                "original_notion_title": "Format Cute Manual",
+                "parent_id": "p1",
+                "is_content_block": True,
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "2 | Level 2",
+                },
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update, \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}), \
+             patch("notion_client.delete_block", return_value={}):
+            push_tags_to_notion(state, _config())
+
+        mock_update.assert_not_called()
+
     def test_manual_checked_non_l4_todo_converts_to_bullet(self):
         state = [
             {
@@ -107,6 +208,40 @@ class TestReviewedStageTransitions(unittest.TestCase):
         self.assertEqual("bullet", state[0]["type"])
         self.assertEqual("bulleted_list_item", state[0]["notion_type"])
         self.assertIsNone(state[0]["checked"])
+
+    def test_processed_generated_non_l4_checked_converts_without_done_style(self):
+        state = [
+            {
+                "id": "generated-processed-l3",
+                "notion_block_id": "generated-processed-l3",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint reviewed package",
+                "original_notion_title": "reviewed package",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                    "WBS level": "3 | Level 3",
+                },
+                "wbs_level": 3,
+                "parent_id": "p1",
+                "checked": True,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+            }
+        ]
+
+        with patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}) as mock_bullet, \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.delete_block", return_value={}):
+            push_tags_to_notion(state, _config())
+
+        self.assertTrue(mock_bullet.called)
+        self.assertIsNone(state[0]["checked"])
+        self.assertEqual("bullet", state[0]["type"])
+        rich_text = mock_bullet.call_args.args[2]
+        self.assertFalse(any(rt.get("annotations", {}).get("strikethrough") for rt in rich_text))
+        self.assertNotEqual("gray", mock_bullet.call_args.kwargs.get("color"))
 
     def test_unreviewed_unchecked_generated_non_l4_todo_waits_for_selection(self):
         state = [

@@ -111,6 +111,9 @@ def evaluate_block_state(
     except (TypeError, ValueError):
         depth = 0
 
+    if task.get("is_content_block") or notion_type == "quote":
+        return BlockState.SKIP
+
     # ── COMPLETED：已勾选的非选择模式任务
     if notion_type in ("to_do", "todo") and checked is True and not (
         is_generated and not generated_selection_processed
@@ -147,7 +150,7 @@ def evaluate_block_state(
         never_split = split_stage not in _ALREADY_SPLIT_STAGES
         not_generated = not is_generated  # 不拆解 LLM 生成的任务
 
-        if has_no_children and never_split and not_generated:
+        if has_no_children and never_split and (not is_generated or generated_selection_processed):
             return BlockState.EXPANDING
 
     # ── HUMAN_REVIEW：有 LLM 生成的子任务但尚未被人类审阅

@@ -104,18 +104,28 @@ def replace_with_toggle(block_id: str, target_parent_id: str, toggle_content: Di
     
     return new_block
 
-def replace_with_bullet(block_id: str, target_parent_id: str, rich_text: List[Dict[str, Any]], color: str = "default") -> Dict[str, Any]:
+def replace_with_bullet(
+    block_id: str,
+    target_parent_id: str,
+    rich_text: List[Dict[str, Any]],
+    color: str = "default",
+    children: List[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     """
     Replace a block with a bulleted_list_item under the same parent.
     Uses insert-after to preserve ordering, then deletes the original block.
     """
+    bullet_payload = {
+        "rich_text": rich_text,
+        "color": color
+    }
+    if children:
+        bullet_payload["children"] = children
+
     new_bullet_block = {
         "object": "block",
         "type": "bulleted_list_item",
-        "bulleted_list_item": {
-            "rich_text": rich_text,
-            "color": color
-        }
+        "bulleted_list_item": bullet_payload
     }
     append_res = append_children(target_parent_id, [new_bullet_block], after_id=block_id)
     new_block = append_res.get("results", [])[-1] if append_res.get("results") else {}
@@ -159,4 +169,3 @@ def delete_block(block_id: str) -> Dict[str, Any]:
     response = requests.delete(url, headers=NOTION_HEADERS)
     response.raise_for_status()
     return response.json()
-

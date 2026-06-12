@@ -11,6 +11,20 @@ def _has_tag_style(rich_text: List[Dict[str, Any]]) -> bool:
             return True
     return False
 
+def _extract_text_links(rich_text: List[Dict[str, Any]]) -> List[Dict[str, str]]:
+    """Return plain text/link pairs from Notion rich_text segments."""
+    links: List[Dict[str, str]] = []
+    for rt in rich_text:
+        text_obj = rt.get("text") if isinstance(rt, dict) else None
+        if not isinstance(text_obj, dict):
+            continue
+        link_obj = text_obj.get("link")
+        url = link_obj.get("url") if isinstance(link_obj, dict) else None
+        content = text_obj.get("content") or rt.get("plain_text") or ""
+        if url and content:
+            links.append({"text": str(content), "url": str(url)})
+    return links
+
 def build_task_tree(
     blocks: List[Dict[str, Any]],
     depth: int = 0,
@@ -29,7 +43,7 @@ def build_task_tree(
         block_type = block.get("type", "")
         
         # Standard blocks that contain text
-        if block_type in ["bulleted_list_item", "numbered_list_item", "to_do", "toggle", "paragraph"]:
+        if block_type in ["bulleted_list_item", "numbered_list_item", "to_do", "toggle", "paragraph", "quote"]:
             type_content = block.get(block_type, {})
             rich_text = type_content.get("rich_text", [])
             plain_text = parse_rich_text(rich_text).strip()
@@ -62,6 +76,8 @@ def build_task_tree(
                 "depth": depth,
                 "type": block_type,
                 "annotations": annotations,
+                "notion_rich_text": rich_text,
+                "links": _extract_text_links(rich_text),
                 "children": [],
                 "checked": checked,
                 "has_tag_style": has_tag_style,

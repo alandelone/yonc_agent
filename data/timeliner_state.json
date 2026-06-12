@@ -1,0 +1,26 @@
+{
+  "main_projects": {
+    "Thesis 🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the": {
+      "scope_key": "Thesis::::🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+      "settle_date": "2026-05-31",
+      "priority": 1
+    },
+    "Thesis 🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand": {
+      "scope_key": "Thesis::::🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
+      "settle_date": "2026-05-31",
+      "priority": 2
+    },
+    "Thesis 🏭 Thesis 💣 thesis writing : Full thesis": {
+      "scope_key": "Thesis::::🏭 Thesis 💣 thesis writing : Full thesis",
+      "settle_date": "2026-05-31",
+      "priority": 3
+    }
+  },
+  "sub_projects": {
+    "SolarMan 🏭 SolarMan Apparatus Learning": {
+      "scope_key": "::SolarMan::🏭 SolarMan Apparatus Learning",
+      "settle_date": "2026-05-31",
+      "priority": 1
+    }
+  }
+}

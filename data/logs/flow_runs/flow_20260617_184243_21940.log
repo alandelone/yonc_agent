@@ -1,0 +1,229 @@
+=== Flow Trace Start (2026-06-17T18:42:43) ===
+command: flow
+argv: main.py flow
+pid: 21940
+cwd: C:\Users\conny\Desktop\alancodespace
+
+[trace] Flow output is being saved to: C:\Users\conny\Desktop\alancodespace\data\logs\flow_runs\flow_20260617_184243_21940.log
+[trace] Latest flow trace shortcut: C:\Users\conny\Desktop\alancodespace\data\logs\flow_runs\flow_latest.log
+2026-06-17 18:42:43,915 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-17 18:42:43,940 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:42:49,017 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children HTTP/1.1" 200 None
+2026-06-17 18:42:49,040 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:42:51,368 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8095-b2de-d411ae904027/children HTTP/1.1" 200 None
+2026-06-17 18:42:51,388 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:42:53,445 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8094-9b85-f6977126cc19/children HTTP/1.1" 200 None
+2026-06-17 18:42:53,469 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:42:55,919 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8013-a854-e6d0437dc49c/children HTTP/1.1" 200 None
+2026-06-17 18:42:55,934 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:42:58,581 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-808a-a25a-c1a9a56b0713/children HTTP/1.1" 200 None
+2026-06-17 18:42:58,606 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:01,256 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803d-b413-cc4761372741/children HTTP/1.1" 200 None
+2026-06-17 18:43:01,273 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:03,790 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-aaec-f6735fda1fec/children HTTP/1.1" 200 None
+2026-06-17 18:43:03,818 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:06,222 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9896-ea4326e83210/children HTTP/1.1" 200 None
+2026-06-17 18:43:06,239 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:08,710 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e5-8103-ee26e3021f6a/children HTTP/1.1" 200 None
+2026-06-17 18:43:08,727 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:11,093 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b3-88f7-f35d4e33c949/children HTTP/1.1" 200 None
+2026-06-17 18:43:11,129 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:13,601 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8015-844f-dab5573db53b/children HTTP/1.1" 200 None
+2026-06-17 18:43:13,621 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:15,868 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-a21c-e3446ae650a9/children HTTP/1.1" 200 None
+2026-06-17 18:43:15,888 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:18,024 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8012-818b-f55e01ad10ab/children HTTP/1.1" 200 None
+2026-06-17 18:43:18,042 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:20,673 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-96d9-ca8c6b67c063/children HTTP/1.1" 200 None
+2026-06-17 18:43:20,693 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:22,998 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80fd-902d-c19ec0f709df/children HTTP/1.1" 200 None
+2026-06-17 18:43:23,018 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:25,268 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80cc-a754-e4ed87b4de84/children HTTP/1.1" 200 None
+2026-06-17 18:43:25,286 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:27,414 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-804d-b624-ffd4ed4af407/children HTTP/1.1" 200 None
+2026-06-17 18:43:27,425 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:29,499 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-9731-e0430b76bff7/children HTTP/1.1" 200 None
+2026-06-17 18:43:29,514 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:31,644 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80a9-9213-cfa201910082/children HTTP/1.1" 200 None
+2026-06-17 18:43:31,659 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:33,744 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-a416-dffb426d193f/children HTTP/1.1" 200 None
+2026-06-17 18:43:33,758 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:36,376 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8065-88d9-fc9164b4fed0/children HTTP/1.1" 200 None
+2026-06-17 18:43:36,392 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:39,357 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-809c-b4bf-c20eec7868ae/children HTTP/1.1" 200 None
+2026-06-17 18:43:39,377 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:41,608 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802f-9288-dc3708c7e6a4/children HTTP/1.1" 200 None
+2026-06-17 18:43:41,629 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:44,036 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807a-95c7-e9a023663c7b/children HTTP/1.1" 200 None
+2026-06-17 18:43:44,053 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:46,297 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-bb6a-ceed52613f84/children HTTP/1.1" 200 None
+2026-06-17 18:43:46,309 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:43:52,657 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807c-a2bf-d021a8efc6d7/children HTTP/1.1" 200 None
+2026-06-17 18:43:52,797 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:00,306 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-8b11-ef1c1606c7da/children HTTP/1.1" 200 None
+2026-06-17 18:44:00,377 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:02,771 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e6-b57b-d14ff8056b96/children HTTP/1.1" 200 None
+2026-06-17 18:44:02,789 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:06,422 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d4-abe1-d6e8d455418d/children HTTP/1.1" 200 None
+2026-06-17 18:44:06,456 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:09,001 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d2-aae2-d343c320db24/children HTTP/1.1" 200 None
+2026-06-17 18:44:09,009 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:11,450 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-801c-90cf-fb9fd3e8935e/children HTTP/1.1" 200 None
+2026-06-17 18:44:11,468 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:14,217 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807d-9871-e8cdef6db118/children HTTP/1.1" 200 None
+2026-06-17 18:44:14,223 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:19,633 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8058-9e51-ec41e351c997/children HTTP/1.1" 200 None
+2026-06-17 18:44:19,642 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:23,152 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8ae1-c31097c70588/children HTTP/1.1" 200 None
+2026-06-17 18:44:23,200 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:24,482 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b0-988d-cef674e21b74/children HTTP/1.1" 200 None
+2026-06-17 18:44:24,494 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:25,602 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-b0b0-d333999cb7d5/children HTTP/1.1" 200 None
+2026-06-17 18:44:25,620 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:26,888 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802a-a169-f99075372609/children HTTP/1.1" 200 None
+2026-06-17 18:44:26,922 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:29,345 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/1.1" 200 None
+2026-06-17 18:44:29,363 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:32,978 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/1.1" 200 None
+2026-06-17 18:44:33,045 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:40,158 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4/children HTTP/1.1" 200 None
+2026-06-17 18:44:40,203 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:44,245 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-81a1-a158-fa6b4848fbc4/children HTTP/1.1" 200 None
+2026-06-17 18:44:44,255 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:47,696 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-818d-a42a-e350b60aea79/children HTTP/1.1" 200 None
+2026-06-17 18:44:47,702 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:44:53,361 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-811d-ba03-ff92edb11c5b/children HTTP/1.1" 200 None
+2026-06-17 18:44:53,375 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:00,598 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-811e-bb66-e5855e9994f2/children HTTP/1.1" 200 None
+2026-06-17 18:45:00,610 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:03,699 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab/children HTTP/1.1" 200 None
+2026-06-17 18:45:03,712 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:08,103 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-81c1-a1cf-d4bca72c8756/children HTTP/1.1" 200 None
+2026-06-17 18:45:08,116 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:12,407 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-814f-8e22-f4868e3a2ab9/children HTTP/1.1" 200 None
+2026-06-17 18:45:12,421 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:14,820 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-81c4-aaf5-d5972b5f239f/children HTTP/1.1" 200 None
+2026-06-17 18:45:14,836 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:16,890 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37fe1eb5-ce57-8140-9e7e-c54847228962/children HTTP/1.1" 200 None
+2026-06-17 18:45:16,944 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:19,425 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/1.1" 200 None
+2026-06-17 18:45:19,586 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:23,796 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-800b-9d9f-fa8737d12059/children HTTP/1.1" 200 None
+2026-06-17 18:45:23,831 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:26,607 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36/children HTTP/1.1" 200 None
+2026-06-17 18:45:26,630 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:28,639 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80f7-bddd-de9bd0e4ce33/children HTTP/1.1" 200 None
+2026-06-17 18:45:28,651 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:30,662 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0/children HTTP/1.1" 200 None
+2026-06-17 18:45:30,759 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:34,115 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea/children HTTP/1.1" 200 None
+2026-06-17 18:45:34,127 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:38,420 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8034-b148-ec4ab5b867dc/children HTTP/1.1" 200 None
+2026-06-17 18:45:38,442 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:41,852 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b/children HTTP/1.1" 200 None
+2026-06-17 18:45:41,862 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:45,275 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17/children HTTP/1.1" 200 None
+2026-06-17 18:45:45,326 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:49,205 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8084-a095-da4ab7c679c9/children HTTP/1.1" 200 None
+2026-06-17 18:45:49,225 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:53,588 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8081-837f-ec92e1ed9834/children HTTP/1.1" 200 None
+2026-06-17 18:45:53,690 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:45:57,870 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-804c-ba1f-cf3f581545e6/children HTTP/1.1" 200 None
+2026-06-17 18:45:57,882 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:02,700 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/1.1" 200 None
+2026-06-17 18:46:02,755 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:08,234 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/1.1" 200 None
+2026-06-17 18:46:08,288 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:12,342 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/1.1" 200 None
+2026-06-17 18:46:12,371 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:14,828 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8084-ab6a-f3e589fb79c6/children HTTP/1.1" 200 None
+2026-06-17 18:46:15,006 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:17,842 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-800c-a789-e20263d03a2c/children HTTP/1.1" 200 None
+2026-06-17 18:46:17,949 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:20,041 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80d1-bcc7-e78e799bd4d5/children HTTP/1.1" 200 None
+2026-06-17 18:46:20,117 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:25,213 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80a9-85a9-ebaf96698cad/children HTTP/1.1" 200 None
+2026-06-17 18:46:25,243 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:30,023 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8035-ac4e-d7d6a87a12f0/children HTTP/1.1" 200 None
+2026-06-17 18:46:30,031 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:35,154 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8059-aebe-f0db0aa68f74/children HTTP/1.1" 200 None
+2026-06-17 18:46:35,272 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:40,069 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-802c-96ae-d630863ef9e4/children HTTP/1.1" 200 None
+2026-06-17 18:46:40,271 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:46,408 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8046-b64d-f3ad4a6fafa6/children HTTP/1.1" 200 None
+2026-06-17 18:46:46,533 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:50,630 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8010-a20c-feae5856411c/children HTTP/1.1" 200 None
+Detected 36 changes in Notion.
+2026-06-17 18:46:51,595 | INFO | state_evaluator | [Evaluator] Loaded 169 merged tasks
+2026-06-17 18:46:51,607 | INFO | state_evaluator | [Evaluator] Auto-transitioned parent task '🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker' (37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d) split_stage to 'processed' (no unreviewed generated children)
+2026-06-17 18:46:51,609 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-17 18:46:51,668 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:46:57,799 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/318e1eb5-ce57-808e-a334-c9365174d477/children HTTP/1.1" 200 None
+2026-06-17 18:46:57,838 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:02,344 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/37de1eb5-ce57-8010-a20c-feae5856411c HTTP/1.1" 200 None
+Reparented and removed 1 theme container block(s).
+2026-06-17 18:47:02,378 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-17 18:47:02,380 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-17 18:47:02,380 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-17 18:47:02,843 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:05,970 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/1.1" 200 None
+2026-06-17 18:47:05,982 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:09,297 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/1.1" 200 None
+2026-06-17 18:47:09,310 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:12,633 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/1.1" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis / 🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-17 18:47:12,797 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:16,254 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+2026-06-17 18:47:16,314 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:19,287 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-17 18:47:19,314 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:21,476 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+2026-06-17 18:47:21,491 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:25,323 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 thesis writing : Full thesis (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-17 18:47:25,342 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:27,602 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+2026-06-17 18:47:27,623 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:30,557 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+Pushing updates for SolarMan / 🏭 SolarMan Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-17 18:47:30,585 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:32,863 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+2026-06-17 18:47:33,037 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:40,961 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+TIMELINER sync complete.
+2026-06-17 18:47:41,021 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-17 18:47:41,065 | INFO | state_evaluator | [Evaluator] Scoped 0 tasks from TIMELINER
+2026-06-17 18:47:41,084 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-17 18:47:41,085 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-17 18:47:41,180 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-17 18:47:41,183 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-17 18:47:41,227 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-17 18:47:41,229 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-17 18:47:41,248 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:43,709 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/37fe1eb5-ce57-81b0-b823-d755cd59a3ce HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 37fe1eb5-ce57-81b0-b823-d755cd59a3ce: 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+2026-06-17 18:47:43,743 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:45,892 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/382e1eb5-ce57-8155-b58f-ca6a96bc7bc9 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 382e1eb5-ce57-8155-b58f-ca6a96bc7bc9: 1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning
+2026-06-17 18:47:45,905 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:48,740 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/382e1eb5-ce57-8129-a463-f2489e228389 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 382e1eb5-ce57-8129-a463-f2489e228389: 1粒工房 客服bot
+2026-06-17 18:47:48,755 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:51,846 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/382e1eb5-ce57-8198-9bfa-d03410794f43 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 382e1eb5-ce57-8198-9bfa-d03410794f43: 1粒工房 Business management agent flow virtual CEO with reporting
+2026-06-17 18:47:51,864 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-17 18:47:54,349 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/382e1eb5-ce57-81e2-9d75-ed781c38f66e HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 382e1eb5-ce57-81e2-9d75-ed781c38f66e: 1粒工房 AutoHeat Feedback Machine : heat like automatic + sense material temp?
+2026-06-17 18:47:54,359 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-17 18:47:54,363 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-17 18:47:54,370 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-17 18:47:54,373 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-17 18:47:54,376 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-17 18:47:54,382 | INFO | state_evaluator | [Evaluator] State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
+2026-06-17 18:47:54,581 | INFO | state_evaluator | [Evaluator] Saved 168 tasks to state
+Flow complete. State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
+[trace] Flow run completed at 2026-06-17T18:47:54

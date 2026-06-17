@@ -934,6 +934,29 @@ def wbs_pass(
             tags["WBS level"] = wbs_tag
         task["tags"] = tags
 
+    # ── Backfill pass: set WBS tag for non-scoped tasks that have wbs_level ──
+    # merge_states preserves wbs_level from previous runs, but the WBS tag
+    # string (which carries the emoji like 🔸) is only set inside the scoped
+    # loop above. Without the tag string, push_tags_to_notion can't render
+    # the emoji prefix.  This pass closes that gap.
+    for task in local_state:
+        if _is_content_block(task):
+            continue
+        level = task.get("wbs_level")
+        if not isinstance(level, int) or level < 1 or level > 4:
+            continue
+        tags = task.get("tags") or {}
+        existing_wbs_tag = str(tags.get("WBS level", "")).strip()
+        if existing_wbs_tag:
+            continue  # already has a WBS tag — don't overwrite
+        wbs_tag = _resolve_wbs_tag_from_struct(structured_cfg, level)
+        if wbs_tag:
+            tags["WBS level"] = wbs_tag
+            task["tags"] = tags
+            task["synced_tags"] = False  # force re-push with new WBS emoji
+            if not task.get("wbs_source"):
+                task["wbs_source"] = "backfill"
+
     return local_state
 
 

@@ -2,8 +2,8 @@
   {
     "id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "notion_block_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the",
-    "original_notion_title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the",
+    "original_notion_title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -11,14 +11,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -75,7 +92,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -98,8 +115,8 @@
   {
     "id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
     "notion_block_id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis Gap 综述 : 文献综述：识别学术 Gap",
-    "original_notion_title": "Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "original_notion_title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -107,14 +124,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -171,7 +205,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -194,8 +228,8 @@
   {
     "id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
     "notion_block_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
-    "original_notion_title": "Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "original_notion_title": "🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -203,14 +237,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -290,8 +341,8 @@
   {
     "id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
     "notion_block_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
-    "original_notion_title": "Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "original_notion_title": "🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -299,14 +350,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -386,8 +454,8 @@
   {
     "id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
     "notion_block_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
-    "original_notion_title": "Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "original_notion_title": "🟧 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -395,14 +463,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -482,8 +567,8 @@
   {
     "id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
     "notion_block_id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
-    "original_notion_title": "Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "original_notion_title": "🟧 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -491,14 +576,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -578,8 +680,8 @@
   {
     "id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "notion_block_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
-    "original_notion_title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "original_notion_title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -587,14 +689,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -674,23 +793,40 @@
   {
     "id": "36be1eb5-ce57-817b-8b62-e10612371657",
     "notion_block_id": "36be1eb5-ce57-817b-8b62-e10612371657",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
-    "original_notion_title": "Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "original_notion_title": "🟧 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -778,10 +914,10 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -804,23 +940,40 @@
   {
     "id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
     "notion_block_id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
-    "original_notion_title": "Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "original_notion_title": "🟧 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -908,10 +1061,10 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -934,23 +1087,40 @@
   {
     "id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
     "notion_block_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
-    "original_notion_title": "Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "original_notion_title": "🟧 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1038,10 +1208,10 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1199,7 +1369,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1222,8 +1392,8 @@
   {
     "id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "notion_block_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
-    "original_notion_title": "SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "original_notion_title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
     "depth": 2,
@@ -1231,14 +1401,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1318,8 +1505,8 @@
   {
     "id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
     "notion_block_id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
-    "original_notion_title": "SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "depth": 3,
@@ -1327,14 +1514,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1448,8 +1652,8 @@
   {
     "id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
     "notion_block_id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
-    "original_notion_title": "SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "depth": 3,
@@ -1457,14 +1661,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1555,7 +1776,7 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1634,7 +1855,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -2261,8 +2482,8 @@
   {
     "id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "notion_block_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct",
-    "original_notion_title": "SolarMan T&C report express filling flow : data to report direct",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct",
+    "original_notion_title": "🟧 SolarMan T&C report express filling flow : data to report direct",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
     "depth": 1,
@@ -2270,14 +2491,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2334,7 +2572,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -2357,8 +2595,8 @@
   {
     "id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
     "notion_block_id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
-    "original_notion_title": "SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "original_notion_title": "🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2366,14 +2604,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2453,8 +2708,8 @@
   {
     "id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
     "notion_block_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design",
-    "original_notion_title": "SolarMan power quality meter : Buildup BOM prepare & design",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design",
+    "original_notion_title": "🔶 SolarMan power quality meter : Buildup BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2462,14 +2717,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2549,8 +2821,8 @@
   {
     "id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
     "notion_block_id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
-    "original_notion_title": "SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "original_notion_title": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
     "depth": 3,
@@ -2558,35 +2830,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 汇总电表 BOM : ",
+          "content": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : ",
           "link": null
         },
         "annotations": {
@@ -2597,7 +2852,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 汇总电表 BOM : ",
+        "plain_text": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : ",
         "href": null
       },
       {
@@ -2620,7 +2875,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2645,8 +2900,8 @@
   {
     "id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "notion_block_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design",
-    "original_notion_title": "SolarMan IoT portable dash : BuildDev BOM prepare & design",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
+    "original_notion_title": "🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2654,14 +2909,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2718,7 +2990,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -2741,8 +3013,8 @@
   {
     "id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
     "notion_block_id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
-    "original_notion_title": "SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "original_notion_title": "🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "depth": 3,
@@ -2750,14 +3022,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2871,7 +3160,7 @@
   {
     "id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
     "notion_block_id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🔬 solar irradiance module selection",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🔬 solar irradiance module selection",
     "original_notion_title": "SolarMan 💻Focus 🔬 solar irradiance module selection",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
@@ -2984,7 +3273,7 @@
   {
     "id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
     "notion_block_id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "original_notion_title": "SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
@@ -3097,7 +3386,7 @@
   {
     "id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "notion_block_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device",
     "original_notion_title": "SolarMan BLE connection testing of UNI-T device",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
@@ -3153,7 +3442,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -3176,7 +3465,7 @@
   {
     "id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
     "notion_block_id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously",
     "original_notion_title": "SolarMan 小Do📱 📋 💻 phone version both simutenously",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
@@ -3266,7 +3555,7 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -3289,8 +3578,8 @@
   {
     "id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
     "notion_block_id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
-    "original_notion_title": "SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device 🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
+    "original_notion_title": "🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "depth": 3,
@@ -3298,14 +3587,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3419,8 +3725,8 @@
   {
     "id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "notion_block_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
-    "original_notion_title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "original_notion_title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -3428,14 +3734,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3515,8 +3838,8 @@
   {
     "id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
     "notion_block_id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
-    "original_notion_title": "Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "original_notion_title": "🟧 Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3524,14 +3847,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3611,8 +3951,8 @@
   {
     "id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
     "notion_block_id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
-    "original_notion_title": "Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "original_notion_title": "🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3620,14 +3960,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3707,8 +4064,8 @@
   {
     "id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
     "notion_block_id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
-    "original_notion_title": "Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "original_notion_title": "🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3716,14 +4073,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3803,8 +4177,8 @@
   {
     "id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
     "notion_block_id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
-    "original_notion_title": "Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "original_notion_title": "🟧 Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3812,14 +4186,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3933,8 +4324,8 @@
   {
     "id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
     "notion_block_id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
-    "original_notion_title": "Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "original_notion_title": "🟧 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3942,14 +4333,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -4102,7 +4510,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4198,7 +4606,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4294,7 +4702,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4390,7 +4798,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4486,7 +4894,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4588,8 +4996,8 @@
   {
     "id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
     "notion_block_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
-    "original_notion_title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "original_notion_title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -4597,14 +5005,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -4684,7 +5109,7 @@
   {
     "id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
     "notion_block_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
     "original_notion_title": "",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
@@ -4721,7 +5146,7 @@
   {
     "id": "37de1eb5-ce57-80f2-906e-d65676114c69",
     "notion_block_id": "37de1eb5-ce57-80f2-906e-d65676114c69",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper",
     "original_notion_title": "bef 15/6 risk averse  paper",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
@@ -4783,7 +5208,7 @@
   {
     "id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
     "notion_block_id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday",
     "original_notion_title": "manual out bef holiday",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
@@ -4845,7 +5270,7 @@
   {
     "id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
     "notion_block_id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days",
     "original_notion_title": "BOM of  iot portable dash with sensors and antenna this few days",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
@@ -4907,8 +5332,8 @@
   {
     "id": "37de1eb5-ce57-809c-8c7c-d61676dabe62",
     "notion_block_id": "37de1eb5-ce57-809c-8c7c-d61676dabe62",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo Thesis Actual Deadline : detail in paper by Planning by day 推算",
-    "original_notion_title": "Thesis Actual Deadline : detail in paper by Planning by day 推算",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo 🟧 Thesis Actual Deadline : detail in paper by Planning by day 推算",
+    "original_notion_title": "🟧 Thesis Actual Deadline : detail in paper by Planning by day 推算",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
     "depth": 1,
@@ -4916,14 +5341,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -5100,7 +5542,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5591,7 +6033,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5687,7 +6129,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6099,7 +6541,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6195,7 +6637,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6291,7 +6733,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6387,7 +6829,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6483,7 +6925,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6579,7 +7021,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6675,7 +7117,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7087,7 +7529,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7183,7 +7625,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7279,7 +7721,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7375,7 +7817,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7708,7 +8150,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -8829,18 +9271,35 @@
     "type": "toggle",
     "notion_type": "toggle",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "purple"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "DZaoSpaceV1 vcore : maintainance and upgrade rebuild",
+          "content": "DZaoSpaceV1",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "purple"
+        },
+        "plain_text": "DZaoSpaceV1",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " vcore : ",
           "link": null
         },
         "annotations": {
@@ -8851,13 +9310,30 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "DZaoSpaceV1 vcore : maintainance and upgrade rebuild",
+        "plain_text": " vcore : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "maintainance and upgrade rebuild",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "maintainance and upgrade rebuild",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
+    "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -9365,18 +9841,35 @@
     "type": "toggle",
     "notion_type": "toggle",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "purple"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "DZaoSpaceV1 bttcb1 : maintainance and upgrade rebuild",
+          "content": "DZaoSpaceV1",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "purple"
+        },
+        "plain_text": "DZaoSpaceV1",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " bttcb1 : ",
           "link": null
         },
         "annotations": {
@@ -9387,13 +9880,30 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "DZaoSpaceV1 bttcb1 : maintainance and upgrade rebuild",
+        "plain_text": " bttcb1 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "maintainance and upgrade rebuild",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "maintainance and upgrade rebuild",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
+    "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -10123,7 +10633,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10614,7 +11124,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10789,7 +11299,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10885,7 +11395,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11235,7 +11745,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11609,7 +12119,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11705,7 +12215,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11801,7 +12311,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12405,7 +12915,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12501,7 +13011,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12755,7 +13265,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12851,7 +13361,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13026,7 +13536,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13613,7 +14123,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13634,10 +14144,10 @@
     }
   },
   {
-    "id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "notion_block_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "title": "1粒工房",
-    "original_notion_title": "1粒工房",
+    "id": "382e1eb5-ce57-8155-b58f-ca6a96bc7bc9",
+    "notion_block_id": "382e1eb5-ce57-8155-b58f-ca6a96bc7bc9",
+    "title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
+    "original_notion_title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -13645,18 +14155,35 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "1粒工房 ",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " cctvs cheapest setup : ",
           "link": null
         },
         "annotations": {
@@ -13667,15 +14194,32 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "1粒工房 ",
+        "plain_text": " cctvs cheapest setup : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "ease install, NER network, UWB positioning",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "ease install, NER network, UWB positioning",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13696,91 +14240,46 @@
     }
   },
   {
-    "id": "380e1eb5-ce57-801d-8f8f-f212ad8abb9d",
-    "notion_block_id": "380e1eb5-ce57-801d-8f8f-f212ad8abb9d",
-    "title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
-    "original_notion_title": "cctvs cheapest setup : ease install, NER network, UWB positioning",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "cctvs cheapest setup : ease install, NER network, UWB positioning",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "cctvs cheapest setup : ease install, NER network, UWB positioning",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "380e1eb5-ce57-804a-a9f7-dd3276c415ce",
-    "notion_block_id": "380e1eb5-ce57-804a-a9f7-dd3276c415ce",
+    "id": "382e1eb5-ce57-8129-a463-f2489e228389",
+    "notion_block_id": "382e1eb5-ce57-8129-a463-f2489e228389",
     "title": "1粒工房 客服bot",
-    "original_notion_title": "客服bot",
+    "original_notion_title": "1粒工房 客服bot",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "客服bot",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 客服bot",
           "link": null
         },
         "annotations": {
@@ -13791,15 +14290,15 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "客服bot",
+        "plain_text": " 客服bot",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13820,29 +14319,46 @@
     }
   },
   {
-    "id": "380e1eb5-ce57-8096-b990-fcd3bc4f18d4",
-    "notion_block_id": "380e1eb5-ce57-8096-b990-fcd3bc4f18d4",
+    "id": "382e1eb5-ce57-8198-9bfa-d03410794f43",
+    "notion_block_id": "382e1eb5-ce57-8198-9bfa-d03410794f43",
     "title": "1粒工房 Business management agent flow virtual CEO with reporting",
-    "original_notion_title": "Business management agent flow virtual CEO with reporting",
+    "original_notion_title": "1粒工房 Business management agent flow virtual CEO with reporting",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Business management agent flow virtual CEO with reporting",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Business management agent flow virtual CEO with reporting",
           "link": null
         },
         "annotations": {
@@ -13853,15 +14369,15 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "Business management agent flow virtual CEO with reporting",
+        "plain_text": " Business management agent flow virtual CEO with reporting",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13882,29 +14398,46 @@
     }
   },
   {
-    "id": "380e1eb5-ce57-8095-8b0c-cf3178ea739b",
-    "notion_block_id": "380e1eb5-ce57-8095-8b0c-cf3178ea739b",
+    "id": "382e1eb5-ce57-81e2-9d75-ed781c38f66e",
+    "notion_block_id": "382e1eb5-ce57-81e2-9d75-ed781c38f66e",
     "title": "1粒工房 AutoHeat Feedback Machine : heat like automatic + sense material temp?",
-    "original_notion_title": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+    "original_notion_title": "1粒工房 AutoHeat Feedback Machine : heat like automatic + sense material temp?",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " AutoHeat Feedback Machine : ",
           "link": null
         },
         "annotations": {
@@ -13915,15 +14448,32 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+        "plain_text": " AutoHeat Feedback Machine : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "heat like automatic + sense material temp?",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "heat like automatic + sense material temp?",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,

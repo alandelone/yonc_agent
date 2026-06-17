@@ -2,8 +2,8 @@
   {
     "id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "notion_block_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the",
-    "original_notion_title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the",
+    "original_notion_title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -11,14 +11,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -75,12 +92,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -88,8 +105,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🏭 | (lv1)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🏭 | (lv1)"
     },
     "status": "todo",
     "metrics": {
@@ -98,13 +114,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
     "notion_block_id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis Gap 综述 : 文献综述：识别学术 Gap",
-    "original_notion_title": "Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "original_notion_title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -112,14 +132,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -176,12 +213,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -198,13 +235,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
     "notion_block_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
-    "original_notion_title": "Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "title": "🔶 Thesis 🟧 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "original_notion_title": "🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -212,14 +253,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -280,8 +338,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -298,13 +356,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
     "notion_block_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
-    "original_notion_title": "Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "title": "🔶 Thesis 🟧 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "original_notion_title": "🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -312,14 +374,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -380,8 +459,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -398,13 +477,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
     "notion_block_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
-    "original_notion_title": "Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "title": "🔶 Thesis 🟧 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "original_notion_title": "🟧 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -412,14 +495,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -480,8 +580,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -498,13 +598,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
     "notion_block_id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
-    "original_notion_title": "Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "title": "🔶 Thesis 🟧 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "original_notion_title": "🟧 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -512,14 +616,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -580,8 +701,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 🚨 phd logic : clear justification on research gap, methods and validation of the",
-    "timeliner_rank": 0,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -598,13 +719,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "notion_block_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
-    "original_notion_title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "original_notion_title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -612,14 +737,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -680,8 +822,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 💣 proposal defense slide : very clear for non expert and expert to underdstand",
-    "timeliner_rank": 1,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -689,8 +831,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🏭 | (lv1)",
-      "Priority": "💣 | (P1)"
+      "WBS level": "🏭 | (lv1)"
     },
     "status": "todo",
     "metrics": {
@@ -699,28 +840,49 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "36be1eb5-ce57-817b-8b62-e10612371657",
     "notion_block_id": "36be1eb5-ce57-817b-8b62-e10612371657",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
-    "original_notion_title": "Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "title": "🔸 Thesis 💻Focus 🟧 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "original_notion_title": "🟧 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": 4,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -808,15 +970,15 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 💣 proposal defense slide : very clear for non expert and expert to underdstand",
-    "timeliner_rank": 1,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -833,28 +995,49 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
     "notion_block_id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
-    "original_notion_title": "Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "title": "🔸 Thesis 💻Focus 🟧 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "original_notion_title": "🟧 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": 4,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -942,15 +1125,15 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 💣 proposal defense slide : very clear for non expert and expert to underdstand",
-    "timeliner_rank": 1,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -967,28 +1150,49 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
     "notion_block_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
-    "original_notion_title": "Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "title": "🔸 Thesis 💻Focus 🟧 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "original_notion_title": "🟧 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
     "wbs_level": 4,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1076,15 +1280,15 @@
       }
     ],
     "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 thesis 💣 proposal defense slide : very clear for non expert and expert to underdstand",
-    "timeliner_rank": 1,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1101,12 +1305,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
     "notion_block_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
-    "title": "SolarMan Apparatus Learning",
+    "title": "🏭 SolarMan Apparatus Learning",
     "original_notion_title": "SolarMan Apparatus Learning",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
@@ -1166,8 +1374,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1184,12 +1392,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
     "notion_block_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare",
+    "title": "🟧 SolarMan SKM Program Material Prepare",
     "original_notion_title": "SolarMan SKM Program Material Prepare",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
@@ -1245,12 +1457,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1258,8 +1470,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🟧 | (lv2)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🟧 | (lv2)"
     },
     "status": "todo",
     "metrics": {
@@ -1268,13 +1479,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "notion_block_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
-    "original_notion_title": "SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "original_notion_title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
     "depth": 2,
@@ -1282,14 +1497,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1350,8 +1582,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "processed",
     "split_batch_id": "2026-06-12T09:37:31.157840Z",
@@ -1359,8 +1591,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -1369,13 +1600,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
     "notion_block_id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
-    "original_notion_title": "SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "depth": 3,
@@ -1383,14 +1618,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1485,8 +1737,8 @@
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1494,10 +1746,7 @@
     "generated_selection_processed": true,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "✍️| Writing"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -1506,13 +1755,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
     "notion_block_id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
-    "original_notion_title": "SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "depth": 3,
@@ -1520,14 +1773,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1618,12 +1888,12 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1631,10 +1901,7 @@
     "generated_selection_processed": true,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "✍️| Writing"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -1643,12 +1910,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
     "notion_block_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+    "title": "🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
     "original_notion_title": "SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
@@ -1704,12 +1975,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1717,8 +1988,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -1727,7 +1997,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
@@ -1792,8 +2066,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": true,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
@@ -1813,217 +2087,15 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
-  },
-  {
-    "id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
-    "notion_block_id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
-    "original_notion_title": "error response , precaution",
-    "context_heading": "",
-    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
-    "depth": 4,
-    "wbs_level": 4,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "error response , precaution",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "error response , precaution",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
-    "wbs_source": "manual",
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "Think🌩",
-      "Task Type": "🤔| Thinking"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
-  },
-  {
-    "id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
-    "notion_block_id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
-    "original_notion_title": "Mode定义/预期值/阈值",
-    "context_heading": "",
-    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
-    "depth": 4,
-    "wbs_level": 4,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": " Mode定义/预期值/阈值",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Mode定义/预期值/阈值",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
-    "wbs_source": "manual",
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "🗺️| Planning"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
-  },
-  {
-    "id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
-    "notion_block_id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
-    "original_notion_title": "Action domain",
-    "context_heading": "",
-    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
-    "depth": 4,
-    "wbs_level": 1,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Action domain",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "Action domain",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
-    "wbs_source": "auto",
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🏭 | (lv1)",
-      "Priority": "🚨 | (P0)"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81a1-81bf-e4b73b1ff152",
     "notion_block_id": "37fe1eb5-ce57-81a1-81bf-e4b73b1ff152",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ Draft in my Word",
+    "title": "🔸 SolarMan 💻Focus ✍️ Draft in my Word",
     "original_notion_title": "SolarMan 💻Focus ✍️ Draft in my Word",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
@@ -2117,8 +2189,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -2126,10 +2198,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "✍️| Writing"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -2138,12 +2207,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-8129-8374-e4f771724232",
     "notion_block_id": "37fe1eb5-ce57-8129-8374-e4f771724232",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
+    "title": "🔸 SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
     "original_notion_title": "SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
@@ -2237,8 +2310,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -2246,10 +2319,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "✍️| Writing"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -2258,12 +2328,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81c3-9a37-dd210ab616d5",
     "notion_block_id": "37fe1eb5-ce57-81c3-9a37-dd210ab616d5",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus 🎯 Final Img Refine Tune",
+    "title": "🔸 SolarMan 💻Focus 🎯 Final Img Refine Tune",
     "original_notion_title": "SolarMan 💻Focus 🎯 Final Img Refine Tune",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
@@ -2357,8 +2431,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -2366,10 +2440,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "🎯| DeepWork"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -2378,13 +2449,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "notion_block_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct",
-    "original_notion_title": "SolarMan T&C report express filling flow : data to report direct",
+    "title": "🟧 SolarMan T&C report express filling flow : data to report direct",
+    "original_notion_title": "🟧 SolarMan T&C report express filling flow : data to report direct",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
     "depth": 1,
@@ -2392,14 +2467,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2456,12 +2548,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -2469,8 +2561,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🟧 | (lv2)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🟧 | (lv2)"
     },
     "status": "todo",
     "metrics": {
@@ -2479,13 +2570,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
     "notion_block_id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
-    "original_notion_title": "SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "title": "🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "original_notion_title": "🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2493,14 +2588,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2561,17 +2673,16 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
-    "split_stage": "suggested",
+    "split_stage": "processed",
     "split_batch_id": "2026-06-12T09:49:30.277130Z",
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -2580,13 +2691,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
     "notion_block_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design",
-    "original_notion_title": "SolarMan power quality meter : Buildup BOM prepare & design",
+    "title": "🔶 SolarMan power quality meter : Buildup BOM prepare & design",
+    "original_notion_title": "🔶 SolarMan power quality meter : Buildup BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2594,14 +2709,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2662,8 +2794,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "suggested",
     "split_batch_id": "2026-06-12T11:04:17.870331Z",
@@ -2671,8 +2803,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -2681,13 +2812,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
     "notion_block_id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
-    "original_notion_title": "SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "original_notion_title": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
     "depth": 3,
@@ -2695,35 +2830,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 汇总电表 BOM : ",
+          "content": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : ",
           "link": null
         },
         "annotations": {
@@ -2734,7 +2852,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 汇总电表 BOM : ",
+        "plain_text": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : ",
         "href": null
       },
       {
@@ -2757,22 +2875,21 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "auto",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "Priority": "🚨 | (P0)"
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
     },
     "status": "todo",
     "metrics": {
@@ -2781,13 +2898,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "notion_block_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design",
-    "original_notion_title": "SolarMan IoT portable dash : BuildDev BOM prepare & design",
+    "title": "🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
+    "original_notion_title": "🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -2795,14 +2916,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2859,12 +2997,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -2872,8 +3010,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -2882,13 +3019,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
     "notion_block_id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
-    "original_notion_title": "SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "title": "🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "original_notion_title": "🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "depth": 3,
@@ -2896,14 +3037,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2998,8 +3156,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3007,10 +3165,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "🎯| DeepWork"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -3019,12 +3174,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
     "notion_block_id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🔬 solar irradiance module selection",
+    "title": "🔸 SolarMan 💻Focus 🔬 solar irradiance module selection",
     "original_notion_title": "SolarMan 💻Focus 🔬 solar irradiance module selection",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
@@ -3118,8 +3277,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3127,10 +3286,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "🔬| Research"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -3139,12 +3295,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
     "notion_block_id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "title": "🔸 SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "original_notion_title": "SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
@@ -3238,8 +3398,8 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3247,10 +3407,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "💻Focus",
-      "Task Type": "📋| Admin"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -3259,12 +3416,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "notion_block_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device",
+    "title": "🔶 SolarMan BLE connection testing of UNI-T device",
     "original_notion_title": "SolarMan BLE connection testing of UNI-T device",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
@@ -3320,12 +3481,12 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3333,8 +3494,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔶 | (lv3)",
-      "Priority": "🚨 | (P0)"
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -3343,12 +3503,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
     "notion_block_id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously",
+    "title": "🔸 SolarMan 小Do📱 📋 💻 phone version both simutenously",
     "original_notion_title": "SolarMan 小Do📱 📋 💻 phone version both simutenously",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
@@ -3438,12 +3602,12 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3451,10 +3615,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "WBS level": "🔸 | (lv4)",
-      "Priority": "🚨 | (P0)",
-      "Modes": "小Do📱",
-      "Task Type": "📋| Admin"
+      "WBS level": "🔸 | (lv4)"
     },
     "status": "todo",
     "metrics": {
@@ -3463,13 +3624,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
     "notion_block_id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
-    "title": "SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
-    "original_notion_title": "SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
+    "title": "🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
+    "original_notion_title": "🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "depth": 3,
@@ -3477,14 +3642,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3579,8 +3761,150 @@
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
-    "timeliner_key": "🏭 solarman apparatus learning",
-    "timeliner_rank": 3,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": "manual",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🔸 | (lv4)"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
+    "notion_block_id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
+    "original_notion_title": "error response , precaution",
+    "context_heading": "",
+    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
+    "depth": 4,
+    "wbs_level": 4,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "error response , precaution",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "error response , precaution",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": "manual",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🔸 | (lv4)",
+      "Priority": "🚨 | (P0)",
+      "Modes": "Think🌩",
+      "Task Type": "🤔| Thinking"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
+    "notion_block_id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
+    "original_notion_title": "Mode定义/预期值/阈值",
+    "context_heading": "",
+    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
+    "depth": 4,
+    "wbs_level": 4,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": " Mode定义/预期值/阈值",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " Mode定义/预期值/阈值",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
     "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
@@ -3591,7 +3915,7 @@
       "WBS level": "🔸 | (lv4)",
       "Priority": "🚨 | (P0)",
       "Modes": "💻Focus",
-      "Task Type": "💻| Coding"
+      "Task Type": "🗺️| Planning"
     },
     "status": "todo",
     "metrics": {
@@ -3600,13 +3924,86 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
+    "notion_block_id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
+    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
+    "original_notion_title": "Action domain",
+    "context_heading": "",
+    "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
+    "depth": 4,
+    "wbs_level": 1,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "Action domain",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "Action domain",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🏭 | (lv1)",
+      "Priority": "🚨 | (P0)"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "notion_block_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
-    "original_notion_title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "original_notion_title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -3614,14 +4011,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3691,7 +4105,7 @@
     "generated_selection_processed": false,
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
-      "Priority": "💣 | (P1)"
+      "WBS level": "🏭 | (lv1)"
     },
     "status": "todo",
     "metrics": {
@@ -3700,13 +4114,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
     "notion_block_id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
-    "original_notion_title": "Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "original_notion_title": "🟧 Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3714,14 +4132,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3799,13 +4234,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
     "notion_block_id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
-    "original_notion_title": "Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "original_notion_title": "🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3813,14 +4252,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3898,13 +4354,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
     "notion_block_id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
-    "original_notion_title": "Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "original_notion_title": "🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -3912,14 +4372,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3997,13 +4474,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
     "notion_block_id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
-    "original_notion_title": "Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "original_notion_title": "🟧 Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -4011,14 +4492,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -4130,13 +4628,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
     "notion_block_id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
-    "title": "Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
-    "original_notion_title": "Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "title": "🔶 Thesis 🟧 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "original_notion_title": "🟧 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -4144,14 +4646,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -4220,7 +4739,8 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🔶 | (lv3)"
     },
     "status": "todo",
     "metrics": {
@@ -4229,7 +4749,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-800b-9d9f-fa8737d12059",
@@ -4307,7 +4831,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4328,7 +4852,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8010-aa57-d61a1c399a90",
@@ -4406,7 +4934,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4427,7 +4955,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8048-bea6-ca44c520a147",
@@ -4505,7 +5037,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4526,7 +5058,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36",
@@ -4604,7 +5140,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4625,7 +5161,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8036-b286-c3502645f2e0",
@@ -4703,7 +5243,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4724,7 +5264,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-805e-8409-e07df34dad37",
@@ -4806,13 +5350,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
     "notion_block_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
-    "original_notion_title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "original_notion_title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -4820,14 +5368,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -4905,12 +5470,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
     "notion_block_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo",
     "original_notion_title": "",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
@@ -4943,208 +5512,16 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
-  },
-  {
-    "id": "37de1eb5-ce57-80f2-906e-d65676114c69",
-    "notion_block_id": "37de1eb5-ce57-80f2-906e-d65676114c69",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper",
-    "original_notion_title": "bef 15/6 risk averse  paper",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "bef 15/6 risk averse  paper",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "bef 15/6 risk averse  paper",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
-  },
-  {
-    "id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
-    "notion_block_id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday",
-    "original_notion_title": "manual out bef holiday",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "manual out bef holiday",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "manual out bef holiday",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
-  },
-  {
-    "id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
-    "notion_block_id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days",
-    "original_notion_title": "BOM of  iot portable dash with sensors and antenna this few days",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "BOM of  iot portable dash with sensors and antenna this few days",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "BOM of  iot portable dash with sensors and antenna this few days",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": true,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {
-      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
-    },
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": true
+    "synced_tags": false,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-809c-8c7c-d61676dabe62",
     "notion_block_id": "37de1eb5-ce57-809c-8c7c-d61676dabe62",
-    "title": "Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo Thesis Actual Deadline : detail in paper by Planning by day 推算",
-    "original_notion_title": "Thesis Actual Deadline : detail in paper by Planning by day 推算",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo 🟧 Thesis Actual Deadline : detail in paper by Planning by day 推算",
+    "original_notion_title": "🟧 Thesis Actual Deadline : detail in paper by Planning by day 推算",
     "context_heading": "",
     "parent_id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33",
     "depth": 1,
@@ -5152,14 +5529,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -5261,7 +5655,215 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37de1eb5-ce57-80f2-906e-d65676114c69",
+    "notion_block_id": "37de1eb5-ce57-80f2-906e-d65676114c69",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper",
+    "original_notion_title": "bef 15/6 risk averse  paper",
+    "context_heading": "",
+    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "bef 15/6 risk averse  paper",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "bef 15/6 risk averse  paper",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
+    "notion_block_id": "37de1eb5-ce57-8089-889e-ca04c8cf669f",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday",
+    "original_notion_title": "manual out bef holiday",
+    "context_heading": "",
+    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "manual out bef holiday",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "manual out bef holiday",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  },
+  {
+    "id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
+    "notion_block_id": "37de1eb5-ce57-80c6-88ba-cf4664e0a1fb",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days",
+    "original_notion_title": "BOM of  iot portable dash with sensors and antenna this few days",
+    "context_heading": "",
+    "parent_id": "37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "BOM of  iot portable dash with sensors and antenna this few days",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "BOM of  iot portable dash with sensors and antenna this few days",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": true,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea",
@@ -5339,7 +5941,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5360,7 +5962,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
@@ -5442,7 +6048,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8070-902b-c62dd938a064",
@@ -5524,7 +6134,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8040-ab1f-f3feaaeaa2db",
@@ -5606,7 +6220,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8042-97d7-d953326fc439",
@@ -5688,7 +6306,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8064-be83-f8d39b6ec527",
@@ -5770,7 +6392,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-809a-b42d-d5874a13293b",
@@ -5848,7 +6474,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5869,7 +6495,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-806c-8dd6-f80a41edbc17",
@@ -5947,7 +6577,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5968,7 +6598,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a5-b3c0-c41b7c7b51fa",
@@ -6050,7 +6684,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80fb-bff5-e78daf3c693a",
@@ -6132,7 +6770,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8098-be1e-f637fb87ce72",
@@ -6214,7 +6856,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a2-b096-d74642bdad03",
@@ -6296,7 +6942,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-804d-99f1-c5f9b1407ce1",
@@ -6374,7 +7024,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6395,7 +7045,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8086-9cb3-fc605e2d86d4",
@@ -6473,7 +7127,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6494,7 +7148,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80fa-bf6b-fa76773b14bb",
@@ -6572,7 +7230,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6593,7 +7251,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8084-a095-da4ab7c679c9",
@@ -6671,7 +7333,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6692,7 +7354,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Dev",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80db-ad66-f23fe4400f2f",
@@ -6770,7 +7436,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6791,7 +7457,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Dev",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8081-837f-ec92e1ed9834",
@@ -6869,7 +7539,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6890,7 +7560,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Dev",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8038-9af9-c6303cd52762",
@@ -6968,7 +7642,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6989,7 +7663,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Dev",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-804c-ba1f-cf3f581545e6",
@@ -7071,7 +7749,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8065-a795-d271cadae71b",
@@ -7153,7 +7835,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80b5-9df8-c9f5fe4b0093",
@@ -7235,7 +7921,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a2-be75-e087acda98cf",
@@ -7317,7 +8007,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80ae-a0ee-eccbd0f8b669",
@@ -7395,7 +8089,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7416,7 +8110,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8034-a1e5-dd6923cbf532",
@@ -7494,7 +8192,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7515,7 +8213,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80e0-a880-f2e16680fd86",
@@ -7593,7 +8295,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7614,7 +8316,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Research",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80ce-ba7b-fa343a732e03",
@@ -7692,7 +8398,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7713,7 +8419,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80b1-bd10-c87749196a05",
@@ -7795,7 +8505,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80d6-aabb-f4778f64571c",
@@ -7877,7 +8591,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80b2-a8a7-e48c86f55bfb",
@@ -7959,7 +8677,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80d6-95d4-dabb6d317b8b",
@@ -8037,7 +8759,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -8058,7 +8780,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80c4-bf04-e90e481c0786",
@@ -8140,7 +8866,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a0-80d9-d6ae0f186263",
@@ -8222,7 +8952,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-803b-85a3-e6a7992dfb18",
@@ -8304,7 +9038,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8052-895b-c37879dc892d",
@@ -8386,7 +9124,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "科研人",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80bb-99c9-fd52babc927b",
@@ -8468,7 +9210,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Lab",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-802e-815d-d1b2b9aa5fc7",
@@ -8550,7 +9296,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Lab",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8005-b072-daaee8f73e57",
@@ -8632,7 +9382,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8040-b001-c0abf3cd2c77",
@@ -8695,7 +9449,10 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
+    "synced_tags": false,
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8084-ab6a-f3e589fb79c6",
@@ -8777,7 +9534,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-805c-9ff5-cd34629e2dbf",
@@ -8859,7 +9620,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8032-b2b8-c1ce529f753a",
@@ -8941,7 +9706,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-802a-a6d1-d2ee647352c1",
@@ -9023,7 +9792,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80fd-b5d3-c40393704fb4",
@@ -9105,7 +9878,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-800c-a789-e20263d03a2c",
@@ -9187,7 +9964,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80d1-bcc7-e78e799bd4d5",
@@ -9201,18 +9982,35 @@
     "type": "toggle",
     "notion_type": "toggle",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "purple"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "DZaoSpaceV1 vcore : maintainance and upgrade rebuild",
+          "content": "DZaoSpaceV1",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "purple"
+        },
+        "plain_text": "DZaoSpaceV1",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " vcore : ",
           "link": null
         },
         "annotations": {
@@ -9223,13 +10021,30 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "DZaoSpaceV1 vcore : maintainance and upgrade rebuild",
+        "plain_text": " vcore : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "maintainance and upgrade rebuild",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "maintainance and upgrade rebuild",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
+    "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -9252,7 +10067,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80d7-9e06-c7fd409ba1a7",
@@ -9334,7 +10153,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-809f-8b85-fb5125d05488",
@@ -9416,7 +10239,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80d7-bad0-ecd67c0eb4eb",
@@ -9498,7 +10325,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80c7-8366-d0d73ae3decf",
@@ -9580,7 +10411,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8078-b4e4-d4108ff77405",
@@ -9662,7 +10497,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8054-8f6c-f0d3edf0a1f1",
@@ -9744,7 +10583,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80a9-85a9-ebaf96698cad",
@@ -9758,18 +10601,35 @@
     "type": "toggle",
     "notion_type": "toggle",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "purple"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "DZaoSpaceV1 bttcb1 : maintainance and upgrade rebuild",
+          "content": "DZaoSpaceV1",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "purple"
+        },
+        "plain_text": "DZaoSpaceV1",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " bttcb1 : ",
           "link": null
         },
         "annotations": {
@@ -9780,13 +10640,30 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "DZaoSpaceV1 bttcb1 : maintainance and upgrade rebuild",
+        "plain_text": " bttcb1 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "maintainance and upgrade rebuild",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "maintainance and upgrade rebuild",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
+    "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -9809,7 +10686,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8037-93e9-f10ec3f7063f",
@@ -9891,7 +10772,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8055-9684-fed56c1fd795",
@@ -9973,7 +10858,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-806d-97c6-f0afb8831175",
@@ -10055,7 +10944,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80a6-bb90-f5f557b1b828",
@@ -10137,7 +11030,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8017-a7c7-d83f0807acac",
@@ -10219,7 +11116,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8080-8adf-d9233fc29bc5",
@@ -10301,7 +11202,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-808e-9a95-c5e70646e4e6",
@@ -10383,7 +11288,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8097-845b-f4bec920085e",
@@ -10465,7 +11374,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8035-ac4e-d7d6a87a12f0",
@@ -10543,7 +11456,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10564,7 +11477,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8059-aebe-f0db0aa68f74",
@@ -10646,7 +11563,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-804b-bf66-f810f7fc5b7c",
@@ -10728,7 +11649,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8020-b6f7-c0ee1167ab54",
@@ -10810,7 +11735,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-807d-bf2c-d28079932c4a",
@@ -10892,7 +11821,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-806e-810e-db1054bcf0ec",
@@ -10974,7 +11907,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-802c-96ae-d630863ef9e4",
@@ -11052,7 +11989,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11073,7 +12010,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80e3-9639-d72828c3498f",
@@ -11155,7 +12096,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80bc-be9f-ff7f90b5ec05",
@@ -11233,7 +12178,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11254,7 +12199,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-807e-a8f8-fa64cc20be35",
@@ -11332,7 +12281,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11353,7 +12302,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8025-82eb-fe0f075c9ba0",
@@ -11435,7 +12388,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8055-a5c2-ccb2ab85ed29",
@@ -11534,7 +12491,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-808b-9098-c9fc7b234add",
@@ -11616,7 +12577,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a6-b92f-cd3d1efd946d",
@@ -11694,7 +12659,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11715,7 +12680,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "DZaoSpaceV1",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80bf-aa93-f4337228cf63",
@@ -11797,7 +12766,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "鍛造Maker",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-809e-bbda-fd465625c74e",
@@ -11870,7 +12843,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -11879,7 +12852,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "我流方矩",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-805e-b4f9-c77aeb603430",
@@ -11993,7 +12970,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12002,7 +12979,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "方矩v4",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8035-bf8d-c89b128cb9ac",
@@ -12080,7 +13061,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12092,7 +13073,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12101,7 +13082,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "方矩v4",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80c4-9c60-e3b54cffde86",
@@ -12179,7 +13164,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12191,7 +13176,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12200,7 +13185,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "方矩v4",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80f2-b671-f8632bca073a",
@@ -12278,7 +13267,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12290,7 +13279,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12299,7 +13288,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "方矩v4",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8046-a5b7-ce06a22cbe17",
@@ -12372,7 +13365,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12381,7 +13374,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "刚体",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-800d-820f-eab63dbe26bd",
@@ -12471,7 +13468,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12480,7 +13477,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Life",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8011-8c0a-ec47b4bc560e",
@@ -12570,7 +13571,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12579,7 +13580,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Life",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80b9-8199-e0cc9eccba6e",
@@ -12652,7 +13657,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life"
+      "Task Theme with colour": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4"
     },
     "status": "todo",
     "metrics": {
@@ -12661,7 +13666,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Life",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80d8-b01f-e7d11c258cb1",
@@ -12734,7 +13743,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -12743,7 +13752,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Aero🥦",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8040-be08-d5b441b684ba",
@@ -12816,7 +13829,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -12825,7 +13838,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80e3-a435-ee14121d1806",
@@ -12903,7 +13920,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12915,7 +13932,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -12924,7 +13941,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80db-b964-e4d74da16598",
@@ -13002,7 +14023,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13014,7 +14035,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13023,7 +14044,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-8046-b64d-f3ad4a6fafa6",
@@ -13096,7 +14121,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13105,7 +14130,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80e2-94c1-ee464529eb10",
@@ -13178,7 +14207,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13187,7 +14216,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8034-a0ff-c9332aab9d4c",
@@ -13265,7 +14298,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13277,7 +14310,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13286,7 +14319,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80ea-8e5a-f4c6737e7daf",
@@ -13364,7 +14401,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13376,7 +14413,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13385,7 +14422,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80cf-a3cd-caa8ee9d693a",
@@ -13458,7 +14499,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13467,7 +14508,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-80b7-897c-dbff77b9d52c",
@@ -13545,7 +14590,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13557,7 +14602,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13566,7 +14611,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-80f6-bbd9-ed67570bf770",
@@ -13639,7 +14688,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13648,7 +14697,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "素食堂🍱",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8032-9659-d2791a342f27",
@@ -13721,7 +14774,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13730,7 +14783,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "农业⚙️🚜工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8072-9e43-fc3968edd9de",
@@ -13803,7 +14860,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13812,7 +14869,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80a8-a90a-d58910420806",
@@ -13885,7 +14946,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13894,7 +14955,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-809a-a61a-c3a02c0e74a9",
@@ -13967,7 +15032,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -13976,7 +15041,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-801b-b730-f9a60e410a1c",
@@ -14066,7 +15135,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -14075,7 +15144,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37de1eb5-ce57-807f-b70e-cbc58c3523a6",
@@ -14153,7 +15226,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14165,7 +15238,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -14174,13 +15247,17 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
-    "id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "notion_block_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "title": "1粒工房",
-    "original_notion_title": "1粒工房",
+    "id": "382e1eb5-ce57-8155-b58f-ca6a96bc7bc9",
+    "notion_block_id": "382e1eb5-ce57-8155-b58f-ca6a96bc7bc9",
+    "title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
+    "original_notion_title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -14188,18 +15265,35 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "1粒工房 ",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " cctvs cheapest setup : ",
           "link": null
         },
         "annotations": {
@@ -14210,78 +15304,32 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "1粒工房 ",
+        "plain_text": " cctvs cheapest setup : ",
         "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    },
-    "synced_tags": false
-  },
-  {
-    "id": "380e1eb5-ce57-801d-8f8f-f212ad8abb9d",
-    "notion_block_id": "380e1eb5-ce57-801d-8f8f-f212ad8abb9d",
-    "title": "1粒工房 cctvs cheapest setup : ease install, NER network, UWB positioning",
-    "original_notion_title": "cctvs cheapest setup : ease install, NER network, UWB positioning",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
+      },
       {
         "type": "text",
         "text": {
-          "content": "cctvs cheapest setup : ease install, NER network, UWB positioning",
+          "content": "ease install, NER network, UWB positioning",
           "link": null
         },
         "annotations": {
           "bold": false,
-          "italic": false,
+          "italic": true,
           "strikethrough": false,
           "underline": false,
           "code": false,
-          "color": "default"
+          "color": "gray"
         },
-        "plain_text": "cctvs cheapest setup : ease install, NER network, UWB positioning",
+        "plain_text": "ease install, NER network, UWB positioning",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14292,7 +15340,9 @@
     "split_batch_id": null,
     "reviewed_once": false,
     "generated_selection_processed": false,
-    "tags": {},
+    "tags": {
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
+    },
     "status": "todo",
     "metrics": {
       "estimated_time_h": null,
@@ -14300,32 +15350,53 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
+    "synced_tags": true,
+    "theme_display_label": "1粒工房",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
-    "id": "380e1eb5-ce57-804a-a9f7-dd3276c415ce",
-    "notion_block_id": "380e1eb5-ce57-804a-a9f7-dd3276c415ce",
+    "id": "382e1eb5-ce57-8129-a463-f2489e228389",
+    "notion_block_id": "382e1eb5-ce57-8129-a463-f2489e228389",
     "title": "1粒工房 客服bot",
-    "original_notion_title": "客服bot",
+    "original_notion_title": "1粒工房 客服bot",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "客服bot",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 客服bot",
           "link": null
         },
         "annotations": {
@@ -14336,15 +15407,15 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "客服bot",
+        "plain_text": " 客服bot",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14355,7 +15426,9 @@
     "split_batch_id": null,
     "reviewed_once": false,
     "generated_selection_processed": false,
-    "tags": {},
+    "tags": {
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
+    },
     "status": "todo",
     "metrics": {
       "estimated_time_h": null,
@@ -14363,32 +15436,53 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
+    "synced_tags": true,
+    "theme_display_label": "1粒工房",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
-    "id": "380e1eb5-ce57-8096-b990-fcd3bc4f18d4",
-    "notion_block_id": "380e1eb5-ce57-8096-b990-fcd3bc4f18d4",
+    "id": "382e1eb5-ce57-8198-9bfa-d03410794f43",
+    "notion_block_id": "382e1eb5-ce57-8198-9bfa-d03410794f43",
     "title": "1粒工房 Business management agent flow virtual CEO with reporting",
-    "original_notion_title": "Business management agent flow virtual CEO with reporting",
+    "original_notion_title": "1粒工房 Business management agent flow virtual CEO with reporting",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Business management agent flow virtual CEO with reporting",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Business management agent flow virtual CEO with reporting",
           "link": null
         },
         "annotations": {
@@ -14399,15 +15493,15 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "Business management agent flow virtual CEO with reporting",
+        "plain_text": " Business management agent flow virtual CEO with reporting",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14418,7 +15512,9 @@
     "split_batch_id": null,
     "reviewed_once": false,
     "generated_selection_processed": false,
-    "tags": {},
+    "tags": {
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
+    },
     "status": "todo",
     "metrics": {
       "estimated_time_h": null,
@@ -14426,32 +15522,53 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
+    "synced_tags": true,
+    "theme_display_label": "1粒工房",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
-    "id": "380e1eb5-ce57-8095-8b0c-cf3178ea739b",
-    "notion_block_id": "380e1eb5-ce57-8095-8b0c-cf3178ea739b",
+    "id": "382e1eb5-ce57-81e2-9d75-ed781c38f66e",
+    "notion_block_id": "382e1eb5-ce57-81e2-9d75-ed781c38f66e",
     "title": "1粒工房 AutoHeat Feedback Machine : heat like automatic + sense material temp?",
-    "original_notion_title": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+    "original_notion_title": "1粒工房 AutoHeat Feedback Machine : heat like automatic + sense material temp?",
     "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8010-a20c-feae5856411c",
-    "depth": 1,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
     "wbs_level": null,
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "orange"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+          "content": "1粒工房",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "orange"
+        },
+        "plain_text": "1粒工房",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " AutoHeat Feedback Machine : ",
           "link": null
         },
         "annotations": {
@@ -14462,15 +15579,32 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "AutoHeat Feedback Machine : heat like automatic + sense material temp?",
+        "plain_text": " AutoHeat Feedback Machine : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "heat like automatic + sense material temp?",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "heat like automatic + sense material temp?",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": false,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14481,7 +15615,9 @@
     "split_batch_id": null,
     "reviewed_once": false,
     "generated_selection_processed": false,
-    "tags": {},
+    "tags": {
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
+    },
     "status": "todo",
     "metrics": {
       "estimated_time_h": null,
@@ -14489,7 +15625,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": false
+    "synced_tags": true,
+    "theme_display_label": "1粒工房",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80f4-8f87-e38642232944",
@@ -14562,7 +15702,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -14571,7 +15711,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "I人工作室",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-806e-9762-f3c19a0b7ea3",
@@ -14644,7 +15788,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功"
+      "Task Theme with colour": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房"
     },
     "status": "todo",
     "metrics": {
@@ -14653,7 +15797,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "事业内功",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-8020-8c64-d380cd2671b6",
@@ -14726,7 +15874,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -14735,7 +15883,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "大事纪",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-806e-91f2-da6b0fdda77a",
@@ -14859,7 +16011,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -14868,7 +16020,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "大事纪",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8049-9114-c92ebb8b3718",
@@ -14941,7 +16097,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -14950,7 +16106,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "要剪辑のvideo",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8081-83d5-f0e724f4b4cf",
@@ -15023,7 +16183,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -15032,7 +16192,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "要剪辑のvideo",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80d4-935a-d004587db9ef",
@@ -15105,7 +16269,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -15114,7 +16278,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "大事纪",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "37ee1eb5-ce57-8013-b0a0-d491dd7f135f",
@@ -15187,7 +16355,7 @@
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
-      "Task Theme with colour": "大事纪 Fotang |"
+      "Task Theme with colour": "大事纪 Fotang | 要剪辑のvideo |"
     },
     "status": "todo",
     "metrics": {
@@ -15196,7 +16364,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "大事纪",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "36ee1eb5-ce57-80f4-bc34-f59f7ffee855",
@@ -15261,7 +16433,11 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Typhoon",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   },
   {
     "id": "362e1eb5-ce57-80f7-9fef-cf4e3e93d011",
@@ -15343,6 +16519,10 @@
       "interruption_count": 0,
       "timetaken": []
     },
-    "synced_tags": true
+    "synced_tags": true,
+    "theme_display_label": "Unknown",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
   }
 ]

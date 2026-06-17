@@ -1180,3 +1180,50 @@
 2026-06-16 06:51:52,803 | INFO | __main__ | Application log file: C:\Users\conny\Desktop\alancodespace\data\logs\yonc_agent.log
 2026-06-16 08:41:46,700 | INFO | __main__ | CLI command 'sync' started (pid=8112, cwd=C:\Users\conny\Desktop\alancodespace)
 2026-06-16 08:41:46,701 | INFO | __main__ | Application log file: C:\Users\conny\Desktop\alancodespace\data\logs\yonc_agent.log
+2026-06-17 18:42:43,882 | INFO | __main__ | CLI command 'flow' started (pid=21940, cwd=C:\Users\conny\Desktop\alancodespace)
+2026-06-17 18:42:43,888 | INFO | __main__ | Application log file: C:\Users\conny\Desktop\alancodespace\data\logs\yonc_agent.log
+2026-06-17 18:42:43,915 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-17 18:46:51,595 | INFO | state_evaluator | [Evaluator] Loaded 169 merged tasks
+2026-06-17 18:46:51,607 | INFO | state_evaluator | [Evaluator] Auto-transitioned parent task '🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker' (37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d) split_stage to 'processed' (no unreviewed generated children)
+2026-06-17 18:46:51,609 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-17 18:47:02,378 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-17 18:47:02,380 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-17 18:47:02,380 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-17 18:47:41,021 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-17 18:47:41,065 | INFO | state_evaluator | [Evaluator] Scoped 0 tasks from TIMELINER
+2026-06-17 18:47:41,084 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-17 18:47:41,085 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-17 18:47:41,180 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-17 18:47:41,183 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-17 18:47:41,227 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-17 18:47:41,229 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-17 18:47:54,359 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-17 18:47:54,363 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-17 18:47:54,370 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-17 18:47:54,373 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-17 18:47:54,376 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-17 18:47:54,382 | INFO | state_evaluator | [Evaluator] State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
+2026-06-17 18:47:54,581 | INFO | state_evaluator | [Evaluator] Saved 168 tasks to state
+2026-06-17 22:32:19,322 | INFO | __main__ | CLI command 'flow' started (pid=37444, cwd=C:\Users\conny\Desktop\alancodespace)
+2026-06-17 22:32:19,322 | INFO | __main__ | Application log file: C:\Users\conny\Desktop\alancodespace\data\logs\yonc_agent.log
+2026-06-17 22:32:19,334 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-17 22:34:51,748 | INFO | state_evaluator | [Evaluator] Loaded 168 merged tasks
+2026-06-17 22:34:51,750 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-17 22:34:51,777 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-17 22:34:51,778 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-17 22:34:51,778 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-17 22:35:07,599 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-17 22:35:07,607 | INFO | state_evaluator | [Evaluator] Scoped 0 tasks from TIMELINER
+2026-06-17 22:35:07,608 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-17 22:35:07,608 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-17 22:35:07,629 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-17 22:35:07,629 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-17 22:35:07,659 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-17 22:35:07,660 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-17 22:36:11,154 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-17 22:36:11,155 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-17 22:36:11,156 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-17 22:36:11,156 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-17 22:36:11,157 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-17 22:36:11,158 | INFO | state_evaluator | [Evaluator] State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
+2026-06-17 22:36:11,250 | INFO | state_evaluator | [Evaluator] Saved 168 tasks to state

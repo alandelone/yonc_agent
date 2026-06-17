@@ -1,0 +1,46 @@
+365e1eb5-ce57-818a-9644-d7dab69216a2: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the
+37de1eb5-ce57-81a9-9764-e329d7230f80: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis Gap 综述 : 文献综述：识别学术 Gap
+37de1eb5-ce57-810d-81fb-e818e7bd1152: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+37de1eb5-ce57-814b-8b4e-d1705a65150f: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+37de1eb5-ce57-81a4-a105-c8f35be636a1: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+37de1eb5-ce57-81ec-8120-de01cd31bdbb: T -> Thesis Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+362e1eb5-ce57-809a-8b98-f3877701cdc4: T -> Thesis proposal defense Slide : Very clear for non expert and expert to underdstand
+36be1eb5-ce57-817b-8b62-e10612371657: T -> Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行
+36be1eb5-ce57-814c-991f-dddc7b407a50: T -> Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+36be1eb5-ce57-8177-98c8-fd0ab3397bff: T -> Thesis proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+37fe1eb5-ce57-81a1-a158-fa6b4848fbc4: S -> SolarMan Apparatus Learning
+37fe1eb5-ce57-818d-a42a-e350b60aea79: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare
+37fe1eb5-ce57-811d-ba03-ff92edb11c5b: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+37fe1eb5-ce57-810e-b9eb-e520c5d325c3: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+37fe1eb5-ce57-8161-8ec4-df108bf5fb39: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+37fe1eb5-ce57-811e-bb66-e5855e9994f2: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use
+37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob
+37fe1eb5-ce57-81a4-b173-e0b79c62e8f4: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution
+37fe1eb5-ce57-812c-a045-ee41776805fc: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值
+37fe1eb5-ce57-8103-acdf-d2755590863a: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain
+37fe1eb5-ce57-81a1-81bf-e4b73b1ff152: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ Draft in my Word
+37fe1eb5-ce57-8129-8374-e4f771724232: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining
+37fe1eb5-ce57-81c3-9a37-dd210ab616d5: S -> SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus 🎯 Final Img Refine Tune
+37fe1eb5-ce57-81c1-a1cf-d4bca72c8756: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct
+37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+37fe1eb5-ce57-814f-8e22-f4868e3a2ab9: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design
+37fe1eb5-ce57-81b0-b823-d755cd59a3ce: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan power quality meter : Buildup BOM prepare & design SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+37fe1eb5-ce57-81c4-aaf5-d5972b5f239f: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design
+37fe1eb5-ce57-810f-a88a-fce3bba4108f: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+37fe1eb5-ce57-81c5-9f76-ed56bb539387: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🔬 solar irradiance module selection
+37fe1eb5-ce57-81a0-8e3a-ed30477c6259: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost
+37fe1eb5-ce57-8140-9e7e-c54847228962: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device
+37fe1eb5-ce57-813a-9c0c-eac665dc4ba7: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously
+37fe1eb5-ce57-81ca-bace-e96727b9dcf1: S -> SolarMan Apparatus Learning SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 💻Focus 💻 comp version : replicate phone version in comp
+362e1eb5-ce57-8006-ae00-e591724dd968: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format)
+37de1eb5-ce57-81fb-9785-cd757ffea108: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。
+37de1eb5-ce57-81bb-a8ec-ec0e4660f386: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+37de1eb5-ce57-8149-b758-cd55eddc1785: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。
+37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b: T -> Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+37de1eb5-ce57-80f7-bddd-de9bd0e4ce33: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+37de1eb5-ce57-80f2-906e-d65676114c69: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper
+37de1eb5-ce57-8089-889e-ca04c8cf669f: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday
+37de1eb5-ce57-80c6-88ba-cf4664e0a1fb: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days
+37de1eb5-ce57-809c-8c7c-d61676dabe62: T -> Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo Thesis Actual Deadline : detail in paper by Planning by day 推算

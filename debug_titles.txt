@@ -1,0 +1,138 @@
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the
+Orig:  Thesis  Phd Logic : clear justification on research gap, methods and validation of the
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+Orig:  Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+Orig:  Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+Orig:  Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+Orig:  Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+Orig:  Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand
+Orig:  Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+Orig:  Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+Orig:  Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+Orig:  Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+
+Title: SolarMan Apparatus Learning
+Orig:  SolarMan Apparatus Learning
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare
+Orig:  SolarMan  SKM Program Material Prepare
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+Orig:  SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+Orig:  SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+Orig:  SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use
+Orig:  SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob
+Orig:  Format Cute Manual : Ob
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution
+Orig:  error response , precaution
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值
+Orig:  Mode定义/预期值/阈值
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain
+Orig:  Action domain
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus ✍️ Draft in my Word
+Orig:  SolarMan  💻Focus ✍️ Draft in my Word
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus ✍️ GPTImg Prompt Gen Refining
+Orig:  SolarMan  💻Focus ✍️ GPTImg Prompt Gen Refining
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus 🎯 Final Img Refine Tune
+Orig:  SolarMan  💻Focus 🎯 Final Img Refine Tune
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct
+Orig:  SolarMan  T&C report express filling flow : data to report direct
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+Orig:  SolarMan  ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  power quality meter : Buildup BOM prepare & design
+Orig:  SolarMan  power quality meter : Buildup BOM prepare & design
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  power quality meter : Buildup BOM prepare & design SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+Orig:  SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design
+Orig:  SolarMan  IoT portable dash : BuildDev BOM prepare & design
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan  💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+Orig:  SolarMan  💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan  💻Focus 🔬 solar irradiance module selection
+Orig:  SolarMan  💻Focus 🔬 solar irradiance module selection
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost
+Orig:  SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device
+Orig:  SolarMan  BLE connection testing of UNI-T device
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously
+Orig:  SolarMan 小Do📱 📋 💻 phone version both simutenously
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device SolarMan  💻Focus 💻 comp version : replicate phone version in comp
+Orig:  SolarMan  💻Focus 💻 comp version : replicate phone version in comp
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format)
+Orig:  Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format)
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline: 高质量论文：满足院校答辩要求。
+Orig:  Thesis 起草与定稿Outline: 高质量论文：满足院校答辩要求。
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+Orig:  Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+Orig:  Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp4核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+Orig:  Thesis Chp4核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+Orig:  Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+Orig:  Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+Orig:  
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper
+Orig:  bef 15/6 risk averse  paper
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday
+Orig:  manual out bef holiday
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days
+Orig:  BOM of  iot portable dash with sensors and antenna this few days
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo Thesis Actual Deadline : detail in paper by Planning by day 推算
+Orig:  Thesis Actual Deadline : detail in paper by Planning by day 推算
+

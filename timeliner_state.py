@@ -1,7 +1,7 @@
 import os
 import json
 from typing import Dict, Any, Optional, Iterable, Tuple
-from datetime import datetime
+from datetime import datetime, timezone
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -293,7 +293,7 @@ def record_date_change(
     status_change = f"{old_status} \u2192 {new_status}"
     
     audit_entry = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "block_id": block_id,
         "project": str(project or "").strip(),
         "subproject": str(subproject or "").strip(),

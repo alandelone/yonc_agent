@@ -1,7 +1,7 @@
 import os
 import json
 import difflib
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 
 from config_reader import load_config, parse_daystyles, parse_daystyle_dicts
@@ -94,7 +94,7 @@ def write_today_daystyle(name: str) -> None:
 
 def _log_change(daystyle_name: str, field: str, block_id: str, before: Any, after: Any, action: str) -> None:
     log_entry = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "daystyle": daystyle_name,
         "field": field,
         "block_id": block_id,

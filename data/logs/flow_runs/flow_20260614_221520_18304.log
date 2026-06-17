@@ -1,0 +1,315 @@
+=== Flow Trace Start (2026-06-14T22:15:20) ===
+command: flow
+argv: main.py flow
+pid: 18304
+cwd: C:\Users\conny\Desktop\alancodespace
+
+[trace] Flow output is being saved to: C:\Users\conny\Desktop\alancodespace\data\logs\flow_runs\flow_20260614_221520_18304.log
+[trace] Latest flow trace shortcut: C:\Users\conny\Desktop\alancodespace\data\logs\flow_runs\flow_latest.log
+2026-06-14 22:15:20,486 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-14 22:15:20,497 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:23,240 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children HTTP/1.1" 200 None
+2026-06-14 22:15:23,258 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:28,368 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8095-b2de-d411ae904027/children HTTP/1.1" 200 None
+2026-06-14 22:15:28,381 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:31,765 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8094-9b85-f6977126cc19/children HTTP/1.1" 200 None
+2026-06-14 22:15:31,775 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:34,220 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8013-a854-e6d0437dc49c/children HTTP/1.1" 200 None
+2026-06-14 22:15:34,234 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:36,169 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-808a-a25a-c1a9a56b0713/children HTTP/1.1" 200 None
+2026-06-14 22:15:36,184 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:38,949 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803d-b413-cc4761372741/children HTTP/1.1" 200 None
+2026-06-14 22:15:38,978 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:41,567 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-aaec-f6735fda1fec/children HTTP/1.1" 200 None
+2026-06-14 22:15:41,578 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:43,469 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9896-ea4326e83210/children HTTP/1.1" 200 None
+2026-06-14 22:15:43,485 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:47,016 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e5-8103-ee26e3021f6a/children HTTP/1.1" 200 None
+2026-06-14 22:15:47,031 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:49,672 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b3-88f7-f35d4e33c949/children HTTP/1.1" 200 None
+2026-06-14 22:15:49,685 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:51,915 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8015-844f-dab5573db53b/children HTTP/1.1" 200 None
+2026-06-14 22:15:51,921 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:54,090 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-a21c-e3446ae650a9/children HTTP/1.1" 200 None
+2026-06-14 22:15:54,112 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:56,321 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8012-818b-f55e01ad10ab/children HTTP/1.1" 200 None
+2026-06-14 22:15:56,339 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:15:58,850 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-96d9-ca8c6b67c063/children HTTP/1.1" 200 None
+2026-06-14 22:15:58,885 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:01,555 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80fd-902d-c19ec0f709df/children HTTP/1.1" 200 None
+2026-06-14 22:16:01,563 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:03,613 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80cc-a754-e4ed87b4de84/children HTTP/1.1" 200 None
+2026-06-14 22:16:03,627 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:06,739 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-804d-b624-ffd4ed4af407/children HTTP/1.1" 200 None
+2026-06-14 22:16:06,757 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:09,517 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-9731-e0430b76bff7/children HTTP/1.1" 200 None
+2026-06-14 22:16:09,529 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:11,745 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80a9-9213-cfa201910082/children HTTP/1.1" 200 None
+2026-06-14 22:16:11,758 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:13,647 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-a416-dffb426d193f/children HTTP/1.1" 200 None
+2026-06-14 22:16:13,660 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:15,885 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8065-88d9-fc9164b4fed0/children HTTP/1.1" 200 None
+2026-06-14 22:16:15,899 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:18,053 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-809c-b4bf-c20eec7868ae/children HTTP/1.1" 200 None
+2026-06-14 22:16:18,069 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:20,202 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802f-9288-dc3708c7e6a4/children HTTP/1.1" 200 None
+2026-06-14 22:16:20,217 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:22,368 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807a-95c7-e9a023663c7b/children HTTP/1.1" 200 None
+2026-06-14 22:16:22,392 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:25,022 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-bb6a-ceed52613f84/children HTTP/1.1" 200 None
+2026-06-14 22:16:25,034 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:26,984 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807c-a2bf-d021a8efc6d7/children HTTP/1.1" 200 None
+2026-06-14 22:16:26,998 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:28,975 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-8b11-ef1c1606c7da/children HTTP/1.1" 200 None
+2026-06-14 22:16:28,995 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:31,986 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e6-b57b-d14ff8056b96/children HTTP/1.1" 200 None
+2026-06-14 22:16:32,034 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:34,542 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d4-abe1-d6e8d455418d/children HTTP/1.1" 200 None
+2026-06-14 22:16:34,563 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:36,484 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d2-aae2-d343c320db24/children HTTP/1.1" 200 None
+2026-06-14 22:16:36,496 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:38,517 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-801c-90cf-fb9fd3e8935e/children HTTP/1.1" 200 None
+2026-06-14 22:16:38,530 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:41,677 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807d-9871-e8cdef6db118/children HTTP/1.1" 200 None
+2026-06-14 22:16:41,695 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:45,086 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8058-9e51-ec41e351c997/children HTTP/1.1" 200 None
+2026-06-14 22:16:45,101 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:47,802 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8ae1-c31097c70588/children HTTP/1.1" 200 None
+2026-06-14 22:16:47,824 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:50,990 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b0-988d-cef674e21b74/children HTTP/1.1" 200 None
+2026-06-14 22:16:51,001 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:54,301 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-b0b0-d333999cb7d5/children HTTP/1.1" 200 None
+2026-06-14 22:16:54,316 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:16:57,259 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802a-a169-f99075372609/children HTTP/1.1" 200 None
+2026-06-14 22:16:57,431 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:00,789 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/1.1" 200 None
+2026-06-14 22:17:00,810 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:04,704 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/1.1" 200 None
+2026-06-14 22:17:04,724 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:08,602 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4/children HTTP/1.1" 200 None
+2026-06-14 22:17:08,691 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:11,914 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/1.1" 200 None
+2026-06-14 22:17:11,947 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:14,889 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80a4-8b64-c2dfba3f0232/children HTTP/1.1" 200 None
+2026-06-14 22:17:14,925 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:17,855 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-803c-a8e2-e17c712194ab/children HTTP/1.1" 200 None
+2026-06-14 22:17:17,873 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:21,921 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-808a-a20e-c20c33c14212/children HTTP/1.1" 200 None
+2026-06-14 22:17:21,940 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:26,600 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9c85-d1dfbb44255d/children HTTP/1.1" 200 None
+2026-06-14 22:17:26,613 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:29,954 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8099-a3e8-d50dc30c1891/children HTTP/1.1" 200 None
+2026-06-14 22:17:29,994 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:35,146 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-a639-f1316bb66d0a/children HTTP/1.1" 200 None
+2026-06-14 22:17:35,169 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:39,562 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8991-d62be4faefb2/children HTTP/1.1" 200 None
+2026-06-14 22:17:39,579 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:42,323 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e8-bc97-cd2041d5850a/children HTTP/1.1" 200 None
+2026-06-14 22:17:42,340 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:46,352 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8017-8f54-e489e8d1f891/children HTTP/1.1" 200 None
+2026-06-14 22:17:46,580 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:50,670 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-800b-9d9f-fa8737d12059/children HTTP/1.1" 200 None
+2026-06-14 22:17:50,694 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:53,491 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36/children HTTP/1.1" 200 None
+2026-06-14 22:17:53,512 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:17:56,336 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80f7-bddd-de9bd0e4ce33/children HTTP/1.1" 200 None
+2026-06-14 22:17:56,346 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:02,555 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0/children HTTP/1.1" 200 None
+2026-06-14 22:18:02,584 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:05,450 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea/children HTTP/1.1" 200 None
+2026-06-14 22:18:05,457 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:09,068 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8034-b148-ec4ab5b867dc/children HTTP/1.1" 200 None
+2026-06-14 22:18:09,085 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:12,021 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b/children HTTP/1.1" 200 None
+2026-06-14 22:18:12,036 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:15,313 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17/children HTTP/1.1" 200 None
+2026-06-14 22:18:15,327 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:17,765 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8084-a095-da4ab7c679c9/children HTTP/1.1" 200 None
+2026-06-14 22:18:17,779 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:20,665 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8081-837f-ec92e1ed9834/children HTTP/1.1" 200 None
+2026-06-14 22:18:20,713 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:25,779 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-804c-ba1f-cf3f581545e6/children HTTP/1.1" 200 None
+2026-06-14 22:18:25,799 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:28,689 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/1.1" 200 None
+2026-06-14 22:18:28,705 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:31,815 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/1.1" 200 None
+2026-06-14 22:18:31,834 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:34,797 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/1.1" 200 None
+2026-06-14 22:18:34,812 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:38,000 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8040-b001-c0abf3cd2c77/children HTTP/1.1" 200 None
+2026-06-14 22:18:38,031 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:42,026 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8084-ab6a-f3e589fb79c6/children HTTP/1.1" 200 None
+2026-06-14 22:18:42,048 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:44,604 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-800c-a789-e20263d03a2c/children HTTP/1.1" 200 None
+2026-06-14 22:18:44,612 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:47,232 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80d1-bcc7-e78e799bd4d5/children HTTP/1.1" 200 None
+2026-06-14 22:18:47,248 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:50,039 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80a9-85a9-ebaf96698cad/children HTTP/1.1" 200 None
+2026-06-14 22:18:50,058 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:52,511 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8035-ac4e-d7d6a87a12f0/children HTTP/1.1" 200 None
+2026-06-14 22:18:52,534 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:54,922 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8059-aebe-f0db0aa68f74/children HTTP/1.1" 200 None
+2026-06-14 22:18:54,968 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:57,386 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-802c-96ae-d630863ef9e4/children HTTP/1.1" 200 None
+2026-06-14 22:18:57,414 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:18:59,946 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-805e-b4f9-c77aeb603430/children HTTP/1.1" 200 None
+2026-06-14 22:18:59,967 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:02,712 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8046-b64d-f3ad4a6fafa6/children HTTP/1.1" 200 None
+2026-06-14 22:19:02,730 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:05,476 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-800f-b1b2-c57097a31c6d/children HTTP/1.1" 200 None
+Detected 113 changes in Notion.
+2026-06-14 22:19:05,755 | INFO | state_evaluator | [Evaluator] Loaded 173 merged tasks
+2026-06-14 22:19:05,759 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-14 22:19:05,830 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-14 22:19:05,831 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-14 22:19:05,840 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-14 22:19:06,473 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:09,501 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/1.1" 200 None
+2026-06-14 22:19:09,510 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:16,951 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/1.1" 200 None
+2026-06-14 22:19:17,001 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:19,690 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/1.1" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis / 🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-14 22:19:21,349 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:24,624 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+2026-06-14 22:19:24,725 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:29,928 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-14 22:19:29,945 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:32,717 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+2026-06-14 22:19:32,729 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:37,568 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+Pushing updates for Thesis / 🏭 Thesis 💣 thesis writing : Full thesis (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-14 22:19:37,584 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:48,019 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+2026-06-14 22:19:48,032 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:52,421 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+Pushing updates for SolarMan / 🏭 SolarMan Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-14 22:19:52,519 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:19:57,597 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+2026-06-14 22:19:57,615 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-14 22:20:03,528 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+TIMELINER sync complete.
+2026-06-14 22:20:03,575 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-14 22:20:03,597 | INFO | state_evaluator | [Evaluator] Scoped 36 tasks from TIMELINER
+2026-06-14 22:20:22,184 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-14 22:20:22,445 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 22:20:22,470 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD4A5EFFB0>
+2026-06-14 22:20:22,470 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 22:20:22,609 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD671FEDB0>
+2026-06-14 22:20:22,611 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 22:20:22,614 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 22:20:22,615 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 22:20:22,617 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 22:20:22,617 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 22:30:24,414 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-14 22:30:25,044 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 22:30:25,371 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-14 22:30:28,240 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 22:30:28,390 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C544A0>
+2026-06-14 22:30:28,400 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 22:30:28,617 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C54290>
+2026-06-14 22:30:28,622 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 22:30:28,634 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 22:30:28,636 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 22:30:28,640 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 22:30:28,641 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 22:35:42,434 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 14 Jun 2026 14:35:43 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=313536'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-14 22:35:42,562 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-14 22:35:42,590 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-14 22:35:42,600 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 22:35:42,608 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构
+{"task_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152", "title": "🟧 Thesis 理论研究框架", "description": "博士假设与研究方向的概念模型及逻辑结构。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "博士假设与研究方向的概念模型及逻辑结构。", "char_count": 20}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis 理论研究框架' (Theoretical Research Framework) represents a specific, noun-based deliverable within the doctoral project hierarchy. Its parent, 'Phd Logic', acts as a major core module (Level 2), and this task further decomposes that module into a concrete output—the conceptual model and logical structure. As it defines 'what' is being produced (a framework/model) and is a substantive component of the larger thesis work, it qualifies as a Work Package (Level 3).
+2026-06-14 22:35:43,296 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-14 22:35:43,346 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 22:35:43,349 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 22:35:43,349 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 22:35:43,351 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 22:35:43,352 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 22:45:43,515 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-14 22:45:43,574 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 22:45:43,657 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-14 22:45:44,055 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 22:45:44,208 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C57110>
+2026-06-14 22:45:44,222 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 22:45:44,740 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C56FF0>
+2026-06-14 22:45:44,758 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 22:45:44,840 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 22:45:44,841 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 22:45:44,860 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 22:45:44,861 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 22:55:45,013 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-14 22:55:45,128 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 22:55:45,145 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-14 22:55:48,481 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 22:55:48,534 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C5F7A0>
+2026-06-14 22:55:48,541 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 22:55:48,672 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C5F410>
+2026-06-14 22:55:48,675 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 22:55:48,680 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 22:55:48,680 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 22:55:48,682 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 22:55:48,683 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 23:05:48,843 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-14 23:05:48,901 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 23:05:48,916 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-14 23:05:51,188 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 23:05:51,227 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C800E0>
+2026-06-14 23:05:51,239 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 23:05:51,390 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C5FF20>
+2026-06-14 23:05:51,394 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 23:05:51,399 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 23:05:51,400 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 23:05:51,402 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 23:05:51,403 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 23:06:02,004 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 14 Jun 2026 15:06:03 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=10577'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-14 23:06:02,062 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-14 23:06:02,097 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-14 23:06:02,100 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 23:06:02,101 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)
+{"task_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f", "title": "🔶 Thesis 方法论 Design Spec", "description": "详述(研究范式, 数据采集工具, 分析流程)。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "详述(研究范式, 数据采集工具, 分析流程)。", "char_count": 23}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis 方法论 Design Spec' is a specific deliverable representing a Work Package. It is a noun-phrase focused on a verifiable result (a specification document) rather than a simple activity. In the project hierarchy, the parent 'Thesis Phd Logic' serves as a Level 2 Major Deliverable (core module), making this specific specification a Level 3 component. The scope (defining paradigms, tools, and processes) fits the 8-80 hour effort range typical for a Work Package in a PhD context, distinguishing it from Level 4 physical actions.
+2026-06-14 23:06:02,645 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-14 23:06:02,745 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 23:06:02,760 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 23:06:02,761 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 23:06:02,767 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 23:06:02,767 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 23:06:08,131 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sun, 14 Jun 2026 15:06:09 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=5372'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-14 23:06:08,143 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-14 23:06:08,149 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-14 23:06:08,149 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 23:06:08,150 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+{"task_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1", "title": "🔶 Thesis V&V 协议", "description": "验证结果(准确/可靠/显著)的标准与逻辑测试", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "验证结果(准确/可靠/显著)的标准与逻辑测试", "char_count": 22}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Thesis V&V Protocol' (协议) is a noun-based deliverable that specifies the standards and logical tests for verification. It resides under the parent 'Thesis PhD Logic' (Level 2), which represents a major module of the thesis structure. As a specific, verifiable document or framework that outlines 'what' needs to be achieved for validation, it functions as a Work Package (Level 3). It is not an activity (Level 4) because it describes the deliverable itself rather than a short-duration action (e.g., 'Drafting test case A').
+2026-06-14 23:06:08,216 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-14 23:06:08,234 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 23:06:08,238 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 23:06:08,238 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 23:06:08,241 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 23:06:08,241 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-14 23:16:08,316 | DEBUG | httpcore.http11 | receive_response_headers.failed exception=ReadTimeout(TimeoutError('The read operation timed out'))
+2026-06-14 23:16:08,346 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-14 23:16:08,399 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-14 23:16:08,513 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-14 23:16:08,542 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C81B50>
+2026-06-14 23:16:08,543 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001AD4EDAABD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-14 23:16:08,612 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001AD68C801D0>
+2026-06-14 23:16:08,614 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-14 23:16:08,616 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-14 23:16:08,617 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-14 23:16:08,618 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-14 23:16:08,618 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>

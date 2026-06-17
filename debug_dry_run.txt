@@ -1,0 +1,190 @@
+Title: Thesis  Phd Logic : clear justification on research gap, met
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Research
+
+Title: Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+theme_val: Research
+main: PhDSettle✒
+theme_str: Research
+
+Title: Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis  proposal defense Slide : Very clear for non expert a
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  wit
+theme_val: 科研人
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: SolarMan Apparatus Learning
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  SKM Program Material Prepare
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus ✍️ Draft in my Word
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus ✍️ GPTImg Prompt Gen Refining
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus 🎯 Final Img Refine Tune
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  T&C report express filling flow : data to report d
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  ExpressFlow Draw : How?  DataSource 2 report with 
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  power quality meter : Buildup BOM prepare & design
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  IoT portable dash : BuildDev BOM prepare & design
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept,
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus 🔬 solar irradiance module selection
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and co
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  BLE connection testing of UNI-T device
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan 小Do📱 📋 💻 phone version both simutenously
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: SolarMan  💻Focus 💻 comp version : replicate phone version in
+theme_val: SolarMan
+main: PhDSettle✒
+theme_str: SolarMan
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Review
+
+Title: Thesis 起草与定稿Outline: 高质量论文：满足院校答辩要求。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis Chp4核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | P
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+
+Title: Thesis Actual Deadline : detail in paper by Planning by day 
+theme_val: Thesis
+main: PhDSettle✒
+theme_str: Thesis
+

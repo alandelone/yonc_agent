@@ -1,0 +1,90 @@
+{
+  "PhDSettle✒": {
+    "name": "PhDSettle✒",
+    "sub_themes": [
+      "Research",
+      "Review",
+      "Event",
+      "SolarMan",
+      "心法",
+      "科研人",
+      "Thesis",
+      "Dev"
+    ],
+    "color": "red"
+  },
+  "鍛造Lab": {
+    "name": "鍛造Lab",
+    "sub_themes": [
+      "鍛造Maker",
+      "DZaoSpaceV1"
+    ],
+    "color": "purple"
+  },
+  "3rdWeek": {
+    "name": "3rdWeek",
+    "sub_themes": [],
+    "color": "blue"
+  },
+  "4thWeek": {
+    "name": "4thWeek",
+    "sub_themes": [],
+    "color": "green"
+  },
+  "小事业们": {
+    "name": "小事业们",
+    "sub_themes": [
+      "素食堂🍱",
+      "Aero🥦",
+      "农业⚙️🚜工作室",
+      "I人工作室",
+      "事业内功",
+      "1粒工房"
+    ],
+    "color": "orange"
+  },
+  "我流方矩": {
+    "name": "我流方矩",
+    "sub_themes": [
+      "自我",
+      "学问",
+      "学养",
+      "知识结构",
+      "self",
+      "刚体",
+      "Life",
+      "方矩v4"
+    ],
+    "color": "yellow"
+  },
+  "大事纪": {
+    "name": "大事纪",
+    "sub_themes": [
+      "Fotang",
+      "要剪辑のvideo"
+    ],
+    "color": "gray"
+  },
+  "关系": {
+    "name": "关系",
+    "sub_themes": [
+      "恋爱",
+      "婚姻",
+      "家庭"
+    ],
+    "color": "pink"
+  },
+  "Typhoon": {
+    "name": "Typhoon",
+    "sub_themes": [
+      "SmallAct",
+      "Headache"
+    ],
+    "color": "brown"
+  },
+  "Unknown": {
+    "name": "Unknown",
+    "sub_themes": [],
+    "color": "brown"
+  }
+}

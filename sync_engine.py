@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict, Any
 from state_manager import load_state, STATE_FILE, CURRENT_STATE_FILE, save_state
 
@@ -99,7 +99,7 @@ def log_generated_preference_diff(
     This dataset can be used for future split optimization.
     """
     log_entry = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "action": action,
         "task_id": task.get("notion_block_id") or task.get("id"),
         "source_task_id": before.get("task_id"),
@@ -119,7 +119,7 @@ def log_conflict(task_id: str, task_title: str, field: str, old_value: Any, new_
     Log preference drift and manual overrides to tunable.jsonl
     """
     log_entry = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "task_id": task_id,
         "task_title": task_title,
         "field": field,
@@ -822,9 +822,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         depth: Any,
         total_tracked_hours: float = 0.0,
         is_hierarchically_complete: bool = False,
-        links: List[Dict[str, str]] | None = None
+        links: List[Dict[str, str]] | None = None,
+        extra_emojis: List[str] = None
     ) -> tuple[List[Dict[str, Any]], str]:
         emojis = _ordered_visible_tag_emojis(tags)
+        if extra_emojis:
+            for e in extra_emojis:
+                if e not in emojis:
+                    emojis.append(e)
         if emojis:
             emojis_str = "".join(emojis)
             for e in emojis:
@@ -870,6 +875,20 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             task_by_id[tid] = t
         if pid:
             children_map.setdefault(pid, []).append(t)
+
+    # Auto-transition parent split_stage to 'processed' if no unreviewed generated children remain
+    # This covers manual deletion of all generated children or when they have all been processed/selected.
+    for task in enriched_state:
+        if str(task.get("split_stage", "none")).lower() == "suggested":
+            pid = str(task.get("notion_block_id") or task.get("id") or "")
+            children = children_map.get(pid, [])
+            unreviewed_generated = [
+                c for c in children
+                if bool(c.get("is_generated")) and not bool(c.get("generated_selection_processed", False))
+            ]
+            if not unreviewed_generated:
+                task["split_stage"] = "processed"
+
 
     def _normalize_state_block_type(task: Dict[str, Any]) -> str:
         block_type = str(task.get("notion_type") or task.get("type") or "paragraph")
@@ -1020,21 +1039,42 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         is_selected_generated_l4 = selection_mode and bool(checked) and wbs_level == 4
 
         # No tags: only do a lightweight cleanup for stale WBS prefix text.
-        if not tags:
+        # BUT if the title contains a known theme name OR has manual tag styles, we MUST process it to apply/preserve the badge!
+        has_fallback_theme = False
+        plain_title_trimmed = original_title.strip()
+        for t_name, t_data in themes.items():
+            if t_name and t_name in plain_title_trimmed:
+                has_fallback_theme = True
+                break
+            for st in t_data.get("sub_themes", []):
+                if st and st in plain_title_trimmed:
+                    has_fallback_theme = True
+                    break
+            if has_fallback_theme:
+                break
+
+        if not tags and not has_fallback_theme and not bool(task.get("has_tag_style", False)):
             if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
                 continue
 
             clean_title = re.sub(r'^\[.*?\]\s*', '', original_title).strip()
             clean_title = _strip_stale_prefix_emojis(clean_title)
             should_normalize_style = bool(task.get("has_tag_style", False))
-            if clean_title == original_title and not should_normalize_style:
+            if clean_title == original_title and not should_normalize_style and not wbs_emoji:
                 continue
 
-            rich_text = [{
+            rich_text = []
+            if wbs_emoji:
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": wbs_emoji + " "},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
+            rich_text.append({
                 "type": "text",
                 "text": {"content": clean_title},
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            }]
+            })
             content_payload = {
                 block_type: {
                     "rich_text": rich_text,
@@ -1170,14 +1210,21 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         )
 
         # Bypass formatting for unselected suggested tasks so they don't get compacted or restyled
+        # But do not bypass if we need to restore/prepend or strip the unreviewed generated prefix "🤖💬🔜"
+        needs_generated_prefix_restore = is_generated and not generated_selection_processed and "🤖💬🔜" not in original_title
+        needs_generated_prefix_strip = is_generated and generated_selection_processed and "🤖💬🔜" in original_title
         if (
             is_generated
             and not is_pending_selection_change
             and not needs_processed_l4_wbs_restore
             and not needs_processed_l4_mode_tasktype_restore
+            and not needs_generated_prefix_restore
+            and not needs_generated_prefix_strip
         ):
             task["synced_tags"] = True
             continue
+
+
 
         # Check if WBS emoji or Priority emojis are missing or stale
         wbs_val = tags.get("WBS level", "")
@@ -1209,6 +1256,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         
         # Clean previous generated prefixes to prevent stacking
         clean_title = original_title
+        if "🤖💬🔜" in clean_title:
+            clean_title = clean_title.replace("🤖💬🔜", "")
         # Remove [emoji_block] if any
         clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
         # Strip all known prefix emojis to ensure no stale or misplaced emojis remain
@@ -1219,8 +1268,59 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         rich_text = []
         wbs_val = tags.get("WBS level", "")
         wbs_emoji = _extract_emoji(wbs_val)
+        if not wbs_emoji:
+            for _, wbs_entry in structured_cfg.get("wbs_levels", {}).items():
+                wbs_raw = wbs_entry.get("raw") or wbs_entry.get("emoji", "") if isinstance(wbs_entry, dict) else str(wbs_entry)
+                e = _extract_emoji(wbs_raw)
+                if e and e in original_title:
+                    wbs_emoji = e
+                    break
+
         theme_val = tags.get("Task Theme with colour", "")
+        custom_theme_color = "default"
+
+        if not theme_val:
+            for t_name in themes.keys():
+                if t_name and t_name in original_title:
+                    theme_val = t_name
+                    break
+            if not theme_val:
+                for t_name, t_data in themes.items():
+                    for st in t_data.get("sub_themes", []):
+                        if st and st in original_title:
+                            theme_val = st
+                            break
+                    if theme_val:
+                        break
+
+        # Fallback: extract manually typed Theme and WBS from original rich text
+        if is_generated and not is_selected_generated_l4:
+            # We enforce standard inheritance for generated rows: 
+            # if parent has theme X, we don't repeat X on child.
+            # However, if the user manually typed the theme at the beginning of the title, we KEEP it as a badge.
+            if theme_str and not original_title.strip().startswith(theme_str):
+                theme_str = ""
+        if task.get("notion_rich_text"):
+            for rt in task["notion_rich_text"]:
+                if rt.get("type") == "text":
+                    annos = rt.get("annotations", {})
+                    rt_content = rt.get("text", {}).get("content", "").strip()
+                    # A standalone emoji at the start is likely a WBS emoji if missing
+                    if not wbs_emoji and len(rt_content) <= 3 and _extract_emoji(rt_content):
+                        wbs_emoji = _extract_emoji(rt_content)
+                    # Themes are bold and code
+                    if not theme_val and annos.get("code") and annos.get("bold") and rt_content:
+                        theme_val = rt_content
+                        custom_theme_color = annos.get("color", "default")
+
         mode_val = tags.get("Modes", "")
+        
+        if not mode_val:
+            for mode_cfg in structured_cfg.get("modes", []):
+                m_name = mode_cfg.get("mode_name", "")
+                if m_name and m_name in clean_title:
+                    mode_val = m_name
+                    break
         
         target_color = "default"
         theme_str = ""
@@ -1233,7 +1333,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             
             # Fallback 1: 鐢ㄦ竻鐞嗗悗鐨勬爣棰橀璇嶏紙鍘绘帀宸叉湁涓婚鍚嶅拰 mode 鍚嶏級鍋?context
             if not context_heading and clean_title:
-                # 鍏堜粠 clean_title 涓幓鎺夋墍鏈夊凡鐭ヤ富棰樺悕锛岄伩鍏嶄箣鍓嶉敊璇帹閫佺殑涓婚鍚嶅惊鐜紶鎾?
+                # 鍏堜粠 clean_title 涓幓鎺夋墍鏈夊凡鍐欎富棰樺悕锛岄伩鍏嶄箣鍓嶉敊璇帹閫佺殑涓婚鍚嶅惊鍜悕 涓?
                 fallback_title = clean_title
                 for t_name in themes.keys():
                     fallback_title = fallback_title.replace(t_name, "").strip()
@@ -1249,8 +1349,24 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         
             if main_theme_name in themes:
                 target_color = themes[main_theme_name].get("color", "default")
+            else:
+                target_color = custom_theme_color
+                for t_name, t_data in themes.items():
+                    if main_theme_name in t_data.get("sub_themes", []):
+                        target_color = t_data.get("color", "default")
+                        main_theme_name = t_name
+                        break
 
             theme_str = _resolve_display_theme_label(task, main_theme_name)
+            
+            should_strip_theme_label_from_title = True
+            if is_generated and not is_selected_generated_l4:
+                # We enforce standard inheritance for generated rows: 
+                # if parent has theme X, we don't repeat X on child.
+                # However, if the user manually typed the theme at the beginning of the title, we KEEP it as a badge.
+                if theme_str and not original_title.strip().startswith(theme_str):
+                    theme_str = ""
+            
             if main_theme_name in themes:
                 known_sub_themes = set(themes[main_theme_name].get("sub_themes", []))
                 if theme_str and theme_str != main_theme_name and theme_str not in known_sub_themes:
@@ -1273,7 +1389,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 if theme_str == main_theme_name:
                     theme_str = ""
                             
-            # 绉婚櫎鎵€鏈夊凡鐭ヤ富棰樺悕锛岄槻姝箣鍓嶉敊璇帹閫佺殑涓婚鍚嶆畫鐣?
+            # 绉婚櫎鎵€鏈夊凡鍐欎富棰樺悕锛岄槻姝箣鍓嶉敊璇帹閫佺殑涓婚鍚嶆畫鐣?
             for t_name in themes.keys():
                 if t_name and t_name in clean_title:
                     clean_title = clean_title.replace(t_name, "").strip()
@@ -1286,11 +1402,12 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if wbs_emoji:
             if wbs_emoji in clean_title:
                 clean_title = clean_title.replace(wbs_emoji, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": wbs_emoji + " "},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
+            if wbs_emoji and not is_pending_selection_change:
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": wbs_emoji + " "},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
 
         # 1. Theme formatting
         if theme_str:
@@ -1352,6 +1469,14 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     is_hierarchically_complete = True
                     total_tracked_hours = _calculate_total_hours(str(block_id))
 
+        if is_generated and not generated_selection_processed:
+            clean_title = f"🤖💬🔜{clean_title}"
+
+        detected_emojis = []
+        for e in known_prefix_emojis:
+            if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
+                detected_emojis.append(e)
+
         rich_text, _visible_title = _render_standard_row_tail(
             rich_text=rich_text,
             tags=tags,
@@ -1361,6 +1486,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             total_tracked_hours=total_tracked_hours,
             is_hierarchically_complete=is_hierarchically_complete,
             links=task.get("links") if isinstance(task.get("links"), list) else None,
+            extra_emojis=detected_emojis
         )
         
         content_payload = {

@@ -250,8 +250,8 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "notion_block_id": "generated-l2",
                 "type": "todo",
                 "notion_type": "to_do",
-                "title": "Maker Sprint generated module",
-                "original_notion_title": "generated module",
+                "title": "Maker Sprint 🤖💬🔜generated module",
+                "original_notion_title": "🤖💬🔜generated module",
                 "tags": {
                     "Task Theme with colour": "Maker Sprint|Design",
                     "WBS level": "2锔忊儯 | Level 2",
@@ -264,6 +264,7 @@ class TestReviewedStageTransitions(unittest.TestCase):
                 "generated_selection_processed": False,
             }
         ]
+
 
         with patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}) as mock_bullet, \
              patch("notion_client.update_block", return_value={}) as mock_update, \
@@ -578,6 +579,205 @@ class TestReviewedStageTransitions(unittest.TestCase):
         self.assertIn("Focus", rendered)
         self.assertIn("🔍", rendered)
 
+    def test_unreviewed_generated_task_gets_prefix(self):
+        config = {
+            "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
+            "Priority": [],
+        }
+        state = [
+            {
+                "id": "g-unreviewed",
+                "notion_block_id": "g-unreviewed",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task",
+                "original_notion_title": "task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "wbs_level": None,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": False,
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update:
+            push_tags_to_notion(state, config)
+
+        self.assertTrue(mock_update.called)
+        payload = mock_update.call_args.args[1]
+        rich_text = payload["to_do"]["rich_text"]
+        rendered = "".join(seg.get("text", {}).get("content", "") for seg in rich_text)
+        self.assertIn("🤖💬🔜", rendered)
+
+    def test_reviewed_generated_task_strips_prefix(self):
+        config = {
+            "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
+            "Priority": [],
+        }
+        state = [
+            {
+                "id": "g-reviewed",
+                "notion_block_id": "g-reviewed",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint 🤖💬🔜task",
+                "original_notion_title": "🤖💬🔜task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "wbs_level": None,
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": True,
+                "synced_tags": False,
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update:
+            push_tags_to_notion(state, config)
+
+        self.assertTrue(mock_update.called)
+        payload = mock_update.call_args.args[1]
+        rich_text = payload["to_do"]["rich_text"]
+        rendered = "".join(seg.get("text", {}).get("content", "") for seg in rich_text)
+        self.assertNotIn("🤖💬🔜", rendered)
+
+    def test_parent_auto_transitions_split_stage(self):
+        config = {
+            "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
+            "Priority": [],
+        }
+        state = [
+            {
+                "id": "parent-task",
+                "notion_block_id": "parent-task",
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "title": "Maker Sprint Parent Task",
+                "original_notion_title": "Parent Task",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "parent_id": "root",
+                "split_stage": "suggested",
+            },
+            {
+                "id": "human-child",
+                "notion_block_id": "human-child",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint Human child",
+                "original_notion_title": "Human child",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "parent_id": "parent-task",
+                "is_generated": False,
+            },
+            {
+                "id": "generated-reviewed-child",
+                "notion_block_id": "generated-reviewed-child",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint Generated reviewed child",
+                "original_notion_title": "Generated reviewed child",
+                "tags": {
+                    "Task Theme with colour": "Maker Sprint|Design",
+                },
+                "parent_id": "parent-task",
+                "is_generated": True,
+                "generated_selection_processed": True,
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}):
+            push_tags_to_notion(state, config)
+
+        self.assertEqual("processed", state[0]["split_stage"])
+
+    def test_human_sibling_is_not_deleted_during_selection_mode(self):
+        config = {
+            "Task Theme with colour": [{"text": "Maker Sprint|Design", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["1️⃣ | Level 1", "2️⃣ | Level 2", "3️⃣ | Level 3", "4️⃣ | Level 4"],
+            "Priority": [],
+        }
+        state = [
+            {
+                "id": "g-checked",
+                "notion_block_id": "g-checked",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task 1",
+                "original_notion_title": "task 1",
+                "tags": {"Task Theme with colour": "Maker Sprint|Design"},
+                "parent_id": "p1",
+                "checked": True,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": False,
+            },
+            {
+                "id": "g-unchecked",
+                "notion_block_id": "g-unchecked",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint task 2",
+                "original_notion_title": "task 2",
+                "tags": {"Task Theme with colour": "Maker Sprint|Design"},
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": True,
+                "origin": "generated",
+                "generated_selection_processed": False,
+            },
+            {
+                "id": "h-unchecked",
+                "notion_block_id": "h-unchecked",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Maker Sprint human task",
+                "original_notion_title": "human task",
+                "tags": {"Task Theme with colour": "Maker Sprint|Design"},
+                "parent_id": "p1",
+                "checked": False,
+                "is_generated": False,
+                "origin": "human",
+            }
+        ]
+
+        deleted_ids = []
+        def mock_delete(block_id):
+            deleted_ids.append(block_id)
+            return {}
+
+        with patch("notion_client.delete_block", side_effect=mock_delete), \
+             patch("notion_client.update_block", return_value={}), \
+             patch("notion_client.replace_with_bullet", return_value={"id": "new-bullet"}):
+            push_tags_to_notion(state, config)
+
+        # The unchecked generated task should be deleted
+        self.assertIn("g-unchecked", deleted_ids)
+        self.assertTrue(state[1].get("deleted"))
+
+        # The unchecked human task should NOT be deleted
+        self.assertNotIn("h-unchecked", deleted_ids)
+        self.assertNotEqual(True, state[2].get("deleted"))
+
 
 if __name__ == "__main__":
     unittest.main()
+
+

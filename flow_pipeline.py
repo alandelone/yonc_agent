@@ -2,7 +2,7 @@ import copy
 import logging
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Set, Tuple
 
 from block_info_reader import build_split_context, build_state_indexes
@@ -613,7 +613,7 @@ def _split_scoped_tasks(
         created_subtasks = push_subtasks_to_notion(task_id, deduped, parent_theme, parent_theme_color)
         _register_generated_subtasks(state, task, created_subtasks)
         task["split_stage"] = "suggested"
-        task["split_batch_id"] = datetime.utcnow().isoformat() + "Z"
+        task["split_batch_id"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         parent_task_count += 1
         subtask_count += len(deduped)
 

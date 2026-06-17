@@ -12,7 +12,7 @@ STATE_FILE = os.path.join(DATA_DIR, "tasklist_state.json")
 CURRENT_STATE_FILE = os.path.join(DATA_DIR, "current_state.json")
 TASKLIST_HISTORY_FILE = os.path.join(DATA_DIR, "tasklist_history.jsonl")
 
-def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inherit_context: str = "") -> List[Dict[str, Any]]:
+def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inherit_context: str = "", inherit_is_content_block: bool = False) -> List[Dict[str, Any]]:
     """
     Flattens the hierarchical task tree into a flat list of objects.
     Appends parent title to child bullet items to form a combined title.
@@ -32,6 +32,8 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "toggle": "toggle",
         }
         task_type = type_map.get(block_type, block_type)
+        
+        current_is_content_block = (block_type in {"quote"}) or inherit_is_content_block
         
         # Create a deep copy of the node properties
         flat_node = {
@@ -54,7 +56,7 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
             "last_edited_by_id": node.get("last_edited_by_id", ""),
             "is_generated": node.get("is_generated", False),
             "origin": node.get("origin", "human"),
-            "is_content_block": block_type in {"quote"},
+            "is_content_block": current_is_content_block,
             "timeliner_key": None,
             "timeliner_rank": None,
             "wbs_source": None,
@@ -76,7 +78,7 @@ def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inhe
         
         # Recursively flatten children, passing down the combined title as prefix
         if "children" in node and node["children"]:
-            flat_list.extend(flatten_tree(node["children"], parent_title_prefix=combined_title, inherit_context=current_context))
+            flat_list.extend(flatten_tree(node["children"], parent_title_prefix=combined_title, inherit_context=current_context, inherit_is_content_block=current_is_content_block))
             
     return flat_list
 

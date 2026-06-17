@@ -143,14 +143,13 @@ def evaluate_block_state(
     if not priority_tag:
         return BlockState.SEQUENCED
 
-    # ── EXPANDING：WBS < 4 且没有子节点且从未拆解过
+    # ── EXPANDING：WBS < 4 且从未拆解过
     children = children_by_parent.get(tid, [])
     if isinstance(wbs_level, int) and wbs_level < 4:
-        has_no_children = len(children) == 0
         never_split = split_stage not in _ALREADY_SPLIT_STAGES
         not_generated = not is_generated  # 不拆解 LLM 生成的任务
 
-        if has_no_children and never_split and (not is_generated or generated_selection_processed):
+        if never_split and (not is_generated or generated_selection_processed):
             return BlockState.EXPANDING
 
     # ── HUMAN_REVIEW：有 LLM 生成的子任务但尚未被人类审阅
@@ -366,6 +365,23 @@ def run_evaluator() -> List[Dict[str, Any]]:
     state = merge_states(notion_tree, working_state)
     _log("Evaluator", f"Loaded {len(state)} merged tasks")
 
+    # Auto-transition parent split_stage to 'processed' if no unreviewed generated children remain
+    # This covers manual deletion of all generated children or when they have all been processed/selected.
+    from block_info_reader import build_state_indexes
+    _, children_by_parent = build_state_indexes(state)
+    for task in state:
+        if str(task.get("split_stage", "none")).lower() == "suggested":
+            tid = str(task.get("notion_block_id") or task.get("id") or "")
+            children = children_by_parent.get(tid, [])
+            unreviewed_generated = [
+                c for c in children
+                if bool(c.get("is_generated")) and not bool(c.get("generated_selection_processed", False))
+            ]
+            if not unreviewed_generated:
+                task["split_stage"] = "processed"
+                _log("Evaluator", f"Auto-transitioned parent task '{_task_title(task)}' ({tid}) split_stage to 'processed' (no unreviewed generated children)")
+
+
     # ── Step 1: RAW -> Theme 解析 ──
     _log("Evaluator", "Phase: Theme Resolution")
     from llm_pipeline import theme_pass
@@ -484,7 +500,7 @@ def run_evaluator() -> List[Dict[str, Any]]:
             _register_generated_subtasks,
             _resolve_parent_theme_for_split,
         )
-        from datetime import datetime
+        from datetime import datetime, timezone
 
         parent_theme, parent_theme_color = _resolve_parent_theme_for_split(
             task, structured_cfg
@@ -494,7 +510,7 @@ def run_evaluator() -> List[Dict[str, Any]]:
         )
         _register_generated_subtasks(state, task, created_subtasks)
         task["split_stage"] = "suggested"
-        task["split_batch_id"] = datetime.utcnow().isoformat() + "Z"
+        task["split_batch_id"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         split_parent_count += 1
         split_subtask_count += len(deduped)
 

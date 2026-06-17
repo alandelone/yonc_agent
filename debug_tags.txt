@@ -1,0 +1,138 @@
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the
+Tags: None
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis Research Gap 综述 : 文献综述：识别学术 Gap
+Tags: None
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+Tags: None
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。
+Tags: None
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+Tags: None
+
+Title: Thesis  Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+Tags: None
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand
+Tags: None
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with 科研人 の知行
+Tags: None
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  起草入门Slides : 类比+白话解释研究背景及意义，Scripting。
+Tags: None
+
+Title: Thesis  proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus  重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+Tags: None
+
+Title: SolarMan Apparatus Learning
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus ✍️ Draft in my Word
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus ✍️ GPTImg Prompt Gen Refining
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  SKM Program Material Prepare SolarMan  TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan  💻Focus 🎯 Final Img Refine Tune
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  ExpressFlow Draw : How?  DataSource 2 report with exe/docker
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  power quality meter : Buildup BOM prepare & design
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  power quality meter : Buildup BOM prepare & design SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan  💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan  💻Focus 🔬 solar irradiance module selection
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously
+Tags: None
+
+Title: SolarMan Apparatus Learning SolarMan  T&C report express filling flow : data to report direct SolarMan  BLE connection testing of UNI-T device SolarMan  💻Focus 💻 comp version : replicate phone version in comp
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format)
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline: 高质量论文：满足院校答辩要求。
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis Chp4核心讨论 Draft 完成 : 综合结果：回答核心研究问题及假设。
+Tags: None
+
+Title: Thesis  Thesis writing :  parallel by chapter  ( FinalComGen>review>format) Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo bef 15/6 risk averse  paper
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo manual out bef holiday
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo BOM of  iot portable dash with sensors and antenna this few days
+Tags: None
+
+Title: Thesis Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo Thesis Actual Deadline : detail in paper by Planning by day 推算
+Tags: None
+

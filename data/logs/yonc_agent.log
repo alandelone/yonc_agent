@@ -1227,3 +1227,164 @@
 2026-06-17 22:36:11,157 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
 2026-06-17 22:36:11,158 | INFO | state_evaluator | [Evaluator] State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
 2026-06-17 22:36:11,250 | INFO | state_evaluator | [Evaluator] Saved 168 tasks to state
+2026-06-18 14:36:22,164 | INFO | __main__ | CLI command 'flow' started (pid=83024, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-18 14:36:22,165 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-18 14:36:22,166 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-18 14:37:08,297 | INFO | state_evaluator | [Evaluator] Loaded 168 merged tasks
+2026-06-18 14:37:08,297 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-18 14:37:08,300 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-18 14:37:08,301 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-18 14:37:08,301 | INFO | flow_pipeline | [Evaluator] TIMELINER cache found and fresh (timeliner_state.json)
+2026-06-18 14:37:08,302 | INFO | state_evaluator | [Evaluator] Scoped 0 tasks from TIMELINER
+2026-06-18 14:37:08,303 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-18 14:37:08,303 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-18 14:37:08,308 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-18 14:37:08,308 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-18 14:37:08,313 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-18 14:37:08,314 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-18 14:37:46,444 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-18 14:37:46,445 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-18 14:37:46,445 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-18 14:37:46,445 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-18 14:37:46,445 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-18 14:37:46,445 | INFO | state_evaluator | [Evaluator] State distribution: {'SCOPED': 32, 'SKIP': 9, 'STRUCTURED': 127}
+2026-06-18 14:37:46,461 | INFO | state_evaluator | [Evaluator] Saved 168 tasks to state
+2026-06-18 15:25:45,009 | INFO | __main__ | CLI command 'flow' started (pid=75740, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-18 15:25:45,010 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-18 15:25:45,011 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-18 15:26:27,405 | INFO | state_evaluator | [Evaluator] Loaded 168 merged tasks
+2026-06-18 15:26:27,406 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-18 15:26:27,409 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-18 15:26:27,409 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-18 15:26:27,409 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-18 15:26:38,443 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-18 15:26:38,444 | INFO | state_evaluator | [Evaluator] Scoped 34 tasks from TIMELINER
+2026-06-18 15:26:38,445 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-18 15:26:38,445 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-18 15:26:38,450 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-18 15:26:38,450 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-18 15:26:38,455 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-18 15:26:38,456 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-18 15:27:15,877 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-18 15:27:15,877 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-18 15:27:16,058 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-18 15:40:51,639 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-18 15:55:47,561 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+2026-06-18 15:56:12,968 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+2026-06-18 15:56:27,688 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 2/1500)
+2026-06-18 15:56:45,251 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 2/1500)
+2026-06-18 15:57:29,681 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 3/1500)
+2026-06-18 15:57:43,119 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+2026-06-18 15:57:58,391 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 4/1500)
+2026-06-18 15:58:31,673 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+2026-06-18 15:59:00,665 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+2026-06-18 15:59:31,290 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+2026-06-18 15:59:50,886 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-18 16:07:33,936 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+2026-06-18 16:15:54,134 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+2026-06-18 16:16:07,999 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+2026-06-18 16:16:38,437 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+2026-06-18 16:17:16,274 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+2026-06-18 16:17:45,698 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+2026-06-18 16:19:26,292 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+2026-06-18 16:19:57,992 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+2026-06-18 16:21:11,552 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+2026-06-18 16:21:27,632 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+2026-06-18 16:21:37,737 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 10/1500)
+2026-06-18 16:21:57,691 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+2026-06-18 16:22:23,542 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 11/1500)
+2026-06-18 16:22:36,559 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+2026-06-18 16:23:17,582 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 12/1500)
+2026-06-18 16:23:35,989 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 13/1500)
+2026-06-18 16:23:47,721 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 13/1500)
+2026-06-18 16:24:07,574 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+2026-06-18 16:24:24,835 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+2026-06-18 16:32:18,870 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 14/1500)
+2026-06-18 16:32:31,931 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 14/1500)
+2026-06-18 16:32:49,118 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 15/1500)
+2026-06-18 16:33:03,345 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 15/1500)
+2026-06-18 16:33:19,848 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 16/1500)
+2026-06-18 16:33:29,046 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 16/1500)
+2026-06-18 16:33:43,466 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 17/1500)
+2026-06-18 16:34:00,395 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 17/1500)
+2026-06-18 16:34:21,993 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 18/1500)
+2026-06-18 16:34:36,050 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 18/1500)
+2026-06-18 16:35:00,804 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 19/1500)
+2026-06-18 16:35:27,434 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 19/1500)
+2026-06-18 16:35:46,991 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 4/20)
+2026-06-18 16:52:51,611 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 4/20)
+2026-06-18 16:58:30,864 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 20/1500)
+2026-06-18 16:58:42,005 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 20/1500)
+2026-06-18 16:58:56,168 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 21/1500)
+2026-06-18 16:59:34,141 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 21/1500)
+2026-06-18 16:59:49,486 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 22/1500)
+2026-06-18 17:00:00,342 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 22/1500)
+2026-06-18 17:00:24,482 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 23/1500)
+2026-06-18 17:00:50,314 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 23/1500)
+2026-06-18 17:01:04,567 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 24/1500)
+2026-06-18 17:01:39,521 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 24/1500)
+2026-06-18 17:01:53,348 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 25/1500)
+2026-06-18 17:02:04,497 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 25/1500)
+2026-06-18 17:02:15,775 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 26/1500)
+2026-06-18 17:03:50,686 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 26/1500)
+2026-06-18 17:04:09,954 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 27/1500)
+2026-06-18 17:04:44,317 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 27/1500)
+2026-06-18 17:05:03,819 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 28/1500)
+2026-06-18 17:05:35,942 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 28/1500)
+2026-06-18 17:05:48,704 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 29/1500)
+2026-06-18 17:06:27,612 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 29/1500)
+2026-06-18 17:06:44,899 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 5/20)
+2026-06-18 17:06:47,392 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 5/20)
+2026-06-18 17:07:20,046 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 30/1500)
+2026-06-18 17:07:43,569 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 30/1500)
+2026-06-18 17:08:37,422 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 31/1500)
+2026-06-18 17:09:16,844 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 31/1500)
+2026-06-18 17:09:36,629 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 32/1500)
+2026-06-18 17:10:04,336 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 32/1500)
+2026-06-18 17:10:19,092 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 33/1500)
+2026-06-18 17:10:40,098 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 33/1500)
+2026-06-18 17:11:05,445 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 34/1500)
+2026-06-18 17:11:24,522 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 34/1500)
+2026-06-18 17:11:43,166 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 6/20)
+2026-06-18 17:12:47,547 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 6/20)
+2026-06-18 17:13:15,972 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 35/1500)
+2026-06-18 17:13:27,991 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 35/1500)
+2026-06-18 17:13:45,832 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 36/1500)
+2026-06-18 17:14:18,781 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 36/1500)
+2026-06-18 17:14:42,280 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 37/1500)
+2026-06-18 17:18:51,769 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 37/1500)
+2026-06-18 17:19:06,027 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 38/1500)
+2026-06-18 17:19:22,519 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 38/1500)
+2026-06-18 17:19:34,196 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 39/1500)
+2026-06-18 17:19:47,292 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 39/1500)
+2026-06-18 17:19:59,185 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 40/1500)
+2026-06-18 17:20:08,897 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 40/1500)
+2026-06-18 17:20:24,005 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 7/20)
+2026-06-18 17:25:19,137 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 7/20)
+2026-06-18 17:25:39,824 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 41/1500)
+2026-06-18 17:25:50,290 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 41/1500)
+2026-06-18 17:26:08,919 | INFO | state_evaluator | [Evaluator] Split pass: 41 subtasks across 7 parents
+2026-06-18 17:26:08,919 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-18 17:26:08,920 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 8/20)
+2026-06-18 17:26:12,922 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 8/20)
+2026-06-18 17:26:32,403 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 9/20)
+2026-06-18 17:27:37,398 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 9/20)
+2026-06-18 17:27:52,577 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 10/20)
+2026-06-18 17:28:07,069 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-18 17:28:28,198 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 11/20)
+2026-06-18 17:28:31,286 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 10/20)
+2026-06-18 17:28:34,497 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+2026-06-18 17:28:59,564 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 12/20)
+2026-06-18 17:29:02,912 | INFO | state_evaluator | [Evaluator] Mode/TaskType inferred for 10 tasks
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator] State distribution: {'HUMAN_REVIEW': 9, 'SEQUENCED': 9, 'READY': 12, 'SKIP': 9, 'SCOPED': 2, 'STRUCTURED': 127, 'RAW': 41}
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator] Halted blocks requiring human action (9):
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🏭 Thesis Phd Logic : clear justification
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🏭 Thesis proposal defense Slide : Very c
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 SolarMan SKM Program Material Prepare
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C i
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 SolarMan T&C report express filling fl
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan power quality meter : Buildup
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan IoT portable dash : BuildDev 
+2026-06-18 17:29:46,850 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 SolarMan BLE connection testing of UNI
+2026-06-18 17:29:46,870 | INFO | state_evaluator | [Evaluator] Saved 209 tasks to state

@@ -64,6 +64,72 @@ if notion_type in ("to_do", "todo") and checked is True and not (
     return BlockState.COMPLETED
 ```
 
+# Block Lifecycle States — `python main.py flow`
+
+> **Engine**: [`state_evaluator.py`](../state_evaluator.py) · `evaluate_block_state()`
+>
+> This document describes the **state-driven architecture** that replaced the legacy `flow-l1 / l2 / l3` pipeline.  
+> Each Notion block is evaluated independently. The system identifies what the block is **missing**, then applies only the specific transform needed to advance it.
+
+---
+
+## Overview Diagram
+
+```mermaid
+graph LR
+    RAW --> STRUCTURED
+    STRUCTURED --> SCOPED
+    SCOPED --> SEQUENCED
+    SEQUENCED --> EXPANDING
+    EXPANDING --> HUMAN_REVIEW
+    HUMAN_REVIEW -->|human checks ✅| PHASING_WAIT
+    PHASING_WAIT -->|human assigns 1️⃣2️⃣| ACTIONABLE_PENDING
+    ACTIONABLE_PENDING --> READY
+    READY -->|human checks ☑️| COMPLETED
+
+    style RAW fill:#ff6b6b,color:#fff
+    style HUMAN_REVIEW fill:#ffd93d,color:#333
+    style PHASING_WAIT fill:#ffd93d,color:#333
+    style READY fill:#6bcb77,color:#fff
+    style COMPLETED fill:#4d96ff,color:#fff
+```
+
+> 🟡 Yellow = **Halted (waiting for human)**  
+> 🔴 Red = **Unprocessed**  
+> 🟢 Green = **Ready for execution**  
+> 🔵 Blue = **Done**
+
+---
+
+## State Definitions
+
+Each state below documents:
+1. **What the system reads** (Pattern Recognition — exact field checks)
+2. **What the system does** (Action)
+
+The evaluation order matters — the first matching state wins (top-down priority).
+
+---
+
+### `COMPLETED`
+
+> **Evaluation Priority: 1st (checked first)**
+
+| Aspect | Detail |
+|---|---|
+| **Pattern** | `notion_type ∈ {"to_do", "todo"}` **AND** `checked == True` **AND NOT** (`is_generated == True` **AND** `generated_selection_processed == False`) |
+| **Meaning** | A to-do block that the human has physically checked off in Notion. The extra guard clause excludes LLM-generated suggestion checkboxes that the user ticked to "approve" (those are selection signals, not completion signals). |
+| **System Action** | None. Block is considered done. Archived during dashboard refresh. |
+| **Human Action** | Check a `to_do` checkbox in Notion. |
+
+**Code reference** — [state_evaluator.py L114–L118](../state_evaluator.py#L114-L118):
+```python
+if notion_type in ("to_do", "todo") and checked is True and not (
+    is_generated and not generated_selection_processed
+):
+    return BlockState.COMPLETED
+```
+
 ---
 
 ### `SKIP`
@@ -72,8 +138,8 @@ if notion_type in ("to_do", "todo") and checked is True and not (
 
 | Aspect | Detail |
 |---|---|
-| **Pattern** | `notion_type ∈ {"paragraph", "heading_1", "heading_2", "heading_3"}` |
-| **Meaning** | Structural container blocks (section headings like "婚姻", "科研人") that exist only to provide context to their children. They are never assigned tags, WBS, or processed as tasks. |
+| **Pattern** | `is_content_block == True` **OR** `notion_type ∈ {"paragraph", "heading_1", "heading_2", "heading_3", "quote"}` |
+| **Meaning** | Content blocks (like images, bookmarks) and structural container blocks (section headings like "婚姻", "科研人", quotes) that exist only to provide context. They are never assigned tags, WBS, or processed as tasks. |
 | **System Action** | Completely ignored by the evaluator loop. |
 | **Human Action** | None needed. |
 
@@ -151,25 +217,22 @@ if notion_type in ("to_do", "todo") and checked is True and not (
 |---|---|
 | **Pattern** | ALL of the following must be true: |
 | | • `wbs_level < 4` (broad task, not a leaf action) |
-| | • `children_by_parent[task_id]` is **empty** (no child blocks exist) |
 | | • `split_stage ∉ {"suggested", "processed"}` (never been split before) |
-| | • `is_generated == False` (LLM-generated tasks are never recursively split) |
-| **Meaning** | A broad task (project/module/work-package) that has no subtasks underneath it. The system should use LLM to decompose it. |
+| | • `is_generated == False` **OR** `generated_selection_processed == True` (generated tasks can be recursively split only after human selection) |
+| **Meaning** | A broad task (project/module/work-package) that has not yet been processed for subtask decomposition. The system will use LLM to decompose it into actionable items. |
 | **System Action** | **Task Splitting** (`split_task`): Calls the WBS decomposition pipeline. L1 goals → L2 deliverables. L2 modules → L3 work packages. L3 packages → L4 physical actions. Generated subtasks are inserted as `to_do` blocks under this parent in Notion. |
 | **Fields Written** | `split_stage = "suggested"`, `split_batch_id = <ISO timestamp>` |
 | **Anti-Regeneration Guard** | Once `split_stage` becomes `"suggested"` or `"processed"`, the block will **never** enter `EXPANDING` again, even on rerun. This prevents infinite LLM generation loops. |
 | **Advances To** | `HUMAN_REVIEW` |
 | **LLM Cost** | 2+ API calls (1 for classification, 1+ for decomposition). |
 
-**Code reference** — [state_evaluator.py L143–L151](../state_evaluator.py#L143-L151):
+**Code reference** — [state_evaluator.py](../state_evaluator.py):
 ```python
 children = children_by_parent.get(tid, [])
 if isinstance(wbs_level, int) and wbs_level < 4:
-    has_no_children = len(children) == 0
     never_split = split_stage not in _ALREADY_SPLIT_STAGES
-    not_generated = not is_generated
-
-    if has_no_children and never_split and not_generated:
+    
+    if never_split and (not is_generated or generated_selection_processed):
         return BlockState.EXPANDING
 ```
 
@@ -186,7 +249,7 @@ if isinstance(wbs_level, int) and wbs_level < 4:
 | **Meaning** | The LLM has generated candidate subtasks (or this IS a generated candidate). The system is waiting for the human to review them in Notion. The human signals approval by checking the `to_do` checkbox on preferred suggestions. |
 | **System Action** | **Halt until human selection.** On the next `flow` run, `push_tags_to_notion()` handles the review confirmation before the Mode/TaskType pass runs. |
 | **Human Action Required** | Open Notion → Review the generated `to_do` items → Check ☑️ the ones you want to keep. Unchecked items will be deleted on next `flow` run. |
-| **What Happens After Human Acts** | On next `flow` run, `sync_engine.py` detects that ≥1 generated child is checked. It sets `split_stage = "processed"` on the parent. Checked non-L4 items are converted to `bulleted_list_item`. Checked L4 items are reset to `checked=False` (unchecked todo, ready for actual execution). Both get `generated_selection_processed = True`. Unchecked generated items are **deleted**. |
+| **What Happens After Human Acts** | On next `flow` run, `sync_engine.py` detects that ≥1 generated child is checked. It sets `split_stage = "processed"` on the parent. Checked non-L4 items are converted to `bulleted_list_item`. Checked L4 items are reset to `checked=False` (unchecked todo, ready for actual execution). Both get `generated_selection_processed = True`. Unchecked generated items are **deleted**. Alternatively, if all generated items are deleted or processed, the evaluator auto-transitions the parent `split_stage` to `"processed"` at the start of the next evaluation. |
 | **Advances To** | `PHASING_WAIT` (for depth=1 modules) or `ACTIONABLE_PENDING` (for L4 leaves) |
 | **Generated L4 WBS Restore** | When the selected item is a generated L4 task, `push_tags_to_notion()` restores `tags["WBS level"]` during the same confirmation render. That means the visible WBS prefix should reappear together with Mode/TaskType formatting after review. |
 
@@ -260,7 +323,7 @@ When you run `python main.py flow`, the evaluator executes these steps **sequent
 
 | Step | Transform | States Resolved |
 |---:|---|---|
-| 0 | Fetch Notion tree + merge with local `tasklist_state.json` | — |
+| 0 | Fetch Notion tree + merge with local `tasklist_state.json` + **Auto-transition `suggested` to `processed` for parents with no unreviewed generated children** | `HUMAN_REVIEW` → `PHASING_WAIT` / `ACTIONABLE_PENDING` (cleanup step) |
 | 1 | `theme_pass` + `reparent_theme_containers` | `RAW` → `STRUCTURED` |
 | 2 | `build_timeliner_scope` + `wbs_pass` | `STRUCTURED` → `SCOPED` → `SEQUENCED` |
 | 3 | `priority_pass` | `SEQUENCED` → next |

@@ -567,6 +567,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         return match.group() if match else ""
 
     known_prefix_emojis = set()
+    wbs_emojis = set()
     for _, wbs_entry in structured_cfg.get("wbs_levels", {}).items():
         if isinstance(wbs_entry, dict):
             wbs_raw = wbs_entry.get("raw") or wbs_entry.get("emoji", "")
@@ -575,7 +576,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         e = _extract_emoji(wbs_raw)
         if e:
             known_prefix_emojis.add(e)
-            
+            wbs_emojis.add(e)
+
     for e in structured_cfg.get("priorities", {}).keys():
         if e: known_prefix_emojis.add(str(e).strip())
         
@@ -787,15 +789,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     def _ordered_visible_tag_emojis(tags: Dict[str, Any]) -> List[str]:
         emojis: List[str] = []
         seen: set[str] = set()
-
-        # Enforce visible row order: Priority -> Task Type -> other emoji tags.
-        for key in ["Priority", "Task Type"]:
-            if key not in tags:
-                continue
-            emoji = _extract_emoji(tags.get(key, ""))
-            if emoji and emoji not in seen:
-                seen.add(emoji)
-                emojis.append(emoji)
 
         for k, v in tags.items():
             if k in [
@@ -1393,6 +1386,10 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if should_strip_theme_label_from_title and theme_str and theme_str in clean_title:
                 clean_title = clean_title.replace(theme_str, "").strip()
         
+        # Determine Priority and Task Type emojis
+        priority_emoji = _extract_emoji(tags.get("Priority", ""))
+        task_type_emoji = _extract_emoji(tags.get("Task Type", ""))
+
         # 0. WBS level (always first)
         if wbs_emoji:
             if wbs_emoji in clean_title:
@@ -1418,26 +1415,30 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 "text": {"content": " "},
                 "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
             })
-            
-        # 2. Mode formatting
+
+        # 2. Priority formatting
+        if priority_emoji:
+            if priority_emoji in clean_title:
+                clean_title = clean_title.replace(priority_emoji, "").strip()
+            rich_text.append({
+                "type": "text",
+                "text": {"content": priority_emoji},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            })
+
+        # 3. Mode formatting
         if mode_val:
-            # We must use structured_cfg "modes" to check if the generated words match any valid mode_name
             for mode_cfg in structured_cfg.get("modes", []):
                 mode_name = mode_cfg.get("mode_name", "")
                 if not mode_name: continue
-                
-                # Check if this valid mode exists in the generated text
                 if mode_name in mode_val:
                     mode_annos = mode_cfg.get("annotations", {"color": "default", "bold": False, "code": False, "italic": False, "strikethrough": False, "underline": False})
-                    
                     if mode_name in clean_title:
                         clean_title = clean_title.replace(mode_name, "").strip()
-                    # Apply strike and gray out for done state, otherwise keep configured style
                     final_mode_annos = mode_annos.copy()
                     if is_done:
                         final_mode_annos["strikethrough"] = True
                         final_mode_annos["color"] = "gray"
-                        
                     rich_text.append({
                         "type": "text",
                         "text": {"content": mode_name},
@@ -1448,7 +1449,18 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                         "text": {"content": " "},
                         "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                     })
-        # 3. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
+
+        # 4. Task Type formatting
+        if task_type_emoji:
+            if task_type_emoji in clean_title:
+                clean_title = clean_title.replace(task_type_emoji, "").strip()
+            rich_text.append({
+                "type": "text",
+                "text": {"content": task_type_emoji},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            })
+
+        # 5. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
         is_hierarchically_complete = False
         total_tracked_hours = 0.0
 
@@ -1470,6 +1482,8 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         detected_emojis = []
         for e in known_prefix_emojis:
             if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
+                if e in wbs_emojis:
+                    continue  # Do not carry forward stale WBS tags
                 detected_emojis.append(e)
 
         rich_text, _visible_title = _render_standard_row_tail(

@@ -92,7 +92,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -205,7 +205,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -228,8 +228,8 @@
   {
     "id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
     "notion_block_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
-    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
-    "original_notion_title": "🟧 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 🟧 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "original_notion_title": "🔶 Thesis 🟧 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -248,7 +248,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 ",
           "link": null
         },
         "annotations": {
@@ -259,7 +259,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔶 ",
         "href": null
       },
       {
@@ -282,7 +282,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 理论研究框架 : ",
+          "content": " 🟧 理论研究框架 : ",
           "link": null
         },
         "annotations": {
@@ -293,7 +293,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 理论研究框架 : ",
+        "plain_text": " 🟧 理论研究框架 : ",
         "href": null
       },
       {
@@ -341,8 +341,8 @@
   {
     "id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
     "notion_block_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
-    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
-    "original_notion_title": "🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 🟧 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "original_notion_title": "🔶 Thesis 🟧 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -361,7 +361,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 ",
           "link": null
         },
         "annotations": {
@@ -372,7 +372,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔶 ",
         "href": null
       },
       {
@@ -395,7 +395,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 方法论 Design Spec : ",
+          "content": " 🟧 方法论 Design Spec : ",
           "link": null
         },
         "annotations": {
@@ -406,7 +406,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 方法论 Design Spec : ",
+        "plain_text": " 🟧 方法论 Design Spec : ",
         "href": null
       },
       {
@@ -454,8 +454,8 @@
   {
     "id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
     "notion_block_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
-    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
-    "original_notion_title": "🟧 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 🟧 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "original_notion_title": "🔶 Thesis 🟧 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -474,7 +474,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 ",
           "link": null
         },
         "annotations": {
@@ -485,7 +485,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔶 ",
         "href": null
       },
       {
@@ -508,7 +508,7 @@
       {
         "type": "text",
         "text": {
-          "content": " V&V 协议 : ",
+          "content": " 🟧 V&V 协议 : ",
           "link": null
         },
         "annotations": {
@@ -519,7 +519,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " V&V 协议 : ",
+        "plain_text": " 🟧 V&V 协议 : ",
         "href": null
       },
       {
@@ -567,8 +567,8 @@
   {
     "id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
     "notion_block_id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
-    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
-    "original_notion_title": "🟧 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 🟧 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "original_notion_title": "🔶 Thesis 🟧 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -587,7 +587,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 ",
           "link": null
         },
         "annotations": {
@@ -598,7 +598,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔶 ",
         "href": null
       },
       {
@@ -621,7 +621,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 结构逻辑 Mapping : ",
+          "content": " 🟧 结构逻辑 Mapping : ",
           "link": null
         },
         "annotations": {
@@ -632,7 +632,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 结构逻辑 Mapping : ",
+        "plain_text": " 🟧 结构逻辑 Mapping : ",
         "href": null
       },
       {
@@ -793,8 +793,8 @@
   {
     "id": "36be1eb5-ce57-817b-8b62-e10612371657",
     "notion_block_id": "36be1eb5-ce57-817b-8b62-e10612371657",
-    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
-    "original_notion_title": "🟧 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 🟧 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "original_notion_title": "🔸 Thesis 💻Focus 🟧 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -813,7 +813,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -824,7 +824,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -881,7 +881,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 起草 PPT 大纲 : ",
+          "content": " 🟧 起草 PPT 大纲 : ",
           "link": null
         },
         "annotations": {
@@ -892,7 +892,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 起草 PPT 大纲 : ",
+        "plain_text": " 🟧 起草 PPT 大纲 : ",
         "href": null
       },
       {
@@ -917,7 +917,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -940,8 +940,8 @@
   {
     "id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
     "notion_block_id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
-    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
-    "original_notion_title": "🟧 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 🟧 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "original_notion_title": "🔸 Thesis 💻Focus 🟧 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -960,7 +960,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -971,7 +971,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -1028,7 +1028,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 起草入门Slides : ",
+          "content": " 🟧 起草入门Slides : ",
           "link": null
         },
         "annotations": {
@@ -1039,7 +1039,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 起草入门Slides : ",
+        "plain_text": " 🟧 起草入门Slides : ",
         "href": null
       },
       {
@@ -1064,7 +1064,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1087,8 +1087,8 @@
   {
     "id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
     "notion_block_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
-    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🟧 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
-    "original_notion_title": "🟧 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 🟧 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "original_notion_title": "🔸 Thesis 💻Focus 🟧 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -1107,7 +1107,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -1118,7 +1118,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -1175,7 +1175,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 重绘复杂 INfoDiagrams : ",
+          "content": " 🟧 重绘复杂 INfoDiagrams : ",
           "link": null
         },
         "annotations": {
@@ -1186,7 +1186,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 重绘复杂 INfoDiagrams : ",
+        "plain_text": " 🟧 重绘复杂 INfoDiagrams : ",
         "href": null
       },
       {
@@ -1211,7 +1211,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1234,8 +1234,8 @@
   {
     "id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
     "notion_block_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
-    "title": "SolarMan Apparatus Learning",
-    "original_notion_title": "SolarMan Apparatus Learning",
+    "title": "🏭 SolarMan Apparatus Learning",
+    "original_notion_title": "🏭 SolarMan Apparatus Learning",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -1243,14 +1243,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1313,8 +1330,8 @@
   {
     "id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
     "notion_block_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare",
-    "original_notion_title": "SolarMan SKM Program Material Prepare",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare",
+    "original_notion_title": "🟧 SolarMan SKM Program Material Prepare",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
     "depth": 1,
@@ -1322,14 +1339,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1369,7 +1403,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1392,7 +1426,7 @@
   {
     "id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
     "notion_block_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
     "original_notion_title": "🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
@@ -1505,7 +1539,7 @@
   {
     "id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
     "notion_block_id": "37fe1eb5-ce57-810e-b9eb-e520c5d325c3",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
     "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
@@ -1629,7 +1663,7 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1652,7 +1686,7 @@
   {
     "id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
     "notion_block_id": "37fe1eb5-ce57-8161-8ec4-df108bf5fb39",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
     "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811d-ba03-ff92edb11c5b",
@@ -1799,8 +1833,8 @@
   {
     "id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
     "notion_block_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
-    "original_notion_title": "SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+    "original_notion_title": "🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-818d-a42a-e350b60aea79",
     "depth": 2,
@@ -1808,14 +1842,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1855,7 +1906,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -1878,7 +1929,7 @@
   {
     "id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
     "notion_block_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob",
     "original_notion_title": "Format Cute Manual : Ob",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
@@ -1957,7 +2008,7 @@
   {
     "id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
     "notion_block_id": "37fe1eb5-ce57-81a4-b173-e0b79c62e8f4",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
     "original_notion_title": "error response , precaution",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
@@ -2019,7 +2070,7 @@
   {
     "id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
     "notion_block_id": "37fe1eb5-ce57-812c-a045-ee41776805fc",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
     "original_notion_title": "Mode定义/预期值/阈值",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
@@ -2081,7 +2132,7 @@
   {
     "id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
     "notion_block_id": "37fe1eb5-ce57-8103-acdf-d2755590863a",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
     "original_notion_title": "Action domain",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81ab-b223-ec94c3c7e3ab",
@@ -2143,8 +2194,8 @@
   {
     "id": "37fe1eb5-ce57-81a1-81bf-e4b73b1ff152",
     "notion_block_id": "37fe1eb5-ce57-81a1-81bf-e4b73b1ff152",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ Draft in my Word",
-    "original_notion_title": "SolarMan 💻Focus ✍️ Draft in my Word",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus ✍️ Draft in my Word",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ Draft in my Word",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
     "depth": 3,
@@ -2152,14 +2203,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2256,8 +2324,8 @@
   {
     "id": "37fe1eb5-ce57-8129-8374-e4f771724232",
     "notion_block_id": "37fe1eb5-ce57-8129-8374-e4f771724232",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
-    "original_notion_title": "SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
+    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ GPTImg Prompt Gen Refining",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
     "depth": 3,
@@ -2265,14 +2333,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2369,8 +2454,8 @@
   {
     "id": "37fe1eb5-ce57-81c3-9a37-dd210ab616d5",
     "notion_block_id": "37fe1eb5-ce57-81c3-9a37-dd210ab616d5",
-    "title": "SolarMan Apparatus Learning SolarMan SKM Program Material Prepare SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use SolarMan 💻Focus 🎯 Final Img Refine Tune",
-    "original_notion_title": "SolarMan 💻Focus 🎯 Final Img Refine Tune",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan SKM Program Material Prepare 🔶 SolarMan TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus 🎯 Final Img Refine Tune",
+    "original_notion_title": "🔸 SolarMan 💻Focus 🎯 Final Img Refine Tune",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-811e-bb66-e5855e9994f2",
     "depth": 3,
@@ -2378,14 +2463,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -2482,7 +2584,7 @@
   {
     "id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "notion_block_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct",
     "original_notion_title": "🟧 SolarMan T&C report express filling flow : data to report direct",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81a1-a158-fa6b4848fbc4",
@@ -2572,7 +2674,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -2595,7 +2697,7 @@
   {
     "id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
     "notion_block_id": "37fe1eb5-ce57-81b4-9cc2-de7dfc03aa1d",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
     "original_notion_title": "🔶 SolarMan ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
@@ -2708,7 +2810,7 @@
   {
     "id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
     "notion_block_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design",
     "original_notion_title": "🔶 SolarMan power quality meter : Buildup BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
@@ -2821,7 +2923,7 @@
   {
     "id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
     "notion_block_id": "37fe1eb5-ce57-81b0-b823-d755cd59a3ce",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan power quality meter : Buildup BOM prepare & design 🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
     "original_notion_title": "🔸 🤖💬🔜SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-814f-8e22-f4868e3a2ab9",
@@ -2877,7 +2979,7 @@
     "checked": false,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -2900,7 +3002,7 @@
   {
     "id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "notion_block_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
     "original_notion_title": "🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
@@ -2990,7 +3092,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -3013,7 +3115,7 @@
   {
     "id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
     "notion_block_id": "37fe1eb5-ce57-810f-a88a-fce3bba4108f",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
     "original_notion_title": "🔸 SolarMan 💻Focus 🎯 Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
@@ -3160,8 +3262,8 @@
   {
     "id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
     "notion_block_id": "37fe1eb5-ce57-81c5-9f76-ed56bb539387",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 🔬 solar irradiance module selection",
-    "original_notion_title": "SolarMan 💻Focus 🔬 solar irradiance module selection",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🔬 solar irradiance module selection",
+    "original_notion_title": "🔸 SolarMan 💻Focus 🔬 solar irradiance module selection",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "depth": 3,
@@ -3169,14 +3271,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3273,8 +3392,8 @@
   {
     "id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
     "notion_block_id": "37fe1eb5-ce57-81a0-8e3a-ed30477c6259",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
-    "original_notion_title": "SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "original_notion_title": "🔸 SolarMan 💻Focus 📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c4-aaf5-d5972b5f239f",
     "depth": 3,
@@ -3282,14 +3401,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3386,8 +3522,8 @@
   {
     "id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "notion_block_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device",
-    "original_notion_title": "SolarMan BLE connection testing of UNI-T device",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan BLE connection testing of UNI-T device",
+    "original_notion_title": "🔶 SolarMan BLE connection testing of UNI-T device",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-81c1-a1cf-d4bca72c8756",
     "depth": 2,
@@ -3395,14 +3531,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3442,7 +3595,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -3465,8 +3618,8 @@
   {
     "id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
     "notion_block_id": "37fe1eb5-ce57-813a-9c0c-eac665dc4ba7",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device SolarMan 小Do📱 📋 💻 phone version both simutenously",
-    "original_notion_title": "SolarMan 小Do📱 📋 💻 phone version both simutenously",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan BLE connection testing of UNI-T device 🔸 SolarMan 小Do📱 📋 💻 phone version both simutenously",
+    "original_notion_title": "🔸 SolarMan 小Do📱 📋 💻 phone version both simutenously",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
     "depth": 3,
@@ -3474,14 +3627,31 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -3555,7 +3725,7 @@
     "checked": false,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -3578,7 +3748,7 @@
   {
     "id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
     "notion_block_id": "37fe1eb5-ce57-81ca-bace-e96727b9dcf1",
-    "title": "SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct SolarMan BLE connection testing of UNI-T device 🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 SolarMan BLE connection testing of UNI-T device 🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
     "original_notion_title": "🔸 SolarMan 💻Focus 💻 comp version : replicate phone version in comp",
     "context_heading": "",
     "parent_id": "37fe1eb5-ce57-8140-9e7e-c54847228962",
@@ -3928,7 +4098,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4041,7 +4211,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4154,7 +4324,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4301,7 +4471,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4324,8 +4494,8 @@
   {
     "id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
     "notion_block_id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
-    "original_notion_title": "🟧 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🔶 Thesis 🟧 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "original_notion_title": "🔶 Thesis 🟧 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
     "depth": 1,
@@ -4344,7 +4514,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 ",
           "link": null
         },
         "annotations": {
@@ -4355,7 +4525,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
+        "plain_text": "🔶 ",
         "href": null
       },
       {
@@ -4378,7 +4548,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 稿件定稿校对 : ",
+          "content": " 🟧 稿件定稿校对 : ",
           "link": null
         },
         "annotations": {
@@ -4389,7 +4559,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 稿件定稿校对 : ",
+        "plain_text": " 🟧 稿件定稿校对 : ",
         "href": null
       },
       {
@@ -4510,7 +4680,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4606,7 +4776,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4702,7 +4872,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4798,7 +4968,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -4894,7 +5064,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5086,7 +5256,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5446,7 +5616,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -5542,7 +5712,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6033,7 +6203,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6129,7 +6299,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6541,7 +6711,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6637,7 +6807,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6733,7 +6903,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6829,7 +6999,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -6925,7 +7095,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7021,7 +7191,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7117,7 +7287,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7529,7 +7699,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7625,7 +7795,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7721,7 +7891,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7817,7 +7987,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -8150,7 +8320,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9335,7 +9505,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9905,7 +10075,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10633,7 +10803,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11124,7 +11294,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11299,7 +11469,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11395,7 +11565,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11745,7 +11915,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12119,7 +12289,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12215,7 +12385,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12311,7 +12481,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12915,7 +13085,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13011,7 +13181,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13265,7 +13435,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13361,7 +13531,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13536,7 +13706,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14123,7 +14293,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14219,7 +14389,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14298,7 +14468,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14377,7 +14547,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14473,7 +14643,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,

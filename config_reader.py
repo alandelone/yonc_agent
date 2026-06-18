@@ -86,7 +86,19 @@ def load_config() -> Dict[str, List[Any]]:
     """
     Auto-discovers configuring sections and options from YONCTASK_CONFIG_PAGE_ID.
     Collects heading_1/2/3 as keys and parses lists/paragraphs as options.
+    If data/tasklist.json exists, load from there first. Otherwise, fetch from Notion and save to data/tasklist.json.
     """
+    import os
+    import json
+    
+    config_path = os.path.join(os.path.dirname(__file__), "data", "tasklist.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Warning: Failed to load config from {config_path}: {e}")
+
     blocks = get_page_blocks(YONCTASK_CONFIG_PAGE_ID)
     config_dict = {}
     current_heading = None
@@ -109,6 +121,14 @@ def load_config() -> Dict[str, List[Any]]:
             if options:
                 config_dict[current_heading].extend(options)
                 
+    # Save to data/tasklist.json
+    try:
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        with open(config_path, "w", encoding="utf-8") as f:
+            json.dump(config_dict, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"Warning: Failed to save config to {config_path}: {e}")
+
     return config_dict
 
 def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any]:

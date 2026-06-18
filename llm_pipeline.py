@@ -1087,7 +1087,8 @@ def priority_pass(
         match = emoji_pattern.search(str(val))
         return match.group() if match else ""
 
-    # Parse manual priorities from Notion title for ALL tasks
+    # Parse manual priorities from Notion title for ALL tasks. The cleanup below
+    # still limits persisted Priority tags to TIMELINER main-project rows.
     for task in local_state:
         if _is_content_block(task):
             continue
@@ -1103,14 +1104,17 @@ def priority_pass(
             tags["Priority"] = found_p
             task["tags"] = tags
 
+    def _is_scoped_root(task: Dict[str, Any]) -> bool:
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        return bool(task_id and task_id in scoped_ids and _to_int(task.get("depth", 0), 0) == 0)
+
     main_scoped_tasks: List[Dict[str, Any]] = []
     for task in local_state:
         if _is_content_block(task):
             continue
-        task_id = str(task.get("notion_block_id") or task.get("id") or "")
         section = str(task.get("timeliner_section", "") or "").strip().lower()
-        is_root = _to_int(task.get("depth", 0), 0) == 0
-        if task_id and task_id in scoped_ids and section == "main" and is_root:
+        is_subproject = bool(task.get("timeliner_is_subproject"))
+        if _is_scoped_root(task) and section == "main" and not is_subproject:
             main_scoped_tasks.append(task)
 
     # Fallback for runs without state-file section metadata:
@@ -1120,12 +1124,27 @@ def priority_pass(
         for task in local_state:
             if _is_content_block(task):
                 continue
-            task_id = str(task.get("notion_block_id") or task.get("id") or "")
             section = str(task.get("timeliner_section", "") or "").strip().lower()
             is_subproject = bool(task.get("timeliner_is_subproject"))
-            is_root = _to_int(task.get("depth", 0), 0) == 0
-            if task_id and task_id in scoped_ids and not section and not is_subproject and is_root:
+            if _is_scoped_root(task) and not section and not is_subproject:
                 main_scoped_tasks.append(task)
+
+    eligible_priority_ids = {
+        str(task.get("notion_block_id") or task.get("id") or "")
+        for task in main_scoped_tasks
+        if str(task.get("notion_block_id") or task.get("id") or "")
+    }
+
+    for task in local_state:
+        if _is_content_block(task):
+            continue
+        task_id = str(task.get("notion_block_id") or task.get("id") or "")
+        if task_id in eligible_priority_ids:
+            continue
+        tags = task.get("tags") or {}
+        if "Priority" in tags:
+            tags.pop("Priority", None)
+            task["tags"] = tags
 
     main_scoped_tasks.sort(
         key=lambda t: (
@@ -1146,35 +1165,5 @@ def priority_pass(
         tags = task.get("tags") or {}
         tags["Priority"] = priority_val
         task["tags"] = tags
-
-    def _priority_from_order_value(task: Dict[str, Any]) -> str:
-        raw_order = task.get("timeliner_priority")
-        order_val = _to_int(raw_order, 10**9)
-        if order_val == 10**9:
-            order_val = rank_by_task_id.get(str(task.get("notion_block_id") or task.get("id") or ""), 10**9) + 1
-        if order_val <= 1:
-            return p0_val
-        if order_val <= 3:
-            return p1_val
-        return p2_val
-
-    # Main projects are overwritten above. Scoped descendants/sub-project rows keep
-    # manual priorities, but get a calculated fallback when missing so they can
-    # progress to L4 Mode/TaskType formatting.
-    for task in local_state:
-        if _is_content_block(task):
-            continue
-        task_id = str(task.get("notion_block_id") or task.get("id") or "")
-        if not task_id or task_id not in scoped_ids:
-            continue
-        tags = task.get("tags") or {}
-        if str(tags.get("Priority", "")).strip():
-            continue
-        section = str(task.get("timeliner_section", "") or "").strip().lower()
-        is_subproject = bool(task.get("timeliner_is_subproject"))
-        is_descendant = _to_int(task.get("depth", 0), 0) > 0
-        if is_descendant and (section == "sub" or is_subproject):
-            tags["Priority"] = _priority_from_order_value(task)
-            task["tags"] = tags
 
     return local_state

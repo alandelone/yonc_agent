@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from flow_pipeline import _split_scoped_tasks
+from flow_pipeline import _split_dedupe_key, _split_scoped_tasks
 
 
 class TestSplitGeneratedRegistration(unittest.TestCase):
@@ -105,6 +105,29 @@ class TestSplitGeneratedRegistration(unittest.TestCase):
         self.assertEqual(0, parent_count)
         self.assertEqual(0, subtask_count)
         push_mock.assert_not_called()
+
+    def test_split_dedupe_key_ignores_theme_and_wbs_prefixes(self):
+        structured_cfg = {
+            "themes": {
+                "PhDSettle": {
+                    "color": "red",
+                    "sub_themes": ["Thesis"],
+                }
+            },
+            "modes": [],
+        }
+
+        styled = _split_dedupe_key(
+            "🔶 Thesis 🟧 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+            structured_cfg,
+        )
+        generated = _split_dedupe_key(
+            "V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
+            structured_cfg,
+        )
+
+        self.assertEqual("v&v 协议", styled)
+        self.assertEqual(styled, generated)
 
     def test_reviewed_generated_non_l4_can_continue_splitting(self):
         state = [

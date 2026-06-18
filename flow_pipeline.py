@@ -42,8 +42,14 @@ def _split_dedupe_key(title: str, structured_cfg: Dict[str, Any]) -> str:
     text = re.sub(r"~~(.*?)~~", r"\1", text)
     text = text.replace("**", "").replace("*", "").replace("`", "")
     text = clean_task_title(text, structured_cfg)
+    for theme_name, theme_data in structured_cfg.get("themes", {}).items():
+        if theme_name:
+            text = re.sub(rf"\b{re.escape(str(theme_name))}\b", " ", text, flags=re.IGNORECASE)
+        for subtheme in theme_data.get("sub_themes", []):
+            if subtheme:
+                text = re.sub(rf"\b{re.escape(str(subtheme))}\b", " ", text, flags=re.IGNORECASE)
     text = re.split(r"\s*[:：]\s*", text, maxsplit=1)[0]
-    text = re.sub(r"^[^\w\s\x00-\x7F]+", "", text).strip()
+    text = re.sub(r"[^\w\s\x00-\x7F&]+", " ", text).strip()
     text = re.sub(r"\s+", " ", text).strip().lower()
     return text
 
@@ -692,6 +698,10 @@ def run_l2() -> List[Dict[str, Any]]:
         "L2",
         f"Split suggestion pass complete: {split_subtask_count} subtasks across {split_parent_count} parent tasks",
     )
+    if split_subtask_count:
+        push_tags_to_notion(state, config_dict)
+        _log_stage("L2", "Post-split tag push to Notion complete")
+        state = [task for task in state if not task.get("deleted")]
     save_state(state, STATE_FILE)
     _log_stage("L2", f"Saved {len(state)} tasks to state")
     print("L2 flow complete.")
@@ -759,7 +769,10 @@ def run_flow() -> List[Dict[str, Any]]:
     push_tags_to_notion(state, config_dict)
     state = [task for task in state if not task.get("deleted")]
 
-    _split_scoped_tasks(state, structured_cfg, scoped_ids)
+    _, split_subtask_count = _split_scoped_tasks(state, structured_cfg, scoped_ids)
+    if split_subtask_count:
+        push_tags_to_notion(state, config_dict)
+        state = [task for task in state if not task.get("deleted")]
     save_state(state, STATE_FILE)
     print("Full flow complete.")
     return state

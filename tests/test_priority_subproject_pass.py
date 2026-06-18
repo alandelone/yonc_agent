@@ -51,11 +51,10 @@ def test_only_main_project_scoped_tasks_are_overwritten():
     assert tags_by_id["a"] == "ALERT | (P0)"
     assert tags_by_id["b"] == "HIGH | (P1)"
     assert tags_by_id["c"] == "HIGH | (P1)"
-    # sub_projects are not overwritten by priority_pass now
-    assert tags_by_id["s"] == "MANUAL"
+    assert tags_by_id["s"] == ""
 
 
-def test_subproject_only_scope_is_not_changed():
+def test_subproject_only_scope_is_cleared():
     state = [
         {
             "id": "s1",
@@ -80,10 +79,10 @@ def test_subproject_only_scope_is_not_changed():
     out = priority_pass(state, _config(), scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
     priorities = [(t.get("tags") or {}).get("Priority", "") for t in out]
 
-    assert priorities == ["KEEP-1", "KEEP-2"]
+    assert priorities == ["", ""]
 
 
-def test_missing_subproject_priority_gets_fallback_without_overwriting_manual():
+def test_subproject_priority_is_removed_without_fallback():
     state = [
         {
             "id": "s1",
@@ -110,5 +109,23 @@ def test_missing_subproject_priority_gets_fallback_without_overwriting_manual():
     out = priority_pass(state, _config(), scoped_ids=scoped_ids, rank_by_task_id=rank_by_task_id)
     tags_by_id = {str(t.get("id")): (t.get("tags") or {}).get("Priority", "") for t in out}
 
-    assert tags_by_id["s1"] == "HIGH | (P1)"
-    assert tags_by_id["s2"] == "KEEP"
+    assert tags_by_id["s1"] == ""
+    assert tags_by_id["s2"] == ""
+
+
+def test_non_timeliner_priority_is_removed():
+    state = [
+        {
+            "id": "x",
+            "notion_block_id": "x",
+            "depth": 0,
+            "original_notion_title": "ALERT task outside timeliner",
+            "tags": {"Priority": "KEEP"},
+            "timeliner_section": "",
+            "timeliner_priority": None,
+        },
+    ]
+
+    out = priority_pass(state, _config(), scoped_ids=set(), rank_by_task_id={})
+
+    assert (out[0].get("tags") or {}).get("Priority", "") == ""

@@ -104,5 +104,36 @@ class TestPushSyncFormattingRules(unittest.TestCase):
         self.assertTrue(mock_condense.called, "LLM _condense_description should be called for overflow title.")
 
 
+    def test_does_not_render_stale_wbs_emoji_without_wbs_tag(self):
+        config = {
+            "Task Theme with colour": [{"text": "Thesis", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["\U0001f3ed | Thesis"],
+        }
+        state = [
+            {
+                "id": "t-4",
+                "notion_block_id": "t-4",
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "title": "\U0001f3ed Thesis Phd RsPlan : Diversed Parallel Assisted Pushing",
+                "original_notion_title": "\U0001f3ed Thesis Phd RsPlan : Diversed Parallel Assisted Pushing",
+                "tags": {
+                    "Task Theme with colour": "Thesis",
+                },
+                "wbs_level": None,
+                "depth": 0,
+                "checked": None,
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update:
+            push_tags_to_notion(state, config)
+
+        rich_text = mock_update.call_args.args[1]["bulleted_list_item"]["rich_text"]
+        rendered = "".join(rt.get("text", {}).get("content", "") for rt in rich_text)
+        self.assertNotIn("\U0001f3ed", rendered)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1262,13 +1262,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         rich_text = []
         wbs_val = tags.get("WBS level", "")
         wbs_emoji = _extract_emoji(wbs_val)
-        if not wbs_emoji:
-            for _, wbs_entry in structured_cfg.get("wbs_levels", {}).items():
-                wbs_raw = wbs_entry.get("raw") or wbs_entry.get("emoji", "") if isinstance(wbs_entry, dict) else str(wbs_entry)
-                e = _extract_emoji(wbs_raw)
-                if e and e in original_title:
-                    wbs_emoji = e
-                    break
 
         theme_val = tags.get("Task Theme with colour", "")
         custom_theme_color = "default"
@@ -1293,9 +1286,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                 if rt.get("type") == "text":
                     annos = rt.get("annotations", {})
                     rt_content = rt.get("text", {}).get("content", "").strip()
-                    # A standalone emoji at the start is likely a WBS emoji if missing
-                    if not wbs_emoji and len(rt_content) <= 3 and _extract_emoji(rt_content):
-                        wbs_emoji = _extract_emoji(rt_content)
                     # Themes are bold and code
                     if not theme_val and annos.get("code") and annos.get("bold") and rt_content:
                         theme_val = rt_content

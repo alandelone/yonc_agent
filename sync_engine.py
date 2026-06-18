@@ -1178,6 +1178,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             and not (is_generated and not generated_selection_processed)
         )
         should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+        should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
         is_pending_selection_change = (
             should_convert_selected_non_l4_to_bullet
             or should_convert_non_selector_non_l4_to_bullet
@@ -1293,13 +1294,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     if theme_val:
                         break
 
-        # Fallback: extract manually typed Theme and WBS from original rich text
-        if is_generated and not is_selected_generated_l4:
-            # We enforce standard inheritance for generated rows: 
-            # if parent has theme X, we don't repeat X on child.
-            # However, if the user manually typed the theme at the beginning of the title, we KEEP it as a badge.
-            if theme_str and not original_title.strip().startswith(theme_str):
-                theme_str = ""
+
         if task.get("notion_rich_text"):
             for rt in task["notion_rich_text"]:
                 if rt.get("type") == "text":
@@ -1402,7 +1397,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if wbs_emoji:
             if wbs_emoji in clean_title:
                 clean_title = clean_title.replace(wbs_emoji, "").strip()
-            if wbs_emoji and not is_pending_selection_change:
+            if wbs_emoji and not should_convert_to_bullet:
                 rich_text.append({
                     "type": "text",
                     "text": {"content": wbs_emoji + " "},

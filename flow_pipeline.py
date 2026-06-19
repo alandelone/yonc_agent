@@ -205,6 +205,70 @@ def _normalize_scope_text(text: str) -> str:
     return cleaned
 
 
+def _timeliner_entry_task_key(entry: Any) -> str:
+    if isinstance(entry, dict):
+        task_title = str(entry.get("task_title", "") or "").strip()
+        description = str(entry.get("description", "") or "").strip()
+        colour_subtheme = str(entry.get("colour_subtheme", "") or "").strip()
+    else:
+        task_title = str(getattr(entry, "task_title", "") or "").strip()
+        description = str(getattr(entry, "description", "") or "").strip()
+        colour_subtheme = str(getattr(entry, "colour_subtheme", "") or "").strip()
+
+    if task_title and description:
+        return f"{task_title} : {description}"
+    if task_title:
+        return task_title
+    return colour_subtheme
+
+
+def _timeliner_entry_title_match_keys(entry: Any) -> List[str]:
+    if isinstance(entry, dict):
+        task_title = str(entry.get("task_title", "") or "").strip()
+        description = str(entry.get("description", "") or "").strip()
+        colour_subtheme = str(entry.get("colour_subtheme", "") or "").strip()
+    else:
+        task_title = str(getattr(entry, "task_title", "") or "").strip()
+        description = str(getattr(entry, "description", "") or "").strip()
+        colour_subtheme = str(getattr(entry, "colour_subtheme", "") or "").strip()
+
+    candidates: List[str] = []
+    if task_title and description:
+        candidates.append(f"{task_title} : {description}")
+    if task_title:
+        candidates.append(task_title)
+    if colour_subtheme and not task_title:
+        candidates.append(colour_subtheme)
+
+    normalized: List[str] = []
+    seen: Set[str] = set()
+    for candidate in candidates:
+        key = _normalize_scope_text(candidate)
+        if key and key not in seen:
+            normalized.append(key)
+            seen.add(key)
+    return normalized
+
+
+def _timeliner_entry_theme_anchor(entry: Any) -> str:
+    if isinstance(entry, dict):
+        tags = entry.get("tags") if isinstance(entry.get("tags"), dict) else {}
+        colour_subtheme = str(entry.get("colour_subtheme", "") or "").strip()
+        subproject = str(entry.get("subproject", "") or "").strip()
+        project = str(entry.get("project", "") or "").strip()
+    else:
+        tags = getattr(entry, "tags", None)
+        if not isinstance(tags, dict):
+            tags = {}
+        colour_subtheme = str(getattr(entry, "colour_subtheme", "") or "").strip()
+        subproject = str(getattr(entry, "subproject", "") or "").strip()
+        project = str(getattr(entry, "project", "") or "").strip()
+
+    if tags.get("Task Theme with colour"):
+        return colour_subtheme or str(tags.get("Task Theme with colour", "")).strip()
+    return subproject or project
+
+
 def _has_cached_timeliner_scope() -> bool:
     """
     Return True when timeliner_state.json exists, is newer than 10 minutes,
@@ -289,7 +353,23 @@ def _pick_theme_key(task: Dict[str, Any]) -> str:
     return str(task.get("context_heading", "")).strip()
 
 
-def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[str, int], List[str]]:
+def build_timeliner_scope(
+    state: List[Dict[str, Any]],
+    require_cached_state: bool = True,
+) -> Tuple[Set[str], Dict[str, int], List[str]]:
+    if require_cached_state and not _has_cached_timeliner_scope():
+        _log_stage(
+            "TIMELINER",
+            "Skipping LINEV2 TIMELINER scoping because data/timeliner_state.json is missing, stale, or empty",
+        )
+        for task in state:
+            task["timeliner_key"] = None
+            task["timeliner_rank"] = None
+            task["timeliner_is_subproject"] = False
+            task["timeliner_priority"] = None
+            task["timeliner_section"] = ""
+        return set(), {}, []
+
     entries = fetch_and_parse_timeliner()
 
     # Build per-entry matching anchors:
@@ -315,21 +395,24 @@ def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[s
             raw_priority = getattr(entry, "priority", None)
             raw_scope_section = getattr(entry, "scope_section", "")
 
-        sub_key = _normalize_scope_text(raw_subtheme)
+        raw_task_key = _timeliner_entry_task_key(entry)
+        sub_key = _normalize_scope_text(raw_task_key)
+        title_match_keys = _timeliner_entry_title_match_keys(entry)
         if not sub_key:
             continue
-        # theme_anchor: prefer subproject, fall back to project
         subproject_txt = str(raw_subproject or "").strip()
-        project_txt = str(raw_project or "").strip()
-        anchor_raw = subproject_txt or project_txt
+        anchor_raw = _timeliner_entry_theme_anchor(entry)
         theme_anchor = _normalize_scope_text(anchor_raw)
         scope_entries.append(
             {
                 "subtheme_key": sub_key,
+                "title_match_keys": title_match_keys or [sub_key],
                 "theme_anchor": theme_anchor,
                 "is_subproject": bool(subproject_txt),
                 "priority": raw_priority,
                 "scope_section": str(raw_scope_section or "").strip().lower(),
+                "raw_label": str(raw_task_key or raw_subtheme or "").strip(),
+                "matched_count": 0,
             }
         )
         if sub_key not in seen_subtheme:
@@ -363,9 +446,12 @@ def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[s
         for rank, se in enumerate(scope_entries):
             sub_key = se["subtheme_key"]
             theme_anchor = se["theme_anchor"]
+            title_match_keys = se.get("title_match_keys") or [sub_key]
 
-            # title_ok: colour_subtheme must appear in the task title
-            title_ok = bool(sub_key and sub_key in title_text)
+            # title_ok: parsed task/title must appear in the task title. The
+            # full "task : description" key is preferred, but title-only is
+            # accepted because timeliner descriptions are often shortened.
+            title_ok = any(bool(key and key in title_text) for key in title_match_keys)
 
             # theme_ok: entry's project/subproject must appear in task's theme field.
             # If no anchor is available, fall back to sub_key (original behaviour).
@@ -380,6 +466,7 @@ def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[s
                 matched_is_subproject = bool(se.get("is_subproject"))
                 matched_priority = se.get("priority")
                 matched_scope_section = str(se.get("scope_section", "")).strip().lower()
+                se["matched_count"] = int(se.get("matched_count") or 0) + 1
                 break
 
         if matched_rank is None:
@@ -397,6 +484,16 @@ def build_timeliner_scope(state: List[Dict[str, Any]]) -> Tuple[Set[str], Dict[s
         task["timeliner_section"] = matched_scope_section
         scoped_ids.add(task_id)
         rank_by_task_id[task_id] = matched_rank
+
+    for se in scope_entries:
+        if int(se.get("matched_count") or 0) > 0:
+            continue
+        LOGGER.warning(
+            "[TIMELINER] Timeliner task absent in LINEV2: theme_anchor=%r title_key=%r section=%r",
+            se.get("theme_anchor", ""),
+            se.get("raw_label", "") or se.get("subtheme_key", ""),
+            se.get("scope_section", ""),
+        )
 
     return scoped_ids, rank_by_task_id, ordered_keys
 

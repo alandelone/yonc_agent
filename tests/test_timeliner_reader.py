@@ -60,6 +60,60 @@ def test_parse_blocks():
     assert e.in_heading_scope is True
 
 
+def test_parse_blocks_with_linev2_style_prefix(monkeypatch):
+    monkeypatch.setattr(
+        "timeliner_reader._structured_config",
+        lambda: {
+            "themes": {
+                "PhDSettle✒": {
+                    "name": "PhDSettle✒",
+                    "sub_themes": ["Thesis", "SolarMan"],
+                    "color": "red",
+                }
+            },
+            "modes": [],
+            "priorities": {},
+            "task_types": {},
+            "wbs_levels": {
+                1: {"emoji": "🏭", "label": "(lv1)", "raw": "🏭 | (lv1)"},
+                2: {"emoji": "🟧", "label": "(lv2)", "raw": "🟧 | (lv2)"},
+            },
+        },
+    )
+    blocks = [
+        {
+            "type": "heading_1",
+            "heading_1": {"rich_text": [{"plain_text": "Main Projects"}]},
+        },
+        {
+            "type": "paragraph",
+            "id": "new-format-1",
+            "paragraph": {
+                "rich_text": [
+                    {
+                        "plain_text": "🟢Thesis🏭 Apparatus Learning: blablabla Takes 🏁dates h70 ||0% Settle by March 30, 2026, but 🔜 5"
+                    }
+                ]
+            },
+        },
+    ]
+
+    entries = parse_timeliner_blocks(blocks)
+    assert len(entries) == 1
+
+    e = entries[0]
+    assert e.status_emoji == "🟢"
+    assert e.colour_subtheme == "Thesis"
+    assert e.tags["Task Theme with colour"] == "PhDSettle✒|Thesis"
+    assert e.tags["WBS level"] == "🏭 | (lv1)"
+    assert e.wbs_level == 1
+    assert e.task_title == "Apparatus Learning"
+    assert e.description == "blablabla"
+    assert e.time_expected_h == 70.0
+    assert e.percent == 0
+    assert e.settle_date == "2026-03-30"
+
+
 def test_parse_blocks_with_toggle_subproject_container():
     blocks = [
         {
@@ -261,4 +315,3 @@ def test_parse_blocks_marks_outside_vs_heading_scope():
 
     inside = next(e for e in entries if e.block_id == "inside-1")
     assert inside.in_heading_scope is True
-

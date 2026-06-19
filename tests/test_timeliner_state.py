@@ -29,6 +29,35 @@ def test_state_load_save():
     loaded = load_timeliner_state()
     assert loaded == state
 
+
+def test_state_save_preserves_timeliner_metadata():
+    state = {
+        "Project::Sub::TaskA": {
+            "settle_date": "2026-03-30",
+            "colour_subtheme": "Thesis",
+            "tags": {
+                "Task Theme with colour": "PhDSettle✒|Thesis",
+                "WBS level": "🏭 | (lv1)",
+            },
+            "task_title": "Apparatus Learning",
+            "description": "blablabla",
+            "wbs_level": 1,
+        }
+    }
+    save_timeliner_state(state, priority_scope_order=["Project::Sub::TaskA"])
+
+    loaded = load_timeliner_state()
+    assert loaded == {"Project::Sub::TaskA": "2026-03-30"}
+
+    with open(TIMELINER_STATE_FILE, "r", encoding="utf-8") as f:
+        payload = json.load(f)
+
+    entry = payload["sub_projects"]["Sub TaskA"]
+    assert entry["tags"]["Task Theme with colour"] == "PhDSettle✒|Thesis"
+    assert entry["task_title"] == "Apparatus Learning"
+    assert entry["description"] == "blablabla"
+    assert entry["wbs_level"] == 1
+
 def test_audit_logging_and_count():
     assert get_extension_count("健身") == 0
     

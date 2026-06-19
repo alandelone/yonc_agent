@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 
@@ -25,6 +25,10 @@ class TimelineEntry:
     in_heading_scope: bool = False
     priority: Optional[int] = None
     scope_section: str = ""
+    tags: Dict[str, str] = field(default_factory=dict)
+    task_title: str = ""
+    description: str = ""
+    wbs_level: Optional[int] = None
 
 
 # Supports settle dates in both long form and ISO form.
@@ -68,6 +72,165 @@ def _clean_subtheme_label(raw: str) -> str:
     # Support **subtheme** / *subtheme* wrappers around the final value.
     txt = re.sub(r"^\*{1,2}(.*?)\*{1,2}$", r"\1", txt).strip()
     return txt
+
+
+def _structured_config() -> Dict[str, Any]:
+    try:
+        from config_reader import load_config, structure_yonctask_config
+
+        return structure_yonctask_config(load_config())
+    except Exception:
+        return {
+            "themes": {},
+            "modes": [],
+            "priorities": {},
+            "task_types": {},
+            "wbs_levels": {},
+        }
+
+
+def _theme_tag_for_label(label: str, structured_cfg: Dict[str, Any]) -> str:
+    needle = str(label or "").strip()
+    if not needle:
+        return ""
+    for theme_name, data in structured_cfg.get("themes", {}).items():
+        if needle == theme_name:
+            sub_themes = data.get("sub_themes", [])
+            return f"{theme_name}|{'|'.join(sub_themes)}" if sub_themes else theme_name
+        if needle in data.get("sub_themes", []):
+            return f"{theme_name}|{needle}"
+    return ""
+
+
+def _parse_title_description(text: str) -> tuple[str, str]:
+    raw = str(text or "").strip()
+    if ":" not in raw:
+        return raw, ""
+    title, desc = raw.split(":", 1)
+    return title.strip(), desc.strip()
+
+
+def _extract_leading_token(
+    text: str,
+    candidates: Dict[str, str],
+) -> tuple[str, str, str]:
+    raw = str(text or "").lstrip()
+    if not raw or not candidates:
+        return "", "", raw
+    for label in sorted(candidates.keys(), key=len, reverse=True):
+        if not label:
+            continue
+        if raw == label or raw.startswith(label + " "):
+            return label, candidates[label], raw[len(label):].lstrip()
+        if raw.startswith(label):
+            next_char = raw[len(label):len(label) + 1]
+            if next_char and not re.match(r"[\w\s]", next_char):
+                return label, candidates[label], raw[len(label):].lstrip()
+    return "", "", raw
+
+
+def _parse_prefixed_tags_and_task(
+    text: str,
+    structured_cfg: Dict[str, Any],
+) -> tuple[Dict[str, str], str, str, Optional[int]]:
+    tags: Dict[str, str] = {}
+    rest = str(text or "").strip()
+    wbs_level: Optional[int] = None
+
+    wbs_candidates: Dict[str, tuple[int, str]] = {}
+    for level, entry in structured_cfg.get("wbs_levels", {}).items():
+        if not isinstance(entry, dict):
+            continue
+        emoji = str(entry.get("emoji") or "").strip()
+        raw = str(entry.get("raw") or emoji).strip()
+        if emoji:
+            try:
+                level_int = int(level)
+            except (TypeError, ValueError):
+                level_int = None
+            if level_int is not None:
+                wbs_candidates[emoji] = (level_int, raw)
+
+    while rest:
+        consumed = False
+
+        for emoji in sorted(wbs_candidates.keys(), key=len, reverse=True):
+            if rest.startswith(emoji):
+                level_int, raw = wbs_candidates[emoji]
+                tags["WBS level"] = raw
+                wbs_level = level_int
+                rest = rest[len(emoji):].lstrip()
+                consumed = True
+                break
+        if consumed:
+            continue
+
+        priority_candidates = {
+            str(emoji).strip(): f"{emoji} | ({level})"
+            for emoji, level in structured_cfg.get("priorities", {}).items()
+            if str(emoji).strip()
+        }
+        label, value, new_rest = _extract_leading_token(rest, priority_candidates)
+        if label:
+            tags["Priority"] = value
+            rest = new_rest
+            continue
+
+        task_type_candidates: Dict[str, str] = {}
+        for key, entry in structured_cfg.get("task_types", {}).items():
+            emoji = str(key).split("|", 1)[0].strip()
+            if emoji:
+                task_type_candidates[emoji] = str(key).strip()
+        label, value, new_rest = _extract_leading_token(rest, task_type_candidates)
+        if label:
+            tags["Task Type"] = value
+            rest = new_rest
+            continue
+
+        mode_candidates = {
+            str(mode.get("mode_name") or "").strip(): str(mode.get("mode_name") or "").strip()
+            for mode in structured_cfg.get("modes", [])
+            if str(mode.get("mode_name") or "").strip()
+        }
+        label, value, new_rest = _extract_leading_token(rest, mode_candidates)
+        if label:
+            tags["Modes"] = value
+            rest = new_rest
+            continue
+
+        break
+
+    task_title, description = _parse_title_description(rest)
+    return tags, task_title, description, wbs_level
+
+
+def _parse_structured_prefix(
+    subtheme_text: str,
+    structured_cfg: Dict[str, Any],
+) -> tuple[str, Dict[str, str], str, str, Optional[int]]:
+    raw = _clean_subtheme_label(subtheme_text)
+    if not raw:
+        return "", {}, "", "", None
+
+    theme_candidates: Dict[str, str] = {}
+    for theme_name, data in structured_cfg.get("themes", {}).items():
+        theme_candidates[str(theme_name).strip()] = _theme_tag_for_label(theme_name, structured_cfg)
+        for sub_theme in data.get("sub_themes", []):
+            theme_candidates[str(sub_theme).strip()] = _theme_tag_for_label(sub_theme, structured_cfg)
+
+    label, theme_tag, rest = _extract_leading_token(raw, theme_candidates)
+    if not label:
+        return raw, {}, "", "", None
+
+    tags, task_title, description, wbs_level = _parse_prefixed_tags_and_task(rest, structured_cfg)
+    # Keep legacy section rows like "科研人 RstV4" intact. Without an explicit
+    # tag or a task description separator, that shape is more likely to be
+    # "<project> <timeline item>" than the new structured row.
+    if not tags and not description:
+        return raw, {}, "", "", None
+    if theme_tag:
+        tags["Task Theme with colour"] = theme_tag
+    return label, tags, task_title, description, wbs_level
 
 
 def _extract_time_expected_h(takes_segment: str) -> Optional[float]:
@@ -147,6 +310,7 @@ def parse_date_to_iso(date_str: str) -> str:
 
 def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
     entries: List[TimelineEntry] = []
+    structured_cfg = _structured_config()
 
     entry_block_types = {"bulleted_list_item", "paragraph", "numbered_list_item", "to_do", "toggle"}
 
@@ -233,6 +397,10 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
 
                         takes_seg = data.get("takes_seg", "")
                         status_emoji, subtheme = _parse_prefix(data.get("prefix", ""))
+                        subtheme, tags, task_title, description, wbs_level = _parse_structured_prefix(
+                            subtheme,
+                            structured_cfg,
+                        )
                         remaining = data.get("remaining")
                         if not subtheme:
                             continue
@@ -264,6 +432,12 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
                             remaining_work_days=int(remaining) if remaining else None,
                             raw_text=raw_text,
                             in_heading_scope=current_has_heading_context,
+                            priority=None,
+                            scope_section=str(current_section_kind or ""),
+                            tags=tags,
+                            task_title=task_title,
+                            description=description,
+                            wbs_level=wbs_level,
                         )
                         entries.append(entry)
 
@@ -360,6 +534,14 @@ def _load_entries_from_state_file() -> List[TimelineEntry]:
                         else None
                     ),
                     scope_section=section_kind,
+                    tags=meta.get("tags") if isinstance(meta.get("tags"), dict) else {},
+                    task_title=str(meta.get("task_title", "") or "").strip(),
+                    description=str(meta.get("description", "") or "").strip(),
+                    wbs_level=(
+                        int(meta.get("wbs_level"))
+                        if str(meta.get("wbs_level", "")).strip().isdigit()
+                        else None
+                    ),
                 )
             )
 

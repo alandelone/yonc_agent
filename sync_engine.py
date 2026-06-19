@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from datetime import datetime, timezone
 from typing import List, Dict, Any
 from state_manager import load_state, STATE_FILE, CURRENT_STATE_FILE, save_state
@@ -55,6 +56,66 @@ def _rich_text_for_task_creation(task: Dict[str, Any], fallback_title: str) -> L
         return rich_text
     title = str(fallback_title or "").strip() or " "
     return [{"type": "text", "text": {"content": title}}]
+
+def _plain_text_from_block(block: Dict[str, Any]) -> str:
+    block_type = block.get("type") or ""
+    rich_text = (block.get(block_type) or {}).get("rich_text") or []
+    return "".join(str(rt.get("plain_text") or "") for rt in rich_text).strip()
+
+def _dedupe_visible_title(text: str) -> str:
+    text = re.sub(r"\s+", " ", str(text or "")).strip()
+    text = text.replace("`", "").replace("*", "")
+    return text.casefold()
+
+def _direct_notion_children(parent_id: str) -> List[Dict[str, Any]]:
+    import requests
+    from config import NOTION_HEADERS
+
+    url = f"https://api.notion.com/v1/blocks/{_normalize_uuid(parent_id)}/children"
+    params: Dict[str, Any] = {"page_size": 100}
+    children: List[Dict[str, Any]] = []
+    while True:
+        response = requests.get(url, headers=NOTION_HEADERS, params=params, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        children.extend(data.get("results") or [])
+        if not data.get("has_more"):
+            return children
+        params["start_cursor"] = data.get("next_cursor")
+
+def _archive_duplicate_direct_children_by_title(parent_id: str, preferred_ids: List[str] = None) -> set:
+    """
+    Repair interrupted clone/delete root moves.
+
+    Root ordering recreates blocks because Notion cannot move arbitrary blocks. If a run
+    dies after append but before archive, the Linev2 page shows duplicate root containers.
+    Keep the first preferred/current block for each visible title and archive later copies.
+    """
+    from notion_client import delete_block
+
+    preferred = {_normalize_uuid(str(x or "")) for x in (preferred_ids or []) if x}
+    by_title: Dict[str, List[Dict[str, Any]]] = {}
+    for child in _direct_notion_children(parent_id):
+        if child.get("archived"):
+            continue
+        title_key = _dedupe_visible_title(_plain_text_from_block(child))
+        if title_key:
+            by_title.setdefault(title_key, []).append(child)
+
+    archived_ids = set()
+    for siblings in by_title.values():
+        if len(siblings) < 2:
+            continue
+        preferred_siblings = [b for b in siblings if _normalize_uuid(str(b.get("id") or "")) in preferred]
+        keep = preferred_siblings[0] if preferred_siblings else siblings[0]
+        keep_id = _normalize_uuid(str(keep.get("id") or ""))
+        for duplicate in siblings:
+            duplicate_id = _normalize_uuid(str(duplicate.get("id") or ""))
+            if not duplicate_id or duplicate_id == keep_id:
+                continue
+            delete_block(duplicate_id)
+            archived_ids.add(duplicate_id)
+    return archived_ids
 
 def _rebuild_notion_block_payload(block: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1685,6 +1746,10 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
     def _task_id(task: Dict[str, Any]) -> str:
         return str(task.get("notion_block_id") or task.get("id") or "")
 
+    def _default_parent_id() -> str:
+        from config import DFORGE_LINESV2_PAGE_ID
+        return DFORGE_LINESV2_PAGE_ID
+
     def _build_root_sequence(state: List[Dict[str, Any]]) -> List[str]:
         task_by_id = {_task_id(t): t for t in state if _task_id(t)}
         seen = set()
@@ -1706,7 +1771,57 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
                 roots.append(current_id)
         return roots
 
+    def _drop_duplicate_roots_from_state(state: List[Dict[str, Any]], root_ids: List[str]) -> List[Dict[str, Any]]:
+        task_by_id = {_task_id(t): t for t in state if _task_id(t)}
+        kept_by_title = set()
+        duplicate_root_ids = set()
+        for root_id in root_ids:
+            task = task_by_id.get(root_id)
+            if not task:
+                continue
+            title = str(task.get("original_notion_title", task.get("title", "")) or "")
+            title_key = _dedupe_visible_title(title)
+            if not title_key:
+                continue
+            if title_key in kept_by_title:
+                duplicate_root_ids.add(root_id)
+            else:
+                kept_by_title.add(title_key)
+        if not duplicate_root_ids:
+            return state
+
+        children_map = {}
+        for task in state:
+            tid = _task_id(task)
+            pid = str(task.get("parent_id") or "")
+            if pid and tid:
+                children_map.setdefault(pid, []).append(task)
+        duplicate_subtree_ids = set()
+        for root_id in duplicate_root_ids:
+            stack = [root_id]
+            while stack:
+                current = stack.pop()
+                if current in duplicate_subtree_ids:
+                    continue
+                duplicate_subtree_ids.add(current)
+                for child in children_map.get(current, []):
+                    child_id = _task_id(child)
+                    if child_id:
+                        stack.append(child_id)
+        return [task for task in state if _task_id(task) not in duplicate_subtree_ids]
+
     before_roots = _build_root_sequence(before_state)
+    after_roots = _build_root_sequence(after_state)
+    parent_ids = {
+        str((next((t for t in after_state if _task_id(t) == rid), {}) or {}).get("parent_id") or _default_parent_id())
+        for rid in after_roots
+    }
+    for parent_id in parent_ids:
+        try:
+            _archive_duplicate_direct_children_by_title(parent_id, preferred_ids=after_roots)
+        except Exception as e:
+            print(f"Warning: Failed duplicate root cleanup for {parent_id}: {e}")
+    after_state = _drop_duplicate_roots_from_state(after_state, after_roots)
     after_roots = _build_root_sequence(after_state)
 
     if before_roots == after_roots:
@@ -1841,8 +1956,7 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
             
         parent_id = str(target_task.get("parent_id") or "")
         if not parent_id:
-             from config import DFORGE_LINESV2_PAGE_ID
-             parent_id = DFORGE_LINESV2_PAGE_ID
+             parent_id = _default_parent_id()
         
         old_id = target_root
         prev_id = after_roots[i-1] if i > 0 else None
@@ -1872,4 +1986,9 @@ def push_root_order_to_notion(before_state: List[Dict[str, Any]], after_state: L
             sys.stdout.buffer.write(f"  -> Failed moving block '{block_title_prt}': {e}\n".encode('utf-8'))
 
     sys.stdout.buffer.write(f"Physical Root Rank Reordering complete.\n".encode('utf-8'))
+    for parent_id in parent_ids:
+        try:
+            _archive_duplicate_direct_children_by_title(parent_id, preferred_ids=after_roots)
+        except Exception as e:
+            print(f"Warning: Failed duplicate root cleanup for {parent_id}: {e}")
     return state

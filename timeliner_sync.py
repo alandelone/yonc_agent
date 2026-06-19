@@ -189,7 +189,8 @@ def _resolve_task_label_for_entry(
     theme_label: str,
     original_title_index: Dict[str, Set[str]],
 ) -> str:
-    task_label = str(entry.colour_subtheme or "").strip()
+    parsed_task = str(getattr(entry, "task_title", "") or "").strip()
+    task_label = parsed_task or str(entry.colour_subtheme or "").strip()
     if not task_label:
         return task_label
 
@@ -217,6 +218,12 @@ def _resolve_task_label_for_entry(
 
 
 def _resolve_theme_label_for_entry(entry: TimelineEntry, idx: Dict[str, str]) -> str:
+    entry_tags = getattr(entry, "tags", None)
+    if isinstance(entry_tags, dict) and entry_tags.get("Task Theme with colour"):
+        label = str(entry.colour_subtheme or "").strip()
+        if label:
+            return label
+
     key = str(entry.colour_subtheme or "").strip().lower()
     if key and key in idx:
         return idx[key]
@@ -506,7 +513,21 @@ def sync_timeliner() -> None:
         scope_label = " / ".join([x for x in [project, subproject, st] if x]) or st
 
         if entry.in_heading_scope:
-            updated_state[scope_key] = entry.settle_date
+            entry_tags = dict(getattr(entry, "tags", {}) or {})
+            task_title = str(getattr(entry, "task_title", "") or "").strip()
+            description = str(getattr(entry, "description", "") or "").strip()
+            wbs_level = getattr(entry, "wbs_level", None)
+            if entry_tags or task_title or description or wbs_level is not None:
+                updated_state[scope_key] = {
+                    "settle_date": entry.settle_date,
+                    "colour_subtheme": st,
+                    "tags": entry_tags,
+                    "task_title": task_title,
+                    "description": description,
+                    "wbs_level": wbs_level,
+                }
+            else:
+                updated_state[scope_key] = entry.settle_date
 
         ext_project = project if entry.in_heading_scope else ""
         ext_subproject = subproject if entry.in_heading_scope else ""

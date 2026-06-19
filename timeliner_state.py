@@ -141,7 +141,17 @@ def save_timeliner_state(
     )
 
     for key in sorted_scope_keys:
-        settle_date = (state or {}).get(key)
+        raw_value = (state or {}).get(key)
+        if isinstance(raw_value, dict):
+            settle_date = raw_value.get("settle_date")
+            extra_meta = {
+                k: v
+                for k, v in raw_value.items()
+                if k not in {"scope_key", "settle_date", "priority"}
+            }
+        else:
+            settle_date = raw_value
+            extra_meta = {}
 
         parts = key.split("::")
         if len(parts) >= 3:
@@ -161,6 +171,7 @@ def save_timeliner_state(
                 "scope_key": key,
                 "settle_date": settle_date,
             }
+            entry.update(extra_meta)
             if subproject:
                 entry["priority"] = sub_priority
                 sub_priority += 1

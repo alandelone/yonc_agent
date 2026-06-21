@@ -1,0 +1,164 @@
+{
+  "priority_emojis_repr": [
+    "'💥'",
+    "'🚨'",
+    "'💣'",
+    "'🧨'",
+    "'🎇'"
+  ],
+  "priority_emojis_hex": [
+    [
+      "0x1f4a5"
+    ],
+    [
+      "0x1f6a8"
+    ],
+    [
+      "0x1f4a3"
+    ],
+    [
+      "0x1f9e8"
+    ],
+    [
+      "0x1f387"
+    ]
+  ],
+  "title_chars_with_hex": [
+    {
+      "pos": 0,
+      "char": "'🏭'",
+      "hex": "0x1f3ed"
+    },
+    {
+      "pos": 30,
+      "char": "'🟧'",
+      "hex": "0x1f7e7"
+    },
+    {
+      "pos": 41,
+      "char": "'🚨'",
+      "hex": "0x1f6a8"
+    },
+    {
+      "pos": 72,
+      "char": "'🔶'",
+      "hex": "0x1f536"
+    },
+    {
+      "pos": 83,
+      "char": "'🚨'",
+      "hex": "0x1f6a8"
+    },
+    {
+      "pos": 89,
+      "char": "'技'",
+      "hex": "0x6280"
+    },
+    {
+      "pos": 90,
+      "char": "'术'",
+      "hex": "0x672f"
+    },
+    {
+      "pos": 91,
+      "char": "'手'",
+      "hex": "0x624b"
+    },
+    {
+      "pos": 92,
+      "char": "'册'",
+      "hex": "0x518c"
+    },
+    {
+      "pos": 94,
+      "char": "'安'",
+      "hex": "0x5b89"
+    },
+    {
+      "pos": 95,
+      "char": "'全'",
+      "hex": "0x5168"
+    },
+    {
+      "pos": 96,
+      "char": "'指'",
+      "hex": "0x6307"
+    },
+    {
+      "pos": 97,
+      "char": "'南'",
+      "hex": "0x5357"
+    }
+  ],
+  "match_results": {
+    "'💥'": {
+      "in_title": false,
+      "in_original": false,
+      "replace_works": false
+    },
+    "'🚨'": {
+      "in_title": true,
+      "in_original": false,
+      "replace_works": true
+    },
+    "'💣'": {
+      "in_title": false,
+      "in_original": false,
+      "replace_works": false
+    },
+    "'🧨'": {
+      "in_title": false,
+      "in_original": false,
+      "replace_works": false
+    },
+    "'🎇'": {
+      "in_title": false,
+      "in_original": false,
+      "replace_works": false
+    }
+  },
+  "cleaned_title_same_as_original": false,
+  "cleaned_len_vs_original_len": "147 vs 149",
+  "subtask_keys": [
+    "id",
+    "notion_block_id",
+    "title",
+    "original_notion_title",
+    "context_heading",
+    "parent_id",
+    "depth",
+    "wbs_level",
+    "type",
+    "notion_type",
+    "annotations",
+    "notion_rich_text",
+    "links",
+    "checked",
+    "has_tag_style",
+    "created_by_id",
+    "last_edited_by_id",
+    "is_generated",
+    "origin",
+    "is_content_block",
+    "timeliner_key",
+    "timeliner_rank",
+    "wbs_source",
+    "split_stage",
+    "split_batch_id",
+    "reviewed_once",
+    "generated_selection_processed",
+    "tags",
+    "status",
+    "metrics",
+    "timeliner_is_subproject",
+    "timeliner_priority",
+    "timeliner_section"
+  ],
+  "subtask_depth": 3,
+  "subtask_notion_type": "quote",
+  "subtask_block_id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
+  "subtask_is_generated": false,
+  "subtask_has_tag_style": false,
+  "subtask_wbs_level": null,
+  "subtask_parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618"
+}

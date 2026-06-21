@@ -1495,3 +1495,165 @@
 2026-06-19 00:13:02,128 | INFO | state_evaluator | [Evaluator] Saved 261 tasks to state
 2026-06-19 09:34:54,475 | INFO | __main__ | CLI command 'sync' started (pid=13844, cwd=C:\test_codespace\yonc_agent)
 2026-06-19 09:34:54,475 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-19 11:58:02,783 | INFO | __main__ | CLI command 'flow' started (pid=2340, cwd=C:\test_codespace\yonc_agent)
+2026-06-19 11:58:02,792 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-19 11:58:02,797 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-19 11:58:50,356 | INFO | state_evaluator | [Evaluator] Loaded 209 merged tasks
+2026-06-19 11:58:50,357 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-19 11:58:50,385 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-19 11:58:50,385 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-19 11:58:50,386 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-19 11:58:58,838 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-19 11:58:58,853 | INFO | state_evaluator | [Evaluator] Scoped 79 tasks from TIMELINER
+2026-06-19 11:59:01,053 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-19 11:59:27,374 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-19 11:59:33,105 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-19 11:59:42,414 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-19 12:00:08,441 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+2026-06-19 12:00:16,168 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 2/20)
+2026-06-19 12:00:30,412 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+2026-06-19 12:00:34,801 | WARNING | unlimited_llmapi.multikey_manager | gemini/gemini-3-flash-preview | key_1 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 20.075904898s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "20s"
+      }
+    ]
+  }
+}
+
+2026-06-19 12:00:34,802 | WARNING | unlimited_llmapi.multikey_manager | 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_1...
+2026-06-19 12:00:35,805 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+2026-06-19 12:00:39,732 | WARNING | unlimited_llmapi.multikey_manager | gemini/gemini-3-flash-preview | alansyling 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 15.122261986s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "15s"
+      }
+    ]
+  }
+}
+
+2026-06-19 12:00:39,732 | WARNING | unlimited_llmapi.multikey_manager | 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 alansyling...
+2026-06-19 12:00:40,736 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+2026-06-19 12:01:03,102 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 3/20)
+2026-06-19 12:01:09,479 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+2026-06-19 12:01:24,865 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+2026-06-19 23:03:11,438 | INFO | __main__ | CLI command 'flow' started (pid=21320, cwd=C:\test_codespace\yonc_agent)
+2026-06-19 23:03:11,439 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-19 23:03:11,444 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-19 23:03:32,060 | INFO | state_evaluator | [Evaluator] Loaded 209 merged tasks
+2026-06-19 23:03:32,062 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-19 23:03:32,085 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-19 23:03:32,085 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-19 23:03:32,085 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-19 23:03:39,714 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-19 23:03:39,730 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='thesis' title_key='Thesis Phd Logic' section='main'
+2026-06-19 23:03:39,730 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='thesis' title_key='Thesis proposal defense Slide' section='main'
+2026-06-19 23:03:39,730 | INFO | state_evaluator | [Evaluator] Scoped 54 tasks from TIMELINER
+2026-06-19 23:03:40,929 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+2026-06-19 23:03:40,949 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 2/20)
+2026-06-19 23:03:40,961 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 2/20)
+2026-06-19 23:03:51,979 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 4.0s 后就绪...
+2026-06-19 23:03:55,938 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 5/20)
+2026-06-19 23:04:04,793 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 3/20)
+2026-06-19 23:04:14,424 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 3/20)
+2026-06-19 23:04:23,821 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 6/20)
+2026-06-19 23:04:30,852 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-19 23:04:30,853 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-19 23:04:30,868 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-19 23:04:30,868 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-19 23:04:40,474 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-19 23:04:40,474 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-19 23:06:20,234 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-19 23:06:20,235 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-19 23:06:20,236 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-19 23:06:20,236 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-19 23:06:20,238 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-19 23:06:20,238 | INFO | state_evaluator | [Evaluator] State distribution: {'EXPANDING': 1, 'SEQUENCED': 53, 'SKIP': 9, 'STRUCTURED': 146}
+2026-06-19 23:06:20,404 | INFO | state_evaluator | [Evaluator] Saved 209 tasks to state
+2026-06-21 11:10:42,863 | INFO | __main__ | CLI command 'flow' started (pid=19436, cwd=C:\test_codespace\yonc_agent)
+2026-06-21 11:10:42,864 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-21 11:10:42,868 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-21 11:11:00,573 | INFO | state_evaluator | [Evaluator] Loaded 209 merged tasks
+2026-06-21 11:11:00,574 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-21 11:11:00,593 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-21 11:11:00,593 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-21 11:11:00,593 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-21 11:11:08,420 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-21 11:11:08,436 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='thesis' title_key='Thesis Phd Logic' section='main'
+2026-06-21 11:11:08,436 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='thesis' title_key='Thesis proposal defense Slide' section='main'
+2026-06-21 11:11:08,436 | INFO | state_evaluator | [Evaluator] Scoped 54 tasks from TIMELINER
+2026-06-21 11:11:08,438 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-21 11:11:08,439 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-21 11:11:08,472 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-21 11:11:08,472 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-21 11:11:09,188 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-21 11:11:09,188 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-21 11:12:15,297 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-21 11:12:15,297 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-21 11:12:16,389 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-21 11:12:23,354 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-21 11:12:30,107 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 1/1500)
+2026-06-21 11:13:04,232 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 1/1500)
+2026-06-21 11:13:31,838 | INFO | state_evaluator | [Evaluator] Split pass: 1 subtasks across 1 parents
+2026-06-21 11:13:31,838 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-21 11:13:31,839 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-21 11:13:31,841 | INFO | state_evaluator | [Evaluator] State distribution: {'HUMAN_REVIEW': 1, 'SEQUENCED': 53, 'SKIP': 9, 'STRUCTURED': 146, 'RAW': 1}
+2026-06-21 11:13:31,841 | INFO | state_evaluator | [Evaluator] Halted blocks requiring human action (1):
+2026-06-21 11:13:31,841 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🏭 Thesis 🚨thesis writing : parallel by c
+2026-06-21 11:13:31,969 | INFO | state_evaluator | [Evaluator] Saved 210 tasks to state

@@ -83,6 +83,7 @@ class TestThemePrefixScoping(unittest.TestCase):
                 "depth": 1,
                 "parent_id": "parent-3dpf",
                 "checked": None,
+                "wbs_level": 3,
             },
         ]
 

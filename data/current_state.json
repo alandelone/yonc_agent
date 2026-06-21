@@ -1,5 +1,677 @@
 [
   {
+    "id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "notion_block_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "original_notion_title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "context_heading": "",
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Thesis",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Thesis",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 🚨🚨 thesis writing : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 🚨🚨 thesis writing : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "parallel by chapter  ( FinalComGen>review>format)",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "parallel by chapter  ( FinalComGen>review>format)",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "384e1eb5-ce57-81d8-ae7c-cb071f4ff775",
+    "notion_block_id": "384e1eb5-ce57-81d8-ae7c-cb071f4ff775",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 🔸 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "original_notion_title": "🔸 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 起草与定稿Outline : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 起草与定稿Outline : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "高质量论文：满足院校答辩要求。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "高质量论文：满足院校答辩要求。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "384e1eb5-ce57-81be-8913-ca4f8d89d7d2",
+    "notion_block_id": "384e1eb5-ce57-81be-8913-ca4f8d89d7d2",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "original_notion_title": "🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Thesis",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Thesis",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Chp2文献综述与 Framework : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " Chp2文献综述与 Framework : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "综述研究：构建论文核心理论基础。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "综述研究：构建论文核心理论基础。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "384e1eb5-ce57-813e-afe7-e2d493f228b8",
+    "notion_block_id": "384e1eb5-ce57-813e-afe7-e2d493f228b8",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "original_notion_title": "🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Thesis",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Thesis",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Chp3方法与数据分析 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " Chp3方法与数据分析 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "记录研究设计：完成初/次级数据系统分析。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "记录研究设计：完成初/次级数据系统分析。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "384e1eb5-ce57-8115-812b-d9347b50ec8d",
+    "notion_block_id": "384e1eb5-ce57-8115-812b-d9347b50ec8d",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 🔶 Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "original_notion_title": "🔶 Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Draft",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "purple"
+        },
+        "plain_text": "Draft",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Chp4核心讨论  完成 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " Chp4核心讨论  完成 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "综合结果：回答核心研究问题及假设。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "综合结果：回答核心研究问题及假设。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "384e1eb5-ce57-81a9-b875-e6e23e74383e",
+    "notion_block_id": "384e1eb5-ce57-81a9-b875-e6e23e74383e",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 🔶 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "original_notion_title": "🔶 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 稿件定稿校对 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 稿件定稿校对 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "整合为单文档：遵循学术格式及引用标准。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "整合为单文档：遵循学术格式及引用标准。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
+    "notion_block_id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
+    "title": "🏭 Thesis 🚨🚨 thesis writing : parallel by chapter  ( FinalComGen>review>format) 最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "original_notion_title": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "context_heading": "",
+    "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
     "id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "notion_block_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "title": "🏭 SolarMan Apparatus Learning",
@@ -98,8 +770,8 @@
   {
     "id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "notion_block_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare",
-    "original_notion_title": "🟧 SolarMan 🚨 SKM Program Material Prepare",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare",
+    "original_notion_title": "🔶 🚨 SKM Program Material Prepare",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "depth": 1,
@@ -118,7 +790,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🟧 ",
+          "content": "🔶 🚨 SKM Program Material Prepare",
           "link": null
         },
         "annotations": {
@@ -129,47 +801,13 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🟧 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 SKM Program Material Prepare",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 SKM Program Material Prepare",
+        "plain_text": "🔶 🚨 SKM Program Material Prepare",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -194,8 +832,8 @@
   {
     "id": "383e1eb5-ce57-8197-9e93-f6cd1f809e43",
     "notion_block_id": "383e1eb5-ce57-8197-9e93-f6cd1f809e43",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
-    "original_notion_title": "🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
+    "original_notion_title": "🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -214,7 +852,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
           "link": null
         },
         "annotations": {
@@ -225,41 +863,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
+        "plain_text": "🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
         "href": null
       },
       {
@@ -282,7 +886,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -307,8 +911,8 @@
   {
     "id": "383e1eb5-ce57-818c-8e45-d0862c3d12c6",
     "notion_block_id": "383e1eb5-ce57-818c-8e45-d0862c3d12c6",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
-    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
+    "original_notion_title": "🔸 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8197-9e93-f6cd1f809e43",
     "depth": 3,
@@ -339,40 +943,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -454,8 +1024,8 @@
   {
     "id": "383e1eb5-ce57-815f-91ba-d0bd73b66097",
     "notion_block_id": "383e1eb5-ce57-815f-91ba-d0bd73b66097",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
-    "original_notion_title": "🔸 SolarMan 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
+    "original_notion_title": "🔸 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8197-9e93-f6cd1f809e43",
     "depth": 3,
@@ -486,40 +1056,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -601,8 +1137,8 @@
   {
     "id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "notion_block_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
-    "original_notion_title": "🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+    "original_notion_title": "🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -621,7 +1157,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
           "link": null
         },
         "annotations": {
@@ -632,47 +1168,13 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+        "plain_text": "🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -697,7 +1199,7 @@
   {
     "id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
     "notion_block_id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob",
     "original_notion_title": "Format Cute Manual : Ob",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
@@ -776,7 +1278,7 @@
   {
     "id": "383e1eb5-ce57-81d5-b565-c69581866278",
     "notion_block_id": "383e1eb5-ce57-81d5-b565-c69581866278",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution",
     "original_notion_title": "error response , precaution",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
@@ -838,7 +1340,7 @@
   {
     "id": "383e1eb5-ce57-817d-9b6f-e5619b6be63f",
     "notion_block_id": "383e1eb5-ce57-817d-9b6f-e5619b6be63f",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值",
     "original_notion_title": "Mode定义/预期值/阈值",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
@@ -900,7 +1402,7 @@
   {
     "id": "383e1eb5-ce57-81ee-baa4-c90e60c4e6bf",
     "notion_block_id": "383e1eb5-ce57-81ee-baa4-c90e60c4e6bf",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain",
     "original_notion_title": "Action domain",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ba-a239-c49925b1d634",
@@ -962,8 +1464,8 @@
   {
     "id": "383e1eb5-ce57-81d6-a381-ec7c9cb2f468",
     "notion_block_id": "383e1eb5-ce57-81d6-a381-ec7c9cb2f468",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 手册结构规划 : 创建目录：(系统架构, 安全协议)",
-    "original_notion_title": "🔸 SolarMan 手册结构规划 : 创建目录：(系统架构, 安全协议)",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 手册结构规划 : 创建目录：(系统架构, 安全协议)",
+    "original_notion_title": "🔸 手册结构规划 : 创建目录：(系统架构, 安全协议)",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -982,7 +1484,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 手册结构规划 : ",
           "link": null
         },
         "annotations": {
@@ -993,41 +1495,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 手册结构规划 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 手册结构规划 : ",
+        "plain_text": "🔸 手册结构规划 : ",
         "href": null
       },
       {
@@ -1050,7 +1518,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1075,8 +1543,8 @@
   {
     "id": "383e1eb5-ce57-81aa-8bf3-d68e5a810f5d",
     "notion_block_id": "383e1eb5-ce57-81aa-8bf3-d68e5a810f5d",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan Tool 对接流程 : 工具集成指南 (物理 & 数字)",
-    "original_notion_title": "🔸 SolarMan Tool 对接流程 : 工具集成指南 (物理 & 数字)",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 Tool 对接流程 : 工具集成指南 (物理 & 数字)",
+    "original_notion_title": "🔸 Tool 对接流程 : 工具集成指南 (物理 & 数字)",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1095,7 +1563,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 Tool 对接流程 : ",
           "link": null
         },
         "annotations": {
@@ -1106,41 +1574,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Tool 对接流程 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Tool 对接流程 : ",
+        "plain_text": "🔸 Tool 对接流程 : ",
         "href": null
       },
       {
@@ -1163,7 +1597,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1188,8 +1622,8 @@
   {
     "id": "383e1eb5-ce57-813b-8a8c-d0037733a699",
     "notion_block_id": "383e1eb5-ce57-813b-8a8c-d0037733a699",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 记录 UI 导航 : 界面：详述菜单功能及仪表盘视图",
-    "original_notion_title": "🔸 SolarMan 记录 UI 导航 : 界面：详述菜单功能及仪表盘视图",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 记录 UI 导航 : 界面：详述菜单功能及仪表盘视图",
+    "original_notion_title": "🔸 记录 UI 导航 : 界面：详述菜单功能及仪表盘视图",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1208,7 +1642,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 记录 UI 导航 : ",
           "link": null
         },
         "annotations": {
@@ -1219,41 +1653,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 记录 UI 导航 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 记录 UI 导航 : ",
+        "plain_text": "🔸 记录 UI 导航 : ",
         "href": null
       },
       {
@@ -1276,7 +1676,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1301,8 +1701,8 @@
   {
     "id": "383e1eb5-ce57-8150-a500-c61dc8c92dcf",
     "notion_block_id": "383e1eb5-ce57-8150-a500-c61dc8c92dcf",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 电气安全警告 : 汇总技术员高压安全规范及PPE要求",
-    "original_notion_title": "🔸 SolarMan 电气安全警告 : 汇总技术员高压安全规范及PPE要求",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 电气安全警告 : 汇总技术员高压安全规范及PPE要求",
+    "original_notion_title": "🔸 电气安全警告 : 汇总技术员高压安全规范及PPE要求",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1321,7 +1721,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 电气安全警告 : ",
           "link": null
         },
         "annotations": {
@@ -1332,41 +1732,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 电气安全警告 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 电气安全警告 : ",
+        "plain_text": "🔸 电气安全警告 : ",
         "href": null
       },
       {
@@ -1389,7 +1755,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1414,8 +1780,8 @@
   {
     "id": "383e1eb5-ce57-8149-ab63-ef6e07473617",
     "notion_block_id": "383e1eb5-ce57-8149-ab63-ef6e07473617",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 定义紧急停机 Protocol : 拟定系统急停流程（手动/软件）",
-    "original_notion_title": "🔸 SolarMan 定义紧急停机 Protocol : 拟定系统急停流程（手动/软件）",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 定义紧急停机 Protocol : 拟定系统急停流程（手动/软件）",
+    "original_notion_title": "🔸 定义紧急停机 Protocol : 拟定系统急停流程（手动/软件）",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1434,7 +1800,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 定义紧急停机 Protocol : ",
           "link": null
         },
         "annotations": {
@@ -1445,41 +1811,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 定义紧急停机 Protocol : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 定义紧急停机 Protocol : ",
+        "plain_text": "🔸 定义紧急停机 Protocol : ",
         "href": null
       },
       {
@@ -1502,7 +1834,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1527,8 +1859,8 @@
   {
     "id": "383e1eb5-ce57-81c4-9b71-fa7621be9101",
     "notion_block_id": "383e1eb5-ce57-81c4-9b71-fa7621be9101",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan Tool UI 截图 : 关键界面截高清图：视觉引导",
-    "original_notion_title": "🔸 SolarMan Tool UI 截图 : 关键界面截高清图：视觉引导",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 Tool UI 截图 : 关键界面截高清图：视觉引导",
+    "original_notion_title": "🔸 Tool UI 截图 : 关键界面截高清图：视觉引导",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1547,7 +1879,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 Tool UI 截图 : ",
           "link": null
         },
         "annotations": {
@@ -1558,41 +1890,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Tool UI 截图 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Tool UI 截图 : ",
+        "plain_text": "🔸 Tool UI 截图 : ",
         "href": null
       },
       {
@@ -1615,7 +1913,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1640,8 +1938,8 @@
   {
     "id": "383e1eb5-ce57-819b-b9af-f0e7cc8412a9",
     "notion_block_id": "383e1eb5-ce57-819b-b9af-f0e7cc8412a9",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 标注系统接线图 : T&C内部技术图表：加标注",
-    "original_notion_title": "🔸 SolarMan 标注系统接线图 : T&C内部技术图表：加标注",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 标注系统接线图 : T&C内部技术图表：加标注",
+    "original_notion_title": "🔸 标注系统接线图 : T&C内部技术图表：加标注",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1660,7 +1958,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 标注系统接线图 : ",
           "link": null
         },
         "annotations": {
@@ -1671,41 +1969,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 标注系统接线图 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 标注系统接线图 : ",
+        "plain_text": "🔸 标注系统接线图 : ",
         "href": null
       },
       {
@@ -1728,7 +1992,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1753,8 +2017,8 @@
   {
     "id": "383e1eb5-ce57-81b6-a0e7-c7c087ca5986",
     "notion_block_id": "383e1eb5-ce57-81b6-a0e7-c7c087ca5986",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 验证 Error Code : DB：列出常见错误码及解决方案",
-    "original_notion_title": "🔸 SolarMan 验证 Error Code : DB：列出常见错误码及解决方案",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 验证 Error Code : DB：列出常见错误码及解决方案",
+    "original_notion_title": "🔸 验证 Error Code : DB：列出常见错误码及解决方案",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1773,7 +2037,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 验证 Error Code : ",
           "link": null
         },
         "annotations": {
@@ -1784,41 +2048,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 验证 Error Code : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 验证 Error Code : ",
+        "plain_text": "🔸 验证 Error Code : ",
         "href": null
       },
       {
@@ -1841,7 +2071,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1866,8 +2096,8 @@
   {
     "id": "383e1eb5-ce57-816e-a3e1-c70a55ca3b30",
     "notion_block_id": "383e1eb5-ce57-816e-a3e1-c70a55ca3b30",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 文档 Layout 排版 : 全手册：统一 SOLAR T&C 品牌样式",
-    "original_notion_title": "🔸 SolarMan 文档 Layout 排版 : 全手册：统一 SOLAR T&C 品牌样式",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 文档 Layout 排版 : 全手册：统一 SOLAR T&C 品牌样式",
+    "original_notion_title": "🔸 文档 Layout 排版 : 全手册：统一 SOLAR T&C 品牌样式",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1886,7 +2116,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 文档 Layout 排版 : ",
           "link": null
         },
         "annotations": {
@@ -1897,41 +2127,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 文档 Layout 排版 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 文档 Layout 排版 : ",
+        "plain_text": "🔸 文档 Layout 排版 : ",
         "href": null
       },
       {
@@ -1954,7 +2150,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -1979,8 +2175,8 @@
   {
     "id": "383e1eb5-ce57-8106-bd63-c2bb3c2fbf84",
     "notion_block_id": "383e1eb5-ce57-8106-bd63-c2bb3c2fbf84",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 手册 : 技术评审：确保安全指南正确。",
-    "original_notion_title": "🔸 SolarMan 手册 : 技术评审：确保安全指南正确。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 手册 : 技术评审：确保安全指南正确。",
+    "original_notion_title": "🔸 手册 : 技术评审：确保安全指南正确。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -1999,7 +2195,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 手册 : ",
           "link": null
         },
         "annotations": {
@@ -2010,41 +2206,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 手册 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 手册 : ",
+        "plain_text": "🔸 手册 : ",
         "href": null
       },
       {
@@ -2067,7 +2229,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2092,8 +2254,8 @@
   {
     "id": "383e1eb5-ce57-81dc-9c07-fc0a1ee901a9",
     "notion_block_id": "383e1eb5-ce57-81dc-9c07-fc0a1ee901a9",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus 🚨 💻✍️ Draft in my Word",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 💻✍️ Draft in my Word",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus 🚨 💻✍️ Draft in my Word",
+    "original_notion_title": "🔸 💻Focus 🚨 💻✍️ Draft in my Word",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -2124,40 +2286,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -2222,8 +2350,8 @@
   {
     "id": "383e1eb5-ce57-8171-b56f-f51b9edc00db",
     "notion_block_id": "383e1eb5-ce57-8171-b56f-f51b9edc00db",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus 🚨 ✍️GPTImg Prompt Gen Refining",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 ✍️GPTImg Prompt Gen Refining",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus 🚨 ✍️GPTImg Prompt Gen Refining",
+    "original_notion_title": "🔸 💻Focus 🚨 ✍️GPTImg Prompt Gen Refining",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -2254,40 +2382,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -2352,8 +2446,8 @@
   {
     "id": "383e1eb5-ce57-81c3-ba68-f6b93442a76d",
     "notion_block_id": "383e1eb5-ce57-81c3-ba68-f6b93442a76d",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare 🔶 SolarMan 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 SolarMan 💻Focus 🚨 🎯Final Img Refine Tune",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 🎯Final Img Refine Tune",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus 🚨 🎯Final Img Refine Tune",
+    "original_notion_title": "🔸 💻Focus 🚨 🎯Final Img Refine Tune",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-811b-a259-fd1138e47618",
     "depth": 3,
@@ -2384,40 +2478,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -2482,8 +2542,8 @@
   {
     "id": "383e1eb5-ce57-814c-8c47-db94b9f33bbf",
     "notion_block_id": "383e1eb5-ce57-814c-8c47-db94b9f33bbf",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
-    "original_notion_title": "SolarMan 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
+    "original_notion_title": "🔸 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2491,35 +2551,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 收集 SKM 培训手册 : ",
+          "content": "🔸 收集 SKM 培训手册 : ",
           "link": null
         },
         "annotations": {
@@ -2530,7 +2573,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 收集 SKM 培训手册 : ",
+        "plain_text": "🔸 收集 SKM 培训手册 : ",
         "href": null
       },
       {
@@ -2553,7 +2596,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2578,8 +2621,8 @@
   {
     "id": "383e1eb5-ce57-81e8-a90d-c6ea91577340",
     "notion_block_id": "383e1eb5-ce57-81e8-a90d-c6ea91577340",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 起草太阳能组件 Spec : SKM：汇总硬件组件及技术参数。",
-    "original_notion_title": "SolarMan 起草太阳能组件 Spec : SKM：汇总硬件组件及技术参数。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 起草太阳能组件 Spec : SKM：汇总硬件组件及技术参数。",
+    "original_notion_title": "🔸 起草太阳能组件 Spec : SKM：汇总硬件组件及技术参数。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2587,35 +2630,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 起草太阳能组件 Spec : ",
+          "content": "🔸 起草太阳能组件 Spec : ",
           "link": null
         },
         "annotations": {
@@ -2626,7 +2652,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 起草太阳能组件 Spec : ",
+        "plain_text": "🔸 起草太阳能组件 Spec : ",
         "href": null
       },
       {
@@ -2649,7 +2675,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2674,8 +2700,8 @@
   {
     "id": "383e1eb5-ce57-819d-8360-dd1683fca7a2",
     "notion_block_id": "383e1eb5-ce57-819d-8360-dd1683fca7a2",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 制作 SKM PPT : 概览：设计视觉内容与布局",
-    "original_notion_title": "SolarMan 制作 SKM PPT : 概览：设计视觉内容与布局",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 制作 SKM PPT : 概览：设计视觉内容与布局",
+    "original_notion_title": "🔸 制作 SKM PPT : 概览：设计视觉内容与布局",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2683,35 +2709,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 制作 SKM PPT : ",
+          "content": "🔸 制作 SKM PPT : ",
           "link": null
         },
         "annotations": {
@@ -2722,7 +2731,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 制作 SKM PPT : ",
+        "plain_text": "🔸 制作 SKM PPT : ",
         "href": null
       },
       {
@@ -2745,7 +2754,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2770,8 +2779,8 @@
   {
     "id": "383e1eb5-ce57-8152-ae87-c5c7662a0de8",
     "notion_block_id": "383e1eb5-ce57-8152-ae87-c5c7662a0de8",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 格式化评估表 : 设计并打印参与者反馈评估量表。",
-    "original_notion_title": "SolarMan 格式化评估表 : 设计并打印参与者反馈评估量表。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 格式化评估表 : 设计并打印参与者反馈评估量表。",
+    "original_notion_title": "🔸 格式化评估表 : 设计并打印参与者反馈评估量表。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2779,35 +2788,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 格式化评估表 : ",
+          "content": "🔸 格式化评估表 : ",
           "link": null
         },
         "annotations": {
@@ -2818,7 +2810,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 格式化评估表 : ",
+        "plain_text": "🔸 格式化评估表 : ",
         "href": null
       },
       {
@@ -2841,7 +2833,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2866,8 +2858,8 @@
   {
     "id": "383e1eb5-ce57-8125-ab7c-f41054f4c272",
     "notion_block_id": "383e1eb5-ce57-8125-ab7c-f41054f4c272",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 上传课程 Assets : 文档及媒体上传至共享 Repo。",
-    "original_notion_title": "SolarMan 上传课程 Assets : 文档及媒体上传至共享 Repo。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 上传课程 Assets : 文档及媒体上传至共享 Repo。",
+    "original_notion_title": "🔸 上传课程 Assets : 文档及媒体上传至共享 Repo。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2875,35 +2867,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 上传课程 Assets : ",
+          "content": "🔸 上传课程 Assets : ",
           "link": null
         },
         "annotations": {
@@ -2914,7 +2889,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 上传课程 Assets : ",
+        "plain_text": "🔸 上传课程 Assets : ",
         "href": null
       },
       {
@@ -2937,7 +2912,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -2962,8 +2937,8 @@
   {
     "id": "383e1eb5-ce57-81d0-bbe7-cfff1b5e44bf",
     "notion_block_id": "383e1eb5-ce57-81d0-bbe7-cfff1b5e44bf",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 SKM Program Material Prepare SolarMan 验证物料 Print Quality : 核查培训讲义纸本：确保清晰完整。",
-    "original_notion_title": "SolarMan 验证物料 Print Quality : 核查培训讲义纸本：确保清晰完整。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 🚨 SKM Program Material Prepare 🔸 验证物料 Print Quality : 核查培训讲义纸本：确保清晰完整。",
+    "original_notion_title": "🔸 验证物料 Print Quality : 核查培训讲义纸本：确保清晰完整。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
     "depth": 2,
@@ -2971,35 +2946,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 验证物料 Print Quality : ",
+          "content": "🔸 验证物料 Print Quality : ",
           "link": null
         },
         "annotations": {
@@ -3010,7 +2968,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 验证物料 Print Quality : ",
+        "plain_text": "🔸 验证物料 Print Quality : ",
         "href": null
       },
       {
@@ -3033,7 +2991,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -3171,8 +3129,8 @@
   {
     "id": "383e1eb5-ce57-81c4-91a2-dadc25f63820",
     "notion_block_id": "383e1eb5-ce57-81c4-91a2-dadc25f63820",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
-    "original_notion_title": "🔶 SolarMan 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
+    "original_notion_title": "🔶 🚨 ExpressFlow Draw : How?  DataSource 2 report with exe/docker",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -3191,7 +3149,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔶 🚨 ExpressFlow Draw : ",
           "link": null
         },
         "annotations": {
@@ -3202,41 +3160,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 ExpressFlow Draw : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 ExpressFlow Draw : ",
+        "plain_text": "🔶 🚨 ExpressFlow Draw : ",
         "href": null
       },
       {
@@ -3259,7 +3183,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -3284,8 +3208,8 @@
   {
     "id": "383e1eb5-ce57-8121-8103-d3b43fb40905",
     "notion_block_id": "383e1eb5-ce57-8121-8103-d3b43fb40905",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 power quality meter : Buildup BOM prepare & design",
-    "original_notion_title": "🔶 SolarMan 🚨 power quality meter : Buildup BOM prepare & design",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 power quality meter : Buildup BOM prepare & design",
+    "original_notion_title": "🔶 🚨 power quality meter : Buildup BOM prepare & design",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -3304,7 +3228,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔶 🚨 power quality meter : ",
           "link": null
         },
         "annotations": {
@@ -3315,41 +3239,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 power quality meter : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 power quality meter : ",
+        "plain_text": "🔶 🚨 power quality meter : ",
         "href": null
       },
       {
@@ -3372,7 +3262,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -3397,8 +3287,8 @@
   {
     "id": "383e1eb5-ce57-813a-a803-ecef4ca7643c",
     "notion_block_id": "383e1eb5-ce57-813a-a803-ecef4ca7643c",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 power quality meter : Buildup BOM prepare & design 🔸 SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
-    "original_notion_title": "🔸 SolarMan 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 power quality meter : Buildup BOM prepare & design 🔸 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
+    "original_notion_title": "🔸 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8121-8103-d3b43fb40905",
     "depth": 3,
@@ -3417,7 +3307,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 汇总电表 BOM : ",
           "link": null
         },
         "annotations": {
@@ -3428,41 +3318,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 汇总电表 BOM : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 汇总电表 BOM : ",
+        "plain_text": "🔸 汇总电表 BOM : ",
         "href": null
       },
       {
@@ -3485,7 +3341,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -3510,8 +3366,8 @@
   {
     "id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "notion_block_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design",
-    "original_notion_title": "🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design",
+    "original_notion_title": "🔶 🚨 IoT portable dash : BuildDev BOM prepare & design",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -3530,7 +3386,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔶 🚨 IoT portable dash : ",
           "link": null
         },
         "annotations": {
@@ -3541,41 +3397,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 IoT portable dash : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 IoT portable dash : ",
+        "plain_text": "🔶 🚨 IoT portable dash : ",
         "href": null
       },
       {
@@ -3598,7 +3420,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -3623,8 +3445,8 @@
   {
     "id": "383e1eb5-ce57-812a-bd80-ff3b55bf2a52",
     "notion_block_id": "383e1eb5-ce57-812a-bd80-ff3b55bf2a52",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🚨 🎯Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 🎯Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🚨 🎯Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
+    "original_notion_title": "🔸 💻Focus 🚨 🎯Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -3655,40 +3477,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -3770,8 +3558,8 @@
   {
     "id": "383e1eb5-ce57-81b8-8925-c0234e6568eb",
     "notion_block_id": "383e1eb5-ce57-81b8-8925-c0234e6568eb",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🚨 🔬solar irradiance module selection",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 🔬solar irradiance module selection",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🚨 🔬solar irradiance module selection",
+    "original_notion_title": "🔸 💻Focus 🚨 🔬solar irradiance module selection",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -3802,40 +3590,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -3900,8 +3654,8 @@
   {
     "id": "383e1eb5-ce57-81f2-b4e0-e2cf787ae77b",
     "notion_block_id": "383e1eb5-ce57-81f2-b4e0-e2cf787ae77b",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 💻Focus 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
+    "original_notion_title": "🔸 💻Focus 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -3932,40 +3686,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -4030,8 +3750,8 @@
   {
     "id": "383e1eb5-ce57-81d1-904f-c8726a86f824",
     "notion_block_id": "383e1eb5-ce57-81d1-904f-c8726a86f824",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 拟定 BOM : 梳理 dash硬件需求：(MCU, 传感器, 电源模块)",
-    "original_notion_title": "🔸 SolarMan 拟定 BOM : 梳理 dash硬件需求：(MCU, 传感器, 电源模块)",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 拟定 BOM : 梳理 dash硬件需求：(MCU, 传感器, 电源模块)",
+    "original_notion_title": "🔸 拟定 BOM : 梳理 dash硬件需求：(MCU, 传感器, 电源模块)",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4050,7 +3770,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 拟定 BOM : ",
           "link": null
         },
         "annotations": {
@@ -4061,41 +3781,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 拟定 BOM : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 拟定 BOM : ",
+        "plain_text": "🔸 拟定 BOM : ",
         "href": null
       },
       {
@@ -4118,7 +3804,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4143,8 +3829,8 @@
   {
     "id": "383e1eb5-ce57-81ef-a610-f7beccfa2722",
     "notion_block_id": "383e1eb5-ce57-81ef-a610-f7beccfa2722",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 机械外壳选型 : 选择适配便携设计的材料（外壳、紧固件、安装件）。",
-    "original_notion_title": "🔸 SolarMan 机械外壳选型 : 选择适配便携设计的材料（外壳、紧固件、安装件）。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 机械外壳选型 : 选择适配便携设计的材料（外壳、紧固件、安装件）。",
+    "original_notion_title": "🔸 机械外壳选型 : 选择适配便携设计的材料（外壳、紧固件、安装件）。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4163,7 +3849,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 机械外壳选型 : ",
           "link": null
         },
         "annotations": {
@@ -4174,41 +3860,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 机械外壳选型 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 机械外壳选型 : ",
+        "plain_text": "🔸 机械外壳选型 : ",
         "href": null
       },
       {
@@ -4231,7 +3883,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4256,8 +3908,8 @@
   {
     "id": "383e1eb5-ce57-8101-988f-cef668c489d6",
     "notion_block_id": "383e1eb5-ce57-8101-988f-cef668c489d6",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 核实零件库存及价格 : 核对初步 BOM：供应商库存、单价",
-    "original_notion_title": "🔸 SolarMan 核实零件库存及价格 : 核对初步 BOM：供应商库存、单价",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 核实零件库存及价格 : 核对初步 BOM：供应商库存、单价",
+    "original_notion_title": "🔸 核实零件库存及价格 : 核对初步 BOM：供应商库存、单价",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4276,7 +3928,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 核实零件库存及价格 : ",
           "link": null
         },
         "annotations": {
@@ -4287,41 +3939,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 核实零件库存及价格 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 核实零件库存及价格 : ",
+        "plain_text": "🔸 核实零件库存及价格 : ",
         "href": null
       },
       {
@@ -4344,7 +3962,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4369,8 +3987,8 @@
   {
     "id": "383e1eb5-ce57-8179-bd89-dffa28102120",
     "notion_block_id": "383e1eb5-ce57-8179-bd89-dffa28102120",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 外壳 Layout 图 : 便携外壳内部组件：2D布局",
-    "original_notion_title": "🔸 SolarMan 外壳 Layout 图 : 便携外壳内部组件：2D布局",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 外壳 Layout 图 : 便携外壳内部组件：2D布局",
+    "original_notion_title": "🔸 外壳 Layout 图 : 便携外壳内部组件：2D布局",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4389,7 +4007,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 外壳 Layout 图 : ",
           "link": null
         },
         "annotations": {
@@ -4400,41 +4018,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 外壳 Layout 图 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 外壳 Layout 图 : ",
+        "plain_text": "🔸 外壳 Layout 图 : ",
         "href": null
       },
       {
@@ -4457,7 +4041,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4482,8 +4066,8 @@
   {
     "id": "383e1eb5-ce57-81a1-bce1-d677d90bbedc",
     "notion_block_id": "383e1eb5-ce57-81a1-bce1-d677d90bbedc",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan PCB封装需求 : 定义定制 PCB 尺寸及接口布局。",
-    "original_notion_title": "🔸 SolarMan PCB封装需求 : 定义定制 PCB 尺寸及接口布局。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 PCB封装需求 : 定义定制 PCB 尺寸及接口布局。",
+    "original_notion_title": "🔸 PCB封装需求 : 定义定制 PCB 尺寸及接口布局。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4502,7 +4086,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 PCB封装需求 : ",
           "link": null
         },
         "annotations": {
@@ -4513,41 +4097,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " PCB封装需求 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " PCB封装需求 : ",
+        "plain_text": "🔸 PCB封装需求 : ",
         "href": null
       },
       {
@@ -4570,7 +4120,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4595,8 +4145,8 @@
   {
     "id": "383e1eb5-ce57-815f-a636-f2ca25d6cb6e",
     "notion_block_id": "383e1eb5-ce57-815f-a636-f2ca25d6cb6e",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 SolarMan 定稿 BOM 格式 : 汇总零件、数量、MPN 至标准表格。",
-    "original_notion_title": "🔸 SolarMan 定稿 BOM 格式 : 汇总零件、数量、MPN 至标准表格。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 IoT portable dash : BuildDev BOM prepare & design 🔸 定稿 BOM 格式 : 汇总零件、数量、MPN 至标准表格。",
+    "original_notion_title": "🔸 定稿 BOM 格式 : 汇总零件、数量、MPN 至标准表格。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81d2-9bba-cb67ae761f64",
     "depth": 3,
@@ -4615,7 +4165,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 定稿 BOM 格式 : ",
           "link": null
         },
         "annotations": {
@@ -4626,41 +4176,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 定稿 BOM 格式 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 定稿 BOM 格式 : ",
+        "plain_text": "🔸 定稿 BOM 格式 : ",
         "href": null
       },
       {
@@ -4683,7 +4199,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4708,8 +4224,8 @@
   {
     "id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
     "notion_block_id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 BLE connection testing of UNI-T device",
-    "original_notion_title": "🔶 SolarMan 🚨 BLE connection testing of UNI-T device",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 BLE connection testing of UNI-T device",
+    "original_notion_title": "🔶 🚨 BLE connection testing of UNI-T device",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -4728,7 +4244,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 ",
+          "content": "🔶 🚨 BLE connection testing of UNI-T device",
           "link": null
         },
         "annotations": {
@@ -4739,47 +4255,13 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🚨 BLE connection testing of UNI-T device",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 🚨 BLE connection testing of UNI-T device",
+        "plain_text": "🔶 🚨 BLE connection testing of UNI-T device",
         "href": null
       }
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -4804,8 +4286,8 @@
   {
     "id": "383e1eb5-ce57-818f-8b41-f5fc92b5793e",
     "notion_block_id": "383e1eb5-ce57-818f-8b41-f5fc92b5793e",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 BLE connection testing of UNI-T device 🔸 SolarMan 小Do📱 🚨 📋💻 phone version both simutenously",
-    "original_notion_title": "🔸 SolarMan 小Do📱 🚨 📋💻 phone version both simutenously",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 BLE connection testing of UNI-T device 🔸 小Do📱 🚨 📋💻 phone version both simutenously",
+    "original_notion_title": "🔸 小Do📱 🚨 📋💻 phone version both simutenously",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
     "depth": 3,
@@ -4836,40 +4318,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -4934,8 +4382,8 @@
   {
     "id": "383e1eb5-ce57-81e0-a3b6-f2e88253aa8f",
     "notion_block_id": "383e1eb5-ce57-81e0-a3b6-f2e88253aa8f",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 BLE connection testing of UNI-T device 🔸 SolarMan 💻Focus 🚨 💻comp version : replicate phone version in comp",
-    "original_notion_title": "🔸 SolarMan 💻Focus 🚨 💻comp version : replicate phone version in comp",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 BLE connection testing of UNI-T device 🔸 💻Focus 🚨 💻comp version : replicate phone version in comp",
+    "original_notion_title": "🔸 💻Focus 🚨 💻comp version : replicate phone version in comp",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
     "depth": 3,
@@ -4966,40 +4414,6 @@
           "color": "default"
         },
         "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
         "href": null
       },
       {
@@ -5081,8 +4495,8 @@
   {
     "id": "383e1eb5-ce57-8194-8086-c864088e17b6",
     "notion_block_id": "383e1eb5-ce57-8194-8086-c864088e17b6",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 SolarMan 🚨 BLE connection testing of UNI-T device 🔸 SolarMan UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
-    "original_notion_title": "🔸 SolarMan UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 🚨 BLE connection testing of UNI-T device 🔸 UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
+    "original_notion_title": "🔸 UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
     "depth": 3,
@@ -5101,7 +4515,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 ",
+          "content": "🔸 UNI-T BLE 配对测试 : ",
           "link": null
         },
         "annotations": {
@@ -5112,41 +4526,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " UNI-T BLE 配对测试 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " UNI-T BLE 配对测试 : ",
+        "plain_text": "🔸 UNI-T BLE 配对测试 : ",
         "href": null
       },
       {
@@ -5169,7 +4549,7 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5194,8 +4574,8 @@
   {
     "id": "383e1eb5-ce57-8138-9ca7-d2996a2c4047",
     "notion_block_id": "383e1eb5-ce57-8138-9ca7-d2996a2c4047",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct SolarMan 字段提取 Mapping : 设备库 $\\rightarrow$ 报表模板：Field Mapping配置",
-    "original_notion_title": "SolarMan 字段提取 Mapping : 设备库 $\\rightarrow$ 报表模板：Field Mapping配置",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 字段提取 Mapping : 设备库 $\\rightarrow$ 报表模板：Field Mapping配置",
+    "original_notion_title": "🔶 字段提取 Mapping : 设备库 $\\rightarrow$ 报表模板：Field Mapping配置",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -5203,35 +4583,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 字段提取 Mapping : ",
+          "content": "🔶 字段提取 Mapping : ",
           "link": null
         },
         "annotations": {
@@ -5242,7 +4605,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 字段提取 Mapping : ",
+        "plain_text": "🔶 字段提取 Mapping : ",
         "href": null
       },
       {
@@ -5265,7 +4628,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5290,8 +4653,8 @@
   {
     "id": "383e1eb5-ce57-81a2-ad13-d5801167728d",
     "notion_block_id": "383e1eb5-ce57-81a2-ad13-d5801167728d",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct SolarMan 报表生成 Engine : 模块：实时现场数据填充模板 $\\rightarrow$ 生成 T&C 报告。",
-    "original_notion_title": "SolarMan 报表生成 Engine : 模块：实时现场数据填充模板 $\\rightarrow$ 生成 T&C 报告。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 报表生成 Engine : 模块：实时现场数据填充模板 $\\rightarrow$ 生成 T&C 报告。",
+    "original_notion_title": "🔶 报表生成 Engine : 模块：实时现场数据填充模板 $\\rightarrow$ 生成 T&C 报告。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -5299,35 +4662,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 报表生成 Engine : ",
+          "content": "🔶 报表生成 Engine : ",
           "link": null
         },
         "annotations": {
@@ -5338,7 +4684,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 报表生成 Engine : ",
+        "plain_text": "🔶 报表生成 Engine : ",
         "href": null
       },
       {
@@ -5361,7 +4707,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5386,8 +4732,8 @@
   {
     "id": "383e1eb5-ce57-81d8-b4e8-fdb274b8945c",
     "notion_block_id": "383e1eb5-ce57-81d8-b4e8-fdb274b8945c",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct SolarMan 验证 Report 模板 : 标准化行业报表格式：系统自动填充。",
-    "original_notion_title": "SolarMan 验证 Report 模板 : 标准化行业报表格式：系统自动填充。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 验证 Report 模板 : 标准化行业报表格式：系统自动填充。",
+    "original_notion_title": "🔶 验证 Report 模板 : 标准化行业报表格式：系统自动填充。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -5395,35 +4741,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 验证 Report 模板 : ",
+          "content": "🔶 验证 Report 模板 : ",
           "link": null
         },
         "annotations": {
@@ -5434,7 +4763,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 验证 Report 模板 : ",
+        "plain_text": "🔶 验证 Report 模板 : ",
         "href": null
       },
       {
@@ -5457,7 +4786,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5482,8 +4811,8 @@
   {
     "id": "383e1eb5-ce57-814c-be28-f3fab212f64d",
     "notion_block_id": "383e1eb5-ce57-814c-be28-f3fab212f64d",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct SolarMan 数据准确性校验 : 集成校验规则：出报前验证数据完整性",
-    "original_notion_title": "SolarMan 数据准确性校验 : 集成校验规则：出报前验证数据完整性",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 数据准确性校验 : 集成校验规则：出报前验证数据完整性",
+    "original_notion_title": "🔶 数据准确性校验 : 集成校验规则：出报前验证数据完整性",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -5491,35 +4820,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 数据准确性校验 : ",
+          "content": "🔶 数据准确性校验 : ",
           "link": null
         },
         "annotations": {
@@ -5530,7 +4842,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 数据准确性校验 : ",
+        "plain_text": "🔶 数据准确性校验 : ",
         "href": null
       },
       {
@@ -5553,7 +4865,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5578,8 +4890,8 @@
   {
     "id": "383e1eb5-ce57-811b-b422-fa91f5ecf9fc",
     "notion_block_id": "383e1eb5-ce57-811b-b422-fa91f5ecf9fc",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct SolarMan 用户预览与导出 UI : 前端组件：审核自填数据，多格式导出报告。",
-    "original_notion_title": "SolarMan 用户预览与导出 UI : 前端组件：审核自填数据，多格式导出报告。",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan 🚨 T&C report express filling flow : data to report direct 🔶 用户预览与导出 UI : 前端组件：审核自填数据，多格式导出报告。",
+    "original_notion_title": "🔶 用户预览与导出 UI : 前端组件：审核自填数据，多格式导出报告。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81bc-b49e-d16ae9205f3c",
     "depth": 2,
@@ -5587,35 +4899,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "SolarMan",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "SolarMan",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 用户预览与导出 UI : ",
+          "content": "🔶 用户预览与导出 UI : ",
           "link": null
         },
         "annotations": {
@@ -5626,7 +4921,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 用户预览与导出 UI : ",
+        "plain_text": "🔶 用户预览与导出 UI : ",
         "href": null
       },
       {
@@ -5649,7 +4944,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -5674,8 +4969,8 @@
   {
     "id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "notion_block_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
-    "original_notion_title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+    "original_notion_title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -5683,31 +4978,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🏭 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🏭 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -5787,8 +5065,8 @@
   {
     "id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
     "notion_block_id": "37de1eb5-ce57-81a9-9764-e329d7230f80",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
-    "original_notion_title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "original_notion_title": "Thesis Gap 综述 : 文献综述：识别学术 Gap",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -5796,31 +5074,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🟧 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🟧 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -5900,8 +5161,8 @@
   {
     "id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
     "notion_block_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
-    "original_notion_title": "🔶 Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "original_notion_title": "Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -5909,31 +5170,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔶 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔶 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -6013,8 +5257,8 @@
   {
     "id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
     "notion_block_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
-    "original_notion_title": "🔶 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "original_notion_title": "Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6022,31 +5266,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔶 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔶 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -6126,8 +5353,8 @@
   {
     "id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
     "notion_block_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
-    "original_notion_title": "🔶 Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "original_notion_title": "Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6135,31 +5362,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔶 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔶 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -6239,8 +5449,8 @@
   {
     "id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
     "notion_block_id": "37de1eb5-ce57-81ec-8120-de01cd31bdbb",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🔶 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
-    "original_notion_title": "🔶 Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "original_notion_title": "Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6248,31 +5458,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔶 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔶 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -6352,8 +5545,8 @@
   {
     "id": "383e1eb5-ce57-81bc-bc73-d5098d99fc76",
     "notion_block_id": "383e1eb5-ce57-81bc-bc73-d5098d99fc76",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
-    "original_notion_title": "Thesis 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
+    "original_notion_title": "🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6361,35 +5554,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜SLR 综合 : ",
+          "content": "🤖💬🔜SLR 综合 : ",
           "link": null
         },
         "annotations": {
@@ -6400,7 +5576,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜SLR 综合 : ",
+        "plain_text": "🤖💬🔜SLR 综合 : ",
         "href": null
       },
       {
@@ -6423,11 +5599,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -6448,7 +5624,7 @@
   {
     "id": "383e1eb5-ce57-8172-b9d5-dd9f78f81f1b",
     "notion_block_id": "383e1eb5-ce57-8172-b9d5-dd9f78f81f1b",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
     "original_notion_title": "🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
@@ -6505,8 +5681,8 @@
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -6527,8 +5703,8 @@
   {
     "id": "383e1eb5-ce57-819a-9af2-f696bd1209dc",
     "notion_block_id": "383e1eb5-ce57-819a-9af2-f696bd1209dc",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
-    "original_notion_title": "Thesis 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
+    "original_notion_title": "🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6536,35 +5712,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜研究方法 Framework : ",
+          "content": "🤖💬🔜研究方法 Framework : ",
           "link": null
         },
         "annotations": {
@@ -6575,7 +5734,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜研究方法 Framework : ",
+        "plain_text": "🤖💬🔜研究方法 Framework : ",
         "href": null
       },
       {
@@ -6598,11 +5757,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -6623,8 +5782,8 @@
   {
     "id": "383e1eb5-ce57-81ba-803f-d6a09f1e8fc1",
     "notion_block_id": "383e1eb5-ce57-81ba-803f-d6a09f1e8fc1",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
-    "original_notion_title": "Thesis 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+    "original_notion_title": "🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6632,35 +5791,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜方法论证 Report : ",
+          "content": "🤖💬🔜方法论证 Report : ",
           "link": null
         },
         "annotations": {
@@ -6671,7 +5813,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜方法论证 Report : ",
+        "plain_text": "🤖💬🔜方法论证 Report : ",
         "href": null
       },
       {
@@ -6694,11 +5836,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -6719,8 +5861,8 @@
   {
     "id": "383e1eb5-ce57-81e8-bb24-f9eb111913ac",
     "notion_block_id": "383e1eb5-ce57-81e8-bb24-f9eb111913ac",
-    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the Thesis 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
-    "original_notion_title": "Thesis 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
+    "title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
+    "original_notion_title": "🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
     "context_heading": "",
     "parent_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
     "depth": 1,
@@ -6728,35 +5870,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜V&V 协议 : ",
+          "content": "🤖💬🔜V&V 协议 : ",
           "link": null
         },
         "annotations": {
@@ -6767,7 +5892,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜V&V 协议 : ",
+        "plain_text": "🤖💬🔜V&V 协议 : ",
         "href": null
       },
       {
@@ -6790,11 +5915,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -6815,8 +5940,8 @@
   {
     "id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "notion_block_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
-    "original_notion_title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "original_notion_title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -6824,31 +5949,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🏭 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🏭 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -6928,8 +6036,8 @@
   {
     "id": "36be1eb5-ce57-817b-8b62-e10612371657",
     "notion_block_id": "36be1eb5-ce57-817b-8b62-e10612371657",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
-    "original_notion_title": "🔸 Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "original_notion_title": "Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -6937,31 +6045,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔸 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔸 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -7075,8 +6166,8 @@
   {
     "id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
     "notion_block_id": "36be1eb5-ce57-814c-991f-dddc7b407a50",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
-    "original_notion_title": "🔸 Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "original_notion_title": "Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7084,31 +6175,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔸 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔸 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -7222,8 +6296,8 @@
   {
     "id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
     "notion_block_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
-    "original_notion_title": "🔸 Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "original_notion_title": "Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7231,31 +6305,14 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": false,
+      "bold": true,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": false,
-      "color": "default"
+      "code": true,
+      "color": "red"
     },
     "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔸 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔸 ",
-        "href": null
-      },
       {
         "type": "text",
         "text": {
@@ -7369,8 +6426,8 @@
   {
     "id": "383e1eb5-ce57-81ef-b896-e8ccad335a96",
     "notion_block_id": "383e1eb5-ce57-81ef-b896-e8ccad335a96",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
-    "original_notion_title": "Thesis 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
+    "original_notion_title": "🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7378,35 +6435,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜梳理通用叙事 Flow : ",
+          "content": "🤖💬🔜梳理通用叙事 Flow : ",
           "link": null
         },
         "annotations": {
@@ -7417,7 +6457,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜梳理通用叙事 Flow : ",
+        "plain_text": "🤖💬🔜梳理通用叙事 Flow : ",
         "href": null
       },
       {
@@ -7440,11 +6480,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7465,8 +6505,8 @@
   {
     "id": "383e1eb5-ce57-817f-8ec4-c24e3e997713",
     "notion_block_id": "383e1eb5-ce57-817f-8ec4-c24e3e997713",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
-    "original_notion_title": "Thesis 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
+    "original_notion_title": "🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7474,35 +6514,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜绘制 Tech 方案图 : ",
+          "content": "🤖💬🔜绘制 Tech 方案图 : ",
           "link": null
         },
         "annotations": {
@@ -7513,7 +6536,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜绘制 Tech 方案图 : ",
+        "plain_text": "🤖💬🔜绘制 Tech 方案图 : ",
         "href": null
       },
       {
@@ -7536,11 +6559,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7561,8 +6584,8 @@
   {
     "id": "383e1eb5-ce57-81a2-90bc-d3503bdf2a77",
     "notion_block_id": "383e1eb5-ce57-81a2-90bc-d3503bdf2a77",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
-    "original_notion_title": "Thesis 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
+    "original_notion_title": "🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7570,35 +6593,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜编写通俗 Problem Statement : ",
+          "content": "🤖💬🔜编写通俗 Problem Statement : ",
           "link": null
         },
         "annotations": {
@@ -7609,7 +6615,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜编写通俗 Problem Statement : ",
+        "plain_text": "🤖💬🔜编写通俗 Problem Statement : ",
         "href": null
       },
       {
@@ -7632,11 +6638,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7657,8 +6663,8 @@
   {
     "id": "383e1eb5-ce57-8179-9be6-cd445736e164",
     "notion_block_id": "383e1eb5-ce57-8179-9be6-cd445736e164",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
-    "original_notion_title": "Thesis 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
+    "original_notion_title": "🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7666,35 +6672,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜概念视觉隐喻设计 : ",
+          "content": "🤖💬🔜概念视觉隐喻设计 : ",
           "link": null
         },
         "annotations": {
@@ -7705,7 +6694,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜概念视觉隐喻设计 : ",
+        "plain_text": "🤖💬🔜概念视觉隐喻设计 : ",
         "href": null
       },
       {
@@ -7728,11 +6717,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7753,8 +6742,8 @@
   {
     "id": "383e1eb5-ce57-817f-80ae-e3799a740a2f",
     "notion_block_id": "383e1eb5-ce57-817f-80ae-e3799a740a2f",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
-    "original_notion_title": "Thesis 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
+    "original_notion_title": "🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7762,35 +6751,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜插入 Speaker Notes : ",
+          "content": "🤖💬🔜插入 Speaker Notes : ",
           "link": null
         },
         "annotations": {
@@ -7801,7 +6773,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜插入 Speaker Notes : ",
+        "plain_text": "🤖💬🔜插入 Speaker Notes : ",
         "href": null
       },
       {
@@ -7824,11 +6796,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7849,8 +6821,8 @@
   {
     "id": "383e1eb5-ce57-815e-9b58-de036bdab87e",
     "notion_block_id": "383e1eb5-ce57-815e-9b58-de036bdab87e",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
-    "original_notion_title": "Thesis 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
+    "original_notion_title": "🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7858,35 +6830,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜Slide对比度与易读性检查 : ",
+          "content": "🤖💬🔜Slide对比度与易读性检查 : ",
           "link": null
         },
         "annotations": {
@@ -7897,7 +6852,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜Slide对比度与易读性检查 : ",
+        "plain_text": "🤖💬🔜Slide对比度与易读性检查 : ",
         "href": null
       },
       {
@@ -7920,11 +6875,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -7945,8 +6900,8 @@
   {
     "id": "383e1eb5-ce57-8158-ae1d-d6cbc53cd060",
     "notion_block_id": "383e1eb5-ce57-8158-ae1d-d6cbc53cd060",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
-    "original_notion_title": "Thesis 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
+    "original_notion_title": "🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -7954,35 +6909,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜嵌入高清 Data Viz : ",
+          "content": "🤖💬🔜嵌入高清 Data Viz : ",
           "link": null
         },
         "annotations": {
@@ -7993,7 +6931,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜嵌入高清 Data Viz : ",
+        "plain_text": "🤖💬🔜嵌入高清 Data Viz : ",
         "href": null
       },
       {
@@ -8016,11 +6954,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -8041,8 +6979,8 @@
   {
     "id": "383e1eb5-ce57-8134-85b7-de2aad9aff13",
     "notion_block_id": "383e1eb5-ce57-8134-85b7-de2aad9aff13",
-    "title": "🏭 Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand Thesis 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
-    "original_notion_title": "Thesis 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
+    "title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
+    "original_notion_title": "🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
     "context_heading": "",
     "parent_id": "362e1eb5-ce57-809a-8b98-f3877701cdc4",
     "depth": 1,
@@ -8050,35 +6988,18 @@
     "type": "todo",
     "notion_type": "to_do",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 🤖💬🔜格式化引用与参考 : ",
+          "content": "🤖💬🔜格式化引用与参考 : ",
           "link": null
         },
         "annotations": {
@@ -8089,7 +7010,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🤖💬🔜格式化引用与参考 : ",
+        "plain_text": "🤖💬🔜格式化引用与参考 : ",
         "href": null
       },
       {
@@ -8112,655 +7033,11 @@
     ],
     "links": [],
     "checked": false,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "notion_block_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
-    "original_notion_title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format)",
-    "context_heading": "",
-    "parent_id": "318e1eb5ce57808ea334c9365174d477",
-    "depth": 0,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🏭 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🏭 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " writing : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " writing : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "parallel by chapter  ( FinalComGen>review>format)",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "parallel by chapter  ( FinalComGen>review>format)",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
-    "notion_block_id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
-    "original_notion_title": "Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 起草与定稿Outline : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 起草与定稿Outline : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "高质量论文：满足院校答辩要求。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "高质量论文：满足院校答辩要求。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
-    "notion_block_id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
-    "original_notion_title": "Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Chp2文献综述与 Framework : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Chp2文献综述与 Framework : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "综述研究：构建论文核心理论基础。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "综述研究：构建论文核心理论基础。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
-    "notion_block_id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
-    "original_notion_title": "Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Chp3方法与数据分析 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Chp3方法与数据分析 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "记录研究设计：完成初/次级数据系统分析。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "记录研究设计：完成初/次级数据系统分析。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
-    "notion_block_id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
-    "original_notion_title": "Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "Draft",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "purple"
-        },
-        "plain_text": "Draft",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Chp4核心讨论  完成 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Chp4核心讨论  完成 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "综合结果：回答核心研究问题及假设。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "综合结果：回答核心研究问题及假设。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
-    "notion_block_id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
-    "title": "🏭 Thesis writing : parallel by chapter  ( FinalComGen>review>format) 🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
-    "original_notion_title": "🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🔶 ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🔶 ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 稿件定稿校对 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 稿件定稿校对 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "整合为单文档：遵循学术格式及引用标准。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "整合为单文档：遵循学术格式及引用标准。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
+    "is_generated": true,
+    "origin": "generated",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -8854,7 +7131,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -8950,7 +7227,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9046,7 +7323,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9142,7 +7419,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9238,7 +7515,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -9852,7 +8129,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10343,7 +8620,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10439,7 +8716,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10851,7 +9128,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -10947,7 +9224,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11043,7 +9320,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11139,7 +9416,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11235,7 +9512,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11331,7 +9608,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11427,7 +9704,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11839,7 +10116,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -11935,7 +10212,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12031,7 +10308,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12127,7 +10404,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -12460,7 +10737,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -13645,7 +11922,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14215,7 +12492,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -14943,7 +13220,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -15434,7 +13711,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -15609,7 +13886,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -15705,7 +13982,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -16055,7 +14332,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -16429,7 +14706,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -16525,7 +14802,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -16621,7 +14898,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -17225,7 +15502,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -17321,7 +15598,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -17575,7 +15852,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -17671,7 +15948,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -17846,7 +16123,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -18433,7 +16710,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -18529,7 +16806,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -18783,7 +17060,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,

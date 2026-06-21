@@ -1,40 +1,23 @@
 {
-  "id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
-  "notion_block_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
-  "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
-  "original_notion_title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+  "id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
+  "notion_block_id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
+  "title": "🏭 Thesis thesis writing : parallel by chapter  ( FinalComGen>review>format) Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+  "original_notion_title": "Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
   "context_heading": "",
-  "parent_id": "318e1eb5ce57808ea334c9365174d477",
-  "depth": 0,
+  "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+  "depth": 1,
   "wbs_level": null,
   "type": "bullet",
   "notion_type": "bulleted_list_item",
   "annotations": {
-    "bold": false,
+    "bold": true,
     "italic": false,
     "strikethrough": false,
     "underline": false,
-    "code": false,
-    "color": "default"
+    "code": true,
+    "color": "red"
   },
   "notion_rich_text": [
-    {
-      "type": "text",
-      "text": {
-        "content": "🏭 ",
-        "link": null
-      },
-      "annotations": {
-        "bold": false,
-        "italic": false,
-        "strikethrough": false,
-        "underline": false,
-        "code": false,
-        "color": "default"
-      },
-      "plain_text": "🏭 ",
-      "href": null
-    },
     {
       "type": "text",
       "text": {
@@ -55,7 +38,7 @@
     {
       "type": "text",
       "text": {
-        "content": " 🚨 Phd Logic : ",
+        "content": " 起草与定稿Outline : ",
         "link": null
       },
       "annotations": {
@@ -66,13 +49,13 @@
         "code": false,
         "color": "default"
       },
-      "plain_text": " 🚨 Phd Logic : ",
+      "plain_text": " 起草与定稿Outline : ",
       "href": null
     },
     {
       "type": "text",
       "text": {
-        "content": "clear justification on research gap, methods and validation of the",
+        "content": "高质量论文：满足院校答辩要求。",
         "link": null
       },
       "annotations": {
@@ -83,7 +66,7 @@
         "code": false,
         "color": "gray"
       },
-      "plain_text": "clear justification on research gap, methods and validation of the",
+      "plain_text": "高质量论文：满足院校答辩要求。",
       "href": null
     }
   ],

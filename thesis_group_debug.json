@@ -1,0 +1,56 @@
+[
+  {
+    "title": "🏭 Thesis thesis writing : parallel by chapter  ( FinalComGen>review>format)",
+    "wbs": null,
+    "depth": 0,
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "wbs_src": null,
+    "tags": {}
+  },
+  {
+    "title": "Thesis 起草与定稿Outline : 高质量论文：满足院校答辩要求。",
+    "wbs": null,
+    "depth": 1,
+    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "id": "37de1eb5-ce57-81fb-9785-cd757ffea108",
+    "wbs_src": null,
+    "tags": {}
+  },
+  {
+    "title": "Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。",
+    "wbs": null,
+    "depth": 1,
+    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "id": "37de1eb5-ce57-81bb-a8ec-ec0e4660f386",
+    "wbs_src": null,
+    "tags": {}
+  },
+  {
+    "title": "Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。",
+    "wbs": null,
+    "depth": 1,
+    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc",
+    "wbs_src": null,
+    "tags": {}
+  },
+  {
+    "title": "Thesis Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。",
+    "wbs": null,
+    "depth": 1,
+    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "id": "37de1eb5-ce57-8149-b758-cd55eddc1785",
+    "wbs_src": null,
+    "tags": {}
+  },
+  {
+    "title": "🔶 Thesis 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。",
+    "wbs": null,
+    "depth": 1,
+    "parent_id": "362e1eb5-ce57-8006-ae00-e591724dd968",
+    "id": "37de1eb5-ce57-81b7-900d-d9cfdaaf1d0b",
+    "wbs_src": null,
+    "tags": {}
+  }
+]

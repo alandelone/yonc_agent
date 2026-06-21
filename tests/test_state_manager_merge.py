@@ -123,6 +123,60 @@ class TestMergeStates(unittest.TestCase):
         self.assertTrue(merged[0].get("is_generated"))
         self.assertEqual("generated", merged[0].get("origin"))
 
+    def test_generated_marker_overrides_existing_false_flag(self):
+        notion_tree = [
+            {
+                "id": "task-generated",
+                "title": "🤖💬🔜SolarMan 手册结构规划",
+                "type": "to_do",
+                "depth": 1,
+                "parent_id": "task-parent",
+                "annotations": {},
+                "checked": False,
+                "notion_rich_text": [
+                    {
+                        "type": "text",
+                        "text": {"content": "🤖💬🔜SolarMan 手册结构规划"},
+                        "plain_text": "🤖💬🔜SolarMan 手册结构规划",
+                    }
+                ],
+                "children": [],
+            }
+        ]
+        local_state = [
+            {
+                "id": "task-generated",
+                "notion_block_id": "task-generated",
+                "title": "SolarMan 手册结构规划",
+                "original_notion_title": "SolarMan 手册结构规划",
+                "context_heading": "",
+                "parent_id": "task-parent",
+                "depth": 1,
+                "wbs_level": None,
+                "type": "todo",
+                "notion_type": "to_do",
+                "annotations": {},
+                "checked": False,
+                "has_tag_style": False,
+                "created_by_id": "",
+                "last_edited_by_id": "",
+                "is_generated": False,
+                "origin": "human",
+                "tags": {},
+                "status": "todo",
+                "metrics": {
+                    "estimated_time_h": None,
+                    "actual_time_taken_h": None,
+                    "interruption_count": 0,
+                },
+            }
+        ]
+
+        merged = merge_states(notion_tree, local_state)
+        self.assertEqual(1, len(merged))
+        self.assertTrue(merged[0].get("is_generated"))
+        self.assertEqual("generated", merged[0].get("origin"))
+
 
 if __name__ == "__main__":
     unittest.main()

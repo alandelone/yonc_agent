@@ -30,6 +30,31 @@ class TestTaskReaderGenerationSource(unittest.TestCase):
         self.assertFalse(tree[0].get("is_generated"))
         self.assertEqual("human", tree[0].get("origin"))
 
+    def test_generated_review_marker_sets_generated_origin(self):
+        blocks = [
+            {
+                "id": "block-1",
+                "type": "to_do",
+                "to_do": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {"content": "🤖💬🔜SolarMan 手册结构规划"},
+                            "plain_text": "🤖💬🔜SolarMan 手册结构规划",
+                        }
+                    ],
+                    "checked": False,
+                },
+                "created_by": {"id": "integration-user-id"},
+                "last_edited_by": {"id": "integration-user-id"},
+            }
+        ]
+
+        tree = build_task_tree(blocks, parent_id="page-root")
+        self.assertEqual(1, len(tree))
+        self.assertTrue(tree[0].get("is_generated"))
+        self.assertEqual("generated", tree[0].get("origin"))
+
     def test_quote_blocks_and_text_links_are_captured(self):
         blocks = [
             {

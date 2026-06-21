@@ -3,6 +3,9 @@ from notion_client import get_page_blocks
 from config_reader import parse_rich_text
 from config import DFORGE_LINESV2_PAGE_ID
 
+GENERATED_SUGGESTION_PREFIX = "\U0001f916\U0001f4ac\U0001f51c"
+
+
 def _has_tag_style(rich_text: List[Dict[str, Any]]) -> bool:
     """Detect if rich_text contains styling that implies tags were already applied."""
     for rt in rich_text:
@@ -24,6 +27,19 @@ def _extract_text_links(rich_text: List[Dict[str, Any]]) -> List[Dict[str, str]]
         if url and content:
             links.append({"text": str(content), "url": str(url)})
     return links
+
+def _has_generated_suggestion_marker(plain_text: str, rich_text: List[Dict[str, Any]]) -> bool:
+    """Detect the visible review marker used for unprocessed generated suggestions."""
+    if GENERATED_SUGGESTION_PREFIX in str(plain_text or ""):
+        return True
+    for rt in rich_text or []:
+        if not isinstance(rt, dict):
+            continue
+        text_obj = rt.get("text") if isinstance(rt.get("text"), dict) else {}
+        content = text_obj.get("content") or rt.get("plain_text") or ""
+        if GENERATED_SUGGESTION_PREFIX in str(content):
+            return True
+    return False
 
 def build_task_tree(
     blocks: List[Dict[str, Any]],
@@ -52,9 +68,10 @@ def build_task_tree(
             created_by_id = block.get("created_by", {}).get("id", "")
             last_edited_by_id = block.get("last_edited_by", {}).get("id", "")
             # "generated" is a local LLM-origin signal, not a raw Notion metadata signal.
-            # New blocks from Notion are treated as human unless local state says otherwise.
-            is_generated = False
-            origin = "human"
+            # New blocks from Notion are treated as human unless they carry the
+            # explicit generated-review marker rendered by this app.
+            is_generated = _has_generated_suggestion_marker(plain_text, rich_text)
+            origin = "generated" if is_generated else "human"
             
             if not plain_text and not block.get("has_children"):
                 # Skip perfectly empty leaf nodes

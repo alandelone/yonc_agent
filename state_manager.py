@@ -11,6 +11,21 @@ os.makedirs(DATA_DIR, exist_ok=True)
 STATE_FILE = os.path.join(DATA_DIR, "tasklist_state.json")
 CURRENT_STATE_FILE = os.path.join(DATA_DIR, "current_state.json")
 TASKLIST_HISTORY_FILE = os.path.join(DATA_DIR, "tasklist_history.jsonl")
+GENERATED_SUGGESTION_PREFIX = "\U0001f916\U0001f4ac\U0001f51c"
+
+
+def _has_generated_suggestion_marker(task: Dict[str, Any]) -> bool:
+    """Detect the visible review marker used for unprocessed generated suggestions."""
+    title_fields = [
+        task.get("title", ""),
+        task.get("original_notion_title", ""),
+    ]
+    for rt in task.get("notion_rich_text") or []:
+        if not isinstance(rt, dict):
+            continue
+        text_obj = rt.get("text") if isinstance(rt.get("text"), dict) else {}
+        title_fields.append(text_obj.get("content") or rt.get("plain_text") or "")
+    return any(GENERATED_SUGGESTION_PREFIX in str(value or "") for value in title_fields)
 
 def flatten_tree(tree: List[Dict[str, Any]], parent_title_prefix: str = "", inherit_context: str = "", inherit_is_content_block: bool = False) -> List[Dict[str, Any]]:
     """
@@ -306,7 +321,11 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             notion_item["split_batch_id"] = existing.get("split_batch_id")
             notion_item["reviewed_once"] = bool(existing.get("reviewed_once", False))
             notion_item["generated_selection_processed"] = bool(existing.get("generated_selection_processed", False))
-            notion_item["is_generated"] = bool(existing.get("is_generated", notion_item.get("is_generated", False)))
+            notion_item["is_generated"] = (
+                bool(existing.get("is_generated"))
+                or bool(notion_item.get("is_generated"))
+                or _has_generated_suggestion_marker(notion_item)
+            )
             notion_item["origin"] = "generated" if notion_item["is_generated"] else "human"
              
         merged_state.append(notion_item)

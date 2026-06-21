@@ -1,0 +1,118 @@
+[
+  {
+    "id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
+    "notion_block_id": "365e1eb5-ce57-818a-9644-d7dab69216a2",
+    "title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+    "original_notion_title": "🏭 Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+    "context_heading": "",
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Thesis",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Thesis",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 🚨 Phd Logic : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 🚨 Phd Logic : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "clear justification on research gap, methods and validation of the",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "clear justification on research gap, methods and validation of the",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "theme_display_label": "Thesis"
+  }
+]

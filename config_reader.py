@@ -69,14 +69,20 @@ def clean_task_title(title: str, structured_cfg: Dict[str, Any]) -> str:
     """Removes themes, modes, and emojis from the task title so it's clean for the LLM."""
     clean_title = re.sub(r'^\[.*?\]\s*', '', title)
     
+    # Strip emojis from the beginning first to expose the theme text
+    clean_title = re.sub(r'^(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+\s*', '', clean_title).strip()
+    
     for mode_cfg in structured_cfg.get("modes", []):
         mode_name = mode_cfg.get("mode_name", "")
         if mode_name and mode_name in clean_title:
             clean_title = clean_title.replace(mode_name, "").strip()
             
-    for t_name in structured_cfg.get("themes", {}).keys():
+    for t_name, t_data in structured_cfg.get("themes", {}).items():
         if t_name in clean_title:
             clean_title = clean_title.replace(t_name, "").strip()
+        for sub_theme in t_data.get("sub_themes", []):
+            if sub_theme and clean_title.startswith(sub_theme):
+                clean_title = clean_title[len(sub_theme):].strip()
             
     # Remove remaining emojis and special characters at the beginning/end
     clean_title = re.sub(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+', '', clean_title).strip()
@@ -141,17 +147,27 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
         "wbs_levels": {}
     }
 
-    # 1. Parse Priorities (Split by " | ")
+    emoji_pattern = re.compile(r'^((?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+)\s*(.*)$')
+
+    # 1. Parse Priorities (Split by " | " or extract emoji fallback)
     for item in raw_config.get("Priority", []):
         if "|" in item:
             emoji, p_level = map(str.strip, item.split("|", 1))
             structured["priorities"][emoji] = p_level.strip("()")
+        else:
+            match = emoji_pattern.match(item.strip())
+            if match:
+                structured["priorities"][match.group(1).strip()] = match.group(2).strip("()")
 
-    # 2. Parse Task States (Split by " | ")
+    # 2. Parse Task States (Split by " | " or extract emoji fallback)
     for item in raw_config.get("State of Parent Task", []):
         if "|" in item:
             emoji, desc = map(str.strip, item.split("|", 1))
             structured["task_states"][emoji] = desc
+        else:
+            match = emoji_pattern.match(item.strip())
+            if match:
+                structured["task_states"][match.group(1).strip()] = match.group(2).strip()
 
     # 3. Parse Task Types
     for item in raw_config.get("Task Type", []):
@@ -192,9 +208,16 @@ def structure_yonctask_config(raw_config: Dict[str, List[Any]]) -> Dict[str, Any
             break
     if wbs_key:
         for item in raw_config.get(wbs_key, []):
-            if "|" not in item:
-                continue
-            emoji, level_label = map(str.strip, item.split("|", 1))
+            if "|" in item:
+                emoji, level_label = map(str.strip, item.split("|", 1))
+            else:
+                match = emoji_pattern.match(item.strip())
+                if match:
+                    emoji = match.group(1).strip()
+                    level_label = match.group(2).strip()
+                else:
+                    continue
+
             level_num = None
             match = re.search(r'\d+', level_label)
             if match:

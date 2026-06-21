@@ -1,0 +1,523 @@
+=== Flow Trace Start (2026-06-19T11:58:02) ===
+command: flow
+argv: main.py flow
+pid: 2340
+cwd: C:\test_codespace\yonc_agent
+
+[trace] Flow output is being saved to: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_20260619_115802_2340.log
+[trace] Latest flow trace shortcut: C:\test_codespace\yonc_agent\data\logs\flow_runs\flow_latest.log
+2026-06-19 11:58:02,797 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-19 11:58:02,798 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:04,014 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce5780c7be3def64930aafbb/children HTTP/11" 200 None
+2026-06-19 11:58:04,032 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:04,608 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8095-b2de-d411ae904027/children HTTP/11" 200 None
+2026-06-19 11:58:04,612 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:11,255 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8094-9b85-f6977126cc19/children HTTP/11" 200 None
+2026-06-19 11:58:11,281 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:12,240 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8013-a854-e6d0437dc49c/children HTTP/11" 200 None
+2026-06-19 11:58:12,244 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:13,283 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-808a-a25a-c1a9a56b0713/children HTTP/11" 200 None
+2026-06-19 11:58:13,313 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:14,170 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803d-b413-cc4761372741/children HTTP/11" 200 None
+2026-06-19 11:58:14,172 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:15,662 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-aaec-f6735fda1fec/children HTTP/11" 200 None
+2026-06-19 11:58:15,665 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:16,170 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-803e-9896-ea4326e83210/children HTTP/11" 200 None
+2026-06-19 11:58:16,174 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:16,817 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e5-8103-ee26e3021f6a/children HTTP/11" 200 None
+2026-06-19 11:58:16,819 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:17,280 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b3-88f7-f35d4e33c949/children HTTP/11" 200 None
+2026-06-19 11:58:17,293 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:17,855 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8015-844f-dab5573db53b/children HTTP/11" 200 None
+2026-06-19 11:58:17,858 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:18,298 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-a21c-e3446ae650a9/children HTTP/11" 200 None
+2026-06-19 11:58:18,307 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:18,812 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8012-818b-f55e01ad10ab/children HTTP/11" 200 None
+2026-06-19 11:58:18,815 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:19,257 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ee-96d9-ca8c6b67c063/children HTTP/11" 200 None
+2026-06-19 11:58:19,260 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:19,710 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80fd-902d-c19ec0f709df/children HTTP/11" 200 None
+2026-06-19 11:58:19,713 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:20,174 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80cc-a754-e4ed87b4de84/children HTTP/11" 200 None
+2026-06-19 11:58:20,176 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:20,654 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-804d-b624-ffd4ed4af407/children HTTP/11" 200 None
+2026-06-19 11:58:20,663 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:21,128 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-9731-e0430b76bff7/children HTTP/11" 200 None
+2026-06-19 11:58:21,139 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:21,611 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80a9-9213-cfa201910082/children HTTP/11" 200 None
+2026-06-19 11:58:21,613 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:22,049 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-a416-dffb426d193f/children HTTP/11" 200 None
+2026-06-19 11:58:22,049 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:23,046 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8065-88d9-fc9164b4fed0/children HTTP/11" 200 None
+2026-06-19 11:58:23,059 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:23,545 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-809c-b4bf-c20eec7868ae/children HTTP/11" 200 None
+2026-06-19 11:58:23,547 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:24,014 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802f-9288-dc3708c7e6a4/children HTTP/11" 200 None
+2026-06-19 11:58:24,020 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:24,478 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807a-95c7-e9a023663c7b/children HTTP/11" 200 None
+2026-06-19 11:58:24,480 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:25,014 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8067-bb6a-ceed52613f84/children HTTP/11" 200 None
+2026-06-19 11:58:25,024 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:25,447 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807c-a2bf-d021a8efc6d7/children HTTP/11" 200 None
+2026-06-19 11:58:25,459 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:25,900 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8097-8b11-ef1c1606c7da/children HTTP/11" 200 None
+2026-06-19 11:58:25,902 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:26,377 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80e6-b57b-d14ff8056b96/children HTTP/11" 200 None
+2026-06-19 11:58:26,382 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:27,844 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d4-abe1-d6e8d455418d/children HTTP/11" 200 None
+2026-06-19 11:58:27,851 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:28,292 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80d2-aae2-d343c320db24/children HTTP/11" 200 None
+2026-06-19 11:58:28,362 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:29,010 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-801c-90cf-fb9fd3e8935e/children HTTP/11" 200 None
+2026-06-19 11:58:29,011 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:29,455 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-807d-9871-e8cdef6db118/children HTTP/11" 200 None
+2026-06-19 11:58:29,457 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:29,930 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8058-9e51-ec41e351c997/children HTTP/11" 200 None
+2026-06-19 11:58:29,938 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:30,413 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-8037-8ae1-c31097c70588/children HTTP/11" 200 None
+2026-06-19 11:58:30,416 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:31,608 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80b0-988d-cef674e21b74/children HTTP/11" 200 None
+2026-06-19 11:58:31,613 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:32,088 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-80ea-b0b0-d333999cb7d5/children HTTP/11" 200 None
+2026-06-19 11:58:32,093 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:32,514 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ce1eb5-ce57-802a-a169-f99075372609/children HTTP/11" 200 None
+2026-06-19 11:58:32,553 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:33,136 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/11" 200 None
+2026-06-19 11:58:33,152 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:33,584 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-8129-976d-f7381a06d588/children HTTP/11" 200 None
+2026-06-19 11:58:33,586 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:34,142 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-81b1-b26c-d84b80eeb467/children HTTP/11" 200 None
+2026-06-19 11:58:34,145 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:34,590 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-8197-9e93-f6cd1f809e43/children HTTP/11" 200 None
+2026-06-19 11:58:34,593 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:35,064 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-811b-a259-fd1138e47618/children HTTP/11" 200 None
+2026-06-19 11:58:35,182 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:35,750 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-81ba-a239-c49925b1d634/children HTTP/11" 200 None
+2026-06-19 11:58:35,754 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:36,342 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-81bc-b49e-d16ae9205f3c/children HTTP/11" 200 None
+2026-06-19 11:58:36,345 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:36,796 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-8121-8103-d3b43fb40905/children HTTP/11" 200 None
+2026-06-19 11:58:36,798 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:37,300 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-81d2-9bba-cb67ae761f64/children HTTP/11" 200 None
+2026-06-19 11:58:37,303 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:37,758 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/383e1eb5-ce57-81ec-bbf0-c9d258768ee5/children HTTP/11" 200 None
+2026-06-19 11:58:37,764 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:38,260 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/365e1eb5-ce57-818a-9644-d7dab69216a2/children HTTP/11" 200 None
+2026-06-19 11:58:38,262 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:38,730 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-8b98-f3877701cdc4/children HTTP/11" 200 None
+2026-06-19 11:58:38,751 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:39,286 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8006-ae00-e591724dd968/children HTTP/11" 200 None
+2026-06-19 11:58:39,292 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:39,738 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-800b-9d9f-fa8737d12059/children HTTP/11" 200 None
+2026-06-19 11:58:39,752 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:40,217 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36/children HTTP/11" 200 None
+2026-06-19 11:58:40,220 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:40,708 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80f7-bddd-de9bd0e4ce33/children HTTP/11" 200 None
+2026-06-19 11:58:40,713 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:41,200 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d6-ba6b-ccb76f4fa9d0/children HTTP/11" 200 None
+2026-06-19 11:58:41,204 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:41,667 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea/children HTTP/11" 200 None
+2026-06-19 11:58:41,669 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:42,213 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8034-b148-ec4ab5b867dc/children HTTP/11" 200 None
+2026-06-19 11:58:42,216 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:42,740 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-809a-b42d-d5874a13293b/children HTTP/11" 200 None
+2026-06-19 11:58:42,747 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:43,214 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-806c-8dd6-f80a41edbc17/children HTTP/11" 200 None
+2026-06-19 11:58:43,217 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:43,630 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8084-a095-da4ab7c679c9/children HTTP/11" 200 None
+2026-06-19 11:58:43,641 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:44,091 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8081-837f-ec92e1ed9834/children HTTP/11" 200 None
+2026-06-19 11:58:44,094 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:44,571 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-804c-ba1f-cf3f581545e6/children HTTP/11" 200 None
+2026-06-19 11:58:44,581 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:45,010 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/11" 200 None
+2026-06-19 11:58:45,014 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:45,489 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/11" 200 None
+2026-06-19 11:58:45,494 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:46,020 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/11" 200 None
+2026-06-19 11:58:46,024 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:46,636 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8084-ab6a-f3e589fb79c6/children HTTP/11" 200 None
+2026-06-19 11:58:46,638 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:47,073 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-800c-a789-e20263d03a2c/children HTTP/11" 200 None
+2026-06-19 11:58:47,081 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:47,524 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80d1-bcc7-e78e799bd4d5/children HTTP/11" 200 None
+2026-06-19 11:58:47,529 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:48,014 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80a9-85a9-ebaf96698cad/children HTTP/11" 200 None
+2026-06-19 11:58:48,025 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:48,550 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8035-ac4e-d7d6a87a12f0/children HTTP/11" 200 None
+2026-06-19 11:58:48,552 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:48,965 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8059-aebe-f0db0aa68f74/children HTTP/11" 200 None
+2026-06-19 11:58:48,969 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:49,721 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-802c-96ae-d630863ef9e4/children HTTP/11" 200 None
+2026-06-19 11:58:49,727 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:50,173 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-8046-b64d-f3ad4a6fafa6/children HTTP/11" 200 None
+Detected 6 changes in Notion.
+2026-06-19 11:58:50,356 | INFO | state_evaluator | [Evaluator] Loaded 209 merged tasks
+2026-06-19 11:58:50,357 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-19 11:58:50,385 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-19 11:58:50,385 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-19 11:58:50,386 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-19 11:58:50,394 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:50,967 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/11" 200 None
+2026-06-19 11:58:50,979 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:51,416 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/11" 200 None
+2026-06-19 11:58:51,420 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:51,878 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/11" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-19 11:58:51,972 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:52,525 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+2026-06-19 11:58:52,536 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:53,511 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/11" 200 None
+Pushing updates for Thesis (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-19 11:58:53,517 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:53,991 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+2026-06-19 11:58:53,996 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:55,256 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/11" 200 None
+Pushing updates for Thesis (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-19 11:58:55,263 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:55,977 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+2026-06-19 11:58:55,981 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:57,449 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/11" 200 None
+Pushing updates for SolarMan / Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-19 11:58:57,455 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:57,984 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+2026-06-19 11:58:57,991 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-19 11:58:58,793 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/11" 200 None
+TIMELINER sync complete.
+2026-06-19 11:58:58,838 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-19 11:58:58,853 | INFO | state_evaluator | [Evaluator] Scoped 79 tasks from TIMELINER
+2026-06-19 11:59:01,053 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-19 11:59:01,746 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-19 11:59:01,877 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E327CCAC60>
+2026-06-19 11:59:01,877 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001E319118BD0> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-19 11:59:01,970 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E327CCBBF0>
+2026-06-19 11:59:01,970 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:01,971 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 11:59:01,972 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 11:59:01,974 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 11:59:01,974 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:27,349 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 03:59:32 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=25315'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 11:59:27,350 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 11:59:27,351 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 11:59:27,351 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 11:59:27,351 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '起草入门Slides : 类比+白话解释研究背景及意义Scripting
+{"task_id": "36be1eb5-ce57-814c-991f-dddc7b407a50", "title": "🔸 Thesis 💻Focus 起草入门Slides", "description": "类比+白话解释研究背景及意义，Scripting。", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "类比+白话解释研究背景及意义，Scripting。", "char_count": 25}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task is phrased as a specific action ('起草' - Drafting / Scripting) rather than a static deliverable. According to the WBS rules, Levels 1-3 should be noun-based deliverables, while Level 4 is reserved for 'Activities' expressed as 'Verb + Noun'. This task focuses on the physical action of scripting a specific section (Research Background and Significance) of the thesis proposal slides, fitting the definition of a Level 4 activity.
+2026-06-19 11:59:27,374 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-19 11:59:27,377 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:27,378 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 11:59:27,378 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 11:59:27,378 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 11:59:27,379 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:33,080 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 03:59:38 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=5638'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 11:59:33,088 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 11:59:33,093 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 11:59:33,093 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 11:59:33,093 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助
+{"task_id": "36be1eb5-ce57-8177-98c8-fd0ab3397bff", "title": "🔸 Thesis 💻Focus 重绘复杂 INfoDiagrams", "description": "复杂技术图表>简化视觉辅助", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "复杂技术图表>简化视觉辅助", "char_count": 13}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task '重绘复杂 INfoDiagrams' (Redraw complex InfoDiagrams) is a specific physical action (Verb + Noun) aimed at a single piece of work. The parent task 'Thesis proposal defense Slide' represents a major deliverable or work package (Level 2 or 3). Redrawing diagrams is a discrete activity required to complete that deliverable, fitting the definition of Level 4. It focuses on the 'How' (redrawing) rather than just the 'What' (the diagram itself).
+2026-06-19 11:59:33,105 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-19 11:59:33,110 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:33,111 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 11:59:33,111 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 11:59:33,112 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 11:59:33,112 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:42,387 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 03:59:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=9226'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 11:59:42,395 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 11:59:42,403 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 11:59:42,403 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 11:59:42,403 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '起草 PPT 大纲 : 构建逻辑流(研究问题, 方法, 预期结果) guide  with  の知行
+{"task_id": "36be1eb5-ce57-817b-8b62-e10612371657", "title": "🔸 Thesis 💻Focus 起草 PPT 大纲", "description": "构建逻辑流：(研究问题, 方法, 预期结果) guide with の知行", "parent_blocks": [{"id": "362e1eb5-ce57-809a-8b98-f3877701cdc4", "title": "🏭 Thesis 💣 proposal defense Slide", "description": "Very clear for non expert and expert to underdstand"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 💣 proposal defense Slide", "char_count": 33}, {"source": "description", "location": "current_block", "content": "构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行", "char_count": 39}], "compacted": false}'
+   Output: Level 4 | Type N/A | Rationale: The task '起草 PPT 大纲' (Drafting the PPT Outline) follows a Verb + Noun syntax ('起草' + 'PPT 大纲'), which identifies it as a physical action or activity. Its parent 'Thesis proposal defense Slide' represents the deliverable (Level 3 or Level 2). Drafting a specific outline is a discrete step that typically requires less than 2 hours of focused effort, aligning with the Level 4 definition in the WBS hierarchy.
+2026-06-19 11:59:42,414 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-19 11:59:42,418 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 11:59:42,418 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 11:59:42,418 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 11:59:42,419 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 11:59:42,419 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:08,383 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:13 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=25892'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:08,384 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:08,428 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:08,428 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:08,428 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Actual Deadline : detail in paper by Planning by day 推算
+{"task_id": "37de1eb5-ce57-809c-8c7c-d61676dabe62", "title": "Thesis Actual Deadline", "description": "detail in paper by Planning by day 推算", "parent_blocks": [{"id": "37de1eb5-ce57-80f7-bddd-de9bd0e4ce33", "title": "Thesis Phd RsPlan", "description": "Diversed Parallel Assisted Pushing> | Prototype | Algo"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [{"text": "Actual Deadline : ", "url": "/ab8d87bd500f4270aa3157f4420d0972#23be1eb5ce5780a18d5ac27fcbb8657a"}], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "Thesis Phd RsPlan", "char_count": 17}, {"source": "description", "location": "current_block", "content": "detail in paper by Planning by day 推算", "char_count": 37}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Thesis Actual Deadline' is a noun phrase representing a verifiable result (a specific milestone/date) within the context of the parent 'Thesis Phd RsPlan'. Since 'Thesis Phd RsPlan' acts as the overarching project goal (Level 1), its direct child is classified as Level 2 (Major Deliverables). The task describes 'what' is being established (the deadline) rather than 'how' (the action of calculating), which aligns with the deliverable-oriented noun-phrase requirement for Level 2.
+2026-06-19 12:00:08,441 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+2026-06-19 12:00:08,444 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:08,445 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:08,445 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:08,445 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:08,445 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:08,724 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:13 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=125'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:08,725 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:08,727 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:08,727 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:08,727 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:08,753 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:08,754 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:08,754 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:08,754 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:08,755 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:16,155 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:21 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=7237'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:16,156 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:16,157 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:16,157 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:16,157 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构
+{"task_id": "37de1eb5-ce57-810d-81fb-e818e7bd1152", "title": "🔶 Thesis 理论研究框架", "description": "博士假设与研究方向的概念模型及逻辑结构。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "博士假设与研究方向的概念模型及逻辑结构。", "char_count": 20}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task '理论研究框架' (Theoretical Research Framework) is a noun-based deliverable that describes a specific output—a conceptual model and logical structure. In the context of a PhD project, Level 1 would be the completed Thesis, and Level 2 would be major modules like 'PhD Logic/Structural Design'. This task represents a defined Work Package within that module, focusing on the result (the framework) rather than the individual actions (Level 4) required to build it. It aligns with Level 3 as it is a verifiable deliverable within the 8-80 hour effort range typical for conceptual development in academia.
+2026-06-19 12:00:16,168 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 2/20)
+2026-06-19 12:00:16,171 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:16,173 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:16,173 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:16,173 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:16,173 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:30,370 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=14149'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:30,371 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:30,396 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:30,397 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:30,397 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Chp3方法与数据分析 : 记录研究设计完成初/次级数据系统分析
+{"task_id": "37de1eb5-ce57-812d-aa21-fb9cc1d9a9dc", "title": "Thesis Chp3方法与数据分析", "description": "记录研究设计：完成初/次级数据系统分析。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis thesis writing", "description": "parallel by chapter ( FinalComGen>review>format)"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis thesis writing", "char_count": 23}, {"source": "description", "location": "current_block", "content": "记录研究设计：完成初/次级数据系统分析。", "char_count": 20}], "compacted": false}'
+   Output: Level 2 | Type N/A | Rationale: The task 'Chp3 Methodology and Data Analysis' represents a major deliverable (a core module) of the overall thesis project. According to the hierarchical decomposition rules, Level 1 is the project goal (the Thesis itself), while Level 2 consists of the primary deliverables or noun-based chapters required to achieve that goal. This task identifies a distinct, mutually exclusive module of the project. Although the description contains verbs, the primary node title is a noun phrase representing a chapter, which fits the definition of a Level 2 deliverable.
+2026-06-19 12:00:30,412 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+2026-06-19 12:00:30,416 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:30,417 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:30,417 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:30,418 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:30,418 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:30,605 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=126'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:30,605 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:30,614 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:30,614 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:30,614 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:30,617 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:30,618 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:30,618 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:30,619 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:30,619 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:30,807 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=120'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:30,807 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:30,807 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:30,807 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:30,807 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:32,085 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:32,087 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:32,088 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:32,089 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:32,089 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:32,269 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:37 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=118'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:32,270 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:32,272 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:32,272 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:32,272 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:34,311 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:34,312 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:34,313 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:34,313 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:34,313 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:34,765 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:39 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=335'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:34,766 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:34,767 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:34,767 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:34,768 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:34,801 | WARNING | unlimited_llmapi.multikey_manager | gemini/gemini-3-flash-preview | key_1 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 20.075904898s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "20s"
+      }
+    ]
+  }
+}
+
+2026-06-19 12:00:34,802 | WARNING | unlimited_llmapi.multikey_manager | 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 key_1...
+2026-06-19 12:00:35,805 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+2026-06-19 12:00:35,809 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:35,810 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:35,810 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:35,810 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:35,810 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:36,030 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:41 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=139'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:36,031 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:36,032 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:36,032 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:36,032 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:36,038 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:36,039 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:36,039 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:36,039 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:36,039 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:36,223 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:41 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=125'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:36,225 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:36,225 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:36,226 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:36,226 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:37,278 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:37,280 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:37,280 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:37,281 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:37,281 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:37,458 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:42 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=117'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:37,458 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:37,459 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:37,460 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:37,460 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:39,495 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:39,497 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:39,497 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:39,497 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:39,497 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:39,701 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Too Many Requests', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:00:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=128'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:00:39,701 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:00:39,706 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:00:39,706 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:00:39,706 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:00:39,732 | WARNING | unlimited_llmapi.multikey_manager | gemini/gemini-3-flash-preview | alansyling 触发受限: litellm.RateLimitError: litellm.RateLimitError: geminiException - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\nPlease retry in 15.122261986s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-3-flash",
+              "location": "global"
+            },
+            "quotaValue": "20"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "15s"
+      }
+    ]
+  }
+}
+
+2026-06-19 12:00:39,732 | WARNING | unlimited_llmapi.multikey_manager | 判定为模型 gemini/gemini-3-flash-preview 的配额已尽，今日下线 alansyling...
+2026-06-19 12:00:40,736 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+2026-06-19 12:00:40,740 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:00:40,742 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:00:40,742 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:00:40,742 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:00:40,743 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:03,083 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:01:08 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=22278'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:01:03,084 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:01:03,090 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:01:03,090 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:01:03,090 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'Chp4核心讨论  完成 : 综合结果回答核心研究问题及假设
+{"task_id": "37de1eb5-ce57-8149-b758-cd55eddc1785", "title": "Thesis Draft Chp4核心讨论 完成", "description": "综合结果：回答核心研究问题及假设。", "parent_blocks": [{"id": "362e1eb5-ce57-8006-ae00-e591724dd968", "title": "🏭 Thesis thesis writing", "description": "parallel by chapter ( FinalComGen>review>format)"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis thesis writing", "char_count": 23}, {"source": "description", "location": "current_block", "content": "综合结果：回答核心研究问题及假设。", "char_count": 17}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Chp4核心讨论' (Chapter 4 Core Discussion) represents a specific component of a larger deliverable (the full Thesis or Chapter 4). In a hierarchy where the Thesis is Level 1 and Chapter 4 is Level 2, this specific section functions as a Level 3 Work Package. It describes a verifiable product (the discussion section) rather than a simple 2-hour activity. Synthesizing results and answering research questions typically requires significant effort (8-80 hours), distinguishing it from a Level 4 activity.
+2026-06-19 12:01:03,102 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 3/20)
+2026-06-19 12:01:03,104 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:03,106 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:01:03,106 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:01:03,106 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:01:03,106 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:09,457 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:01:14 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=6294'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:01:09,458 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:01:09,468 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:01:09,468 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:01:09,468 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : '方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)
+{"task_id": "37de1eb5-ce57-814b-8b4e-d1705a65150f", "title": "🔶 Thesis 方法论 Design Spec", "description": "详述(研究范式, 数据采集工具, 分析流程)。", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "详述(研究范式, 数据采集工具, 分析流程)。", "char_count": 23}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'Methodology Design Spec' is a specific, noun-based deliverable that falls under the broader 'Thesis Phd Logic' module (Level 2). It describes a concrete work package (research paradigm, tools, and process documentation) which serves as a verifiable outcome. Following the hierarchy where the Thesis is Level 1 and the Logic/Framework is Level 2, this detailed specification represents a Level 3 Work Package. It is deliverable-oriented ('What' is being produced) rather than a list of individual physical actions (Level 4).
+2026-06-19 12:01:09,479 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+2026-06-19 12:01:09,483 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:09,483 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:01:09,484 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:01:09,485 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:01:09,485 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:18,212 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 503, b'Service Unavailable', [(b'X-Gemini-Service-Tier', b'standard'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:01:23 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=8662'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:01:18,214 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:01:18,215 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:01:18,215 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:01:18,216 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-19 12:01:18,221 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:18,222 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:01:18,222 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:01:18,223 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:01:18,223 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:24,842 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 19 Jun 2026 04:01:30 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=6541'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-19 12:01:24,843 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-19 12:01:24,848 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-19 12:01:24,849 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-19 12:01:24,849 | DEBUG | httpcore.http11 | response_closed.complete
+
+[🤖 LLM LOG - Phase 1: Classification]
+   Input : 'V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+{"task_id": "37de1eb5-ce57-81a4-a105-c8f35be636a1", "title": "🔶 Thesis V&V 协议", "description": "验证结果(准确/可靠/显著)的标准与逻辑测试", "parent_blocks": [{"id": "365e1eb5-ce57-818a-9644-d7dab69216a2", "title": "🏭 Thesis 🚨 Phd Logic", "description": "clear justification on research gap, methods and validation of the"}], "child_blocks": [], "extra_info": {"is_toggle": false, "links": [], "mentions": [], "context_heading": ""}, "sources": [{"source": "parent_chain", "location": "ancestor_blocks", "content": "🏭 Thesis 🚨 Phd Logic", "char_count": 20}, {"source": "description", "location": "current_block", "content": "验证结果(准确/可靠/显著)的标准与逻辑测试", "char_count": 22}], "compacted": false}'
+   Output: Level 3 | Type N/A | Rationale: The task 'V&V Protocol' (Verification & Validation Protocol) is a specific deliverable or 'Work Package' that defines standards and logic for research results. In the hierarchy of a PhD project, the Thesis itself is Level 1, 'PhD Logic' (the parent) is a Level 2 major deliverable/module, and the 'V&V Protocol' constitutes a Level 3 work package. It is a noun-phrase focused on an outcome (a protocol/standard) rather than a granular 2-hour physical activity (Level 4).
+2026-06-19 12:01:24,865 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+2026-06-19 12:01:24,868 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-19 12:01:24,869 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-19 12:01:24,869 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-19 12:01:24,869 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-19 12:01:24,869 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>

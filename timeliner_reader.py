@@ -412,13 +412,34 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
                         # infer the leading label from entry prefix:
                         # - Main section: "<project> <task>"
                         # - Sub section: "<subproject> <task>"
+                        # Use a loop to strip ALL leading duplicate prefixes
+                        # (the sync writes badge_label back, so re-read can
+                        #  produce "Thesis Thesis Phd Logic").
                         lead, rest = _split_leading_label(subtheme)
-                        if current_section_kind == "main" and not resolved_project and lead and rest:
-                            resolved_project = lead
-                            subtheme = rest
-                        elif current_section_kind == "sub" and not resolved_subproject and lead and rest:
-                            resolved_subproject = lead
-                            subtheme = rest
+                        if current_section_kind == "main":
+                            if not resolved_project and lead and rest:
+                                resolved_project = lead
+                                subtheme = rest
+                            # Strip any remaining leading duplicates of the project name.
+                            # Only strip when the remainder is multi-word to avoid
+                            # over-stripping names like "thesis writing" → "writing".
+                            while resolved_project:
+                                l2, r2 = _split_leading_label(subtheme)
+                                if l2 and r2 and l2.lower() == resolved_project.lower() and " " in r2:
+                                    subtheme = r2
+                                else:
+                                    break
+                        elif current_section_kind == "sub":
+                            if not resolved_subproject and lead and rest:
+                                resolved_subproject = lead
+                                subtheme = rest
+                            while resolved_subproject:
+                                l2, r2 = _split_leading_label(subtheme)
+                                if l2 and r2 and l2.lower() == resolved_subproject.lower() and " " in r2:
+                                    subtheme = r2
+                                else:
+                                    break
+
 
                         entry = TimelineEntry(
                             block_id=b_id,

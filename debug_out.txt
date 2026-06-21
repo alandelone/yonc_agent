@@ -1,0 +1,16 @@
+Parent task:
+  Title: 🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the
+  split_stage: none
+  is_generated: False
+
+Children:
+  🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap -> gen:False stage:none chk:None
+  🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。 -> gen:False stage:none chk:None
+  🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。 -> gen:False stage:none chk:None
+  🔶 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试 -> gen:False stage:none chk:None
+  🔶 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论） -> gen:False stage:none chk:None
+  🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。 -> gen:True stage:none chk:False
+  🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。 -> gen:True stage:none chk:False
+  🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术） -> gen:True stage:none chk:False
+  🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。 -> gen:True stage:none chk:False
+  🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。 -> gen:True stage:none chk:False

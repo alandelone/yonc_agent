@@ -1,0 +1,34 @@
+{
+  "main_projects": {
+    "Thesis 🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the": {
+      "scope_key": "Thesis::::Phd Logic",
+      "settle_date": "2026-05-31",
+      "priority": 1
+    },
+    "Thesis 🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand": {
+      "scope_key": "Thesis::::proposal defense Slide",
+      "settle_date": "2026-05-31",
+      "priority": 2
+    },
+    "Thesis 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format)": {
+      "scope_key": "Thesis::::writing",
+      "settle_date": "2026-05-31",
+      "priority": 3
+    }
+  },
+  "sub_projects": {
+    "SolarMan 🏭 SolarMan Apparatus Learning": {
+      "scope_key": "::SolarMan::Apparatus Learning",
+      "settle_date": "2026-05-31",
+      "colour_subtheme": "Apparatus Learning",
+      "tags": {
+        "WBS level": "🏭 | (lv1)",
+        "Task Theme with colour": "PhDSettle✒|SolarMan"
+      },
+      "task_title": "SolarMan Apparatus Learning",
+      "description": "",
+      "wbs_level": 1,
+      "priority": 1
+    }
+  }
+}

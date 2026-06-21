@@ -187,11 +187,13 @@ def save_timeliner_state(
                 main_projects[title] = entry
         else:
             # Legacy key shape fallback.
-            main_projects[key] = {
+            entry = {
                 "scope_key": key,
                 "settle_date": settle_date,
                 "priority": main_priority,
             }
+            entry.update(extra_meta)
+            main_projects[key] = entry
             main_priority += 1
 
     payload = {

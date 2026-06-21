@@ -220,6 +220,12 @@ def _resolve_task_label_for_entry(
 def _resolve_theme_label_for_entry(entry: TimelineEntry, idx: Dict[str, str]) -> str:
     entry_tags = getattr(entry, "tags", None)
     if isinstance(entry_tags, dict) and entry_tags.get("Task Theme with colour"):
+        # Prefer subproject as the badge label when available (e.g. "SolarMan"),
+        # since colour_subtheme may be a specific task within that project
+        # (e.g. "Apparatus Learning").
+        subproject = str(getattr(entry, "subproject", "") or "").strip()
+        if subproject:
+            return subproject
         label = str(entry.colour_subtheme or "").strip()
         if label:
             return label
@@ -330,6 +336,14 @@ def build_timeliner_rich_text(
     sub_project = (entry.subproject or "").strip()
     has_distinct_sub_project = bool(sub_project and sub_project.lower() != badge_label.lower())
     task_label = str(resolved_task_label or entry.colour_subtheme or "").strip()
+    import re
+    # If the task_label starts with the badge_label (ignoring leading non-word chars like emojis),
+    # strip it to avoid duplication (e.g. badge="SolarMan", task_label="🏭 SolarMan Apparatus Learning"
+    # → task_label="🏭 Apparatus Learning").
+    if badge_label:
+        match = re.match(r'^([^\w]*)' + re.escape(badge_label) + r'\s+(.*)$', task_label, flags=re.IGNORECASE)
+        if match:
+            task_label = (match.group(1) + match.group(2)).strip()
 
     style = _extract_style_profile(existing_rt)
 

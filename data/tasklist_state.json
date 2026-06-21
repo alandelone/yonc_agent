@@ -3,7 +3,7 @@
     "id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "notion_block_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the",
-    "original_notion_title": "Thesis 🚨 Phd Logic : clear justification on research gap, methods and validation of the",
+    "original_notion_title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -11,14 +11,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -39,7 +56,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 Phd Logic : ",
+          "content": " 🚨Phd Logic : ",
           "link": null
         },
         "annotations": {
@@ -50,7 +67,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 Phd Logic : ",
+        "plain_text": " 🚨Phd Logic : ",
         "href": null
       },
       {
@@ -81,9 +98,9 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
-    "split_stage": "none",
-    "split_batch_id": null,
+    "wbs_source": "manual",
+    "split_stage": "suggested",
+    "split_batch_id": "2026-06-21T06:03:34.030187Z",
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
@@ -107,8 +124,8 @@
   {
     "id": "386e1eb5-ce57-8158-81b9-e189e86efc1f",
     "notion_block_id": "386e1eb5-ce57-8158-81b9-e189e86efc1f",
-    "title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
-    "original_notion_title": "Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
+    "original_notion_title": "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
@@ -116,14 +133,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -186,7 +220,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -211,8 +245,8 @@
   {
     "id": "386e1eb5-ce57-8161-8c65-d5168dab72fb",
     "notion_block_id": "386e1eb5-ce57-8161-8c65-d5168dab72fb",
-    "title": "🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
-    "original_notion_title": "Thesis 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
+    "original_notion_title": "🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
@@ -220,35 +254,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 理论研究框架 : ",
+          "content": "🔶 理论研究框架 : ",
           "link": null
         },
         "annotations": {
@@ -259,7 +276,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 理论研究框架 : ",
+        "plain_text": "🔶 理论研究框架 : ",
         "href": null
       },
       {
@@ -282,7 +299,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -290,7 +307,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -315,8 +332,8 @@
   {
     "id": "386e1eb5-ce57-810e-9a6e-fac61e439372",
     "notion_block_id": "386e1eb5-ce57-810e-9a6e-fac61e439372",
-    "title": "🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
-    "original_notion_title": "Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
+    "original_notion_title": "🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集工具, 分析流程)。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
@@ -324,14 +341,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -394,7 +428,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -419,8 +453,8 @@
   {
     "id": "386e1eb5-ce57-8199-88e0-ea3e229fe850",
     "notion_block_id": "386e1eb5-ce57-8199-88e0-ea3e229fe850",
-    "title": "🔶 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
-    "original_notion_title": "Thesis V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
+    "original_notion_title": "🔶 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
@@ -428,35 +462,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " V&V 协议 : ",
+          "content": "🔶 V&V 协议 : ",
           "link": null
         },
         "annotations": {
@@ -467,7 +484,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " V&V 协议 : ",
+        "plain_text": "🔶 V&V 协议 : ",
         "href": null
       },
       {
@@ -490,7 +507,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -498,7 +515,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -523,8 +540,8 @@
   {
     "id": "386e1eb5-ce57-8168-8c9e-f6c49241e643",
     "notion_block_id": "386e1eb5-ce57-8168-8c9e-f6c49241e643",
-    "title": "🔶 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
-    "original_notion_title": "Thesis 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🔶 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
+    "original_notion_title": "🔶 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
@@ -532,35 +549,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 结构逻辑 Mapping : ",
+          "content": "🔶 结构逻辑 Mapping : ",
           "link": null
         },
         "annotations": {
@@ -571,7 +571,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 结构逻辑 Mapping : ",
+        "plain_text": "🔶 结构逻辑 Mapping : ",
         "href": null
       },
       {
@@ -594,7 +594,7 @@
     ],
     "links": [],
     "checked": null,
-    "has_tag_style": true,
+    "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
@@ -602,7 +602,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -627,7 +627,7 @@
   {
     "id": "386e1eb5-ce57-8118-8ae2-ea9481046851",
     "notion_block_id": "386e1eb5-ce57-8118-8ae2-ea9481046851",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
     "original_notion_title": "🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
@@ -689,7 +689,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -713,7 +713,7 @@
   {
     "id": "386e1eb5-ce57-8197-ba9c-e9558cf90b44",
     "notion_block_id": "386e1eb5-ce57-8197-ba9c-e9558cf90b44",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜问题定义与 Gap : 正式阐述：知识空白与研究必要性。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜问题定义与 Gap : 正式阐述：知识空白与研究必要性。",
     "original_notion_title": "🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
@@ -775,7 +775,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -799,7 +799,7 @@
   {
     "id": "386e1eb5-ce57-8156-9bf5-f37c0696b28c",
     "notion_block_id": "386e1eb5-ce57-8156-9bf5-f37c0696b28c",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
     "original_notion_title": "🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
@@ -861,7 +861,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -885,7 +885,7 @@
   {
     "id": "386e1eb5-ce57-812e-baa8-fe5e47137373",
     "notion_block_id": "386e1eb5-ce57-812e-baa8-fe5e47137373",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
     "original_notion_title": "🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
@@ -947,7 +947,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -971,7 +971,7 @@
   {
     "id": "386e1eb5-ce57-81ae-b171-e08cb19ef975",
     "notion_block_id": "386e1eb5-ce57-81ae-b171-e08cb19ef975",
-    "title": "Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
     "original_notion_title": "🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
@@ -1033,7 +1033,7 @@
     "is_content_block": false,
     "timeliner_key": "phd logic",
     "timeliner_rank": 0,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1058,7 +1058,7 @@
     "id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "notion_block_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand",
-    "original_notion_title": "Thesis 💣 proposal defense Slide : Very clear for non expert and expert to underdstand",
+    "original_notion_title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -1066,14 +1066,31 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
       {
         "type": "text",
         "text": {
@@ -1094,7 +1111,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 💣 proposal defense Slide : ",
+          "content": " 💣proposal defense Slide : ",
           "link": null
         },
         "annotations": {
@@ -1105,7 +1122,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 💣 proposal defense Slide : ",
+        "plain_text": " 💣proposal defense Slide : ",
         "href": null
       },
       {
@@ -1129,16 +1146,16 @@
     "links": [],
     "checked": null,
     "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
-    "split_stage": "none",
-    "split_batch_id": null,
+    "wbs_source": "manual",
+    "split_stage": "suggested",
+    "split_batch_id": "2026-06-21T06:09:27.907612Z",
     "reviewed_once": false,
     "generated_selection_processed": false,
     "tags": {
@@ -1162,8 +1179,8 @@
   {
     "id": "386e1eb5-ce57-81b8-82a7-e049a07d64fd",
     "notion_block_id": "386e1eb5-ce57-81b8-82a7-e049a07d64fd",
-    "title": "🔸 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
-    "original_notion_title": "Thesis 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide with の知行",
+    "original_notion_title": "🔸 💻Focus 起草 PPT 大纲 : 构建逻辑流：(研究问题, 方法, 预期结果) guide  with  の知行",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1171,35 +1188,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -1210,7 +1210,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -1275,7 +1275,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1300,8 +1300,8 @@
   {
     "id": "386e1eb5-ce57-8196-b52a-c4d5e7b3f171",
     "notion_block_id": "386e1eb5-ce57-8196-b52a-c4d5e7b3f171",
-    "title": "🔸 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
-    "original_notion_title": "Thesis 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
+    "original_notion_title": "🔸 💻Focus 起草入门Slides : 类比+白话解释研究背景及意义，Scripting。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1309,35 +1309,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -1348,7 +1331,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -1413,7 +1396,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1438,8 +1421,8 @@
   {
     "id": "386e1eb5-ce57-8163-9323-e5e98747cd98",
     "notion_block_id": "386e1eb5-ce57-8163-9323-e5e98747cd98",
-    "title": "🔸 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
-    "original_notion_title": "Thesis 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
+    "original_notion_title": "🔸 💻Focus 重绘复杂 INfoDiagrams : 复杂技术图表>简化视觉辅助",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1447,35 +1430,18 @@
     "type": "bullet",
     "notion_type": "bulleted_list_item",
     "annotations": {
-      "bold": true,
+      "bold": false,
       "italic": false,
       "strikethrough": false,
       "underline": false,
-      "code": true,
-      "color": "red"
+      "code": false,
+      "color": "default"
     },
     "notion_rich_text": [
       {
         "type": "text",
         "text": {
-          "content": "Thesis",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Thesis",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " ",
+          "content": "🔸 ",
           "link": null
         },
         "annotations": {
@@ -1486,7 +1452,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " ",
+        "plain_text": "🔸 ",
         "href": null
       },
       {
@@ -1551,7 +1517,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1576,7 +1542,7 @@
   {
     "id": "386e1eb5-ce57-8179-b7cb-f33e4b241e5e",
     "notion_block_id": "386e1eb5-ce57-8179-b7cb-f33e4b241e5e",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
     "original_notion_title": "🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -1638,7 +1604,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1662,7 +1628,7 @@
   {
     "id": "386e1eb5-ce57-8185-bd7e-d7fcc1fa75bb",
     "notion_block_id": "386e1eb5-ce57-8185-bd7e-d7fcc1fa75bb",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
     "original_notion_title": "🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -1724,7 +1690,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1748,7 +1714,7 @@
   {
     "id": "386e1eb5-ce57-818d-8630-e540b2f52236",
     "notion_block_id": "386e1eb5-ce57-818d-8630-e540b2f52236",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
     "original_notion_title": "🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -1810,7 +1776,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1834,7 +1800,7 @@
   {
     "id": "386e1eb5-ce57-8156-bb2e-ca88d8280e1d",
     "notion_block_id": "386e1eb5-ce57-8156-bb2e-ca88d8280e1d",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
     "original_notion_title": "🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -1896,7 +1862,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -1920,7 +1886,7 @@
   {
     "id": "386e1eb5-ce57-81ac-bb88-dcb46bd3cc00",
     "notion_block_id": "386e1eb5-ce57-81ac-bb88-dcb46bd3cc00",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
     "original_notion_title": "🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -1982,7 +1948,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -2006,7 +1972,7 @@
   {
     "id": "386e1eb5-ce57-81ed-990d-fb9d8d5cfb9d",
     "notion_block_id": "386e1eb5-ce57-81ed-990d-fb9d8d5cfb9d",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
     "original_notion_title": "🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -2068,7 +2034,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -2092,7 +2058,7 @@
   {
     "id": "386e1eb5-ce57-81e2-9ead-f7bb53029a3a",
     "notion_block_id": "386e1eb5-ce57-81e2-9ead-f7bb53029a3a",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
     "original_notion_title": "🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -2154,7 +2120,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -2178,7 +2144,7 @@
   {
     "id": "386e1eb5-ce57-81a0-8c8e-fb77c8163ab2",
     "notion_block_id": "386e1eb5-ce57-81a0-8c8e-fb77c8163ab2",
-    "title": "Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
+    "title": "🏭 Thesis proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
     "original_notion_title": "🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
@@ -2240,7 +2206,7 @@
     "is_content_block": false,
     "timeliner_key": "proposal defense slide",
     "timeliner_rank": 1,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -2265,7 +2231,7 @@
     "id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
     "notion_block_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
     "title": "🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format)",
-    "original_notion_title": "🏭 Thesis thesis writing : parallel by chapter ( FinalComGen>review>format)",
+    "original_notion_title": "🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format)",
     "context_heading": "",
     "parent_id": "318e1eb5ce57808ea334c9365174d477",
     "depth": 0,
@@ -2318,7 +2284,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨🚨 thesis writing : ",
+          "content": " 💣thesis writing : ",
           "link": null
         },
         "annotations": {
@@ -2329,13 +2295,13 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨🚨 thesis writing : ",
+        "plain_text": " 💣thesis writing : ",
         "href": null
       },
       {
         "type": "text",
         "text": {
-          "content": "parallel by chapter  ( FinalComGen>review>format)",
+          "content": "parallel by chapter ( FinalComGen>review>format)",
           "link": null
         },
         "annotations": {
@@ -2346,7 +2312,7 @@
           "code": false,
           "color": "gray"
         },
-        "plain_text": "parallel by chapter  ( FinalComGen>review>format)",
+        "plain_text": "parallel by chapter ( FinalComGen>review>format)",
         "href": null
       }
     ],
@@ -2923,8 +2889,8 @@
   {
     "id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
     "notion_block_id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
-    "title": "🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
-    "original_notion_title": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "title": "🏭 Thesis thesis writing : parallel by chapter ( FinalComGen>review>format) 🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "original_notion_title": "🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
     "context_heading": "",
     "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
     "depth": 1,
@@ -2943,7 +2909,7 @@
       {
         "type": "text",
         "text": {
-          "content": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+          "content": "🤖💬🔜最终章节 Formatting : ",
           "link": null
         },
         "annotations": {
@@ -2954,7 +2920,24 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+        "plain_text": "🤖💬🔜最终章节 Formatting : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "论文章节最终格式化：确保符合规范。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "论文章节最终格式化：确保符合规范。",
         "href": null
       }
     ],
@@ -2968,7 +2951,7 @@
     "is_content_block": false,
     "timeliner_key": "thesis writing",
     "timeliner_rank": 2,
-    "wbs_source": "auto",
+    "wbs_source": "manual",
     "split_stage": "none",
     "split_batch_id": null,
     "reviewed_once": false,
@@ -3117,7 +3100,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 🚨 SKM Program Material Prepare",
+          "content": "🔶 SKM Program Material Prepare",
           "link": null
         },
         "annotations": {
@@ -3128,7 +3111,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 🚨 SKM Program Material Prepare",
+        "plain_text": "🔶 SKM Program Material Prepare",
         "href": null
       }
     ],
@@ -3187,7 +3170,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
+          "content": "🔸 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
           "link": null
         },
         "annotations": {
@@ -3198,7 +3181,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 🚨 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
+        "plain_text": "🔸 ALL TOOLs 技术手册 & 安全指南 &速查表 : ",
         "href": null
       },
       {
@@ -3516,7 +3499,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+          "content": "🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
           "link": null
         },
         "annotations": {
@@ -3527,7 +3510,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔸 🚨 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
+        "plain_text": "🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use",
         "href": null
       }
     ],
@@ -4573,7 +4556,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 💻✍️ Draft in my Word",
+          "content": " 💻✍️ Draft in my Word",
           "link": null
         },
         "annotations": {
@@ -4584,7 +4567,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 💻✍️ Draft in my Word",
+        "plain_text": " 💻✍️ Draft in my Word",
         "href": null
       }
     ],
@@ -4677,7 +4660,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 ✍️GPTImg Prompt Gen Refining",
+          "content": " ✍️GPTImg Prompt Gen Refining",
           "link": null
         },
         "annotations": {
@@ -4688,7 +4671,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 ✍️GPTImg Prompt Gen Refining",
+        "plain_text": " ✍️GPTImg Prompt Gen Refining",
         "href": null
       }
     ],
@@ -4781,7 +4764,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 🎯Final Img Refine Tune",
+          "content": " 🎯Final Img Refine Tune",
           "link": null
         },
         "annotations": {
@@ -4792,7 +4775,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 🎯Final Img Refine Tune",
+        "plain_text": " 🎯Final Img Refine Tune",
         "href": null
       }
     ],
@@ -4831,7 +4814,7 @@
   {
     "id": "383e1eb5-ce57-814c-8c47-db94b9f33bbf",
     "notion_block_id": "383e1eb5-ce57-814c-8c47-db94b9f33bbf",
-    "title": "🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 收集 SKM 培训手册 : 下载最新 SKM 用户指南/技术手册。",
+    "title": "🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
     "original_notion_title": "🔸 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81b1-b26c-d84b80eeb467",
@@ -5407,7 +5390,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 T&C report express filling flow : ",
+          "content": " T&C report express filling flow : ",
           "link": null
         },
         "annotations": {
@@ -5418,7 +5401,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 T&C report express filling flow : ",
+        "plain_text": " T&C report express filling flow : ",
         "href": null
       },
       {
@@ -5494,7 +5477,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 🚨 ExpressFlow Draw : ",
+          "content": "🔶 ExpressFlow Draw : ",
           "link": null
         },
         "annotations": {
@@ -5505,13 +5488,13 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 🚨 ExpressFlow Draw : ",
+        "plain_text": "🔶 ExpressFlow Draw : ",
         "href": null
       },
       {
         "type": "text",
         "text": {
-          "content": "How?  DataSource 2 report with exe/docker",
+          "content": "How? DataSource 2 report with exe/docker",
           "link": null
         },
         "annotations": {
@@ -5522,7 +5505,7 @@
           "code": false,
           "color": "gray"
         },
-        "plain_text": "How?  DataSource 2 report with exe/docker",
+        "plain_text": "How? DataSource 2 report with exe/docker",
         "href": null
       }
     ],
@@ -5581,7 +5564,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 🚨 power quality meter : ",
+          "content": "🔶 power quality meter : ",
           "link": null
         },
         "annotations": {
@@ -5592,7 +5575,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 🚨 power quality meter : ",
+        "plain_text": "🔶 power quality meter : ",
         "href": null
       },
       {
@@ -5755,7 +5738,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 🚨 IoT portable dash : ",
+          "content": "🔶 IoT portable dash : ",
           "link": null
         },
         "annotations": {
@@ -5766,7 +5749,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 🚨 IoT portable dash : ",
+        "plain_text": "🔶 IoT portable dash : ",
         "href": null
       },
       {
@@ -5876,7 +5859,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 🎯Template4 锻造项目填充 : ",
+          "content": " 🎯Template4 锻造项目填充 : ",
           "link": null
         },
         "annotations": {
@@ -5887,7 +5870,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 🎯Template4 锻造项目填充 : ",
+        "plain_text": " 🎯Template4 锻造项目填充 : ",
         "href": null
       },
       {
@@ -5997,7 +5980,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 🔬solar irradiance module selection",
+          "content": " 🔬solar irradiance module selection",
           "link": null
         },
         "annotations": {
@@ -6008,7 +5991,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 🔬solar irradiance module selection",
+        "plain_text": " 🔬solar irradiance module selection",
         "href": null
       }
     ],
@@ -6101,7 +6084,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
+          "content": " 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
           "link": null
         },
         "annotations": {
@@ -6112,7 +6095,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
+        "plain_text": " 🔬📋 🧟Zombie 🛒 BOM list with links，price and cost",
         "href": null
       }
     ],
@@ -6693,7 +6676,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🔶 🚨 BLE connection testing of UNI-T device",
+          "content": "🔶 BLE connection testing of UNI-T device",
           "link": null
         },
         "annotations": {
@@ -6704,7 +6687,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🔶 🚨 BLE connection testing of UNI-T device",
+        "plain_text": "🔶 BLE connection testing of UNI-T device",
         "href": null
       }
     ],
@@ -6797,7 +6780,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 📋💻 phone version both simutenously",
+          "content": " 📋💻 phone version both simutenously",
           "link": null
         },
         "annotations": {
@@ -6808,7 +6791,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 📋💻 phone version both simutenously",
+        "plain_text": " 📋💻 phone version both simutenously",
         "href": null
       }
     ],
@@ -6901,7 +6884,7 @@
       {
         "type": "text",
         "text": {
-          "content": " 🚨 💻comp version : ",
+          "content": " 💻comp version : ",
           "link": null
         },
         "annotations": {
@@ -6912,7 +6895,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": " 🚨 💻comp version : ",
+        "plain_text": " 💻comp version : ",
         "href": null
       },
       {
@@ -6968,7 +6951,7 @@
   {
     "id": "383e1eb5-ce57-8194-8086-c864088e17b6",
     "notion_block_id": "383e1eb5-ce57-8194-8086-c864088e17b6",
-    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device 🔸 UNI-T BLE 配对测试 : 验证 App 与 UNI-T 硬件：BLE 握手及数据传输",
+    "title": "🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device 🔸 UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
     "original_notion_title": "🔸 UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-81ec-bbf0-c9d258768ee5",
@@ -7473,6 +7456,351 @@
     "tags": {
       "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
       "WBS level": "🔶 | (lv3)"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 4,
+    "timeliner_section": "main"
+  },
+  {
+    "id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
+    "notion_block_id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
+    "title": "🤖💬🔜设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+    "original_notion_title": "设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+    "context_heading": "",
+    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "depth": 1,
+    "wbs_level": 2,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "solarman",
+    "timeliner_rank": 3,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 4,
+    "timeliner_section": "main"
+  },
+  {
+    "id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
+    "notion_block_id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
+    "title": "🤖💬🔜核心 ML 模型 : 算法与NN：解析设备模式与行为",
+    "original_notion_title": "核心 ML 模型 : 算法与NN：解析设备模式与行为",
+    "context_heading": "",
+    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "depth": 1,
+    "wbs_level": 2,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "核心 ML 模型 : 算法与NN：解析设备模式与行为",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "核心 ML 模型 : 算法与NN：解析设备模式与行为",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "solarman",
+    "timeliner_rank": 3,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 4,
+    "timeliner_section": "main"
+  },
+  {
+    "id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
+    "notion_block_id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
+    "title": "🤖💬🔜系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+    "original_notion_title": "系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+    "context_heading": "",
+    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "depth": 1,
+    "wbs_level": 2,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "solarman",
+    "timeliner_rank": 3,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 4,
+    "timeliner_section": "main"
+  },
+  {
+    "id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
+    "notion_block_id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
+    "title": "🤖💬🔜UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+    "original_notion_title": "UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+    "context_heading": "",
+    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "depth": 1,
+    "wbs_level": 2,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "solarman",
+    "timeliner_rank": 3,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 4,
+    "timeliner_section": "main"
+  },
+  {
+    "id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
+    "notion_block_id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
+    "title": "🤖💬🔜技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
+    "original_notion_title": "技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
+    "context_heading": "",
+    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "depth": 1,
+    "wbs_level": 2,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "solarman",
+    "timeliner_rank": 3,
+    "wbs_source": "auto",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
     },
     "status": "todo",
     "metrics": {
@@ -19416,12 +19744,12 @@
     "timeliner_section": ""
   },
   {
-    "id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
-    "notion_block_id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
-    "title": "🏭 SolarMan 🧨Apparatus Learning 设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
-    "original_notion_title": "设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+    "id": "386e1eb5-ce57-812f-bc9b-c0a4ff0d90ee",
+    "notion_block_id": "386e1eb5-ce57-812f-bc9b-c0a4ff0d90ee",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 文献综述与 Gap 报告 : 系统映射研究：识别并论证学术空白。",
+    "original_notion_title": "文献综述与 Gap 报告 : 系统映射研究：识别并论证学术空白。",
     "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
     "type": "todo",
@@ -19450,12 +19778,12 @@
     "synced_tags": false
   },
   {
-    "id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
-    "notion_block_id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
-    "title": "🏭 SolarMan 🧨Apparatus Learning 核心 ML 模型 : 算法与NN：解析设备模式与行为",
-    "original_notion_title": "核心 ML 模型 : 算法与NN：解析设备模式与行为",
+    "id": "386e1eb5-ce57-81c0-8f56-fa3e3c596043",
+    "notion_block_id": "386e1eb5-ce57-81c0-8f56-fa3e3c596043",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 问题与目标定义 : 研究问题与目标文档（填补Gap）",
+    "original_notion_title": "问题与目标定义 : 研究问题与目标文档（填补Gap）",
     "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
     "type": "todo",
@@ -19484,12 +19812,12 @@
     "synced_tags": false
   },
   {
-    "id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
-    "notion_block_id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
-    "title": "🏭 SolarMan 🧨Apparatus Learning 系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
-    "original_notion_title": "系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+    "id": "386e1eb5-ce57-81dc-b008-c188ae9429a2",
+    "notion_block_id": "386e1eb5-ce57-81dc-b008-c188ae9429a2",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 研究方法 Framework : 调研综合蓝图（研究理念、策略、逻辑结构）",
+    "original_notion_title": "研究方法 Framework : 调研综合蓝图（研究理念、策略、逻辑结构）",
     "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
     "type": "todo",
@@ -19518,12 +19846,12 @@
     "synced_tags": false
   },
   {
-    "id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
-    "notion_block_id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
-    "title": "🏭 SolarMan 🧨Apparatus Learning UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
-    "original_notion_title": "UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+    "id": "386e1eb5-ce57-817e-a6f3-e71c6f78ca5c",
+    "notion_block_id": "386e1eb5-ce57-817e-a6f3-e71c6f78ca5c",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 监控分析 Protocol : 数据采集工具及定性/定量分析流程 (处理及解读研究数据)",
+    "original_notion_title": "监控分析 Protocol : 数据采集工具及定性/定量分析流程 (处理及解读研究数据)",
     "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
     "type": "todo",
@@ -19552,12 +19880,284 @@
     "synced_tags": false
   },
   {
-    "id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
-    "notion_block_id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
-    "title": "🏭 SolarMan 🧨Apparatus Learning 技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
-    "original_notion_title": "技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
+    "id": "386e1eb5-ce57-81a2-84be-ec65513d2d49",
+    "notion_block_id": "386e1eb5-ce57-81a2-84be-ec65513d2d49",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 验证与可靠性评估 : 验证框架：(标准、测试、证据)确认结果准确性与鲁棒性。",
+    "original_notion_title": "验证与可靠性评估 : 验证框架：(标准、测试、证据)确认结果准确性与鲁棒性。",
     "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-8132-a9cb-cf0a9192db1d",
+    "notion_block_id": "386e1eb5-ce57-8132-a9cb-cf0a9192db1d",
+    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 调研 Logic Matrix : 综述：论证Gap、Method与Result的逻辑一致性。",
+    "original_notion_title": "调研 Logic Matrix : 综述：论证Gap、Method与Result的逻辑一致性。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-81fb-a30c-f7d9d20d9b1c",
+    "notion_block_id": "386e1eb5-ce57-81fb-a30c-f7d9d20d9b1c",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 拟定 PPT 大纲 : 梳理开题答辩：核心点与逻辑流。",
+    "original_notion_title": "拟定 PPT 大纲 : 梳理开题答辩：核心点与逻辑流。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-810b-b9f8-f0254b58ef1d",
+    "notion_block_id": "386e1eb5-ce57-810b-b9f8-f0254b58ef1d",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 绘制专家级 Diagram : 针对SME：绘制复杂概念详细可视化图。",
+    "original_notion_title": "绘制专家级 Diagram : 针对SME：绘制复杂概念详细可视化图。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-8166-832c-c7a9b6009494",
+    "notion_block_id": "386e1eb5-ce57-8166-832c-c7a9b6009494",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 简化 Tech 术语 : 复杂术语：用类比/易懂语言替换或定义。",
+    "original_notion_title": "简化 Tech 术语 : 复杂术语：用类比/易懂语言替换或定义。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-8124-86e7-c588130f2b45",
+    "notion_block_id": "386e1eb5-ce57-8124-86e7-c588130f2b45",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 统一视觉样式 : 优化字号、颜色、品牌元素：提升专业可读性。",
+    "original_notion_title": "统一视觉样式 : 优化字号、颜色、品牌元素：提升专业可读性。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-8196-8d6b-dcbebc33b6b0",
+    "notion_block_id": "386e1eb5-ce57-8196-8d6b-dcbebc33b6b0",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 新增说明 Callout : 技术Slide：加简注，助非专业人员理逻辑。",
+    "original_notion_title": "新增说明 Callout : 技术Slide：加简注，助非专业人员理逻辑。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-8157-9ce6-f48c49daf155",
+    "notion_block_id": "386e1eb5-ce57-8157-9ce6-f48c49daf155",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand PPT 润色 : 审核文本：确保语法正确、简洁无歧义。",
+    "original_notion_title": "PPT 润色 : 审核文本：确保语法正确、简洁无歧义。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "todo",
+    "notion_type": "to_do",
+    "annotations": {},
+    "checked": false,
+    "has_tag_style": false,
+    "created_by_id": "",
+    "last_edited_by_id": "",
+    "is_generated": true,
+    "origin": "generated",
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0
+    },
+    "synced_tags": false
+  },
+  {
+    "id": "386e1eb5-ce57-81dc-9681-e53870441c8e",
+    "notion_block_id": "386e1eb5-ce57-81dc-9681-e53870441c8e",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand PPT Pilot 测试 : 初稿校验：专家与非专家各1人",
+    "original_notion_title": "PPT Pilot 测试 : 初稿校验：专家与非专家各1人",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
     "wbs_level": null,
     "type": "todo",

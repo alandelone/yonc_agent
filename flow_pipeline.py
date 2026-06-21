@@ -201,6 +201,13 @@ def _normalize_scope_text(text: str) -> str:
     cleaned = str(text or "").strip().lower()
     cleaned = re.sub(r"^\[.*?\]\s*", "", cleaned).strip()
     cleaned = cleaned.replace("`", "").replace("*", "")
+    # Strip emoji / symbol characters so embedded emojis (e.g. "solarman 🧨apparatus")
+    # don't break substring matching.
+    cleaned = re.sub(
+        r"[\U0001F300-\U0001FAFF\U00002702-\U000027B0\U0000FE00-\U0000FE0F\U0000200D]+",
+        " ",
+        cleaned,
+    )
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
     return cleaned
 
@@ -265,7 +272,11 @@ def _timeliner_entry_theme_anchor(entry: Any) -> str:
         project = str(getattr(entry, "project", "") or "").strip()
 
     if tags.get("Task Theme with colour"):
-        return colour_subtheme or str(tags.get("Task Theme with colour", "")).strip()
+        # Prefer subproject as anchor when available — it represents the
+        # project-level theme that tasks in LINEV2 are tagged with (e.g.
+        # "SolarMan"), whereas colour_subtheme may be a specific task label
+        # within that project (e.g. "Apparatus Learning").
+        return subproject or colour_subtheme or str(tags.get("Task Theme with colour", "")).strip()
     return subproject or project
 
 
@@ -660,6 +671,11 @@ def _split_scoped_tasks(
         if split_stage in ["suggested", "processed"]:
             continue
 
+        existing_children = children_by_parent.get(task_id, [])
+        if any("🤖💬🔜" in c.get("original_notion_title", c.get("title", "")) for c in existing_children):
+            task["split_stage"] = "suggested"
+            continue
+
         raw_title = task.get("original_notion_title", task.get("title", ""))
         if task.get("checked") or "💯✅" in raw_title:
             continue
@@ -695,7 +711,6 @@ def _split_scoped_tasks(
         if not suggested:
             continue
 
-        existing_children = children_by_parent.get(task_id, [])
         existing_titles = {
             _split_dedupe_key(c.get("original_notion_title", c.get("title", "")), structured_cfg)
             for c in existing_children
@@ -707,7 +722,10 @@ def _split_scoped_tasks(
             if not key or key in existing_titles:
                 continue
             existing_titles.add(key)
-            deduped.append(str(s).strip())
+            clean_s = str(s).strip()
+            if not clean_s.startswith("🤖💬🔜"):
+                clean_s = f"🤖💬🔜{clean_s}"
+            deduped.append(clean_s)
 
         if not deduped:
             continue

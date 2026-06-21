@@ -433,6 +433,15 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
                             if not resolved_subproject and lead and rest:
                                 resolved_subproject = lead
                                 subtheme = rest
+                            elif not resolved_subproject and not lead and task_title:
+                                # Single-word subtheme (e.g. "SolarMan") that
+                                # _split_leading_label can't split, but
+                                # _parse_structured_prefix extracted a task_title
+                                # (e.g. "SolarMan Apparatus Learning").
+                                # Use the subtheme as subproject and task_title
+                                # as the colour_subtheme.
+                                resolved_subproject = subtheme
+                                subtheme = task_title
                             while resolved_subproject:
                                 l2, r2 = _split_leading_label(subtheme)
                                 if l2 and r2 and l2.lower() == resolved_subproject.lower() and " " in r2:

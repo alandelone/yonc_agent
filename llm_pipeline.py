@@ -1163,7 +1163,9 @@ def priority_pass(
         else:
             priority_val = p2_val
         tags = task.get("tags") or {}
-        tags["Priority"] = priority_val
-        task["tags"] = tags
+        # Only auto-assign priority if one wasn't manually parsed from the title
+        if "Priority" not in tags:
+            tags["Priority"] = priority_val
+            task["tags"] = tags
 
     return local_state

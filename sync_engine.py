@@ -1094,7 +1094,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
 
         if not block_type or not block_id:
             continue
-        if task.get("is_content_block"):
+        if task.get("is_content_block") or block_type == "quote":
             continue
 
         checked = task.get("checked") if block_type == "to_do" else None

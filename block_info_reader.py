@@ -16,7 +16,8 @@ def build_state_indexes(tasks: List[Dict[str, Any]]) -> Tuple[Dict[str, Dict[str
     children_by_parent: Dict[str, List[Dict[str, Any]]] = {}
 
     for task in tasks:
-        if task.get("is_content_block") or (task.get("notion_type") or task.get("type")) == "quote":
+        block_type = task.get("notion_type") or task.get("type")
+        if task.get("is_content_block") and block_type != "quote":
             continue
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
         if not task_id:
@@ -99,17 +100,29 @@ def build_block_info(
     parent_blocks.reverse()
 
     child_blocks: List[Dict[str, Any]] = []
+    quote_blocks: List[Dict[str, Any]] = []
     for child in children_by_parent.get(task_id, []):
-        child_title, child_desc = split_title_description(child.get("original_notion_title", child.get("title", "")))
-        child_blocks.append(
-            {
-                "id": str(child.get("notion_block_id") or child.get("id") or ""),
-                "title": _normalize_text(child_title),
-                "description": _normalize_text(child_desc),
-                "type": child.get("notion_type") or child.get("type"),
-                "checked": child.get("checked"),
-            }
-        )
+        child_type = child.get("notion_type") or child.get("type")
+        if child_type == "quote":
+            quote_title, quote_desc = split_title_description(child.get("original_notion_title", child.get("title", "")))
+            quote_text = f"{quote_title}: {quote_desc}" if quote_desc else quote_title
+            quote_blocks.append(
+                {
+                    "id": str(child.get("notion_block_id") or child.get("id") or ""),
+                    "content": _normalize_text(quote_text),
+                }
+            )
+        else:
+            child_title, child_desc = split_title_description(child.get("original_notion_title", child.get("title", "")))
+            child_blocks.append(
+                {
+                    "id": str(child.get("notion_block_id") or child.get("id") or ""),
+                    "title": _normalize_text(child_title),
+                    "description": _normalize_text(child_desc),
+                    "type": child_type,
+                    "checked": child.get("checked"),
+                }
+            )
 
     extra_info = {
         "is_toggle": (task.get("notion_type") == "toggle" or task.get("type") == "toggle"),
@@ -148,6 +161,17 @@ def build_block_info(
                 "location": "current_block",
                 "content": description,
                 "char_count": len(description),
+            }
+        )
+
+    if quote_blocks:
+        content = "\n".join([q["content"] for q in quote_blocks])
+        sources.append(
+            {
+                "source": "extra_information",
+                "location": "quote_blocks",
+                "content": content,
+                "char_count": len(content),
             }
         )
 

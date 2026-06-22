@@ -2165,3 +2165,6 @@
 2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性
 2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文
 2026-06-22 17:31:38,281 | INFO | state_evaluator | [Evaluator] Saved 325 tasks to state
+2026-06-22 19:01:50,166 | INFO | __main__ | CLI command 'flow' started (pid=77328, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 19:01:50,166 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 19:01:50,168 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation

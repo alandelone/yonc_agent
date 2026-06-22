@@ -276,14 +276,14 @@ For generated L4 selections, the same confirmation render restores the WBS tag b
 
 | Aspect | Detail |
 |---|---|
-| **Pattern** | `depth == 1` **AND** `wbs_level ∈ {2, 3}` **AND** the task title does **NOT** contain any phase emoji (`0️⃣` through `9️⃣`). |
+| **Pattern** | `depth ∈ {1, 2, 3}` **AND** `wbs_level ∈ {2, 3}` **AND** the task title does **NOT** contain any phase emoji (`0️⃣` through `🔟`). |
 | **Meaning** | This is a major module directly under a project root. The system needs the human to manually decide execution order (which modules to work on first). |
 | **System Action** | **Halt.** The block and its entire subtree will not receive Mode/TaskType tags until a phase is assigned. This saves LLM tokens on modules the human hasn't prioritized yet. |
 | **Human Action Required** | Either: |
 | | **Option A (Notion)**: Edit the block title in Notion and prepend a phase emoji: `1️⃣ Define architecture` |
 | | **Option B (CLI)**: Run `python main.py phase` → Select project → Type phase numbers like `1 1 2 3` |
-| **Phase Emoji Reference** | `0️⃣`=Phase 0 (prep), `1️⃣`=Phase 1, `2️⃣`=Phase 2, ... `9️⃣`=Phase 9 |
-| **Detection Logic** | `detect_phase_emoji(title)` scans for Unicode sequences `\d\uFE0F\u20E3` |
+| **Phase Emoji Reference** | `0️⃣`=Phase 0 (prep), `1️⃣`=Phase 1, `2️⃣`=Phase 2, ... `9️⃣`=Phase 9, `🔟`=Phase 10 |
+| **Detection Logic** | `detect_phase_emoji(title)` scans for Unicode emoji characters |
 | **Advances To** | `ACTIONABLE_PENDING` (on next `flow` run) |
 
 ---

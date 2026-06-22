@@ -13,6 +13,117 @@ os.makedirs(DATA_DIR, exist_ok=True)
 TUNABLE_FILE = os.path.join(DATA_DIR, "tunable.jsonl")
 PREFERENCE_DIFF_FILE = os.path.join(DATA_DIR, "generated_preference_diffs.jsonl")
 
+emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
+
+def _extract_emoji(val: Any) -> str:
+    match = emoji_pattern.search(str(val))
+    return match.group() if match else ""
+
+def reverse_sync_tags_from_title(working_state: List[Dict[str, Any]], diff_changes: List[Dict[str, Any]]):
+    from config_reader import load_config, structure_yonctask_config
+    config_dict = load_config()
+    structured_cfg = structure_yonctask_config(config_dict)
+    
+    # 1. Build lookup dictionaries
+    wbs_map = {} # emoji -> level
+    wbs_levels = structured_cfg.get("wbs_levels", {})
+    for level, wbs_entry in wbs_levels.items():
+        if isinstance(wbs_entry, dict):
+            raw = str(wbs_entry.get("raw") or wbs_entry.get("emoji") or "")
+        else:
+            raw = str(wbs_entry)
+        emoji = _extract_emoji(raw)
+        if emoji:
+            wbs_map[emoji] = level
+
+    modes = structured_cfg.get("modes", [])
+    mode_names = [str(m.get("mode_name", "")).strip() for m in modes if str(m.get("mode_name", "")).strip()]
+
+    task_types_map = {} # text/emoji -> original key
+    for k in structured_cfg.get("task_types", {}).keys():
+        k_str = str(k).strip()
+        if k_str:
+            task_types_map[k_str] = k_str
+
+    working_dict = {str(item.get("notion_block_id") or item.get("id")): item for item in working_state}
+
+    import sys
+    for change in diff_changes:
+        if change.get("type") != "update":
+            continue
+            
+        new_item = change.get("item", {})
+        b_id = new_item.get("notion_block_id") or new_item.get("id")
+        if not b_id or str(b_id) not in working_dict:
+            continue
+            
+        w_item = working_dict[str(b_id)]
+        
+        # Check if the task is in complete style
+        if not w_item.get("synced_tags"):
+            continue
+            
+        new_title = new_item.get("original_notion_title") or new_item.get("title") or ""
+        old_title = w_item.get("original_notion_title") or w_item.get("title") or ""
+        
+        if new_title == old_title:
+            continue
+            
+        tags = w_item.get("tags") or {}
+        changed = False
+        
+        # Detect new Mode
+        new_mode = ""
+        for m in mode_names:
+            if m in new_title:
+                new_mode = m
+                break
+        
+        if new_mode and new_mode != str(tags.get("Modes", "")).strip():
+            sys.stdout.buffer.write(f"Reverse sync: Mode changed to '{new_mode}' for task {b_id}\n".encode('utf-8'))
+            tags["Modes"] = new_mode
+            changed = True
+            
+        # Detect new Task Type
+        new_tt = ""
+        for tt in task_types_map:
+            if tt in new_title:
+                new_tt = tt
+                break
+                
+        if new_tt and new_tt != str(tags.get("Task Type", "")).strip():
+            sys.stdout.buffer.write(f"Reverse sync: Task Type changed to '{new_tt}' for task {b_id}\n".encode('utf-8'))
+            tags["Task Type"] = new_tt
+            changed = True
+            
+        # Detect new WBS level
+        new_wbs_emoji = ""
+        new_wbs_level = None
+        for emoji, level in wbs_map.items():
+            if emoji in new_title:
+                new_wbs_emoji = emoji
+                new_wbs_level = level
+                break
+                
+        old_wbs_val = tags.get("WBS level", "")
+        old_wbs_emoji = _extract_emoji(old_wbs_val)
+        
+        if new_wbs_emoji and new_wbs_emoji != old_wbs_emoji:
+            sys.stdout.buffer.write(f"Reverse sync: WBS tag changed to '{new_wbs_emoji}' (Level {new_wbs_level}) for task {b_id}\n".encode('utf-8'))
+            target_raw = new_wbs_emoji
+            if new_wbs_level in wbs_levels:
+                entry = wbs_levels[new_wbs_level]
+                if isinstance(entry, dict):
+                    target_raw = entry.get("raw") or entry.get("emoji") or new_wbs_emoji
+                else:
+                    target_raw = str(entry)
+            tags["WBS level"] = target_raw
+            w_item["wbs_level"] = new_wbs_level
+            changed = True
+            
+        if changed:
+            w_item["tags"] = tags
+
 def _normalize_uuid(raw_id: str) -> str:
     """灏?32 浣嶆棤杩炲瓧绗︾殑 hex ID 杞崲涓烘爣鍑?UUID 鏍煎紡 (8-4-4-4-12)銆?
     Notion API 瑕佹眰 UUID 鏍煎紡锛屼絾 page ID 鍦?config 涓彲鑳戒笉甯﹁繛瀛楃銆?
@@ -258,6 +369,12 @@ def sync_from_notion(flat_notion_state: List[Dict[str, Any]]):
     
     # Check what needs to be synced back to working tasklist_state
     working_state = load_state(STATE_FILE)
+    
+    # Reverse sync tags from manual Notion edits
+    if diff_result["changes"]:
+        reverse_sync_tags_from_title(working_state, diff_result["changes"])
+        save_state(working_state, STATE_FILE)
+        
     # The actual merge logic sits in state_manager.merge_states
     
     return working_state
@@ -621,11 +738,6 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
     
     structured_cfg = structure_yonctask_config(config_dict)
     themes = structured_cfg.get("themes", {})
-    emoji_pattern = re.compile(r'(?:[^\w\s\x00-\x7F\|()\[\]\-:.,]|[\d*#]\uFE0F?\u20E3)+')
-
-    def _extract_emoji(val: Any) -> str:
-        match = emoji_pattern.search(str(val))
-        return match.group() if match else ""
 
     known_prefix_emojis = set()
     wbs_emojis = set()
@@ -1202,7 +1314,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         # so they get the same styling as manual tasks.
         if is_generated:
             if generated_selection_processed or is_pending_selection_change:
-                inferred_wbs_level = min(depth + 1, 4)
+                inferred_wbs_level = wbs_level if isinstance(wbs_level, int) and 1 <= wbs_level <= 4 else min(depth + 1, 4)
                 if not str(tags.get("WBS level", "")).strip():
                     wbs_raw = _raw_wbs_value(inferred_wbs_level)
                     if wbs_raw:

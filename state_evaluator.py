@@ -24,7 +24,7 @@ from task_reader import fetch_and_build_task_tree
 
 LOGGER = logging.getLogger(__name__)
 
-# 阶段排序 emoji 集合（0️⃣ ~ 9️⃣）
+# 阶段排序 emoji 集合（0️⃣ ~ 🔟）
 PHASE_EMOJIS = [
     "0\uFE0F\u20E3",  # 0️⃣
     "1\uFE0F\u20E3",  # 1️⃣
@@ -36,6 +36,7 @@ PHASE_EMOJIS = [
     "7\uFE0F\u20E3",  # 7️⃣
     "8\uFE0F\u20E3",  # 8️⃣
     "9\uFE0F\u20E3",  # 9️⃣
+    "\U0001F51F",     # 🔟
 ]
 
 # 防止无限生成的已拆解标志
@@ -65,7 +66,7 @@ def _extract_wbs_level(task: Dict[str, Any]) -> Optional[int]:
 
 
 def detect_phase_emoji(title: str) -> Optional[int]:
-    """从任务标题中检测阶段 emoji（0️⃣~9️⃣），返回对应数字或 None。"""
+    """从任务标题中检测阶段 emoji（0️⃣~🔟），返回对应数字或 None。"""
     for idx, emoji in enumerate(PHASE_EMOJIS):
         if emoji in title:
             return idx
@@ -166,8 +167,8 @@ def evaluate_block_state(
         if unreviewed:
             return BlockState.HUMAN_REVIEW
 
-    # ── PHASING_WAIT：Depth=1 的大模块缺少阶段 emoji
-    if depth == 1 and isinstance(wbs_level, int) and wbs_level in (2, 3):
+    # ── PHASING_WAIT：Depth=1~3 的大模块缺少阶段 emoji
+    if depth in (1, 2, 3) and isinstance(wbs_level, int) and wbs_level in (2, 3):
         title = _task_title(task)
         phase = detect_phase_emoji(title)
         if phase is None:
@@ -193,10 +194,10 @@ def evaluate_block_state(
 
 def _reorder_children_by_phase(state: List[Dict[str, Any]]) -> int:
     """
-    在每个项目内部，按 Phase emoji (0️⃣~9️⃣) 对 depth=1 子模块做物理排序。
+    在每个项目内部，按 Phase emoji (0️⃣~🔟) 对 depth=1~3 子模块做物理排序。
 
     工作方式：
-    1. 按 parent_id 分组所有 depth=1 且标题带 Phase emoji 的 block
+    1. 按 parent_id 分组所有 depth=1~3 且标题带 Phase emoji 的 block
     2. 在每组内比较当前物理顺序与按 Phase 排列的期望顺序
     3. 如果不一致，使用 Notion API 逐个移动到正确位置
 
@@ -205,7 +206,7 @@ def _reorder_children_by_phase(state: List[Dict[str, Any]]) -> int:
     from collections import defaultdict
     from notion_client import append_children, delete_block, get_page_blocks
 
-    # 收集所有 depth=1 且带 Phase emoji 的 block，按 parent 分组
+    # 收集所有 depth=1~3 且带 Phase emoji 的 block，按 parent 分组
     groups: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     for task in state:
         depth = task.get("depth", 0)
@@ -213,7 +214,7 @@ def _reorder_children_by_phase(state: List[Dict[str, Any]]) -> int:
             depth = int(depth)
         except (TypeError, ValueError):
             depth = 0
-        if depth != 1:
+        if depth not in (1, 2, 3):
             continue
 
         title = _task_title(task)

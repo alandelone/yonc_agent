@@ -1839,3 +1839,12 @@
 2026-06-22 09:40:09,548 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
 2026-06-22 09:40:09,575 | INFO | state_evaluator | [Evaluator] Priority pass complete
 2026-06-22 09:40:09,577 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-22 09:41:08,799 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-22 09:41:08,800 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-22 09:42:45,733 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-22 09:42:45,733 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-22 09:42:45,735 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-22 09:42:45,735 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-22 09:42:45,738 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-22 09:42:45,740 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 3, 'SEQUENCED': 10, 'SCOPED': 71, 'SKIP': 9, 'STRUCTURED': 115}
+2026-06-22 09:42:45,886 | INFO | state_evaluator | [Evaluator] Saved 208 tasks to state

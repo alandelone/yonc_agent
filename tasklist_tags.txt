@@ -1,0 +1,18 @@
+Index: 18, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format)
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev', 'WBS level': '🏭 | (lv1)', 'Priority': '💣 | (P1)'}
+  Theme/SubTheme: None
+Index: 25, Title: 🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev', 'WBS level': '🏭 | (lv1)', 'Priority': '💣 | (P1)'}
+  Theme/SubTheme: None
+Index: 28, Title: 🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev', 'WBS level': '🏭 | (lv1)', 'Priority': '🧨| (P2)'}
+  Theme/SubTheme: None
+Index: 31, Title: 科研人 rstv4 : research tool for paper production
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev'}
+  Theme/SubTheme: None
+Index: 37, Title: 🏭 SolarMan Apparatus Learning
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev', 'WBS level': '🏭 | (lv1)'}
+  Theme/SubTheme: None
+Index: 111, Title: Research Papers Production with RstV4
+  tags: {'Task Theme with colour': 'PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev'}
+  Theme/SubTheme: None

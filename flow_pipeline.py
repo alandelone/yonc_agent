@@ -466,8 +466,21 @@ def build_timeliner_scope(
 
             # theme_ok: entry's project/subproject must appear in task's theme field.
             # If no anchor is available, fall back to sub_key (original behaviour).
+            title_text = _normalize_scope_text(task.get("original_notion_title") or task.get("title", ""))
             if theme_anchor:
                 theme_ok = bool(theme_anchor in theme_text)
+                if theme_ok and theme_anchor not in title_text:
+                    # Prevent overmatching when a task has multiple tags but its title 
+                    # explicitly indicates it belongs to a different major project.
+                    # We check if the title strongly starts with a known project keyword 
+                    # (often after an emoji like 🏭 or text like 科研人).
+                    major_projects = ["thesis", "research", "solarman", "rstv", "review", "event"]
+                    # Extract the first few words of the title to find the main project indicator
+                    first_part = title_text.split(':')[0] if ':' in title_text else title_text
+                    for mp in major_projects:
+                        if mp in first_part and mp != theme_anchor:
+                            theme_ok = False
+                            break
             else:
                 theme_ok = bool(sub_key and sub_key in theme_text)
 

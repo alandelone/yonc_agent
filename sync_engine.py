@@ -1440,7 +1440,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     # should not erase semantically meaningful words in task title.
                     should_strip_theme_label_from_title = False
                     
-            if is_generated and not is_selected_generated_l4:
+            if is_generated and not generated_selection_processed and not is_pending_selection_change:
                 # Never show theme badge on raw generated tasks
                 theme_str = ""
             elif wbs_level_int in (3, 4):
@@ -1546,7 +1546,7 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
                     is_hierarchically_complete = True
                     total_tracked_hours = _calculate_total_hours(str(block_id))
 
-        if is_generated and not generated_selection_processed:
+        if is_generated and not generated_selection_processed and not is_pending_selection_change:
             clean_title = f"🤖💬🔜{clean_title}"
 
         detected_emojis = []

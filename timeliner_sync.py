@@ -189,6 +189,7 @@ def _resolve_task_label_for_entry(
     theme_label: str,
     original_title_index: Dict[str, Set[str]],
 ) -> str:
+    import re
     parsed_task = str(getattr(entry, "task_title", "") or "").strip()
     task_label = parsed_task or str(entry.colour_subtheme or "").strip()
     if not task_label:
@@ -202,17 +203,24 @@ def _resolve_task_label_for_entry(
     if not candidates:
         return task_label
 
+    # Helper to strip leading non-word chars (emojis, symbols) for comparison.
+    def _strip_leading_nonword(s: str) -> str:
+        return re.sub(r'^[^\w]+', '', s).strip()
+
+    clean_task = _strip_leading_nonword(task_label).lower()
+
     for c in candidates:
-        if c.lower() == task_label.lower():
-            return c
+        clean_c = _strip_leading_nonword(c).lower()
+        if clean_c == clean_task:
+            return task_label  # Return the parsed clean version, not the LINEV2 title
 
-    contains = [c for c in candidates if task_label.lower() in c.lower()]
+    contains = [c for c in candidates if clean_task in _strip_leading_nonword(c).lower()]
     if len(contains) == 1:
-        return contains[0]
+        return task_label
 
-    suffix = [c for c in candidates if c.lower().endswith(" " + task_label.lower())]
+    suffix = [c for c in candidates if _strip_leading_nonword(c).lower().endswith(" " + clean_task)]
     if len(suffix) == 1:
-        return suffix[0]
+        return task_label
 
     return task_label
 
@@ -340,7 +348,14 @@ def build_timeliner_rich_text(
     # If the task_label starts with the badge_label (ignoring leading non-word chars like emojis),
     # strip it to avoid duplication (e.g. badge="SolarMan", task_label="🏭 SolarMan Apparatus Learning"
     # → task_label="🏭 Apparatus Learning").
-    if badge_label:
+    # BUT don't strip if the colour_subtheme itself starts with the badge word
+    # (e.g. badge="Thesis", colour_subtheme="thesis writing" → keep "thesis writing").
+    colour_sub = str(entry.colour_subtheme or "").strip()
+    colour_sub_starts_with_badge = bool(
+        badge_label and colour_sub
+        and colour_sub.lower().startswith(badge_label.lower())
+    )
+    if badge_label and not colour_sub_starts_with_badge:
         match = re.match(r'^([^\w]*)' + re.escape(badge_label) + r'\s+(.*)$', task_label, flags=re.IGNORECASE)
         if match:
             task_label = (match.group(1) + match.group(2)).strip()

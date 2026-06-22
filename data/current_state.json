@@ -92,7 +92,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -576,16 +576,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-8118-8ae2-ea9481046851",
-    "notion_block_id": "386e1eb5-ce57-8118-8ae2-ea9481046851",
+    "id": "386e1eb5-ce57-81ca-afb6-fb9832c72b97",
+    "notion_block_id": "386e1eb5-ce57-81ca-afb6-fb9832c72b97",
     "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
     "original_notion_title": "🤖💬🔜SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -631,10 +631,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -655,16 +655,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-8197-ba9c-e9558cf90b44",
-    "notion_block_id": "386e1eb5-ce57-8197-ba9c-e9558cf90b44",
+    "id": "386e1eb5-ce57-816d-8e01-f5fba27f23cd",
+    "notion_block_id": "386e1eb5-ce57-816d-8e01-f5fba27f23cd",
     "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
     "original_notion_title": "🤖💬🔜问题定义与  Gap : 正式阐述：知识空白与研究必要性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -710,10 +710,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -734,16 +734,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-8156-9bf5-f37c0696b28c",
-    "notion_block_id": "386e1eb5-ce57-8156-9bf5-f37c0696b28c",
+    "id": "386e1eb5-ce57-8175-9bda-efdb0f4a6bce",
+    "notion_block_id": "386e1eb5-ce57-8175-9bda-efdb0f4a6bce",
     "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
     "original_notion_title": "🤖💬🔜研究方法 Framework : 研究设计架构：（范式、数据采集、分析技术）",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -789,10 +789,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -813,16 +813,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-812e-baa8-fe5e47137373",
-    "notion_block_id": "386e1eb5-ce57-812e-baa8-fe5e47137373",
+    "id": "386e1eb5-ce57-8176-8537-c06e60dcff83",
+    "notion_block_id": "386e1eb5-ce57-8176-8537-c06e60dcff83",
     "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
     "original_notion_title": "🤖💬🔜方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -868,86 +868,7 @@
       }
     ],
     "links": [],
-    "checked": true,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-81ae-b171-e08cb19ef975",
-    "notion_block_id": "386e1eb5-ce57-81ae-b171-e08cb19ef975",
-    "title": "🏭 Thesis 🚨Phd Logic : clear justification on research gap, methods and validation of the 🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
-    "original_notion_title": "🤖💬🔜V&V 协议 : 确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
-    "context_heading": "",
-    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜V&V 协议 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜V&V 协议 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "确保研究结果(内部效度, 信度, 可信度)的标准与流程。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
@@ -1425,8 +1346,8 @@
   {
     "id": "386e1eb5-ce57-8179-b7cb-f33e4b241e5e",
     "notion_block_id": "386e1eb5-ce57-8179-b7cb-f33e4b241e5e",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
-    "original_notion_title": "🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
+    "original_notion_title": "🔸 🤖💬🔜梳理通用叙事 Flow : 优化Slide顺序：逻辑顺畅，面向非专家。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1445,7 +1366,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🤖💬🔜梳理通用叙事 Flow : ",
+          "content": "🔸 🤖💬🔜梳理通用叙事 Flow : ",
           "link": null
         },
         "annotations": {
@@ -1456,7 +1377,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🤖💬🔜梳理通用叙事 Flow : ",
+        "plain_text": "🔸 🤖💬🔜梳理通用叙事 Flow : ",
         "href": null
       },
       {
@@ -1474,243 +1395,6 @@
           "color": "gray"
         },
         "plain_text": "优化Slide顺序：逻辑顺畅，面向非专家。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": true,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-8185-bd7e-d7fcc1fa75bb",
-    "notion_block_id": "386e1eb5-ce57-8185-bd7e-d7fcc1fa75bb",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
-    "original_notion_title": "🤖💬🔜绘制 Tech 方案图 : 复杂方法：高层可视化（专家验证）",
-    "context_heading": "",
-    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜绘制 Tech 方案图 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜绘制 Tech 方案图 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "复杂方法：高层可视化（专家验证）",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "复杂方法：高层可视化（专家验证）",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": false,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-818d-8630-e540b2f52236",
-    "notion_block_id": "386e1eb5-ce57-818d-8630-e540b2f52236",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
-    "original_notion_title": "🤖💬🔜编写通俗 Problem Statement : 非技术术语描述研究空白 (确保易懂)。",
-    "context_heading": "",
-    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜编写通俗 Problem Statement : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜编写通俗 Problem Statement : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "非技术术语描述研究空白 (确保易懂)。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "非技术术语描述研究空白 (确保易懂)。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": false,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-8156-bb2e-ca88d8280e1d",
-    "notion_block_id": "386e1eb5-ce57-8156-bb2e-ca88d8280e1d",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
-    "original_notion_title": "🤖💬🔜概念视觉隐喻设计 : 设计类比与图标：简化抽象理论框架",
-    "context_heading": "",
-    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜概念视觉隐喻设计 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜概念视觉隐喻设计 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "设计类比与图标：简化抽象理论框架",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "设计类比与图标：简化抽象理论框架",
         "href": null
       }
     ],
@@ -1741,8 +1425,8 @@
   {
     "id": "386e1eb5-ce57-81ac-bb88-dcb46bd3cc00",
     "notion_block_id": "386e1eb5-ce57-81ac-bb88-dcb46bd3cc00",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
-    "original_notion_title": "🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
+    "original_notion_title": "🔸 🤖💬🔜插入 Speaker Notes : Notes增详述：适配多级讲解",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1761,7 +1445,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🤖💬🔜插入 Speaker Notes : ",
+          "content": "🔸 🤖💬🔜插入 Speaker Notes : ",
           "link": null
         },
         "annotations": {
@@ -1772,7 +1456,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🤖💬🔜插入 Speaker Notes : ",
+        "plain_text": "🔸 🤖💬🔜插入 Speaker Notes : ",
         "href": null
       },
       {
@@ -1794,10 +1478,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": false,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -1820,8 +1504,8 @@
   {
     "id": "386e1eb5-ce57-81ed-990d-fb9d8d5cfb9d",
     "notion_block_id": "386e1eb5-ce57-81ed-990d-fb9d8d5cfb9d",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
-    "original_notion_title": "🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
+    "original_notion_title": "🔸 🤖💬🔜Slide对比度与易读性检查 : 优化字体/颜色/布局：确保视觉清晰专业。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1840,7 +1524,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🤖💬🔜Slide对比度与易读性检查 : ",
+          "content": "🔸 🤖💬🔜Slide对比度与易读性检查 : ",
           "link": null
         },
         "annotations": {
@@ -1851,7 +1535,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🤖💬🔜Slide对比度与易读性检查 : ",
+        "plain_text": "🔸 🤖💬🔜Slide对比度与易读性检查 : ",
         "href": null
       },
       {
@@ -1869,85 +1553,6 @@
           "color": "gray"
         },
         "plain_text": "优化字体/颜色/布局：确保视觉清晰专业。",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": true,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-81e2-9ead-f7bb53029a3a",
-    "notion_block_id": "386e1eb5-ce57-81e2-9ead-f7bb53029a3a",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
-    "original_notion_title": "🤖💬🔜嵌入高清 Data Viz : 集成清晰图表：准确展示结果 (专家审阅)。",
-    "context_heading": "",
-    "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜嵌入高清 Data Viz : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜嵌入高清 Data Viz : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "集成清晰图表：准确展示结果 (专家审阅)。",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "集成清晰图表：准确展示结果 (专家审阅)。",
         "href": null
       }
     ],
@@ -1978,8 +1583,8 @@
   {
     "id": "386e1eb5-ce57-81a0-8c8e-fb77c8163ab2",
     "notion_block_id": "386e1eb5-ce57-81a0-8c8e-fb77c8163ab2",
-    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
-    "original_notion_title": "🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
+    "title": "🏭 Thesis 💣proposal defense Slide : Very clear for non expert and expert to underdstand 🔸 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
+    "original_notion_title": "🔸 🤖💬🔜格式化引用与参考 : 学术引用正确：维持委员会信誉。",
     "context_heading": "",
     "parent_id": "386e1eb5-ce57-8108-b469-f4a8471e26df",
     "depth": 1,
@@ -1998,7 +1603,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🤖💬🔜格式化引用与参考 : ",
+          "content": "🔸 🤖💬🔜格式化引用与参考 : ",
           "link": null
         },
         "annotations": {
@@ -2009,7 +1614,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🤖💬🔜格式化引用与参考 : ",
+        "plain_text": "🔸 🤖💬🔜格式化引用与参考 : ",
         "href": null
       },
       {
@@ -2031,10 +1636,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": false,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -2667,8 +2272,8 @@
   {
     "id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
     "notion_block_id": "386e1eb5-ce57-8146-a4e2-e881b22fb513",
-    "title": "🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
-    "original_notion_title": "🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "title": "🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🔸 🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
+    "original_notion_title": "🔸 🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。",
     "context_heading": "",
     "parent_id": "384e1eb5-ce57-8142-9472-da3cc7968c5a",
     "depth": 1,
@@ -2687,7 +2292,7 @@
       {
         "type": "text",
         "text": {
-          "content": "🤖💬🔜最终章节 Formatting : ",
+          "content": "🔸 🤖💬🔜最终章节 Formatting : ",
           "link": null
         },
         "annotations": {
@@ -2698,7 +2303,7 @@
           "code": false,
           "color": "default"
         },
-        "plain_text": "🤖💬🔜最终章节 Formatting : ",
+        "plain_text": "🔸 🤖💬🔜最终章节 Formatting : ",
         "href": null
       },
       {
@@ -2720,12 +2325,1011 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": false,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3",
+    "notion_block_id": "386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3",
+    "title": "🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm",
+    "original_notion_title": "🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm",
+    "context_heading": "",
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Research",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Research",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 💣Rs_SF Writing : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 💣Rs_SF Writing : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Cloud-Adaptive AI Forecast Algorithm",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "Cloud-Adaptive AI Forecast Algorithm",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-81fe-b115-d896f3ea4282",
+    "notion_block_id": "386e1eb5-ce57-81fe-b115-d896f3ea4282",
+    "title": "🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm 🔸 Rslogic outline : template filling follow writing flow",
+    "original_notion_title": "🔸 Rslogic outline : template filling follow writing flow",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 Rslogic outline : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 Rslogic outline : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "template filling follow writing flow",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "template filling follow writing flow",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-819d-bdae-fa1bc733fb97",
+    "notion_block_id": "386e1eb5-ce57-819d-bdae-fa1bc733fb97",
+    "title": "🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm 🔶 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined",
+    "original_notion_title": "🔶 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 算法系统设计 & Perf Check : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 算法系统设计 & Perf Check : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Inputs, Outputs, Parameters Defined",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "Inputs, Outputs, Parameters Defined",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8135-b937-da293251d484",
+    "notion_block_id": "386e1eb5-ce57-8135-b937-da293251d484",
+    "title": "🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS",
+    "original_notion_title": "🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS",
+    "context_heading": "",
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🏭 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🏭 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Research",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Research",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 🧨Rs_EMS Writing : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 🧨Rs_EMS Writing : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "solve Energy efficiency with Trade-Enabled EMS",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "solve Energy efficiency with Trade-Enabled EMS",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-814a-b76f-e2e83f8469f5",
+    "notion_block_id": "386e1eb5-ce57-814a-b76f-e2e83f8469f5",
+    "title": "🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🔸 Rslogic outline : template filling follow writing flow",
+    "original_notion_title": "🔸 Rslogic outline : template filling follow writing flow",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8135-b937-da293251d484",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔸 Rslogic outline : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔸 Rslogic outline : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "template filling follow writing flow",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "template filling follow writing flow",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8134-9356-d5da19dd66d7",
+    "notion_block_id": "386e1eb5-ce57-8134-9356-d5da19dd66d7",
+    "title": "🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🟧 Research System and. Algorithm  design",
+    "original_notion_title": "🟧 Research System and. Algorithm  design",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8135-b937-da293251d484",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "Research",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "Research",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " System and. Algorithm  design",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " System and. Algorithm  design",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8191-b085-f90d9a5d9c6e",
+    "notion_block_id": "386e1eb5-ce57-8191-b085-f90d9a5d9c6e",
+    "title": "科研人 rstv4 : research tool for paper production",
+    "original_notion_title": "科研人 rstv4 : research tool for paper production",
+    "context_heading": "",
+    "parent_id": "318e1eb5ce57808ea334c9365174d477",
+    "depth": 0,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "科研人",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "科研人",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " rstv4 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " rstv4 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "research tool for paper production",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "research tool for paper production",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "notion_block_id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "title": "科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing",
+    "original_notion_title": "🟧 科研人 Final Refination with real writing",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-8191-b085-f90d9a5d9c6e",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🟧 ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🟧 ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "科研人",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "科研人",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " Final Refination with real writing",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " Final Refination with real writing",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-81ba-8e1c-e9c682367acc",
+    "notion_block_id": "386e1eb5-ce57-81ba-8e1c-e9c682367acc",
+    "title": "科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 paperpool part",
+    "original_notion_title": "🔶 paperpool part",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 paperpool part",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 paperpool part",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-8178-908b-c8c4b96dc3b1",
+    "notion_block_id": "386e1eb5-ce57-8178-908b-c8c4b96dc3b1",
+    "title": "科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 paperdraft part",
+    "original_notion_title": "🔶 paperdraft part",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 paperdraft part",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 paperdraft part",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-811c-be11-fa0bae4f3938",
+    "notion_block_id": "386e1eb5-ce57-811c-be11-fa0bae4f3938",
+    "title": "科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 kg all21 part",
+    "original_notion_title": "🔶 kg all21 part",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 kg all21 part",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 kg all21 part",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {},
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    }
+  },
+  {
+    "id": "386e1eb5-ce57-81c0-b235-f38217e4e24b",
+    "notion_block_id": "386e1eb5-ce57-81c0-b235-f38217e4e24b",
+    "title": "科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 kg all2o part",
+    "original_notion_title": "🔶 kg all2o part",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81c8-85ef-fd07d0bf6336",
+    "depth": 2,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "🔶 kg all2o part",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "🔶 kg all2o part",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -2819,7 +3423,7 @@
     "checked": null,
     "has_tag_style": true,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,
@@ -7039,16 +7643,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
-    "notion_block_id": "386e1eb5-ce57-81c2-91d6-c24c265c1be8",
+    "id": "386e1eb5-ce57-8194-be7c-d80975cfcf18",
+    "notion_block_id": "386e1eb5-ce57-8194-be7c-d80975cfcf18",
     "title": "🏭 SolarMan Apparatus Learning 🤖💬🔜设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
     "original_notion_title": "🤖💬🔜设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -7094,10 +7698,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -7118,95 +7722,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
-    "notion_block_id": "386e1eb5-ce57-81b4-b6ff-d8b119441275",
-    "title": "🏭 SolarMan Apparatus Learning 🤖💬🔜核心 ML 模型 : 算法与NN：解析设备模式与行为",
-    "original_notion_title": "🤖💬🔜核心 ML 模型 : 算法与NN：解析设备模式与行为",
-    "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜核心 ML 模型 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜核心 ML 模型 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "算法与NN：解析设备模式与行为",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "算法与NN：解析设备模式与行为",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": false,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
-    "notion_block_id": "386e1eb5-ce57-8107-9a67-ee9ca54302d3",
+    "id": "386e1eb5-ce57-813e-a0fb-ff9e1e95e39e",
+    "notion_block_id": "386e1eb5-ce57-813e-a0fb-ff9e1e95e39e",
     "title": "🏭 SolarMan Apparatus Learning 🤖💬🔜系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
     "original_notion_title": "🤖💬🔜系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -7252,10 +7777,10 @@
       }
     ],
     "links": [],
-    "checked": true,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
     "is_content_block": false,
@@ -7276,16 +7801,16 @@
     }
   },
   {
-    "id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
-    "notion_block_id": "386e1eb5-ce57-8116-a86e-d1a1034a4781",
+    "id": "386e1eb5-ce57-81bc-a2d7-d78d4587355a",
+    "notion_block_id": "386e1eb5-ce57-81bc-a2d7-d78d4587355a",
     "title": "🏭 SolarMan Apparatus Learning 🤖💬🔜UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
     "original_notion_title": "🤖💬🔜UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
     "context_heading": "",
     "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
     "depth": 1,
     "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
     "annotations": {
       "bold": false,
       "italic": false,
@@ -7331,650 +7856,12 @@
       }
     ],
     "links": [],
-    "checked": true,
-    "has_tag_style": false,
-    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": true,
-    "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
-    "notion_block_id": "386e1eb5-ce57-81c8-a56a-f43d2713ac3a",
-    "title": "🏭 SolarMan Apparatus Learning 🤖💬🔜技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
-    "original_notion_title": "🤖💬🔜技术文档 & QA 报告 : 学习系统：架构规范, 验证结果, 用户手册",
-    "context_heading": "",
-    "parent_id": "383e1eb5-ce57-8129-976d-f7381a06d588",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "todo",
-    "notion_type": "to_do",
-    "annotations": {
-      "bold": false,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": false,
-      "color": "default"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "🤖💬🔜技术文档 & QA 报告 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": "🤖💬🔜技术文档 & QA 报告 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "学习系统：架构规范, 验证结果, 用户手册",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "学习系统：架构规范, 验证结果, 用户手册",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": false,
+    "checked": null,
     "has_tag_style": false,
     "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
     "is_generated": true,
     "origin": "generated",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "362e1eb5-ce57-800b-9d9f-fa8737d12059",
-    "notion_block_id": "362e1eb5-ce57-800b-9d9f-fa8737d12059",
-    "title": "Research Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm",
-    "original_notion_title": "Research Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm",
-    "context_heading": "",
-    "parent_id": "318e1eb5ce57808ea334c9365174d477",
-    "depth": 0,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Rs_SF Writing : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Rs_SF Writing : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "Cloud-Adaptive AI Forecast Algorithm",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "Cloud-Adaptive AI Forecast Algorithm",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8010-aa57-d61a1c399a90",
-    "notion_block_id": "37de1eb5-ce57-8010-aa57-d61a1c399a90",
-    "title": "Research Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm Research Rslogic outline : template filling follow writing flow",
-    "original_notion_title": "Research Rslogic outline : template filling follow writing flow",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-800b-9d9f-fa8737d12059",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Rslogic outline : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Rslogic outline : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "template filling follow writing flow",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "template filling follow writing flow",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8048-bea6-ca44c520a147",
-    "notion_block_id": "37de1eb5-ce57-8048-bea6-ca44c520a147",
-    "title": "Research Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm Research 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined",
-    "original_notion_title": "Research 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined",
-    "context_heading": "",
-    "parent_id": "362e1eb5-ce57-800b-9d9f-fa8737d12059",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " 算法系统设计 & Perf Check : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " 算法系统设计 & Perf Check : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "Inputs, Outputs, Parameters Defined",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "Inputs, Outputs, Parameters Defined",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36",
-    "notion_block_id": "37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36",
-    "title": "Research Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS",
-    "original_notion_title": "Research Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS",
-    "context_heading": "",
-    "parent_id": "318e1eb5ce57808ea334c9365174d477",
-    "depth": 0,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Rs_EMS Writing : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Rs_EMS Writing : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "solve Energy efficiency with Trade-Enabled EMS",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "solve Energy efficiency with Trade-Enabled EMS",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8036-b286-c3502645f2e0",
-    "notion_block_id": "37de1eb5-ce57-8036-b286-c3502645f2e0",
-    "title": "Research Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS Research Rslogic outline : template filling follow writing flow",
-    "original_notion_title": "Research Rslogic outline : template filling follow writing flow",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Rslogic outline : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Rslogic outline : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "template filling follow writing flow",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "template filling follow writing flow",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-805e-8409-e07df34dad37",
-    "notion_block_id": "37de1eb5-ce57-805e-8409-e07df34dad37",
-    "title": "Research Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS Research System and. Algorithm  design",
-    "original_notion_title": "Research System and. Algorithm  design",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8084-9dcd-ccf6b8d8bd36",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "Research",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "Research",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " System and. Algorithm  design",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " System and. Algorithm  design",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
     "is_content_block": false,
     "timeliner_key": null,
     "timeliner_rank": null,
@@ -8412,497 +8299,6 @@
     "has_tag_style": true,
     "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea",
-    "notion_block_id": "37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea",
-    "title": "科研人 rstv4 : research tool for paper production",
-    "original_notion_title": "科研人 rstv4 : research tool for paper production",
-    "context_heading": "",
-    "parent_id": "318e1eb5ce57808ea334c9365174d477",
-    "depth": 0,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " rstv4 : ",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " rstv4 : ",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": "research tool for paper production",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": true,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "gray"
-        },
-        "plain_text": "research tool for paper production",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "notion_block_id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "title": "科研人 rstv4 : research tool for paper production 科研人 Final Refination with real writing",
-    "original_notion_title": "科研人 Final Refination with real writing",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-80d0-9c2b-c3ccc1dd45ea",
-    "depth": 1,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " Final Refination with real writing",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " Final Refination with real writing",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8070-902b-c62dd938a064",
-    "notion_block_id": "37de1eb5-ce57-8070-902b-c62dd938a064",
-    "title": "科研人 rstv4 : research tool for paper production 科研人 Final Refination with real writing 科研人 paperpool part",
-    "original_notion_title": "科研人 paperpool part",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " paperpool part",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " paperpool part",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8040-ab1f-f3feaaeaa2db",
-    "notion_block_id": "37de1eb5-ce57-8040-ab1f-f3feaaeaa2db",
-    "title": "科研人 rstv4 : research tool for paper production 科研人 Final Refination with real writing 科研人 paperdraft part",
-    "original_notion_title": "科研人 paperdraft part",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " paperdraft part",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " paperdraft part",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8042-97d7-d953326fc439",
-    "notion_block_id": "37de1eb5-ce57-8042-97d7-d953326fc439",
-    "title": "科研人 rstv4 : research tool for paper production 科研人 Final Refination with real writing 科研人 kg all21 part",
-    "original_notion_title": "科研人 kg all21 part",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " kg all21 part",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " kg all21 part",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "is_generated": false,
-    "origin": "human",
-    "is_content_block": false,
-    "timeliner_key": null,
-    "timeliner_rank": null,
-    "wbs_source": null,
-    "split_stage": "none",
-    "split_batch_id": null,
-    "reviewed_once": false,
-    "generated_selection_processed": false,
-    "tags": {},
-    "status": "todo",
-    "metrics": {
-      "estimated_time_h": null,
-      "actual_time_taken_h": null,
-      "interruption_count": 0,
-      "timetaken": []
-    }
-  },
-  {
-    "id": "37de1eb5-ce57-8064-be83-f8d39b6ec527",
-    "notion_block_id": "37de1eb5-ce57-8064-be83-f8d39b6ec527",
-    "title": "科研人 rstv4 : research tool for paper production 科研人 Final Refination with real writing 科研人 kg all2o part",
-    "original_notion_title": "科研人 kg all2o part",
-    "context_heading": "",
-    "parent_id": "37de1eb5-ce57-8034-b148-ec4ab5b867dc",
-    "depth": 2,
-    "wbs_level": null,
-    "type": "bullet",
-    "notion_type": "bulleted_list_item",
-    "annotations": {
-      "bold": true,
-      "italic": false,
-      "strikethrough": false,
-      "underline": false,
-      "code": true,
-      "color": "red"
-    },
-    "notion_rich_text": [
-      {
-        "type": "text",
-        "text": {
-          "content": "科研人",
-          "link": null
-        },
-        "annotations": {
-          "bold": true,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": true,
-          "color": "red"
-        },
-        "plain_text": "科研人",
-        "href": null
-      },
-      {
-        "type": "text",
-        "text": {
-          "content": " kg all2o part",
-          "link": null
-        },
-        "annotations": {
-          "bold": false,
-          "italic": false,
-          "strikethrough": false,
-          "underline": false,
-          "code": false,
-          "color": "default"
-        },
-        "plain_text": " kg all2o part",
-        "href": null
-      }
-    ],
-    "links": [],
-    "checked": null,
-    "has_tag_style": true,
-    "created_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
-    "last_edited_by_id": "6c78810e-daf0-467f-a2e1-857bf7f74f79",
     "is_generated": false,
     "origin": "human",
     "is_content_block": false,

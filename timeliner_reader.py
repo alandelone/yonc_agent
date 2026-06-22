@@ -418,7 +418,13 @@ def parse_timeliner_blocks(blocks: List[Dict[str, Any]]) -> List[TimelineEntry]:
                         lead, rest = _split_leading_label(subtheme)
                         if current_section_kind == "main":
                             if not resolved_project and lead and rest:
+                                # First entry: discover the project name.
+                                # Accept unconditionally — the first entry always
+                                # has format "<Project> <Task>" from the sync.
                                 resolved_project = lead
+                                subtheme = rest
+                            elif resolved_project and lead and rest and lead.lower() == resolved_project.lower():
+                                # Project already known; strip matching prefix.
                                 subtheme = rest
                             # Strip any remaining leading duplicates of the project name.
                             # Only strip when the remainder is multi-word to avoid

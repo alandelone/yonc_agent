@@ -1807,3 +1807,35 @@
 2026-06-22 00:21:45,303 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
 2026-06-22 00:21:45,308 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 3, 'SEQUENCED': 82, 'EXPANDING': 2, 'STRUCTURED': 112, 'SKIP': 9}
 2026-06-22 00:21:45,454 | INFO | state_evaluator | [Evaluator] Saved 208 tasks to state
+2026-06-22 08:57:16,879 | INFO | __main__ | CLI command 'sync' started (pid=20192, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 08:57:16,889 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 08:57:34,822 | INFO | __main__ | CLI command 'show-config' started (pid=10468, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 08:57:34,824 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 08:58:12,986 | INFO | __main__ | CLI command 'timeliner' started (pid=4040, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 08:58:12,986 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 09:28:44,447 | INFO | __main__ | CLI command 'flow' started (pid=20744, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 09:28:44,449 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 09:28:44,467 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 09:29:01,742 | INFO | state_evaluator | [Evaluator] Loaded 208 merged tasks
+2026-06-22 09:29:01,744 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-22 09:29:01,778 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-22 09:29:01,779 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-22 09:29:01,779 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-22 09:29:09,881 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-22 09:31:48,358 | INFO | __main__ | CLI command 'flow' started (pid=14256, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 09:31:48,358 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 09:31:48,367 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 09:32:06,975 | INFO | state_evaluator | [Evaluator] Loaded 208 merged tasks
+2026-06-22 09:32:06,977 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-22 09:32:07,015 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-22 09:32:07,016 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-22 09:32:07,017 | INFO | flow_pipeline | [Evaluator] TIMELINER cache found and fresh (timeliner_state.json)
+2026-06-22 09:32:07,072 | INFO | state_evaluator | [Evaluator] Scoped 13 tasks from TIMELINER
+2026-06-22 09:32:08,796 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-22 09:36:03,487 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-22 09:39:50,775 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-22 09:39:55,604 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-22 09:40:09,546 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-22 09:40:09,548 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-22 09:40:09,575 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-22 09:40:09,577 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering

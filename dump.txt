@@ -1,0 +1,405 @@
+Depth: 0, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-8142-9472-da3cc7968c5a
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🔸 起草与定稿Outline : 高质量论文：满足院校答辩要求。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-81d8-ae7c-cb071f4ff775
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文核心理论基础。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-81be-8913-ca4f8d89d7d2
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🟧 Thesis Chp3方法与数据分析 : 记录研究设计：完成初/次级数据系统分析。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-813e-afe7-e2d493f228b8
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🔶 Draft Chp4核心讨论  完成 : 综合结果：回答核心研究问题及假设。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-8115-812b-d9347b50ec8d
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🔶 稿件定稿校对 : 整合为单文档：遵循学术格式及引用标准。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 384e1eb5-ce57-81a9-b875-e6e23e74383e
+Depth: 1, Title: 🏭 Thesis 💣thesis writing : parallel by chapter ( FinalComGen>review>format) 🔸 🤖💬🔜最终章节 Formatting : 论文章节最终格式化：确保符合规范。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8146-a4e2-e881b22fb513
+Depth: 0, Title: 🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3
+Depth: 1, Title: 🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm 🔸 Rslogic outline : template filling follow writing flow
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-81fe-b115-d896f3ea4282
+Depth: 1, Title: 🏭 Research 💣Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm 🔶 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-819d-bdae-fa1bc733fb97
+Depth: 0, Title: 🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8135-b937-da293251d484
+Depth: 1, Title: 🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🔸 Rslogic outline : template filling follow writing flow
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-814a-b76f-e2e83f8469f5
+Depth: 1, Title: 🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🟧 Research System and. Algorithm  design
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8134-9356-d5da19dd66d7
+Depth: 0, Title: 科研人 rstv4 : research tool for paper production
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8191-b085-f90d9a5d9c6e
+Depth: 1, Title: 科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-81c8-85ef-fd07d0bf6336
+Depth: 2, Title: 科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 paperpool part
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-81ba-8e1c-e9c682367acc
+Depth: 2, Title: 科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 paperdraft part
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8178-908b-c8c4b96dc3b1
+Depth: 2, Title: 科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 kg all21 part
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-811c-be11-fa0bae4f3938
+Depth: 2, Title: 科研人 rstv4 : research tool for paper production 🟧 科研人 Final Refination with real writing 🔶 kg all2o part
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-81c0-b235-f38217e4e24b
+Depth: 0, Title: 🏭 SolarMan Apparatus Learning
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8129-976d-f7381a06d588
+Depth: 1, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81b1-b26c-d84b80eeb467
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8197-9e93-f6cd1f809e43
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 💻Focus ✍️ 技术运维手册 : 全工具指南：(功能规格, 操作步骤)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-818c-8e45-d0862c3d12c6
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 ALL TOOLs 技术手册 & 安全指南 &速查表 : how to use each tools 🔸 💻Focus ✍️ 安全合规 Guide : 正式规程：安全标准、风险缓解、合规要求。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-815f-91ba-d0bd73b66097
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-811b-a259-fd1138e47618
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81ba-a239-c49925b1d634
+Depth: 4, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob error response , precaution
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d5-b565-c69581866278
+Depth: 4, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Mode定义/预期值/阈值
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-817d-9b6f-e5619b6be63f
+Depth: 4, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use Format Cute Manual : Ob Action domain
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81ee-baa4-c90e60c4e6bf
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 手册结构规划 : 创建目录：(系统架构, 安全协议)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d6-a381-ec7c9cb2f468
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 Tool 对接流程 : 工具集成指南 (物理 & 数字)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81aa-8bf3-d68e5a810f5d
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 记录 UI 导航 : 界面：详述菜单功能及仪表盘视图
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-813b-8a8c-d0037733a699
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 电气安全警告 : 汇总技术员高压安全规范及PPE要求
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8150-a500-c61dc8c92dcf
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 定义紧急停机 Protocol : 拟定系统急停流程（手动/软件）
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8149-ab63-ef6e07473617
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 Tool UI 截图 : 关键界面截高清图：视觉引导
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81c4-9b71-fa7621be9101
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 标注系统接线图 : T&C内部技术图表：加标注
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-819b-b9af-f0e7cc8412a9
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 验证 Error Code : DB：列出常见错误码及解决方案
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81b6-a0e7-c7c087ca5986
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 文档 Layout 排版 : 全手册：统一 SOLAR T&C 品牌样式
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-816e-a3e1-c70a55ca3b30
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 手册 : 技术评审：确保安全指南正确。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8106-bd63-c2bb3c2fbf84
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus 💻✍️ Draft in my Word
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81dc-9c07-fc0a1ee901a9
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus ✍️GPTImg Prompt Gen Refining
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8171-b56f-f51b9edc00db
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 TOOL技术手册&安全指南 for SOLAR T&C internal Use 🔸 💻Focus 🎯Final Img Refine Tune
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81c3-ba68-f6b93442a76d
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 收集 SKM 培训手册 : 下载最新  SKM 用户指南/技术手册。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-814c-8c47-db94b9f33bbf
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 起草太阳能组件 Spec : SKM：汇总硬件组件及技术参数。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81e8-a90d-c6ea91577340
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 制作 SKM PPT : 概览：设计视觉内容与布局
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-819d-8360-dd1683fca7a2
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 格式化评估表 : 设计并打印参与者反馈评估量表。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8152-ae87-c5c7662a0de8
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 上传课程 Assets : 文档及媒体上传至共享 Repo。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8125-ab7c-f41054f4c272
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare 🔸 验证物料 Print Quality : 核查培训讲义纸本：确保清晰完整。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d0-bbe7-cfff1b5e44bf
+Depth: 1, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81bc-b49e-d16ae9205f3c
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 ExpressFlow Draw : How? DataSource 2 report with exe/docker
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81c4-91a2-dadc25f63820
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 power quality meter : Buildup BOM prepare & design
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8121-8103-d3b43fb40905
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 power quality meter : Buildup BOM prepare & design 🔸 汇总电表 BOM : 梳理 PQ Meter 组装：组件及设计规范
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-813a-a803-ecef4ca7643c
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d2-9bba-cb67ae761f64
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🎯Template4 锻造项目填充 : Graph visual, Concept, BOM,Schematic
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-812a-bd80-ff3b55bf2a52
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🔬solar irradiance module selection
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81b8-8925-c0234e6568eb
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 💻Focus 🛒 BOM list with links，price and cost
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81f2-b4e0-e2cf787ae77b
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 拟定 BOM : 梳理 dash硬件需求：(MCU, 传感器, 电源模块)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d1-904f-c8726a86f824
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 机械外壳选型 : 选择适配便携设计的材料（外壳、紧固件、安装件）。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81ef-a610-f7beccfa2722
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 核实零件库存及价格 : 核对初步 BOM：供应商库存、单价
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8101-988f-cef668c489d6
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 外壳 Layout 图 : 便携外壳内部组件：2D布局
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8179-bd89-dffa28102120
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 PCB封装需求 : 定义定制 PCB 尺寸及接口布局。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81a1-bce1-d677d90bbedc
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 IoT portable dash : BuildDev BOM prepare & design 🔸 定稿 BOM 格式 : 汇总零件、数量、MPN 至标准表格。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-815f-a636-f2ca25d6cb6e
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81ec-bbf0-c9d258768ee5
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device 🔸 小Do📱 💻 phone version both simutenously
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-818f-8b41-f5fc92b5793e
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device 🔸 💻Focus 💻comp version : replicate phone version in comp
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81e0-a3b6-f2e88253aa8f
+Depth: 3, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 BLE connection testing of UNI-T device 🔸 UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8194-8086-c864088e17b6
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 字段提取 Mapping : 设备库 $\rightarrow$ 报表模板：Field Mapping配置
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-8138-9ca7-d2996a2c4047
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 报表生成 Engine : 模块：实时现场数据填充模板 $\rightarrow$ 生成 T&C 报告。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81a2-ad13-d5801167728d
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 验证 Report 模板 : 标准化行业报表格式：系统自动填充。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-81d8-b4e8-fdb274b8945c
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 数据准确性校验 : 集成校验规则：出报前验证数据完整性
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-814c-be28-f3fab212f64d
+Depth: 2, Title: 🏭 SolarMan Apparatus Learning 🟧 SolarMan T&C report express filling flow : data to report direct 🔶 用户预览与导出 UI : 前端组件：审核自填数据，多格式导出报告。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 383e1eb5-ce57-811b-b422-fa91f5ecf9fc
+Depth: 1, Title: 🏭 SolarMan Apparatus Learning 🤖💬🔜设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-8194-be7c-d80975cfcf18
+Depth: 1, Title: 🏭 SolarMan Apparatus Learning 🤖💬🔜系统处理 Infra : 软硬件环境：承载 DB 及学习计算。
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-813e-a0fb-ff9e1e95e39e
+Depth: 1, Title: 🏭 SolarMan Apparatus Learning 🤖💬🔜UI 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 386e1eb5-ce57-81bc-a2d7-d78d4587355a
+Depth: 0, Title: Research Papers Production with RstV4
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 37de1eb5-ce57-804c-ba1f-cf3f581545e6
+Depth: 1, Title: Research Papers Production with RstV4 Review ways methods to improve efficiency??
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 362e1eb5-ce57-8065-a795-d271cadae71b
+Depth: 1, Title: Research Papers Production with RstV4 Review CCloud-Adaptive SF
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 362e1eb5-ce57-80b5-9df8-c9f5fe4b0093
+Depth: 1, Title: Research Papers Production with RstV4 Research HIILenv Explore& Learn
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 362e1eb5-ce57-80a2-be75-e087acda98cf
+Depth: 1, Title: Research Papers Production with RstV4 Research Review Rv_Scheme : Sustainable Rural Electrification Scheme Discussion
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 362e1eb5-ce57-80ae-a0ee-eccbd0f8b669
+Depth: 1, Title: Research Papers Production with RstV4 Research Review Rv_Market : how Offgrid energy market working on
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 37de1eb5-ce57-8034-a1e5-dd6923cbf532
+Depth: 1, Title: Research Papers Production with RstV4 Research Review Rv_OGsys : all type of solar energy Management System system
+  timeliner_priority: None
+  timeliner_section: None
+  timeliner_is_subproject: None
+  notion_block_id: 37de1eb5-ce57-80e0-a880-f2e16680fd86

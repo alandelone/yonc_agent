@@ -20,14 +20,6 @@
     "SolarMan 🏭 SolarMan Apparatus Learning": {
       "scope_key": "::SolarMan::Apparatus Learning",
       "settle_date": "2026-05-31",
-      "colour_subtheme": "Apparatus Learning",
-      "tags": {
-        "WBS level": "🏭 | (lv1)",
-        "Task Theme with colour": "PhDSettle✒|SolarMan"
-      },
-      "task_title": "SolarMan Apparatus Learning",
-      "description": "",
-      "wbs_level": 1,
       "priority": 1
     }
   }

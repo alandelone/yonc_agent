@@ -1779,3 +1779,31 @@
 2026-06-21 14:09:27,916 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🏭 Thesis 💣thesis writing : parallel by c
 2026-06-21 14:09:27,916 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🏭 SolarMan Apparatus Learning
 2026-06-21 14:09:28,095 | INFO | state_evaluator | [Evaluator] Saved 228 tasks to state
+2026-06-22 00:19:19,585 | INFO | __main__ | CLI command 'flow' started (pid=26236, cwd=C:\test_codespace\yonc_agent)
+2026-06-22 00:19:19,592 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 00:19:19,596 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 00:19:38,897 | INFO | state_evaluator | [Evaluator] Loaded 215 merged tasks
+2026-06-22 00:19:38,898 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-22 00:19:38,944 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-22 00:19:38,944 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-22 00:19:38,945 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+2026-06-22 00:19:47,652 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+2026-06-22 00:19:47,684 | INFO | state_evaluator | [Evaluator] Scoped 94 tasks from TIMELINER
+2026-06-22 00:19:49,778 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-22 00:19:56,802 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-22 00:20:04,828 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-22 00:20:12,658 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-22 00:20:31,249 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+2026-06-22 00:20:39,407 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-22 00:20:39,408 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-22 00:20:39,426 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-22 00:20:39,427 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-22 00:21:06,172 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-22 00:21:06,174 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-22 00:21:45,296 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-22 00:21:45,297 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-22 00:21:45,299 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-22 00:21:45,299 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-22 00:21:45,303 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
+2026-06-22 00:21:45,308 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 3, 'SEQUENCED': 82, 'EXPANDING': 2, 'STRUCTURED': 112, 'SKIP': 9}
+2026-06-22 00:21:45,454 | INFO | state_evaluator | [Evaluator] Saved 208 tasks to state

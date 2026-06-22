@@ -138,10 +138,12 @@ def evaluate_block_state(
     if timeliner_rank is None:
         return BlockState.SCOPED
 
-    # ── SEQUENCED：有 Scope 但缺少 Priority
-    priority_tag = str(tags.get("Priority", "")).strip()
-    if not priority_tag:
-        return BlockState.SEQUENCED
+    # ── SEQUENCED：有 Scope 但缺少 Priority (仅 root 主项目需要)
+    is_subproject = bool(task.get("timeliner_is_subproject"))
+    if depth == 0 and not is_subproject:
+        priority_tag = str(tags.get("Priority", "")).strip()
+        if not priority_tag:
+            return BlockState.SEQUENCED
 
     # ── EXPANDING：WBS < 4 且从未拆解过
     children = children_by_parent.get(tid, [])
@@ -389,13 +391,22 @@ def run_evaluator() -> List[Dict[str, Any]]:
     state = theme_pass(state, config_dict)
     state = reparent_theme_containers(state, config_dict)
     _log("Evaluator", "Theme pass complete")
+    
+    # Save a full copy of the state with theme/reparenting applied but BEFORE any 
+    # tasks (like Timeliner entries) are filtered out, so `build_timeliner_scope` 
+    # can look up parent blocks correctly even if those parent blocks are filtered out later.
+    unfiltered_state = copy.deepcopy(state)
 
     # ── Step 2: STRUCTURED -> WBS 计算 ──
     _log("Evaluator", "Phase: WBS Calculation")
     _bootstrap_timeliner_if_needed()
     from flow_pipeline import build_timeliner_scope
 
-    scoped_ids, rank_by_task_id, _ = build_timeliner_scope(state)
+    # Ensure Timeliner DB items themselves don't get scoped as their own tasks
+    # (Wait, filtering is actually done earlier or later? I should check where it's filtered.)
+    
+    # Actually I should just call build_timeliner_scope with full_state=unfiltered_state
+    scoped_ids, rank_by_task_id, _ = build_timeliner_scope(state, full_state=unfiltered_state)
     _log("Evaluator", f"Scoped {len(scoped_ids)} tasks from TIMELINER")
 
     from llm_pipeline import wbs_pass
@@ -478,20 +489,26 @@ def run_evaluator() -> List[Dict[str, Any]]:
         if not suggested:
             continue
 
+        from flow_pipeline import _split_dedupe_key
+        
         # 去重已有子节点标题
         existing_children = children_by_parent.get(tid, [])
         existing_titles = {
-            str(c.get("original_notion_title", c.get("title", ""))).strip().lower()
+            _split_dedupe_key(str(c.get("original_notion_title", c.get("title", ""))), structured_cfg)
             for c in existing_children
-            if str(c.get("original_notion_title", c.get("title", ""))).strip()
+            if _split_dedupe_key(str(c.get("original_notion_title", c.get("title", ""))), structured_cfg)
         }
         deduped = []
         for s in suggested:
-            key = str(s or "").strip().lower()
+            key = _split_dedupe_key(str(s or ""), structured_cfg)
             if not key or key in existing_titles:
                 continue
             existing_titles.add(key)
-            deduped.append(str(s).strip())
+            
+            clean_s = str(s).strip()
+            if not clean_s.startswith("🤖💬🔜"):
+                clean_s = f"🤖💬🔜{clean_s}"
+            deduped.append(clean_s)
 
         if not deduped:
             continue

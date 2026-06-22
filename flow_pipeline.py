@@ -367,6 +367,7 @@ def _pick_theme_key(task: Dict[str, Any]) -> str:
 def build_timeliner_scope(
     state: List[Dict[str, Any]],
     require_cached_state: bool = True,
+    full_state: List[Dict[str, Any]] = None,
 ) -> Tuple[Set[str], Dict[str, int], List[str]]:
     if require_cached_state and not _has_cached_timeliner_scope():
         _log_stage(
@@ -432,6 +433,9 @@ def build_timeliner_scope(
 
     scoped_ids: Set[str] = set()
     rank_by_task_id: Dict[str, int] = {}
+    
+    search_state = full_state if full_state is not None else state
+    state_by_id: Dict[str, Dict[str, Any]] = {str(t.get("notion_block_id") or t.get("id")): t for t in search_state}
 
     for task in state:
         task_id = str(task.get("notion_block_id") or task.get("id") or "")
@@ -439,13 +443,27 @@ def build_timeliner_scope(
             continue
 
         theme_text = _normalize_scope_text(_pick_theme_key(task))
+        
+        # Collect parent titles recursively up to 3 levels deep
+        parent_titles = []
+        current_pid = task.get("parent_id")
+        depth_count = 0
+        while current_pid and depth_count < 3:
+            parent_task = state_by_id.get(str(current_pid))
+            if parent_task:
+                parent_titles.append(str(parent_task.get("original_notion_title") or parent_task.get("title", "")))
+                current_pid = parent_task.get("parent_id")
+                depth_count += 1
+            else:
+                break
+
         title_text = _normalize_scope_text(
             " ".join(
                 [
                     str(task.get("title", "")),
                     str(task.get("original_notion_title", "")),
                     str(task.get("context_heading", "")),
-                ]
+                ] + parent_titles
             )
         )
 
@@ -466,23 +484,26 @@ def build_timeliner_scope(
 
             # theme_ok: entry's project/subproject must appear in task's theme field.
             # If no anchor is available, fall back to sub_key (original behaviour).
-            title_text = _normalize_scope_text(task.get("original_notion_title") or task.get("title", ""))
+            local_title_text = _normalize_scope_text(task.get("original_notion_title") or task.get("title", ""))
             if theme_anchor:
                 theme_ok = bool(theme_anchor in theme_text)
-                if theme_ok and theme_anchor not in title_text:
+                if theme_ok and theme_anchor not in local_title_text:
                     # Prevent overmatching when a task has multiple tags but its title 
                     # explicitly indicates it belongs to a different major project.
                     # We check if the title strongly starts with a known project keyword 
                     # (often after an emoji like 🏭 or text like 科研人).
                     major_projects = ["thesis", "research", "solarman", "rstv", "review", "event"]
                     # Extract the first few words of the title to find the main project indicator
-                    first_part = title_text.split(':')[0] if ':' in title_text else title_text
+                    first_part = local_title_text.split(':')[0] if ':' in local_title_text else local_title_text
                     for mp in major_projects:
                         if mp in first_part and mp != theme_anchor:
                             theme_ok = False
                             break
             else:
                 theme_ok = bool(sub_key and sub_key in theme_text)
+
+            if "daq" in title_text and "apparatus" in sub_key:
+                print(f"DEBUG DAQ: sub_key={sub_key}, title_ok={title_ok}, theme_ok={theme_ok}, rank={rank}")
 
             if theme_ok and title_ok:
                 matched_rank = rank

@@ -1,0 +1,3 @@
+Priority: 🚨 | (P0)
+WBS level: 🏭 | (lv1)
+WBS level: 🟧 | (lv2)

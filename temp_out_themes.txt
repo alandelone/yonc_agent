@@ -1,1 +1,42 @@
-[{"text": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev", "color": "red"}, {"text": "鍛造Lab 鍛造Maker | DZaoSpaceV1", "color": "purple"}, {"text": "3rdWeek", "color": "blue"}, {"text": "4thWeek", "color": "green"}, {"text": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房", "color": "orange"}, {"text": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4", "color": "yellow"}, {"text": "大事纪 Fotang | 要剪辑のvideo |", "color": "gray"}, {"text": "关系 恋爱 | 婚姻 | 家庭", "color": "pink"}, {"text": "Typhoon SmallAct | Headache", "color": "brown"}, {"text": "Unknown", "color": "brown"}]
+[
+  {
+    "text": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+    "color": "red"
+  },
+  {
+    "text": "鍛造Lab 鍛造Maker | DZaoSpaceV1",
+    "color": "purple"
+  },
+  {
+    "text": "3rdWeek",
+    "color": "blue"
+  },
+  {
+    "text": "4thWeek",
+    "color": "green"
+  },
+  {
+    "text": "小事业们  素食堂🍱 | Aero🥦 | 农业⚙️🚜工作室 | I人工作室 | 事业内功 | 1粒工房",
+    "color": "orange"
+  },
+  {
+    "text": "我流方矩 自我 | 学问 | 学养 | 知识结构 | self | 刚体 | Life | 方矩v4",
+    "color": "yellow"
+  },
+  {
+    "text": "大事纪 Fotang | 要剪辑のvideo |",
+    "color": "gray"
+  },
+  {
+    "text": "关系 恋爱 | 婚姻 | 家庭",
+    "color": "pink"
+  },
+  {
+    "text": "Typhoon SmallAct | Headache",
+    "color": "brown"
+  },
+  {
+    "text": "Unknown",
+    "color": "brown"
+  }
+]

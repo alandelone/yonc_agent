@@ -1109,6 +1109,23 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         )
         is_selected_generated_l4 = selection_mode and bool(checked) and wbs_level == 4
 
+        depth = int(task.get("depth", 0))
+        
+        # Pre-calculate flags for early use before potential wbs_level updates
+        _early_convert_sel_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+        _early_convert_non_sel_non_l4_to_bullet = (
+            block_type == "to_do"
+            and isinstance(wbs_level, int)
+            and wbs_level in (1, 2, 3)
+            and not (is_generated and not generated_selection_processed)
+        )
+        _early_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+        is_pending_selection_change = (
+            _early_convert_sel_non_l4_to_bullet
+            or _early_convert_non_sel_non_l4_to_bullet
+            or _early_reset_l4_to_unchecked
+        )
+
         # No tags: only do a lightweight cleanup for stale WBS prefix text.
         # BUT if the title contains a known theme name OR has manual tag styles, we MUST process it to apply/preserve the badge!
         has_fallback_theme = False
@@ -1181,15 +1198,18 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             except Exception as e:
                 print(f"Failed to delete theme block {block_id}: {e}")
             continue
-        # Generated tasks normally do not keep a visible WBS tag.
-        # Processed L4 selector tasks are the exception: keep/restore WBS level.
+        # Processed generated tasks should inherit their WBS level based on depth 
+        # so they get the same styling as manual tasks.
         if is_generated:
-            if (generated_selection_processed and wbs_level == 4) or is_selected_generated_l4:
+            if generated_selection_processed or is_pending_selection_change:
+                inferred_wbs_level = min(depth + 1, 4)
                 if not str(tags.get("WBS level", "")).strip():
-                    wbs_raw = _raw_wbs_value(4)
+                    wbs_raw = _raw_wbs_value(inferred_wbs_level)
                     if wbs_raw:
                         tags["WBS level"] = wbs_raw
                         task["tags"] = tags
+                        wbs_level = inferred_wbs_level
+                        task["wbs_level"] = wbs_level
             else:
                 tags.pop("WBS level", None)
 
@@ -1292,8 +1312,9 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             and is_already_themed
             and bool(task.get("has_tag_style"))
         )
+        is_unselected_suggested = is_generated and not generated_selection_processed
         if (
-            is_generated
+            is_unselected_suggested
             and not is_pending_selection_change
             and not needs_processed_l4_wbs_restore
             and not needs_processed_l4_mode_tasktype_restore
@@ -1464,12 +1485,11 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
         if wbs_emoji:
             if wbs_emoji in clean_title:
                 clean_title = clean_title.replace(wbs_emoji, "").strip()
-            if wbs_emoji and not should_convert_to_bullet:
-                rich_text.append({
-                    "type": "text",
-                    "text": {"content": wbs_emoji + " "},
-                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-                })
+            rich_text.append({
+                "type": "text",
+                "text": {"content": wbs_emoji + " "},
+                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+            })
 
         # 1. Theme formatting
         if theme_str:

@@ -1,0 +1,312 @@
+[
+  {
+    "id": "387e1eb5-ce57-813d-97b1-cdb0667c003a",
+    "notion_block_id": "387e1eb5-ce57-813d-97b1-cdb0667c003a",
+    "title": "SolarMan 设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+    "original_notion_title": "SolarMan 设备 DAQ 模块 : 物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+    "context_heading": "",
+    "parent_id": "387e1eb5-ce57-810f-8dd2-ed3c6da13a09",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "SolarMan",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "SolarMan",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 设备 DAQ 模块 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 设备 DAQ 模块 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "物理设备数据系统：采集、清洗、归一化（原始信号及运行数据）",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": "",
+    "synced_tags": true
+  },
+  {
+    "id": "387e1eb5-ce57-81a9-871b-dadb0ae4008e",
+    "notion_block_id": "387e1eb5-ce57-81a9-871b-dadb0ae4008e",
+    "title": "SolarMan 系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+    "original_notion_title": "SolarMan 系统处理 Infra : 软硬件环境：承载 DB 及学习计算。",
+    "context_heading": "",
+    "parent_id": "387e1eb5-ce57-810f-8dd2-ed3c6da13a09",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "SolarMan",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "SolarMan",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 系统处理 Infra : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 系统处理 Infra : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "软硬件环境：承载 DB 及学习计算。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "软硬件环境：承载 DB 及学习计算。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": false,
+    "origin": "human",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": false,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": "",
+    "synced_tags": true
+  },
+  {
+    "id": "387e1eb5-ce57-819c-8391-f365a54b5a2a",
+    "notion_block_id": "387e1eb5-ce57-819c-8391-f365a54b5a2a",
+    "title": "🏭 SolarMan Apparatus Learning SolarMan 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+    "original_notion_title": "SolarMan 控制面板 : 可视化应用 (实时洞察, 报表, 手动覆盖)",
+    "context_heading": "",
+    "parent_id": "387e1eb5-ce57-810f-8dd2-ed3c6da13a09",
+    "depth": 1,
+    "wbs_level": null,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": true,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": true,
+      "color": "red"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "SolarMan",
+          "link": null
+        },
+        "annotations": {
+          "bold": true,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": true,
+          "color": "red"
+        },
+        "plain_text": "SolarMan",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": " 控制面板 : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": " 控制面板 : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "可视化应用 (实时洞察, 报表, 手动覆盖)",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "可视化应用 (实时洞察, 报表, 手动覆盖)",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": true,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": null,
+    "timeliner_rank": null,
+    "wbs_source": null,
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": true,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🟧 | (lv2)"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "SolarMan",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": null,
+    "timeliner_section": ""
+  }
+]

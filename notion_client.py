@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 from typing import List, Dict, Any
 from functools import lru_cache
 from config import NOTION_HEADERS

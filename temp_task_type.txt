@@ -1,0 +1,70 @@
+[
+  {
+    "text": "❓ : Unknown TYPE",
+    "tag": ""
+  },
+  {
+    "text": "🔬| Research : 学术研究、文献分析、实验设计、论文相关工作 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  {
+    "text": "🎯| DeepWork : 长时间高专注、无干扰、高认知负荷工作 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  {
+    "text": "💻| Coding : 编程、软件开发、调试、自动化开发 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  {
+    "text": "✍️| Writing : 写作、文档、报告、论文、笔记整理 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  {
+    "text": "📖| Reading : 阅读书籍、论文、技术资料、参考文档 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  {
+    "text": "🎓| Learning : 学习新知识、新技能、课程学习、教程实践 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  {
+    "text": "🗺️| Planning : 规划、拆解任务、制定路线图、排程 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  {
+    "text": "🤔| Thinking : 思考、分析、推演、问题求解、脑力探索 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  {
+    "text": "🎙️| VoiceCapture : 语音记录、灵感捕捉、口述笔记 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  {
+    "text": "📋| Admin : 行政事务、表单处理、邮件回复、日常杂务 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  {
+    "text": "👥| Meeting : 会议、讨论、导师交流、项目沟通 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  {
+    "text": "🏃| Exercise : 运动、健走、慢跑、游泳、健身训练 Physical",
+    "tag": "Physical"
+  },
+  {
+    "text": "🔨| HandyWork : 维修、制作、施工、安装、DIY、实体项目工作 Physical",
+    "tag": "Physical"
+  },
+  {
+    "text": "🤝| Social : 社交、关系维护、人际互动、陪伴家人或伴侣 Social",
+    "tag": "Social"
+  },
+  {
+    "text": "🎪| EventOps : 活动筹备、布置、执行、运营、现场协调 Social",
+    "tag": "Social"
+  },
+  {
+    "text": "🛒| Shopping : 采购、购买物资、逛商场、补货 Errands",
+    "tag": "Errands"
+  }
+]

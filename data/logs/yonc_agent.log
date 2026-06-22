@@ -1848,3 +1848,320 @@
 2026-06-22 09:42:45,738 | INFO | state_evaluator | [Evaluator] No ACTIONABLE_PENDING tasks found, skipping Mode pass
 2026-06-22 09:42:45,740 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 3, 'SEQUENCED': 10, 'SCOPED': 71, 'SKIP': 9, 'STRUCTURED': 115}
 2026-06-22 09:42:45,886 | INFO | state_evaluator | [Evaluator] Saved 208 tasks to state
+2026-06-22 15:57:15,014 | INFO | __main__ | CLI command 'flow' started (pid=84504, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 15:57:15,015 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 15:57:15,016 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 16:16:31,884 | INFO | __main__ | CLI command 'timeliner' started (pid=87700, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 16:16:31,884 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 16:17:47,890 | INFO | __main__ | CLI command 'sync' started (pid=28904, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 16:17:47,890 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 16:18:13,843 | INFO | __main__ | CLI command 'flow' started (pid=32620, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 16:18:13,844 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 16:18:13,848 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 16:18:35,014 | INFO | state_evaluator | [Evaluator] Loaded 208 merged tasks
+2026-06-22 16:18:35,015 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-22 16:18:35,019 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-22 16:18:35,024 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-22 16:18:35,029 | INFO | flow_pipeline | [Evaluator] TIMELINER cache found and fresh (timeliner_state.json)
+2026-06-22 16:18:35,035 | INFO | state_evaluator | [Evaluator] Scoped 76 tasks from TIMELINER
+2026-06-22 16:18:35,184 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 4/20)
+2026-06-22 16:18:35,187 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 4/20)
+2026-06-22 16:18:53,230 | INFO | __main__ | CLI command 'flow' started (pid=86388, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 16:18:53,231 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 16:18:53,233 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 16:21:16,480 | INFO | __main__ | CLI command 'flow' started (pid=64720, cwd=C:\Users\Alandelone\CodeSpace_Local\yonc_agent)
+2026-06-22 16:21:16,480 | INFO | __main__ | Application log file: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\yonc_agent.log
+2026-06-22 16:21:16,481 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-22 16:21:36,072 | INFO | state_evaluator | [Evaluator] Loaded 208 merged tasks
+2026-06-22 16:21:36,072 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-22 16:21:36,076 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-22 16:21:36,082 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-22 16:21:36,082 | INFO | flow_pipeline | [Evaluator] TIMELINER cache found and fresh (timeliner_state.json)
+2026-06-22 16:21:36,088 | INFO | state_evaluator | [Evaluator] Scoped 76 tasks from TIMELINER
+2026-06-22 16:21:36,241 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 5/20)
+2026-06-22 16:21:36,244 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 4/20)
+2026-06-22 16:21:38,795 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 3/20)
+2026-06-22 16:21:38,797 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+2026-06-22 16:21:38,799 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+2026-06-22 16:21:41,660 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 9.6s 后就绪...
+2026-06-22 16:21:51,249 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 6/20)
+2026-06-22 16:21:54,591 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 5/20)
+2026-06-22 16:22:10,327 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-22 16:22:10,327 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-22 16:22:10,333 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-22 16:22:10,333 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-22 16:22:11,069 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-22 16:22:11,069 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-22 16:22:32,663 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-22 16:22:32,663 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-22 16:22:32,664 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 7/20)
+2026-06-22 16:22:32,666 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 6/20)
+2026-06-22 16:22:32,668 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+2026-06-22 16:22:33,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+2026-06-22 16:22:33,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 2/20)
+2026-06-22 16:22:35,489 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 2/20)
+2026-06-22 16:22:35,492 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 12.2s 后就绪...
+2026-06-22 16:22:47,665 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 8/20)
+2026-06-22 16:22:49,511 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 7/20)
+2026-06-22 16:22:49,514 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 5/20)
+2026-06-22 16:22:50,864 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 3/20)
+2026-06-22 16:22:50,867 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 3/20)
+2026-06-22 16:22:50,869 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+2026-06-22 16:22:50,871 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+2026-06-22 16:22:50,872 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 1/1500)
+2026-06-22 16:22:50,874 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 1/1500)
+2026-06-22 16:22:50,876 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 1/1500)
+2026-06-22 16:22:50,877 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-22 16:22:55,155 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+2026-06-22 16:23:35,270 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+2026-06-22 16:25:28,842 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+2026-06-22 16:25:55,819 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 9/20)
+2026-06-22 16:25:58,837 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 8/20)
+2026-06-22 16:26:18,005 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 10/20)
+2026-06-22 16:26:20,097 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 6/20)
+2026-06-22 16:26:24,453 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 4/20)
+2026-06-22 16:26:26,163 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 4/20)
+2026-06-22 16:26:29,055 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+2026-06-22 16:26:57,815 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+2026-06-22 16:27:11,239 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+2026-06-22 16:27:21,555 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+2026-06-22 16:27:39,597 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+2026-06-22 16:28:06,413 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+2026-06-22 16:28:23,544 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+2026-06-22 16:28:36,536 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+2026-06-22 16:28:52,606 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 13/1500)
+2026-06-22 16:30:04,500 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+2026-06-22 16:31:07,287 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 14/1500)
+2026-06-22 16:32:10,773 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 10/1500)
+2026-06-22 16:32:31,126 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 11/20)
+2026-06-22 16:32:35,508 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 9/20)
+2026-06-22 16:32:39,188 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 15/1500)
+2026-06-22 16:32:49,263 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 11/1500)
+2026-06-22 16:33:08,185 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 16/1500)
+2026-06-22 16:33:49,204 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 12/1500)
+2026-06-22 16:34:17,043 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 17/1500)
+2026-06-22 16:34:45,476 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 13/1500)
+2026-06-22 16:35:04,297 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 18/1500)
+2026-06-22 16:35:24,656 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 14/1500)
+2026-06-22 16:36:16,689 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 19/1500)
+2026-06-22 16:38:47,901 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 15/1500)
+2026-06-22 16:39:04,452 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 20/1500)
+2026-06-22 16:40:42,551 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 16/1500)
+2026-06-22 16:40:59,407 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 12/20)
+2026-06-22 16:41:04,251 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 10/20)
+2026-06-22 16:41:09,777 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 7/20)
+2026-06-22 16:41:12,319 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 5/20)
+2026-06-22 16:41:16,959 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 5/20)
+2026-06-22 16:41:21,591 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 13/20)
+2026-06-22 16:41:23,296 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 21/1500)
+2026-06-22 16:41:41,751 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 17/1500)
+2026-06-22 16:41:58,379 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 14/20)
+2026-06-22 16:42:01,087 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 11/20)
+2026-06-22 16:42:04,152 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 8/20)
+2026-06-22 16:42:08,630 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 6/20)
+2026-06-22 16:42:12,161 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 22/1500)
+2026-06-22 16:42:32,488 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 18/1500)
+2026-06-22 16:43:02,865 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 15/20)
+2026-06-22 16:43:06,477 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 12/20)
+2026-06-22 16:43:09,780 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 23/1500)
+2026-06-22 16:44:05,692 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 19/1500)
+2026-06-22 16:44:38,349 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 24/1500)
+2026-06-22 16:44:55,449 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 20/1500)
+2026-06-22 16:45:16,656 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 25/1500)
+2026-06-22 16:46:05,183 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 21/1500)
+2026-06-22 16:46:33,951 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 26/1500)
+2026-06-22 16:47:00,060 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 22/1500)
+2026-06-22 16:47:28,814 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 27/1500)
+2026-06-22 16:47:59,505 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 23/1500)
+2026-06-22 16:48:28,005 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 16/20)
+2026-06-22 16:48:30,017 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 13/20)
+2026-06-22 16:48:34,175 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 28/1500)
+2026-06-22 16:48:59,987 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 24/1500)
+2026-06-22 16:49:22,553 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 29/1500)
+2026-06-22 16:49:50,036 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 25/1500)
+2026-06-22 16:50:24,780 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 30/1500)
+2026-06-22 16:50:39,516 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 26/1500)
+2026-06-22 16:51:00,891 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 31/1500)
+2026-06-22 16:51:15,192 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 27/1500)
+2026-06-22 16:51:34,053 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 32/1500)
+2026-06-22 16:51:39,911 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 32/1500)
+2026-06-22 16:51:57,758 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 28/1500)
+2026-06-22 16:52:13,955 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 17/20)
+2026-06-22 16:52:15,913 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 14/20)
+2026-06-22 16:52:19,315 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 33/1500)
+2026-06-22 16:52:43,272 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 29/1500)
+2026-06-22 16:52:56,491 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 34/1500)
+2026-06-22 16:53:32,827 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 30/1500)
+2026-06-22 16:53:47,202 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 35/1500)
+2026-06-22 16:54:02,819 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 31/1500)
+2026-06-22 16:54:23,823 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 36/1500)
+2026-06-22 16:54:41,586 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 32/1500)
+2026-06-22 16:54:54,232 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 37/1500)
+2026-06-22 16:55:25,989 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 33/1500)
+2026-06-22 16:55:50,368 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 38/1500)
+2026-06-22 16:56:11,972 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 34/1500)
+2026-06-22 16:56:32,529 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 39/1500)
+2026-06-22 16:56:55,826 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 35/1500)
+2026-06-22 16:57:30,816 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 40/1500)
+2026-06-22 16:57:52,008 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 36/1500)
+2026-06-22 16:58:13,392 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 18/20)
+2026-06-22 16:58:16,178 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 15/20)
+2026-06-22 16:58:19,304 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 41/1500)
+2026-06-22 16:58:45,349 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 37/1500)
+2026-06-22 16:59:19,237 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 42/1500)
+2026-06-22 16:59:32,421 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 38/1500)
+2026-06-22 16:59:45,759 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 43/1500)
+2026-06-22 17:00:31,077 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 39/1500)
+2026-06-22 17:00:55,754 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 44/1500)
+2026-06-22 17:01:20,686 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 40/1500)
+2026-06-22 17:01:34,742 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 45/1500)
+2026-06-22 17:01:42,155 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 45/1500)
+2026-06-22 17:02:10,509 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 41/1500)
+2026-06-22 17:02:30,878 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 46/1500)
+2026-06-22 17:02:45,295 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 42/1500)
+2026-06-22 17:02:58,616 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 47/1500)
+2026-06-22 17:03:12,417 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 43/1500)
+2026-06-22 17:03:23,050 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 48/1500)
+2026-06-22 17:04:40,526 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 44/1500)
+2026-06-22 17:05:00,965 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 19/20)
+2026-06-22 17:05:04,240 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 16/20)
+2026-06-22 17:05:06,168 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 49/1500)
+2026-06-22 17:05:20,464 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 45/1500)
+2026-06-22 17:05:37,046 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 20/20)
+2026-06-22 17:05:40,463 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 17/20)
+2026-06-22 17:05:57,269 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 50/1500)
+2026-06-22 17:06:22,416 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 46/1500)
+2026-06-22 17:06:41,816 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 51/1500)
+2026-06-22 17:07:11,864 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 47/1500)
+2026-06-22 17:07:33,694 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 52/1500)
+2026-06-22 17:08:22,054 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 48/1500)
+2026-06-22 17:09:06,513 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 53/1500)
+2026-06-22 17:09:23,581 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 49/1500)
+2026-06-22 17:09:38,872 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 54/1500)
+2026-06-22 17:09:54,167 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 50/1500)
+2026-06-22 17:10:09,766 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 55/1500)
+2026-06-22 17:10:24,017 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 51/1500)
+2026-06-22 17:10:44,325 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 18/20)
+2026-06-22 17:10:47,040 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 9/20)
+2026-06-22 17:10:48,548 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 56/1500)
+2026-06-22 17:11:02,453 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 52/1500)
+2026-06-22 17:11:32,403 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 19/20)
+2026-06-22 17:11:34,959 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 10/20)
+2026-06-22 17:11:36,796 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 57/1500)
+2026-06-22 17:12:22,291 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 53/1500)
+2026-06-22 17:12:40,858 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 20/20)
+2026-06-22 17:12:43,432 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 11/20)
+2026-06-22 17:12:48,083 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 7/20)
+2026-06-22 17:12:50,052 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 6/20)
+2026-06-22 17:12:56,117 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 5.0s 后就绪...
+2026-06-22 17:13:01,155 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 12/20)
+2026-06-22 17:13:03,398 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 1.7s 后就绪...
+2026-06-22 17:13:05,050 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 8/20)
+2026-06-22 17:13:09,952 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 7/20)
+2026-06-22 17:13:12,017 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 6.4s 后就绪...
+2026-06-22 17:13:18,397 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 13/20)
+2026-06-22 17:13:21,002 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 58/1500)
+2026-06-22 17:13:38,518 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 54/1500)
+2026-06-22 17:13:58,288 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 59/1500)
+2026-06-22 17:14:19,685 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 55/1500)
+2026-06-22 17:14:40,266 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 60/1500)
+2026-06-22 17:14:54,099 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 56/1500)
+2026-06-22 17:15:07,269 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 61/1500)
+2026-06-22 17:15:47,164 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 57/1500)
+2026-06-22 17:16:09,455 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 62/1500)
+2026-06-22 17:16:23,943 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 58/1500)
+2026-06-22 17:16:39,412 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 63/1500)
+2026-06-22 17:17:35,684 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 59/1500)
+2026-06-22 17:17:52,613 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 14/20)
+2026-06-22 17:17:58,561 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 9/20)
+2026-06-22 17:18:03,430 | INFO | state_evaluator | [Evaluator] Split pass: 117 subtasks across 27 parents
+2026-06-22 17:18:03,430 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-22 17:18:03,432 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 8/20)
+2026-06-22 17:18:05,904 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 7.7s 后就绪...
+2026-06-22 17:18:13,560 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 15/20)
+2026-06-22 17:18:15,891 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.9s 后就绪...
+2026-06-22 17:18:16,808 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 10/20)
+2026-06-22 17:18:18,860 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 2.0s 后就绪...
+2026-06-22 17:18:20,903 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 9/20)
+2026-06-22 17:18:22,789 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 8.1s 后就绪...
+2026-06-22 17:18:30,889 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 16/20)
+2026-06-22 17:18:34,387 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 11/20)
+2026-06-22 17:18:40,227 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 10/20)
+2026-06-22 17:18:54,545 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 17/20)
+2026-06-22 17:18:55,864 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 12/20)
+2026-06-22 17:18:57,159 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 12.4s 后就绪...
+2026-06-22 17:19:09,544 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 11/20)
+2026-06-22 17:19:11,458 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 18/20)
+2026-06-22 17:19:12,716 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 13/20)
+2026-06-22 17:19:14,157 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 12.3s 后就绪...
+2026-06-22 17:19:26,457 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 12/20)
+2026-06-22 17:19:29,407 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 19/20)
+2026-06-22 17:19:31,103 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 14/20)
+2026-06-22 17:19:50,188 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 20/20)
+2026-06-22 17:19:52,360 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 13/20)
+2026-06-22 17:20:12,192 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 15/20)
+2026-06-22 17:20:14,000 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 13.2s 后就绪...
+2026-06-22 17:20:27,191 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 14/20)
+2026-06-22 17:20:29,927 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 16/20)
+2026-06-22 17:20:31,527 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 13.4s 后就绪...
+2026-06-22 17:20:44,926 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 15/20)
+2026-06-22 17:20:46,258 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.3s 后就绪...
+2026-06-22 17:20:46,526 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 17/20)
+2026-06-22 17:20:47,969 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 13.3s 后就绪...
+2026-06-22 17:21:01,257 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 16/20)
+2026-06-22 17:21:04,132 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 18/20)
+2026-06-22 17:21:07,398 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 11.7s 后就绪...
+2026-06-22 17:21:19,130 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 17/20)
+2026-06-22 17:21:21,125 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 1.3s 后就绪...
+2026-06-22 17:21:22,396 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 19/20)
+2026-06-22 17:21:23,990 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 12.1s 后就绪...
+2026-06-22 17:21:36,123 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 18/20)
+2026-06-22 17:21:56,140 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 20/20)
+2026-06-22 17:22:00,771 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 10.4s 后就绪...
+2026-06-22 17:22:11,139 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 19/20)
+2026-06-22 17:22:12,999 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 15.0s 后就绪...
+2026-06-22 17:22:27,998 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 20/20)
+2026-06-22 17:22:29,763 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:22:29,763 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 5/1500)
+2026-06-22 17:22:49,359 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:22:49,359 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 3/1500)
+2026-06-22 17:23:08,791 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:23:08,791 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 6/1500)
+2026-06-22 17:23:24,076 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:23:24,076 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 4/1500)
+2026-06-22 17:23:55,301 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:23:55,301 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 7/1500)
+2026-06-22 17:24:15,566 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:24:15,566 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 5/1500)
+2026-06-22 17:25:26,614 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:25:26,614 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 8/1500)
+2026-06-22 17:26:09,908 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:26:09,908 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 6/1500)
+2026-06-22 17:26:43,947 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:26:43,947 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 9/1500)
+2026-06-22 17:27:22,103 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:27:22,103 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 7/1500)
+2026-06-22 17:27:47,417 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:27:47,417 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 10/1500)
+2026-06-22 17:28:05,409 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:28:05,409 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 8/1500)
+2026-06-22 17:29:08,585 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:29:08,585 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 11/1500)
+2026-06-22 17:29:46,728 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:29:46,728 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 9/1500)
+2026-06-22 17:30:08,518 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-22 17:30:08,518 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 12/1500)
+2026-06-22 17:30:43,429 | INFO | state_evaluator | [Evaluator] Mode/TaskType inferred for 45 tasks
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 49, 'HUMAN_REVIEW': 27, 'SKIP': 9, 'SCOPED': 11, 'STRUCTURED': 112, 'RAW': 117}
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator] Halted blocks requiring human action (27):
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis 方法论 Design Spec : 详述(研究范式, 数据采集
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 V&V 协议 : 验证结果(准确/可靠/显著)的标准与逻辑测试
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 结构逻辑 Mapping : 对齐矩阵：确保一致性（研究目标、方法、结论）
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis 问题定义与  Gap : 正式阐述：知识空白与研究必要性。
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis 研究方法 Framework : 研究设计架构：（范式、数据采
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🔶 方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性
+2026-06-22 17:31:38,252 | INFO | state_evaluator | [Evaluator]   [HUMAN_REVIEW] 🟧 Thesis Chp2文献综述与 Framework : 综述研究：构建论文
+2026-06-22 17:31:38,281 | INFO | state_evaluator | [Evaluator] Saved 325 tasks to state

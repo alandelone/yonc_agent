@@ -1,0 +1,89 @@
+[
+  {
+    "id": "387e1eb5-ce57-81d0-9b3f-ff99feef797b",
+    "notion_block_id": "387e1eb5-ce57-81d0-9b3f-ff99feef797b",
+    "title": "🏭 Thesis Phd Logic : clear justification on research gap, methods and validation of the 方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+    "original_notion_title": "方法论证 Report : 逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+    "context_heading": "",
+    "parent_id": "386e1eb5-ce57-81a6-a0c8-e72eb022cad4",
+    "depth": 1,
+    "wbs_level": 3,
+    "type": "bullet",
+    "notion_type": "bulleted_list_item",
+    "annotations": {
+      "bold": false,
+      "italic": false,
+      "strikethrough": false,
+      "underline": false,
+      "code": false,
+      "color": "default"
+    },
+    "notion_rich_text": [
+      {
+        "type": "text",
+        "text": {
+          "content": "方法论证 Report : ",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "方法论证 Report : ",
+        "href": null
+      },
+      {
+        "type": "text",
+        "text": {
+          "content": "逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": true,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "gray"
+        },
+        "plain_text": "逻辑论证：证明方法解决 gap 的适用性与严谨性。",
+        "href": null
+      }
+    ],
+    "links": [],
+    "checked": null,
+    "has_tag_style": false,
+    "created_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "last_edited_by_id": "310e1eb5-ce57-8161-906d-002754f00e8a",
+    "is_generated": true,
+    "origin": "generated",
+    "is_content_block": false,
+    "timeliner_key": "phd logic",
+    "timeliner_rank": 0,
+    "wbs_source": "manual",
+    "split_stage": "none",
+    "split_batch_id": null,
+    "reviewed_once": false,
+    "generated_selection_processed": true,
+    "tags": {
+      "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev",
+      "WBS level": "🔶 | (lv3)"
+    },
+    "status": "todo",
+    "metrics": {
+      "estimated_time_h": null,
+      "actual_time_taken_h": null,
+      "interruption_count": 0,
+      "timetaken": []
+    },
+    "synced_tags": true,
+    "theme_display_label": "Thesis",
+    "timeliner_is_subproject": false,
+    "timeliner_priority": 1,
+    "timeliner_section": "main"
+  }
+]

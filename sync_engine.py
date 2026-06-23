@@ -1116,6 +1116,10 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             level_num = None
 
         if level_num == 4:
+            is_generated = bool(t.get("is_generated"))
+            generated_selection_processed = bool(t.get("generated_selection_processed", False))
+            if is_generated and not generated_selection_processed:
+                return False
             return bool(t.get("checked"))
 
         if level_num in [1, 2, 3]:

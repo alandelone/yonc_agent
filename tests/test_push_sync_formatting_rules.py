@@ -134,6 +134,62 @@ class TestPushSyncFormattingRules(unittest.TestCase):
         rendered = "".join(rt.get("text", {}).get("content", "") for rt in rich_text)
         self.assertNotIn("\U0001f3ed", rendered)
 
+    def test_does_not_mark_parent_complete_when_child_is_unprocessed_selector(self):
+        config = {
+            "Task Theme with colour": [{"text": "Thesis", "color": "blue"}],
+            "Modes": [],
+            "WBS level": ["3️⃣ | Level 3", "4️⃣ | Level 4"],
+        }
+        state = [
+            {
+                "id": "parent-1",
+                "notion_block_id": "parent-1",
+                "type": "bullet",
+                "notion_type": "bulleted_list_item",
+                "title": "Thesis 🔶 Parent Task : description",
+                "original_notion_title": "🔶 Parent Task : description",
+                "tags": {
+                    "Task Theme with colour": "Thesis",
+                    "WBS level": "3️⃣ | Level 3",
+                },
+                "wbs_level": 3,
+                "depth": 1,
+                "checked": None,
+                "origin": "human",
+                "split_stage": "suggested",
+                "synced_tags": False,
+            },
+            {
+                "id": "child-1",
+                "notion_block_id": "child-1",
+                "type": "todo",
+                "notion_type": "to_do",
+                "title": "Thesis 🔶 Parent Task 🤖💬🔜Child Task",
+                "original_notion_title": "🤖💬🔜Child Task",
+                "tags": {
+                    "WBS level": "4️⃣ | Level 4",
+                },
+                "wbs_level": 4,
+                "depth": 2,
+                "parent_id": "parent-1",
+                "checked": True,
+                "is_generated": True,
+                "generated_selection_processed": False,
+            }
+        ]
+
+        with patch("notion_client.update_block", return_value={}) as mock_update:
+            push_tags_to_notion(state, config)
+
+        parent_calls = [
+            call for call in mock_update.call_args_list 
+            if call.args[0] == "parent-1"
+        ]
+        if parent_calls:
+            rich_text = parent_calls[0].args[1]["bulleted_list_item"]["rich_text"]
+            rendered = "".join(rt.get("text", {}).get("content", "") for rt in rich_text)
+            self.assertNotIn("💯✅", rendered)
+
 
 if __name__ == "__main__":
     unittest.main()

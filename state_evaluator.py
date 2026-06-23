@@ -243,7 +243,7 @@ def _reorder_children_by_phase(state: List[Dict[str, Any]]) -> int:
         desired_order = sorted(
             children,
             key=lambda t: (
-                detect_phase_emoji(_task_title(t)) or 99,
+                detect_phase_emoji(_task_title(t)) if detect_phase_emoji(_task_title(t)) is not None else 99,
                 state_index.get(_task_id(t), 0),
             ),
         )

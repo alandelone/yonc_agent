@@ -442,6 +442,10 @@ def build_timeliner_scope(
         if not task_id:
             continue
 
+        is_target = task_id == '388e1eb5-ce57-81d5-bb62-fd612b314865'
+        if is_target:
+            print(f"Target task found in build_timeliner_scope loop")
+
         theme_text = _normalize_scope_text(_pick_theme_key(task))
         
         # Collect parent titles recursively up to 3 levels deep
@@ -466,6 +470,8 @@ def build_timeliner_scope(
                 ] + parent_titles
             )
         )
+        if is_target:
+            print(f"title_text={title_text}")
 
         matched_rank = None
         matched_key = None
@@ -480,7 +486,7 @@ def build_timeliner_scope(
             # title_ok: parsed task/title must appear in the task title. The
             # full "task : description" key is preferred, but title-only is
             # accepted because timeliner descriptions are often shortened.
-            title_ok = any(bool(key and key in title_text) for key in title_match_keys)
+            title_ok = any(bool(key and _normalize_scope_text(key) in title_text) for key in title_match_keys)
 
             # theme_ok: entry's project/subproject must appear in task's theme field.
             # If no anchor is available, fall back to sub_key (original behaviour).
@@ -506,6 +512,7 @@ def build_timeliner_scope(
                 print(f"DEBUG DAQ: sub_key={sub_key}, title_ok={title_ok}, theme_ok={theme_ok}, rank={rank}")
 
             if theme_ok and title_ok:
+                if is_target: print(f"MATCHED se {sub_key}")
                 matched_rank = rank
                 matched_key = sub_key
                 matched_is_subproject = bool(se.get("is_subproject"))
@@ -513,6 +520,8 @@ def build_timeliner_scope(
                 matched_scope_section = str(se.get("scope_section", "")).strip().lower()
                 se["matched_count"] = int(se.get("matched_count") or 0) + 1
                 break
+            elif is_target and "豆包" in sub_key:
+                print(f"Failed match for se {sub_key}: title_ok={title_ok}, theme_ok={theme_ok}")
 
         if matched_rank is None:
             task["timeliner_key"] = None

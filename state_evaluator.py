@@ -488,6 +488,18 @@ def run_evaluator() -> List[Dict[str, Any]]:
             continue
 
         if not suggested:
+            # LLM genuinely refused to split (evaluated as Level 4, returning empty list)
+            task["wbs_level"] = 4
+            if "tags" not in task:
+                task["tags"] = {}
+            wbs4_raw = structured_cfg.get("wbs_levels", {}).get(4, {}).get("raw", "🔸 | (lv4)")
+            task["tags"]["WBS level"] = wbs4_raw
+            task["split_stage"] = "processed"
+            task["synced_tags"] = False
+            
+            _log("Evaluator", f"Task '{clean_title}' evaluated as L4 by LLM. Downgrading to WBS 4 and marking as processed.")
+            # Immediately push tags to Notion
+            push_tags_to_notion([task], config_dict)
             continue
 
         from flow_pipeline import _split_dedupe_key

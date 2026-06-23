@@ -873,6 +873,18 @@ def wbs_pass(
         existing_wbs_tag = str(tags.get("WBS level", "")).strip()
         inferred_existing = _infer_wbs_from_text(existing_wbs_tag)
         manual_level = existing_level if isinstance(existing_level, int) else inferred_existing
+        
+        # If no explicit property is set, respect the existing title emoji to avoid re-evaluating when text is tweaked
+        if manual_level is None:
+            raw_t = str(task.get("original_notion_title", task.get("title", ""))).strip()
+            if raw_t.startswith("🏭"):
+                manual_level = 1
+            elif raw_t.startswith("🟧"):
+                manual_level = 2
+            elif raw_t.startswith("🔶"):
+                manual_level = 3
+            elif raw_t.startswith("🔸") or raw_t.startswith("⬛"):
+                manual_level = 4
 
         parent = by_id.get(str(task.get("parent_id") or ""))
         parent_level = None
@@ -901,6 +913,27 @@ def wbs_pass(
                 clean_title = clean_task_title(title_words, structured_cfg)
                 try:
                     block_info = build_block_info_for_state(local_state, task, max_chars=3500)
+                    
+                    # --- STABILIZE CONTEXT TO PREVENT CACHE MISSES ---
+                    # Remove volatile IDs that change when Notion blocks are converted
+                    block_info.pop("task_id", None)
+                    for pb in block_info.get("parent_blocks", []):
+                        pb.pop("id", None)
+                        if "title" in pb:
+                            pb["title"] = clean_task_title(pb["title"], structured_cfg)
+                    for cb in block_info.get("child_blocks", []):
+                        cb.pop("id", None)
+                        if "title" in cb:
+                            cb["title"] = clean_task_title(cb["title"], structured_cfg)
+                    if "title" in block_info:
+                        block_info["title"] = clean_task_title(block_info["title"], structured_cfg)
+                        
+                    # Also strip WBS emojis from compacted source contents
+                    for src in block_info.get("sources", []):
+                        if "content" in src:
+                            src["content"] = __import__('re').sub(r'[🔸🔶🟧🏭⬛]\s*', '', src["content"])
+                    # -------------------------------------------------
+                    
                     context = json.dumps(block_info, ensure_ascii=False)
                 except Exception:
                     context = ""

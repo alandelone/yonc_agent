@@ -1,0 +1,1157 @@
+=== Flow Trace Start (2026-06-24T14:57:28) ===
+command: flow
+argv: main.py flow
+pid: 94496
+cwd: C:\Users\Alandelone\CodeSpace_Local\yonc_agent
+
+[trace] Flow output is being saved to: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_20260624_145728_94496.log
+[trace] Latest flow trace shortcut: C:\Users\Alandelone\CodeSpace_Local\yonc_agent\data\logs\flow_runs\flow_latest.log
+2026-06-24 14:57:28,906 | INFO | state_evaluator | [Evaluator] Starting state-driven flow evaluation
+2026-06-24 14:57:28,912 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:29,636 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5ce57808ea334c9365174d477/children HTTP/1.1" 200 None
+2026-06-24 14:57:29,639 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:30,138 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-812b-a543-f721fdd3167d/children HTTP/1.1" 200 None
+2026-06-24 14:57:30,139 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:30,656 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8103-b9a4-cfd94e64e7c6/children HTTP/1.1" 200 None
+2026-06-24 14:57:30,658 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:31,434 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8101-89d4-fb6ac13e270a/children HTTP/1.1" 200 None
+2026-06-24 14:57:31,436 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:31,935 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-818f-8ce8-c84ceff15bcf/children HTTP/1.1" 200 None
+2026-06-24 14:57:31,938 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:32,457 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-81a6-a0c8-e72eb022cad4/children HTTP/1.1" 200 None
+2026-06-24 14:57:32,459 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:32,953 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8158-81b9-e189e86efc1f/children HTTP/1.1" 200 None
+2026-06-24 14:57:32,955 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:33,474 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-81dc-8b06-d13332d2eedc/children HTTP/1.1" 200 None
+2026-06-24 14:57:33,476 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:34,001 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8126-8cbe-c18b435ecc86/children HTTP/1.1" 200 None
+2026-06-24 14:57:34,003 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:34,507 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-814f-b14e-cac985ada5c3/children HTTP/1.1" 200 None
+2026-06-24 14:57:34,508 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:35,013 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8120-903f-df643a084166/children HTTP/1.1" 200 None
+2026-06-24 14:57:35,015 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:35,522 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-81ca-b1fa-d083c91f2cdb/children HTTP/1.1" 200 None
+2026-06-24 14:57:35,524 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:36,076 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-815c-af48-d2d624cf54e4/children HTTP/1.1" 200 None
+2026-06-24 14:57:36,079 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:36,607 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8161-8c65-d5168dab72fb/children HTTP/1.1" 200 None
+2026-06-24 14:57:36,610 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:37,143 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-810e-9a6e-fac61e439372/children HTTP/1.1" 200 None
+2026-06-24 14:57:37,144 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:37,644 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8170-a894-c229e635df1f/children HTTP/1.1" 200 None
+2026-06-24 14:57:37,646 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:38,150 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8157-a745-c14d6e2149bb/children HTTP/1.1" 200 None
+2026-06-24 14:57:38,152 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:38,686 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-81b6-9330-e6f313fdce6f/children HTTP/1.1" 200 None
+2026-06-24 14:57:38,688 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:39,195 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8198-b76f-cddeaf0bf22e/children HTTP/1.1" 200 None
+2026-06-24 14:57:39,198 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:39,711 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8199-88e0-ea3e229fe850/children HTTP/1.1" 200 None
+2026-06-24 14:57:39,712 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:40,245 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8168-8c9e-f6c49241e643/children HTTP/1.1" 200 None
+2026-06-24 14:57:40,247 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:40,782 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-816e-a1e8-d39263a2bd22/children HTTP/1.1" 200 None
+2026-06-24 14:57:40,783 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:41,311 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-812c-b7c0-c821d7f96680/children HTTP/1.1" 200 None
+2026-06-24 14:57:41,312 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:41,819 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8120-8e6a-de1f12b971b3/children HTTP/1.1" 200 None
+2026-06-24 14:57:41,821 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:42,331 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8194-bead-c5065cf813fb/children HTTP/1.1" 200 None
+2026-06-24 14:57:42,334 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:42,860 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8133-974d-fa1d60733b6f/children HTTP/1.1" 200 None
+2026-06-24 14:57:42,862 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:43,389 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8158-adc5-dd90e5d71eee/children HTTP/1.1" 200 None
+2026-06-24 14:57:43,390 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:44,040 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81b8-903b-e2e70bdcf571/children HTTP/1.1" 200 None
+2026-06-24 14:57:44,042 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:44,712 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-8157-9436-c50506252ba3/children HTTP/1.1" 200 None
+2026-06-24 14:57:44,714 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:45,323 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81d2-8088-fbf266810610/children HTTP/1.1" 200 None
+2026-06-24 14:57:45,325 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:45,963 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-81b3-805d-dc574ff94583/children HTTP/1.1" 200 None
+2026-06-24 14:57:46,327 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:47,066 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-81f1-b37f-f96a6af44388/children HTTP/1.1" 200 None
+2026-06-24 14:57:47,068 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:47,672 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-81c3-9a7e-eb6cc0ec4d4c/children HTTP/1.1" 200 None
+2026-06-24 14:57:47,674 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:48,249 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-8131-8edf-ca27359e402a/children HTTP/1.1" 200 None
+2026-06-24 14:57:48,252 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:48,763 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-816f-b625-ddff24bedae9/children HTTP/1.1" 200 None
+2026-06-24 14:57:48,764 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:49,271 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-815a-a95f-d4a691cba3f0/children HTTP/1.1" 200 None
+2026-06-24 14:57:49,273 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:49,784 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81c4-b0b8-d9c3c88a514e/children HTTP/1.1" 200 None
+2026-06-24 14:57:49,787 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:50,316 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81cd-88bf-ee11fe11c510/children HTTP/1.1" 200 None
+2026-06-24 14:57:50,317 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:50,812 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81f7-9895-fdd793d1354b/children HTTP/1.1" 200 None
+2026-06-24 14:57:50,814 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:51,373 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81c0-af06-c526cea545a6/children HTTP/1.1" 200 None
+2026-06-24 14:57:51,376 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:52,927 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8161-830d-c0a0bfe86833/children HTTP/1.1" 200 None
+2026-06-24 14:57:52,930 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:53,466 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8174-825d-eeb25ab7242f/children HTTP/1.1" 200 None
+2026-06-24 14:57:53,467 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:53,979 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8192-8de0-c4ee70edd492/children HTTP/1.1" 200 None
+2026-06-24 14:57:53,981 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:54,463 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-814b-9e29-f1b352efe127/children HTTP/1.1" 200 None
+2026-06-24 14:57:54,466 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:54,996 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8177-8341-f7ca4410446b/children HTTP/1.1" 200 None
+2026-06-24 14:57:54,998 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:55,565 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8166-8934-cb53a5c65022/children HTTP/1.1" 200 None
+2026-06-24 14:57:55,569 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:56,057 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8104-95c9-d7ea78004fd1/children HTTP/1.1" 200 None
+2026-06-24 14:57:56,058 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:56,566 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8120-a593-da73e01d81e4/children HTTP/1.1" 200 None
+2026-06-24 14:57:56,568 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:57,074 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-813a-b25d-f5c720105bb9/children HTTP/1.1" 200 None
+2026-06-24 14:57:57,077 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:58,942 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8100-a4fe-c6f25e82e003/children HTTP/1.1" 200 None
+2026-06-24 14:57:58,993 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:59,475 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8172-b73b-fb41ba870ef6/children HTTP/1.1" 200 None
+2026-06-24 14:57:59,477 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:57:59,962 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8114-9a50-c8ef57a35c59/children HTTP/1.1" 200 None
+2026-06-24 14:57:59,963 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:00,561 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8127-8781-c3f8c43070d4/children HTTP/1.1" 200 None
+2026-06-24 14:58:00,574 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:01,062 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81fc-9364-eeb7f148b5b0/children HTTP/1.1" 200 None
+2026-06-24 14:58:01,064 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:01,569 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8148-aa25-d9defc953144/children HTTP/1.1" 200 None
+2026-06-24 14:58:01,573 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:02,060 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-817b-a752-fde4aee2ff03/children HTTP/1.1" 200 None
+2026-06-24 14:58:02,062 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:02,633 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8197-bcc7-d213f1ea831c/children HTTP/1.1" 200 None
+2026-06-24 14:58:02,635 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:03,140 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8186-9537-d78bf50b4492/children HTTP/1.1" 200 None
+2026-06-24 14:58:03,143 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:03,641 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8189-acef-d87d07094005/children HTTP/1.1" 200 None
+2026-06-24 14:58:03,643 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:04,580 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-819c-a781-c43674a9c580/children HTTP/1.1" 200 None
+2026-06-24 14:58:04,584 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:05,105 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-813c-a679-ee8b9a1aa6e2/children HTTP/1.1" 200 None
+2026-06-24 14:58:05,107 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:05,633 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8137-8e3e-ff8730fa9010/children HTTP/1.1" 200 None
+2026-06-24 14:58:05,635 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:06,150 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-811a-b939-d15853655491/children HTTP/1.1" 200 None
+2026-06-24 14:58:06,152 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:06,668 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8121-9b5a-e73d3a49be56/children HTTP/1.1" 200 None
+2026-06-24 14:58:06,669 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:07,170 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8129-a41f-f2b5cf244fb4/children HTTP/1.1" 200 None
+2026-06-24 14:58:07,172 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:07,661 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81a2-bf3a-ed79cc97a515/children HTTP/1.1" 200 None
+2026-06-24 14:58:07,665 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:08,179 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81b9-993f-ebc3bcf23a0a/children HTTP/1.1" 200 None
+2026-06-24 14:58:08,182 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:08,675 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8123-b2f8-de139aa366c2/children HTTP/1.1" 200 None
+2026-06-24 14:58:08,676 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:09,215 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-81d5-bb62-fd612b314865/children HTTP/1.1" 200 None
+2026-06-24 14:58:09,218 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:09,715 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/388e1eb5-ce57-8142-bf3b-f85ebfeca14c/children HTTP/1.1" 200 None
+2026-06-24 14:58:09,716 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:10,255 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-8108-b8cd-c25ff589dc45/children HTTP/1.1" 200 None
+2026-06-24 14:58:10,257 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:12,116 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:58:12,118 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:12,604 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-81c7-a084-de5a79ba19f3/children HTTP/1.1" 200 None
+2026-06-24 14:58:12,606 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:13,125 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3/children HTTP/1.1" 200 None
+2026-06-24 14:58:13,127 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:13,661 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8135-b937-da293251d484/children HTTP/1.1" 200 None
+2026-06-24 14:58:13,662 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:14,156 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-8191-b085-f90d9a5d9c6e/children HTTP/1.1" 200 None
+2026-06-24 14:58:14,157 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:14,648 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/386e1eb5-ce57-81c8-85ef-fd07d0bf6336/children HTTP/1.1" 200 None
+2026-06-24 14:58:14,652 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:15,179 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37de1eb5-ce57-804c-ba1f-cf3f581545e6/children HTTP/1.1" 200 None
+2026-06-24 14:58:15,181 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:15,701 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80ce-ba7b-fa343a732e03/children HTTP/1.1" 200 None
+2026-06-24 14:58:15,703 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:16,227 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-80d6-95d4-dabb6d317b8b/children HTTP/1.1" 200 None
+2026-06-24 14:58:16,236 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:16,798 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/362e1eb5-ce57-8005-b072-daaee8f73e57/children HTTP/1.1" 200 None
+2026-06-24 14:58:16,799 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:17,595 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8084-ab6a-f3e589fb79c6/children HTTP/1.1" 200 None
+2026-06-24 14:58:17,597 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:18,116 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-800c-a789-e20263d03a2c/children HTTP/1.1" 200 None
+2026-06-24 14:58:18,118 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:18,777 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80d1-bcc7-e78e799bd4d5/children HTTP/1.1" 200 None
+2026-06-24 14:58:18,779 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:19,310 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-80a9-85a9-ebaf96698cad/children HTTP/1.1" 200 None
+2026-06-24 14:58:19,313 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:19,806 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8035-ac4e-d7d6a87a12f0/children HTTP/1.1" 200 None
+2026-06-24 14:58:19,807 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:20,336 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-8059-aebe-f0db0aa68f74/children HTTP/1.1" 200 None
+2026-06-24 14:58:20,338 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:20,845 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/37ee1eb5-ce57-802c-96ae-d630863ef9e4/children HTTP/1.1" 200 None
+Reverse sync: Mode changed to '💻Focus' for task 388e1eb5-ce57-81f1-acb0-da20f2d0efbc
+Reverse sync: Mode changed to '💻Focus' for task 388e1eb5-ce57-813b-a2ae-f24cc7718f40
+Detected 80 changes in Notion.
+2026-06-24 14:58:20,951 | INFO | state_evaluator | [Evaluator] Loaded 380 merged tasks
+2026-06-24 14:58:20,951 | INFO | state_evaluator | [Evaluator] Phase: Theme Resolution
+2026-06-24 14:58:20,959 | INFO | state_evaluator | [Evaluator] Theme pass complete
+2026-06-24 14:58:20,971 | INFO | state_evaluator | [Evaluator] Phase: WBS Calculation
+2026-06-24 14:58:20,971 | INFO | flow_pipeline | [Evaluator] TIMELINER cache missing, expired (>10 mins), or empty; running timeliner bootstrap (same as `python main.py timeliner`)
+Fetching timeline entries from Notion page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:20,973 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:21,595 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5ce57808cb9c4cccbc61d584f/children HTTP/1.1" 200 None
+2026-06-24 14:58:21,597 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:22,089 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ae1eb5-ce57-801f-9249-f587f9ce8e9a/children HTTP/1.1" 200 None
+2026-06-24 14:58:22,091 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:22,578 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80a6-b096-fde390321590/children HTTP/1.1" 200 None
+Loading task tree state for progress and expected time calculation...
+Loading timeliner date audit baselines...
+Pushing updates for Thesis / Phd RsPlan (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-80ad-b145-d2e3ae0d217a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:22,594 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:23,056 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+2026-06-24 14:58:23,060 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:24,270 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-80ad-b145-d2e3ae0d217a HTTP/1.1" 200 None
+Pushing updates for Thesis / Phd Logic (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-8073-b57d-d389db181a50 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:24,272 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:24,750 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8073-b57d-d389db181a50 HTTP/1.1" 200 None
+2026-06-24 14:58:24,752 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:25,930 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-8073-b57d-d389db181a50 HTTP/1.1" 200 None
+Pushing updates for Dev / Trade-Enabled NanoCentralised OGPV  Prototype (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-8097-8b19-e34d570a8751 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:25,932 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:26,396 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8097-8b19-e34d570a8751 HTTP/1.1" 200 None
+2026-06-24 14:58:26,399 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:27,212 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-8097-8b19-e34d570a8751 HTTP/1.1" 200 None
+Pushing updates for Dev / Weather tower Prototype (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-807b-ae87-d05e77a48c2a on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:27,214 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:27,701 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-807b-ae87-d05e77a48c2a HTTP/1.1" 200 None
+2026-06-24 14:58:27,704 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:28,967 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-807b-ae87-d05e77a48c2a HTTP/1.1" 200 None
+Pushing updates for Thesis / thesis writing (Percent: 0%, Status: 🟢) to block 360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:28,968 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:29,460 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+2026-06-24 14:58:29,466 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:31,491 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/360e1eb5-ce57-80f8-8a8d-c73e4d51ee10 HTTP/1.1" 200 None
+Pushing updates for Thesis / proposal defense Slide (Percent: 0%, Status: 🟢) to block 33ce1eb5-ce57-803b-a68d-c5e733e5bf8b on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:31,492 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:31,987 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+2026-06-24 14:58:31,990 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:33,226 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/33ce1eb5-ce57-803b-a68d-c5e733e5bf8b HTTP/1.1" 200 None
+Pushing updates for Research / Rs_SF_risk (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-80a1-b7ef-f357773af182 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:33,228 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:33,743 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-80a1-b7ef-f357773af182 HTTP/1.1" 200 None
+2026-06-24 14:58:33,745 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:35,185 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-80a1-b7ef-f357773af182 HTTP/1.1" 200 None
+Pushing updates for SolarMan / Apparatus Learning (Percent: 0%, Status: 🟢) to block 34ee1eb5-ce57-803c-83e0-fe7163166c59 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:35,187 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:35,698 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+2026-06-24 14:58:35,701 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:37,272 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/34ee1eb5-ce57-803c-83e0-fe7163166c59 HTTP/1.1" 200 None
+Pushing updates for DZsp_V1 / 3dp Infra (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-807f-8ad3-e6cfce47b497 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:37,274 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:37,785 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-807f-8ad3-e6cfce47b497 HTTP/1.1" 200 None
+2026-06-24 14:58:37,788 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:39,117 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-807f-8ad3-e6cfce47b497 HTTP/1.1" 200 None
+Pushing updates for 素食堂🍱 / 豆包making (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-8087-967f-ee626d3d5079 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:39,119 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:39,640 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8087-967f-ee626d3d5079 HTTP/1.1" 200 None
+2026-06-24 14:58:39,642 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:41,340 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-8087-967f-ee626d3d5079 HTTP/1.1" 200 None
+Pushing updates for 素食堂🍱 / 721_26 义卖Prepare (Percent: 0%, Status: 🟢) to block 387e1eb5-ce57-8049-8e3a-ec3927f5ba12 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:41,342 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:43,683 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/387e1eb5-ce57-8049-8e3a-ec3927f5ba12 HTTP/1.1" 200 None
+2026-06-24 14:58:43,685 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:44,924 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-8049-8e3a-ec3927f5ba12 HTTP/1.1" 200 None
+Pushing updates for 大事纪 / 纪事统筹SOP＆系统 (Percent: 0%, Status: 🟢) to block 389e1eb5-ce57-806c-81d4-ff039a7af5d8 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:44,926 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:45,454 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-806c-81d4-ff039a7af5d8 HTTP/1.1" 200 None
+2026-06-24 14:58:45,456 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:46,469 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-806c-81d4-ff039a7af5d8 HTTP/1.1" 200 None
+Pushing updates for 大事纪 / 纪石大秘书Agent Setup (Percent: 0%, Status: 🟢) to block 389e1eb5-ce57-8087-8625-e6be9d1ec1c2 on page 33ae1eb5ce57808cb9c4cccbc61d584f...
+2026-06-24 14:58:46,472 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:46,968 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/389e1eb5-ce57-8087-8625-e6be9d1ec1c2 HTTP/1.1" 200 None
+2026-06-24 14:58:46,971 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:48,046 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8087-8625-e6be9d1ec1c2 HTTP/1.1" 200 None
+TIMELINER sync complete.
+2026-06-24 14:58:48,065 | INFO | flow_pipeline | [Evaluator] TIMELINER bootstrap complete; cache is now ready
+Target task found in build_timeliner_scope loop
+title_text=素食堂 菜单开发 豆包making : concept knowhow, toolbom, recipe 豆包making : concept knowhow, toolbom, recipe 素食堂 菜单开发
+MATCHED se 豆包making
+2026-06-24 14:58:48,088 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='dev' title_key='Trade-Enabled NanoCentralised OGPV  Prototype' section='main'
+2026-06-24 14:58:48,089 | WARNING | flow_pipeline | [TIMELINER] Timeliner task absent in LINEV2: theme_anchor='dzsp_v1' title_key='3dp Infra' section='sub'
+2026-06-24 14:58:48,089 | INFO | state_evaluator | [Evaluator] Scoped 262 tasks from TIMELINER
+2026-06-24 14:58:48,090 | INFO | state_evaluator | [Evaluator] WBS pass complete
+2026-06-24 14:58:48,090 | INFO | state_evaluator | [Evaluator] Phase: Priority Calculation
+2026-06-24 14:58:48,102 | INFO | state_evaluator | [Evaluator] Priority pass complete
+2026-06-24 14:58:48,103 | INFO | state_evaluator | [Evaluator] Phase: Physical Ordering
+2026-06-24 14:58:48,115 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:48,822 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "GET /v1/blocks/318e1eb5-ce57-808e-a334-c9365174d477/children?page_size=100 HTTP/1.1" 200 None
+2026-06-24 14:58:48,825 | INFO | state_evaluator | [Evaluator] Root-level physical ordering complete
+2026-06-24 14:58:48,825 | INFO | state_evaluator | [Evaluator] Phase ordering: no blocks need moving
+2026-06-24 14:58:48,827 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:49,569 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-815c-9592-c490e6c1d1bd HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 387e1eb5-ce57-815c-9592-c490e6c1d1bd: 🔶 Research Gaps 定义 : 明确界定现有研究在知识、方法、理论或应用维度的不足之处及填补该缺口的必要性说明。
+2026-06-24 14:58:49,734 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 59/1500)
+2026-06-24 14:58:49,737 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:50,781 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-814e-a6b0-f59b8c1ff325 HTTP/1.1" 200 None
+Deleted unchecked generated to-do 389e1eb5-ce57-814e-a6b0-f59b8c1ff325: 🤖💬🔜行业监管政策与法律库 : 包含国家级及地方级与纪事统筹相关的法律法规、行业标准及监管政策的正式文档汇编。
+2026-06-24 14:58:50,783 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:51,527 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8108-b8cd-c25ff589dc45/children HTTP/1.1" 200 None
+2026-06-24 14:58:51,530 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:52,426 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81b9-8772-da9870269062 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-81b9-8772-da9870269062: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 机构内部管理制度集 : 涵盖各部门现有的行政管理、业务操作规范及职责说明书的系统化电子档案。
+2026-06-24 14:58:52,429 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:53,660 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8108-b8cd-c25ff589dc45/children HTTP/1.1" 200 None
+2026-06-24 14:58:53,662 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:54,691 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81b6-91bc-cb3f4c072fe1 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-81b6-91bc-cb3f4c072fe1: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 定向资料收集标准模板 : 用于资料收集的标准化表单、调研问卷、数据提取范式及统一的格式规范说明文档。
+2026-06-24 14:58:54,693 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:55,758 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8108-b8cd-c25ff589dc45/children HTTP/1.1" 200 None
+2026-06-24 14:58:55,760 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:56,988 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-8142-aed7-d5861a22a74a HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-8142-aed7-d5861a22a74a: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 流程节点作业指导书 : 针对制度流程收集过程中的每一个关键节点所定义的具体操作指南与技术说明文档。
+2026-06-24 14:58:56,990 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:58,129 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81c8-a0ec-cd59864c8898 HTTP/1.1" 200 None
+Deleted unchecked generated to-do 389e1eb5-ce57-81c8-a0ec-cd59864c8898: 🤖💬🔜资料合规性审计报告 : 对收集到的资料进行完整性、准确性及法律合规性核查后生成的结论性评估文件。
+2026-06-24 14:58:58,133 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:58:59,383 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:58:59,385 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:00,297 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81a1-a36e-eeb46e544968 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-81a1-a36e-eeb46e544968: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 业务 Logic 图 : 已梳理并可视化的业务流程蓝图，明确了Agent在各环节的决策节点与流转逻辑。
+2026-06-24 14:59:00,300 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:01,401 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:59:01,403 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:03,159 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81d7-9d19-e39ed2f87380 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-81d7-9d19-e39ed2f87380: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Agent Prompt方案 : 针对特定业务场景设计的提示词架构，包含角色定义、任务指令及输出规范。
+2026-06-24 14:59:03,161 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:04,002 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:59:04,004 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:04,860 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-812f-ba48-f67a0f38d707 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-812f-ba48-f67a0f38d707: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Workflow 集成脚本 : 连接Agent与现有业务系统的中间件代码或集成脚本，实现数据流的自动传递。
+2026-06-24 14:59:05,115 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:06,559 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:59:06,560 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:07,765 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-812b-8259-fd8b6f9a2fa5 HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-812b-8259-fd8b6f9a2fa5: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 性能监控调优文档 : 包含Agent响应速度、准确率评价指标以及针对瓶颈问题的优化改进策略方案。
+2026-06-24 14:59:07,767 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:08,514 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8177-8489-c93f9f77dea2/children HTTP/1.1" 200 None
+2026-06-24 14:59:08,515 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:09,598 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "DELETE /v1/blocks/389e1eb5-ce57-81bc-bf6a-d8e759cd5b4d HTTP/1.1" 200 None
+Converted non-L4 to-do to bullet for 389e1eb5-ce57-81bc-bf6a-d8e759cd5b4d: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Agent 部署配置 : 完成配置的运行服务器或云环境，以及记录了系统参数、API密钥和访问权限的操作文档。
+2026-06-24 14:59:09,600 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:10,663 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-81c7-a084-de5a79ba19f3 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 387e1eb5-ce57-81c7-a084-de5a79ba19f3: 🏭 Dev NanoCentralised OGPV 交易原型 : ( design | BOM | dev |data collection)
+2026-06-24 14:59:10,665 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:11,767 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/387e1eb5-ce57-810e-8b2a-d2645ff994a2 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 387e1eb5-ce57-810e-8b2a-d2645ff994a2: 🔶 锻造template Filling : ( design | BOM | dev |data collection)
+2026-06-24 14:59:11,769 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:12,970 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-8145-bd9d-e32ed3d8a4b3: 🏭 Research Rs_SF Writing : Cloud-Adaptive AI Forecast Algorithm
+2026-06-24 14:59:12,971 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:14,069 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-81fe-b115-d896f3ea4282 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-81fe-b115-d896f3ea4282: 🔸 Rslogic outline : template filling follow writing flow
+2026-06-24 14:59:14,070 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:14,736 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-819d-bdae-fa1bc733fb97 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-819d-bdae-fa1bc733fb97: 🔶 算法系统设计 & Perf Check : Inputs, Outputs, Parameters Defined
+2026-06-24 14:59:14,738 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:15,630 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-8135-b937-da293251d484 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-8135-b937-da293251d484: 🏭 Research Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS
+2026-06-24 14:59:15,632 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:16,345 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-814a-b76f-e2e83f8469f5 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-814a-b76f-e2e83f8469f5: 🔸 Rslogic outline : template filling follow writing flow
+2026-06-24 14:59:16,347 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:17,035 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-8134-9356-d5da19dd66d7 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-8134-9356-d5da19dd66d7: 🟧 Research System and. Algorithm  design
+2026-06-24 14:59:17,038 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:18,431 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-81c8-85ef-fd07d0bf6336 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-81c8-85ef-fd07d0bf6336: 🟧 科研人 Final Refination with real writing
+2026-06-24 14:59:18,433 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:19,531 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-81ba-8e1c-e9c682367acc HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-81ba-8e1c-e9c682367acc: 🔶 paperpool part
+2026-06-24 14:59:19,534 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:20,556 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-8178-908b-c8c4b96dc3b1 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-8178-908b-c8c4b96dc3b1: 🔶 paperdraft part
+2026-06-24 14:59:20,558 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:22,676 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-811c-be11-fa0bae4f3938 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-811c-be11-fa0bae4f3938: 🔶 kg all21 part
+2026-06-24 14:59:22,678 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 14:59:23,558 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/386e1eb5-ce57-81c0-b235-f38217e4e24b HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 386e1eb5-ce57-81c0-b235-f38217e4e24b: 🔶 kg all2o part
+2026-06-24 14:59:23,561 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 60/1500)
+2026-06-24 14:59:23,619 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 50/1500)
+2026-06-24 14:59:23,622 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 10/1500)
+2026-06-24 14:59:23,625 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 6/1500)
+2026-06-24 14:59:23,627 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 6/1500)
+2026-06-24 14:59:23,630 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.2s 后就绪...
+2026-06-24 14:59:27,848 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 61/1500)
+2026-06-24 14:59:27,851 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，alansyling 将在 0.1s 后就绪...
+2026-06-24 14:59:27,906 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 51/1500)
+2026-06-24 14:59:27,907 | INFO | state_evaluator | [Evaluator] Tag push to Notion complete
+2026-06-24 14:59:27,907 | INFO | state_evaluator | [Evaluator] Phase: Task Splitting (scoped, first-time only)
+2026-06-24 14:59:27,908 | INFO | state_evaluator | [Evaluator] Split pass: 0 subtasks across 0 parents
+2026-06-24 14:59:27,908 | INFO | state_evaluator | [Evaluator] Phase: Mode/TaskType Inference
+2026-06-24 14:59:27,910 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 1/20)
+2026-06-24 14:59:27,912 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 1/20)
+2026-06-24 14:59:27,914 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 1/20)
+2026-06-24 14:59:27,916 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 1/20)
+2026-06-24 14:59:27,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 1/20)
+2026-06-24 14:59:27,920 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 14:59:42,911 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 2/20)
+2026-06-24 14:59:42,913 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 2/20)
+2026-06-24 14:59:42,915 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 2/20)
+2026-06-24 14:59:42,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 2/20)
+2026-06-24 14:59:42,918 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 2/20)
+2026-06-24 14:59:42,920 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 14:59:57,912 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 3/20)
+2026-06-24 14:59:57,914 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 3/20)
+2026-06-24 14:59:57,915 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 3/20)
+2026-06-24 14:59:57,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 3/20)
+2026-06-24 14:59:57,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 3/20)
+2026-06-24 14:59:57,921 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:00:12,912 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 4/20)
+2026-06-24 15:00:12,915 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 4/20)
+2026-06-24 15:00:12,916 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 4/20)
+2026-06-24 15:00:12,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 4/20)
+2026-06-24 15:00:12,921 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 4/20)
+2026-06-24 15:00:12,924 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:00:27,913 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 5/20)
+2026-06-24 15:00:27,916 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 5/20)
+2026-06-24 15:00:27,918 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 5/20)
+2026-06-24 15:00:27,920 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 5/20)
+2026-06-24 15:00:27,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 5/20)
+2026-06-24 15:00:27,925 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:00:42,914 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 6/20)
+2026-06-24 15:00:42,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 6/20)
+2026-06-24 15:00:42,919 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-24 15:00:42,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 6/20)
+2026-06-24 15:00:42,921 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 6/20)
+2026-06-24 15:00:42,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 6/20)
+2026-06-24 15:00:42,925 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:00:57,915 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 7/20)
+2026-06-24 15:00:57,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 7/20)
+2026-06-24 15:00:57,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 7/20)
+2026-06-24 15:00:57,922 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 7/20)
+2026-06-24 15:00:57,924 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 7/20)
+2026-06-24 15:00:57,926 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:01:12,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 8/20)
+2026-06-24 15:01:12,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 8/20)
+2026-06-24 15:01:12,921 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 8/20)
+2026-06-24 15:01:12,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 8/20)
+2026-06-24 15:01:12,925 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:01:12,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 8/20)
+2026-06-24 15:01:12,927 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:01:27,918 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 9/20)
+2026-06-24 15:01:27,920 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 9/20)
+2026-06-24 15:01:27,922 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 9/20)
+2026-06-24 15:01:27,924 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 9/20)
+2026-06-24 15:01:27,926 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 9/20)
+2026-06-24 15:01:27,928 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:01:42,919 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 10/20)
+2026-06-24 15:01:42,921 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 10/20)
+2026-06-24 15:01:42,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 10/20)
+2026-06-24 15:01:42,926 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 10/20)
+2026-06-24 15:01:42,928 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 10/20)
+2026-06-24 15:01:42,931 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:01:57,920 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 11/20)
+2026-06-24 15:01:57,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 11/20)
+2026-06-24 15:01:57,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 11/20)
+2026-06-24 15:01:57,927 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 11/20)
+2026-06-24 15:01:57,929 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:01:57,929 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 11/20)
+2026-06-24 15:01:57,931 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:02:12,922 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 12/20)
+2026-06-24 15:02:12,924 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 12/20)
+2026-06-24 15:02:12,927 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 12/20)
+2026-06-24 15:02:12,928 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 12/20)
+2026-06-24 15:02:12,930 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 12/20)
+2026-06-24 15:02:12,932 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:02:27,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 13/20)
+2026-06-24 15:02:27,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 13/20)
+2026-06-24 15:02:27,927 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 13/20)
+2026-06-24 15:02:27,930 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 13/20)
+2026-06-24 15:02:27,931 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 13/20)
+2026-06-24 15:02:27,934 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 15.0s 后就绪...
+2026-06-24 15:02:42,924 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 14/20)
+2026-06-24 15:02:42,927 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 14/20)
+2026-06-24 15:02:42,929 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 14/20)
+2026-06-24 15:02:43,022 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:02:43,114 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB8B7830>
+2026-06-24 15:02:43,115 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:02:43,151 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB51A180>
+2026-06-24 15:02:43,152 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:43,152 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:02:43,152 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:02:43,152 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:02:43,152 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:45,095 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:02:45 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1915'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:02:45,096 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:02:45,096 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:02:45,096 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:02:45,096 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:02:45,104 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 14/20)
+2026-06-24 15:02:45,105 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:45,105 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:02:45,105 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:02:45,105 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:02:45,105 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:47,029 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:02:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1887'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:02:47,029 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:02:47,030 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:02:47,030 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:02:47,030 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:02:47,036 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 14/20)
+2026-06-24 15:02:47,037 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:47,037 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:02:47,037 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:02:47,037 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:02:47,037 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:49,644 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:02:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2580'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:02:49,645 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:02:49,645 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:02:49,645 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:02:49,645 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:02:49,652 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 8.3s 后就绪...
+2026-06-24 15:02:57,925 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 15/20)
+2026-06-24 15:02:57,927 | DEBUG | httpcore.connection | close.started
+2026-06-24 15:02:57,927 | DEBUG | httpcore.connection | close.complete
+2026-06-24 15:02:57,927 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:02:57,953 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB6F8E30>
+2026-06-24 15:02:57,953 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:02:57,989 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB4D9190>
+2026-06-24 15:02:57,989 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:57,989 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:02:57,989 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:02:57,989 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:02:57,989 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:59,460 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:02:59 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1444'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:02:59,461 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:02:59,462 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:02:59,462 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:02:59,462 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:02:59,468 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 15/20)
+2026-06-24 15:02:59,468 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:02:59,469 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:02:59,469 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:02:59,469 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:02:59,469 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:00,445 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:00 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=949'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:00,445 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:00,446 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:00,446 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:00,446 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:00,449 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 15/20)
+2026-06-24 15:03:00,450 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:00,450 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:00,450 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:00,450 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:00,450 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:02,234 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1758'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:02,235 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:02,235 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:02,235 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:02,236 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:02,242 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 15/20)
+2026-06-24 15:03:02,243 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:02,244 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:02,244 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:02,244 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:02,244 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:04,452 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:04 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2183'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:04,453 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:04,453 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:04,453 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:04,453 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:04,460 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_5 将在 0.2s 后就绪...
+2026-06-24 15:03:04,651 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 15/20)
+2026-06-24 15:03:04,652 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:04,652 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:04,652 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:04,652 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:04,652 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:05,576 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:05 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=897'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:05,577 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:05,577 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:05,577 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:05,577 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:05,583 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 8.9s 后就绪...
+2026-06-24 15:03:14,467 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 16/20)
+2026-06-24 15:03:14,468 | DEBUG | httpcore.connection | close.started
+2026-06-24 15:03:14,468 | DEBUG | httpcore.connection | close.complete
+2026-06-24 15:03:14,468 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:03:14,494 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB6FA9F0>
+2026-06-24 15:03:14,494 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:03:14,533 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB6F8FB0>
+2026-06-24 15:03:14,534 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:14,534 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:14,534 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:14,534 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:14,534 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:15,952 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:15 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1387'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:15,953 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:15,953 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:15,953 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:15,953 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:15,961 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 16/20)
+2026-06-24 15:03:15,962 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:15,963 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:15,963 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:15,963 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:15,963 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:17,421 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:17 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1432'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:17,423 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:17,423 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:17,423 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:17,423 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:17,429 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 16/20)
+2026-06-24 15:03:17,430 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:17,430 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:17,430 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:17,431 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:17,431 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:18,954 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:18 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1497'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:18,955 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:18,955 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:18,955 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:18,955 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:18,958 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，conny 将在 0.5s 后就绪...
+2026-06-24 15:03:19,458 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 16/20)
+2026-06-24 15:03:19,459 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:19,460 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:19,460 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:19,460 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:19,460 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:20,937 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:20 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1451'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:20,937 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:20,937 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:20,937 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:20,937 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:20,941 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 16/20)
+2026-06-24 15:03:20,942 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:20,942 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:20,942 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:20,942 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:20,942 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:22,497 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:22 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1527'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:22,497 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:22,497 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:22,497 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:22,497 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:22,500 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 8.5s 后就绪...
+2026-06-24 15:03:30,960 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 17/20)
+2026-06-24 15:03:30,961 | DEBUG | httpcore.connection | close.started
+2026-06-24 15:03:30,961 | DEBUG | httpcore.connection | close.complete
+2026-06-24 15:03:30,961 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:03:30,989 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB6F9FA0>
+2026-06-24 15:03:30,989 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:03:31,025 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB86FA40>
+2026-06-24 15:03:31,025 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:31,025 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:31,025 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:31,025 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:31,025 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:32,898 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:32 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1845'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:32,899 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:32,899 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:32,899 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:32,899 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:32,905 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 17/20)
+2026-06-24 15:03:32,906 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:32,906 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:32,906 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:32,906 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:32,906 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:35,876 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2942'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:35,876 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:35,876 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:35,876 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:35,876 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:35,883 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 17/20)
+2026-06-24 15:03:35,884 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:35,884 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:35,884 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:35,884 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:35,884 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:37,787 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:37 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1875'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:37,788 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:37,843 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:37,843 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:37,843 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:37,847 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 17/20)
+2026-06-24 15:03:37,848 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:37,848 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:37,848 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:37,848 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:37,848 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:39,358 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:39 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1485'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:39,359 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:39,359 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:39,359 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:39,359 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:39,362 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 17/20)
+2026-06-24 15:03:39,363 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:39,363 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:39,363 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:39,363 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:39,363 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:40,289 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:40 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=900'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:40,290 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:40,292 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:40,292 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:40,292 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:40,295 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 7.6s 后就绪...
+2026-06-24 15:03:47,903 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 18/20)
+2026-06-24 15:03:47,904 | DEBUG | httpcore.connection | close.started
+2026-06-24 15:03:47,905 | DEBUG | httpcore.connection | close.complete
+2026-06-24 15:03:47,905 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:03:47,931 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB68C890>
+2026-06-24 15:03:47,931 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:03:47,967 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB68D190>
+2026-06-24 15:03:47,968 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:47,968 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:47,968 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:47,968 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:47,968 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:49,370 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1376'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:49,371 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:49,371 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:49,371 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:49,371 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:49,377 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 1.5s 后就绪...
+2026-06-24 15:03:50,881 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 18/20)
+2026-06-24 15:03:50,882 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:50,882 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:50,882 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:50,883 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:50,883 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:52,319 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:52 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1410'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:52,320 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:52,320 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:52,320 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:52,320 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:52,323 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_3 将在 0.5s 后就绪...
+2026-06-24 15:03:52,845 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 18/20)
+2026-06-24 15:03:52,846 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:52,846 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:52,846 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:52,846 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:52,846 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:55,128 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:55 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2254'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:55,128 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:55,128 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:55,128 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:55,128 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:55,135 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 18/20)
+2026-06-24 15:03:55,136 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:55,136 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:55,136 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:55,136 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:55,136 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:56,546 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:56 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1377'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:56,547 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:56,547 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:56,547 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:56,547 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:56,550 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 18/20)
+2026-06-24 15:03:56,551 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:56,551 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:03:56,551 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:03:56,551 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:03:56,551 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:03:58,215 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:03:58 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1638'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:03:58,216 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:03:58,216 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:03:58,216 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:03:58,216 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:03:58,219 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 6.2s 后就绪...
+2026-06-24 15:04:04,376 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 19/20)
+2026-06-24 15:04:04,377 | DEBUG | httpcore.connection | close.started
+2026-06-24 15:04:04,377 | DEBUG | httpcore.connection | close.complete
+2026-06-24 15:04:04,377 | DEBUG | httpcore.connection | connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=600.0 socket_options=None
+2026-06-24 15:04:04,403 | DEBUG | httpcore.connection | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB68D580>
+2026-06-24 15:04:04,403 | DEBUG | httpcore.connection | start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022C998D4850> server_hostname='generativelanguage.googleapis.com' timeout=600.0
+2026-06-24 15:04:04,439 | DEBUG | httpcore.connection | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CCB68DA90>
+2026-06-24 15:04:04,440 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:04,440 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:04,440 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:04,440 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:04,440 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:06,035 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:06 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1569'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:06,036 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:06,036 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:06,036 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:06,036 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:06,039 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，alansyling 将在 1.3s 后就绪...
+2026-06-24 15:04:07,321 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 19/20)
+2026-06-24 15:04:07,322 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:07,323 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:07,323 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:07,323 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:07,323 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:11,401 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:11 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=4052'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:11,402 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:11,402 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:11,402 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:11,402 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:11,405 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 19/20)
+2026-06-24 15:04:11,406 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:11,406 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:11,406 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:11,406 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:11,406 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:15,784 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:15 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=4351'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:15,785 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:15,785 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:15,785 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:15,785 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:15,789 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 19/20)
+2026-06-24 15:04:15,789 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:15,790 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:15,790 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:15,790 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:15,790 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:17,743 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:17 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1923'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:17,743 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:17,743 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:17,743 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:17,743 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:17,748 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 19/20)
+2026-06-24 15:04:17,749 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:17,749 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:17,749 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:17,749 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:17,749 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:19,440 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:19 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1663'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:19,440 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:19,441 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:19,441 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:19,441 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:19,444 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemini-3-flash-preview 冷却中，key_1 将在 1.6s 后就绪...
+2026-06-24 15:04:21,038 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_1 | 今日: 20/20)
+2026-06-24 15:04:21,038 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:21,038 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:21,038 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:21,038 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:21,038 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:31,705 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:31 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=10640'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:31,706 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:31,706 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:31,706 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:31,706 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:31,709 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: alansyling | 今日: 20/20)
+2026-06-24 15:04:31,710 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:31,710 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:31,710 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:31,710 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:31,710 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:32,804 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:32 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1068'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:32,805 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:32,805 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:32,805 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:32,805 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:32,808 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_3 | 今日: 20/20)
+2026-06-24 15:04:32,808 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:32,809 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:32,809 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:32,809 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:32,809 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:34,072 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:34 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1235'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:34,073 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:34,127 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:34,128 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:34,128 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:34,131 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: conny | 今日: 20/20)
+2026-06-24 15:04:34,132 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:34,132 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:34,132 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:34,132 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:34,132 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:36,110 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:35 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=1680'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:36,110 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:36,110 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:36,110 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:36,110 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:36,113 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemini-3-flash-preview | Key: key_5 | 今日: 20/20)
+2026-06-24 15:04:36,114 | DEBUG | httpcore.http11 | send_request_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:36,114 | DEBUG | httpcore.http11 | send_request_headers.complete
+2026-06-24 15:04:36,114 | DEBUG | httpcore.http11 | send_request_body.started request=<Request [b'POST']>
+2026-06-24 15:04:36,114 | DEBUG | httpcore.http11 | send_request_body.complete
+2026-06-24 15:04:36,114 | DEBUG | httpcore.http11 | receive_response_headers.started request=<Request [b'POST']>
+2026-06-24 15:04:38,190 | DEBUG | httpcore.http11 | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 24 Jun 2026 07:04:38 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=2045'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-24 15:04:38,190 | DEBUG | httpcore.http11 | receive_response_body.started request=<Request [b'POST']>
+2026-06-24 15:04:38,190 | DEBUG | httpcore.http11 | receive_response_body.complete
+2026-06-24 15:04:38,190 | DEBUG | httpcore.http11 | response_closed.started
+2026-06-24 15:04:38,190 | DEBUG | httpcore.http11 | response_closed.complete
+2026-06-24 15:04:38,194 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,195 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 59/1500)
+2026-06-24 15:04:38,198 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,198 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 50/1500)
+2026-06-24 15:04:38,200 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,200 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 10/1500)
+2026-06-24 15:04:38,201 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,201 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 6/1500)
+2026-06-24 15:04:38,203 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,204 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 6/1500)
+2026-06-24 15:04:38,206 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:38,206 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:04:42,481 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 60/1500)
+2026-06-24 15:04:42,484 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:42,484 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 51/1500)
+2026-06-24 15:04:42,486 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:42,486 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 11/1500)
+2026-06-24 15:04:42,488 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:42,488 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，conny 将在 0.0s 后就绪...
+2026-06-24 15:04:42,489 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 7/1500)
+2026-06-24 15:04:42,491 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:42,491 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 7/1500)
+2026-06-24 15:04:42,493 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:42,493 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:04:46,768 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 61/1500)
+2026-06-24 15:04:46,770 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:46,770 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，alansyling 将在 0.0s 后就绪...
+2026-06-24 15:04:46,771 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 52/1500)
+2026-06-24 15:04:46,773 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:46,773 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 12/1500)
+2026-06-24 15:04:46,775 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:46,775 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 8/1500)
+2026-06-24 15:04:46,777 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:46,777 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:04:46,777 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 8/1500)
+2026-06-24 15:04:46,779 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:46,779 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:04:51,055 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 62/1500)
+2026-06-24 15:04:51,057 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:51,057 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 53/1500)
+2026-06-24 15:04:51,059 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:51,059 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 13/1500)
+2026-06-24 15:04:51,061 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:51,062 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 9/1500)
+2026-06-24 15:04:51,063 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:51,063 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:04:51,064 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 9/1500)
+2026-06-24 15:04:51,066 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:51,066 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:04:55,342 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 63/1500)
+2026-06-24 15:04:55,344 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:55,344 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 54/1500)
+2026-06-24 15:04:55,346 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:55,346 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 14/1500)
+2026-06-24 15:04:55,349 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:55,349 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 10/1500)
+2026-06-24 15:04:55,351 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:55,351 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 10/1500)
+2026-06-24 15:04:55,353 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:55,353 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:04:59,628 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 64/1500)
+2026-06-24 15:04:59,631 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:59,631 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 55/1500)
+2026-06-24 15:04:59,633 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:59,633 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 15/1500)
+2026-06-24 15:04:59,635 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:59,635 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 11/1500)
+2026-06-24 15:04:59,637 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:59,637 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:04:59,638 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 11/1500)
+2026-06-24 15:04:59,640 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:04:59,640 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:03,915 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 65/1500)
+2026-06-24 15:05:03,917 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:03,917 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 56/1500)
+2026-06-24 15:05:03,920 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:03,920 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 16/1500)
+2026-06-24 15:05:03,922 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:03,922 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 12/1500)
+2026-06-24 15:05:03,923 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:03,923 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:05:03,924 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 12/1500)
+2026-06-24 15:05:03,926 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:03,926 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:08,202 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 66/1500)
+2026-06-24 15:05:08,205 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:08,205 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 57/1500)
+2026-06-24 15:05:08,206 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:08,206 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 17/1500)
+2026-06-24 15:05:08,209 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:08,209 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 13/1500)
+2026-06-24 15:05:08,211 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:08,211 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 13/1500)
+2026-06-24 15:05:08,213 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:08,213 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:12,488 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 67/1500)
+2026-06-24 15:05:12,491 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:12,491 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 58/1500)
+2026-06-24 15:05:12,493 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:12,493 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 18/1500)
+2026-06-24 15:05:12,495 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:12,495 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 14/1500)
+2026-06-24 15:05:12,497 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:12,497 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 14/1500)
+2026-06-24 15:05:12,499 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:12,499 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:16,775 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 68/1500)
+2026-06-24 15:05:16,777 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:16,777 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 59/1500)
+2026-06-24 15:05:16,780 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:16,780 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 19/1500)
+2026-06-24 15:05:16,781 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:16,782 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 15/1500)
+2026-06-24 15:05:16,783 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:16,783 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 15/1500)
+2026-06-24 15:05:16,785 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:16,785 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:21,062 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 69/1500)
+2026-06-24 15:05:21,064 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:21,064 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 60/1500)
+2026-06-24 15:05:21,066 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:21,066 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 20/1500)
+2026-06-24 15:05:21,069 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:21,069 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 16/1500)
+2026-06-24 15:05:21,071 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:21,071 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 16/1500)
+2026-06-24 15:05:21,072 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:21,073 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:25,348 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 70/1500)
+2026-06-24 15:05:25,350 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:25,350 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 61/1500)
+2026-06-24 15:05:25,353 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:25,353 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-24 15:05:25,353 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 21/1500)
+2026-06-24 15:05:25,355 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:25,355 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，conny 将在 0.0s 后就绪...
+2026-06-24 15:05:25,356 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 17/1500)
+2026-06-24 15:05:25,357 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:25,357 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 17/1500)
+2026-06-24 15:05:25,360 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:25,360 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:29,635 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 71/1500)
+2026-06-24 15:05:29,637 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:29,637 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 62/1500)
+2026-06-24 15:05:29,639 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:29,639 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 22/1500)
+2026-06-24 15:05:29,641 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:29,641 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，conny 将在 0.0s 后就绪...
+2026-06-24 15:05:29,642 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 18/1500)
+2026-06-24 15:05:29,643 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:29,643 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:05:29,644 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 18/1500)
+2026-06-24 15:05:29,647 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:29,647 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:33,921 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 72/1500)
+2026-06-24 15:05:33,923 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:33,923 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 63/1500)
+2026-06-24 15:05:33,926 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:33,926 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 23/1500)
+2026-06-24 15:05:33,927 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:33,928 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，conny 将在 0.0s 后就绪...
+2026-06-24 15:05:33,929 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 19/1500)
+2026-06-24 15:05:33,930 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:33,930 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:05:33,931 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 19/1500)
+2026-06-24 15:05:33,933 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:33,933 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:38,208 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 73/1500)
+2026-06-24 15:05:38,211 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:38,211 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 64/1500)
+2026-06-24 15:05:38,213 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:38,213 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 24/1500)
+2026-06-24 15:05:38,215 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:38,215 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 20/1500)
+2026-06-24 15:05:38,217 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:38,217 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_5 将在 0.0s 后就绪...
+2026-06-24 15:05:38,218 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 20/1500)
+2026-06-24 15:05:38,219 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:38,219 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:42,495 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 74/1500)
+2026-06-24 15:05:42,497 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:42,497 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 65/1500)
+2026-06-24 15:05:42,499 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:42,499 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 25/1500)
+2026-06-24 15:05:42,501 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:42,501 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 21/1500)
+2026-06-24 15:05:42,503 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:42,503 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 21/1500)
+2026-06-24 15:05:42,505 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:42,505 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:46,781 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 75/1500)
+2026-06-24 15:05:46,783 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:46,783 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 66/1500)
+2026-06-24 15:05:46,785 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:46,785 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_3 将在 0.0s 后就绪...
+2026-06-24 15:05:46,786 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 26/1500)
+2026-06-24 15:05:46,788 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:46,788 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 22/1500)
+2026-06-24 15:05:46,790 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:46,790 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 22/1500)
+2026-06-24 15:05:46,791 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:46,791 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:05:51,069 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 76/1500)
+2026-06-24 15:05:51,071 | INFO | unlimited_llmapi.multikey_manager | 模型 gemini/gemini-3-flash-preview 已达限额，切换到回退模型: gemini/gemma-4-31b-it
+2026-06-24 15:05:51,071 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 67/1500)
+2026-06-24 15:05:51,072 | INFO | state_evaluator | [Evaluator] Mode/TaskType inferred for 187 tasks
+2026-06-24 15:05:51,077 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:05:51,832 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-811a-979f-c2f7278623ea HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-811a-979f-c2f7278623ea: 🔸 💻Focus 🔬💻硬件抽象层 (HAL) 接口定义 : 将内核逻辑与底层硬件解耦的统一 API 接口规范。
+2026-06-24 15:05:51,835 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:05:53,899 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81db-928c-fcf533af3a01 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81db-928c-fcf533af3a01: 🔸 Handy🤘🏻 🔬💻Focus 🎯验证信号采集时序 : 示波器验证：DAQ 采样率符合规格。
+2026-06-24 15:05:53,902 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:05:55,277 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8108-a9df-c119c48b3cf9 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8108-a9df-c119c48b3cf9: 🔸 💻Focus 👥💻验证 Filter 准确度 : 测试验证：剔除冗余值，无关键数据丢失。
+2026-06-24 15:05:55,279 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:05:57,662 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81b9-b0cc-fe90632366c8 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81b9-b0cc-fe90632366c8: 🔸 💻Focus 🎯🔬验证聚合结果 : 嵌入聚合输出对比金标模型。
+2026-06-24 15:05:57,664 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:05:58,939 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81b0-9407-c84b96c67eaf HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81b0-9407-c84b96c67eaf: 🔸 💻Focus 🗺️🎯状态转移矩阵定义 : 定义所有系统状态及其在特定触发条件下的跳转逻辑映射表。
+2026-06-24 15:05:58,942 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:01,037 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81ee-918a-ebfaddfd2bae HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81ee-918a-ebfaddfd2bae: 🔸 💻Focus 🗺️✍️执行策略优先级矩阵 : 用于处理并发策略冲突及异常状态强制跳转的优先级定义文档。
+2026-06-24 15:06:01,043 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 62/1500)
+2026-06-24 15:06:01,045 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:02,541 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/388e1eb5-ce57-8106-9ef7-f7a44abe2f39 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 388e1eb5-ce57-8106-9ef7-f7a44abe2f39: 🔸 💻Focus 💻ExpressFlow Draw 部署报表 : ExpressFlow Draw 便携化：支持 exe/容器，实现数据源 $\rightarrow$ 报告。
+2026-06-24 15:06:02,544 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:04,106 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/388e1eb5-ce57-81f1-acb0-da20f2d0efbc HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 388e1eb5-ce57-81f1-acb0-da20f2d0efbc: 🔸 🧟Zombie 📋💻Focus       拟定 BOM 初表 : 初步BOM录入：零件、厂商、零件号。
+2026-06-24 15:06:04,109 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:06,239 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/388e1eb5-ce57-813b-a2ae-f24cc7718f40 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 388e1eb5-ce57-813b-a2ae-f24cc7718f40: 🔸 Handy🤘🏻 💻Focus        UNI-T BLE 配对测试 : 验证  App 与 UNI-T 硬件：BLE 握手及数据传输
+2026-06-24 15:06:06,242 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:07,504 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8189-b526-fecfd2edd064 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8189-b526-fecfd2edd064: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 机构内部管理制度集 : 涵盖各部门现有的行政管理、业务操作规范及职责说明书的系统化电子档案。
+2026-06-24 15:06:07,506 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:10,858 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8176-94ca-efd1ab3816b3 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8176-94ca-efd1ab3816b3: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 定向资料收集标准模板 : 用于资料收集的标准化表单、调研问卷、数据提取范式及统一的格式规范说明文档。
+2026-06-24 15:06:10,860 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:12,201 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81c4-838a-cbd4463dc8a7 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81c4-838a-cbd4463dc8a7: 🟧 纪事统筹SOP＆系统 : 制度流程，定向收集资料，管理 流程节点作业指导书 : 针对制度流程收集过程中的每一个关键节点所定义的具体操作指南与技术说明文档。
+2026-06-24 15:06:12,203 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:13,355 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81b7-bdda-eb7f976f8a5f HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81b7-bdda-eb7f976f8a5f: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 业务 Logic 图 : 已梳理并可视化的业务流程蓝图，明确了Agent在各环节的决策节点与流转逻辑。
+2026-06-24 15:06:13,357 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:14,700 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8174-ae88-e19845bec361 HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8174-ae88-e19845bec361: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Agent Prompt方案 : 针对特定业务场景设计的提示词架构，包含角色定义、任务指令及输出规范。
+2026-06-24 15:06:14,702 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:15,531 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8193-aabc-fb42a9764acf HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8193-aabc-fb42a9764acf: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Workflow 集成脚本 : 连接Agent与现有业务系统的中间件代码或集成脚本，实现数据流的自动传递。
+2026-06-24 15:06:15,533 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:16,792 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-8155-83d9-f87e7e782cba HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-8155-83d9-f87e7e782cba: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 性能监控调优文档 : 包含Agent响应速度、准确率评价指标以及针对瓶颈问题的优化改进策略方案。
+2026-06-24 15:06:16,795 | DEBUG | urllib3.connectionpool | Starting new HTTPS connection (1): api.notion.com:443
+2026-06-24 15:06:17,674 | DEBUG | urllib3.connectionpool | https://api.notion.com:443 "PATCH /v1/blocks/389e1eb5-ce57-81e4-ac8a-cda6ec84eeda HTTP/1.1" 200 None
+Pushed formatted tags to Notion for 389e1eb5-ce57-81e4-ac8a-cda6ec84eeda: 🟧 纪石大秘书Agent Setup : 流程设计&优化，agent部署 Agent 部署配置 : 完成配置的运行服务器或云环境，以及记录了系统参数、API密钥和访问权限的操作文档。
+2026-06-24 15:06:17,677 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 63/1500)
+2026-06-24 15:06:17,679 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 52/1500)
+2026-06-24 15:06:17,682 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_3 | 今日: 11/1500)
+2026-06-24 15:06:17,684 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: conny | 今日: 7/1500)
+2026-06-24 15:06:17,687 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_5 | 今日: 7/1500)
+2026-06-24 15:06:17,689 | INFO | unlimited_llmapi.multikey_manager | [Throttling] gemini/gemma-4-31b-it 冷却中，key_1 将在 4.3s 后就绪...
+2026-06-24 15:06:21,963 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: key_1 | 今日: 64/1500)
+2026-06-24 15:06:21,965 | INFO | unlimited_llmapi.multikey_manager | 请求中... (模型: gemini/gemma-4-31b-it | Key: alansyling | 今日: 53/1500)
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator] State distribution: {'READY': 197, 'SKIP': 9, 'PHASING_WAIT': 55, 'SCOPED': 14, 'STRUCTURED': 95, 'EXPANDING': 8}
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator] Halted blocks requiring human action (55):
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🟧 Thesis Actual Deadline : detail in pap
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 笔记计算Deadline : 基于计划笔记日推算：记录最终截止日。
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 关键理论与实证研究图谱 : 对现有文献中的核心理论框架、研究方法及结论进行分
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 研究现状与核心争议综述报告 : 总结当前学术界的主要发现、一致性结论以及尚未
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🟧 Thesis 问题定义与  Gap : 正式阐述：知识空白与研究必要性。
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 现状研究与知识地图 : 基于文献综述和市场调研形成的现有知识体系全景图，明确
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 知识空白与矛盾清单 : 一份详细记录现有研究不足、技术瓶颈或理论冲突的清单，
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 研究必要性与价值评估报告 : 阐述填补空白对学术或工程领域重要性的论证文档，
+2026-06-24 15:06:21,968 | INFO | state_evaluator | [Evaluator]   [PHASING_WAIT] 🔶 理论研究框架 : 博士假设与研究方向的概念模型及逻辑结构。
+2026-06-24 15:06:22,010 | INFO | state_evaluator | [Evaluator] Saved 378 tasks to state
+Flow complete. State distribution: {'READY': 197, 'SKIP': 9, 'PHASING_WAIT': 55, 'SCOPED': 14, 'STRUCTURED': 95, 'EXPANDING': 8}
+[trace] Flow run completed at 2026-06-24T15:06:22

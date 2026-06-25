@@ -15,9 +15,6 @@ yonctask_config_blocks.json
 
 # Scratch debug and temporary database/log files
 *.sqlite3
-test_clean.py
-test_depth.py
-test_split.py
-test_task_state.py
+test_*.py
+check_*.py
 dry_run.log
-

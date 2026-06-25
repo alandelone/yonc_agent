@@ -128,7 +128,7 @@ def replace_with_bullet(
         "bulleted_list_item": bullet_payload
     }
     append_res = append_children(target_parent_id, [new_bullet_block], after_id=block_id)
-    new_block = append_res.get("results", [])[-1] if append_res.get("results") else {}
+    new_block = append_res.get("results", [])[0] if append_res.get("results") else {}
     delete_block(block_id)
     return new_block
 
@@ -159,7 +159,7 @@ def replace_with_toggle_item(
         "toggle": toggle_payload
     }
     append_res = append_children(target_parent_id, [new_toggle_block], after_id=block_id)
-    new_block = append_res.get("results", [])[-1] if append_res.get("results") else {}
+    new_block = append_res.get("results", [])[0] if append_res.get("results") else {}
     delete_block(block_id)
     return new_block
     

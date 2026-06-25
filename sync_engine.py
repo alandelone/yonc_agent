@@ -80,8 +80,11 @@ def reverse_sync_tags_from_title(working_state: List[Dict[str, Any]], diff_chang
                 break
         
         if new_mode and new_mode != str(tags.get("Modes", "")).strip():
+            old_mode = str(tags.get("Modes", "")).strip()
             sys.stdout.buffer.write(f"Reverse sync: Mode changed to '{new_mode}' for task {b_id}\n".encode('utf-8'))
             tags["Modes"] = new_mode
+            if old_mode:
+                tags["_old_mode_to_strip"] = old_mode
             changed = True
             
         # Detect new Task Type
@@ -92,8 +95,11 @@ def reverse_sync_tags_from_title(working_state: List[Dict[str, Any]], diff_chang
                 break
                 
         if new_tt and new_tt != str(tags.get("Task Type", "")).strip():
+            old_tt = str(tags.get("Task Type", "")).strip()
             sys.stdout.buffer.write(f"Reverse sync: Task Type changed to '{new_tt}' for task {b_id}\n".encode('utf-8'))
             tags["Task Type"] = new_tt
+            if old_tt:
+                tags["_old_tt_to_strip"] = old_tt
             changed = True
             
         # Detect new WBS level

@@ -305,6 +305,21 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
             # Preserve local state values that might have been updated by LLM or completion logic
             existing = local_dict[b_id]
             notion_item["tags"] = existing.get("tags", {})
+            
+            old_mode = notion_item["tags"].pop("_old_mode_to_strip", None)
+            if old_mode:
+                if "original_notion_title" in notion_item and old_mode in notion_item["original_notion_title"]:
+                    notion_item["original_notion_title"] = notion_item["original_notion_title"].replace(old_mode, "").replace("  ", " ").strip()
+                if "title" in notion_item and old_mode in notion_item["title"]:
+                    notion_item["title"] = notion_item["title"].replace(old_mode, "").replace("  ", " ").strip()
+                    
+            old_tt = notion_item["tags"].pop("_old_tt_to_strip", None)
+            if old_tt:
+                if "original_notion_title" in notion_item and old_tt in notion_item["original_notion_title"]:
+                    notion_item["original_notion_title"] = notion_item["original_notion_title"].replace(old_tt, "").replace("  ", " ").strip()
+                if "title" in notion_item and old_tt in notion_item["title"]:
+                    notion_item["title"] = notion_item["title"].replace(old_tt, "").replace("  ", " ").strip()
+                    
             notion_item["status"] = existing.get("status", "todo")
             notion_item["metrics"] = existing.get("metrics", {
                 "estimated_time_h": None,

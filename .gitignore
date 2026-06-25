@@ -18,3 +18,4 @@ yonctask_config_blocks.json
 test_*.py
 check_*.py
 dry_run.log
+modes.txt

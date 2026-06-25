@@ -96,14 +96,20 @@ def load_config() -> Dict[str, List[Any]]:
     """
     import os
     import json
+    import time
     
     config_path = os.path.join(os.path.dirname(__file__), "data", "tasklist.json")
     if os.path.exists(config_path):
-        try:
-            with open(config_path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Warning: Failed to load config from {config_path}: {e}")
+        # Check cache age (e.g., 6 hours)
+        cache_age = time.time() - os.path.getmtime(config_path)
+        if cache_age < 6 * 3600:
+            try:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Warning: Failed to load config from {config_path}: {e}")
+        else:
+            print(f"Config cache is {cache_age/3600:.1f} hours old. Fetching fresh config from Notion...")
 
     blocks = get_page_blocks(YONCTASK_CONFIG_PAGE_ID)
     config_dict = {}

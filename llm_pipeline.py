@@ -1059,7 +1059,7 @@ def mode_tasktype_pass(
                     matches = difflib.get_close_matches(mode_val, mode_names, n=1, cutoff=0.3)
                     if matches:
                         best_match = matches[0]
-                if best_match:
+                if best_match and not str(tags.get("Modes", "")).strip():
                     tags["Modes"] = best_match
                     
             if type_val:
@@ -1074,7 +1074,7 @@ def mode_tasktype_pass(
                     matches = difflib.get_close_matches(type_val, type_keys, n=1, cutoff=0.3)
                     if matches:
                         best_match = matches[0]
-                if best_match:
+                if best_match and not str(tags.get("Task Type", "")).strip():
                     tags["Task Type"] = best_match
                     
         except Exception as exc:

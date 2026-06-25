@@ -1,3 +1,40 @@
-🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS None
-🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🔸 Rslogic outline : template filling follow writing flow None
-🏭 Research 🧨Rs_EMS Writing : solve Energy efficiency with Trade-Enabled EMS 🟧 Research System and. Algorithm  design None
+🔸 💻Focus 💻Handy🤘🏻 🔨    集成 Sensor 系统 : 硬件单元：(环境传感器, 电源, MCU)
+  orig: 🔸 Handy🤘🏻 🔨💻Focus    集成 Sensor 系统 : 硬件单元：(环境传感器, 电源, MCU)
+🏭 Dev Weather tower Prototype : ( design | BOM | dev |data collection) 🟧 Dev 数据管理 Firmware Design : 嵌入式软件/逻辑：控制硬件及本地数据处理。 🔶 传感器 DAQ 与协议转换 : 负责从硬件接口获取原始信号并将其转换为标准化的内部数据格式的固件组件。 🔸 💻Focus 🎯Handy🤘🏻 🔬 验证信号采集时序 : 示波器验证：DAQ 采样率符合规格。
+  orig: 🔸 💻Focus 🎯Handy🤘🏻 🔬 验证信号采集时序 : 示波器验证：DAQ 采样率符合规格。
+🏭 Dev Weather tower Prototype : ( design | BOM | dev |data collection) 🔶 气象 Dataset 采集 : 原型初测：环境数据(raw/processed)可验证输出 🔸 Handy🤘🏻 🔨部署气象传感器硬件 : 在初测环境现场安装并固定气象传感器及其数据采集终端。
+  orig: 🔸 Handy🤘🏻 🔨部署气象传感器硬件 : 在初测环境现场安装并固定气象传感器及其数据采集终端。
+🏭 Dev Weather tower Prototype : ( design | BOM | dev |data collection) 🔶 Assembly & System Testing 🔸 Handy🤘🏻 🔨Assembly accroding the design
+  orig: 🔸 Handy🤘🏻 🔨Assembly accroding the design
+🏭 Dev Weather tower Prototype : ( design | BOM | dev |data collection) 🔶 Assembly & System Testing 🔸 💻Focus 💻Handy🤘🏻🔨System Testing
+  orig: 🔸 💻Focus 💻Handy🤘🏻🔨System Testing
+🔸 💻Focus 📖✍️Handy T1 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus ✍️Handy T1 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare ：Manual Preparation for all tools 🔸 💻Focus ✍️📖Read ALL TOOLs 技术手册 & 安全指南 &速查表 : 工具用例及配色指南 (全模式/SolarTC) 🔸 💻Focus 📖Handy T2 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus 📖Handy T2 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare ：Manual Preparation for all tools 🔸 💻Focus ✍️📖Read ALL TOOLs 技术手册 & 安全指南 &速查表 : 工具用例及配色指南 (全模式/SolarTC) 🔸 💻Focus 📖Handy T3 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus 📖Handy T3 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare ：Manual Preparation for all tools 🔸 💻Focus ✍️📖Read ALL TOOLs 技术手册 & 安全指南 &速查表 : 工具用例及配色指南 (全模式/SolarTC) 🔸 💻Focus 📖Handy T4 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus 📖Handy T4 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🏭 SolarMan Apparatus Learning 🔶 SKM Program Material Prepare ：Manual Preparation for all tools 🔸 💻Focus ✍️📖Read ALL TOOLs 技术手册 & 安全指南 &速查表 : 工具用例及配色指南 (全模式/SolarTC) 🔸 💻Focus 📖Handy T5 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus 📖Handy T5 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🔸 💻Focus 📖✍️Handy T6 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+  orig: 🔸 💻Focus ✍️Handy T6 运维手册 : 全工具指南：(功能规格, 操作步骤)  ( every mode || solartc mode)
+🏭 素食堂🍱 菜单开发 🔶 豆包making : concept knowhow, toolBOM, recipe 🔸 💻Focus 🔬Handy🤘🏻 🔨Recipe testing : 处理参数表, 关键控制点(CCP)记录：(温度, 时间, 压力)
+  orig: 🔸 💻Focus 🔬Handy🤘🏻 🔨Recipe testing : 处理参数表, 关键控制点(CCP)记录：(温度, 时间, 压力)
+🔸 Handy🤘🏻 🔨收尾展示规范 : 成品切割/装饰/出餐标准：确保视觉与质感。
+  orig: 🤖💬🔜收尾展示规范 : 成品切割/装饰/出餐标准：确保视觉与质感。
+🔸 Handy🤘🏻 🔨基础配方优化 : 迭代 3+ 素金枪鱼配方：达标口感与结构完整性。
+  orig: 🤖💬🔜基础配方优化 : 迭代 3+ 素金枪鱼配方：达标口感与结构完整性。
+素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools
+  orig: 素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools
+素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools 🔶 721_26 义卖Prepare : mv test run and calculation
+  orig: 🔶 721_26 义卖Prepare : mv test run and calculation
+素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools 🔶 721_26 义卖Prepare : mv test run and calculation 🔸 💻Focus 🎯小Do📱 🎪BOM calculation in detail : BOM for 721
+  orig: 🔸 💻Focus 🎯小Do📱 🎪BOM calculation in detail : BOM for 721
+🔸 💻Focus 🔬小Do📱 📥mvServe research : minimum portion
+  orig: 素食堂🍱 小Do📱 📥mvServe research : minimum portion
+素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools 🔶 721_26 义卖Prepare : mv test run and calculation 🤖💬🔜跑 Test 并计算 : 执行运动测试：计算慈善义卖准备数据。
+  orig: 🤖💬🔜跑 Test 并计算 : 执行运动测试：计算慈善义卖准备数据。
+素食堂🍱 Sushitam 开业 planning : Bmodel, mvServe, tools 素食堂🍱 Tools upgrade : tools selection for 100 set 4 hours
+  orig: 素食堂🍱 Tools upgrade : tools selection for 100 set 4 hours

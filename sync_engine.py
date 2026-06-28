@@ -678,11 +678,16 @@ def reparent_theme_containers(enriched_state: List[Dict[str, Any]], config_dict:
 
         # 瑙ｆ瀽瀹瑰櫒鍖归厤鍒扮殑瀛愪富棰樺悕锛岀敤浜庝紶鎾粰瀛愯妭鐐圭殑 theme_display_label
         container_title = container.get("original_notion_title", container.get("title", ""))
+        
+        theme_key, matched_subtheme = _match_theme_or_subtheme(container_title)
         _, pref_suffix = _extract_theme_prefixed_suffix(container_title)
-        if pref_suffix:
-            container_matched_subtheme = pref_suffix
+        
+        configured_subthemes = set(themes.get(theme_key, {}).get("sub_themes", [])) if theme_key else set()
+        
+        if matched_subtheme and matched_subtheme in configured_subthemes:
+            container_matched_subtheme = matched_subtheme
         else:
-            _, container_matched_subtheme = _match_theme_or_subtheme(container_title)
+            container_matched_subtheme = pref_suffix if pref_suffix else matched_subtheme
 
         import sys
         if dry_run:

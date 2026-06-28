@@ -19,3 +19,5 @@ test_*.py
 check_*.py
 dry_run.log
 modes.txt
+revert_notion_titles.py
+history_out.txt

@@ -532,7 +532,8 @@ def sync_timeliner() -> None:
             else:
                 audit_subtheme_dates[st] = new_date
 
-    # Phase 2: always process all entries for formatting/status/percent updates.
+    # Phase 2: compute status/percent updates and build updated_state synchronously
+    entries_to_update = []
     for entry in entries:
         changed = bool(date_changed_by_block.get(entry.block_id, False))
         st = str(entry.colour_subtheme or "").strip()
@@ -575,33 +576,45 @@ def sync_timeliner() -> None:
             changed = True
 
         if changed or enforce_format:
-            print(
-                f"Pushing updates for {scope_label} (Percent: {new_percent}%, Status: {new_status_emoji}) "
-                f"to block {entry.block_id} on page {TIMELINER_PAGE_ID}..."
+            entries_to_update.append((entry, scope_label, new_percent, new_status_emoji, theme_label))
+
+    # Phase 3: Push updates to Notion concurrently
+    def _update_entry(args):
+        entry, scope_label, new_percent, new_status_emoji, theme_label = args
+        import sys
+        msg = (
+            f"Pushing updates for {scope_label} (Percent: {new_percent}%, Status: {new_status_emoji}) "
+            f"to block {entry.block_id} on page {TIMELINER_PAGE_ID}...\n"
+        )
+        sys.stdout.buffer.write(msg.encode('utf-8'))
+        try:
+            from notion_client import BASE_URL, NOTION_HEADERS
+            import requests
+
+            resp = requests.get(f"{BASE_URL}/blocks/{entry.block_id}", headers=NOTION_HEADERS)
+            resp.raise_for_status()
+            block_json = resp.json()
+            b_type = block_json.get("type")
+            existing_rt = block_json.get(b_type, {}).get("rich_text", [])
+            resolved_task_label = _resolve_task_label_for_entry(entry, theme_label, original_title_index)
+
+            rt = build_timeliner_rich_text(
+                entry=entry,
+                new_percent=new_percent,
+                new_status_emoji=new_status_emoji,
+                existing_rt=existing_rt,
+                theme_label=theme_label,
+                resolved_task_label=resolved_task_label,
             )
-            try:
-                from notion_client import BASE_URL, NOTION_HEADERS
-                import requests
+            payload = {b_type: {"rich_text": rt}}
+            update_block(entry.block_id, payload)
+        except Exception as e:
+            sys.stdout.buffer.write(f"Failed to update block {entry.block_id}: {e}\n".encode('utf-8'))
 
-                resp = requests.get(f"{BASE_URL}/blocks/{entry.block_id}", headers=NOTION_HEADERS)
-                resp.raise_for_status()
-                block_json = resp.json()
-                b_type = block_json.get("type")
-                existing_rt = block_json.get(b_type, {}).get("rich_text", [])
-                resolved_task_label = _resolve_task_label_for_entry(entry, theme_label, original_title_index)
-
-                rt = build_timeliner_rich_text(
-                    entry=entry,
-                    new_percent=new_percent,
-                    new_status_emoji=new_status_emoji,
-                    existing_rt=existing_rt,
-                    theme_label=theme_label,
-                    resolved_task_label=resolved_task_label,
-                )
-                payload = {b_type: {"rich_text": rt}}
-                update_block(entry.block_id, payload)
-            except Exception as e:
-                print(f"Failed to update block {entry.block_id}: {e}")
+    if entries_to_update:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            executor.map(_update_entry, entries_to_update)
 
     save_timeliner_state(updated_state, priority_scope_order=list(updated_state.keys()))
     print("TIMELINER sync complete.")

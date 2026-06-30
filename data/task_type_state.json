@@ -1,0 +1,134 @@
+{
+  "❓": {
+    "name": "Unknown TYPE",
+    "name_cn": "Unknown TYPE",
+    "description": "",
+    "tag": ""
+  },
+  "🔬| Research": {
+    "name": "Research",
+    "name_cn": "Research",
+    "description": "学术研究、文献分析、实验设计、论文相关工作 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  "💻| Coding": {
+    "name": "Coding",
+    "name_cn": "Coding",
+    "description": "编程、软件开发、调试、自动化开发 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  "✍️| DeepWriting": {
+    "name": "DeepWriting",
+    "name_cn": "DeepWriting",
+    "description": "论文撰写、长篇报告、正式文档,技术手册, 深度文章输出 High Cognitive",
+    "tag": "High Cognitive"
+  },
+  "📝| Noting": {
+    "name": "Noting",
+    "name_cn": "Noting",
+    "description": "日常笔记、灵感记录、短文随笔、会议记录整理 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "📖| Reading": {
+    "name": "Reading",
+    "name_cn": "Reading",
+    "description": "阅读书籍、论文、技术资料、参考文档 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🎓| Learning": {
+    "name": "Learning",
+    "name_cn": "Learning",
+    "description": "学习新知识、新技能、课程学习、教程实践 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🗺️| Planning": {
+    "name": "Planning",
+    "name_cn": "Planning",
+    "description": "规划、拆解任务、制定路线图、排程 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🗂️| Digital Planning": {
+    "name": "Digital Planning",
+    "name_cn": "Digital Planning",
+    "description": "数字化任务拆解、看板管理 NotionMedium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🧩| Structuring": {
+    "name": "Structuring",
+    "name_cn": "Structuring",
+    "description": "Notion 区块重排、逻辑层级调整、信息模块化拼装 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🤔| Thinking": {
+    "name": "Thinking",
+    "name_cn": "Thinking",
+    "description": "思考、分析、推演、问题求解、脑力探索 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  },
+  "🎙️| VoiceCapture": {
+    "name": "VoiceCapture",
+    "name_cn": "VoiceCapture",
+    "description": "语音记录、灵感捕捉、口述笔记 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  "📥| Admin": {
+    "name": "Admin",
+    "name_cn": "Admin",
+    "description": "行政事务、表单处理、邮件回复、日常杂务 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  "🏗️| Drafting": {
+    "name": "Drafting",
+    "name_cn": "Drafting",
+    "description": "文章骨架搭建、内容原型构思、粗略草案排版 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  "🔁| Repetitive": {
+    "name": "Repetitive",
+    "name_cn": "Repetitive",
+    "description": "机械性重复电脑操作、无脑复制粘贴、批量处理流水线工作 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  "👥| Meeting": {
+    "name": "Meeting",
+    "name_cn": "Meeting",
+    "description": "会议、讨论、导师交流、项目沟通 Low Cognitive",
+    "tag": "Low Cognitive"
+  },
+  "🏃| Exercise": {
+    "name": "Exercise",
+    "name_cn": "Exercise",
+    "description": "运动、健走、慢跑、游泳、健身训练 Physical",
+    "tag": "Physical"
+  },
+  "🔨| HandyWork": {
+    "name": "HandyWork",
+    "name_cn": "HandyWork",
+    "description": "维修、制作、施工、安装、DIY、实体项目工作 Physical",
+    "tag": "Physical"
+  },
+  "🤝| Social": {
+    "name": "Social",
+    "name_cn": "Social",
+    "description": "社交、关系维护、人际互动、陪伴家人或伴侣 Social",
+    "tag": "Social"
+  },
+  "🎪| EventOps": {
+    "name": "EventOps",
+    "name_cn": "EventOps",
+    "description": "活动筹备、布置、执行、运营、现场协调 Social",
+    "tag": "Social"
+  },
+  "🛒| Shopping": {
+    "name": "Shopping",
+    "name_cn": "Shopping",
+    "description": "采购、购买物资、逛商场、补货 Errands",
+    "tag": "Errands"
+  },
+  "🔍| Search": {
+    "name": "Search",
+    "name_cn": "Search",
+    "description": "资料检索、网页搜索、寻找解决方案 Medium Cognitive",
+    "tag": "Medium Cognitive"
+  }
+}

@@ -72,7 +72,8 @@ class TagTask(dspy.Signature):
     tags = dspy.OutputField(
         desc=(
             "JSON object mapping each config dimension to a chosen option text. "
-            "Example: {\"Modes\": \"💻Focus\", \"Task Type\": \"🔍 Testing\"}."
+            "For 'Task Type', you can provide up to 2 matching types as a comma-separated string if applicable. "
+            "Example: {\"Modes\": \"💻Focus\", \"Task Type\": \"🔍 Search, 💻| Coding\"}."
         )
     )
 
@@ -1041,6 +1042,43 @@ def mode_tasktype_pass(
         tags = task.get("tags") or {}
         raw_title = task.get("original_notion_title", task.get("title", ""))
         clean_title = clean_task_title(raw_title, structured_cfg)
+
+        # Pre-detect: if user already placed a Task Type emoji in the title,
+        # set the tag now so the LLM won't overwrite it.
+        if not str(tags.get("Task Type", "")).strip():
+            title_for_tt_detect = raw_title
+            # Strip Modes to avoid mode emojis matching task types
+            for m in structured_cfg.get("modes", []):
+                m_name = m.get("mode_name", "")
+                if m_name and m_name in title_for_tt_detect:
+                    title_for_tt_detect = title_for_tt_detect.replace(m_name, "")
+            # Strip WBS levels to avoid wbs emojis matching task types
+            for wbs_key, wbs_data in structured_cfg.get("wbs_levels", {}).items():
+                if isinstance(wbs_data, dict) and "emoji" in wbs_data:
+                    wbs_emoji = wbs_data["emoji"]
+                    if wbs_emoji and wbs_emoji in title_for_tt_detect:
+                        title_for_tt_detect = title_for_tt_detect.replace(wbs_emoji, "")
+            
+            detected_tts = []
+            for tt_key in structured_cfg.get("task_types", {}).keys():
+                if len(detected_tts) >= 2:
+                    break
+                tt_emoji = re.search(
+                    r'[\U0001F300-\U0001FAFF\U00002702-\U000027B0\U0000FE00-\U0000FEFF\U0001F600-\U0001F64F\U0001F680-\U0001F6FF\U0001F900-\U0001F9FF\U00002600-\U000026FF\U0000200D\U00002B50\U00002B55\U0000231A-\U0000231B\U000023E9-\U000023F3\U000023F8-\U000023FA]+',
+                    tt_key)
+                if tt_emoji and tt_emoji.group() in title_for_tt_detect:
+                    detected_tts.append(tt_key)
+            if detected_tts:
+                tags["Task Type"] = ", ".join(detected_tts)
+
+        # Pre-detect: if user already placed a Mode name in the title,
+        # set the tag now so the LLM won't overwrite it.
+        if not str(tags.get("Modes", "")).strip():
+            for m in structured_cfg.get("modes", []):
+                m_name = m.get("mode_name", "")
+                if m_name and m_name in raw_title:
+                    tags["Modes"] = m_name
+                    break
 
         try:
             generated = tag_task(clean_title, llm_options)

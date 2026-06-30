@@ -11,6 +11,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 STATE_FILE = os.path.join(DATA_DIR, "tasklist_state.json")
 CURRENT_STATE_FILE = os.path.join(DATA_DIR, "current_state.json")
 TASKLIST_HISTORY_FILE = os.path.join(DATA_DIR, "tasklist_history.jsonl")
+TASK_TYPE_STATE_FILE = os.path.join(DATA_DIR, "task_type_state.json")
 GENERATED_SUGGESTION_PREFIX = "\U0001f916\U0001f4ac\U0001f51c"
 
 
@@ -346,3 +347,18 @@ def merge_states(notion_tree: List[Dict[str, Any]], local_state: List[Dict[str, 
         merged_state.append(notion_item)
         
     return merged_state
+
+def save_task_type_state(task_types: Dict[str, Any]):
+    """Write the structured task types state to a JSON file."""
+    with open(TASK_TYPE_STATE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(task_types, f, indent=2, ensure_ascii=False)
+
+def load_task_type_state() -> Dict[str, Any]:
+    """Read the structured task types state from a JSON file."""
+    if not os.path.exists(TASK_TYPE_STATE_FILE):
+        return {}
+    try:
+        with open(TASK_TYPE_STATE_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return {}

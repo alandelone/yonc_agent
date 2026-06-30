@@ -73,7 +73,11 @@ def append_children(parent_id: str, children: List[Dict[str, Any]], after_id: st
         payload["position"] = {"type": position}
         
     response = requests.patch(url, headers=NOTION_HEADERS, json=payload)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(f"[Notion Error Response] {response.text}")
+        raise e
     return response.json()
 
 def replace_with_toggle(block_id: str, target_parent_id: str, toggle_content: Dict[str, Any], children: List[Dict[str, Any]]) -> Dict[str, Any]:

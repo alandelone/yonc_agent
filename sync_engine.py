@@ -88,14 +88,19 @@ def reverse_sync_tags_from_title(working_state: List[Dict[str, Any]], diff_chang
             changed = True
             
         # Detect new Task Type
-        new_tt = ""
+        detected_tts = []
         for tt in task_types_map:
             if tt in new_title:
-                new_tt = tt
-                break
-                
-        if new_tt and new_tt != str(tags.get("Task Type", "")).strip():
-            old_tt = str(tags.get("Task Type", "")).strip()
+                detected_tts.append(tt)
+                if len(detected_tts) >= 2:
+                    break
+                    
+        new_tt = ", ".join(detected_tts) if detected_tts else ""
+        
+        # Check if the set of task types has changed
+        current_tt = str(tags.get("Task Type", "")).strip()
+        if new_tt and new_tt != current_tt:
+            old_tt = current_tt
             sys.stdout.buffer.write(f"Reverse sync: Task Type changed to '{new_tt}' for task {b_id}\n".encode('utf-8'))
             tags["Task Type"] = new_tt
             if old_tt:
@@ -129,6 +134,60 @@ def reverse_sync_tags_from_title(working_state: List[Dict[str, Any]], diff_chang
             
         if changed:
             w_item["tags"] = tags
+
+def migrate_task_types(working_state: List[Dict[str, Any]], old_types: Dict[str, Any], new_types: Dict[str, Any]):
+    if not old_types or not new_types:
+        return
+        
+    # Find "Unknown TYPE" fallback
+    unknown_key = None
+    fallback_key = None
+    for k, v in new_types.items():
+        name = v.get("name", "").lower()
+        if "unknown" in name:
+            unknown_key = k
+            break
+        if not fallback_key:
+            fallback_key = k
+    
+    if not unknown_key:
+        unknown_key = fallback_key or "❓| Unknown TYPE"
+
+    migration_map = {}
+    for old_k, old_v in old_types.items():
+        old_name = old_v.get("name", "").strip().lower()
+        found = False
+        for new_k, new_v in new_types.items():
+            new_name = new_v.get("name", "").strip().lower()
+            if old_name and old_name == new_name:
+                found = True
+                if old_k != new_k:
+                    migration_map[old_k] = new_k
+                break
+        if not found:
+            migration_map[old_k] = unknown_key
+
+    if not migration_map:
+        return
+
+    import sys
+    sys.stdout.buffer.write(f"Migrating task types: {migration_map}\n".encode('utf-8'))
+    
+    for task in working_state:
+        tags = task.get("tags", {})
+        old_tt = tags.get("Task Type", "")
+        if old_tt in migration_map:
+            new_tt = migration_map[old_tt]
+            tags["Task Type"] = new_tt
+            task["tags"] = tags
+            
+            old_emoji = _extract_emoji(old_tt)
+            new_emoji = _extract_emoji(new_tt)
+            if old_emoji and new_emoji and old_emoji != new_emoji:
+                for t_field in ["title", "original_notion_title"]:
+                    val = task.get(t_field)
+                    if val and old_emoji in val:
+                        task[t_field] = val.replace(old_emoji, new_emoji)
 
 def _normalize_uuid(raw_id: str) -> str:
     """灏?32 浣嶆棤杩炲瓧绗︾殑 hex ID 杞崲涓烘爣鍑?UUID 鏍煎紡 (8-4-4-4-12)銆?
@@ -376,10 +435,22 @@ def sync_from_notion(flat_notion_state: List[Dict[str, Any]]):
     # Check what needs to be synced back to working tasklist_state
     working_state = load_state(STATE_FILE)
     
+    # Task Type Migration
+    from config_reader import load_config, structure_yonctask_config
+    from state_manager import load_task_type_state, save_task_type_state
+    new_cfg = structure_yonctask_config(load_config())
+    new_task_types = new_cfg.get("task_types", {})
+    old_task_types = load_task_type_state()
+    if old_task_types:
+        migrate_task_types(working_state, old_task_types, new_task_types)
+    save_task_type_state(new_task_types)
+
     # Reverse sync tags from manual Notion edits
     if diff_result["changes"]:
         reverse_sync_tags_from_title(working_state, diff_result["changes"])
-        save_state(working_state, STATE_FILE)
+    
+    # Save the migrated (and reverse synced) state
+    save_state(working_state, STATE_FILE)
         
     # The actual merge logic sits in state_manager.merge_states
     
@@ -1192,634 +1263,643 @@ def push_tags_to_notion(enriched_state: List[Dict[str, Any]], config_dict: Dict[
             if str(ptask.get("split_stage", "none")) == "suggested":
                 ptask["split_stage"] = "processed"
     
-    for task in enriched_state:
-        tags = task.get("tags") or {}
+    def _process_task(task):
+            tags = task.get("tags") or {}
         
-        # Scrub stale priority emojis directly from memory right away so they never leak into Timeliner.
-        p_emoji_should_be = _extract_emoji(tags.get("Priority", ""))
-        for pe in priority_emojis:
-            if pe != p_emoji_should_be:
-                if "title" in task and pe in str(task["title"]):
-                    task["title"] = str(task["title"]).replace(pe, "").replace("  ", " ").strip()
-                if "original_notion_title" in task and pe in str(task["original_notion_title"]):
-                    task["original_notion_title"] = str(task["original_notion_title"]).replace(pe, "").replace("  ", " ").strip()
+            # Scrub stale priority emojis directly from memory right away so they never leak into Timeliner.
+            p_emoji_should_be = _extract_emoji(tags.get("Priority", ""))
+            for pe in priority_emojis:
+                if pe != p_emoji_should_be:
+                    if "title" in task and pe in str(task["title"]):
+                        task["title"] = str(task["title"]).replace(pe, "").replace("  ", " ").strip()
+                    if "original_notion_title" in task and pe in str(task["original_notion_title"]):
+                        task["original_notion_title"] = str(task["original_notion_title"]).replace(pe, "").replace("  ", " ").strip()
             
-        block_id = task.get("notion_block_id") or task.get("id")
-        block_type = task.get("notion_type") or task.get("type")
-        original_title = task.get("original_notion_title", task.get("title", ""))
-        wbs_level = task.get("wbs_level")
-        is_generated = bool(task.get("is_generated"))
-        generated_selection_processed = bool(task.get("generated_selection_processed", False))
-        origin = task.get("origin", "unknown")
-        if isinstance(wbs_level, str) and wbs_level.isdigit():
-            wbs_level = int(wbs_level)
+            block_id = task.get("notion_block_id") or task.get("id")
+            block_type = task.get("notion_type") or task.get("type")
+            original_title = task.get("original_notion_title", task.get("title", ""))
+            wbs_level = task.get("wbs_level")
+            is_generated = bool(task.get("is_generated"))
+            generated_selection_processed = bool(task.get("generated_selection_processed", False))
+            origin = task.get("origin", "unknown")
+            if isinstance(wbs_level, str) and wbs_level.isdigit():
+                wbs_level = int(wbs_level)
         
-        if block_type == "todo":
-            block_type = "to_do"
-        elif block_type == "bullet":
-            block_type = "bulleted_list_item"
+            if block_type == "todo":
+                block_type = "to_do"
+            elif block_type == "bullet":
+                block_type = "bulleted_list_item"
 
-        if not block_type or not block_id:
-            continue
-        if task.get("is_content_block") or block_type == "quote":
-            continue
+            if not block_type or not block_id:
+                return
+            if task.get("is_content_block") or block_type == "quote":
+                return
 
-        checked = task.get("checked") if block_type == "to_do" else None
-        is_done = (DONE_MARK in original_title) or bool(checked)
-        _parent_id_for_sel = str(task.get("parent_id") or "")
-        _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
-        selection_mode = (
-            block_type == "to_do"
-            and is_generated
-            and not generated_selection_processed
-            and _sibling_checked_count >= 1
-        )
-        is_selected_generated_l4 = selection_mode and bool(checked) and wbs_level == 4
+            checked = task.get("checked") if block_type == "to_do" else None
+            is_done = (DONE_MARK in original_title) or bool(checked)
+            _parent_id_for_sel = str(task.get("parent_id") or "")
+            _sibling_checked_count = _generated_checked_count_by_parent.get(_parent_id_for_sel, 0)
+            selection_mode = (
+                block_type == "to_do"
+                and is_generated
+                and not generated_selection_processed
+                and _sibling_checked_count >= 1
+            )
+            is_selected_generated_l4 = selection_mode and bool(checked) and wbs_level == 4
 
-        depth = int(task.get("depth", 0))
+            depth = int(task.get("depth", 0))
         
-        # Pre-calculate flags for early use before potential wbs_level updates
-        _early_convert_sel_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
-        _early_convert_non_sel_non_l4_to_bullet = (
-            block_type == "to_do"
-            and isinstance(wbs_level, int)
-            and wbs_level in (1, 2, 3)
-            and not (is_generated and not generated_selection_processed)
-        )
-        _early_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
-        is_pending_selection_change = (
-            _early_convert_sel_non_l4_to_bullet
-            or _early_convert_non_sel_non_l4_to_bullet
-            or _early_reset_l4_to_unchecked
-        )
+            # Pre-calculate flags for early use before potential wbs_level updates
+            _early_convert_sel_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+            _early_convert_non_sel_non_l4_to_bullet = (
+                block_type == "to_do"
+                and isinstance(wbs_level, int)
+                and wbs_level in (1, 2, 3)
+                and not (is_generated and not generated_selection_processed)
+            )
+            _early_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+            is_pending_selection_change = (
+                _early_convert_sel_non_l4_to_bullet
+                or _early_convert_non_sel_non_l4_to_bullet
+                or _early_reset_l4_to_unchecked
+            )
 
-        # No tags: only do a lightweight cleanup for stale WBS prefix text.
-        # BUT if the title contains a known theme name OR has manual tag styles, we MUST process it to apply/preserve the badge!
-        has_fallback_theme = False
-        plain_title_trimmed = original_title.strip()
-        for t_name, t_data in themes.items():
-            if t_name and t_name in plain_title_trimmed:
-                has_fallback_theme = True
-                break
-            for st in t_data.get("sub_themes", []):
-                if st and st in plain_title_trimmed:
+            # No tags: only do a lightweight cleanup for stale WBS prefix text.
+            # BUT if the title contains a known theme name OR has manual tag styles, we MUST process it to apply/preserve the badge!
+            has_fallback_theme = False
+            plain_title_trimmed = original_title.strip()
+            for t_name, t_data in themes.items():
+                if t_name and t_name in plain_title_trimmed:
                     has_fallback_theme = True
                     break
-            if has_fallback_theme:
-                break
+                for st in t_data.get("sub_themes", []):
+                    if st and st in plain_title_trimmed:
+                        has_fallback_theme = True
+                        break
+                if has_fallback_theme:
+                    break
 
-        if not tags and not has_fallback_theme and not bool(task.get("has_tag_style", False)):
+            if not tags and not has_fallback_theme and not bool(task.get("has_tag_style", False)):
+                if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
+                    return
+
+                clean_title = re.sub(r'^\[.*?\]\s*', '', original_title).strip()
+                clean_title = _strip_stale_prefix_emojis(clean_title)
+                should_normalize_style = bool(task.get("has_tag_style", False))
+                if clean_title == original_title and not should_normalize_style and not wbs_emoji:
+                    return
+
+                rich_text = []
+                if wbs_emoji:
+                    rich_text.append({
+                        "type": "text",
+                        "text": {"content": wbs_emoji + " "},
+                        "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                    })
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": clean_title},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
+                content_payload = {
+                    block_type: {
+                        "rich_text": rich_text,
+                        "color": "gray" if is_done else "default"
+                    }
+                }
+                if block_type == "to_do":
+                    content_payload[block_type]["checked"] = bool(checked)
+
+                try:
+                    if block_type != "quote":
+                        update_block(block_id, content_payload)
+                    task["title"] = clean_title
+                    if block_type == "to_do":
+                        task["checked"] = bool(checked)
+                    import sys
+                    msg = f"Cleaned stale prefix for {block_id}: {clean_title}\n"
+                    sys.stdout.buffer.write(msg.encode('utf-8'))
+                except Exception as e:
+                    print(f"Failed to clean stale prefix for {block_id}: {e}")
+                return
+             
             if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
-                continue
+                # 鍙垹闄よ LLM 鏍囪杩囩殑 paragraph/heading锛堝凡鍚堝苟鍒板瓙浠诲姟涓殑涓婚鍧楋級
+                # tags 涓虹┖鐨?paragraph 鏄敤鎴锋墜鍐欑殑 section heading锛堝 "濠氬Щ"锛夛紝蹇呴』淇濈暀浣滀负 context
+                if not tags:
+                    return
+                try:
+                    delete_block(block_id)
+                    import sys
+                    msg = f"Merged and deleted theme block {block_id}: {original_title}\n"
+                    sys.stdout.buffer.write(msg.encode('utf-8'))
+                except Exception as e:
+                    print(f"Failed to delete theme block {block_id}: {e}")
+                return
+            # Processed generated tasks should inherit their WBS level based on depth 
+            # so they get the same styling as manual tasks.
+            if is_generated:
+                if generated_selection_processed or is_pending_selection_change:
+                    inferred_wbs_level = wbs_level if isinstance(wbs_level, int) and 1 <= wbs_level <= 4 else min(depth + 1, 4)
+                    if not str(tags.get("WBS level", "")).strip():
+                        wbs_raw = _raw_wbs_value(inferred_wbs_level)
+                        if wbs_raw:
+                            tags["WBS level"] = wbs_raw
+                            task["tags"] = tags
+                            wbs_level = inferred_wbs_level
+                            task["wbs_level"] = wbs_level
+                else:
+                    tags.pop("WBS level", None)
 
-            clean_title = re.sub(r'^\[.*?\]\s*', '', original_title).strip()
-            clean_title = _strip_stale_prefix_emojis(clean_title)
-            should_normalize_style = bool(task.get("has_tag_style", False))
-            if clean_title == original_title and not should_normalize_style and not wbs_emoji:
-                continue
+            # selection_mode 浠呭湪鍚屼竴 parent 涓?generated checked >= 1 鏃舵縺娲?        # 宸插鐞嗚繃鐨?generated selector 浠诲姟涓嶅啀鍙備笌姝ゆ祦绋嬶紝閬垮厤閲嶅 reset/delete 寰幆
+            # 纭繚浜虹被宸茬粡杩涜浜嗕氦浜掞紙鑷冲皯鍕鹃€変簡涓€涓級
+            # Generated split tasks are treated as a preference selector:
+            # - unchecked -> delete
+            # - checked L1-L3 -> convert to toggle
+            # - checked L4 -> reset to unchecked to_do
+            if selection_mode and checked is False:
+                try:
+                    delete_block(block_id)
+                    log_generated_preference_diff(
+                        task=task,
+                        action="delete_unchecked_generated_todo",
+                        before={
+                            "task_id": block_id,
+                            "block_type": "to_do",
+                            "checked": False,
+                            "wbs_level": wbs_level,
+                            "origin": origin
+                        },
+                        after={"block_type": "deleted"}
+                    )
+                    task["deleted"] = True
+                    import sys
+                    msg = f"Deleted unchecked generated to-do {block_id}: {original_title}\n"
+                    sys.stdout.buffer.write(msg.encode('utf-8'))
+                except Exception as e:
+                    print(f"Failed to delete unchecked generated to-do {block_id}: {e}")
+                return
 
+            # For generated non-L4 rows, checked is a review/selection signal, not completion.
+            is_generated_non_l4 = is_generated and isinstance(wbs_level, int) and wbs_level != 4
+            is_done = (DONE_MARK in original_title) or (
+                bool(checked) and not selection_mode and not is_generated_non_l4
+            )
+        
+            # --- Fast pass if already formatted with Theme/SubTheme ---
+            is_already_themed = False
+            plain_title_trimmed = original_title.strip()
+            for t_name, t_data in themes.items():
+                if plain_title_trimmed.startswith(t_name):
+                    is_already_themed = True
+                    break
+                for st in t_data.get("sub_themes", []):
+                    if plain_title_trimmed.startswith(st):
+                        is_already_themed = True
+                        break
+                if is_already_themed:
+                    break
+                
+            should_convert_selected_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
+            should_convert_non_selector_non_l4_to_bullet = (
+                block_type == "to_do"
+                and isinstance(wbs_level, int)
+                and wbs_level in (1, 2, 3)
+                and not (is_generated and not generated_selection_processed)
+            )
+            should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+            should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
+            is_pending_selection_change = (
+                should_convert_selected_non_l4_to_bullet
+                or should_convert_non_selector_non_l4_to_bullet
+                or should_reset_l4_to_unchecked
+            )
+            is_scoped_task = task.get("timeliner_rank") is not None
+            mode_val_for_restore = str(tags.get("Modes", "")).strip()
+            missing_mode_render = False
+            if mode_val_for_restore:
+                for mode_cfg in structured_cfg.get("modes", []):
+                    mode_name = str(mode_cfg.get("mode_name", "")).strip()
+                    if mode_name and mode_name in mode_val_for_restore and mode_name not in original_title:
+                        missing_mode_render = True
+                        break
+            task_type_emoji = _extract_emoji(tags.get("Task Type", ""))
+            missing_task_type_render = bool(task_type_emoji and task_type_emoji not in original_title)
+            needs_processed_l4_wbs_restore = (
+                is_generated
+                and generated_selection_processed
+                and wbs_level == 4
+                and bool(tags.get("WBS level"))
+                and _extract_emoji(tags.get("WBS level", "")) not in original_title
+            )
+            needs_processed_l4_mode_tasktype_restore = (
+                is_generated
+                and generated_selection_processed
+                and wbs_level == 4
+                and is_scoped_task
+                and (missing_mode_render or missing_task_type_render)
+            )
+
+            # Bypass formatting for unselected suggested tasks so they don't get compacted or restyled
+            # But do not bypass if we need to restore/prepend or strip the unreviewed generated prefix "🤖💬🔜"
+            needs_generated_prefix_restore = is_generated and not generated_selection_processed and "🤖💬🔜" not in original_title
+            needs_generated_prefix_strip = is_generated and generated_selection_processed and "🤖💬🔜" in original_title
+            has_unwanted_theme_badge = (
+                is_generated
+                and not generated_selection_processed
+                and is_already_themed
+                and bool(task.get("has_tag_style"))
+            )
+            is_unselected_suggested = is_generated and not generated_selection_processed
+            if (
+                is_unselected_suggested
+                and not is_pending_selection_change
+                and not needs_processed_l4_wbs_restore
+                and not needs_processed_l4_mode_tasktype_restore
+                and not needs_generated_prefix_restore
+                and not needs_generated_prefix_strip
+                and not has_unwanted_theme_badge
+            ):
+                task["synced_tags"] = True
+                return
+
+
+
+            # Check if WBS emoji or Priority emojis are missing or stale
+            wbs_val = tags.get("WBS level", "")
+            wbs_emoji = _extract_emoji(wbs_val)
+            missing_wbs = bool(wbs_emoji and wbs_emoji not in original_title)
+        
+            emojis_that_should_be_there = _ordered_visible_tag_emojis(tags)
+            missing_emojis = any(e not in original_title for e in emojis_that_should_be_there)
+
+            # A prefix emoji is stale if it's in the title but no longer active in tags.
+            has_stale_prefix = False
+            for e in known_prefix_emojis:
+                if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
+                    has_stale_prefix = True
+                    break
+
+            # Check if the row might need colon-italic styling or word-count compaction
+            needs_colon_formatting = ":" in original_title
+            char_limit = _char_limit_for_depth(task.get("depth", 0))
+            needs_compaction = len(str(original_title or "")) > char_limit
+
+            # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
+            # we bypass the rich text reconstruction and API update.
+            # BUT we DO NOT bypass if it contains a colon, exceeds word limit, or has tag changes.
+            if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_compaction and not missing_wbs and not has_stale_prefix and not missing_emojis and not has_unwanted_theme_badge:
+                task["synced_tags"] = True
+                return
+            # --------------------------------------------------------
+        
+            # Clean previous generated prefixes to prevent stacking
+            clean_title = original_title
+            if "🤖💬🔜" in clean_title:
+                clean_title = clean_title.replace("🤖💬🔜", "")
+            # Remove [emoji_block] if any
+            clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
+            # Strip all known prefix emojis to ensure no stale or misplaced emojis remain
+            for e in known_prefix_emojis:
+                clean_title = clean_title.replace(e, "")
+            clean_title = clean_title.strip()
+        
             rich_text = []
+            wbs_val = tags.get("WBS level", "")
+            wbs_emoji = _extract_emoji(wbs_val)
+
+            theme_val = tags.get("Task Theme with colour", "")
+            custom_theme_color = "default"
+
+            if not theme_val:
+                for t_name in themes.keys():
+                    if t_name and t_name in original_title:
+                        theme_val = t_name
+                        break
+                if not theme_val:
+                    for t_name, t_data in themes.items():
+                        for st in t_data.get("sub_themes", []):
+                            if st and st in original_title:
+                                theme_val = st
+                                break
+                        if theme_val:
+                            break
+
+
+            if task.get("notion_rich_text"):
+                for rt in task["notion_rich_text"]:
+                    if rt.get("type") == "text":
+                        annos = rt.get("annotations", {})
+                        rt_content = rt.get("text", {}).get("content", "").strip()
+                        # Themes are bold and code
+                        if not theme_val and annos.get("code") and annos.get("bold") and rt_content:
+                            theme_val = rt_content
+                            custom_theme_color = annos.get("color", "default")
+
+            mode_val = tags.get("Modes", "")
+        
+            if not mode_val:
+                for mode_cfg in structured_cfg.get("modes", []):
+                    m_name = mode_cfg.get("mode_name", "")
+                    if m_name and m_name in clean_title:
+                        mode_val = m_name
+                        break
+        
+            target_color = "default"
+            theme_str = ""
+            should_strip_theme_label_from_title = True
+        
+            if theme_val:
+                original_theme_name = str(theme_val).split()[0]
+                main_theme_name = original_theme_name
+                context_heading = str(task.get("context_heading", "")).strip()
+            
+                # Fallback 1: 鐢ㄦ竻鐞嗗悗鐨勬爣棰橀璇嶏紙鍘绘帀宸叉湁涓婚鍚嶅拰 mode 鍚嶏級鍋?context
+                if not context_heading and clean_title:
+                    # 鍏堜粠 clean_title 涓幓鎺夋墍鏈夊凡鍐欎富棰樺悕锛岄伩鍏嶄箣鍓嶉敊璇帹閫佺殑涓婚鍚嶅惊鍜悕 涓?
+                    fallback_title = clean_title
+                    for t_name in themes.keys():
+                        fallback_title = fallback_title.replace(t_name, "").strip()
+                    if fallback_title:
+                        context_heading = fallback_title.split()[0].strip()
+            
+                # 浠呭綋 LLM 杩斿洖鐨勪富棰樹笉鏄湁鏁?config 涓婚鏃讹紝鎵嶇敤 context_heading 瑕嗙洊
+                if main_theme_name not in themes and context_heading:
+                    for t_name, t_data in themes.items():
+                        if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
+                            main_theme_name = t_name
+                            break
+                        
+                if main_theme_name in themes:
+                    target_color = themes[main_theme_name].get("color", "default")
+                else:
+                    target_color = custom_theme_color
+                    for t_name, t_data in themes.items():
+                        if main_theme_name in t_data.get("sub_themes", []):
+                            target_color = t_data.get("color", "default")
+                            main_theme_name = t_name
+                            break
+
+                theme_str = _resolve_display_theme_label(task, main_theme_name)
+                theme_to_strip = theme_str
+            
+                should_strip_theme_label_from_title = True
+            
+                wbs_level_int = None
+                try:
+                    if task.get("wbs_level") is not None:
+                        wbs_level_int = int(task.get("wbs_level"))
+                except (TypeError, ValueError):
+                    pass
+            
+                if main_theme_name in themes:
+                    known_sub_themes = set(themes[main_theme_name].get("sub_themes", []))
+                    if theme_to_strip and theme_to_strip != main_theme_name and theme_to_strip not in known_sub_themes:
+                        # Dynamic display labels (not part of configured sub-themes)
+                        # should not erase semantically meaningful words in task title.
+                        should_strip_theme_label_from_title = False
+                    
+                if is_generated and not generated_selection_processed and not is_pending_selection_change:
+                    # Never show theme badge on raw generated tasks
+                    theme_str = ""
+                elif wbs_level_int in (3, 4):
+                    # Only wbs lv 1 and 2 shows theme badge, wbs lv 3 and 4 not need to show
+                    theme_str = ""
+                            
+                # 绉婚櫎鎵€鏈夊凡鍐欎富棰樺悕锛岄槻姝箣鍓嶉敊璇帹閫佺殑涓婚鍚嶆畫鐣?
+                for t_name in themes.keys():
+                    if t_name and t_name in clean_title:
+                        clean_title = clean_title.replace(t_name, "").strip()
+                if original_theme_name and original_theme_name in clean_title:
+                    clean_title = clean_title.replace(original_theme_name, "").strip()
+                if should_strip_theme_label_from_title and theme_to_strip and theme_to_strip in clean_title:
+                    clean_title = clean_title.replace(theme_to_strip, "").strip()
+        
+            # Determine Priority and Task Type emojis
+            priority_emoji = _extract_emoji(tags.get("Priority", ""))
+        
+            task_types = [t.strip() for t in str(tags.get("Task Type", "")).split(",") if t.strip()]
+            extracted_tt_emojis = list(filter(None, [_extract_emoji(t) for t in task_types]))
+            task_type_emoji_str = "".join(extracted_tt_emojis)
+
+            # 0. WBS level (always first)
             if wbs_emoji:
+                if wbs_emoji in clean_title:
+                    clean_title = clean_title.replace(wbs_emoji, "").strip()
                 rich_text.append({
                     "type": "text",
                     "text": {"content": wbs_emoji + " "},
                     "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
                 })
-            rich_text.append({
-                "type": "text",
-                "text": {"content": clean_title},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
+
+            # 1. Theme formatting
+            if theme_str:
+                if should_strip_theme_label_from_title and theme_str in clean_title:
+                    clean_title = clean_title.replace(theme_str, "").strip()
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": theme_str},
+                    "annotations": {"bold": True, "code": True, "strikethrough": is_done, "color": "gray" if is_done else target_color}
+                })
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": " "},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
+
+            # 2. Priority formatting
+            if priority_emoji:
+                if priority_emoji in clean_title:
+                    clean_title = clean_title.replace(priority_emoji, "").strip()
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": priority_emoji},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
+
+            # 3. Mode formatting
+            if mode_val:
+                for mode_cfg in structured_cfg.get("modes", []):
+                    mode_name = mode_cfg.get("mode_name", "")
+                    if not mode_name: continue
+                    if mode_name in mode_val:
+                        mode_annos = mode_cfg.get("annotations", {"color": "default", "bold": False, "code": False, "italic": False, "strikethrough": False, "underline": False})
+                        if mode_name in clean_title:
+                            clean_title = clean_title.replace(mode_name, "").strip()
+                        final_mode_annos = mode_annos.copy()
+                        if is_done:
+                            final_mode_annos["strikethrough"] = True
+                            final_mode_annos["color"] = "gray"
+                        rich_text.append({
+                            "type": "text",
+                            "text": {"content": mode_name},
+                            "annotations": final_mode_annos
+                        })
+                        rich_text.append({
+                            "type": "text",
+                            "text": {"content": " "},
+                            "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                        })
+
+            # 4. Task Type formatting
+            if task_type_emoji_str:
+                for e in extracted_tt_emojis:
+                    if e in clean_title:
+                        clean_title = clean_title.replace(e, "").strip()
+                rich_text.append({
+                    "type": "text",
+                    "text": {"content": task_type_emoji_str},
+                    "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
+                })
+
+            # 5. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
+            is_hierarchically_complete = False
+            total_tracked_hours = 0.0
+
+            if wbs_level in [1, 2, 3]:
+                tags_synced = bool(task.get("synced_tags", False))
+                split_stage = task.get("split_stage", "none")
+                has_passed_stages = tags_synced and split_stage not in ["none", "suggested"]
+
+                is_valid_flow = (origin == "human" or generated_selection_processed) and has_passed_stages
+
+                if is_valid_flow:
+                    if _is_task_complete(str(block_id)):
+                        is_hierarchically_complete = True
+                        total_tracked_hours = _calculate_total_hours(str(block_id))
+
+            if is_generated and not generated_selection_processed and not is_pending_selection_change:
+                clean_title = f"🤖💬🔜{clean_title}"
+
+            detected_emojis = []
+            for e in known_prefix_emojis:
+                if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
+                    if e in wbs_emojis:
+                        continue  # Do not carry forward stale WBS tags
+                    if e in priority_emojis:
+                        continue  # Do not carry forward stale Priority tags
+                    if e in task_type_emojis:
+                        continue  # Do not carry forward stale Task Type tags
+                    detected_emojis.append(e)
+
+            rich_text, _visible_title = _render_standard_row_tail(
+                rich_text=rich_text,
+                tags=tags,
+                clean_title=clean_title,
+                is_done=is_done,
+                depth=task.get("depth", 0),
+                total_tracked_hours=total_tracked_hours,
+                is_hierarchically_complete=is_hierarchically_complete,
+                links=task.get("links") if isinstance(task.get("links"), list) else None,
+                extra_emojis=detected_emojis
+            )
+        
             content_payload = {
                 block_type: {
                     "rich_text": rich_text,
                     "color": "gray" if is_done else "default"
                 }
             }
+            checked_for_payload = bool(checked)
+            should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
+            if should_reset_l4_to_unchecked:
+                checked_for_payload = False
             if block_type == "to_do":
-                content_payload[block_type]["checked"] = bool(checked)
+                content_payload[block_type]["checked"] = checked_for_payload
+        
+            # Stop if no update needed (compare raw string loosely)
+            new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
 
+            should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
+            if should_convert_to_bullet:
+                parent_id = task.get("parent_id")
+                if not parent_id:
+                    print(f"Cannot convert to bullet: missing parent_id for {block_id}")
+                else:
+                    try:
+                        child_payloads = _child_payloads_for_replacement(str(block_id))
+                        new_block = replace_with_bullet(
+                            block_id,
+                            parent_id,
+                            rich_text,
+                            color="gray" if is_done else "default",
+                            children=child_payloads,
+                        )
+                        new_block_id = new_block.get("id")
+                        before = {
+                            "task_id": block_id,
+                            "block_type": "to_do",
+                            "checked": bool(checked),
+                            "wbs_level": wbs_level,
+                            "origin": origin
+                        }
+                        if new_block_id:
+                            task["id"] = new_block_id
+                            task["notion_block_id"] = new_block_id
+                            _repoint_descendants(str(block_id), str(new_block_id))
+                        task["notion_type"] = "bulleted_list_item"
+                        task["type"] = "bullet"
+                        task["checked"] = None
+                        task["synced_tags"] = True
+                        if should_convert_selected_non_l4_to_bullet:
+                            task["generated_selection_processed"] = True
+                        task["title"] = new_plain_title
+                        if should_convert_selected_non_l4_to_bullet:
+                            log_generated_preference_diff(
+                                task=task,
+                                action="convert_checked_non_l4_to_bullet",
+                                before=before,
+                                after={
+                                    "block_type": "bulleted_list_item",
+                                    "checked": None,
+                                    "new_task_id": new_block_id
+                                }
+                            )
+                    
+                        import sys
+                        msg = f"Converted non-L4 to-do to bullet for {block_id}: {new_plain_title}\n"
+                        sys.stdout.buffer.write(msg.encode('utf-8'))
+                        return
+                    except Exception as e:
+                        print(f"Failed to convert to bullet for {block_id}: {e}")
+            if task.get("synced_tags") and new_plain_title == original_title and (block_type != "to_do" or bool(checked) == checked_for_payload):
+                return
+        
             try:
                 if block_type != "quote":
                     update_block(block_id, content_payload)
-                task["title"] = clean_title
+                task["synced_tags"] = True
+                task["title"] = new_plain_title
                 if block_type == "to_do":
-                    task["checked"] = bool(checked)
-                import sys
-                msg = f"Cleaned stale prefix for {block_id}: {clean_title}\n"
-                sys.stdout.buffer.write(msg.encode('utf-8'))
-            except Exception as e:
-                print(f"Failed to clean stale prefix for {block_id}: {e}")
-            continue
-             
-        if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
-            # 鍙垹闄よ LLM 鏍囪杩囩殑 paragraph/heading锛堝凡鍚堝苟鍒板瓙浠诲姟涓殑涓婚鍧楋級
-            # tags 涓虹┖鐨?paragraph 鏄敤鎴锋墜鍐欑殑 section heading锛堝 "濠氬Щ"锛夛紝蹇呴』淇濈暀浣滀负 context
-            if not tags:
-                continue
-            try:
-                delete_block(block_id)
-                import sys
-                msg = f"Merged and deleted theme block {block_id}: {original_title}\n"
-                sys.stdout.buffer.write(msg.encode('utf-8'))
-            except Exception as e:
-                print(f"Failed to delete theme block {block_id}: {e}")
-            continue
-        # Processed generated tasks should inherit their WBS level based on depth 
-        # so they get the same styling as manual tasks.
-        if is_generated:
-            if generated_selection_processed or is_pending_selection_change:
-                inferred_wbs_level = wbs_level if isinstance(wbs_level, int) and 1 <= wbs_level <= 4 else min(depth + 1, 4)
-                if not str(tags.get("WBS level", "")).strip():
-                    wbs_raw = _raw_wbs_value(inferred_wbs_level)
-                    if wbs_raw:
-                        tags["WBS level"] = wbs_raw
-                        task["tags"] = tags
-                        wbs_level = inferred_wbs_level
-                        task["wbs_level"] = wbs_level
-            else:
-                tags.pop("WBS level", None)
-
-        # selection_mode 浠呭湪鍚屼竴 parent 涓?generated checked >= 1 鏃舵縺娲?        # 宸插鐞嗚繃鐨?generated selector 浠诲姟涓嶅啀鍙備笌姝ゆ祦绋嬶紝閬垮厤閲嶅 reset/delete 寰幆
-        # 纭繚浜虹被宸茬粡杩涜浜嗕氦浜掞紙鑷冲皯鍕鹃€変簡涓€涓級
-        # Generated split tasks are treated as a preference selector:
-        # - unchecked -> delete
-        # - checked L1-L3 -> convert to toggle
-        # - checked L4 -> reset to unchecked to_do
-        if selection_mode and checked is False:
-            try:
-                delete_block(block_id)
-                log_generated_preference_diff(
-                    task=task,
-                    action="delete_unchecked_generated_todo",
-                    before={
-                        "task_id": block_id,
-                        "block_type": "to_do",
-                        "checked": False,
-                        "wbs_level": wbs_level,
-                        "origin": origin
-                    },
-                    after={"block_type": "deleted"}
-                )
-                task["deleted"] = True
-                import sys
-                msg = f"Deleted unchecked generated to-do {block_id}: {original_title}\n"
-                sys.stdout.buffer.write(msg.encode('utf-8'))
-            except Exception as e:
-                print(f"Failed to delete unchecked generated to-do {block_id}: {e}")
-            continue
-
-        # For generated non-L4 rows, checked is a review/selection signal, not completion.
-        is_generated_non_l4 = is_generated and isinstance(wbs_level, int) and wbs_level != 4
-        is_done = (DONE_MARK in original_title) or (
-            bool(checked) and not selection_mode and not is_generated_non_l4
-        )
-        
-        # --- Fast pass if already formatted with Theme/SubTheme ---
-        is_already_themed = False
-        plain_title_trimmed = original_title.strip()
-        for t_name, t_data in themes.items():
-            if plain_title_trimmed.startswith(t_name):
-                is_already_themed = True
-                break
-            for st in t_data.get("sub_themes", []):
-                if plain_title_trimmed.startswith(st):
-                    is_already_themed = True
-                    break
-            if is_already_themed:
-                break
-                
-        should_convert_selected_non_l4_to_bullet = selection_mode and bool(checked) and wbs_level != 4
-        should_convert_non_selector_non_l4_to_bullet = (
-            block_type == "to_do"
-            and isinstance(wbs_level, int)
-            and wbs_level in (1, 2, 3)
-            and not (is_generated and not generated_selection_processed)
-        )
-        should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
-        should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
-        is_pending_selection_change = (
-            should_convert_selected_non_l4_to_bullet
-            or should_convert_non_selector_non_l4_to_bullet
-            or should_reset_l4_to_unchecked
-        )
-        is_scoped_task = task.get("timeliner_rank") is not None
-        mode_val_for_restore = str(tags.get("Modes", "")).strip()
-        missing_mode_render = False
-        if mode_val_for_restore:
-            for mode_cfg in structured_cfg.get("modes", []):
-                mode_name = str(mode_cfg.get("mode_name", "")).strip()
-                if mode_name and mode_name in mode_val_for_restore and mode_name not in original_title:
-                    missing_mode_render = True
-                    break
-        task_type_emoji = _extract_emoji(tags.get("Task Type", ""))
-        missing_task_type_render = bool(task_type_emoji and task_type_emoji not in original_title)
-        needs_processed_l4_wbs_restore = (
-            is_generated
-            and generated_selection_processed
-            and wbs_level == 4
-            and bool(tags.get("WBS level"))
-            and _extract_emoji(tags.get("WBS level", "")) not in original_title
-        )
-        needs_processed_l4_mode_tasktype_restore = (
-            is_generated
-            and generated_selection_processed
-            and wbs_level == 4
-            and is_scoped_task
-            and (missing_mode_render or missing_task_type_render)
-        )
-
-        # Bypass formatting for unselected suggested tasks so they don't get compacted or restyled
-        # But do not bypass if we need to restore/prepend or strip the unreviewed generated prefix "🤖💬🔜"
-        needs_generated_prefix_restore = is_generated and not generated_selection_processed and "🤖💬🔜" not in original_title
-        needs_generated_prefix_strip = is_generated and generated_selection_processed and "🤖💬🔜" in original_title
-        has_unwanted_theme_badge = (
-            is_generated
-            and not generated_selection_processed
-            and is_already_themed
-            and bool(task.get("has_tag_style"))
-        )
-        is_unselected_suggested = is_generated and not generated_selection_processed
-        if (
-            is_unselected_suggested
-            and not is_pending_selection_change
-            and not needs_processed_l4_wbs_restore
-            and not needs_processed_l4_mode_tasktype_restore
-            and not needs_generated_prefix_restore
-            and not needs_generated_prefix_strip
-            and not has_unwanted_theme_badge
-        ):
-            task["synced_tags"] = True
-            continue
-
-
-
-        # Check if WBS emoji or Priority emojis are missing or stale
-        wbs_val = tags.get("WBS level", "")
-        wbs_emoji = _extract_emoji(wbs_val)
-        missing_wbs = bool(wbs_emoji and wbs_emoji not in original_title)
-        
-        emojis_that_should_be_there = _ordered_visible_tag_emojis(tags)
-        missing_emojis = any(e not in original_title for e in emojis_that_should_be_there)
-
-        # A prefix emoji is stale if it's in the title but no longer active in tags.
-        has_stale_prefix = False
-        for e in known_prefix_emojis:
-            if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
-                has_stale_prefix = True
-                break
-
-        # Check if the row might need colon-italic styling or word-count compaction
-        needs_colon_formatting = ":" in original_title
-        char_limit = _char_limit_for_depth(task.get("depth", 0))
-        needs_compaction = len(str(original_title or "")) > char_limit
-
-        # If it has tag style (e.g. bold/code) and begins with a theme/subtheme,
-        # we bypass the rich text reconstruction and API update.
-        # BUT we DO NOT bypass if it contains a colon, exceeds word limit, or has tag changes.
-        if is_already_themed and task.get("has_tag_style") and not is_pending_selection_change and not needs_colon_formatting and not needs_compaction and not missing_wbs and not has_stale_prefix and not missing_emojis and not has_unwanted_theme_badge:
-            task["synced_tags"] = True
-            continue
-        # --------------------------------------------------------
-        
-        # Clean previous generated prefixes to prevent stacking
-        clean_title = original_title
-        if "🤖💬🔜" in clean_title:
-            clean_title = clean_title.replace("🤖💬🔜", "")
-        # Remove [emoji_block] if any
-        clean_title = re.sub(r'^\[.*?\]\s*', '', clean_title)
-        # Strip all known prefix emojis to ensure no stale or misplaced emojis remain
-        for e in known_prefix_emojis:
-            clean_title = clean_title.replace(e, "")
-        clean_title = clean_title.strip()
-        
-        rich_text = []
-        wbs_val = tags.get("WBS level", "")
-        wbs_emoji = _extract_emoji(wbs_val)
-
-        theme_val = tags.get("Task Theme with colour", "")
-        custom_theme_color = "default"
-
-        if not theme_val:
-            for t_name in themes.keys():
-                if t_name and t_name in original_title:
-                    theme_val = t_name
-                    break
-            if not theme_val:
-                for t_name, t_data in themes.items():
-                    for st in t_data.get("sub_themes", []):
-                        if st and st in original_title:
-                            theme_val = st
-                            break
-                    if theme_val:
-                        break
-
-
-        if task.get("notion_rich_text"):
-            for rt in task["notion_rich_text"]:
-                if rt.get("type") == "text":
-                    annos = rt.get("annotations", {})
-                    rt_content = rt.get("text", {}).get("content", "").strip()
-                    # Themes are bold and code
-                    if not theme_val and annos.get("code") and annos.get("bold") and rt_content:
-                        theme_val = rt_content
-                        custom_theme_color = annos.get("color", "default")
-
-        mode_val = tags.get("Modes", "")
-        
-        if not mode_val:
-            for mode_cfg in structured_cfg.get("modes", []):
-                m_name = mode_cfg.get("mode_name", "")
-                if m_name and m_name in clean_title:
-                    mode_val = m_name
-                    break
-        
-        target_color = "default"
-        theme_str = ""
-        should_strip_theme_label_from_title = True
-        
-        if theme_val:
-            original_theme_name = str(theme_val).split()[0]
-            main_theme_name = original_theme_name
-            context_heading = str(task.get("context_heading", "")).strip()
-            
-            # Fallback 1: 鐢ㄦ竻鐞嗗悗鐨勬爣棰橀璇嶏紙鍘绘帀宸叉湁涓婚鍚嶅拰 mode 鍚嶏級鍋?context
-            if not context_heading and clean_title:
-                # 鍏堜粠 clean_title 涓幓鎺夋墍鏈夊凡鍐欎富棰樺悕锛岄伩鍏嶄箣鍓嶉敊璇帹閫佺殑涓婚鍚嶅惊鍜悕 涓?
-                fallback_title = clean_title
-                for t_name in themes.keys():
-                    fallback_title = fallback_title.replace(t_name, "").strip()
-                if fallback_title:
-                    context_heading = fallback_title.split()[0].strip()
-            
-            # 浠呭綋 LLM 杩斿洖鐨勪富棰樹笉鏄湁鏁?config 涓婚鏃讹紝鎵嶇敤 context_heading 瑕嗙洊
-            if main_theme_name not in themes and context_heading:
-                for t_name, t_data in themes.items():
-                    if context_heading == t_name or context_heading in t_data.get("sub_themes", []):
-                        main_theme_name = t_name
-                        break
-                        
-            if main_theme_name in themes:
-                target_color = themes[main_theme_name].get("color", "default")
-            else:
-                target_color = custom_theme_color
-                for t_name, t_data in themes.items():
-                    if main_theme_name in t_data.get("sub_themes", []):
-                        target_color = t_data.get("color", "default")
-                        main_theme_name = t_name
-                        break
-
-            theme_str = _resolve_display_theme_label(task, main_theme_name)
-            theme_to_strip = theme_str
-            
-            should_strip_theme_label_from_title = True
-            
-            wbs_level_int = None
-            try:
-                if task.get("wbs_level") is not None:
-                    wbs_level_int = int(task.get("wbs_level"))
-            except (TypeError, ValueError):
-                pass
-            
-            if main_theme_name in themes:
-                known_sub_themes = set(themes[main_theme_name].get("sub_themes", []))
-                if theme_to_strip and theme_to_strip != main_theme_name and theme_to_strip not in known_sub_themes:
-                    # Dynamic display labels (not part of configured sub-themes)
-                    # should not erase semantically meaningful words in task title.
-                    should_strip_theme_label_from_title = False
-                    
-            if is_generated and not generated_selection_processed and not is_pending_selection_change:
-                # Never show theme badge on raw generated tasks
-                theme_str = ""
-            elif wbs_level_int in (3, 4):
-                # Only wbs lv 1 and 2 shows theme badge, wbs lv 3 and 4 not need to show
-                theme_str = ""
-                            
-            # 绉婚櫎鎵€鏈夊凡鍐欎富棰樺悕锛岄槻姝箣鍓嶉敊璇帹閫佺殑涓婚鍚嶆畫鐣?
-            for t_name in themes.keys():
-                if t_name and t_name in clean_title:
-                    clean_title = clean_title.replace(t_name, "").strip()
-            if original_theme_name and original_theme_name in clean_title:
-                clean_title = clean_title.replace(original_theme_name, "").strip()
-            if should_strip_theme_label_from_title and theme_to_strip and theme_to_strip in clean_title:
-                clean_title = clean_title.replace(theme_to_strip, "").strip()
-        
-        # Determine Priority and Task Type emojis
-        priority_emoji = _extract_emoji(tags.get("Priority", ""))
-        task_type_emoji = _extract_emoji(tags.get("Task Type", ""))
-
-        # 0. WBS level (always first)
-        if wbs_emoji:
-            if wbs_emoji in clean_title:
-                clean_title = clean_title.replace(wbs_emoji, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": wbs_emoji + " "},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
-
-        # 1. Theme formatting
-        if theme_str:
-            if should_strip_theme_label_from_title and theme_str in clean_title:
-                clean_title = clean_title.replace(theme_str, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": theme_str},
-                "annotations": {"bold": True, "code": True, "strikethrough": is_done, "color": "gray" if is_done else target_color}
-            })
-            rich_text.append({
-                "type": "text",
-                "text": {"content": " "},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
-
-        # 2. Priority formatting
-        if priority_emoji:
-            if priority_emoji in clean_title:
-                clean_title = clean_title.replace(priority_emoji, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": priority_emoji},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
-
-        # 3. Mode formatting
-        if mode_val:
-            for mode_cfg in structured_cfg.get("modes", []):
-                mode_name = mode_cfg.get("mode_name", "")
-                if not mode_name: continue
-                if mode_name in mode_val:
-                    mode_annos = mode_cfg.get("annotations", {"color": "default", "bold": False, "code": False, "italic": False, "strikethrough": False, "underline": False})
-                    if mode_name in clean_title:
-                        clean_title = clean_title.replace(mode_name, "").strip()
-                    final_mode_annos = mode_annos.copy()
-                    if is_done:
-                        final_mode_annos["strikethrough"] = True
-                        final_mode_annos["color"] = "gray"
-                    rich_text.append({
-                        "type": "text",
-                        "text": {"content": mode_name},
-                        "annotations": final_mode_annos
-                    })
-                    rich_text.append({
-                        "type": "text",
-                        "text": {"content": " "},
-                        "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-                    })
-
-        # 4. Task Type formatting
-        if task_type_emoji:
-            if task_type_emoji in clean_title:
-                clean_title = clean_title.replace(task_type_emoji, "").strip()
-            rich_text.append({
-                "type": "text",
-                "text": {"content": task_type_emoji},
-                "annotations": {"strikethrough": is_done, "color": "gray" if is_done else "default"}
-            })
-
-        # 5. ordered visible tag emojis + title render锛堝惈 word-count 鍘嬬缉锛?
-        is_hierarchically_complete = False
-        total_tracked_hours = 0.0
-
-        if wbs_level in [1, 2, 3]:
-            tags_synced = bool(task.get("synced_tags", False))
-            split_stage = task.get("split_stage", "none")
-            has_passed_stages = tags_synced and split_stage not in ["none", "suggested"]
-
-            is_valid_flow = (origin == "human" or generated_selection_processed) and has_passed_stages
-
-            if is_valid_flow:
-                if _is_task_complete(str(block_id)):
-                    is_hierarchically_complete = True
-                    total_tracked_hours = _calculate_total_hours(str(block_id))
-
-        if is_generated and not generated_selection_processed and not is_pending_selection_change:
-            clean_title = f"🤖💬🔜{clean_title}"
-
-        detected_emojis = []
-        for e in known_prefix_emojis:
-            if e in original_title and e not in emojis_that_should_be_there and e != wbs_emoji:
-                if e in wbs_emojis:
-                    continue  # Do not carry forward stale WBS tags
-                if e in priority_emojis:
-                    continue  # Do not carry forward stale Priority tags
-                if e in task_type_emojis:
-                    continue  # Do not carry forward stale Task Type tags
-                detected_emojis.append(e)
-
-        rich_text, _visible_title = _render_standard_row_tail(
-            rich_text=rich_text,
-            tags=tags,
-            clean_title=clean_title,
-            is_done=is_done,
-            depth=task.get("depth", 0),
-            total_tracked_hours=total_tracked_hours,
-            is_hierarchically_complete=is_hierarchically_complete,
-            links=task.get("links") if isinstance(task.get("links"), list) else None,
-            extra_emojis=detected_emojis
-        )
-        
-        content_payload = {
-            block_type: {
-                "rich_text": rich_text,
-                "color": "gray" if is_done else "default"
-            }
-        }
-        checked_for_payload = bool(checked)
-        should_reset_l4_to_unchecked = selection_mode and bool(checked) and wbs_level == 4
-        if should_reset_l4_to_unchecked:
-            checked_for_payload = False
-        if block_type == "to_do":
-            content_payload[block_type]["checked"] = checked_for_payload
-        
-        # Stop if no update needed (compare raw string loosely)
-        new_plain_title = "".join([rt["text"]["content"] for rt in rich_text])
-
-        should_convert_to_bullet = should_convert_selected_non_l4_to_bullet or should_convert_non_selector_non_l4_to_bullet
-        if should_convert_to_bullet:
-            parent_id = task.get("parent_id")
-            if not parent_id:
-                print(f"Cannot convert to bullet: missing parent_id for {block_id}")
-            else:
-                try:
-                    child_payloads = _child_payloads_for_replacement(str(block_id))
-                    new_block = replace_with_bullet(
-                        block_id,
-                        parent_id,
-                        rich_text,
-                        color="gray" if is_done else "default",
-                        children=child_payloads,
+                    task["checked"] = checked_for_payload
+                if should_reset_l4_to_unchecked:
+                    task["generated_selection_processed"] = True
+                    log_generated_preference_diff(
+                        task=task,
+                        action="convert_checked_l4_to_unchecked_todo",
+                        before={
+                            "task_id": block_id,
+                            "block_type": "to_do",
+                            "checked": True,
+                            "wbs_level": wbs_level,
+                            "origin": origin
+                        },
+                        after={
+                            "block_type": "to_do",
+                            "checked": False
+                        }
                     )
-                    new_block_id = new_block.get("id")
-                    before = {
-                        "task_id": block_id,
-                        "block_type": "to_do",
-                        "checked": bool(checked),
-                        "wbs_level": wbs_level,
-                        "origin": origin
-                    }
-                    if new_block_id:
-                        task["id"] = new_block_id
-                        task["notion_block_id"] = new_block_id
-                        _repoint_descendants(str(block_id), str(new_block_id))
-                    task["notion_type"] = "bulleted_list_item"
-                    task["type"] = "bullet"
-                    task["checked"] = None
-                    task["synced_tags"] = True
-                    if should_convert_selected_non_l4_to_bullet:
-                        task["generated_selection_processed"] = True
-                    task["title"] = new_plain_title
-                    if should_convert_selected_non_l4_to_bullet:
-                        log_generated_preference_diff(
-                            task=task,
-                            action="convert_checked_non_l4_to_bullet",
-                            before=before,
-                            after={
-                                "block_type": "bulleted_list_item",
-                                "checked": None,
-                                "new_task_id": new_block_id
-                            }
-                        )
-                    
-                    import sys
-                    msg = f"Converted non-L4 to-do to bullet for {block_id}: {new_plain_title}\n"
-                    sys.stdout.buffer.write(msg.encode('utf-8'))
-                    continue
-                except Exception as e:
-                    print(f"Failed to convert to bullet for {block_id}: {e}")
-        if task.get("synced_tags") and new_plain_title == original_title and (block_type != "to_do" or bool(checked) == checked_for_payload):
-            continue
-        
-        try:
-            if block_type != "quote":
-                update_block(block_id, content_payload)
-            task["synced_tags"] = True
-            task["title"] = new_plain_title
-            if block_type == "to_do":
-                task["checked"] = checked_for_payload
-            if should_reset_l4_to_unchecked:
-                task["generated_selection_processed"] = True
-                log_generated_preference_diff(
-                    task=task,
-                    action="convert_checked_l4_to_unchecked_todo",
-                    before={
-                        "task_id": block_id,
-                        "block_type": "to_do",
-                        "checked": True,
-                        "wbs_level": wbs_level,
-                        "origin": origin
-                    },
-                    after={
-                        "block_type": "to_do",
-                        "checked": False
-                    }
-                )
             
-            import sys
-            msg = f"Pushed formatted tags to Notion for {block_id}: {new_plain_title}\n"
-            sys.stdout.buffer.write(msg.encode('utf-8'))
-        except Exception as e:
-            print(f"Failed to push tags to Notion for {block_id}: {e}")
+                import sys
+                msg = f"Pushed formatted tags to Notion for {block_id}: {new_plain_title}\n"
+                sys.stdout.buffer.write(msg.encode('utf-8'))
+            except Exception as e:
+                print(f"Failed to push tags to Notion for {block_id}: {e}")
+
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        executor.map(_process_task, enriched_state)
 
 def push_subtasks_to_notion(
     task_id: str,

@@ -204,19 +204,24 @@ def group_tasks_by_task_type(
         tags = task.get("tags") or {}
         type_val = tags.get("Task Type", "")
 
-        matched_type = None
+        matched_types = []
         if type_val:
-            for type_emoji, type_info in known_types.items():
-                if type_emoji in type_val:
-                    # 用 emoji + 中文名 作为分组键
-                    name_cn = type_info.get("name_cn", type_info.get("description", ""))
-                    matched_type = f"{type_emoji} {name_cn}".strip()
-                    break
+            for t_chunk in type_val.split(","):
+                t_chunk = t_chunk.strip()
+                if not t_chunk: continue
+                for type_emoji, type_info in known_types.items():
+                    if type_emoji in t_chunk:
+                        name_cn = type_info.get("name_cn", type_info.get("description", ""))
+                        matched_types.append(f"{type_emoji} {name_cn}".strip())
+                        break
 
-        key = matched_type or "Unassigned"
-        if key not in groups:
-            groups[key] = []
-        groups[key].append(task)
+        if not matched_types:
+            matched_types = ["Unassigned"]
+
+        for key in matched_types:
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(task)
 
     return groups
 
@@ -556,17 +561,65 @@ def write_dashboard(
     if not blocks:
         return 0, task_index_map
 
-    # Notion API 限制：单次最多 100 个 children
-    batch_size = 100
-    total_written = 0
+    column_list_block = blocks[0]
+    cols = column_list_block.get("column_list", {}).get("children", [])
+    
+    by_mode_blocks = []
+    by_type_blocks = []
+    
+    if len(cols) >= 2:
+        col1_children = cols[0].get("column", {}).get("children", [])
+        col2_children = cols[1].get("column", {}).get("children", [])
+        
+        if len(col1_children) > 1:
+            by_mode_blocks = col1_children[1:]
+            cols[0]["column"]["children"] = [col1_children[0]]
+            
+        if len(col2_children) > 1:
+            by_type_blocks = col2_children[1:]
+            cols[1]["column"]["children"] = [col2_children[0]]
 
-    for i in range(0, len(blocks), batch_size):
-        batch = blocks[i:i + batch_size]
+    try:
+        response = append_children(page_id, [column_list_block])
+    except Exception as e:
+        print(f"写入 column_list block 失败: {e}")
+        return 0, task_index_map
+
+    try:
+        column_list_id = response["results"][0]["id"]
+        created_cols = get_page_blocks(column_list_id)
+    except Exception as e:
+        print(f"获取 column blocks 失败: {e}")
+        return 1, task_index_map
+
+    if len(created_cols) < 2:
+        print(f"获取到的 column 数量不足: {len(created_cols)}")
+        return 1, task_index_map
+
+    column_1_id = created_cols[0]["id"]
+    column_2_id = created_cols[1]["id"]
+
+    batch_size = 100
+    total_written = 1
+
+    # 写入 Column 1 (By Modes)
+    for i in range(0, len(by_mode_blocks), batch_size):
+        batch = by_mode_blocks[i:i + batch_size]
         try:
-            append_children(page_id, batch)
+            append_children(column_1_id, batch)
             total_written += len(batch)
         except Exception as e:
-            print(f"写入 dashboard blocks 失败 (batch {i // batch_size}): {e}")
+            print(f"写入 column_1 (By Modes) blocks 失败 (batch {i // batch_size}): {e}")
+            break
+
+    # 写入 Column 2 (By Task Type)
+    for i in range(0, len(by_type_blocks), batch_size):
+        batch = by_type_blocks[i:i + batch_size]
+        try:
+            append_children(column_2_id, batch)
+            total_written += len(batch)
+        except Exception as e:
+            print(f"写入 column_2 (By Task Type) blocks 失败 (batch {i // batch_size}): {e}")
             break
 
     # Save mapping for bidirectional sync

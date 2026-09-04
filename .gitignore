@@ -16,8 +16,18 @@ yonctask_config_blocks.json
 # Scratch debug and temporary database/log files
 *.sqlite3
 test_*.py
+!tests/test_*.py
 check_*.py
 dry_run.log
 modes.txt
 revert_notion_titles.py
 history_out.txt
+data/project_graph.sqlite3
+data/project_graph.sqlite3-*
+data/backups/
+graph_app/frontend/node_modules/
+graph_app/frontend/*.tsbuildinfo
+graph_app/frontend/vite.config.js
+graph_app/frontend/vite.config.d.ts
+docs/product-specs/qa/
+docs/product-specs/qa-v11/

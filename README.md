@@ -9,6 +9,41 @@
 
 </div>
 
+## Local Project Graph v1.1
+
+The project includes a local-first Canvas, Capacity Grid, Forecast, and Split Session
+workspace backed by SQLite. SQLite is the project truth; legacy and Notion data are only
+imported through explicit preview/apply flows, and this milestone never writes back to
+Notion automatically.
+
+```powershell
+# Back up the current graph and apply the additive v1.1 migration
+python main.py graph-backup
+python -m alembic upgrade head
+
+# Import the current data/tasklist_state.json (safe to run again)
+python main.py graph-import
+
+# Open the local app at http://127.0.0.1:8765
+python main.py serve
+```
+
+Use `python main.py graph-import --dry-run` to preview the import and
+`python main.py graph-backup` to create a timestamped local database copy.
+
+The v2 API is under `/api/v2`. The existing `/api/v1` contract and `/legacy` interface
+remain available during migration. Main navigation and ordinary field labels are English;
+all confirmations, validation messages, errors, toasts, and Split conversation UI are
+Simplified Chinese.
+
+Frontend development commands live in `graph_app/frontend`:
+
+```powershell
+pnpm install
+pnpm test
+pnpm build
+```
+
 ## 这是什么？ (What is this?)
 
 YoncAgent 基于 Python，整合了 DSPy 与 Gemini 多模型能力，旨在辅助前额叶功能。它将抽象宏大的目标强制“降维”拆解为可执行的物理动作，帮助你摆脱面对模糊任务时的卡壳状态。

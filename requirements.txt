@@ -3,3 +3,7 @@ python-dotenv
 dspy
 litellm
 pydantic
+fastapi
+uvicorn
+sqlalchemy
+alembic

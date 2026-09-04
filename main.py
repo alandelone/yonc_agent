@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import re
+import shutil
 import time
 from contextlib import contextmanager
 from datetime import datetime
@@ -198,6 +199,47 @@ def cmd_show_config() -> None:
 
     output = json.dumps(cfg, indent=2, ensure_ascii=False)
     sys.stdout.buffer.write(output.encode("utf-8") + b"\n")
+
+
+def cmd_graph_serve(host: str, port: int) -> None:
+    """Launch the local-only graph web application."""
+    import uvicorn
+    from graph_app import create_app
+
+    uvicorn.run(create_app(), host=host, port=port)
+
+
+def cmd_graph_import(dry_run: bool = False) -> None:
+    """Import existing task JSON into the separate local graph database."""
+    from sqlalchemy.orm import sessionmaker
+    from graph_app.database import Base, make_engine
+    from graph_app.legacy import import_legacy_state
+
+    engine = make_engine()
+    Base.metadata.create_all(engine)
+    with sessionmaker(bind=engine)() as session:
+        result = import_legacy_state(session)
+        if dry_run:
+            session.rollback()
+            result["dry_run"] = True
+        else:
+            session.commit()
+    print(json.dumps(result, ensure_ascii=False))
+
+
+def cmd_graph_backup() -> None:
+    """Create a timestamped, recoverable copy of the local graph database."""
+    from graph_app.database import DEFAULT_DATABASE_PATH
+
+    if not DEFAULT_DATABASE_PATH.exists():
+        print("No local graph database exists yet. Run graph-import or serve first.")
+        return
+    backup_dir = DEFAULT_DATABASE_PATH.parent / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    target = backup_dir / f"project_graph_{stamp}.sqlite3"
+    shutil.copy2(DEFAULT_DATABASE_PATH, target)
+    print(f"Backup created: {target}")
 
 
 def cmd_sync() -> None:
@@ -832,6 +874,12 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         cmd_poll()
     elif args.command == "show-config":
         cmd_show_config()
+    elif args.command == "serve":
+        cmd_graph_serve(host=args.host, port=args.port)
+    elif args.command == "graph-import":
+        cmd_graph_import(dry_run=args.dry_run)
+    elif args.command == "graph-backup":
+        cmd_graph_backup()
     elif args.command == "timeliner":
         cmd_timeliner()
     elif args.command == "timeliner-diff":
@@ -917,6 +965,12 @@ def main() -> None:
     subparsers.add_parser("split", help="Legacy wrapper to L2 flow")
     subparsers.add_parser("poll", help="Start polling loop")
     subparsers.add_parser("show-config", help="Print parsed YoncTask_config")
+    serve_parser = subparsers.add_parser("serve", help="Run the local Project Graph web app")
+    serve_parser.add_argument("--host", default="127.0.0.1", help="Local bind address (default: 127.0.0.1)")
+    serve_parser.add_argument("--port", default=8765, type=int, help="Local port (default: 8765)")
+    graph_import_parser = subparsers.add_parser("graph-import", help="Import existing state JSON into local SQLite graph")
+    graph_import_parser.add_argument("--dry-run", action="store_true", help="Report import without saving graph changes")
+    subparsers.add_parser("graph-backup", help="Copy the local graph database to data/backups")
     subparsers.add_parser("timeliner", help="Sync TIMELINER page with progress")
     subparsers.add_parser("timeliner-diff", help="Show timeline date change history")
     focus_parser = subparsers.add_parser("focus", help="Show task list with focus position / move focus / sync time")

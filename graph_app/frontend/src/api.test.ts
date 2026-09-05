@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, canvasEdgeEndpoints, connectorRoute, healthWarningMessage, nodeCardHeight, nodeCardInfo, projectKeyForNode, scheduledModuleLayout, splitCardTitle, wbsColorFor } from "./App";
+import { anchoredScrollPosition, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, connectorRoute, healthWarningMessage, nodeCardHeight, nodeCardInfo, nodesInSelectionBounds, projectKeyForNode, scheduledModuleLayout, splitCardTitle, wbsColorFor } from "./App";
 import type { GraphNode } from "./types";
 
 describe("Simplified Chinese interaction messages", () => {
@@ -17,6 +17,25 @@ describe("Simplified Chinese interaction messages", () => {
 });
 
 describe("Capacity Grid drag allocation preview", () => {
+  it("selects every Canvas block touched by a marquee", () => {
+    const positions = { a: { x: 10, y: 10 }, b: { x: 210, y: 20 }, c: { x: 20, y: 160 } };
+    const heights = { a: 66, b: 80, c: 66 };
+    expect(nodesInSelectionBounds(positions, heights, { left: 0, top: 0, right: 220, bottom: 90 })).toEqual(["a", "b"]);
+    expect(nodesInSelectionBounds(positions, heights, { left: 30, top: 170, right: 60, bottom: 190 })).toEqual(["c"]);
+  });
+
+  it("supports Shift multi-selection, marquee selection, and grouped Canvas dragging", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(app).toContain("event.shiftKey");
+    expect(app).toContain("marqueeDrag.current");
+    expect(app).toContain("Drag any selected block to move the group");
+    expect(app).toContain("for (const id of current.ids)");
+    expect(app).toContain("selectedIds.length === 1");
+    expect(styles).toContain(".selection-marquee");
+    expect(styles).toContain(".canvas-selection-status");
+  });
+
   it("keeps a single-day milestone readable without presenting it as a date range", () => {
     expect(scheduledModuleLayout("2026-08-27", "2026-08-27", 4, 4, 20)).toEqual({ singleDay: true, displayEndWeek: 7 });
     expect(scheduledModuleLayout("2026-08-27", "2026-09-10", 4, 6, 20)).toEqual({ singleDay: false, displayEndWeek: 6 });
@@ -77,10 +96,12 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(canvas).not.toContain("api.schedule");
     expect(canvas).toContain("logarithmicDateOffset");
     expect(canvas).toContain("connectorRoute");
-    expect(canvas).toContain("onClearSelection");
+    expect(canvas).toContain("onSelectionChange");
     expect(canvas).toContain("setManualPositions");
     expect(canvas).toContain('api.saveViewState("canvas"');
     expect(canvas).toContain("fitAll");
+    expect(canvas).toContain("autoArrangeAll");
+    expect(canvas).toContain(">Auto Arrange</button>");
     expect(canvas).toContain("(canvas.clientWidth - 28) / width");
     expect(canvas).not.toContain("(canvas.clientHeight - 28) / height");
     expect(canvas).toContain("Math.max(horizontalFitZoom()");
@@ -99,7 +120,7 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(styles).toContain(".month-tick");
     expect(canvas).toMatch(/canvas-zoom-space[\s\S]*?<LogarithmicTimeAxis[\s\S]*?canvas-stage/);
     expect(canvas).toContain("todayX={todayX * zoom}");
-    expect(canvas).toContain("height={height * zoom}");
+    expect(canvas).toContain("height={height * zoom + 54}");
     expect(canvas.slice(canvas.indexOf('className="canvas-stage"'))).not.toContain("<LogarithmicTimeAxis");
     expect(canvas).not.toContain('className="node-port');
     expect(styles).toContain(".minimap-viewport");
@@ -143,6 +164,33 @@ describe("Capacity Grid drag allocation preview", () => {
     const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
     expect(app).toContain("const endpoints = canvasEdgeEndpoints(edge)");
     expect(app).toContain("__layout_direction_version: CANVAS_LAYOUT_VERSION");
+  });
+
+  it("fits the Canvas to the actual bounds of every arranged block", () => {
+    expect(canvasContentBounds({
+      a: { x: 100, y: 80 },
+      b: { x: 500, y: 300 },
+    }, { a: 66, b: 94 })).toEqual({ left: 100, top: 80, right: 664, bottom: 394 });
+    expect(canvasContentBounds({}, {})).toBeNull();
+  });
+
+  it("keeps timeline X positions while separating blocks that would overlap", () => {
+    const arranged = arrangeCanvasPositions({
+      goal: { x: 500, y: 82 },
+      deliverable: { x: 510, y: 82 },
+      distant: { x: 900, y: 82 },
+    }, { goal: 66, deliverable: 79, distant: 66 });
+    expect(arranged.goal).toEqual({ x: 500, y: 82 });
+    expect(arranged.deliverable).toEqual({ x: 510, y: 166 });
+    expect(arranged.distant).toEqual({ x: 900, y: 82 });
+  });
+
+  it("lets Timeline dates own horizontal Canvas positions without discarding manual lanes", () => {
+    const automatic = { x: 640, y: 120 };
+    const manual = { x: 240, y: 360 };
+    expect(canvasPositionForNode({ planned_start: "2026-09-04", deadline: null }, automatic, manual)).toEqual({ x: 640, y: 360 });
+    expect(canvasPositionForNode({ planned_start: null, deadline: "2026-10-01" }, automatic, manual)).toEqual({ x: 640, y: 360 });
+    expect(canvasPositionForNode({ planned_start: null, deadline: null }, automatic, manual)).toEqual({ x: 240, y: 360 });
   });
 
   it("shows inspectors only as floating on-demand panels", () => {

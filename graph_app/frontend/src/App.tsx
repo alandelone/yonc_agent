@@ -6,12 +6,13 @@ import type { GraphEdge, GraphNode, GraphResponse, SplitSession, TimelineCell, T
 type MainView = "canvas" | "timeline";
 type TimelineMode = "forecast" | "capacity";
 type Position = { x: number; y: number };
+type SelectionBounds = { left: number; top: number; right: number; bottom: number };
 type ConnectorSide = "top" | "right" | "bottom" | "left";
 type UndoAction = { kind: "local"; undo: () => Promise<void> | void } | { kind: "batch"; batchId: string };
 
 const CARD_W = 164;
 const COMPACT_CARD_H = 66;
-const CANVAS_LAYOUT_VERSION = 2;
+const CANVAS_LAYOUT_VERSION = 4;
 const projectPalette = [
   { hue: 160, saturation: 64 },
   { hue: 199, saturation: 93 },
@@ -71,6 +72,58 @@ export function canvasEdgeEndpoints(edge: Pick<GraphEdge, "source_id" | "target_
   return edge.relation === "contains"
     ? { sourceId: edge.target_id, targetId: edge.source_id }
     : { sourceId: edge.source_id, targetId: edge.target_id };
+}
+
+export function canvasContentBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>) {
+  const entries = Object.entries(positions);
+  if (!entries.length) return null;
+  return {
+    left: Math.min(...entries.map(([, position]) => position.x)),
+    top: Math.min(...entries.map(([, position]) => position.y)),
+    right: Math.max(...entries.map(([, position]) => position.x + CARD_W)),
+    bottom: Math.max(...entries.map(([id, position]) => position.y + (nodeHeights[id] ?? COMPACT_CARD_H))),
+  };
+}
+
+export function nodesInSelectionBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>, bounds: SelectionBounds) {
+  return Object.entries(positions).filter(([id, position]) => (
+    position.x < bounds.right
+    && position.x + CARD_W > bounds.left
+    && position.y < bounds.bottom
+    && position.y + (nodeHeights[id] ?? COMPACT_CARD_H) > bounds.top
+  )).map(([id]) => id);
+}
+
+export function arrangeCanvasPositions(desired: Record<string, Position>, nodeHeights: Record<string, number>) {
+  const gap = 18;
+  const arranged: Record<string, Position> = {};
+  const placed: Array<{ id: string; x: number; y: number; height: number }> = [];
+  const ordered = Object.entries(desired).sort(([, left], [, right]) => left.y - right.y || left.x - right.x);
+  for (const [id, position] of ordered) {
+    const height = nodeHeights[id] ?? COMPACT_CARD_H;
+    let y = position.y;
+    while (true) {
+      const conflicts = placed.filter((item) =>
+        position.x < item.x + CARD_W + gap
+        && position.x + CARD_W + gap > item.x
+        && y < item.y + item.height + gap
+        && y + height + gap > item.y,
+      );
+      if (!conflicts.length) break;
+      y = Math.max(...conflicts.map((item) => item.y + item.height + gap));
+    }
+    arranged[id] = { x: position.x, y };
+    placed.push({ id, x: position.x, y, height });
+  }
+  return arranged;
+}
+
+export function canvasPositionForNode(node: Pick<GraphNode, "planned_start" | "deadline">, automatic: Position, manual?: Position) {
+  const timelinePositioned = Boolean(node.planned_start || node.deadline);
+  return {
+    x: timelinePositioned ? automatic.x : manual?.x ?? automatic.x,
+    y: manual?.y ?? automatic.y,
+  };
 }
 
 function addDays(value: string, days: number) {
@@ -200,7 +253,7 @@ function useElkPositions(nodes: GraphNode[], edges: GraphEdge[]) {
   return positions;
 }
 
-function NodeCard({ node, position, height, color, selected, onSelect, onSplit, onPointerDown }: {
+function NodeCard({ node, position, height, color, selected, onSelect, onSplit, onPointerDown, registerElement }: {
   node: GraphNode;
   position: Position;
   height: number;
@@ -209,19 +262,22 @@ function NodeCard({ node, position, height, color, selected, onSelect, onSplit, 
   onSelect: () => void;
   onSplit: () => void;
   onPointerDown: (event: React.PointerEvent<HTMLElement>) => void;
+  registerElement: (element: HTMLElement | null) => void;
 }) {
   const display = splitCardTitle(node.title);
   const { hasMeta, hasSignals } = nodeCardInfo(node);
   const effort = (node.estimated_effort_minutes ?? 0) > 0 ? formatEffort(node.estimated_effort_minutes) : null;
   return (
     <article
+      ref={registerElement}
       data-node-id={node.id}
       data-wbs-level={node.wbs_level ?? undefined}
       className={`node-card status-${node.status.toLowerCase()} pressure-${node.pressure?.level ?? "low"} ${selected ? "selected" : ""}`}
       style={{ height, transform: `translate(${position.x}px, ${position.y}px)`, "--node-color": color, "--progress": node.progress?.ratio ?? 0 } as React.CSSProperties}
-      onClick={(event) => { event.stopPropagation(); onSelect(); }}
+      onClick={(event) => { event.stopPropagation(); if (!event.shiftKey) onSelect(); }}
       onPointerDown={onPointerDown}
       tabIndex={0}
+      aria-selected={selected}
       aria-label={`${node.title}, ${node.work_type}, ${node.status}`}
       onKeyDown={(event) => (event.key === "Enter" || event.key === " ") && onSelect()}
     >
@@ -302,11 +358,10 @@ export function connectorRoute(source: Position, sourceHeight: number, target: P
   return { sourceSide, targetSide, x1, y1, x2, y2, path: curvedOrthogonalPath(x1, y1, x2, y2, horizontal ? "horizontal" : "vertical") };
 }
 
-function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit, onRegisterUndo }: {
+function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegisterUndo }: {
   graph: GraphResponse;
-  selectedId: string | null;
-  onSelect: (id: string) => void;
-  onClearSelection: () => void;
+  selectedIds: string[];
+  onSelectionChange: (ids: string[]) => void;
   onOpenSplit: (node: GraphNode) => void;
   onRegisterUndo: (action: UndoAction) => void;
 }) {
@@ -319,19 +374,25 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
   const canvasRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const minimapViewportRef = useRef<HTMLDivElement>(null);
+  const nodeRefs = useRef(new Map<string, HTMLElement>());
   const minimapNodeRefs = useRef(new Map<string, HTMLElement>());
   const edgeRefs = useRef(new Map<string, SVGPathElement>());
   const pan = useRef<{ pointerId: number; x: number; y: number; clientX: number; clientY: number; left: number; top: number; moved: boolean } | null>(null);
   const panFrame = useRef<number | null>(null);
   const viewportFrame = useRef<number | null>(null);
   const suppressNodeClick = useRef(false);
-  const positionedToday = useRef(false);
+  const initialArrangePending = useRef(false);
+  const initialFitDone = useRef(false);
+  const fitAfterArrange = useRef(false);
   const [zoom, setZoom] = useState(1);
   const zoomTarget = useRef(1);
   const pendingZoomAnchor = useRef<null | { left: number; top: number }>(null);
   const [manualPositions, setManualPositions] = useState<Record<string, Position>>({});
-  const nodeDrag = useRef<null | { id: string; pointerId: number; startX: number; startY: number; base: Position; dx: number; dy: number; moved: boolean; zoom: number; element: HTMLElement; positions: Record<string, Position>; edges: GraphEdge[]; width: number; height: number }>(null);
+  const [viewStateLoaded, setViewStateLoaded] = useState(false);
+  const nodeDrag = useRef<null | { ids: string[]; lockX: boolean; pointerId: number; startX: number; startY: number; bases: Record<string, Position>; dx: number; dy: number; moved: boolean; zoom: number; element: HTMLElement; positions: Record<string, Position>; edges: GraphEdge[]; width: number; height: number }>(null);
   const nodeDragFrame = useRef<number | null>(null);
+  const marqueeDrag = useRef<null | { pointerId: number; startX: number; startY: number; currentX: number; currentY: number; baseIds: string[]; moved: boolean }>(null);
+  const [marqueeBounds, setMarqueeBounds] = useState<SelectionBounds | null>(null);
   const today = new Date().toISOString().slice(0, 10);
   const scheduledDates = renderNodes.flatMap((node) => [node.planned_start, node.planned_end, node.deadline]).filter(Boolean) as string[];
   const years = scheduledDates.map((value) => Number(value.slice(0, 4)));
@@ -349,34 +410,38 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
 
   useEffect(() => {
     let cancelled = false;
+    setViewStateLoaded(false);
     api.viewState("canvas").then((state) => {
       if (cancelled) return;
       const stored = (state.vertical_layout ?? {}) as Record<string, unknown>;
       const next: Record<string, Position> = {};
-      for (const node of renderNodes) {
-        const x = stored[`${node.id}:x`];
-        const y = stored[`${node.id}:y`];
-        if (typeof x === "number" && typeof y === "number") next[node.id] = { x, y };
-      }
-      if (stored.__layout_direction_version !== CANVAS_LAYOUT_VERSION) {
-        const xValues = Object.values(next).map((position) => position.x);
-        if (xValues.length > 1) {
-          const mirrorAxis = Math.min(...xValues) + Math.max(...xValues);
-          for (const position of Object.values(next)) position.x = mirrorAxis - position.x;
+      if (stored.__layout_direction_version === CANVAS_LAYOUT_VERSION) {
+        for (const node of renderNodes) {
+          const x = stored[`${node.id}:x`];
+          const y = stored[`${node.id}:y`];
+          if (typeof x === "number" && typeof y === "number") next[node.id] = { x, y };
         }
-        void persistPositions(next).catch(() => undefined);
+      } else {
+        initialArrangePending.current = true;
       }
       setManualPositions(next);
-    }).catch(() => undefined);
+    }).catch(() => {
+      if (!cancelled) {
+        initialArrangePending.current = true;
+        setManualPositions({});
+      }
+    }).finally(() => { if (!cancelled) setViewStateLoaded(true); });
     return () => { cancelled = true; };
   }, [persistPositions, renderNodes]);
 
-  const positions = useMemo(() => Object.fromEntries(renderNodes.map((node, index) => {
+  const desiredPositions = useMemo(() => Object.fromEntries(renderNodes.map((node, index) => {
     const scheduled = node.planned_start ?? node.deadline;
     const elk = elkPositions[node.id] ?? { x: (index % 7) * 188, y: Math.floor(index / 7) * 112 };
-    const derived = { x: scheduled ? todayX + logarithmicDateOffset(scheduled, today) : 90 + elk.x, y: 82 + elk.y };
-    return [node.id, manualPositions[node.id] ?? derived];
-  })), [renderNodes, elkPositions, manualPositions, today, todayX]);
+    return [node.id, { x: scheduled ? todayX + logarithmicDateOffset(scheduled, today) : 90 + elk.x, y: 82 + elk.y }];
+  })), [renderNodes, elkPositions, today, todayX]);
+  const automaticPositions = useMemo(() => arrangeCanvasPositions(desiredPositions, nodeHeights), [desiredPositions, nodeHeights]);
+  const positions = useMemo(() => Object.fromEntries(renderNodes.map((node) => [node.id, canvasPositionForNode(node, automaticPositions[node.id], manualPositions[node.id])])), [renderNodes, manualPositions, automaticPositions]);
+  const layoutReady = renderNodes.length === 0 || renderNodes.every((node) => Boolean(elkPositions[node.id]));
 
   const edgePaths = renderEdges.map((edge) => {
     const endpoints = canvasEdgeEndpoints(edge);
@@ -393,23 +458,30 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
     nodeDragFrame.current = null;
     const current = nodeDrag.current;
     if (!current) return;
-    const position = { x: current.base.x + current.dx, y: current.base.y + current.dy };
-    current.element.style.transform = `translate(${position.x}px, ${position.y}px)`;
+    const livePositions = { ...current.positions };
+    for (const id of current.ids) {
+      const base = current.bases[id];
+      if (!base) continue;
+      const position = { x: base.x + (current.lockX ? 0 : current.dx), y: base.y + current.dy };
+      livePositions[id] = position;
+      const element = nodeRefs.current.get(id);
+      if (element) element.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      const minimapNode = minimapNodeRefs.current.get(id);
+      if (minimapNode) {
+        minimapNode.style.left = `${Math.min(98, position.x / current.width * 100)}%`;
+        minimapNode.style.top = `${Math.min(96, position.y / current.height * 100)}%`;
+      }
+    }
     for (const edge of current.edges) {
       const endpoints = canvasEdgeEndpoints(edge);
-      const source = endpoints.sourceId === current.id ? position : current.positions[endpoints.sourceId];
-      const target = endpoints.targetId === current.id ? position : current.positions[endpoints.targetId];
+      const source = livePositions[endpoints.sourceId];
+      const target = livePositions[endpoints.targetId];
       const edgeElement = edgeRefs.current.get(edge.id);
       if (!source || !target || !edgeElement) continue;
       const route = connectorRoute(source, nodeHeights[endpoints.sourceId] ?? COMPACT_CARD_H, target, nodeHeights[endpoints.targetId] ?? COMPACT_CARD_H);
       edgeElement.setAttribute("d", route.path);
       edgeElement.dataset.sourceSide = route.sourceSide;
       edgeElement.dataset.targetSide = route.targetSide;
-    }
-    const minimapNode = minimapNodeRefs.current.get(current.id);
-    if (minimapNode) {
-      minimapNode.style.left = `${Math.min(98, position.x / current.width * 100)}%`;
-      minimapNode.style.top = `${Math.min(96, position.y / current.height * 100)}%`;
     }
   }, [nodeHeights]);
   useEffect(() => {
@@ -430,17 +502,25 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
       }
       paintNodeDrag();
       nodeDrag.current = null;
-      current.element.classList.remove("dragging");
+      for (const id of current.ids) nodeRefs.current.get(id)?.classList.remove("dragging");
       stageRef.current?.classList.remove("node-dragging");
       if (current.element.hasPointerCapture(current.pointerId)) current.element.releasePointerCapture(current.pointerId);
       if (!current.moved) {
-        current.element.style.transform = `translate(${current.base.x}px, ${current.base.y}px)`;
+        for (const id of current.ids) {
+          const base = current.bases[id];
+          const element = nodeRefs.current.get(id);
+          if (base && element) element.style.transform = `translate(${base.x}px, ${base.y}px)`;
+        }
         return;
       }
       suppressNodeClick.current = true;
       window.setTimeout(() => { suppressNodeClick.current = false; }, 80);
       setManualPositions((previous) => {
-        const next = { ...previous, [current.id]: { x: current.base.x + current.dx, y: current.base.y + current.dy } };
+        const next = { ...previous };
+        for (const id of current.ids) {
+          const base = current.bases[id];
+          if (base) next[id] = { x: base.x + (current.lockX ? 0 : current.dx), y: base.y + current.dy };
+        }
         const initialSave = persistPositions(next);
         onRegisterUndo({ kind: "local", undo: async () => { await initialSave.catch(() => undefined); setManualPositions(previous); await persistPositions(previous); } });
         return next;
@@ -473,12 +553,6 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
     if (panFrame.current != null) window.cancelAnimationFrame(panFrame.current);
     if (viewportFrame.current != null) window.cancelAnimationFrame(viewportFrame.current);
   }, []);
-  useEffect(() => {
-    if (positionedToday.current || !canvasRef.current) return;
-    canvasRef.current.scrollTo({ left: Math.max(0, todayX * zoom - canvasRef.current.clientWidth / 2), top: 0 });
-    positionedToday.current = true;
-    updateViewport();
-  }, [todayX, zoom]);
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -511,14 +585,49 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
   const setZoomAroundCenter = (nextValue: number) => setZoomAtPoint(nextValue);
   const fitAll = () => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const next = horizontalFitZoom();
-    const worldCenterY = (canvas.scrollTop + canvas.clientHeight / 2) / zoom;
-    pendingZoomAnchor.current = null;
-    setZoom(next);
+    const bounds = canvasContentBounds(positions, nodeHeights);
+    if (!canvas || !bounds) return;
+    const axisHeight = 54;
+    const contentWidth = Math.max(1, bounds.right - bounds.left);
+    const contentHeight = Math.max(1, bounds.bottom - bounds.top);
+    const availableHeight = Math.max(1, canvas.clientHeight - axisHeight);
+    const next = Math.max(.05, Math.min(1, (canvas.clientWidth - 80) / contentWidth, (availableHeight - 80) / contentHeight));
+    const target = {
+      left: Math.max(0, ((bounds.left + bounds.right) / 2) * next - canvas.clientWidth / 2),
+      top: Math.max(0, ((bounds.top + bounds.bottom) / 2) * next - availableHeight / 2),
+    };
+    pendingZoomAnchor.current = target;
     zoomTarget.current = next;
-    window.requestAnimationFrame(() => { canvas.scrollTo({ left: 0, top: Math.max(0, worldCenterY * next - canvas.clientHeight / 2), behavior: "smooth" }); updateViewport(); });
+    if (Math.abs(next - zoom) < .0001) {
+      pendingZoomAnchor.current = null;
+      canvas.scrollTo(target);
+      updateViewport();
+    } else {
+      setZoom(next);
+    }
   };
+  const autoArrangeAll = () => {
+    if (!layoutReady) return;
+    const arranged = Object.fromEntries(Object.entries(automaticPositions).map(([id, position]) => [id, { ...position }]));
+    fitAfterArrange.current = true;
+    setManualPositions(arranged);
+    void persistPositions(arranged).catch(() => undefined);
+  };
+  useLayoutEffect(() => {
+    if (!fitAfterArrange.current) return;
+    fitAfterArrange.current = false;
+    fitAll();
+  }, [positions]);
+  useEffect(() => {
+    if (!viewStateLoaded || !layoutReady || initialFitDone.current) return;
+    initialFitDone.current = true;
+    if (initialArrangePending.current) {
+      initialArrangePending.current = false;
+      autoArrangeAll();
+    } else {
+      fitAll();
+    }
+  }, [viewStateLoaded, layoutReady, automaticPositions]);
   useEffect(() => {
     const zoomWithMouse = (event: WheelEvent) => {
       if (!event.ctrlKey && !event.metaKey) return;
@@ -535,7 +644,30 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
     if (direction === 0) canvas.scrollTo({ left: Math.max(0, todayX * zoom - canvas.clientWidth / 2), behavior: "smooth" });
     else canvas.scrollBy({ left: direction * Math.max(420, canvas.clientWidth * .55), behavior: "smooth" });
   };
+  const pointInStage = (clientX: number, clientY: number) => {
+    const rect = stageRef.current?.getBoundingClientRect();
+    if (!rect) return { x: 0, y: 0 };
+    return { x: (clientX - rect.left) / zoom, y: (clientY - rect.top) / zoom };
+  };
+  const normalizedSelectionBounds = (startX: number, startY: number, currentX: number, currentY: number): SelectionBounds => ({
+    left: Math.min(startX, currentX),
+    top: Math.min(startY, currentY),
+    right: Math.max(startX, currentX),
+    bottom: Math.max(startY, currentY),
+  });
+  const selectionForBounds = (baseIds: string[], bounds: SelectionBounds) => [...new Set([...baseIds, ...nodesInSelectionBounds(positions, nodeHeights, bounds)])];
   const moveCanvas = (event: React.PointerEvent<HTMLDivElement>) => {
+    const selection = marqueeDrag.current;
+    if (selection && event.pointerId === selection.pointerId) {
+      const point = pointInStage(event.clientX, event.clientY);
+      selection.currentX = point.x;
+      selection.currentY = point.y;
+      selection.moved ||= Math.abs(selection.currentX - selection.startX) + Math.abs(selection.currentY - selection.startY) > 3 / zoom;
+      const bounds = normalizedSelectionBounds(selection.startX, selection.startY, selection.currentX, selection.currentY);
+      setMarqueeBounds(bounds);
+      if (selection.moved) onSelectionChange(selectionForBounds(selection.baseIds, bounds));
+      return;
+    }
     const current = pan.current;
     if (!current || event.pointerId !== current.pointerId) return;
     current.clientX = event.clientX;
@@ -552,6 +684,19 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
     });
   };
   const finishCanvasMove = (event: React.PointerEvent<HTMLDivElement>, cancelled = false) => {
+    const selection = marqueeDrag.current;
+    if (selection && event.pointerId === selection.pointerId) {
+      if (cancelled) onSelectionChange(selection.baseIds);
+      else if (selection.moved) {
+        const bounds = normalizedSelectionBounds(selection.startX, selection.startY, selection.currentX, selection.currentY);
+        onSelectionChange(selectionForBounds(selection.baseIds, bounds));
+      }
+      marqueeDrag.current = null;
+      setMarqueeBounds(null);
+      event.currentTarget.classList.remove("selecting");
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+      return;
+    }
     const current = pan.current;
     if (!current || event.pointerId !== current.pointerId) return;
     if (panFrame.current != null) {
@@ -563,24 +708,64 @@ function CanvasView({ graph, selectedId, onSelect, onClearSelection, onOpenSplit
     pan.current = null;
     event.currentTarget.classList.remove("panning");
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-    if (!cancelled && !current.moved) onClearSelection();
+    if (!cancelled && !current.moved) onSelectionChange([]);
   };
+  const beginCanvasMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 || (event.target as HTMLElement).closest(".node-card")) return;
+    if (event.shiftKey) {
+      const point = pointInStage(event.clientX, event.clientY);
+      marqueeDrag.current = { pointerId: event.pointerId, startX: point.x, startY: point.y, currentX: point.x, currentY: point.y, baseIds: selectedIds, moved: false };
+      setMarqueeBounds(normalizedSelectionBounds(point.x, point.y, point.x, point.y));
+      event.currentTarget.classList.add("selecting");
+    } else {
+      pan.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, clientX: event.clientX, clientY: event.clientY, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop, moved: false };
+      event.currentTarget.classList.add("panning");
+    }
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+  useEffect(() => {
+    const clearWithEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || !selectedIds.length) return;
+      onSelectionChange([]);
+    };
+    window.addEventListener("keydown", clearWithEscape);
+    return () => window.removeEventListener("keydown", clearWithEscape);
+  }, [selectedIds, onSelectionChange]);
   return (
     <div className="canvas-view">
-      <div ref={canvasRef} className="canvas-scroll" onScroll={updateViewport} onPointerDown={(event) => { if (event.button !== 0 || (event.target as HTMLElement).closest(".node-card")) return; pan.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, clientX: event.clientX, clientY: event.clientY, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop, moved: false }; event.currentTarget.classList.add("panning"); event.currentTarget.setPointerCapture(event.pointerId); }} onPointerMove={moveCanvas} onPointerUp={(event) => finishCanvasMove(event)} onPointerCancel={(event) => finishCanvasMove(event, true)}>
-        <div className="canvas-zoom-space" style={{ width: width * zoom, height: height * zoom }}>
-          <LogarithmicTimeAxis start={axisStart} end={axisEnd} anchor={today} todayX={todayX * zoom} height={height * zoom} />
+      <div ref={canvasRef} className="canvas-scroll" onScroll={updateViewport} onPointerDown={beginCanvasMove} onPointerMove={moveCanvas} onPointerUp={(event) => finishCanvasMove(event)} onPointerCancel={(event) => finishCanvasMove(event, true)}>
+        <div className="canvas-zoom-space" style={{ width: width * zoom, height: height * zoom + 54 }}>
+          <LogarithmicTimeAxis start={axisStart} end={axisEnd} anchor={today} todayX={todayX * zoom} height={height * zoom + 54} />
           <div ref={stageRef} className="canvas-stage" style={{ width, height, transform: `scale(${zoom})` }}>
             <div className="today-line" style={{ left: todayX, height }} />
             <svg className="edge-layer" width={width} height={height} aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" /></marker></defs>{edgePaths}</svg>
-            {renderNodes.map((node) => <NodeCard key={node.id} node={node} position={positions[node.id]} height={nodeHeights[node.id]} color={nodeColors[node.id]} selected={selectedId === node.id} onSelect={() => { if (suppressNodeClick.current) { suppressNodeClick.current = false; return; } onSelect(node.id); }} onSplit={() => onOpenSplit(node)} onPointerDown={(event) => { if (event.button !== 0 || (event.target as HTMLElement).closest("button")) return; event.stopPropagation(); const element = event.currentTarget; const base = positions[node.id]; nodeDrag.current = { id: node.id, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, base, dx: 0, dy: 0, moved: false, zoom, element, positions, edges: renderEdges.filter((edge) => edge.source_id === node.id || edge.target_id === node.id), width, height }; element.classList.add("dragging"); stageRef.current?.classList.add("node-dragging"); element.setPointerCapture(event.pointerId); }} />)}
+            {marqueeBounds && <div className="selection-marquee" style={{ left: marqueeBounds.left, top: marqueeBounds.top, width: marqueeBounds.right - marqueeBounds.left, height: marqueeBounds.bottom - marqueeBounds.top }} aria-hidden="true" />}
+            {renderNodes.map((node) => <NodeCard key={node.id} node={node} position={positions[node.id]} height={nodeHeights[node.id]} color={nodeColors[node.id]} selected={selectedIds.includes(node.id)} registerElement={(element) => { if (element) nodeRefs.current.set(node.id, element); else nodeRefs.current.delete(node.id); }} onSelect={() => { if (suppressNodeClick.current) { suppressNodeClick.current = false; return; } onSelectionChange([node.id]); }} onSplit={() => onOpenSplit(node)} onPointerDown={(event) => {
+              if (event.button !== 0 || (event.target as HTMLElement).closest("button")) return;
+              event.stopPropagation();
+              const isSelected = selectedIds.includes(node.id);
+              if (event.shiftKey) {
+                onSelectionChange(isSelected ? selectedIds.filter((id) => id !== node.id) : [...selectedIds, node.id]);
+                return;
+              }
+              const ids = isSelected ? selectedIds : [node.id];
+              if (!isSelected) onSelectionChange(ids);
+              const bases = Object.fromEntries(ids.map((id) => [id, positions[id]]).filter((entry): entry is [string, Position] => Boolean(entry[1])));
+              const lockX = ids.some((id) => { const item = renderNodes.find((candidate) => candidate.id === id); return Boolean(item?.planned_start || item?.deadline); });
+              const draggedIds = new Set(ids);
+              nodeDrag.current = { ids, lockX, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, bases, dx: 0, dy: 0, moved: false, zoom, element: event.currentTarget, positions, edges: renderEdges.filter((edge) => draggedIds.has(edge.source_id) || draggedIds.has(edge.target_id)), width, height };
+              for (const id of ids) nodeRefs.current.get(id)?.classList.add("dragging");
+              stageRef.current?.classList.add("node-dragging");
+              event.currentTarget.setPointerCapture(event.pointerId);
+            }} />)}
           </div>
         </div>
       </div>
       <div className="canvas-overlay-tools">
-        <div className="canvas-zoom-controls"><button onClick={() => setZoomAroundCenter(zoomTarget.current - .1)} aria-label="Zoom out">−</button><button onClick={() => setZoomAroundCenter(.25)}>25%</button><button onClick={() => setZoomAroundCenter(.5)}>50%</button><button onClick={fitAll}>Fit</button><button onClick={() => setZoomAroundCenter(zoomTarget.current + .1)} aria-label="Zoom in">+</button><span>{Math.round(zoom * 100)}%</span></div>
+        <div className="canvas-zoom-controls"><button onClick={autoArrangeAll} disabled={!layoutReady}>Auto Arrange</button><button onClick={() => setZoomAroundCenter(zoomTarget.current - .1)} aria-label="Zoom out">−</button><button onClick={() => setZoomAroundCenter(.25)}>25%</button><button onClick={() => setZoomAroundCenter(.5)}>50%</button><button onClick={fitAll}>Fit</button><button onClick={() => setZoomAroundCenter(zoomTarget.current + .1)} aria-label="Zoom in">+</button><span>{Math.round(zoom * 100)}%</span></div>
         <div className="canvas-controls"><button onClick={() => navigate(-1)}>← Quarter</button><button onClick={() => navigate(0)}>Today</button><button onClick={() => navigate(1)}>Quarter →</button></div>
       </div>
+      {selectedIds.length > 1 && <div className="canvas-selection-status"><b>{selectedIds.length} blocks selected</b><span>Drag any selected block to move the group · Esc to clear</span></div>}
       <div className="minimap" aria-label="Canvas minimap" onClick={(event) => { const canvas = canvasRef.current; if (!canvas) return; const rect = event.currentTarget.getBoundingClientRect(); const targetX = (event.clientX - rect.left) / rect.width * width; const targetY = (event.clientY - rect.top) / rect.height * height; canvas.scrollTo({ left: Math.max(0, targetX * zoom - canvas.clientWidth / 2), top: Math.max(0, targetY * zoom - canvas.clientHeight / 2), behavior: "smooth" }); }}>{renderNodes.map((node) => <i ref={(element) => { if (element) minimapNodeRefs.current.set(node.id, element); else minimapNodeRefs.current.delete(node.id); }} key={node.id} style={{ left: `${Math.min(98, positions[node.id].x / width * 100)}%`, top: `${Math.min(96, positions[node.id].y / height * 100)}%`, background: nodeColors[node.id] }} />)}<div ref={minimapViewportRef} className="minimap-viewport" /></div>
     </div>
   );
@@ -854,7 +1039,7 @@ export default function App() {
   const [timelineMode, setTimelineMode] = useState<TimelineMode>("capacity");
   const [graph, setGraph] = useState<GraphResponse | null>(null);
   const [timeline, setTimeline] = useState<TimelineResponse | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [split, setSplit] = useState<SplitSession | null>(null);
   const [mobileDoneCandidate, setMobileDoneCandidate] = useState<GraphNode | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -892,7 +1077,7 @@ export default function App() {
       if (requestId !== latestLoad.current) return;
       setGraph(nextGraph);
       setTimeline(nextTimeline);
-      setSelectedId((current) => current && nextGraph.nodes.some((node) => node.id === current) ? current : null);
+      setSelectedIds((current) => current.filter((id) => nextGraph.nodes.some((node) => node.id === id)));
     } catch (unknownError) { if (reportError) handleError(unknownError); } finally { if (blocking) setLoading(false); }
   }, [handleError]);
 
@@ -946,9 +1131,10 @@ export default function App() {
   const openSplit = async (node: GraphNode) => {
     try { setSplit(await api.startSplit(node.id)); } catch (unknownError) { handleError(unknownError); }
   };
+  const selectedId = selectedIds.length === 1 ? selectedIds[0] : null;
   const selected = graph?.nodes.find((node) => node.id === selectedId) ?? null;
   const nodeColors = useMemo(() => graph ? colorsForNodes(graph.nodes) : {}, [graph]);
-  const mobileDone = (node: GraphNode) => { setSelectedId(node.id); setMobileDoneCandidate(node); };
+  const mobileDone = (node: GraphNode) => { setSelectedIds([node.id]); setMobileDoneCandidate(node); };
   const confirmMobileDone = async () => {
     if (!mobileDoneCandidate || !graph) return;
     try {
@@ -964,8 +1150,8 @@ export default function App() {
       <nav className="side-nav" aria-label="Primary"><a className="brand" href="/v2/" aria-label="Yonc home">Y</a><button className={view === "canvas" ? "active" : ""} onClick={() => setView("canvas")} aria-label="Canvas"><span>▦</span><small>Canvas</small></button><button className={view === "timeline" ? "active" : ""} onClick={() => setView("timeline")} aria-label="Timeline"><span>◫</span><small>Timeline</small></button><button className="nav-settings" onClick={() => setSettingsOpen(true)} aria-label="Settings"><span>⚙</span><small>Settings</small></button><a className="legacy-link" href="/legacy" title="Open legacy UI">v1</a></nav>
       {loading && <div className="loading-state"><div /><div /><div /><p>Loading project graph…</p></div>}
       {!loading && graph && timeline && <>
-        <main className="desktop-content">{view === "canvas" ? <CanvasView graph={graph} selectedId={selectedId} onSelect={setSelectedId} onClearSelection={() => setSelectedId(null)} onOpenSplit={openSplit} onRegisterUndo={registerUndo} /> : <TimelineView timeline={timeline} graph={graph} selectedId={selectedId} mode={timelineMode} onMode={setTimelineMode} onSelect={setSelectedId} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}</main>
-        {view === "canvas" && selected && <NodeInspector node={selected} color={nodeColors[selected.id]} graphVersion={graph.graph_version} onClose={() => setSelectedId(null)} onRefresh={refresh} onOpenSplit={openSplit} onError={handleError} onRegisterUndo={registerUndo} />}
+        <main className="desktop-content">{view === "canvas" ? <CanvasView graph={graph} selectedIds={selectedIds} onSelectionChange={setSelectedIds} onOpenSplit={openSplit} onRegisterUndo={registerUndo} /> : <TimelineView timeline={timeline} graph={graph} selectedId={selectedId} mode={timelineMode} onMode={setTimelineMode} onSelect={(id) => setSelectedIds([id])} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}</main>
+        {view === "canvas" && selected && <NodeInspector node={selected} color={nodeColors[selected.id]} graphVersion={graph.graph_version} onClose={() => setSelectedIds([])} onRefresh={refresh} onOpenSplit={openSplit} onError={handleError} onRegisterUndo={registerUndo} />}
         <MobileFallback graph={graph} onDone={mobileDone} onSplit={openSplit} />
       </>}
       {!loading && graph && !graph.nodes.length && <div className="empty-state"><h1>No work in this project file</h1><p>Import existing work or capture a Goal to begin.</p></div>}

@@ -1,4 +1,4 @@
-import type { GraphResponse, SplitSession, TimelineResponse } from "./types";
+import type { GraphResponse, SplitSession, TimelineResponse, YoncConfig } from "./types";
 
 const chineseByCode: Record<string, string> = {
   GRAPH_VERSION_CONFLICT: "项目图已发生变化。请刷新上下文并重新确认。",
@@ -16,6 +16,8 @@ const chineseByCode: Record<string, string> = {
   BATCH_ALREADY_UNDONE: "这一步已经撤销。",
   BATCH_NOT_UNDOABLE: "这一步目前无法撤销。",
   BATCH_NOT_FOUND: "找不到需要撤销的操作。",
+  CONFIG_VERSION_CONFLICT: "设置已在其他页面更新。请重新打开设置后再保存。",
+  CONFIG_DUPLICATE_NAME: "同一设置分类中不能使用重复名称。",
 };
 
 export type OperationBatchSummary = {
@@ -54,6 +56,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   graph: (scope?: string | null) => request<GraphResponse>(`/api/v2/graph${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`),
+  yoncConfig: () => request<YoncConfig>("/api/v2/settings/yonc-config"),
+  saveYoncConfig: (config: YoncConfig) => request<YoncConfig>("/api/v2/settings/yonc-config", {
+    method: "PUT",
+    body: JSON.stringify({ themes: config.themes, modes: config.modes, task_types: config.task_types, expected_revision: config.revision }),
+  }),
   timeline: (start?: string, end?: string, scope?: string | null) => {
     const params = new URLSearchParams();
     if (start) params.set("start", start);

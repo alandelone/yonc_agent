@@ -1,18 +1,25 @@
 import ELK from "elkjs/lib/elk.bundled.js";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ApiError, api } from "./api";
-import type { GraphEdge, GraphNode, GraphResponse, SplitSession, TimelineCell, TimelineResponse } from "./types";
+import type { GraphEdge, GraphNode, GraphResponse, SplitSession, TimelineCell, TimelineResponse, YoncConfig } from "./types";
 
 type MainView = "canvas" | "timeline";
 type TimelineMode = "forecast" | "capacity";
+export type TimelinePoolFilter = "all" | "jobs" | "tasks";
 type Position = { x: number; y: number };
 type SelectionBounds = { left: number; top: number; right: number; bottom: number };
 type ConnectorSide = "top" | "right" | "bottom" | "left";
 type UndoAction = { kind: "local"; undo: () => Promise<void> | void } | { kind: "batch"; batchId: string };
 
-const CARD_W = 164;
+const CARD_W = 184;
 const COMPACT_CARD_H = 66;
-const CANVAS_LAYOUT_VERSION = 4;
+const CANVAS_AXIS_HEIGHT = 54;
+const CANVAS_TIME_PAST_MONTHS = 18;
+const CANVAS_TIME_FUTURE_MONTHS = 60;
+const CANVAS_TIME_START_PADDING = 180;
+const CANVAS_TIME_END_PADDING = 220;
+const CANVAS_TIME_MIN_PX_PER_DAY = 1.8;
+const CANVAS_LAYOUT_VERSION = 9;
 const projectPalette = [
   { hue: 160, saturation: 64 },
   { hue: 199, saturation: 93 },
@@ -24,6 +31,14 @@ const projectPalette = [
 ];
 const wbsLightness = { 1: 52, 2: 42, 3: 32, 4: 22 } as const;
 type ColorNode = Pick<GraphNode, "id" | "parent_id" | "wbs_level">;
+
+export function nodeCardWidth(node: Pick<GraphNode, "wbs_level">) {
+  if (node.wbs_level === 1) return 244;
+  if (node.wbs_level === 2) return 220;
+  if (node.wbs_level === 3) return 200;
+  if (node.wbs_level === 4) return 180;
+  return CARD_W;
+}
 
 function longTimelineRange(anchor = new Date()) {
   const start = new Date(anchor.getFullYear(), 0, 1, 12);
@@ -63,9 +78,52 @@ export function wbsColorFor(projectKey: string, level: number | null) {
   return `hsl(${palette.hue} ${palette.saturation}% ${wbsLightness[normalizedLevel]}%)`;
 }
 
-function colorsForNodes(nodes: GraphNode[]) {
-  const nodesById = new Map<string, ColorNode>(nodes.map((node) => [node.id, node]));
-  return Object.fromEntries(nodes.map((node) => [node.id, wbsColorFor(projectKeyForNode(node, nodesById), node.wbs_level)]));
+function shadeHexColor(hex: string, factor: number) {
+  const value = Number.parseInt(hex.slice(1), 16);
+  if (!Number.isFinite(value)) return hex;
+  const channel = (shift: number) => Math.max(0, Math.min(255, Math.round(((value >> shift) & 255) * factor)));
+  return `#${[channel(16), channel(8), channel(0)].map((item) => item.toString(16).padStart(2, "0")).join("")}`;
+}
+
+export function configuredThemeColor(node: GraphNode, nodesById: ReadonlyMap<string, GraphNode>, config?: YoncConfig | null) {
+  if (!config?.themes.length) return null;
+  let current: GraphNode | undefined = node;
+  const visited = new Set<string>();
+  while (current && !visited.has(current.id)) {
+    visited.add(current.id);
+    const rawTag = current.tags?.["Task Theme with colour"];
+    const tag = Array.isArray(rawTag) ? rawTag.join(" | ") : String(rawTag ?? "");
+    const theme = [...config.themes].sort((a, b) => b.name.length - a.name.length).find((candidate) => (
+      tag === candidate.name || tag.startsWith(`${candidate.name} `) || candidate.sub_themes.some((subTheme) => tag === subTheme)
+    ));
+    if (theme) return shadeHexColor(theme.color, ({ 1: 1.16, 2: 1.03, 3: .9, 4: .76 } as Record<number, number>)[node.wbs_level ?? 3] ?? .9);
+    current = current.parent_id ? nodesById.get(current.parent_id) : undefined;
+  }
+  return null;
+}
+
+export function colorsForNodes(nodes: GraphNode[], config?: YoncConfig | null) {
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  return Object.fromEntries(nodes.map((node) => [node.id, configuredThemeColor(node, nodesById, config) ?? wbsColorFor(projectKeyForNode(node, nodesById), node.wbs_level)]));
+}
+
+const timelineWorkTypes = new Set(["GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION", "UNCLASSIFIED"]);
+
+export function timelinePoolMatches(nodes: GraphNode[], query: string, filter: TimelinePoolFilter) {
+  const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  return nodes
+    .filter((node) => timelineWorkTypes.has(node.work_type))
+    .filter((node) => filter === "all" || (filter === "tasks" ? node.work_type === "ACTION" : node.work_type !== "ACTION" && node.work_type !== "UNCLASSIFIED"))
+    .filter((node) => terms.every((term) => node.title.toLocaleLowerCase().includes(term)))
+    .sort((a, b) => {
+      if (!terms.length && Boolean(a.planned_start) !== Boolean(b.planned_start)) return a.planned_start ? 1 : -1;
+      const normalizedQuery = terms.join(" ");
+      const aTitle = a.title.toLocaleLowerCase();
+      const bTitle = b.title.toLocaleLowerCase();
+      const aRank = aTitle === normalizedQuery ? 0 : aTitle.startsWith(normalizedQuery) ? 1 : 2;
+      const bRank = bTitle === normalizedQuery ? 0 : bTitle.startsWith(normalizedQuery) ? 1 : 2;
+      return aRank - bRank || a.title.localeCompare(b.title);
+    });
 }
 
 export function canvasEdgeEndpoints(edge: Pick<GraphEdge, "source_id" | "target_id" | "relation">) {
@@ -74,38 +132,39 @@ export function canvasEdgeEndpoints(edge: Pick<GraphEdge, "source_id" | "target_
     : { sourceId: edge.source_id, targetId: edge.target_id };
 }
 
-export function canvasContentBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>) {
+export function canvasContentBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>, nodeWidths: Record<string, number> = {}) {
   const entries = Object.entries(positions);
   if (!entries.length) return null;
   return {
     left: Math.min(...entries.map(([, position]) => position.x)),
     top: Math.min(...entries.map(([, position]) => position.y)),
-    right: Math.max(...entries.map(([, position]) => position.x + CARD_W)),
+    right: Math.max(...entries.map(([id, position]) => position.x + (nodeWidths[id] ?? CARD_W))),
     bottom: Math.max(...entries.map(([id, position]) => position.y + (nodeHeights[id] ?? COMPACT_CARD_H))),
   };
 }
 
-export function nodesInSelectionBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>, bounds: SelectionBounds) {
+export function nodesInSelectionBounds(positions: Record<string, Position>, nodeHeights: Record<string, number>, bounds: SelectionBounds, nodeWidths: Record<string, number> = {}) {
   return Object.entries(positions).filter(([id, position]) => (
     position.x < bounds.right
-    && position.x + CARD_W > bounds.left
+    && position.x + (nodeWidths[id] ?? CARD_W) > bounds.left
     && position.y < bounds.bottom
     && position.y + (nodeHeights[id] ?? COMPACT_CARD_H) > bounds.top
   )).map(([id]) => id);
 }
 
-export function arrangeCanvasPositions(desired: Record<string, Position>, nodeHeights: Record<string, number>) {
+export function arrangeCanvasPositions(desired: Record<string, Position>, nodeHeights: Record<string, number>, nodeWidths: Record<string, number> = {}) {
   const gap = 18;
   const arranged: Record<string, Position> = {};
-  const placed: Array<{ id: string; x: number; y: number; height: number }> = [];
+  const placed: Array<{ id: string; x: number; y: number; width: number; height: number }> = [];
   const ordered = Object.entries(desired).sort(([, left], [, right]) => left.y - right.y || left.x - right.x);
   for (const [id, position] of ordered) {
     const height = nodeHeights[id] ?? COMPACT_CARD_H;
+    const width = nodeWidths[id] ?? CARD_W;
     let y = position.y;
     while (true) {
       const conflicts = placed.filter((item) =>
-        position.x < item.x + CARD_W + gap
-        && position.x + CARD_W + gap > item.x
+        position.x < item.x + item.width + gap
+        && position.x + width + gap > item.x
         && y < item.y + item.height + gap
         && y + height + gap > item.y,
       );
@@ -113,7 +172,7 @@ export function arrangeCanvasPositions(desired: Record<string, Position>, nodeHe
       y = Math.max(...conflicts.map((item) => item.y + item.height + gap));
     }
     arranged[id] = { x: position.x, y };
-    placed.push({ id, x: position.x, y, height });
+    placed.push({ id, x: position.x, y, width, height });
   }
   return arranged;
 }
@@ -126,6 +185,216 @@ export function canvasPositionForNode(node: Pick<GraphNode, "planned_start" | "d
   };
 }
 
+export function placeChildrenBeforeDatedParents(
+  nodes: Array<Pick<GraphNode, "id" | "parent_id" | "planned_start" | "deadline">>,
+  positions: Record<string, Position>,
+  layerGap = 56,
+) {
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const next = Object.fromEntries(Object.entries(positions).map(([id, position]) => [id, { ...position }]));
+  for (const node of nodes) {
+    if (node.planned_start || node.deadline || !next[node.id]) continue;
+    let ancestorId = node.parent_id;
+    let depth = 1;
+    let rightmostAllowed = Number.POSITIVE_INFINITY;
+    const visited = new Set<string>([node.id]);
+    while (ancestorId && !visited.has(ancestorId)) {
+      visited.add(ancestorId);
+      const ancestor = nodesById.get(ancestorId);
+      if (!ancestor) break;
+      if ((ancestor.planned_start || ancestor.deadline) && next[ancestor.id]) {
+        rightmostAllowed = Math.min(rightmostAllowed, next[ancestor.id].x - depth * (CARD_W + layerGap));
+      }
+      ancestorId = ancestor.parent_id;
+      depth += 1;
+    }
+    if (Number.isFinite(rightmostAllowed)) next[node.id].x = Math.min(next[node.id].x, rightmostAllowed);
+  }
+  return next;
+}
+
+type CanvasFamilyNode = Pick<GraphNode, "id" | "parent_id" | "wbs_level" | "planned_start" | "deadline">;
+
+export function wideCanvasFamilyLayout(
+  members: CanvasFamilyNode[],
+  seedPositions: Record<string, Position>,
+  nodeHeights: Record<string, number>,
+) {
+  const byId = new Map(members.map((node) => [node.id, node]));
+  const root = members.find((node) => node.wbs_level === 1) ?? members.find((node) => !node.parent_id) ?? members[0];
+  if (!root) return {};
+  const ordered = (items: CanvasFamilyNode[]) => [...items].sort((left, right) =>
+    (seedPositions[left.id]?.y ?? 0) - (seedPositions[right.id]?.y ?? 0)
+    || (seedPositions[left.id]?.x ?? 0) - (seedPositions[right.id]?.x ?? 0)
+    || left.id.localeCompare(right.id));
+  const levelTwo = ordered(members.filter((node) => node.id !== root.id && node.wbs_level === 2));
+  const branchMembers = new Map<string, CanvasFamilyNode[]>(levelTwo.map((node) => [node.id, [node]]));
+  const miscellaneous: CanvasFamilyNode[] = [];
+  for (const node of members) {
+    if (node.id === root.id || node.wbs_level === 2) continue;
+    let ancestorId = node.parent_id;
+    const visited = new Set<string>();
+    let branchId: string | null = null;
+    while (ancestorId && !visited.has(ancestorId)) {
+      visited.add(ancestorId);
+      const ancestor = byId.get(ancestorId);
+      if (!ancestor) break;
+      if (ancestor.wbs_level === 2) { branchId = ancestor.id; break; }
+      ancestorId = ancestor.parent_id;
+    }
+    if (branchId && branchMembers.has(branchId)) branchMembers.get(branchId)!.push(node);
+    else miscellaneous.push(node);
+  }
+  const rawBranches = levelTwo.map((node) => branchMembers.get(node.id)!).filter(Boolean);
+  if (miscellaneous.length || !rawBranches.length) rawBranches.push(miscellaneous.length ? miscellaneous : [root]);
+
+  const branchLayouts = rawBranches.map((branch) => {
+    const positions: Record<string, Position> = {};
+    let cursorX = 0;
+    let branchHeight = 0;
+    const groups = [
+      ordered(branch.filter((node) => node.wbs_level === 4 || node.wbs_level == null)),
+      ordered(branch.filter((node) => node.wbs_level === 3)),
+      ordered(branch.filter((node) => node.wbs_level === 2)),
+    ].filter((group) => group.length);
+    for (const group of groups) {
+      const level = group[0].wbs_level;
+      const preferredRows = level === 4 || level == null ? (group.length > 10 ? 4 : 2) : level === 3 ? 3 : 1;
+      const rows = Math.min(preferredRows, group.length);
+      const columns = Math.ceil(group.length / rows);
+      const cellWidth = Math.max(...group.map(nodeCardWidth)) + 26;
+      const cellHeight = Math.max(...group.map((node) => nodeHeights[node.id] ?? COMPACT_CARD_H)) + 24;
+      group.forEach((node, index) => {
+        positions[node.id] = { x: cursorX + Math.floor(index / rows) * cellWidth, y: (index % rows) * cellHeight };
+      });
+      cursorX += columns * cellWidth + 64;
+      branchHeight = Math.max(branchHeight, rows * cellHeight - 24);
+    }
+    return { positions, width: Math.max(0, cursorX - 64), height: Math.max(COMPACT_CARD_H, branchHeight) };
+  });
+
+  const branchColumns = Math.max(1, Math.ceil(Math.sqrt(branchLayouts.length / 2)));
+  const cellWidth = Math.max(...branchLayouts.map((branch) => branch.width)) + 72;
+  const cellHeight = Math.max(...branchLayouts.map((branch) => branch.height)) + 58;
+  const result: Record<string, Position> = {};
+  branchLayouts.forEach((branch, index) => {
+    const offsetX = (index % branchColumns) * cellWidth;
+    const offsetY = Math.floor(index / branchColumns) * cellHeight;
+    for (const [id, position] of Object.entries(branch.positions)) result[id] = { x: position.x + offsetX, y: position.y + offsetY };
+  });
+  const gridWidth = Math.min(branchLayouts.length, branchColumns) * cellWidth - 72;
+  const gridHeight = Math.ceil(branchLayouts.length / branchColumns) * cellHeight - 58;
+  result[root.id] = { x: gridWidth + 86, y: Math.max(0, (gridHeight - (nodeHeights[root.id] ?? COMPACT_CARD_H)) / 2) };
+  return result;
+}
+
+export function canvasSubtreeIds(nodes: Array<Pick<GraphNode, "id" | "parent_id">>, rootId: string) {
+  const children = new Map<string, string[]>();
+  for (const node of nodes) {
+    if (!node.parent_id) continue;
+    const siblings = children.get(node.parent_id) ?? [];
+    siblings.push(node.id);
+    children.set(node.parent_id, siblings);
+  }
+  const result: string[] = [];
+  const queue = [rootId];
+  const visited = new Set<string>();
+  while (queue.length) {
+    const id = queue.shift()!;
+    if (visited.has(id)) continue;
+    visited.add(id);
+    result.push(id);
+    queue.push(...(children.get(id) ?? []));
+  }
+  return result;
+}
+
+export function arrangeCanvasFamilies(
+  nodes: CanvasFamilyNode[],
+  seedPositions: Record<string, Position>,
+  nodeHeights: Record<string, number>,
+  todayX: number,
+  gap = 48,
+) {
+  const nodesById = new Map<string, ColorNode>(nodes.map((node) => [node.id, node]));
+  const families = new Map<string, CanvasFamilyNode[]>();
+  for (const node of nodes) {
+    if (!seedPositions[node.id]) continue;
+    const key = projectKeyForNode(node, nodesById);
+    const members = families.get(key) ?? [];
+    members.push(node);
+    families.set(key, members);
+  }
+  const items = [...families.entries()].map(([key, members]) => {
+    const scheduled = members.some((node) => Boolean(node.planned_start || node.deadline));
+    const widePositions = wideCanvasFamilyLayout(members, seedPositions, nodeHeights);
+    const datedAnchor = members.find((node) => (node.planned_start || node.deadline) && seedPositions[node.id]);
+    const anchorDx = datedAnchor ? seedPositions[datedAnchor.id].x - widePositions[datedAnchor.id].x : 0;
+    const memberPositions = Object.fromEntries(members.map((node) => {
+      const wide = widePositions[node.id] ?? seedPositions[node.id];
+      const x = node.planned_start || node.deadline ? seedPositions[node.id].x : wide.x + anchorDx;
+      return [node.id, { x, y: wide.y }];
+    }));
+    const memberWidths = Object.fromEntries(members.map((node) => [node.id, nodeCardWidth(node)]));
+    const bounds = canvasContentBounds(memberPositions, nodeHeights, memberWidths)!;
+    return { key, members, bounds, memberPositions, scheduled };
+  }).sort((left, right) => Number(left.scheduled) - Number(right.scheduled) || left.bounds.top - right.bounds.top || left.key.localeCompare(right.key));
+
+  const arranged: Record<string, Position> = {};
+  const placed: Array<{ x: number; y: number; width: number; height: number }> = [];
+  const futureStart = todayX + 120;
+  const futureBoundary = futureStart + 2600;
+  let shelfLeft = futureStart;
+  let shelfTop = 82;
+  let shelfBottom = shelfTop;
+
+  for (const item of items) {
+    const familyWidth = item.bounds.right - item.bounds.left;
+    let targetLeft = item.bounds.left;
+    let targetTop = 82;
+    if (!item.scheduled) {
+      if (shelfLeft > futureStart && shelfLeft + familyWidth > futureBoundary) {
+        shelfLeft = futureStart;
+        shelfTop = shelfBottom + gap;
+      }
+      targetLeft = Math.max(futureStart, Math.min(shelfLeft, futureBoundary - familyWidth));
+      targetTop = shelfTop;
+    }
+    const dx = targetLeft - item.bounds.left;
+    let dy = targetTop - item.bounds.top;
+    for (let pass = 0; pass < nodes.length + 1; pass += 1) {
+      let pushDown = 0;
+      for (const node of item.members) {
+        const position = item.memberPositions[node.id];
+        if (!position) continue;
+        const x = position.x + dx;
+        const y = position.y + dy;
+        const width = nodeCardWidth(node);
+        const height = nodeHeights[node.id] ?? COMPACT_CARD_H;
+        for (const other of placed) {
+          const overlapsX = x < other.x + other.width + gap && x + width + gap > other.x;
+          const overlapsY = y < other.y + other.height + gap && y + height + gap > other.y;
+          if (overlapsX && overlapsY) pushDown = Math.max(pushDown, other.y + other.height + gap - y);
+        }
+      }
+      if (pushDown <= 0) break;
+      dy += pushDown;
+    }
+    for (const node of item.members) {
+      const position = item.memberPositions[node.id];
+      if (!position) continue;
+      const next = { x: position.x + dx, y: position.y + dy };
+      arranged[node.id] = next;
+      placed.push({ x: next.x, y: next.y, width: nodeCardWidth(node), height: nodeHeights[node.id] ?? COMPACT_CARD_H });
+    }
+    if (!item.scheduled) {
+      shelfLeft = targetLeft + familyWidth + gap;
+      shelfBottom = Math.max(shelfBottom, item.bounds.bottom + dy);
+    }
+  }
+  return arranged;
+}
+
 function addDays(value: string, days: number) {
   const next = new Date(`${value}T12:00:00`);
   next.setDate(next.getDate() + days);
@@ -136,10 +405,10 @@ function daysBetween(left: string, right: string) {
   return Math.round((new Date(`${right}T12:00:00`).getTime() - new Date(`${left}T12:00:00`).getTime()) / 86_400_000);
 }
 
-export function anchoredScrollPosition(scrollLeft: number, scrollTop: number, anchorX: number, anchorY: number, currentZoom: number, nextZoom: number) {
+export function anchoredScrollPosition(scrollLeft: number, scrollTop: number, anchorX: number, anchorY: number, currentZoom: number, nextZoom: number, fixedTop = 0) {
   const worldX = (scrollLeft + anchorX) / currentZoom;
-  const worldY = (scrollTop + anchorY) / currentZoom;
-  return { left: Math.max(0, worldX * nextZoom - anchorX), top: Math.max(0, worldY * nextZoom - anchorY) };
+  const worldY = (scrollTop + anchorY - fixedTop) / currentZoom;
+  return { left: Math.max(0, worldX * nextZoom - anchorX), top: Math.max(0, fixedTop + worldY * nextZoom - anchorY) };
 }
 
 function suggestedSpanDays(node: GraphNode, graph: GraphResponse) {
@@ -190,9 +459,10 @@ export function nodeCardInfo(node: Pick<GraphNode, "planned_start" | "deadline" 
   return { hasMeta, hasSignals };
 }
 
-export function nodeCardHeight(node: Pick<GraphNode, "planned_start" | "deadline" | "estimated_effort_minutes" | "resource_count" | "health">) {
+export function nodeCardHeight(node: Pick<GraphNode, "planned_start" | "deadline" | "estimated_effort_minutes" | "resource_count" | "health"> & { wbs_level?: number | null }) {
   const { hasMeta, hasSignals } = nodeCardInfo(node);
-  return COMPACT_CARD_H + (hasMeta ? 13 : 0) + (hasSignals ? 15 : 0);
+  const baseHeight = node.wbs_level === 1 ? 88 : node.wbs_level === 2 ? 78 : node.wbs_level === 3 ? 72 : COMPACT_CARD_H;
+  return baseHeight + (hasMeta ? 13 : 0) + (hasSignals ? 15 : 0);
 }
 
 export function healthWarningMessage(warning: GraphNode["health"][number], node?: GraphNode) {
@@ -235,7 +505,7 @@ function useElkPositions(nodes: GraphNode[], edges: GraphEdge[]) {
         "elk.spacing.nodeNode": "18",
         "elk.layered.spacing.nodeNodeBetweenLayers": "56",
       },
-      children: nodes.map((node) => ({ id: node.id, width: CARD_W, height: nodeCardHeight(node) })),
+      children: nodes.map((node) => ({ id: node.id, width: nodeCardWidth(node), height: nodeCardHeight(node) })),
       edges: edges.filter((edge) => edge.relation === "contains").map((edge) => {
         const endpoints = canvasEdgeEndpoints(edge);
         return { id: edge.id, sources: [endpoints.sourceId], targets: [endpoints.targetId] };
@@ -273,7 +543,7 @@ function NodeCard({ node, position, height, color, selected, onSelect, onSplit, 
       data-node-id={node.id}
       data-wbs-level={node.wbs_level ?? undefined}
       className={`node-card status-${node.status.toLowerCase()} pressure-${node.pressure?.level ?? "low"} ${selected ? "selected" : ""}`}
-      style={{ height, transform: `translate(${position.x}px, ${position.y}px)`, "--node-color": color, "--progress": node.progress?.ratio ?? 0 } as React.CSSProperties}
+      style={{ width: nodeCardWidth(node), height, transform: `translate(${position.x}px, ${position.y}px)`, "--node-color": color, "--progress": node.progress?.ratio ?? 0 } as React.CSSProperties}
       onClick={(event) => { event.stopPropagation(); if (!event.shiftKey) onSelect(); }}
       onPointerDown={onPointerDown}
       tabIndex={0}
@@ -290,18 +560,29 @@ function NodeCard({ node, position, height, color, selected, onSelect, onSplit, 
   );
 }
 
-function logarithmicDateOffset(value: string, anchor: string) {
+export function logarithmicDateOffset(value: string, anchor: string) {
   const delta = daysBetween(anchor, value);
-  return Math.sign(delta) * Math.log1p(Math.abs(delta) / 30) * 520;
+  const distance = Math.abs(delta);
+  return Math.sign(delta) * (Math.log1p(distance / 30) * 520 + distance * CANVAS_TIME_MIN_PX_PER_DAY);
 }
 
-function LogarithmicTimeAxis({ start, end, anchor, todayX, height }: { start: string; end: string; anchor: string; todayX: number; height: number }) {
+function monthBoundary(anchor: Date, offset: number) {
+  return new Date(anchor.getFullYear(), anchor.getMonth() + offset, 1, 12).toISOString().slice(0, 10);
+}
+
+export function canvasTimeRange(anchor: Date, scheduledDates: string[]) {
+  const starts = [monthBoundary(anchor, -CANVAS_TIME_PAST_MONTHS), ...scheduledDates.map((value) => monthBoundary(new Date(`${value}T12:00:00`), -6))];
+  const ends = [monthBoundary(anchor, CANVAS_TIME_FUTURE_MONTHS), ...scheduledDates.map((value) => monthBoundary(new Date(`${value}T12:00:00`), 18))];
+  return { start: starts.sort()[0], end: ends.sort().at(-1)! };
+}
+
+function LogarithmicTimeAxis({ start, end, anchor, todayX, zoom, height }: { start: string; end: string; anchor: string; todayX: number; zoom: number; height: number }) {
   const ticks: React.ReactNode[] = [];
   const cursor = new Date(`${start.slice(0, 7)}-01T12:00:00`);
   const last = new Date(`${end}T12:00:00`);
   while (cursor <= last) {
     const value = cursor.toISOString().slice(0, 10);
-    const x = todayX + logarithmicDateOffset(value, anchor);
+    const x = (todayX + logarithmicDateOffset(value, anchor)) * zoom;
     const month = cursor.toLocaleString("en", { month: "long" });
     ticks.push(<div className="month-tick" key={value} style={{ left: x, height }}><b>{month}</b>{cursor.getMonth() === 0 && <span>{cursor.getFullYear()}</span>}</div>);
     cursor.setMonth(cursor.getMonth() + 1);
@@ -324,12 +605,12 @@ function curvedOrthogonalPath(x1: number, y1: number, x2: number, y2: number, ax
   return `M ${x1} ${y1} V ${mid - yDirection * radius} Q ${x1} ${mid} ${x1 + xDirection * radius} ${mid} H ${x2 - xDirection * radius} Q ${x2} ${mid} ${x2} ${mid + yDirection * radius} V ${y2}`;
 }
 
-export function connectorRoute(source: Position, sourceHeight: number, target: Position, targetHeight: number) {
-  const sourceCenter = { x: source.x + CARD_W / 2, y: source.y + sourceHeight / 2 };
-  const targetCenter = { x: target.x + CARD_W / 2, y: target.y + targetHeight / 2 };
+export function connectorRoute(source: Position, sourceHeight: number, target: Position, targetHeight: number, sourceWidth = CARD_W, targetWidth = CARD_W) {
+  const sourceCenter = { x: source.x + sourceWidth / 2, y: source.y + sourceHeight / 2 };
+  const targetCenter = { x: target.x + targetWidth / 2, y: target.y + targetHeight / 2 };
   const dx = targetCenter.x - sourceCenter.x;
   const dy = targetCenter.y - sourceCenter.y;
-  const horizontal = Math.abs(dx) / CARD_W >= Math.abs(dy) / ((sourceHeight + targetHeight) / 2);
+  const horizontal = Math.abs(dx) / ((sourceWidth + targetWidth) / 2) >= Math.abs(dy) / ((sourceHeight + targetHeight) / 2);
   let sourceSide: ConnectorSide;
   let targetSide: ConnectorSide;
   let x1: number;
@@ -341,9 +622,9 @@ export function connectorRoute(source: Position, sourceHeight: number, target: P
     const leftToRight = dx >= 0;
     sourceSide = leftToRight ? "right" : "left";
     targetSide = leftToRight ? "left" : "right";
-    x1 = source.x + (leftToRight ? CARD_W + 3 : -3);
+    x1 = source.x + (leftToRight ? sourceWidth + 3 : -3);
     y1 = sourceCenter.y;
-    x2 = target.x + (leftToRight ? -3 : CARD_W + 3);
+    x2 = target.x + (leftToRight ? -3 : targetWidth + 3);
     y2 = targetCenter.y;
   } else {
     const topToBottom = dy >= 0;
@@ -358,8 +639,9 @@ export function connectorRoute(source: Position, sourceHeight: number, target: P
   return { sourceSide, targetSide, x1, y1, x2, y2, path: curvedOrthogonalPath(x1, y1, x2, y2, horizontal ? "horizontal" : "vertical") };
 }
 
-function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegisterUndo }: {
+function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenSplit, onRegisterUndo }: {
   graph: GraphResponse;
+  yoncConfig: YoncConfig | null;
   selectedIds: string[];
   onSelectionChange: (ids: string[]) => void;
   onOpenSplit: (node: GraphNode) => void;
@@ -368,8 +650,9 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
   const renderNodes = graph.nodes;
   const allowed = useMemo(() => new Set(renderNodes.map((node) => node.id)), [renderNodes]);
   const renderEdges = useMemo(() => graph.edges.filter((edge) => allowed.has(edge.source_id) && allowed.has(edge.target_id)), [graph.edges, allowed]);
-  const nodeColors = useMemo(() => colorsForNodes(renderNodes), [renderNodes]);
+  const nodeColors = useMemo(() => colorsForNodes(renderNodes, yoncConfig), [renderNodes, yoncConfig]);
   const nodeHeights = useMemo(() => Object.fromEntries(renderNodes.map((node) => [node.id, nodeCardHeight(node)])), [renderNodes]);
+  const nodeWidths = useMemo(() => Object.fromEntries(renderNodes.map((node) => [node.id, nodeCardWidth(node)])), [renderNodes]);
   const elkPositions = useElkPositions(renderNodes, renderEdges);
   const canvasRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -380,10 +663,16 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
   const pan = useRef<{ pointerId: number; x: number; y: number; clientX: number; clientY: number; left: number; top: number; moved: boolean } | null>(null);
   const panFrame = useRef<number | null>(null);
   const viewportFrame = useRef<number | null>(null);
+  const viewportSaveTimer = useRef<number | null>(null);
+  const restoredViewport = useRef<null | { zoom: number; left: number; top: number }>(null);
+  const restoringViewport = useRef(false);
+  const latestViewport = useRef<null | { zoom: number; pan: { x: number; y: number } }>(null);
   const suppressNodeClick = useRef(false);
   const initialArrangePending = useRef(false);
   const initialFitDone = useRef(false);
   const fitAfterArrange = useRef(false);
+  const manualZoomChosen = useRef(false);
+  const [shiftHeld, setShiftHeld] = useState(false);
   const [zoom, setZoom] = useState(1);
   const zoomTarget = useRef(1);
   const pendingZoomAnchor = useRef<null | { left: number; top: number }>(null);
@@ -395,13 +684,10 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
   const [marqueeBounds, setMarqueeBounds] = useState<SelectionBounds | null>(null);
   const today = new Date().toISOString().slice(0, 10);
   const scheduledDates = renderNodes.flatMap((node) => [node.planned_start, node.planned_end, node.deadline]).filter(Boolean) as string[];
-  const years = scheduledDates.map((value) => Number(value.slice(0, 4)));
-  const currentYear = new Date().getFullYear();
-  const axisStart = `${Math.min(currentYear - 1, ...(years.length ? years.map((year) => year - 1) : [currentYear - 1]))}-01-01`;
-  const axisEnd = `${Math.max(currentYear + 3, ...(years.length ? years.map((year) => year + 1) : [currentYear + 3]))}-12-31`;
+  const { start: axisStart, end: axisEnd } = canvasTimeRange(new Date(`${today}T12:00:00`), scheduledDates);
   const minOffset = logarithmicDateOffset(axisStart, today);
   const maxOffset = logarithmicDateOffset(axisEnd, today);
-  const todayX = 420 - minOffset;
+  const todayX = CANVAS_TIME_START_PADDING - minOffset;
   const persistPositions = useCallback((next: Record<string, Position>) => {
     const encoded: Record<string, number> = { __layout_direction_version: CANVAS_LAYOUT_VERSION };
     for (const [id, position] of Object.entries(next)) { encoded[`${id}:x`] = position.x; encoded[`${id}:y`] = position.y; }
@@ -415,14 +701,22 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
       if (cancelled) return;
       const stored = (state.vertical_layout ?? {}) as Record<string, unknown>;
       const next: Record<string, Position> = {};
-      if (stored.__layout_direction_version === CANVAS_LAYOUT_VERSION) {
-        for (const node of renderNodes) {
-          const x = stored[`${node.id}:x`];
-          const y = stored[`${node.id}:y`];
-          if (typeof x === "number" && typeof y === "number") next[node.id] = { x, y };
-        }
-      } else {
-        initialArrangePending.current = true;
+      for (const node of renderNodes) {
+        const x = stored[`${node.id}:x`];
+        const y = stored[`${node.id}:y`];
+        if (typeof x === "number" && typeof y === "number") next[node.id] = { x, y };
+      }
+      if (stored.__layout_direction_version !== CANVAS_LAYOUT_VERSION) initialArrangePending.current = true;
+      const savedZoom = typeof state.zoom === "number" ? Math.max(.05, Math.min(1.6, state.zoom)) : 1;
+      const savedPan = (state.pan ?? {}) as Record<string, unknown>;
+      const savedLeft = typeof savedPan.x === "number" ? Math.max(0, savedPan.x) : 0;
+      const savedTop = typeof savedPan.y === "number" ? Math.max(0, savedPan.y) : 0;
+      if (Math.abs(savedZoom - 1) > .0001 || savedLeft > .5 || savedTop > .5) {
+        restoredViewport.current = { zoom: savedZoom, left: savedLeft, top: savedTop };
+        restoringViewport.current = true;
+        manualZoomChosen.current = true;
+        zoomTarget.current = savedZoom;
+        setZoom(savedZoom);
       }
       setManualPositions(next);
     }).catch(() => {
@@ -439,8 +733,11 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
     const elk = elkPositions[node.id] ?? { x: (index % 7) * 188, y: Math.floor(index / 7) * 112 };
     return [node.id, { x: scheduled ? todayX + logarithmicDateOffset(scheduled, today) : 90 + elk.x, y: 82 + elk.y }];
   })), [renderNodes, elkPositions, today, todayX]);
-  const automaticPositions = useMemo(() => arrangeCanvasPositions(desiredPositions, nodeHeights), [desiredPositions, nodeHeights]);
-  const positions = useMemo(() => Object.fromEntries(renderNodes.map((node) => [node.id, canvasPositionForNode(node, automaticPositions[node.id], manualPositions[node.id])])), [renderNodes, manualPositions, automaticPositions]);
+  const automaticPositions = useMemo(() => arrangeCanvasPositions(desiredPositions, nodeHeights, nodeWidths), [desiredPositions, nodeHeights, nodeWidths]);
+  const timelineAwareAutomaticPositions = useMemo(() => placeChildrenBeforeDatedParents(renderNodes, automaticPositions), [renderNodes, automaticPositions]);
+  const familyAutomaticPositions = useMemo(() => arrangeCanvasFamilies(renderNodes, timelineAwareAutomaticPositions, nodeHeights, todayX), [renderNodes, timelineAwareAutomaticPositions, nodeHeights, todayX]);
+  const basePositions = useMemo(() => Object.fromEntries(renderNodes.map((node) => [node.id, canvasPositionForNode(node, familyAutomaticPositions[node.id], manualPositions[node.id])])), [renderNodes, manualPositions, familyAutomaticPositions]);
+  const positions = useMemo(() => placeChildrenBeforeDatedParents(renderNodes, basePositions), [renderNodes, basePositions]);
   const layoutReady = renderNodes.length === 0 || renderNodes.every((node) => Boolean(elkPositions[node.id]));
 
   const edgePaths = renderEdges.map((edge) => {
@@ -448,12 +745,12 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
     const source = positions[endpoints.sourceId];
     const target = positions[endpoints.targetId];
     if (!source || !target) return null;
-    const route = connectorRoute(source, nodeHeights[endpoints.sourceId], target, nodeHeights[endpoints.targetId]);
+    const route = connectorRoute(source, nodeHeights[endpoints.sourceId], target, nodeHeights[endpoints.targetId], nodeWidths[endpoints.sourceId], nodeWidths[endpoints.targetId]);
     return <path ref={(element) => { if (element) edgeRefs.current.set(edge.id, element); else edgeRefs.current.delete(edge.id); }} key={edge.id} data-source={endpoints.sourceId} data-target={endpoints.targetId} data-source-side={route.sourceSide} data-target-side={route.targetSide} className={`edge edge-${edge.relation}`} d={route.path} markerEnd="url(#arrow)" />;
   });
 
   const height = Math.max(760, ...Object.entries(positions).map(([id, item]) => item.y + (nodeHeights[id] ?? COMPACT_CARD_H) + 120));
-  const width = Math.max(1800, todayX + maxOffset + 520, ...Object.values(positions).map((item) => item.x + CARD_W + 180));
+  const width = Math.max(1800, todayX + maxOffset + CANVAS_TIME_END_PADDING, ...Object.entries(positions).map(([id, item]) => item.x + (nodeWidths[id] ?? CARD_W) + CANVAS_TIME_END_PADDING));
   const paintNodeDrag = useCallback(() => {
     nodeDragFrame.current = null;
     const current = nodeDrag.current;
@@ -478,12 +775,12 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
       const target = livePositions[endpoints.targetId];
       const edgeElement = edgeRefs.current.get(edge.id);
       if (!source || !target || !edgeElement) continue;
-      const route = connectorRoute(source, nodeHeights[endpoints.sourceId] ?? COMPACT_CARD_H, target, nodeHeights[endpoints.targetId] ?? COMPACT_CARD_H);
+      const route = connectorRoute(source, nodeHeights[endpoints.sourceId] ?? COMPACT_CARD_H, target, nodeHeights[endpoints.targetId] ?? COMPACT_CARD_H, nodeWidths[endpoints.sourceId] ?? CARD_W, nodeWidths[endpoints.targetId] ?? CARD_W);
       edgeElement.setAttribute("d", route.path);
       edgeElement.dataset.sourceSide = route.sourceSide;
       edgeElement.dataset.targetSide = route.targetSide;
     }
-  }, [nodeHeights]);
+  }, [nodeHeights, nodeWidths]);
   useEffect(() => {
     const move = (event: PointerEvent) => {
       const current = nodeDrag.current;
@@ -549,21 +846,43 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
       viewport.style.height = `${Math.min(100, canvas.clientHeight / zoom / height * 100)}%`;
     });
   };
+  const scheduleViewportSave = () => {
+    const canvas = canvasRef.current;
+    if (!canvas || !viewStateLoaded || restoringViewport.current) return;
+    latestViewport.current = { zoom: zoomTarget.current, pan: { x: canvas.scrollLeft, y: canvas.scrollTop } };
+    if (viewportSaveTimer.current != null) window.clearTimeout(viewportSaveTimer.current);
+    viewportSaveTimer.current = window.setTimeout(() => {
+      viewportSaveTimer.current = null;
+      const latest = latestViewport.current;
+      if (latest) void api.saveViewState("canvas", latest).catch(() => undefined);
+    }, 250);
+  };
   useEffect(() => () => {
     if (panFrame.current != null) window.cancelAnimationFrame(panFrame.current);
     if (viewportFrame.current != null) window.cancelAnimationFrame(viewportFrame.current);
+    if (viewportSaveTimer.current != null) window.clearTimeout(viewportSaveTimer.current);
+    const latest = latestViewport.current;
+    if (latest) void api.saveViewState("canvas", latest).catch(() => undefined);
   }, []);
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const pending = pendingZoomAnchor.current;
-    if (pending) {
-      canvas.scrollTo(pending);
-      pendingZoomAnchor.current = null;
+    const restored = restoredViewport.current;
+    if (restored && viewStateLoaded && layoutReady && Math.abs(restored.zoom - zoom) < .0001) {
+      canvas.scrollTo({ left: restored.left, top: restored.top });
+      restoredViewport.current = null;
+      window.requestAnimationFrame(() => { restoringViewport.current = false; });
+    } else {
+      const pending = pendingZoomAnchor.current;
+      if (pending) {
+        canvas.scrollTo(pending);
+        pendingZoomAnchor.current = null;
+      }
     }
     zoomTarget.current = zoom;
     updateViewport();
-  }, [zoom, width, height]);
+    scheduleViewportSave();
+  }, [zoom, width, height, viewStateLoaded, layoutReady]);
   const horizontalFitZoom = () => {
     const canvas = canvasRef.current;
     if (!canvas) return .01;
@@ -572,22 +891,23 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
   const setZoomAtPoint = (nextValue: number, clientX?: number, clientY?: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    manualZoomChosen.current = true;
     const next = Math.max(horizontalFitZoom(), Math.min(1.6, nextValue));
     const rect = canvas.getBoundingClientRect();
     const pointerInsideCanvas = clientX != null && clientY != null && clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
     const anchorX = pointerInsideCanvas ? clientX! - rect.left : canvas.clientWidth / 2;
     const anchorY = pointerInsideCanvas ? clientY! - rect.top : canvas.clientHeight / 2;
     if (Math.abs(next - zoom) < .0001) { pendingZoomAnchor.current = null; zoomTarget.current = next; return; }
-    pendingZoomAnchor.current = anchoredScrollPosition(canvas.scrollLeft, canvas.scrollTop, anchorX, anchorY, zoom, next);
+    pendingZoomAnchor.current = anchoredScrollPosition(canvas.scrollLeft, canvas.scrollTop, anchorX, anchorY, zoom, next, CANVAS_AXIS_HEIGHT);
     zoomTarget.current = next;
     setZoom(next);
   };
   const setZoomAroundCenter = (nextValue: number) => setZoomAtPoint(nextValue);
   const fitAll = () => {
     const canvas = canvasRef.current;
-    const bounds = canvasContentBounds(positions, nodeHeights);
+    const bounds = canvasContentBounds(positions, nodeHeights, nodeWidths);
     if (!canvas || !bounds) return;
-    const axisHeight = 54;
+    const axisHeight = CANVAS_AXIS_HEIGHT;
     const contentWidth = Math.max(1, bounds.right - bounds.left);
     const contentHeight = Math.max(1, bounds.bottom - bounds.top);
     const availableHeight = Math.max(1, canvas.clientHeight - axisHeight);
@@ -606,10 +926,10 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
       setZoom(next);
     }
   };
-  const autoArrangeAll = () => {
+  const autoArrangeAll = (shouldFit = true) => {
     if (!layoutReady) return;
-    const arranged = Object.fromEntries(Object.entries(automaticPositions).map(([id, position]) => [id, { ...position }]));
-    fitAfterArrange.current = true;
+    const arranged = arrangeCanvasFamilies(renderNodes, positions, nodeHeights, todayX);
+    fitAfterArrange.current = shouldFit;
     setManualPositions(arranged);
     void persistPositions(arranged).catch(() => undefined);
   };
@@ -623,8 +943,8 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
     initialFitDone.current = true;
     if (initialArrangePending.current) {
       initialArrangePending.current = false;
-      autoArrangeAll();
-    } else {
+      autoArrangeAll(!manualZoomChosen.current);
+    } else if (!manualZoomChosen.current) {
       fitAll();
     }
   }, [viewStateLoaded, layoutReady, automaticPositions]);
@@ -655,7 +975,7 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
     right: Math.max(startX, currentX),
     bottom: Math.max(startY, currentY),
   });
-  const selectionForBounds = (baseIds: string[], bounds: SelectionBounds) => [...new Set([...baseIds, ...nodesInSelectionBounds(positions, nodeHeights, bounds)])];
+  const selectionForBounds = (baseIds: string[], bounds: SelectionBounds) => [...new Set([...baseIds, ...nodesInSelectionBounds(positions, nodeHeights, bounds, nodeWidths)])];
   const moveCanvas = (event: React.PointerEvent<HTMLDivElement>) => {
     const selection = marqueeDrag.current;
     if (selection && event.pointerId === selection.pointerId) {
@@ -725,17 +1045,31 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
   };
   useEffect(() => {
     const clearWithEscape = (event: KeyboardEvent) => {
-      if (event.key !== "Escape" || !selectedIds.length) return;
-      onSelectionChange([]);
+      if (event.key !== "Escape") return;
+      if (selectedIds.length) onSelectionChange([]);
     };
     window.addEventListener("keydown", clearWithEscape);
     return () => window.removeEventListener("keydown", clearWithEscape);
   }, [selectedIds, onSelectionChange]);
+  useEffect(() => {
+    const updateShift = (event: KeyboardEvent) => {
+      if (event.key === "Shift") setShiftHeld(event.type === "keydown");
+    };
+    const clearShift = () => setShiftHeld(false);
+    window.addEventListener("keydown", updateShift);
+    window.addEventListener("keyup", updateShift);
+    window.addEventListener("blur", clearShift);
+    return () => {
+      window.removeEventListener("keydown", updateShift);
+      window.removeEventListener("keyup", updateShift);
+      window.removeEventListener("blur", clearShift);
+    };
+  }, []);
   return (
     <div className="canvas-view">
-      <div ref={canvasRef} className="canvas-scroll" onScroll={updateViewport} onPointerDown={beginCanvasMove} onPointerMove={moveCanvas} onPointerUp={(event) => finishCanvasMove(event)} onPointerCancel={(event) => finishCanvasMove(event, true)}>
-        <div className="canvas-zoom-space" style={{ width: width * zoom, height: height * zoom + 54 }}>
-          <LogarithmicTimeAxis start={axisStart} end={axisEnd} anchor={today} todayX={todayX * zoom} height={height * zoom + 54} />
+      <div ref={canvasRef} className={`canvas-scroll${shiftHeld ? " select-ready" : ""}`} onScroll={() => { updateViewport(); scheduleViewportSave(); }} onPointerDown={beginCanvasMove} onPointerMove={moveCanvas} onPointerUp={(event) => finishCanvasMove(event)} onPointerCancel={(event) => finishCanvasMove(event, true)}>
+        <div className="canvas-zoom-space" style={{ width: width * zoom, height: height * zoom + CANVAS_AXIS_HEIGHT }}>
+          <LogarithmicTimeAxis start={axisStart} end={axisEnd} anchor={today} todayX={todayX} zoom={zoom} height={height * zoom + CANVAS_AXIS_HEIGHT} />
           <div ref={stageRef} className="canvas-stage" style={{ width, height, transform: `scale(${zoom})` }}>
             <div className="today-line" style={{ left: todayX, height }} />
             <svg className="edge-layer" width={width} height={height} aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" /></marker></defs>{edgePaths}</svg>
@@ -745,11 +1079,13 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
               event.stopPropagation();
               const isSelected = selectedIds.includes(node.id);
               if (event.shiftKey) {
+                suppressNodeClick.current = true;
+                window.setTimeout(() => { suppressNodeClick.current = false; }, 80);
                 onSelectionChange(isSelected ? selectedIds.filter((id) => id !== node.id) : [...selectedIds, node.id]);
                 return;
               }
-              const ids = isSelected ? selectedIds : [node.id];
-              if (!isSelected) onSelectionChange(ids);
+              const ids = isSelected && selectedIds.length > 1 ? selectedIds : canvasSubtreeIds(renderNodes, node.id);
+              if (!isSelected || ids.length !== selectedIds.length || ids.some((id) => !selectedIds.includes(id))) onSelectionChange(ids);
               const bases = Object.fromEntries(ids.map((id) => [id, positions[id]]).filter((entry): entry is [string, Position] => Boolean(entry[1])));
               const lockX = ids.some((id) => { const item = renderNodes.find((candidate) => candidate.id === id); return Boolean(item?.planned_start || item?.deadline); });
               const draggedIds = new Set(ids);
@@ -762,10 +1098,13 @@ function CanvasView({ graph, selectedIds, onSelectionChange, onOpenSplit, onRegi
         </div>
       </div>
       <div className="canvas-overlay-tools">
-        <div className="canvas-zoom-controls"><button onClick={autoArrangeAll} disabled={!layoutReady}>Auto Arrange</button><button onClick={() => setZoomAroundCenter(zoomTarget.current - .1)} aria-label="Zoom out">−</button><button onClick={() => setZoomAroundCenter(.25)}>25%</button><button onClick={() => setZoomAroundCenter(.5)}>50%</button><button onClick={fitAll}>Fit</button><button onClick={() => setZoomAroundCenter(zoomTarget.current + .1)} aria-label="Zoom in">+</button><span>{Math.round(zoom * 100)}%</span></div>
+        <div className="canvas-zoom-controls"><button onClick={() => autoArrangeAll()} disabled={!layoutReady}>Auto Arrange</button><button onClick={() => setZoomAroundCenter(zoomTarget.current - .1)} aria-label="Zoom out">−</button><button onClick={() => setZoomAroundCenter(.75)}>75%</button><button onClick={() => setZoomAroundCenter(1)}>100%</button><button onClick={() => { manualZoomChosen.current = true; fitAll(); }}>Fit</button><button onClick={() => setZoomAroundCenter(zoomTarget.current + .1)} aria-label="Zoom in">+</button><span>{Math.round(zoom * 100)}%</span></div>
         <div className="canvas-controls"><button onClick={() => navigate(-1)}>← Quarter</button><button onClick={() => navigate(0)}>Today</button><button onClick={() => navigate(1)}>Quarter →</button></div>
       </div>
-      {selectedIds.length > 1 && <div className="canvas-selection-status"><b>{selectedIds.length} blocks selected</b><span>Drag any selected block to move the group · Esc to clear</span></div>}
+      <div className={`canvas-selection-status${selectedIds.length > 1 ? " active" : ""}`}>
+        <span>{selectedIds.length > 1 ? `${selectedIds.length} selected · Drag any selected block to move all` : "Drag canvas to pan · Hold Shift to select multiple"}</span>
+        {selectedIds.length > 0 && <button className="clear-selection" onClick={() => onSelectionChange([])}>Clear</button>}
+      </div>
       <div className="minimap" aria-label="Canvas minimap" onClick={(event) => { const canvas = canvasRef.current; if (!canvas) return; const rect = event.currentTarget.getBoundingClientRect(); const targetX = (event.clientX - rect.left) / rect.width * width; const targetY = (event.clientY - rect.top) / rect.height * height; canvas.scrollTo({ left: Math.max(0, targetX * zoom - canvas.clientWidth / 2), top: Math.max(0, targetY * zoom - canvas.clientHeight / 2), behavior: "smooth" }); }}>{renderNodes.map((node) => <i ref={(element) => { if (element) minimapNodeRefs.current.set(node.id, element); else minimapNodeRefs.current.delete(node.id); }} key={node.id} style={{ left: `${Math.min(98, positions[node.id].x / width * 100)}%`, top: `${Math.min(96, positions[node.id].y / height * 100)}%`, background: nodeColors[node.id] }} />)}<div ref={minimapViewportRef} className="minimap-viewport" /></div>
     </div>
   );
@@ -808,9 +1147,10 @@ function NodeInspector({ node, color, graphVersion, onClose, onRefresh, onOpenSp
   );
 }
 
-function TimelineGrid({ timeline, graph, selectedId, calendarRef, onSelect, onRefresh, onError, onRegisterUndo }: {
+function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, onSelect, onRefresh, onError, onRegisterUndo }: {
   timeline: TimelineResponse;
   graph: GraphResponse;
+  yoncConfig: YoncConfig | null;
   selectedId: string | null;
   calendarRef: React.RefObject<HTMLElement | null>;
   onSelect: (id: string) => void;
@@ -821,9 +1161,11 @@ function TimelineGrid({ timeline, graph, selectedId, calendarRef, onSelect, onRe
   const weeks = useMemo(() => Array.from(new Set(timeline.cells.map((cell) => `${cell.iso_year}-${cell.iso_week}`))), [timeline.cells]);
   const weekIndex = useMemo(() => Object.fromEntries(weeks.map((week, index) => [week, index])), [weeks]);
   const byId = useMemo(() => Object.fromEntries(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
-  const nodeColors = useMemo(() => colorsForNodes(graph.nodes), [graph.nodes]);
-  const unscheduled = graph.nodes.filter((node) => !node.planned_start && ["GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION", "UNCLASSIFIED"].includes(node.work_type));
-  const scheduledModules = graph.nodes.filter((node) => node.planned_start && ["GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION", "UNCLASSIFIED"].includes(node.work_type)).sort((a, b) => (a.planned_start ?? "").localeCompare(b.planned_start ?? ""));
+  const nodeColors = useMemo(() => colorsForNodes(graph.nodes, yoncConfig), [graph.nodes, yoncConfig]);
+  const unscheduled = graph.nodes.filter((node) => !node.planned_start && timelineWorkTypes.has(node.work_type));
+  const scheduledModules = graph.nodes.filter((node) => node.planned_start && timelineWorkTypes.has(node.work_type)).sort((a, b) => (a.planned_start ?? "").localeCompare(b.planned_start ?? ""));
+  const [searchQuery, setSearchQuery] = useState("");
+  const [poolFilter, setPoolFilter] = useState<TimelinePoolFilter>("all");
   const [rangeNode, setRangeNode] = useState<GraphNode | null>(null);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -912,13 +1254,43 @@ function TimelineGrid({ timeline, graph, selectedId, calendarRef, onSelect, onRe
     } catch (error) { onError(error); } finally { setPendingPlacement(null); }
   };
   const openRange = (node: GraphNode) => { setRangeNode(node); setStart(node.planned_start ?? ""); setEnd(node.planned_end ?? node.planned_start ?? ""); onSelect(node.id); };
+  const normalizedSearch = searchQuery.trim();
+  const poolNodes = useMemo(() => {
+    const candidates = normalizedSearch ? graph.nodes : unscheduled;
+    return timelinePoolMatches(candidates, normalizedSearch, poolFilter);
+  }, [graph.nodes, normalizedSearch, poolFilter]);
+  const choosePoolNode = (node: GraphNode) => {
+    if (node.planned_start) {
+      openRange(node);
+      window.requestAnimationFrame(() => {
+        const cell = calendarRef.current?.querySelector<HTMLElement>(`[data-date="${node.planned_start}"]`);
+        if (cell && calendarRef.current) calendarRef.current.scrollTo({ left: Math.max(0, cell.offsetLeft - calendarRef.current.clientWidth / 2 + cell.clientWidth / 2), behavior: "smooth" });
+      });
+    } else onSelect(node.id);
+  };
   const saveRange = async () => {
     if (!rangeNode || !start || !end) return;
     try { const scheduled = await api.schedule(rangeNode.id, start, end, graph.graph_version); if (scheduled.operation_batch_id) onRegisterUndo({ kind: "batch", batchId: scheduled.operation_batch_id }); setRangeNode(null); await onRefresh(); } catch (error) { onError(error); }
   };
   return (
     <div className="timeline-layout">
-      <aside className="module-pool"><span className="eyebrow">Unscheduled modules</span><h2>Module pool</h2>{unscheduled.length ? unscheduled.map((node) => <article key={node.id} className={draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging" : ""} draggable aria-label={`Drag ${node.title} to a date`} onDragStart={(event) => beginModuleDrag(event, node.id)} onDragEnd={clearModuleDrag} onClick={() => onSelect(node.id)}><i style={{ background: nodeColors[node.id] }} /><div><b>{node.title}</b><small>{node.work_type.replace("_", " ")} · {formatEffort(node.estimated_effort_minutes)}</small></div><span>⋮</span></article>) : <p className="quiet">Everything in this project file has a start date.</p>}</aside>
+      <aside className="module-pool">
+        <div className="module-pool-head">
+          <span className="eyebrow">Unscheduled modules</span><h2>Module pool</h2>
+          <div className="module-search">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && poolNodes[0]) choosePoolNode(poolNodes[0]); }} placeholder="Search all job & task titles…" aria-label="Search all job and task titles" />
+            {searchQuery && <button type="button" onClick={() => setSearchQuery("")} aria-label="Clear search">×</button>}
+          </div>
+          <div className="module-search-filters" aria-label="Filter search results">
+            {(["all", "jobs", "tasks"] as TimelinePoolFilter[]).map((filter) => <button key={filter} type="button" className={poolFilter === filter ? "active" : ""} aria-pressed={poolFilter === filter} onClick={() => setPoolFilter(filter)}>{filter[0].toUpperCase() + filter.slice(1)}</button>)}
+          </div>
+          <p className="module-result-count" aria-live="polite">{normalizedSearch ? `${poolNodes.length} result${poolNodes.length === 1 ? "" : "s"} across the timeline` : `${poolNodes.length} unscheduled ${poolNodes.length === 1 ? "item" : "items"}`}</p>
+        </div>
+        <div className="module-pool-list">
+          {poolNodes.length ? poolNodes.map((node) => <article key={node.id} className={`${draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging " : ""}${selectedId === node.id ? "selected" : ""}`} draggable aria-label={`Drag ${node.title} to a date`} onDragStart={(event) => beginModuleDrag(event, node.id)} onDragEnd={clearModuleDrag} onClick={() => choosePoolNode(node)}><i style={{ background: nodeColors[node.id] }} /><div><b>{node.title}</b><small>{node.work_type.replace("_", " ")} · {node.planned_start ? fmtDate(node.planned_start) : "Unscheduled"} · {formatEffort(node.estimated_effort_minutes)}</small></div><span>›</span></article>) : <p className="quiet">{normalizedSearch ? `No titles match “${normalizedSearch}”.` : poolFilter === "all" ? "Everything in this project file has a start date." : `No unscheduled ${poolFilter}.`}</p>}
+        </div>
+      </aside>
       <section ref={calendarRef} className={`calendar-wrap ${draggedNodeId ? "accepting-drop" : ""}`} onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropPreviewDate(null); }}>
         <div className="calendar-grid" style={{ gridTemplateColumns: `56px repeat(${weeks.length}, ${cellSize}px)`, "--cell-size": `${cellSize}px`, "--drop-color": dropPreviewColor } as React.CSSProperties}>
           <div className="corner-label" />
@@ -950,9 +1322,9 @@ function TimelineGrid({ timeline, graph, selectedId, calendarRef, onSelect, onRe
   );
 }
 
-function ForecastView({ graph }: { graph: GraphResponse }) {
+function ForecastView({ graph, yoncConfig }: { graph: GraphResponse; yoncConfig: YoncConfig | null }) {
   const projects = graph.nodes.filter((node) => ["GOAL", "DELIVERABLE"].includes(node.work_type)).slice(0, 12);
-  const nodeColors = useMemo(() => colorsForNodes(graph.nodes), [graph.nodes]);
+  const nodeColors = useMemo(() => colorsForNodes(graph.nodes, yoncConfig), [graph.nodes, yoncConfig]);
   const max = Math.max(1, ...Object.values(graph.pace.weeks));
   return (
     <div className="forecast-view">
@@ -962,9 +1334,10 @@ function ForecastView({ graph }: { graph: GraphResponse }) {
   );
 }
 
-function TimelineView({ timeline, graph, selectedId, mode, onMode, onSelect, onRefresh, onError, onRegisterUndo }: {
+function TimelineView({ timeline, graph, yoncConfig, selectedId, mode, onMode, onSelect, onRefresh, onError, onRegisterUndo }: {
   timeline: TimelineResponse;
   graph: GraphResponse;
+  yoncConfig: YoncConfig | null;
   selectedId: string | null;
   mode: TimelineMode;
   onMode: (mode: TimelineMode) => void;
@@ -984,7 +1357,7 @@ function TimelineView({ timeline, graph, selectedId, mode, onMode, onSelect, onR
     }
     calendar.scrollBy({ left: direction * 13 * 49, behavior: "smooth" });
   };
-  return <div className="timeline-view"><header className="timeline-toolbar"><div className="segmented"><button className={mode === "forecast" ? "active" : ""} onClick={() => onMode("forecast")}>Forecast</button><button className={mode === "capacity" ? "active" : ""} onClick={() => onMode("capacity")}>Capacity Grid</button></div>{mode === "capacity" && <div className="date-navigation"><button onClick={() => navigate(-1)}>← Quarter</button><button onClick={() => navigate(0)}>Today</button><button onClick={() => navigate(1)}>Quarter →</button></div>}</header>{mode === "forecast" ? <ForecastView graph={graph} /> : <TimelineGrid timeline={timeline} graph={graph} selectedId={selectedId} calendarRef={calendarRef} onSelect={onSelect} onRefresh={onRefresh} onError={onError} onRegisterUndo={onRegisterUndo} />}</div>;
+  return <div className="timeline-view"><header className="timeline-toolbar"><div className="segmented"><button className={mode === "forecast" ? "active" : ""} onClick={() => onMode("forecast")}>Forecast</button><button className={mode === "capacity" ? "active" : ""} onClick={() => onMode("capacity")}>Capacity Grid</button></div>{mode === "capacity" && <div className="date-navigation"><button onClick={() => navigate(-1)}>← Quarter</button><button onClick={() => navigate(0)}>Today</button><button onClick={() => navigate(1)}>Quarter →</button></div>}</header>{mode === "forecast" ? <ForecastView graph={graph} yoncConfig={yoncConfig} /> : <TimelineGrid timeline={timeline} graph={graph} yoncConfig={yoncConfig} selectedId={selectedId} calendarRef={calendarRef} onSelect={onSelect} onRefresh={onRefresh} onError={onError} onRegisterUndo={onRegisterUndo} />}</div>;
 }
 
 function SplitPanel({ split, graphVersion, onClose, onRefresh, onError, onRegisterUndo }: {
@@ -1029,6 +1402,87 @@ function SplitPanel({ split, graphVersion, onClose, onRefresh, onError, onRegist
   );
 }
 
+type ConfigTab = "themes" | "modes" | "task_types";
+
+function SettingsPanel({ config, onClose, onSaved, onError }: {
+  config: YoncConfig;
+  onClose: () => void;
+  onSaved: (config: YoncConfig) => void;
+  onError: (error: unknown) => void;
+}) {
+  const [draft, setDraft] = useState<YoncConfig>(() => structuredClone(config));
+  const [tab, setTab] = useState<ConfigTab>("themes");
+  const [saving, setSaving] = useState(false);
+  const [notice, setNotice] = useState("");
+  const updateTheme = (index: number, values: Partial<YoncConfig["themes"][number]>) => setDraft((current) => ({ ...current, themes: current.themes.map((item, itemIndex) => itemIndex === index ? { ...item, ...values } : item) }));
+  const updateMode = (index: number, values: Partial<YoncConfig["modes"][number]>) => setDraft((current) => ({ ...current, modes: current.modes.map((item, itemIndex) => itemIndex === index ? { ...item, ...values } : item) }));
+  const updateTaskType = (index: number, values: Partial<YoncConfig["task_types"][number]>) => setDraft((current) => ({ ...current, task_types: current.task_types.map((item, itemIndex) => itemIndex === index ? { ...item, ...values } : item) }));
+  const save = async () => {
+    const normalized: YoncConfig = {
+      ...draft,
+      themes: draft.themes.map((item) => ({ ...item, name: item.name.trim(), sub_themes: item.sub_themes.map((value) => value.trim()).filter(Boolean) })),
+      modes: draft.modes.map((item) => ({ ...item, mode_name: item.mode_name.trim(), description: item.description.trim() })),
+      task_types: draft.task_types.map((item) => ({ ...item, emoji: item.emoji.trim(), name: item.name.trim(), description: item.description.trim(), tag: item.tag.trim() })),
+    };
+    if (normalized.themes.some((item) => !item.name) || normalized.modes.some((item) => !item.mode_name) || normalized.task_types.some((item) => !item.name)) {
+      setNotice("名称不能为空。");
+      return;
+    }
+    setSaving(true);
+    setNotice("");
+    try {
+      const saved = await api.saveYoncConfig(normalized);
+      setDraft(structuredClone(saved));
+      onSaved(saved);
+      setNotice("已保存到 project_graph.sqlite3");
+    } catch (error) { onError(error); } finally { setSaving(false); }
+  };
+  return (
+    <div className="modal-backdrop settings-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <section className="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <header><div><span className="eyebrow">project_graph.sqlite3</span><h2 id="settings-title">Yonc Configuration</h2></div><button className="icon-button" onClick={onClose} aria-label="关闭设置">×</button></header>
+        <div className="settings-tabs" role="tablist">
+          <button className={tab === "themes" ? "active" : ""} onClick={() => setTab("themes")}>Task Themes <span>{draft.themes.length}</span></button>
+          <button className={tab === "modes" ? "active" : ""} onClick={() => setTab("modes")}>Modes <span>{draft.modes.length}</span></button>
+          <button className={tab === "task_types" ? "active" : ""} onClick={() => setTab("task_types")}>Task Types <span>{draft.task_types.length}</span></button>
+        </div>
+        <div className="settings-content">
+          {tab === "themes" && <>
+            <div className="settings-section-heading"><div><h3>Task Theme with colour</h3><p>Theme colors are used immediately across Canvas, Timeline, and Forecast.</p></div><button onClick={() => setDraft((current) => ({ ...current, themes: [...current.themes, { name: "New Theme", sub_themes: [], color: "#64748b" }] }))}>＋ Add Theme</button></div>
+            <div className="config-list">{draft.themes.map((theme, index) => <article className="config-row theme-row" key={`${index}-${theme.name}`}>
+              <label className="color-field" title="Theme color"><input type="color" value={theme.color} onChange={(event) => updateTheme(index, { color: event.target.value })} /><span style={{ background: theme.color }} /></label>
+              <label><span>Name</span><input value={theme.name} onChange={(event) => updateTheme(index, { name: event.target.value })} /></label>
+              <label className="wide"><span>Sub-themes, separated by |</span><input value={theme.sub_themes.join(" | ")} onChange={(event) => updateTheme(index, { sub_themes: event.target.value.split("|") })} /></label>
+              <button className="remove-config" onClick={() => setDraft((current) => ({ ...current, themes: current.themes.filter((_, itemIndex) => itemIndex !== index) }))} aria-label={`Remove ${theme.name}`}>×</button>
+            </article>)}</div>
+          </>}
+          {tab === "modes" && <>
+            <div className="settings-section-heading"><div><h3>Modes</h3><p>Edit energy level, display badge, color, and guidance.</p></div><button onClick={() => setDraft((current) => ({ ...current, modes: [...current.modes, { mode_name: "New Mode", level: 1, description: "", color: "#64748b" }] }))}>＋ Add Mode</button></div>
+            <div className="config-list">{draft.modes.map((mode, index) => <article className="config-row mode-row" key={`${index}-${mode.mode_name}`}>
+              <label className="color-field" title="Mode color"><input type="color" value={mode.color} onChange={(event) => updateMode(index, { color: event.target.value })} /><span style={{ background: mode.color }} /></label>
+              <label><span>Mode</span><input value={mode.mode_name} onChange={(event) => updateMode(index, { mode_name: event.target.value })} /></label>
+              <label className="level-field"><span>Level</span><input type="number" min="0" max="10" step="0.5" value={mode.level} onChange={(event) => updateMode(index, { level: Number(event.target.value) })} /></label>
+              <label className="wide"><span>Description</span><input value={mode.description} onChange={(event) => updateMode(index, { description: event.target.value })} /></label>
+              <button className="remove-config" onClick={() => setDraft((current) => ({ ...current, modes: current.modes.filter((_, itemIndex) => itemIndex !== index) }))} aria-label={`Remove ${mode.mode_name}`}>×</button>
+            </article>)}</div>
+          </>}
+          {tab === "task_types" && <>
+            <div className="settings-section-heading"><div><h3>Task Types</h3><p>Edit the functional categories used by Yonc task classification.</p></div><button onClick={() => setDraft((current) => ({ ...current, task_types: [...current.task_types, { emoji: "", name: "New Type", description: "", tag: "" }] }))}>＋ Add Task Type</button></div>
+            <div className="config-list">{draft.task_types.map((taskType, index) => <article className="config-row task-type-row" key={`${index}-${taskType.name}`}>
+              <label className="emoji-field"><span>Emoji</span><input value={taskType.emoji} onChange={(event) => updateTaskType(index, { emoji: event.target.value })} /></label>
+              <label><span>Name</span><input value={taskType.name} onChange={(event) => updateTaskType(index, { name: event.target.value })} /></label>
+              <label><span>Tag</span><input value={taskType.tag} onChange={(event) => updateTaskType(index, { tag: event.target.value })} /></label>
+              <label className="wide"><span>Description</span><input value={taskType.description} onChange={(event) => updateTaskType(index, { description: event.target.value })} /></label>
+              <button className="remove-config" onClick={() => setDraft((current) => ({ ...current, task_types: current.task_types.filter((_, itemIndex) => itemIndex !== index) }))} aria-label={`Remove ${taskType.name}`}>×</button>
+            </article>)}</div>
+          </>}
+        </div>
+        <footer><div><span>{notice}</span><small>Revision {draft.revision} · source: {draft.source}</small></div><button onClick={onClose}>Close</button><button className="primary" disabled={saving} onClick={save}>{saving ? "Saving…" : "Save changes"}</button></footer>
+      </section>
+    </div>
+  );
+}
+
 function MobileFallback({ graph, onDone, onSplit }: { graph: GraphResponse; onDone: (node: GraphNode) => void; onSplit: (node: GraphNode) => void }) {
   const actions = graph.nodes.filter((node) => node.work_type === "ACTION" && !["DONE", "CANCELLED", "SUPERSEDED"].includes(node.status)).slice(0, 12);
   return <main className="mobile-fallback"><header><span className="eyebrow">Global project file</span><h1>Yonc</h1><p>{graph.health.warning_count} graph warnings · {graph.pace.reliable ? `${graph.pace.median_hours?.toFixed(1)}h/week` : "pace baseline pending"}</p></header><section><h2>Next Actions</h2>{actions.length ? actions.map((node) => <article key={node.id}><div><b>{node.title}</b><span>{fmtDate(node.deadline)} · {formatEffort(node.estimated_effort_minutes)}</span></div><button onClick={() => onSplit(node)}>Split</button><button className="primary" onClick={() => onDone(node)}>Done</button></article>) : <p className="quiet">No open Actions in this project file.</p>}</section></main>;
@@ -1039,6 +1493,7 @@ export default function App() {
   const [timelineMode, setTimelineMode] = useState<TimelineMode>("capacity");
   const [graph, setGraph] = useState<GraphResponse | null>(null);
   const [timeline, setTimeline] = useState<TimelineResponse | null>(null);
+  const [yoncConfig, setYoncConfig] = useState<YoncConfig | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [split, setSplit] = useState<SplitSession | null>(null);
   const [mobileDoneCandidate, setMobileDoneCandidate] = useState<GraphNode | null>(null);
@@ -1073,10 +1528,11 @@ export default function App() {
     const requestId = ++latestLoad.current;
     if (blocking) setLoading(true);
     try {
-      const [nextGraph, nextTimeline] = await Promise.all([api.graph(), api.timeline(TIMELINE_RANGE.start, TIMELINE_RANGE.end)]);
+      const [nextGraph, nextTimeline, nextConfig] = await Promise.all([api.graph(), api.timeline(TIMELINE_RANGE.start, TIMELINE_RANGE.end), api.yoncConfig()]);
       if (requestId !== latestLoad.current) return;
       setGraph(nextGraph);
       setTimeline(nextTimeline);
+      setYoncConfig(nextConfig);
       setSelectedIds((current) => current.filter((id) => nextGraph.nodes.some((node) => node.id === id)));
     } catch (unknownError) { if (reportError) handleError(unknownError); } finally { if (blocking) setLoading(false); }
   }, [handleError]);
@@ -1129,11 +1585,12 @@ export default function App() {
     return () => { window.clearInterval(timer); window.removeEventListener("focus", quietlySync); };
   }, [load]);
   const openSplit = async (node: GraphNode) => {
+    setSelectedIds([]);
     try { setSplit(await api.startSplit(node.id)); } catch (unknownError) { handleError(unknownError); }
   };
   const selectedId = selectedIds.length === 1 ? selectedIds[0] : null;
   const selected = graph?.nodes.find((node) => node.id === selectedId) ?? null;
-  const nodeColors = useMemo(() => graph ? colorsForNodes(graph.nodes) : {}, [graph]);
+  const nodeColors = useMemo(() => graph ? colorsForNodes(graph.nodes, yoncConfig) : {}, [graph, yoncConfig]);
   const mobileDone = (node: GraphNode) => { setSelectedIds([node.id]); setMobileDoneCandidate(node); };
   const confirmMobileDone = async () => {
     if (!mobileDoneCandidate || !graph) return;
@@ -1150,14 +1607,14 @@ export default function App() {
       <nav className="side-nav" aria-label="Primary"><a className="brand" href="/v2/" aria-label="Yonc home">Y</a><button className={view === "canvas" ? "active" : ""} onClick={() => setView("canvas")} aria-label="Canvas"><span>▦</span><small>Canvas</small></button><button className={view === "timeline" ? "active" : ""} onClick={() => setView("timeline")} aria-label="Timeline"><span>◫</span><small>Timeline</small></button><button className="nav-settings" onClick={() => setSettingsOpen(true)} aria-label="Settings"><span>⚙</span><small>Settings</small></button><a className="legacy-link" href="/legacy" title="Open legacy UI">v1</a></nav>
       {loading && <div className="loading-state"><div /><div /><div /><p>Loading project graph…</p></div>}
       {!loading && graph && timeline && <>
-        <main className="desktop-content">{view === "canvas" ? <CanvasView graph={graph} selectedIds={selectedIds} onSelectionChange={setSelectedIds} onOpenSplit={openSplit} onRegisterUndo={registerUndo} /> : <TimelineView timeline={timeline} graph={graph} selectedId={selectedId} mode={timelineMode} onMode={setTimelineMode} onSelect={(id) => setSelectedIds([id])} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}</main>
+        <main className="desktop-content">{view === "canvas" ? <CanvasView graph={graph} yoncConfig={yoncConfig} selectedIds={selectedIds} onSelectionChange={setSelectedIds} onOpenSplit={openSplit} onRegisterUndo={registerUndo} /> : <TimelineView timeline={timeline} graph={graph} yoncConfig={yoncConfig} selectedId={selectedId} mode={timelineMode} onMode={setTimelineMode} onSelect={(id) => setSelectedIds([id])} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}</main>
         {view === "canvas" && selected && <NodeInspector node={selected} color={nodeColors[selected.id]} graphVersion={graph.graph_version} onClose={() => setSelectedIds([])} onRefresh={refresh} onOpenSplit={openSplit} onError={handleError} onRegisterUndo={registerUndo} />}
         <MobileFallback graph={graph} onDone={mobileDone} onSplit={openSplit} />
       </>}
       {!loading && graph && !graph.nodes.length && <div className="empty-state"><h1>No work in this project file</h1><p>Import existing work or capture a Goal to begin.</p></div>}
       {split && graph && <SplitPanel split={split} graphVersion={graph.graph_version} onClose={() => setSplit(null)} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}
       {mobileDoneCandidate && <Modal title="确认完成" onClose={() => setMobileDoneCandidate(null)}><p>确认标记“{mobileDoneCandidate.title}”为完成？完成状态只能由你确认。</p><div className="modal-actions"><button onClick={() => setMobileDoneCandidate(null)}>取消</button><button className="primary" onClick={confirmMobileDone}>标记完成</button></div></Modal>}
-      {settingsOpen && <Modal title="设置" onClose={() => setSettingsOpen(false)}><p>当前使用全局项目视图。排期只能在 Timeline 中修改，Canvas 保持为只读时间定位。</p><div className="modal-actions"><button className="primary" onClick={() => setSettingsOpen(false)}>完成</button></div></Modal>}
+      {settingsOpen && yoncConfig && <SettingsPanel config={yoncConfig} onClose={() => setSettingsOpen(false)} onSaved={setYoncConfig} onError={handleError} />}
       {error && <Modal title="操作未完成" onClose={() => setError(null)}><p>{error}</p><div className="modal-actions"><button className="primary" onClick={() => setError(null)}>知道了</button></div></Modal>}
       {undoNotice && <div className="undo-notice" role="status">{undoNotice}</div>}
     </div>

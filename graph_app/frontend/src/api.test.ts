@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, connectorRoute, healthWarningMessage, nodeCardHeight, nodeCardInfo, nodesInSelectionBounds, projectKeyForNode, scheduledModuleLayout, splitCardTitle, wbsColorFor } from "./App";
-import type { GraphNode } from "./types";
+import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, logarithmicDateOffset, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import type { GraphNode, YoncConfig } from "./types";
 
 describe("Simplified Chinese interaction messages", () => {
   it("maps stable English API codes to Chinese user dialogs", () => {
@@ -28,8 +28,11 @@ describe("Capacity Grid drag allocation preview", () => {
     const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
     const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
     expect(app).toContain("event.shiftKey");
+    expect(app).toContain("shiftHeld");
+    expect(app).toContain("Hold Shift to select multiple");
+    expect(app).toContain("suppressNodeClick.current = true");
     expect(app).toContain("marqueeDrag.current");
-    expect(app).toContain("Drag any selected block to move the group");
+    expect(app).toContain("Drag any selected block to move all");
     expect(app).toContain("for (const id of current.ids)");
     expect(app).toContain("selectedIds.length === 1");
     expect(styles).toContain(".selection-marquee");
@@ -42,11 +45,93 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(scheduledModuleLayout("2026-12-31", "2026-12-31", 20, 20, 20)).toEqual({ singleDay: true, displayEndWeek: 20 });
   });
 
+  it("searches every timeline title and filters jobs from tasks", () => {
+    const nodes = [
+      { id: "goal", title: "Solar launch plan", work_type: "GOAL", planned_start: "2026-10-01" },
+      { id: "package", title: "Solar hardware package", work_type: "WORK_PACKAGE", planned_start: null },
+      { id: "task", title: "Test solar inverter", work_type: "ACTION", planned_start: "2026-10-04" },
+      { id: "artifact", title: "Solar reference", work_type: "UNCLASSIFIED", planned_start: null },
+    ] as GraphNode[];
+    expect(timelinePoolMatches(nodes, "solar", "all").map((node) => node.id)).toEqual(["package", "goal", "artifact", "task"]);
+    expect(timelinePoolMatches(nodes, "solar", "jobs").map((node) => node.id)).toEqual(["package", "goal"]);
+    expect(timelinePoolMatches(nodes, "solar inverter", "tasks").map((node) => node.id)).toEqual(["task"]);
+  });
+
   it("keeps the same Canvas world point directly below the mouse while zooming", () => {
     const before = { left: 1400, top: 620, anchorX: 430, anchorY: 260, zoom: .5 };
-    const after = anchoredScrollPosition(before.left, before.top, before.anchorX, before.anchorY, before.zoom, .9);
+    const fixedAxisHeight = 54;
+    const after = anchoredScrollPosition(before.left, before.top, before.anchorX, before.anchorY, before.zoom, .9, fixedAxisHeight);
     expect((after.left + before.anchorX) / .9).toBeCloseTo((before.left + before.anchorX) / before.zoom, 8);
-    expect((after.top + before.anchorY) / .9).toBeCloseTo((before.top + before.anchorY) / before.zoom, 8);
+    expect((after.top + before.anchorY - fixedAxisHeight) / .9).toBeCloseTo((before.top + before.anchorY - fixedAxisHeight) / before.zoom, 8);
+  });
+
+  it("keeps undated descendants to the left of a dated completion parent", () => {
+    const nodes = [
+      { id: "parent", parent_id: null, planned_start: "2026-11-09", deadline: null },
+      { id: "child", parent_id: "parent", planned_start: null, deadline: null },
+      { id: "grandchild", parent_id: "child", planned_start: null, deadline: null },
+      { id: "dated-child", parent_id: "parent", planned_start: "2026-10-13", deadline: null },
+    ];
+    const result = placeChildrenBeforeDatedParents(nodes, {
+      parent: { x: 3420, y: 0 }, child: { x: 4910, y: 100 }, grandchild: { x: 5200, y: 200 }, "dated-child": { x: 2438, y: 300 },
+    });
+    expect(result.child.x).toBe(3180);
+    expect(result.grandchild.x).toBe(2940);
+    expect(result["dated-child"].x).toBe(2438);
+  });
+
+  it("moves families as rigid groups and packs unscheduled families after Today", () => {
+    const nodes = [
+      { id: "scheduled-root", parent_id: null, wbs_level: 1, planned_start: "2026-11-09", deadline: null },
+      { id: "scheduled-child", parent_id: "scheduled-root", wbs_level: 2, planned_start: null, deadline: null },
+      { id: "loose-root", parent_id: null, wbs_level: 1, planned_start: null, deadline: null },
+      { id: "loose-child", parent_id: "loose-root", wbs_level: 2, planned_start: null, deadline: null },
+    ];
+    const seed = {
+      "scheduled-root": { x: 1400, y: 500 }, "scheduled-child": { x: 1180, y: 620 },
+      "loose-root": { x: 1900, y: 900 }, "loose-child": { x: 1680, y: 1020 },
+    };
+    const result = arrangeCanvasFamilies(nodes, seed, {}, 1000);
+    expect(result["scheduled-root"].x).toBe(1400);
+    expect(result["scheduled-child"].x).toBeLessThan(result["scheduled-root"].x);
+    expect(result["loose-root"].x).toBeGreaterThan(result["loose-child"].x);
+    expect(Math.min(result["loose-root"].x, result["loose-child"].x)).toBeGreaterThanOrEqual(1120);
+    expect(Math.min(result["loose-root"].y, result["loose-child"].y)).toBe(82);
+    expect(canvasSubtreeIds(nodes, "loose-root")).toEqual(["loose-root", "loose-child"]);
+  });
+
+  it("migrates an older Canvas layout without discarding its saved family shape", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toContain("const CANVAS_LAYOUT_VERSION = 9");
+    expect(app).toMatch(/for \(const node of renderNodes\)[\s\S]*stored\[`\$\{node\.id\}:x`\][\s\S]*stored\.__layout_direction_version !== CANVAS_LAYOUT_VERSION/);
+  });
+
+  it("reflows a large family into a wide layout with L4 cards in two rows", () => {
+    const nodes = [
+      { id: "root", parent_id: null, wbs_level: 1, planned_start: null, deadline: null },
+      { id: "l2", parent_id: "root", wbs_level: 2, planned_start: null, deadline: null },
+      { id: "l3", parent_id: "l2", wbs_level: 3, planned_start: null, deadline: null },
+      ...Array.from({ length: 8 }, (_, index) => ({ id: `leaf-${index}`, parent_id: "l3", wbs_level: 4, planned_start: null, deadline: null })),
+    ];
+    const seed = Object.fromEntries(nodes.map((node, index) => [node.id, { x: 0, y: index * 100 }]));
+    const result = wideCanvasFamilyLayout(nodes, seed, {});
+    const leafRows = new Set(nodes.slice(3).map((node) => result[node.id].y));
+    const bounds = canvasContentBounds(result, {}, Object.fromEntries(nodes.map((node) => [node.id, nodeCardWidth(node)])))!;
+    expect(leafRows.size).toBe(2);
+    expect(bounds.right - bounds.left).toBeGreaterThan(bounds.bottom - bounds.top);
+    expect(nodeCardWidth(nodes.at(-1)!)).toBe(180);
+  });
+
+  it("closes the description inspector before opening a split session", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toMatch(/const openSplit = async \(node: GraphNode\) => \{\s*setSelectedIds\(\[\]\);\s*try \{ setSplit\(await api\.startSplit\(node\.id\)\)/);
+  });
+
+  it("keeps useful past and future time around today without crushing distant months", () => {
+    expect(canvasTimeRange(new Date("2026-09-08T12:00:00"), [])).toEqual({ start: "2025-03-01", end: "2031-09-01" });
+    const august = logarithmicDateOffset("2031-08-01", "2026-09-08");
+    const september = logarithmicDateOffset("2031-09-01", "2026-09-08");
+    expect(september - august).toBeGreaterThan(50);
   });
 
   it("suppresses the native card ghost and fills the hovered grid cell", () => {
@@ -99,12 +184,22 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(canvas).toContain("onSelectionChange");
     expect(canvas).toContain("setManualPositions");
     expect(canvas).toContain('api.saveViewState("canvas"');
+    expect(canvas).toContain("state.zoom");
+    expect(canvas).toContain("state.pan");
+    expect(canvas).toContain("restoredViewport.current");
+    expect(canvas).toContain("scheduleViewportSave");
     expect(canvas).toContain("fitAll");
     expect(canvas).toContain("autoArrangeAll");
     expect(canvas).toContain(">Auto Arrange</button>");
+    expect(canvas).toContain("setZoomAroundCenter(.75)");
+    expect(canvas).toContain(">75%</button>");
+    expect(canvas).toContain("setZoomAroundCenter(1)");
+    expect(canvas).toContain(">100%</button>");
     expect(canvas).toContain("(canvas.clientWidth - 28) / width");
     expect(canvas).not.toContain("(canvas.clientHeight - 28) / height");
     expect(canvas).toContain("Math.max(horizontalFitZoom()");
+    expect(canvas).toContain("manualZoomChosen.current = true");
+    expect(canvas).toContain("autoArrangeAll(!manualZoomChosen.current)");
     expect(canvas).toContain("nodeDragFrame");
     expect(canvas).toContain("minimapViewportRef");
     expect(canvas).not.toContain("setNodeDrag");
@@ -119,12 +214,13 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(styles).toContain("conic-gradient(from -90deg");
     expect(styles).toContain(".month-tick");
     expect(canvas).toMatch(/canvas-zoom-space[\s\S]*?<LogarithmicTimeAxis[\s\S]*?canvas-stage/);
-    expect(canvas).toContain("todayX={todayX * zoom}");
-    expect(canvas).toContain("height={height * zoom + 54}");
+    expect(canvas).toContain("todayX={todayX} zoom={zoom}");
+    expect(app).toContain("(todayX + logarithmicDateOffset(value, anchor)) * zoom");
+    expect(canvas).toContain("height={height * zoom + CANVAS_AXIS_HEIGHT}");
     expect(canvas.slice(canvas.indexOf('className="canvas-stage"'))).not.toContain("<LogarithmicTimeAxis");
     expect(canvas).not.toContain('className="node-port');
     expect(styles).toContain(".minimap-viewport");
-    expect(styles).toContain("scroll-behavior: smooth");
+    expect(styles).toMatch(/\.canvas-scroll\s*\{[^}]*scroll-behavior:\s*auto;/);
     expect(styles).toContain(".canvas-scroll.panning { scroll-behavior: auto;");
     expect(styles).toContain(".canvas-stage.node-dragging .node-card::before { filter: none;");
     expect(styles).toContain(".canvas-overlay-tools:hover { opacity: 1");
@@ -135,12 +231,12 @@ describe("Capacity Grid drag allocation preview", () => {
 
   it("routes connectors through the target edge that faces their approach direction", () => {
     const leftToRight = connectorRoute({ x: 0, y: 100 }, 66, { x: 300, y: 100 }, 66);
-    expect(leftToRight).toMatchObject({ sourceSide: "right", targetSide: "left", x1: 167, x2: 297 });
+    expect(leftToRight).toMatchObject({ sourceSide: "right", targetSide: "left", x1: 187, x2: 297 });
     expect(leftToRight.path).toMatch(/H 297$/);
 
     const rightToLeft = connectorRoute({ x: 300, y: 100 }, 66, { x: 0, y: 100 }, 66);
-    expect(rightToLeft).toMatchObject({ sourceSide: "left", targetSide: "right", x1: 297, x2: 167 });
-    expect(rightToLeft.path).toMatch(/H 167$/);
+    expect(rightToLeft).toMatchObject({ sourceSide: "left", targetSide: "right", x1: 297, x2: 187 });
+    expect(rightToLeft.path).toMatch(/H 187$/);
 
     const bottomToTop = connectorRoute({ x: 100, y: 300 }, 66, { x: 100, y: 0 }, 66);
     expect(bottomToTop).toMatchObject({ sourceSide: "top", targetSide: "bottom", y1: 297, y2: 69 });
@@ -170,7 +266,7 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(canvasContentBounds({
       a: { x: 100, y: 80 },
       b: { x: 500, y: 300 },
-    }, { a: 66, b: 94 })).toEqual({ left: 100, top: 80, right: 664, bottom: 394 });
+    }, { a: 66, b: 94 })).toEqual({ left: 100, top: 80, right: 684, bottom: 394 });
     expect(canvasContentBounds({}, {})).toBeNull();
   });
 
@@ -228,6 +324,21 @@ describe("Capacity Grid drag allocation preview", () => {
 });
 
 describe("Canvas project color system", () => {
+  it("uses the saved Task Theme color and inherits it through the project tree", () => {
+    const nodes = [
+      { id: "project", parent_id: null, wbs_level: 1, tags: { "Task Theme with colour": "PhDSettle✒ Research | Thesis" } },
+      { id: "action", parent_id: "project", wbs_level: 4, tags: {} },
+    ] as GraphNode[];
+    const config = {
+      themes: [{ name: "PhDSettle✒", sub_themes: ["Research", "Thesis"], color: "#dc2626" }],
+      modes: [], task_types: [], source: "settings_ui", revision: 2, updated_at: null,
+    } as YoncConfig;
+    const byId = new Map(nodes.map((node) => [node.id, node]));
+    expect(configuredThemeColor(nodes[0], byId, config)).toMatch(/^#[0-9a-f]{6}$/);
+    expect(configuredThemeColor(nodes[1], byId, config)).not.toBeNull();
+    expect(configuredThemeColor(nodes[1], byId, config)).not.toBe(configuredThemeColor(nodes[0], byId, config));
+  });
+
   it("keeps one project hue throughout an L1-L4 lineage", () => {
     const nodes = [
       { id: "project", parent_id: null, wbs_level: 1 },

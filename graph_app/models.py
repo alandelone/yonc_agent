@@ -200,6 +200,20 @@ class ResourceReference(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
 
 
+class YoncConfig(Base):
+    """Editable Project Map taxonomy stored with the local graph database."""
+
+    __tablename__ = "yonc_config"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, default=1)
+    themes: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
+    modes: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
+    task_types: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
+    source: Mapped[str] = mapped_column(String(50), default="settings_ui", nullable=False)
+    revision: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
 class ViewState(Base):
     __tablename__ = "view_states"
     __table_args__ = (UniqueConstraint("view", "scope_node_id", "client_key", name="uq_view_scope_client"),)

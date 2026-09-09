@@ -67,6 +67,35 @@ export interface GraphResponse {
   health: { ok: boolean; warning_count: number; warnings: unknown[] };
 }
 
+export interface YoncThemeConfig {
+  name: string;
+  sub_themes: string[];
+  color: string;
+}
+
+export interface YoncModeConfig {
+  mode_name: string;
+  level: number;
+  description: string;
+  color: string;
+}
+
+export interface YoncTaskTypeConfig {
+  emoji: string;
+  name: string;
+  description: string;
+  tag: string;
+}
+
+export interface YoncConfig {
+  themes: YoncThemeConfig[];
+  modes: YoncModeConfig[];
+  task_types: YoncTaskTypeConfig[];
+  source: string;
+  revision: number;
+  updated_at: string | null;
+}
+
 export interface TimelineCell {
   date: string;
   iso_year: number;

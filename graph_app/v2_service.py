@@ -900,7 +900,7 @@ def update_view_state(session: Session, state: ViewState, payload: dict[str, Any
     if "filters" in payload:
         state.filters = payload["filters"] or {}
     if "zoom" in payload:
-        state.zoom = min(4.0, max(0.2, float(payload["zoom"])))
+        state.zoom = min(4.0, max(0.05, float(payload["zoom"])))
     if "pan" in payload:
         state.pan_x = float((payload["pan"] or {}).get("x", state.pan_x))
         state.pan_y = float((payload["pan"] or {}).get("y", state.pan_y))

@@ -233,6 +233,8 @@ def test_schedule_constraints_auto_span_overlap_and_view_state(tmp_path):
         assert state["expanded_node_ids"] == [goal["id"]]
         assert state["zoom"] == 4
         assert state["pan"] == {"x": 42.0, "y": -8.0}
+        minimum_zoom = client.put(f"/api/v2/view-state/canvas?scope_node_id={goal['id']}&client_key=test", json={"zoom": 0.05}).json()
+        assert minimum_zoom["zoom"] == 0.05
         persisted = client.get(f"/api/v2/view-state/canvas?scope_node_id={goal['id']}&client_key=test").json()
         assert persisted["vertical_layout"] == {task["id"]: 240}
 
@@ -285,6 +287,38 @@ def test_legacy_import_is_idempotent_and_does_not_write_notion(tmp_path):
         graph = client.get("/api/v2/graph").json()
         assert len(graph["nodes"]) == 2
         assert len([edge for edge in graph["edges"] if edge["relation"] == "contains"]) == 1
+
+
+def test_yonc_config_is_seeded_editable_and_revision_guarded(tmp_path):
+    with make_client(tmp_path) as client:
+        seeded = client.get("/api/v2/settings/yonc-config")
+        assert seeded.status_code == 200
+        original = seeded.json()
+        assert original["source"] == "yonc_config_cache"
+        assert original["themes"]
+        assert original["modes"]
+        assert original["task_types"]
+
+        payload = {
+            "themes": [{"name": "Research", "sub_themes": ["Thesis", "Review"], "color": "#3366cc"}],
+            "modes": [{"mode_name": "Focus", "level": 5, "description": "Deep work", "color": "#6d28d9"}],
+            "task_types": [{"emoji": "🔬", "name": "Research", "description": "Evidence work", "tag": "research"}],
+            "expected_revision": original["revision"],
+        }
+        saved = client.put("/api/v2/settings/yonc-config", json=payload)
+        assert saved.status_code == 200
+        assert saved.json()["source"] == "settings_ui"
+        assert saved.json()["revision"] == original["revision"] + 1
+        assert client.get("/api/v2/settings/yonc-config").json()["themes"] == payload["themes"]
+
+        stale = client.put("/api/v2/settings/yonc-config", json=payload)
+        assert stale.status_code == 409
+        assert error_code(stale) == "CONFIG_VERSION_CONFLICT"
+
+        duplicate = {**payload, "expected_revision": saved.json()["revision"], "themes": [payload["themes"][0], payload["themes"][0]]}
+        rejected = client.put("/api/v2/settings/yonc-config", json=duplicate)
+        assert rejected.status_code == 422
+        assert error_code(rejected) == "CONFIG_DUPLICATE_NAME"
 
 
 def test_real_551_node_backup_migrates_without_legacy_field_loss(tmp_path):

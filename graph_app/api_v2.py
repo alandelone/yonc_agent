@@ -14,6 +14,7 @@ from sqlalchemy.orm import Session
 
 from .legacy import import_legacy_state, legacy_state_path
 from .models import GraphNode, OperationBatch, ResourceReference, SplitSession
+from .yonc_config import get_yonc_config, serialize_yonc_config, update_yonc_config
 from .v2_service import (
     V2Error,
     add_resource_reference,
@@ -158,6 +159,33 @@ class ImportPayload(BaseModel):
     source_path: str | None = None
 
 
+class ThemeConfigPayload(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    sub_themes: list[str] = Field(default_factory=list, max_length=100)
+    color: str = Field(pattern=r"^#[0-9a-fA-F]{6}$")
+
+
+class ModeConfigPayload(BaseModel):
+    mode_name: str = Field(min_length=1, max_length=120)
+    level: float = Field(default=0, ge=0, le=10)
+    description: str = Field(default="", max_length=1000)
+    color: str = Field(pattern=r"^#[0-9a-fA-F]{6}$")
+
+
+class TaskTypeConfigPayload(BaseModel):
+    emoji: str = Field(default="", max_length=30)
+    name: str = Field(min_length=1, max_length=120)
+    description: str = Field(default="", max_length=1000)
+    tag: str = Field(default="", max_length=120)
+
+
+class YoncConfigPayload(BaseModel):
+    themes: list[ThemeConfigPayload] = Field(default_factory=list, max_length=100)
+    modes: list[ModeConfigPayload] = Field(default_factory=list, max_length=100)
+    task_types: list[TaskTypeConfigPayload] = Field(default_factory=list, max_length=100)
+    expected_revision: int = Field(ge=1)
+
+
 def register_v2_routes(app: FastAPI, get_session) -> None:
     @app.exception_handler(V2Error)
     async def handle_v2_error(_request, exc: V2Error):
@@ -178,6 +206,31 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
     @app.get("/api/v2/health")
     def health(session: Session = Depends(get_session)):
         return {"ok": True, "schema_version": "1.1", "graph_version": graph_version(session), "nodes": len(list(session.scalars(select(GraphNode.id)).all()))}
+
+    @app.get("/api/v2/settings/yonc-config")
+    def read_yonc_config(session: Session = Depends(get_session)):
+        return serialize_yonc_config(get_yonc_config(session))
+
+    @app.put("/api/v2/settings/yonc-config")
+    def write_yonc_config(payload: YoncConfigPayload, session: Session = Depends(get_session)):
+        config = get_yonc_config(session)
+        if payload.expected_revision != config.revision:
+            raise V2Error(
+                "CONFIG_VERSION_CONFLICT",
+                "settings.config_version_conflict",
+                {"expected": payload.expected_revision, "actual": config.revision},
+                status_code=409,
+            )
+        values = payload.model_dump(exclude={"expected_revision"})
+        for items, field, label in (
+            (values["themes"], "name", "Task Theme"),
+            (values["modes"], "mode_name", "Mode"),
+            (values["task_types"], "name", "Task Type"),
+        ):
+            names = [str(item[field]).strip().casefold() for item in items]
+            if len(names) != len(set(names)):
+                raise V2Error("CONFIG_DUPLICATE_NAME", "settings.duplicate_name", {"section": label}, status_code=422)
+        return serialize_yonc_config(update_yonc_config(session, config, values))
 
     @app.get("/api/v2/graph")
     def graph(scope_node_id: str | None = None, session: Session = Depends(get_session)):

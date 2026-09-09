@@ -142,8 +142,16 @@ class SplitStartPayload(BaseModel):
     message: str | None = None
 
 
+class SplitAnnotationPayload(BaseModel):
+    target_temporary_id: str
+    field: Literal["title", "done_when", "start_cue", "general"] = "title"
+    highlighted_text: str = ""
+    comment: str
+
+
 class SplitMessagePayload(BaseModel):
-    content: str = Field(min_length=1)
+    content: str = ""
+    annotations: list[SplitAnnotationPayload] = Field(default_factory=list)
 
 
 class SplitCommitPayload(BaseModel):
@@ -348,7 +356,8 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
     @app.post("/api/v2/split-sessions/{split_id}/messages")
     def split_message(split_id: str, payload: SplitMessagePayload, session: Session = Depends(get_session)):
         split = split_or_error(session, split_id)
-        proposal = add_split_message(session, split, payload.content)
+        annotations = [item.model_dump() for item in payload.annotations]
+        proposal = add_split_message(session, split, payload.content, annotations=annotations)
         return {"session_id": split.id, "state": split.state, "proposal": serialize_proposal(proposal)}
 
     @app.post("/api/v2/split-sessions/{split_id}/validate")

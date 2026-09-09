@@ -943,16 +943,24 @@ def start_split_session(session: Session, parent: GraphNode, user_message: str |
     return item
 
 
-def add_split_message(session: Session, split: SplitSession, content: str) -> ProposalVersion:
+def add_split_message(
+    session: Session,
+    split: SplitSession,
+    content: str,
+    annotations: list[dict[str, Any]] | None = None,
+) -> ProposalVersion:
     if split.state in {"COMMITTED", "DISCARDED"}:
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
-    content = str(content).strip()
-    if not content:
+    content = str(content or "").strip()
+    annotations = annotations or []
+    if not content and not annotations:
         raise V2Error("MESSAGE_REQUIRED", "split.message_required", {})
-    session.add(SplitMessage(session_id=split.id, role="user", content=content))
+    if not content:
+        content = "根据划词批注修改提案"
+    session.add(SplitMessage(session_id=split.id, role="user", content=content, annotations=annotations))
     previous = session.scalar(select(ProposalVersion).where(ProposalVersion.session_id == split.id).order_by(ProposalVersion.version.desc()))
     previous_payload = {"nodes": previous.proposed_nodes, "edges": previous.proposed_edges} if previous else None
-    draft = get_split_adapter().propose(split.context_snapshot, content, previous_payload)
+    draft = get_split_adapter().propose(split.context_snapshot, content, previous_payload, annotations=annotations)
     version = split.current_proposal_version + 1
     proposal = ProposalVersion(session_id=split.id, version=version, rationale=draft.rationale, proposed_nodes=draft.nodes, proposed_edges=draft.edges, actionability_results=draft.actionability_results, warnings=draft.warnings)
     session.add(proposal)
@@ -1057,7 +1065,7 @@ def serialize_proposal(proposal: ProposalVersion | None) -> dict[str, Any] | Non
 def serialize_split_session(session: Session, split: SplitSession) -> dict[str, Any]:
     messages = list(session.scalars(select(SplitMessage).where(SplitMessage.session_id == split.id).order_by(SplitMessage.created_at)).all())
     proposal = current_proposal(session, split)
-    return {"id": split.id, "parent_node_id": split.parent_node_id, "state": split.state, "context_graph_version": split.context_graph_version, "context": split.context_snapshot, "current_proposal_version": split.current_proposal_version, "proposal": serialize_proposal(proposal), "messages": [{"id": item.id, "role": item.role, "content": item.content, "created_at": _iso(item.created_at)} for item in messages], "committed_batch_id": split.committed_batch_id, "created_at": _iso(split.created_at), "updated_at": _iso(split.updated_at)}
+    return {"id": split.id, "parent_node_id": split.parent_node_id, "state": split.state, "context_graph_version": split.context_graph_version, "context": split.context_snapshot, "current_proposal_version": split.current_proposal_version, "proposal": serialize_proposal(proposal), "messages": [{"id": item.id, "role": item.role, "content": item.content, "annotations": item.annotations or [], "created_at": _iso(item.created_at)} for item in messages], "committed_batch_id": split.committed_batch_id, "created_at": _iso(split.created_at), "updated_at": _iso(split.updated_at)}
 
 
 def serialize_batch(batch: OperationBatch) -> dict[str, Any]:

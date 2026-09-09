@@ -68,6 +68,7 @@ def create_node(session: Session, payload: dict[str, Any], *, record: bool = Tru
         notion_block_id=payload.get("notion_block_id"), wbs_level=wbs_level,
         origin=payload.get("origin", "human"), is_proposed=bool(payload.get("is_proposed", False)),
         tags=payload.get("tags") or {}, links=payload.get("links") or [],
+        description=payload.get("description"),
         estimated_effort_hours=estimated_hours,
         estimated_effort_minutes=round(float(estimated_hours) * 60) if estimated_hours is not None else None,
         estimate_source="import" if payload.get("origin") in {"notion", "legacy"} else None,

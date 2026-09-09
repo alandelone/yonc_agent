@@ -39,6 +39,7 @@ def import_legacy_state(session: Session, path: str | Path | None = None) -> dic
             "tags": item.get("tags") or {}, "links": item.get("links") or [],
             "estimated_effort_hours": metrics.get("estimated_time_h"),
             "planned_end": item.get("timeliner_settle_date"), "deadline": item.get("deadline"),
+            "description": item.get("description"),
             "remote_baseline": {"title": item.get("original_notion_title") or item.get("title"), "checked": bool(item.get("checked")), "tags": item.get("tags") or {}},
         }
         if existing:

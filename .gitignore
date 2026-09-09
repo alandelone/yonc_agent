@@ -25,6 +25,7 @@ history_out.txt
 data/project_graph.sqlite3
 data/project_graph.sqlite3-*
 data/backups/
+*.bak*
 graph_app/frontend/node_modules/
 graph_app/frontend/*.tsbuildinfo
 graph_app/frontend/vite.config.js

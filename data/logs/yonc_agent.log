@@ -10301,3 +10301,7 @@ Traceback (most recent call last):
 ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
 2026-08-31 07:33:19,959 | INFO | __main__ | CLI command 'serve' started (pid=22784, cwd=C:\test_codespace\yonc_agent)
 2026-08-31 07:33:19,959 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-09 23:41:25,070 | INFO | __main__ | CLI command 'serve' started (pid=23180, cwd=C:\test_codespace\yonc_agent)
+2026-09-09 23:41:25,071 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-09 23:56:51,307 | INFO | __main__ | CLI command 'graph-import' started (pid=27156, cwd=C:\test_codespace\yonc_agent)
+2026-09-09 23:56:51,307 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log

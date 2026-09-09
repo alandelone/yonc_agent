@@ -49,6 +49,10 @@ OPERATION_COLUMNS = {
     "sequence": "INTEGER NOT NULL DEFAULT 0",
 }
 
+SPLIT_MESSAGE_COLUMNS = {
+    "annotations": "JSON NOT NULL DEFAULT '[]'",
+}
+
 
 def _add_missing_columns(connection, table: str, definitions: dict[str, str]) -> set[str]:
     existing = {row[1] for row in connection.exec_driver_sql(f"PRAGMA table_info({table})")}
@@ -72,6 +76,8 @@ def upgrade_connection(connection) -> None:
         _add_missing_columns(connection, "status_events", STATUS_EVENT_COLUMNS)
     if "operations" in tables:
         _add_missing_columns(connection, "operations", OPERATION_COLUMNS)
+    if "split_messages" in tables:
+        _add_missing_columns(connection, "split_messages", SPLIT_MESSAGE_COLUMNS)
 
     connection.exec_driver_sql(
         "CREATE UNIQUE INDEX IF NOT EXISTS uq_committed_contains_parent "

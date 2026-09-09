@@ -184,6 +184,62 @@ def test_invalid_split_proposal_never_changes_committed_graph(tmp_path):
         assert [node["title"] for node in graph["nodes"]] == ["Parent"]
 
 
+def test_split_message_with_structured_annotations(tmp_path):
+    app = create_app(tmp_path / "annotations-split.sqlite3")
+    with TestClient(app) as client:
+        parent = create_node(client, "用户中心服务", work_type="DELIVERABLE")
+        started = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": parent["id"], "message": "模块设计; 接口实现; 编写测试"
+        })
+        assert started.status_code == 201
+        split = started.json()
+        assert split["current_proposal_version"] == 1
+        assert len(split["proposal"]["nodes"]) == 3
+        assert split["proposal"]["nodes"][0]["title"] == "模块设计"
+        assert split["proposal"]["nodes"][1]["title"] == "接口实现"
+        assert split["proposal"]["nodes"][2]["title"] == "编写测试"
+
+        # 针对 draft-2 发送划词拆分批注
+        annotations = [
+            {
+                "target_temporary_id": "draft-2",
+                "field": "title",
+                "highlighted_text": "接口实现",
+                "comment": "拆分为 用户接口 和 鉴权中间件",
+            }
+        ]
+        revised = client.post(f"/api/v2/split-sessions/{split['id']}/messages", json={
+            "content": "",
+            "annotations": annotations,
+        })
+        assert revised.status_code == 200, revised.text
+        proposal_v2 = revised.json()["proposal"]
+        assert proposal_v2["version"] == 2
+        # draft-1 保持不变，draft-2 拆成 2 个子行动，draft-3 顺延保持不变
+        titles = [n["title"] for n in proposal_v2["nodes"]]
+        assert titles == ["模块设计", "用户接口", "鉴权中间件", "编写测试"]
+
+        # 查询会话详情，验证 annotations 已正确持久化
+        session_detail = client.get(f"/api/v2/split-sessions/{split['id']}").json()
+        user_msg = [m for m in session_detail["messages"] if m["role"] == "user"][-1]
+        assert len(user_msg["annotations"]) == 1
+        assert user_msg["annotations"][0]["target_temporary_id"] == "draft-2"
+        assert user_msg["annotations"][0]["comment"] == "拆分为 用户接口 和 鉴权中间件"
+
+        # 验证提交原子性
+        graph_version = client.get("/api/v2/health").json()["graph_version"]
+        commit_res = client.post(f"/api/v2/split-sessions/{split['id']}/commit", json={
+            "expected_graph_version": graph_version,
+            "proposal_version": 2,
+        })
+        assert commit_res.status_code == 200, commit_res.text
+        committed_nodes = client.get("/api/v2/graph").json()["nodes"]
+        # 1 个 parent + 4 个子任务 = 5 个正式节点
+        assert len(committed_nodes) == 5
+        committed_titles = {n["title"] for n in committed_nodes}
+        assert {"用户中心服务", "模块设计", "用户接口", "鉴权中间件", "编写测试"}.issubset(committed_titles)
+
+
 def test_schedule_constraints_auto_span_overlap_and_view_state(tmp_path):
     with make_client(tmp_path) as client:
         goal = create_node(client, "Dated goal", work_type="GOAL", deadline="2026-08-10")

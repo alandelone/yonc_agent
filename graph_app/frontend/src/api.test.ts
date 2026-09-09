@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, logarithmicDateOffset, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
 import type { GraphNode, YoncConfig } from "./types";
 
 describe("Simplified Chinese interaction messages", () => {
@@ -247,6 +247,30 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(topToBottom.path).toMatch(/V 297$/);
   });
 
+  it("routes connectors around intervening obstacles to prevent overlaying blocks", () => {
+    // Source: x=0..180, y=100..166 (center y=133, right exit at x1=183, y1=133)
+    // Target: x=500..700, y=100..166 (center y=133, left enter at x2=497, y2=133)
+    // Obstacle block directly in between: x=206..386, y=100..166
+    const obstacle = { left: 206, top: 100, right: 386, bottom: 166 };
+    const route = connectorRoute(
+      { x: 0, y: 100 },
+      66,
+      { x: 500, y: 100 },
+      66,
+      180,
+      200,
+      [obstacle],
+      "test-edge",
+    );
+    expect(route).toMatchObject({ sourceSide: "right", targetSide: "left" });
+    // Without obstacle avoidance, path would be straight horizontal: M 183 133 H 497
+    // which plows right through the obstacle (206..386 at y=133).
+    // With obstacle avoidance, it detours into a corridor (y < 100 or y > 166):
+    expect(route.path).not.toBe("M 183 133 H 497");
+    expect(route.path).toMatch(/V (8\d|9\d|17\d|18\d)/);
+  });
+
+
   it("renders hierarchy execution from L4 children toward the L1 goal", () => {
     expect(canvasEdgeEndpoints({ source_id: "goal-l1", target_id: "action-l4", relation: "contains" })).toEqual({
       sourceId: "action-l4",
@@ -400,6 +424,51 @@ describe("Canvas card title hierarchy", () => {
     expect(card).not.toContain(': "No date"');
     expect(card).not.toContain("<span>✓</span>");
   });
+
+  it("extracts task type emojis from settings and prepends them before WBS", () => {
+    const mockConfig: YoncConfig = {
+      themes: [],
+      modes: [{ mode_name: "💻Focus", level: 5, description: "", color: "#38bdf8" }],
+      task_types: [
+        { emoji: "💻", name: "Coding", description: "", tag: "High Cognitive" },
+        { emoji: "✍️", name: "DeepWriting", description: "", tag: "High Cognitive" },
+        { emoji: "🔬", name: "Research", description: "", tag: "High Cognitive" },
+      ],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const single = { tags: { "Task Type": "💻| Coding" } };
+    expect(taskTypeEmojisForNode(single, mockConfig)).toEqual(["💻"]);
+
+    const multi = { tags: { "Task Type": "💻| Coding, ✍️| DeepWriting" } };
+    expect(taskTypeEmojisForNode(multi, mockConfig)).toEqual(["💻", "✍️"]);
+
+    // Matches from config even without emoji prefix in tag
+    const nameOnly = { tags: { "Task Type": "Research" } };
+    expect(taskTypeEmojisForNode(nameOnly, mockConfig)).toEqual(["🔬"]);
+  });
+
+  it("extracts mode info and styles the horizontal line edge at top left", () => {
+    const mockConfig: YoncConfig = {
+      themes: [],
+      modes: [{ mode_name: "💻Focus", level: 5, description: "", color: "#db2777" }],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const node = { tags: { Modes: "💻Focus" } };
+    const mode = modeInfoForNode(node, mockConfig);
+    expect(mode).toEqual({ raw: "💻Focus", name: "💻Focus", color: "#db2777" });
+
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(styles).toContain(".node-mode-text");
+    expect(styles).toContain(".node-mode-text.ring-passed");
+    expect(styles).toContain(".node-task-emoji");
+  });
 });
 
 describe("Inspector health warnings", () => {
@@ -414,5 +483,46 @@ describe("Inspector health warnings", () => {
     expect(app).toContain('className="health-warnings"');
     expect(app).toContain("node.health.map");
     expect(styles).toContain(".health-warnings .section-heading");
+  });
+
+  it("supports scroll-to-view inline editing for execution definitions, deadlines, and done confirmations", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    // Hides Open Split for actions
+    expect(app).toContain("!isAction ?");
+    expect(app).toContain("Open Split");
+    expect(app).toContain("Edit Execution");
+    // Scroll-to-view and inline editing for execution definition
+    expect(app).toContain("scrollToExecution");
+    expect(app).toContain("scrollIntoView");
+    expect(app).toContain("saveExecution");
+    expect(app).toContain("start_cue: startCue.trim() || null");
+    expect(app).toContain("done_when: doneWhen.trim() || null");
+    // Scroll-to-view and inline editing for deadline (accessed via detail grid, deleted from bottom bar)
+    expect(app).toContain("scrollToDeadline");
+    expect(app).toContain("saveDeadline");
+    expect(app).not.toContain("<button onClick={scrollToDeadline}>Edit Deadline</button>");
+    // Inline description editing
+    expect(app).toContain("scrollToDescription");
+    expect(app).toContain("saveDescription");
+    // Scroll-to-view and inline confirmation for mark done & undo done
+    expect(app).toContain("scrollToDone");
+    expect(app).toContain("performDone");
+    expect(app).toContain("scrollToReopen");
+    expect(app).toContain("performReopen");
+    expect(app).toContain("Undo Done");
+    expect(app).toContain("inline-confirm-box");
+    // Timeline range inspector supports deadline
+    expect(app).toContain("<label className=\"field\">Deadline");
+    expect(app).toContain("setRangeDeadline(event.target.value)");
+    // Styles
+    expect(styles).toContain(".link-action");
+    expect(styles).toContain(".icon-action-btn");
+    expect(styles).toContain(".hover-edit-trigger .edit-icon");
+    expect(styles).toContain(".execution-edit-box");
+    expect(styles).toContain(".description-edit-box");
+    expect(styles).toContain(".inline-confirm-box");
+    expect(styles).toContain(".inline-edit-field");
+    expect(styles).toContain("scroll-behavior: smooth");
   });
 });

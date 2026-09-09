@@ -1,7 +1,7 @@
 import ELK from "elkjs/lib/elk.bundled.js";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ApiError, api } from "./api";
-import type { GraphEdge, GraphNode, GraphResponse, SplitSession, TimelineCell, TimelineResponse, YoncConfig } from "./types";
+import type { GraphEdge, GraphNode, GraphResponse, SplitAnnotation, SplitSession, TimelineCell, TimelineResponse, YoncConfig } from "./types";
 
 type MainView = "canvas" | "timeline";
 type TimelineMode = "forecast" | "capacity";
@@ -523,27 +523,94 @@ function useElkPositions(nodes: GraphNode[], edges: GraphEdge[]) {
   return positions;
 }
 
-function NodeCard({ node, position, height, color, selected, onSelect, onSplit, onPointerDown, registerElement }: {
+export function taskTypeEmojisForNode(node: Pick<GraphNode, "tags">, yoncConfig?: YoncConfig | null): string[] {
+  const raw = node.tags?.["Task Type"] ?? node.tags?.["task_type"] ?? node.tags?.["Task Types"];
+  if (!raw || typeof raw !== "string") return [];
+  const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+  const emojis: string[] = [];
+  const configTypes = yoncConfig?.task_types ?? [];
+
+  for (const part of parts) {
+    const [left, right] = part.split("|").map((s) => s.trim());
+    const typeName = (right || left || "").toLowerCase();
+    const configMatch = configTypes.find(
+      (t) => t.name.toLowerCase() === typeName || t.tag.toLowerCase() === typeName || (t.emoji && left.includes(t.emoji))
+    );
+    const emoji = configMatch?.emoji || (left && /\p{Extended_Pictographic}/u.test(left) ? left : "");
+    if (emoji && !emojis.includes(emoji)) {
+      emojis.push(emoji);
+    }
+  }
+  return emojis;
+}
+
+export function modeInfoForNode(node: Pick<GraphNode, "tags">, yoncConfig?: YoncConfig | null) {
+  const raw = node.tags?.["Modes"] ?? node.tags?.["Mode"] ?? node.tags?.["mode"];
+  if (!raw || typeof raw !== "string") return null;
+  const modeStr = String(raw).trim();
+  if (!modeStr) return null;
+  const configModes = yoncConfig?.modes ?? [];
+  const configMatch = configModes.find(
+    (m) => m.mode_name.toLowerCase() === modeStr.toLowerCase() ||
+           modeStr.toLowerCase().includes(m.mode_name.toLowerCase()) ||
+           m.mode_name.toLowerCase().includes(modeStr.toLowerCase())
+  );
+  return {
+    raw: modeStr,
+    name: configMatch?.mode_name ?? modeStr,
+    color: configMatch?.color ?? "#64748b",
+  };
+}
+
+function NodeCard({ node, position, height, color, selected, yoncConfig, onSelect, onSplit, onPointerDown, registerElement }: {
   node: GraphNode;
   position: Position;
   height: number;
   color: string;
   selected: boolean;
+  yoncConfig?: YoncConfig | null;
   onSelect: () => void;
   onSplit: () => void;
   onPointerDown: (event: React.PointerEvent<HTMLElement>) => void;
   registerElement: (element: HTMLElement | null) => void;
 }) {
   const display = splitCardTitle(node.title);
+  const cardDescription = node.description || display.description;
   const { hasMeta, hasSignals } = nodeCardInfo(node);
   const effort = (node.estimated_effort_minutes ?? 0) > 0 ? formatEffort(node.estimated_effort_minutes) : null;
+  const taskEmojis = taskTypeEmojisForNode(node, yoncConfig);
+  const mode = modeInfoForNode(node, yoncConfig);
+  const progressRatio = node.progress?.ratio ?? 0;
+  const isRingCovered = node.status === "DONE" || progressRatio >= 0.82;
+
+  const [modeWidth, setModeWidth] = useState<number | null>(null);
+  const modeRef = useCallback((el: HTMLElement | null) => {
+    if (el) {
+      const width = el.offsetWidth || el.getBoundingClientRect().width;
+      if (width > 0) setModeWidth(Math.ceil(width));
+    }
+  }, []);
+
+  const estWidth = mode ? Math.max(30, Math.round(mode.name.length * 8.5)) : 0;
+  const activeWidth = modeWidth ?? estWidth;
+  const cutStart = 8;
+  const cutEnd = 10 + activeWidth + 3;
+
   return (
     <article
       ref={registerElement}
       data-node-id={node.id}
       data-wbs-level={node.wbs_level ?? undefined}
-      className={`node-card status-${node.status.toLowerCase()} pressure-${node.pressure?.level ?? "low"} ${selected ? "selected" : ""}`}
-      style={{ width: nodeCardWidth(node), height, transform: `translate(${position.x}px, ${position.y}px)`, "--node-color": color, "--progress": node.progress?.ratio ?? 0 } as React.CSSProperties}
+      className={`node-card status-${node.status.toLowerCase()} pressure-${node.pressure?.level ?? "low"} ${selected ? "selected" : ""} ${mode ? "has-mode" : ""}`}
+      style={{
+        width: nodeCardWidth(node),
+        height,
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        "--node-color": color,
+        "--progress": progressRatio,
+        "--mode-cut-start": `${cutStart}px`,
+        "--mode-cut-end": `${cutEnd}px`,
+      } as React.CSSProperties}
       onClick={(event) => { event.stopPropagation(); if (!event.shiftKey) onSelect(); }}
       onPointerDown={onPointerDown}
       tabIndex={0}
@@ -551,8 +618,29 @@ function NodeCard({ node, position, height, color, selected, onSelect, onSplit, 
       aria-label={`${node.title}, ${node.work_type}, ${node.status}`}
       onKeyDown={(event) => (event.key === "Enter" || event.key === " ") && onSelect()}
     >
-      <div className="node-topline"><span>{node.wbs_level ? `L${node.wbs_level}` : "•"} {node.work_type.replace("_", " ")}</span><span className="node-state">{node.status}</span></div>
-      <h3 className={display.description ? "with-description" : undefined}><span>{display.title}</span>{display.description && <small className="node-description">{display.description}</small>}</h3>
+      {mode && (
+        <span
+          ref={modeRef}
+          className={`node-mode-text ${isRingCovered ? "ring-passed" : ""}`}
+          style={{ "--mode-color": mode.color } as React.CSSProperties}
+          title={`Mode: ${mode.name}`}
+          aria-hidden="true"
+        >
+          {mode.name}
+        </span>
+      )}
+      <div className="node-topline">
+        <span className="node-wbs-meta">
+          {taskEmojis.length > 0 && (
+            <span className="node-task-emoji" title={String(node.tags?.["Task Type"] || "")} aria-hidden="true">
+              {taskEmojis.join("")}
+            </span>
+          )}
+          <span className="node-wbs-text">{node.wbs_level ? `L${node.wbs_level}` : "•"} {node.work_type.replace("_", " ")}</span>
+        </span>
+        <span className="node-state">{node.status}</span>
+      </div>
+      <h3 className={cardDescription ? "with-description" : undefined}><span>{display.title}</span>{cardDescription && <small className="node-description">{cardDescription}</small>}</h3>
       {hasMeta && <div className="node-meta">{node.planned_start && <span>{fmtDate(node.planned_start)}</span>}{node.deadline ? <span className={!node.planned_start ? "meta-end" : undefined}>⚑ {fmtDate(node.deadline)}</span> : effort && <span className={!node.planned_start ? "meta-end" : undefined}>{effort}</span>}</div>}
       {hasSignals && <div className="node-signals">{node.resource_count > 0 && <span>{node.resource_count} refs</span>}{(node.health?.length ?? 0) > 0 && <span className="warning signal-end" title="Graph health warning">△ {node.health.length}</span>}</div>}
       <button className="split-plus" onClick={(event) => { event.stopPropagation(); onSplit(); }} aria-label="打开拆分会话">+</button>
@@ -590,22 +678,291 @@ function LogarithmicTimeAxis({ start, end, anchor, todayX, zoom, height }: { sta
   return <div className="time-axis"><div className="axis-title">Logarithmic time</div>{ticks}</div>;
 }
 
-function curvedOrthogonalPath(x1: number, y1: number, x2: number, y2: number, axis: "horizontal" | "vertical") {
-  const xDirection = x2 >= x1 ? 1 : -1;
-  const yDirection = y2 >= y1 ? 1 : -1;
-  if (axis === "horizontal") {
-    const mid = Math.round((x1 + x2) / 2);
-    const radius = Math.min(14, Math.abs(y2 - y1) / 2, Math.abs(x2 - x1) / 4);
-    if (radius < 1) return `M ${x1} ${y1} H ${x2}`;
-    return `M ${x1} ${y1} H ${mid - xDirection * radius} Q ${mid} ${y1} ${mid} ${y1 + yDirection * radius} V ${y2 - yDirection * radius} Q ${mid} ${y2} ${mid + xDirection * radius} ${y2} H ${x2}`;
+export type ObstacleBox = {
+  id?: string;
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+};
+
+export function segmentIntersectsBox(p1: Position, p2: Position, box: ObstacleBox, pad = 6) {
+  const bLeft = box.left - pad;
+  const bRight = box.right + pad;
+  const bTop = box.top - pad;
+  const bBottom = box.bottom + pad;
+  if (p1.y === p2.y) {
+    const minX = Math.min(p1.x, p2.x);
+    const maxX = Math.max(p1.x, p2.x);
+    return bLeft < maxX && minX < bRight && bTop < p1.y && p1.y < bBottom;
   }
-  const mid = Math.round((y1 + y2) / 2);
-  const radius = Math.min(14, Math.abs(x2 - x1) / 2, Math.abs(y2 - y1) / 4);
-  if (radius < 1) return `M ${x1} ${y1} V ${y2}`;
-  return `M ${x1} ${y1} V ${mid - yDirection * radius} Q ${x1} ${mid} ${x1 + xDirection * radius} ${mid} H ${x2 - xDirection * radius} Q ${x2} ${mid} ${x2} ${mid + yDirection * radius} V ${y2}`;
+  if (p1.x === p2.x) {
+    const minY = Math.min(p1.y, p2.y);
+    const maxY = Math.max(p1.y, p2.y);
+    return bLeft < p1.x && p1.x < bRight && bTop < maxY && minY < bBottom;
+  }
+  return false;
 }
 
-export function connectorRoute(source: Position, sourceHeight: number, target: Position, targetHeight: number, sourceWidth = CARD_W, targetWidth = CARD_W) {
+export function pathIntersectsObstacles(points: Position[], obstacles: ObstacleBox[], pad = 6) {
+  for (let i = 0; i < points.length - 1; i++) {
+    for (const obs of obstacles) {
+      if (segmentIntersectsBox(points[i], points[i + 1], obs, pad)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+export function simplifyPoints(points: Position[]): Position[] {
+  const cleaned: Position[] = [];
+  for (const p of points) {
+    if (!cleaned.length) {
+      cleaned.push(p);
+      continue;
+    }
+    const last = cleaned[cleaned.length - 1];
+    if (Math.abs(last.x - p.x) < 0.5 && Math.abs(last.y - p.y) < 0.5) continue;
+    cleaned.push(p);
+  }
+  if (cleaned.length <= 2) return cleaned;
+  const result: Position[] = [cleaned[0]];
+  for (let i = 1; i < cleaned.length - 1; i++) {
+    const prev = result[result.length - 1];
+    const curr = cleaned[i];
+    const next = cleaned[i + 1];
+    if ((prev.x === curr.x && curr.x === next.x) || (prev.y === curr.y && curr.y === next.y)) {
+      continue;
+    }
+    result.push(curr);
+  }
+  result.push(cleaned[cleaned.length - 1]);
+  return result;
+}
+
+export function curvedOrthogonalPathFromPoints(points: Position[]) {
+  if (points.length <= 1) return "";
+  if (points.length === 2) {
+    if (points[0].y === points[1].y) return `M ${points[0].x} ${points[0].y} H ${points[1].x}`;
+    if (points[0].x === points[1].x) return `M ${points[0].x} ${points[0].y} V ${points[1].y}`;
+    return `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
+  }
+  let path = `M ${points[0].x} ${points[0].y}`;
+  for (let i = 1; i < points.length - 1; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const next = points[i + 1];
+    const lenPrev = Math.hypot(curr.x - prev.x, curr.y - prev.y);
+    const lenNext = Math.hypot(next.x - curr.x, next.y - curr.y);
+    const radius = Math.min(14, lenPrev / 2, lenNext / 2);
+    const dx1 = Math.sign(curr.x - prev.x);
+    const dy1 = Math.sign(curr.y - prev.y);
+    const dx2 = Math.sign(next.x - curr.x);
+    const dy2 = Math.sign(next.y - curr.y);
+    if (radius < 1) {
+      if (curr.x !== prev.x) path += ` H ${curr.x}`;
+      else if (curr.y !== prev.y) path += ` V ${curr.y}`;
+    } else {
+      if (dx1 !== 0) path += ` H ${curr.x - dx1 * radius}`;
+      else if (dy1 !== 0) path += ` V ${curr.y - dy1 * radius}`;
+      path += ` Q ${curr.x} ${curr.y} ${curr.x + dx2 * radius} ${curr.y + dy2 * radius}`;
+    }
+  }
+  const last = points[points.length - 1];
+  const secondLast = points[points.length - 2];
+  if (last.x !== secondLast.x) path += ` H ${last.x}`;
+  else if (last.y !== secondLast.y) path += ` V ${last.y}`;
+  return path;
+}
+
+function hashString(value: string) {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
+  return hash;
+}
+
+export function routeObstacleFreePath(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  horizontal: boolean,
+  obstacles: ObstacleBox[] = [],
+  edgeId = "",
+): Position[] {
+  const defaultMid = Math.round(horizontal ? (x1 + x2) / 2 : (y1 + y2) / 2);
+  const defaultPoints = horizontal
+    ? [{ x: x1, y: y1 }, { x: defaultMid, y: y1 }, { x: defaultMid, y: y2 }, { x: x2, y: y2 }]
+    : [{ x: x1, y: y1 }, { x: x1, y: defaultMid }, { x: x2, y: defaultMid }, { x: x2, y: y2 }];
+  const simplifiedDefault = simplifyPoints(defaultPoints);
+
+  if (!obstacles.length || !pathIntersectsObstacles(simplifiedDefault, obstacles)) {
+    return simplifiedDefault;
+  }
+
+  const pad = 12;
+  const minX = Math.min(x1, x2) - pad;
+  const maxX = Math.max(x1, x2) + pad;
+  const minY = Math.min(y1, y2) - pad;
+  const maxY = Math.max(y1, y2) + pad;
+  const relevant = obstacles.filter((obs) => (
+    obs.right > minX && obs.left < maxX && obs.bottom > minY - 100 && obs.top < maxY + 100
+  ));
+
+  if (!relevant.length || !pathIntersectsObstacles(simplifiedDefault, relevant)) {
+    return simplifiedDefault;
+  }
+
+  const lane = edgeId ? hashString(edgeId) % 3 : 0;
+  const laneOffset = lane * 6;
+  const candidates: Array<{ points: Position[]; length: number }> = [];
+
+  if (horizontal) {
+    const leftToRight = x2 >= x1;
+    const colliding = relevant.filter((obs) => (
+      segmentIntersectsBox({ x: x1, y: y1 }, { x: defaultMid, y: y1 }, obs) ||
+      segmentIntersectsBox({ x: defaultMid, y: y1 }, { x: defaultMid, y: y2 }, obs) ||
+      segmentIntersectsBox({ x: defaultMid, y: y2 }, { x: x2, y: y2 }, obs)
+
+    ));
+    const obstacleGroup = colliding.length ? colliding : relevant;
+
+    const firstObsLeft = leftToRight
+      ? Math.min(...relevant.map((o) => o.left))
+      : Math.max(...relevant.map((o) => o.right));
+    const lastObsRight = leftToRight
+      ? Math.max(...relevant.map((o) => o.right))
+      : Math.min(...relevant.map((o) => o.left));
+
+    const xTurn1 = leftToRight
+      ? Math.round(firstObsLeft > x1 + 10 ? (x1 + firstObsLeft) / 2 : x1 + 16)
+      : Math.round(firstObsLeft < x1 - 10 ? (x1 + firstObsLeft) / 2 : x1 - 16);
+    const xTurn2 = leftToRight
+      ? Math.round(lastObsRight < x2 - 10 ? (lastObsRight + x2) / 2 : x2 - 16)
+      : Math.round(lastObsRight > x2 + 10 ? (lastObsRight + x2) / 2 : x2 + 16);
+
+    const yAbove = Math.min(...obstacleGroup.map((o) => o.top)) - 14 - laneOffset;
+    const yBelow = Math.max(...obstacleGroup.map((o) => o.bottom)) + 14 + laneOffset;
+    const yLevels = [yAbove, yBelow];
+
+    const sortedByTop = [...obstacleGroup].sort((a, b) => a.top - b.top);
+    for (let i = 0; i < sortedByTop.length - 1; i++) {
+      const gap = sortedByTop[i + 1].top - sortedByTop[i].bottom;
+      if (gap >= 16) {
+        yLevels.push(Math.round((sortedByTop[i].bottom + sortedByTop[i + 1].top) / 2));
+      }
+    }
+
+    const directDrop = simplifyPoints([
+      { x: x1, y: y1 },
+      { x: xTurn1, y: y1 },
+      { x: xTurn1, y: y2 },
+      { x: x2, y: y2 },
+    ]);
+    if (!pathIntersectsObstacles(directDrop, relevant)) {
+      candidates.push({ points: directDrop, length: Math.abs(x2 - x1) + Math.abs(y2 - y1) });
+    }
+
+    for (const yCorridor of yLevels) {
+      const pts = simplifyPoints([
+        { x: x1, y: y1 },
+        { x: xTurn1, y: y1 },
+        { x: xTurn1, y: yCorridor },
+        { x: xTurn2, y: yCorridor },
+        { x: xTurn2, y: y2 },
+        { x: x2, y: y2 },
+      ]);
+      if (!pathIntersectsObstacles(pts, relevant)) {
+        let len = 0;
+        for (let i = 0; i < pts.length - 1; i++) {
+          len += Math.hypot(pts[i + 1].x - pts[i].x, pts[i + 1].y - pts[i].y);
+        }
+        candidates.push({ points: pts, length: len });
+      }
+    }
+  } else {
+    const topToBottom = y2 >= y1;
+    const colliding = relevant.filter((obs) => (
+      segmentIntersectsBox({ x: x1, y: y1 }, { x: x1, y: defaultMid }, obs) ||
+      segmentIntersectsBox({ x: x1, y: defaultMid }, { x: x2, y: defaultMid }, obs) ||
+      segmentIntersectsBox({ x: x2, y: defaultMid }, { x: x2, y: y2 }, obs)
+    ));
+    const obstacleGroup = colliding.length ? colliding : relevant;
+
+    const firstObsTop = topToBottom
+      ? Math.min(...relevant.map((o) => o.top))
+      : Math.max(...relevant.map((o) => o.bottom));
+    const lastObsBottom = topToBottom
+      ? Math.max(...relevant.map((o) => o.bottom))
+      : Math.min(...relevant.map((o) => o.left));
+
+    const yTurn1 = topToBottom
+      ? Math.round(firstObsTop > y1 + 10 ? (y1 + firstObsTop) / 2 : y1 + 16)
+      : Math.round(firstObsTop < y1 - 10 ? (y1 + firstObsTop) / 2 : y1 - 16);
+    const yTurn2 = topToBottom
+      ? Math.round(lastObsBottom < y2 - 10 ? (lastObsBottom + y2) / 2 : y2 - 16)
+      : Math.round(lastObsBottom > y2 + 10 ? (lastObsBottom + y2) / 2 : y2 + 16);
+
+    const xLeft = Math.min(...obstacleGroup.map((o) => o.left)) - 14 - laneOffset;
+    const xRight = Math.max(...obstacleGroup.map((o) => o.right)) + 14 + laneOffset;
+    const xLevels = [xLeft, xRight];
+
+    const sortedByLeft = [...obstacleGroup].sort((a, b) => a.left - b.left);
+    for (let i = 0; i < sortedByLeft.length - 1; i++) {
+      const gap = sortedByLeft[i + 1].left - sortedByLeft[i].right;
+      if (gap >= 16) {
+        xLevels.push(Math.round((sortedByLeft[i].right + sortedByLeft[i + 1].left) / 2));
+      }
+    }
+
+    const directShift = simplifyPoints([
+      { x: x1, y: y1 },
+      { x: x1, y: yTurn1 },
+      { x: x2, y: yTurn1 },
+      { x: x2, y: y2 },
+    ]);
+    if (!pathIntersectsObstacles(directShift, relevant)) {
+      candidates.push({ points: directShift, length: Math.abs(x2 - x1) + Math.abs(y2 - y1) });
+    }
+
+    for (const xCorridor of xLevels) {
+      const pts = simplifyPoints([
+        { x: x1, y: y1 },
+        { x: x1, y: yTurn1 },
+        { x: xCorridor, y: yTurn1 },
+        { x: xCorridor, y: yTurn2 },
+        { x: x2, y: yTurn2 },
+        { x: x2, y: y2 },
+      ]);
+      if (!pathIntersectsObstacles(pts, relevant)) {
+        let len = 0;
+        for (let i = 0; i < pts.length - 1; i++) {
+          len += Math.hypot(pts[i + 1].x - pts[i].x, pts[i + 1].y - pts[i].y);
+        }
+        candidates.push({ points: pts, length: len });
+      }
+    }
+  }
+
+  if (candidates.length) {
+    candidates.sort((a, b) => a.length - b.length);
+    return candidates[0].points;
+  }
+
+  return simplifiedDefault;
+}
+
+export function connectorRoute(
+  source: Position,
+  sourceHeight: number,
+  target: Position,
+  targetHeight: number,
+  sourceWidth = CARD_W,
+  targetWidth = CARD_W,
+  obstacles: ObstacleBox[] = [],
+  edgeId = "",
+) {
   const sourceCenter = { x: source.x + sourceWidth / 2, y: source.y + sourceHeight / 2 };
   const targetCenter = { x: target.x + targetWidth / 2, y: target.y + targetHeight / 2 };
   const dx = targetCenter.x - sourceCenter.x;
@@ -636,8 +993,10 @@ export function connectorRoute(source: Position, sourceHeight: number, target: P
     y2 = target.y + (topToBottom ? -3 : targetHeight + 3);
   }
 
-  return { sourceSide, targetSide, x1, y1, x2, y2, path: curvedOrthogonalPath(x1, y1, x2, y2, horizontal ? "horizontal" : "vertical") };
+  const points = routeObstacleFreePath(x1, y1, x2, y2, horizontal, obstacles, edgeId);
+  return { sourceSide, targetSide, x1, y1, x2, y2, path: curvedOrthogonalPathFromPoints(points) };
 }
+
 
 function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenSplit, onRegisterUndo }: {
   graph: GraphResponse;
@@ -740,12 +1099,30 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
   const positions = useMemo(() => placeChildrenBeforeDatedParents(renderNodes, basePositions), [renderNodes, basePositions]);
   const layoutReady = renderNodes.length === 0 || renderNodes.every((node) => Boolean(elkPositions[node.id]));
 
+  const nodeBoxes = useMemo(() => {
+    const boxes: ObstacleBox[] = [];
+    for (const node of renderNodes) {
+      const pos = positions[node.id];
+      if (!pos) continue;
+      boxes.push({
+        id: node.id,
+        left: pos.x,
+        top: pos.y,
+        right: pos.x + (nodeWidths[node.id] ?? CARD_W),
+        bottom: pos.y + (nodeHeights[node.id] ?? COMPACT_CARD_H),
+      });
+    }
+    return boxes;
+  }, [renderNodes, positions, nodeWidths, nodeHeights]);
+
+
   const edgePaths = renderEdges.map((edge) => {
     const endpoints = canvasEdgeEndpoints(edge);
     const source = positions[endpoints.sourceId];
     const target = positions[endpoints.targetId];
     if (!source || !target) return null;
-    const route = connectorRoute(source, nodeHeights[endpoints.sourceId], target, nodeHeights[endpoints.targetId], nodeWidths[endpoints.sourceId], nodeWidths[endpoints.targetId]);
+    const obstacles = nodeBoxes.filter((box) => box.id !== endpoints.sourceId && box.id !== endpoints.targetId);
+    const route = connectorRoute(source, nodeHeights[endpoints.sourceId], target, nodeHeights[endpoints.targetId], nodeWidths[endpoints.sourceId], nodeWidths[endpoints.targetId], obstacles, edge.id);
     return <path ref={(element) => { if (element) edgeRefs.current.set(edge.id, element); else edgeRefs.current.delete(edge.id); }} key={edge.id} data-source={endpoints.sourceId} data-target={endpoints.targetId} data-source-side={route.sourceSide} data-target-side={route.targetSide} className={`edge edge-${edge.relation}`} d={route.path} markerEnd="url(#arrow)" />;
   });
 
@@ -769,18 +1146,32 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
         minimapNode.style.top = `${Math.min(96, position.y / current.height * 100)}%`;
       }
     }
+    const liveObstacles: ObstacleBox[] = [];
+    for (const node of renderNodes) {
+      const pos = livePositions[node.id];
+      if (!pos) continue;
+      liveObstacles.push({
+        id: node.id,
+        left: pos.x,
+        top: pos.y,
+        right: pos.x + (nodeWidths[node.id] ?? CARD_W),
+        bottom: pos.y + (nodeHeights[node.id] ?? COMPACT_CARD_H),
+      });
+    }
     for (const edge of current.edges) {
       const endpoints = canvasEdgeEndpoints(edge);
       const source = livePositions[endpoints.sourceId];
       const target = livePositions[endpoints.targetId];
       const edgeElement = edgeRefs.current.get(edge.id);
       if (!source || !target || !edgeElement) continue;
-      const route = connectorRoute(source, nodeHeights[endpoints.sourceId] ?? COMPACT_CARD_H, target, nodeHeights[endpoints.targetId] ?? COMPACT_CARD_H, nodeWidths[endpoints.sourceId] ?? CARD_W, nodeWidths[endpoints.targetId] ?? CARD_W);
+      const obstacles = liveObstacles.filter((box) => box.id !== endpoints.sourceId && box.id !== endpoints.targetId);
+      const route = connectorRoute(source, nodeHeights[endpoints.sourceId] ?? COMPACT_CARD_H, target, nodeHeights[endpoints.targetId] ?? COMPACT_CARD_H, nodeWidths[endpoints.sourceId] ?? CARD_W, nodeWidths[endpoints.targetId] ?? CARD_W, obstacles, edge.id);
       edgeElement.setAttribute("d", route.path);
       edgeElement.dataset.sourceSide = route.sourceSide;
       edgeElement.dataset.targetSide = route.targetSide;
     }
-  }, [nodeHeights, nodeWidths]);
+  }, [nodeHeights, nodeWidths, renderNodes]);
+
   useEffect(() => {
     const move = (event: PointerEvent) => {
       const current = nodeDrag.current;
@@ -1074,7 +1465,7 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
             <div className="today-line" style={{ left: todayX, height }} />
             <svg className="edge-layer" width={width} height={height} aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" /></marker></defs>{edgePaths}</svg>
             {marqueeBounds && <div className="selection-marquee" style={{ left: marqueeBounds.left, top: marqueeBounds.top, width: marqueeBounds.right - marqueeBounds.left, height: marqueeBounds.bottom - marqueeBounds.top }} aria-hidden="true" />}
-            {renderNodes.map((node) => <NodeCard key={node.id} node={node} position={positions[node.id]} height={nodeHeights[node.id]} color={nodeColors[node.id]} selected={selectedIds.includes(node.id)} registerElement={(element) => { if (element) nodeRefs.current.set(node.id, element); else nodeRefs.current.delete(node.id); }} onSelect={() => { if (suppressNodeClick.current) { suppressNodeClick.current = false; return; } onSelectionChange([node.id]); }} onSplit={() => onOpenSplit(node)} onPointerDown={(event) => {
+            {renderNodes.map((node) => <NodeCard key={node.id} node={node} position={positions[node.id]} height={nodeHeights[node.id]} color={nodeColors[node.id]} selected={selectedIds.includes(node.id)} yoncConfig={yoncConfig} registerElement={(element) => { if (element) nodeRefs.current.set(node.id, element); else nodeRefs.current.delete(node.id); }} onSelect={() => { if (suppressNodeClick.current) { suppressNodeClick.current = false; return; } onSelectionChange([node.id]); }} onSplit={() => onOpenSplit(node)} onPointerDown={(event) => {
               if (event.button !== 0 || (event.target as HTMLElement).closest("button")) return;
               event.stopPropagation();
               const isSelected = selectedIds.includes(node.id);
@@ -1120,29 +1511,365 @@ function NodeInspector({ node, color, graphVersion, onClose, onRefresh, onOpenSp
   onError: (error: unknown) => void;
   onRegisterUndo: (action: UndoAction) => void;
 }) {
-  const [dialog, setDialog] = useState<"done" | "deadline" | null>(null);
-  const [deadline, setDeadline] = useState("");
+  const [isEditingExecution, setIsEditingExecution] = useState(false);
+  const [isEditingDeadline, setIsEditingDeadline] = useState(false);
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [isConfirmingDone, setIsConfirmingDone] = useState(false);
+  const [isConfirmingReopen, setIsConfirmingReopen] = useState(false);
+  const [deadline, setDeadline] = useState(node?.deadline ?? "");
+  const [startCue, setStartCue] = useState(node?.start_cue ?? "");
+  const [doneWhen, setDoneWhen] = useState(node?.done_when ?? "");
+  const [descriptionText, setDescriptionText] = useState(node?.description ?? "");
+
+  const statusRowRef = useRef<HTMLDivElement | null>(null);
+  const deadlineRowRef = useRef<HTMLDivElement | null>(null);
+  const deadlineInputRef = useRef<HTMLInputElement | null>(null);
+  const executionSectionRef = useRef<HTMLElement | null>(null);
+  const startCueInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const descriptionSectionRef = useRef<HTMLElement | null>(null);
+  const descriptionInputRef = useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+    setIsEditingExecution(false);
+    setIsEditingDeadline(false);
+    setIsEditingDescription(false);
+    setIsConfirmingDone(false);
+    setIsConfirmingReopen(false);
+    setDeadline(node?.deadline ?? "");
+    setStartCue(node?.start_cue ?? "");
+    setDoneWhen(node?.done_when ?? "");
+    setDescriptionText(node?.description ?? "");
+  }, [node?.id]);
+
   if (!node) return null;
+
+  const isAction = node.work_type === "ACTION" || (node.wbs_level ?? 0) >= 4;
+
   const performDone = async () => {
-    try { const result = await api.transition(node.id, "done", graphVersion); onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id }); setDialog(null); await onRefresh(); } catch (error) { onError(error); }
+    try {
+      const result = await api.transition(node.id, "done", graphVersion);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      setIsConfirmingDone(false);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
   };
+
+  const performReopen = async () => {
+    try {
+      const result = await api.transition(node.id, "reopen", graphVersion);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      setIsConfirmingReopen(false);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
+  };
+
   const saveDeadline = async () => {
-    try { const result = await api.patchNode(node.id, { deadline: deadline || null }, graphVersion); onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id }); setDialog(null); await onRefresh(); } catch (error) { onError(error); }
+    try {
+      const result = await api.patchNode(node.id, { deadline: deadline.trim() || null }, graphVersion);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      setIsEditingDeadline(false);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
   };
+
+  const saveDescription = async () => {
+    try {
+      const result = await api.patchNode(node.id, { description: descriptionText.trim() || null }, graphVersion);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      setIsEditingDescription(false);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
+  };
+
+  const saveExecution = async () => {
+    try {
+      const result = await api.patchNode(
+        node.id,
+        {
+          start_cue: startCue.trim() || null,
+          done_when: doneWhen.trim() || null,
+        },
+        graphVersion,
+      );
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      setIsEditingExecution(false);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
+  };
+
+  const scrollToExecution = () => {
+    setIsEditingExecution(true);
+    setStartCue(node.start_cue ?? "");
+    setDoneWhen(node.done_when ?? "");
+    setTimeout(() => {
+      executionSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      startCueInputRef.current?.focus();
+    }, 40);
+  };
+
+  const scrollToDeadline = () => {
+    setIsEditingDeadline(true);
+    setDeadline(node.deadline ?? "");
+    setTimeout(() => {
+      deadlineRowRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      deadlineInputRef.current?.focus();
+    }, 40);
+  };
+
+  const scrollToDone = () => {
+    setIsConfirmingDone(true);
+    setIsConfirmingReopen(false);
+    setTimeout(() => {
+      statusRowRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 40);
+  };
+
+  const scrollToReopen = () => {
+    setIsConfirmingReopen(true);
+    setIsConfirmingDone(false);
+    setTimeout(() => {
+      statusRowRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 40);
+  };
+
+  const scrollToDescription = () => {
+    setIsEditingDescription(true);
+    setDescriptionText(node.description ?? "");
+    setTimeout(() => {
+      descriptionSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      descriptionInputRef.current?.focus();
+    }, 40);
+  };
+
   return (
     <aside className="inspector floating-inspector">
       <button className="inspector-close" onClick={onClose} aria-label="关闭详情">×</button>
       <div className="inspector-heading"><span className="status-dot" style={{ background: color }} /><div><span className="eyebrow">{node.work_type.replace("_", " ")} · {node.stage}</span><h2>{node.title}</h2></div></div>
-      <div className="detail-grid"><span>Status</span><b>{node.status}</b><span>Progress</span><b>{Math.round((node.progress?.ratio ?? 0) * 100)}%</b><span>Estimated Effort</span><b>{formatEffort(node.estimated_effort_minutes)}</b><span>Planned Span</span><b>{node.planned_start ? `${fmtDate(node.planned_start)} – ${fmtDate(node.planned_end ?? node.planned_start)}` : "Unscheduled"}</b><span>Deadline</span><b>{fmtDate(node.deadline)}</b><span>Pressure</span><b className={`pressure-text ${node.pressure?.level}`}>{node.pressure?.level ?? "low"}</b></div>
+      <div className="detail-grid">
+        <span>Status</span>
+        <div ref={statusRowRef} className="status-cell-wrap">
+          {node.status === "DONE" ? (
+            <b
+              className="editable-cell hover-edit-trigger status-done-clickable"
+              onClick={scrollToReopen}
+              title="已完成 · 点击撤销完成"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") scrollToReopen(); }}
+            >
+              {node.status} <span className="edit-icon" aria-hidden="true">↺</span>
+            </b>
+          ) : (
+            <b>{node.status}</b>
+          )}
+          {isConfirmingDone && (
+            <div className="inline-confirm-box">
+              <span>确认标记为完成？</span>
+              <div className="inline-actions">
+                <button type="button" className="btn-sm" onClick={() => setIsConfirmingDone(false)}>取消</button>
+                <button type="button" className="btn-sm primary" onClick={performDone}>确认完成</button>
+              </div>
+            </div>
+          )}
+          {isConfirmingReopen && (
+            <div className="inline-confirm-box">
+              <span>确认撤销完成？</span>
+              <div className="inline-actions">
+                <button type="button" className="btn-sm" onClick={() => setIsConfirmingReopen(false)}>取消</button>
+                <button type="button" className="btn-sm primary" onClick={performReopen}>确认恢复</button>
+              </div>
+            </div>
+          )}
+        </div>
+        <span>Progress</span><b>{Math.round((node.progress?.ratio ?? 0) * 100)}%</b>
+        <span>Estimated Effort</span><b>{formatEffort(node.estimated_effort_minutes)}</b>
+        <span>Planned Span</span><b>{node.planned_start ? `${fmtDate(node.planned_start)} – ${fmtDate(node.planned_end ?? node.planned_start)}` : "Unscheduled"}</b>
+        <span>Deadline</span>
+        <div ref={deadlineRowRef} className="deadline-cell-wrap">
+          {isEditingDeadline ? (
+            <div className="inline-edit-field">
+              <input
+                ref={deadlineInputRef}
+                type="date"
+                value={deadline}
+                onChange={(event) => setDeadline(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") saveDeadline();
+                  if (event.key === "Escape") setIsEditingDeadline(false);
+                }}
+              />
+              <div className="inline-actions">
+                <button type="button" className="btn-sm" onClick={() => setIsEditingDeadline(false)}>✕</button>
+                <button type="button" className="btn-sm primary" onClick={saveDeadline}>保存</button>
+              </div>
+            </div>
+          ) : (
+            <b
+              className="editable-cell hover-edit-trigger"
+              onClick={scrollToDeadline}
+              title="点击修改截止日期"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") scrollToDeadline(); }}
+            >
+              {fmtDate(node.deadline)} <span className="edit-icon" aria-hidden="true">✎</span>
+            </b>
+          )}
+        </div>
+        <span>Pressure</span><b className={`pressure-text ${node.pressure?.level}`}>{node.pressure?.level ?? "low"}</b>
+      </div>
       <div className="meter"><i style={{ width: `${Math.round((node.progress?.ratio ?? 0) * 100)}%` }} /></div>
-      {node.health?.length > 0 && <section className="health-warnings" aria-label="Warnings"><div className="section-heading"><h3>Warnings</h3><span>{node.health.length}</span></div><ul>{node.health.map((warning, index) => <li key={`${warning.code}-${index}`}><span aria-hidden="true">△</span><p>{healthWarningMessage(warning, node)}</p></li>)}</ul></section>}
-      <section><h3>Description</h3><p>{node.description || "No description yet."}</p></section>
-      <section><h3>Execution definition</h3><p><small>Start</small>{node.start_cue || "—"}</p><p><small>Done when</small>{node.done_when || "—"}</p></section>
+      {node.health?.length > 0 && (
+        <section className="health-warnings" aria-label="Warnings">
+          <div className="section-heading"><h3>Warnings</h3><span>{node.health.length}</span></div>
+          <ul>
+            {node.health.map((warning, index) => {
+              const isExecutionWarning = warning.code === "ACTIONABILITY_INCOMPLETE";
+              return (
+                <li
+                  key={`${warning.code}-${index}`}
+                  className={isExecutionWarning ? "warning-actionable" : ""}
+                  onClick={isExecutionWarning ? scrollToExecution : undefined}
+                  role={isExecutionWarning ? "button" : undefined}
+                  tabIndex={isExecutionWarning ? 0 : undefined}
+                  onKeyDown={isExecutionWarning ? (event) => { if (event.key === "Enter" || event.key === " ") scrollToExecution(); } : undefined}
+                >
+                  <span aria-hidden="true">△</span>
+                  <p>
+                    {healthWarningMessage(warning, node)}
+                    {isExecutionWarning && <span className="inline-fix-link"> 完善定义 →</span>}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+      <section ref={descriptionSectionRef} className={`inspector-section hover-edit-trigger${isEditingDescription ? " is-editing" : ""}`}>
+        <div className="section-heading">
+          <h3>Description</h3>
+          {!isEditingDescription ? (
+            <button
+              type="button"
+              className="icon-action-btn"
+              onClick={scrollToDescription}
+              title="编辑描述"
+              aria-label="编辑描述"
+            >
+              <span className="edit-icon" aria-hidden="true">✎</span>
+            </button>
+          ) : (
+            <button type="button" className="link-action" onClick={() => setIsEditingDescription(false)}>Cancel</button>
+          )}
+        </div>
+        {isEditingDescription ? (
+          <div className="description-edit-box">
+            <textarea
+              ref={descriptionInputRef}
+              rows={3}
+              value={descriptionText}
+              onChange={(event) => setDescriptionText(event.target.value)}
+              placeholder="输入任务描述..."
+            />
+            <div className="inline-actions">
+              <button type="button" className="btn-sm" onClick={() => setIsEditingDescription(false)}>取消</button>
+              <button type="button" className="btn-sm primary" onClick={saveDescription}>保存</button>
+            </div>
+          </div>
+        ) : (
+          <p
+            className="editable-text-block"
+            onClick={scrollToDescription}
+            title="点击编辑描述"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") scrollToDescription(); }}
+          >
+            {node.description || "No description yet."}
+          </p>
+        )}
+      </section>
+      <section ref={executionSectionRef} className={`execution-section hover-edit-trigger${isEditingExecution ? " is-editing" : ""}`}>
+        <div className="section-heading">
+          <h3>Execution definition</h3>
+          {!isEditingExecution ? (
+            <button
+              type="button"
+              className="icon-action-btn"
+              onClick={scrollToExecution}
+              title="编辑执行定义"
+              aria-label="编辑执行定义"
+            >
+              <span className="edit-icon" aria-hidden="true">✎</span>
+            </button>
+          ) : (
+            <button type="button" className="link-action" onClick={() => setIsEditingExecution(false)}>Cancel</button>
+          )}
+        </div>
+        {isEditingExecution ? (
+          <div className="execution-edit-box">
+            <label className="field">
+              <span>Start cue (trigger / first step)</span>
+              <textarea
+                ref={startCueInputRef}
+                rows={2}
+                value={startCue}
+                onChange={(event) => setStartCue(event.target.value)}
+                placeholder="例如：准备好器件清单并打开焊台 / 拉取最新代码"
+              />
+            </label>
+            <label className="field">
+              <span>Done when (observable completion criteria)</span>
+              <textarea
+                rows={2}
+                value={doneWhen}
+                onChange={(event) => setDoneWhen(event.target.value)}
+                placeholder="例如：所有模块通过自检测试并输出报告"
+              />
+            </label>
+            <div className="inline-actions">
+              <button type="button" className="btn-sm" onClick={() => setIsEditingExecution(false)}>取消</button>
+              <button type="button" className="btn-sm primary" onClick={saveExecution}>保存定义</button>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="editable-text-block"
+            onClick={scrollToExecution}
+            title="点击编辑执行定义"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") scrollToExecution(); }}
+          >
+            <p><small>Start</small>{node.start_cue || "—"}</p>
+            <p><small>Done when</small>{node.done_when || "—"}</p>
+          </div>
+        )}
+      </section>
       <section><h3>Forecast</h3>{node.forecast?.finish_range ? <p>{fmtDate(node.forecast.finish_range.earliest)} – {fmtDate(node.forecast.finish_range.latest)} <small>{node.forecast.confidence} confidence</small></p> : <p>Insufficient completed history for a finish range.</p>}</section>
       <section><h3>References</h3><p>{node.resource_count} linked resources</p></section>
-      <div className="inspector-actions"><button className="primary" onClick={() => onOpenSplit(node)}>Open Split</button><button onClick={() => { setDeadline(node.deadline ?? ""); setDialog("deadline"); }}>Edit Deadline</button>{node.status !== "DONE" && <button onClick={() => setDialog("done")}>Mark Done</button>}</div>
-      {dialog === "done" && <Modal title="确认完成" onClose={() => setDialog(null)}><p>确认标记为完成？完成状态只能由你确认。</p><div className="modal-actions"><button onClick={() => setDialog(null)}>取消</button><button className="primary" onClick={performDone}>标记完成</button></div></Modal>}
-      {dialog === "deadline" && <Modal title="修改截止日期" onClose={() => setDialog(null)}><p>修改截止日期会重新计算预测和时间压力。</p><label className="field">截止日期<input type="date" value={deadline} onChange={(event) => setDeadline(event.target.value)} /></label><div className="modal-actions"><button onClick={() => setDialog(null)}>取消</button><button className="primary" onClick={saveDeadline}>确认修改</button></div></Modal>}
+      <div className="inspector-actions">
+        {!isAction ? (
+          <button className="primary" onClick={() => onOpenSplit(node)}>Open Split</button>
+        ) : (
+          <button className={!node.start_cue || !node.done_when ? "primary" : ""} onClick={scrollToExecution}>Edit Execution</button>
+        )}
+        {node.status !== "DONE" ? (
+          <button className={isAction && node.start_cue && node.done_when ? "primary" : ""} onClick={scrollToDone}>Mark Done</button>
+        ) : (
+          <button onClick={scrollToReopen}>Undo Done</button>
+        )}
+      </div>
     </aside>
   );
 }
@@ -1169,6 +1896,7 @@ function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, on
   const [rangeNode, setRangeNode] = useState<GraphNode | null>(null);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
+  const [rangeDeadline, setRangeDeadline] = useState("");
   const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
   const [dragAnchorOffset, setDragAnchorOffset] = useState(0);
   const [dropPreviewDate, setDropPreviewDate] = useState<string | null>(null);
@@ -1241,7 +1969,7 @@ function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, on
     const nodeId = event.dataTransfer.getData("text/yonc-node") || draggedNodeId;
     if (!nodeId) return;
     const node = byId[nodeId];
-    const newStart = addDays(cell.date, -dragAnchorOffset);
+    const newStart = cell.date;
     const scheduledMove = Boolean(node?.planned_start);
     const suggestedEnd = node ? addDays(newStart, nodeSpanDays(node, graph) - 1) : newStart;
     clearModuleDrag();
@@ -1253,7 +1981,13 @@ function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, on
       await onRefresh();
     } catch (error) { onError(error); } finally { setPendingPlacement(null); }
   };
-  const openRange = (node: GraphNode) => { setRangeNode(node); setStart(node.planned_start ?? ""); setEnd(node.planned_end ?? node.planned_start ?? ""); onSelect(node.id); };
+  const openRange = (node: GraphNode) => {
+    setRangeNode(node);
+    setStart(node.planned_start ?? "");
+    setEnd(node.planned_end ?? node.planned_start ?? "");
+    setRangeDeadline(node.deadline ?? "");
+    onSelect(node.id);
+  };
   const normalizedSearch = searchQuery.trim();
   const poolNodes = useMemo(() => {
     const candidates = normalizedSearch ? graph.nodes : unscheduled;
@@ -1270,7 +2004,20 @@ function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, on
   };
   const saveRange = async () => {
     if (!rangeNode || !start || !end) return;
-    try { const scheduled = await api.schedule(rangeNode.id, start, end, graph.graph_version); if (scheduled.operation_batch_id) onRegisterUndo({ kind: "batch", batchId: scheduled.operation_batch_id }); setRangeNode(null); await onRefresh(); } catch (error) { onError(error); }
+    try {
+      const scheduled = await api.schedule(rangeNode.id, start, end, graph.graph_version);
+      if (scheduled.operation_batch_id) onRegisterUndo({ kind: "batch", batchId: scheduled.operation_batch_id });
+      let nextVersion = scheduled.graph_version;
+      const targetDeadline = rangeDeadline.trim() || null;
+      if (targetDeadline !== (rangeNode.deadline ?? null)) {
+        const patched = await api.patchNode(rangeNode.id, { deadline: targetDeadline }, nextVersion);
+        if (patched.operation_batch_id) onRegisterUndo({ kind: "batch", batchId: patched.operation_batch_id });
+      }
+      setRangeNode(null);
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
   };
   return (
     <div className="timeline-layout">
@@ -1317,7 +2064,7 @@ function TimelineGrid({ timeline, graph, yoncConfig, selectedId, calendarRef, on
         </div>
         <footer className="scheduled-module-lane" aria-label="Scheduled modules by week" style={{ gridTemplateColumns: `56px repeat(${weeks.length}, ${cellSize}px)`, gridTemplateRows: `repeat(${scheduledLaneCount}, 22px)` }}><span style={{ gridColumn: 1, gridRow: `1 / ${scheduledLaneCount + 1}` }}>Scheduled</span>{scheduledLaneItems.map(({ node, pending, startDate, endDate, startWeek, displayEndWeek, singleDay, lane }) => <button key={node.id} className={`${pending ? "pending " : ""}${singleDay ? "single-day" : "range"}`} style={{ "--module-color": nodeColors[node.id], gridColumn: `${startWeek + 2} / ${displayEndWeek + 3}`, gridRow: lane + 1 } as React.CSSProperties} draggable={!pending} onDragStart={(event) => !pending && beginModuleDrag(event, node.id)} onDragEnd={clearModuleDrag} onClick={() => !pending && openRange(node)} title={`${node.title} — ${singleDay ? startDate : `${startDate} to ${endDate}`}`} aria-label={`${node.title}, scheduled ${singleDay ? `on ${startDate}` : `from ${startDate} to ${endDate}`}`}><span className="scheduled-module-copy">{singleDay && <small>{fmtDate(startDate)}</small>}<b>{node.title}</b></span></button>)}</footer>
       </section>
-      {rangeNode && <aside className="range-inspector floating-range"><button className="inspector-close" onClick={() => setRangeNode(null)} aria-label="关闭范围详情">×</button><span className="eyebrow">Selected range</span><h2>{rangeNode.title}</h2><label className="field">Start<input type="date" value={start} onChange={(event) => setStart(event.target.value)} /></label><label className="field">End<input type="date" value={end} onChange={(event) => setEnd(event.target.value)} /></label><p className="quiet">Moving or resizing changes planned dates, never estimated effort.</p><button className="primary" onClick={saveRange}>Apply Range</button><hr /><span className="eyebrow">Weekly capacity</span><p>{timeline.warnings.length ? `${timeline.warnings.length} overlap warning${timeline.warnings.length === 1 ? "" : "s"}` : "No overloaded cells in this range."}</p></aside>}
+      {rangeNode && <aside className="range-inspector floating-range"><button className="inspector-close" onClick={() => setRangeNode(null)} aria-label="关闭范围详情">×</button><span className="eyebrow">Selected range</span><h2>{rangeNode.title}</h2><label className="field">Start<input type="date" value={start} onChange={(event) => setStart(event.target.value)} /></label><label className="field">End<input type="date" value={end} onChange={(event) => setEnd(event.target.value)} /></label><label className="field">Deadline<input type="date" value={rangeDeadline} onChange={(event) => setRangeDeadline(event.target.value)} /></label><p className="quiet">Moving or resizing changes planned dates, never estimated effort.</p><button className="primary" onClick={saveRange}>Apply Range</button><hr /><span className="eyebrow">Weekly capacity</span><p>{timeline.warnings.length ? `${timeline.warnings.length} overlap warning${timeline.warnings.length === 1 ? "" : "s"}` : "No overloaded cells in this range."}</p></aside>}
     </div>
   );
 }
@@ -1370,34 +2117,247 @@ function SplitPanel({ split, graphVersion, onClose, onRefresh, onError, onRegist
 }) {
   const [current, setCurrent] = useState(split);
   const [message, setMessage] = useState("");
+  const [pendingAnnotations, setPendingAnnotations] = useState<SplitAnnotation[]>([]);
+  const [selectionPopup, setSelectionPopup] = useState<{
+    target_temporary_id: string;
+    field: "title" | "done_when";
+    highlighted_text: string;
+    x: number;
+    y: number;
+  } | null>(null);
+  const [activeComposer, setActiveComposer] = useState<{
+    target_temporary_id: string;
+    field: "title" | "done_when";
+    highlighted_text: string;
+  } | null>(null);
+  const [composerComment, setComposerComment] = useState("");
   const [busy, setBusy] = useState(false);
+
   const reload = async () => setCurrent(await api.split(current.id));
-  const send = async () => {
-    if (!message.trim()) return;
-    setBusy(true);
-    try { await api.splitMessage(current.id, message); setMessage(""); await reload(); } catch (error) { onError(error); } finally { setBusy(false); }
+
+  const handleProposalSelection = () => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) {
+      setSelectionPopup(null);
+      return;
+    }
+    const text = selection.toString().trim();
+    if (!text || text.length > 200) {
+      setSelectionPopup(null);
+      return;
+    }
+    const anchorNode = selection.anchorNode;
+    const parentEl = anchorNode instanceof HTMLElement ? anchorNode : anchorNode?.parentElement;
+    const fieldEl = parentEl?.closest("[data-field]") as HTMLElement | null;
+    const cardEl = parentEl?.closest("[data-temp-id]") as HTMLElement | null;
+    if (!fieldEl || !cardEl) {
+      setSelectionPopup(null);
+      return;
+    }
+    const targetId = cardEl.getAttribute("data-temp-id") || "";
+    const field = (fieldEl.getAttribute("data-field") || "title") as "title" | "done_when";
+    if (!targetId) {
+      setSelectionPopup(null);
+      return;
+    }
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    setSelectionPopup({
+      target_temporary_id: targetId,
+      field,
+      highlighted_text: text,
+      x: rect.left + rect.width / 2,
+      y: rect.top - 10,
+    });
   };
+
+  const openComposer = () => {
+    if (!selectionPopup) return;
+    setActiveComposer({
+      target_temporary_id: selectionPopup.target_temporary_id,
+      field: selectionPopup.field,
+      highlighted_text: selectionPopup.highlighted_text,
+    });
+    setComposerComment("");
+    setSelectionPopup(null);
+    window.getSelection()?.removeAllRanges();
+  };
+
+  const addAnnotation = () => {
+    if (!activeComposer || !composerComment.trim()) return;
+    setPendingAnnotations((prev) => [
+      ...prev,
+      {
+        target_temporary_id: activeComposer.target_temporary_id,
+        field: activeComposer.field,
+        highlighted_text: activeComposer.highlighted_text,
+        comment: composerComment.trim(),
+      },
+    ]);
+    setActiveComposer(null);
+    setComposerComment("");
+  };
+
+  const removeAnnotation = (index: number) => {
+    setPendingAnnotations((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const send = async () => {
+    if (!message.trim() && pendingAnnotations.length === 0) return;
+    setBusy(true);
+    try {
+      await api.splitMessage(current.id, message, pendingAnnotations);
+      setMessage("");
+      setPendingAnnotations([]);
+      await reload();
+    } catch (error) {
+      onError(error);
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const validate = async () => {
     setBusy(true);
-    try { const result = await api.validateSplit(current.id); window.alert(result.valid ? "提案已通过可执行性与项目图检查。" : "提案尚未通过检查，请继续调整。"); } catch (error) { onError(error); } finally { setBusy(false); }
+    try {
+      const result = await api.validateSplit(current.id);
+      window.alert(result.valid ? "提案已通过可执行性与项目图检查。" : "提案尚未通过检查，请继续调整。");
+    } catch (error) {
+      onError(error);
+    } finally {
+      setBusy(false);
+    }
   };
+
   const commit = async () => {
     if (!window.confirm("确认提交拆分？提交后将创建正式节点和关系。")) return;
     setBusy(true);
-    try { const result = await api.commitSplit(current.id, graphVersion, current.current_proposal_version); onRegisterUndo({ kind: "batch", batchId: result.operation_batch.id }); await onRefresh(); onClose(); } catch (error) { onError(error); } finally { setBusy(false); }
+    try {
+      const result = await api.commitSplit(current.id, graphVersion, current.current_proposal_version);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch.id });
+      await onRefresh();
+      onClose();
+    } catch (error) {
+      onError(error);
+    } finally {
+      setBusy(false);
+    }
   };
+
   const discard = async () => {
     if (!window.confirm("放弃当前拆分提案？未提交的内容不会写入项目图。")) return;
-    try { await api.discardSplit(current.id); onClose(); } catch (error) { onError(error); }
+    try {
+      await api.discardSplit(current.id);
+      onClose();
+    } catch (error) {
+      onError(error);
+    }
   };
+
   return (
     <aside className="split-panel" role="dialog" aria-modal="true" aria-label="拆分会话">
       <header><div><span className="eyebrow">拆分会话</span><h2>协作拆分</h2></div><button className="icon-button" onClick={onClose} aria-label="关闭拆分会话">×</button></header>
       <div className="split-context"><span>当前状态</span><b>{current.state}</b><span>提案版本</span><b>v{current.current_proposal_version}</b></div>
-      <div className="conversation">{current.messages.map((item) => <div key={item.id} className={`message ${item.role}`}><small>{item.role === "user" ? "你" : item.role === "assistant" ? "拆分助手" : "系统"}</small><p>{item.content}</p></div>)}</div>
-      <section className="proposal-tree"><header><h3>当前提案 v{current.proposal?.version ?? 0}</h3><span>尚未写入项目图</span></header>{current.proposal?.nodes.map((node, index) => <article key={node.temporary_id}><i>{index + 1}</i><div><b>{node.title}</b><p>{node.done_when}</p><small>{node.estimated_effort_minutes} 分钟 · {node.required ? "必需" : "可选"}</small></div><span>✓</span></article>) ?? <p className="quiet">告诉我你希望如何拆分，或让我先提出一个版本。</p>}</section>
-      <div className="split-compose"><textarea value={message} onChange={(event) => setMessage(event.target.value)} placeholder="例如：合并第 1、2 项，把最后一项拆得更具体……" /><button className="primary" disabled={busy || !message.trim()} onClick={send}>发送并生成新版本</button></div>
-      <footer><button onClick={discard}>放弃提案</button><button onClick={validate} disabled={!current.proposal || busy}>检查提案</button><button className="primary" onClick={commit} disabled={!current.proposal || busy}>提交拆分</button></footer>
+      <div className="conversation">
+        {current.messages.map((item) => (
+          <div key={item.id} className={`message ${item.role}`}>
+            <small>{item.role === "user" ? "你" : item.role === "assistant" ? "拆分助手" : "系统"}</small>
+            <p>{item.content}</p>
+            {item.annotations && item.annotations.length > 0 && (
+              <div className="message-annotations">
+                <span className="message-annotations-title">划词批注：</span>
+                {item.annotations.map((ann, idx) => (
+                  <div key={idx} className="message-annotation-item">
+                    <span className="quote">“{ann.highlighted_text}”</span>
+                    <span className="arrow">→</span>
+                    <span className="comment">{ann.comment}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <section className="proposal-tree" onMouseUp={handleProposalSelection}>
+        <header>
+          <h3>当前提案 v{current.proposal?.version ?? 0}</h3>
+          <span>{pendingAnnotations.length > 0 ? `${pendingAnnotations.length} 处待提交批注` : "尚未写入项目图"}</span>
+        </header>
+        {current.proposal?.nodes.map((node, index) => {
+          const nodeAnnotations = pendingAnnotations.filter((a) => a.target_temporary_id === node.temporary_id);
+          const isComposingThis = activeComposer?.target_temporary_id === node.temporary_id;
+          return (
+            <article key={node.temporary_id} data-temp-id={node.temporary_id} className={nodeAnnotations.length > 0 ? "has-annotations" : ""}>
+              <i>{index + 1}</i>
+              <div>
+                <b data-field="title" title="划词选中文字可直接批注">{node.title}</b>
+                <p data-field="done_when" title="划词选中文字可直接批注">{node.done_when}</p>
+                <small>{node.estimated_effort_minutes} 分钟 · {node.required ? "必需" : "可选"}</small>
+                {nodeAnnotations.length > 0 && (
+                  <div className="node-annotations-list">
+                    {nodeAnnotations.map((ann, aIdx) => (
+                      <div key={aIdx} className="annotation-chip">
+                        <span className="annotation-chip-quote">“{ann.highlighted_text}”</span>
+                        <span className="annotation-chip-comment">{ann.comment}</span>
+                        <button type="button" className="annotation-chip-remove" onClick={() => removeAnnotation(pendingAnnotations.indexOf(ann))} title="删除批注">×</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {isComposingThis && (
+                  <div className="inline-annotation-composer">
+                    <div className="composer-header">
+                      <span>对 <b>“{activeComposer.highlighted_text}”</b> 批注：</span>
+                    </div>
+                    <input
+                      autoFocus
+                      value={composerComment}
+                      onChange={(e) => setComposerComment(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") { e.preventDefault(); addAnnotation(); }
+                        if (e.key === "Escape") setActiveComposer(null);
+                      }}
+                      placeholder="例如：拆分成两个独立任务、补充完成判定..."
+                    />
+                    <div className="composer-actions">
+                      <button type="button" className="composer-cancel" onClick={() => setActiveComposer(null)}>取消</button>
+                      <button type="button" className="composer-submit" disabled={!composerComment.trim()} onClick={addAnnotation}>添加批注</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <span className="proposal-status-check">✓</span>
+            </article>
+          );
+        }) ?? <p className="quiet">告诉我你希望如何拆分，或让我先提出一个版本。</p>}
+      </section>
+      {selectionPopup && (
+        <div
+          className="selection-popover"
+          style={{ left: selectionPopup.x, top: selectionPopup.y }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            openComposer();
+          }}
+        >
+          <button type="button" className="popover-comment-btn">💬 批注此词</button>
+        </div>
+      )}
+      <div className="split-compose">
+        <textarea
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder={pendingAnnotations.length > 0 ? "已添加划词批注，可直接提交或在此输入补充说明..." : "例如：合并第 1、2 项，把最后一项拆得更具体……（也可在上方划词直接批注）"}
+        />
+        <button className="primary" disabled={busy || (!message.trim() && pendingAnnotations.length === 0)} onClick={send}>
+          {pendingAnnotations.length > 0 ? `发送并按 ${pendingAnnotations.length} 处批注生成新版本` : "发送并生成新版本"}
+        </button>
+      </div>
+      <footer>
+        <button onClick={discard}>放弃提案</button>
+        <button onClick={validate} disabled={!current.proposal || busy}>检查提案</button>
+        <button className="primary" onClick={commit} disabled={!current.proposal || busy}>提交拆分</button>
+      </footer>
     </aside>
   );
 }
@@ -1483,9 +2443,9 @@ function SettingsPanel({ config, onClose, onSaved, onError }: {
   );
 }
 
-function MobileFallback({ graph, onDone, onSplit }: { graph: GraphResponse; onDone: (node: GraphNode) => void; onSplit: (node: GraphNode) => void }) {
+function MobileFallback({ graph, onDone }: { graph: GraphResponse; onDone: (node: GraphNode) => void }) {
   const actions = graph.nodes.filter((node) => node.work_type === "ACTION" && !["DONE", "CANCELLED", "SUPERSEDED"].includes(node.status)).slice(0, 12);
-  return <main className="mobile-fallback"><header><span className="eyebrow">Global project file</span><h1>Yonc</h1><p>{graph.health.warning_count} graph warnings · {graph.pace.reliable ? `${graph.pace.median_hours?.toFixed(1)}h/week` : "pace baseline pending"}</p></header><section><h2>Next Actions</h2>{actions.length ? actions.map((node) => <article key={node.id}><div><b>{node.title}</b><span>{fmtDate(node.deadline)} · {formatEffort(node.estimated_effort_minutes)}</span></div><button onClick={() => onSplit(node)}>Split</button><button className="primary" onClick={() => onDone(node)}>Done</button></article>) : <p className="quiet">No open Actions in this project file.</p>}</section></main>;
+  return <main className="mobile-fallback"><header><span className="eyebrow">Global project file</span><h1>Yonc</h1><p>{graph.health.warning_count} graph warnings · {graph.pace.reliable ? `${graph.pace.median_hours?.toFixed(1)}h/week` : "pace baseline pending"}</p></header><section><h2>Next Actions</h2>{actions.length ? actions.map((node) => <article key={node.id}><div><b>{node.title}</b><span>{fmtDate(node.deadline)} · {formatEffort(node.estimated_effort_minutes)}</span></div><button className="primary" onClick={() => onDone(node)}>Done</button></article>) : <p className="quiet">No open Actions in this project file.</p>}</section></main>;
 }
 
 export default function App() {
@@ -1609,7 +2569,7 @@ export default function App() {
       {!loading && graph && timeline && <>
         <main className="desktop-content">{view === "canvas" ? <CanvasView graph={graph} yoncConfig={yoncConfig} selectedIds={selectedIds} onSelectionChange={setSelectedIds} onOpenSplit={openSplit} onRegisterUndo={registerUndo} /> : <TimelineView timeline={timeline} graph={graph} yoncConfig={yoncConfig} selectedId={selectedId} mode={timelineMode} onMode={setTimelineMode} onSelect={(id) => setSelectedIds([id])} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}</main>
         {view === "canvas" && selected && <NodeInspector node={selected} color={nodeColors[selected.id]} graphVersion={graph.graph_version} onClose={() => setSelectedIds([])} onRefresh={refresh} onOpenSplit={openSplit} onError={handleError} onRegisterUndo={registerUndo} />}
-        <MobileFallback graph={graph} onDone={mobileDone} onSplit={openSplit} />
+        <MobileFallback graph={graph} onDone={mobileDone} />
       </>}
       {!loading && graph && !graph.nodes.length && <div className="empty-state"><h1>No work in this project file</h1><p>Import existing work or capture a Goal to begin.</p></div>}
       {split && graph && <SplitPanel split={split} graphVersion={graph.graph_version} onClose={() => setSplit(null)} onRefresh={refresh} onError={handleError} onRegisterUndo={registerUndo} />}

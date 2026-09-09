@@ -253,6 +253,7 @@ class SplitMessage(Base):
     session_id: Mapped[str] = mapped_column(String(36), ForeignKey("split_sessions.id"), nullable=False, index=True)
     role: Mapped[str] = mapped_column(String(20), nullable=False)
     content: Mapped[str] = mapped_column(Text, nullable=False)
+    annotations: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
 
 

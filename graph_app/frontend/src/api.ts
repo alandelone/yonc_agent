@@ -1,4 +1,4 @@
-import type { GraphResponse, SplitSession, TimelineResponse, YoncConfig } from "./types";
+import type { GraphResponse, SplitAnnotation, SplitSession, TimelineResponse, YoncConfig } from "./types";
 
 const chineseByCode: Record<string, string> = {
   GRAPH_VERSION_CONFLICT: "项目图已发生变化。请刷新上下文并重新确认。",
@@ -77,7 +77,7 @@ export const api = {
   viewState: (view: "canvas" | "timeline", scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`),
   saveViewState: (view: "canvas" | "timeline", values: Record<string, unknown>, scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`, { method: "PUT", body: JSON.stringify(values) }),
   startSplit: (parentNodeId: string) => request<SplitSession>("/api/v2/split-sessions", { method: "POST", body: JSON.stringify({ parent_node_id: parentNodeId }) }),
-  splitMessage: (sessionId: string, content: string) => request<{ session_id: string }>(`/api/v2/split-sessions/${sessionId}/messages`, { method: "POST", body: JSON.stringify({ content }) }),
+  splitMessage: (sessionId: string, content: string, annotations: SplitAnnotation[] = []) => request<{ session_id: string }>(`/api/v2/split-sessions/${sessionId}/messages`, { method: "POST", body: JSON.stringify({ content, annotations }) }),
   split: (sessionId: string) => request<SplitSession>(`/api/v2/split-sessions/${sessionId}`),
   validateSplit: (sessionId: string) => request<{ valid: boolean; errors: unknown[]; warnings: unknown[] }>(`/api/v2/split-sessions/${sessionId}/validate`, { method: "POST" }),
   commitSplit: (sessionId: string, graphVersion: number, proposalVersion: number) => request<{ graph_version: number; operation_batch: OperationBatchSummary }>(`/api/v2/split-sessions/${sessionId}/commit`, { method: "POST", body: JSON.stringify({ expected_graph_version: graphVersion, proposal_version: proposalVersion }) }),

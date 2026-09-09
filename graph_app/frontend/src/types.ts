@@ -130,13 +130,28 @@ export interface ProposalNode {
   required: boolean;
 }
 
+export interface SplitAnnotation {
+  target_temporary_id: string;
+  field: "title" | "done_when" | "start_cue" | "general";
+  highlighted_text: string;
+  comment: string;
+}
+
+export interface SplitMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  annotations?: SplitAnnotation[];
+  created_at: string;
+}
+
 export interface SplitSession {
   id: string;
   parent_node_id: string;
   state: string;
   context_graph_version: number;
   current_proposal_version: number;
-  messages: Array<{ id: string; role: "user" | "assistant" | "system"; content: string; created_at: string }>;
+  messages: SplitMessage[];
   proposal: null | {
     id: string;
     version: number;

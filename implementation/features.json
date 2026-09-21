@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "plan": "docs/yonc/06-hermes-implementation-plan.zh-CN.md",
+  "features": [
+    {"id": "P0", "name": "integration-baseline", "status": "implemented", "evidence": ["docs/yonc/08-hermes-integration-contract.zh-CN.md"]},
+    {"id": "P1", "name": "safe-project-writes", "status": "implemented", "evidence": ["tests/test_graph_app_v2.py"]},
+    {"id": "P2", "name": "draft-lifecycle", "status": "implemented", "evidence": ["graph_app/v2_service.py", "graph_app/frontend/src/App.tsx"]},
+    {"id": "P3", "name": "yonc-project-mcp", "status": "implemented", "evidence": ["graph_app/mcp_project.py"]},
+    {"id": "P4", "name": "uuma-profile-integration", "status": "implemented-in-uuma", "evidence": ["../UuMA/profiles/yonc/SOUL.md"]},
+    {"id": "P5", "name": "ui-explicit-acceptance", "status": "implemented", "evidence": ["graph_app/frontend/src/App.tsx"]},
+    {"id": "P6", "name": "repeatable-deployment", "status": "implemented-pending-live-probe", "evidence": ["scripts/deploy-hermes.ps1", "scripts/check-hermes-deployment.ps1"]}
+  ]
+}

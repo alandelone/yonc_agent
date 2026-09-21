@@ -184,6 +184,42 @@ def test_invalid_split_proposal_never_changes_committed_graph(tmp_path):
         assert [node["title"] for node in graph["nodes"]] == ["Parent"]
 
 
+def test_agent_commit_requires_bound_single_use_user_authorization(tmp_path, monkeypatch):
+    monkeypatch.setenv("YONC_AGENT_COMMIT_TOKEN", "service-secret")
+    app = create_app(tmp_path / "agent-authorization.sqlite3")
+    with TestClient(app) as client:
+        parent = client.post("/api/v2/nodes", json={"title": "Authorized project"}).json()["node"]
+        split = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": parent["id"],
+            "message": "Prepare source; Review result",
+        }).json()
+        version = split["current_proposal_version"]
+
+        unauthorized = client.post(
+            f"/api/v2/agent/split-sessions/{split['id']}/commit",
+            json={"authorization_id": "forged"},
+        )
+        assert unauthorized.status_code == 401
+
+        grant = client.post(
+            f"/api/v2/split-sessions/{split['id']}/authorizations",
+            json={"proposal_version": version},
+        ).json()
+        committed = client.post(
+            f"/api/v2/agent/split-sessions/{split['id']}/commit",
+            headers={"Authorization": "Bearer service-secret"},
+            json={"authorization_id": grant["authorization_id"]},
+        )
+        assert committed.status_code == 200, committed.text
+
+        replay = client.post(
+            f"/api/v2/agent/split-sessions/{split['id']}/commit",
+            headers={"Authorization": "Bearer service-secret"},
+            json={"authorization_id": grant["authorization_id"]},
+        )
+        assert replay.status_code == 403
+
+
 def test_split_message_with_structured_annotations(tmp_path):
     app = create_app(tmp_path / "annotations-split.sqlite3")
     with TestClient(app) as client:
@@ -238,6 +274,25 @@ def test_split_message_with_structured_annotations(tmp_path):
         assert len(committed_nodes) == 5
         committed_titles = {n["title"] for n in committed_nodes}
         assert {"用户中心服务", "模块设计", "用户接口", "鉴权中间件", "编写测试"}.issubset(committed_titles)
+
+
+def test_discussion_message_does_not_create_a_new_proposal_version(tmp_path):
+    app = create_app(tmp_path / "discussion.sqlite3")
+    with TestClient(app) as client:
+        parent = create_node(client, "Parent", work_type="DELIVERABLE")
+        split = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": parent["id"],
+            "message": "First; Second",
+        }).json()
+        version = split["current_proposal_version"]
+        response = client.post(
+            f"/api/v2/split-sessions/{split['id']}/messages",
+            json={"content": "为什么建议这样安排？"},
+        )
+        assert response.status_code == 200
+        assert response.json()["proposal"]["version"] == version
+        restored = client.get("/api/v2/split-sessions", params={"state": "open"}).json()
+        assert [item["id"] for item in restored] == [split["id"]]
 
 
 def test_schedule_constraints_auto_span_overlap_and_view_state(tmp_path):
@@ -454,7 +509,7 @@ def test_split_sessions_list_and_mode_type_propagation(tmp_path):
         graph_version = client.get("/api/v2/health").json()["graph_version"]
         commit_res = client.post(f"/api/v2/split-sessions/{started['id']}/commit", json={
             "expected_graph_version": graph_version,
-            "proposal_version": started["current_proposal_version"],
+            "proposal_version": updated["proposal"]["version"],
         })
         assert commit_res.status_code == 200
 
@@ -535,7 +590,10 @@ def test_split_session_seeds_existing_children_and_supports_modify_add_delete(tm
             },
         ]
 
-        upd = client.put(f"/api/v2/split-sessions/{started['id']}/proposal", json={"nodes": mod_nodes}).json()
+        upd = client.put(
+            f"/api/v2/split-sessions/{started['id']}/proposal",
+            json={"nodes": mod_nodes, "suggested_removals": [c2["id"]]},
+        ).json()
         assert len(upd["proposal"]["nodes"]) == 2
 
         # 5. Commit split
@@ -554,8 +612,10 @@ def test_split_session_seeds_existing_children_and_supports_modify_add_delete(tm
         c1_after = next(n for n in graph_nodes if n["id"] == c1["id"])
         assert c1_after["title"] == "list all task in draft (UPDATED)"
         assert c1_after["estimated_effort_minutes"] == 50
-        # c2 deleted
-        assert not any(n["id"] == c2["id"] for n in graph_nodes)
+        # c2 is preserved for history, but explicitly detached and cancelled.
+        c2_after = next(n for n in graph_nodes if n["id"] == c2["id"])
+        assert c2_after["parent_id"] is None
+        assert c2_after["status"] == "CANCELLED"
         # new node created under parent
         new_node = next(n for n in graph_nodes if n["title"] == "实现 Deadline 计算 (NEW)")
         assert new_node["parent_id"] == parent["id"]
@@ -757,5 +817,3 @@ def test_mark_cancel_cascade_and_undo(tmp_path):
         nodes = {n["id"]: n for n in client.get("/api/v2/graph").json()["nodes"]}
         assert nodes[parent["id"]]["status"] == "TODO"
         assert nodes[child["id"]]["status"] == "TODO"
-
-

@@ -12,6 +12,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from .models import (
+    CommitAuthorization,
     Direction,
     GraphEdge,
     GraphMeta,
@@ -71,7 +72,7 @@ def _iso(value: datetime | None) -> str | None:
 def graph_meta(session: Session) -> GraphMeta:
     meta = session.get(GraphMeta, 1)
     if meta is None:
-        meta = GraphMeta(id=1, graph_version=1, schema_version="1.1")
+        meta = GraphMeta(id=1, graph_version=1, schema_version="1.2")
         session.add(meta)
         session.flush()
     return meta
@@ -987,7 +988,7 @@ def graph_projection(session: Session, scope_node_id: str | None = None) -> dict
     for node in node_list:
         forecast = forecast_for_scope(session, node.id, progress, pace)
         serialized.append(serialize_node(session, node, parent_id=parents.get(node.id), progress=progress.get(node.id), health=health["by_node"].get(node.id, []), forecast=forecast, pressure=pressure_for_node(session, node, forecast)))
-    return {"graph_version": graph_version(session), "schema_version": "1.1", "scope_node_id": scope_node_id, "nodes": serialized, "edges": [serialize_edge(edge) for edge in edges], "pace": pace, "health": {key: value for key, value in health.items() if key != "by_node"}}
+    return {"graph_version": graph_version(session), "schema_version": "1.2", "scope_node_id": scope_node_id, "nodes": serialized, "edges": [serialize_edge(edge) for edge in edges], "pace": pace, "health": {key: value for key, value in health.items() if key != "by_node"}}
 
 
 def timeline_projection(session: Session, start: str | None = None, end: str | None = None, scope_node_id: str | None = None) -> dict[str, Any]:
@@ -1155,6 +1156,7 @@ def _seed_session_from_children(
         rationale=f"已从项目图中自动载入该任务现有的 {len(proposed_nodes)} 项已有子任务。可在下方直接修改、添加新子任务或删减已有子任务。",
         proposed_nodes=proposed_nodes,
         proposed_edges=edges,
+        suggested_removals=[],
         actionability_results=_check_actionability(proposed_nodes),
         warnings=[],
     )
@@ -1184,8 +1186,8 @@ def add_split_message(
     split: SplitSession,
     content: str,
     annotations: list[dict[str, Any]] | None = None,
-) -> ProposalVersion:
-    if split.state == "DISCARDED":
+) -> ProposalVersion | None:
+    if split.state in {"DISCARDED", "COMMITTED"}:
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
     content = str(content or "").strip()
     annotations = annotations or []
@@ -1195,10 +1197,28 @@ def add_split_message(
         content = "根据划词批注修改提案"
     session.add(SplitMessage(session_id=split.id, role="user", content=content, annotations=annotations))
     previous = session.scalar(select(ProposalVersion).where(ProposalVersion.session_id == split.id).order_by(ProposalVersion.version.desc()))
+    normalized = content.casefold()
+    change_markers = ("拆", "修改", "增加", "新增", "删除", "移除", "改成", "split", "change", "add", "remove", "revise")
+    discussion_markers = ("为什么", "怎么理解", "你怎么看", "解释", "讨论", "why", "explain", "discuss")
+    is_discussion = (
+        not annotations
+        and not any(marker in normalized for marker in change_markers)
+        and ("?" in content or "？" in content or any(marker in normalized for marker in discussion_markers))
+    )
+    if is_discussion:
+        split.state = "WAITING_USER"
+        split.updated_at = utcnow()
+        session.add(SplitMessage(
+            session_id=split.id,
+            role="assistant",
+            content="已记录为讨论消息；当前草案未更改。需要修改结构时，请明确说明要新增、修改或移除的内容。",
+        ))
+        session.flush()
+        return previous
     previous_payload = {"nodes": previous.proposed_nodes, "edges": previous.proposed_edges} if previous else None
     draft = get_split_adapter().propose(split.context_snapshot, content, previous_payload, annotations=annotations)
     version = split.current_proposal_version + 1
-    proposal = ProposalVersion(session_id=split.id, version=version, rationale=draft.rationale, proposed_nodes=draft.nodes, proposed_edges=draft.edges, actionability_results=draft.actionability_results, warnings=draft.warnings)
+    proposal = ProposalVersion(session_id=split.id, version=version, rationale=draft.rationale, proposed_nodes=draft.nodes, proposed_edges=draft.edges, suggested_removals=[], actionability_results=draft.actionability_results, warnings=draft.warnings)
     session.add(proposal)
     split.current_proposal_version = version
     split.state = "PENDING_USER_REVIEW"
@@ -1224,7 +1244,10 @@ def list_split_sessions(
     if parent_node_id:
         stmt = stmt.where(SplitSession.parent_node_id == parent_node_id)
     if state:
-        stmt = stmt.where(SplitSession.state == state)
+        if state.casefold() == "open":
+            stmt = stmt.where(SplitSession.state.in_({"OPEN", "PENDING_USER_REVIEW", "WAITING_USER"}))
+        else:
+            stmt = stmt.where(SplitSession.state == state)
     return list(session.scalars(stmt.order_by(SplitSession.created_at.desc())).all())
 
 
@@ -1234,8 +1257,9 @@ def update_split_proposal(
     *,
     nodes: list[dict[str, Any]],
     edges: list[dict[str, Any]] | None = None,
+    suggested_removals: list[str] | None = None,
 ) -> ProposalVersion:
-    if split.state == "DISCARDED":
+    if split.state in {"DISCARDED", "COMMITTED"}:
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
     current = current_proposal(session, split)
 
@@ -1279,24 +1303,22 @@ def update_split_proposal(
                 "required": True,
             })
 
-    if not current:
-        version = split.current_proposal_version + 1
-        current = ProposalVersion(
-            session_id=split.id,
-            version=version,
-            rationale="用户手动更新子任务草稿",
-            proposed_nodes=nodes,
-            proposed_edges=filtered_edges,
-            actionability_results=_check_actionability(nodes),
-            warnings=[],
-        )
-        session.add(current)
-        split.current_proposal_version = version
-        split.state = "PENDING_USER_REVIEW"
-    else:
-        current.proposed_nodes = nodes
-        current.proposed_edges = filtered_edges
-        current.actionability_results = _check_actionability(nodes)
+    # Proposal versions are immutable decision records. Every persisted edit creates
+    # a new version so an approval can never silently change underneath the user.
+    version = split.current_proposal_version + 1
+    current = ProposalVersion(
+        session_id=split.id,
+        version=version,
+        rationale="用户手动更新子任务草稿",
+        proposed_nodes=[dict(node) for node in nodes],
+        proposed_edges=[dict(edge) for edge in filtered_edges],
+        suggested_removals=list(dict.fromkeys(suggested_removals or [])),
+        actionability_results=_check_actionability(nodes),
+        warnings=[],
+    )
+    session.add(current)
+    split.current_proposal_version = version
+    split.state = "PENDING_USER_REVIEW"
     split.updated_at = utcnow()
     session.flush()
     return current
@@ -1342,9 +1364,14 @@ def commit_split(
     *,
     expected_graph_version: int | None = None,
     proposal_version: int | None = None,
+    actor_channel: str = "user_ui",
 ) -> OperationBatch:
     if split.state == "DISCARDED":
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
+    if split.state == "COMMITTED" and split.committed_batch_id:
+        committed = session.get(OperationBatch, split.committed_batch_id)
+        if committed is not None:
+            return committed
     if expected_graph_version is not None:
         require_graph_version(session, expected_graph_version)
     if proposal_version is not None and proposal_version != split.current_proposal_version:
@@ -1353,20 +1380,10 @@ def commit_split(
     if not proposal:
         raise V2Error("INVALID_PROPOSAL", "split.invalid_proposal", {"errors": ["No proposal found"]})
 
-    # Auto-fill sensible defaults for ACTION nodes if incomplete so auto-commit never fails while typing
-    for draft in proposal.proposed_nodes or []:
-        if str(draft.get("work_type", "")).upper() == "ACTION":
-            if not draft.get("done_when"):
-                draft["done_when"] = f"Done: 完成“{draft.get('title') or '新任务'}”并交付明确成果。"
-            if not draft.get("start_cue"):
-                draft["start_cue"] = "前置输入准备完毕"
-            if not draft.get("estimated_effort_minutes"):
-                draft["estimated_effort_minutes"] = 45
-
     validation = validate_split_proposal(session, split, proposal)
     if not validation["valid"]:
         raise V2Error("INVALID_PROPOSAL", "split.invalid_proposal", {"errors": validation["errors"]})
-    batch = begin_batch(session, "split_commit", expected_version=expected_graph_version)
+    batch = begin_batch(session, "split_commit", actor_channel=actor_channel, expected_version=expected_graph_version)
     record_batch_operation(
         session,
         batch,
@@ -1391,26 +1408,63 @@ def commit_split(
             temp_to_real[temp_id] = node.id
             draft["temporary_id"] = node.id
 
-    # Update proposal proposed_nodes and proposed_edges with real IDs for seamless re-commit
-    for draft in proposal.proposed_nodes:
-        if draft["temporary_id"] in temp_to_real:
-            draft["temporary_id"] = temp_to_real[draft["temporary_id"]]
-    for draft_edge in proposal.proposed_edges or []:
-        if draft_edge.get("source") in temp_to_real:
-            draft_edge["source"] = temp_to_real[draft_edge["source"]]
-        if draft_edge.get("target") in temp_to_real:
-            draft_edge["target"] = temp_to_real[draft_edge["target"]]
-
-    existing_children = session.scalars(select(GraphNode).where(GraphNode.parent_id == split.parent_node_id)).all()
-    for old_child in existing_children:
-        if old_child.id not in temp_to_real.values():
-            session.execute(delete(GraphEdge).where((GraphEdge.source_id == old_child.id) | (GraphEdge.target_id == old_child.id)))
-            before_old = _node_snapshot(old_child)
-            record_batch_operation(
-                session, batch, "delete_node", {"node_id": old_child.id},
-                {"action": "restore_node", "node_id": old_child.id, "snapshot": before_old}
+    # Omission from a draft is never deletion. Only an explicit accepted removal
+    # is applied, and even then the node is detached/cancelled rather than erased.
+    for removal_id in proposal.suggested_removals or []:
+        old_child = session.get(GraphNode, removal_id)
+        if not old_child or old_child.parent_id != split.parent_node_id:
+            continue
+        if old_child.status == "DONE":
+            raise V2Error(
+                "COMPLETED_NODE_REMOVAL_FORBIDDEN",
+                "split.completed_node_removal_forbidden",
+                {"node_id": old_child.id},
+                status_code=409,
             )
-            session.delete(old_child)
+        before_state = {
+            "stage": old_child.stage,
+            "status": old_child.status,
+            "reason": old_child.status_reason,
+            "closed_from_stage": old_child.closed_from_stage,
+            "closed_from_status": old_child.closed_from_status,
+            "superseded_by": old_child.superseded_by,
+        }
+        contains = session.scalar(select(GraphEdge).where(
+            GraphEdge.source_id == split.parent_node_id,
+            GraphEdge.target_id == old_child.id,
+            GraphEdge.relation == "contains",
+        ))
+        if contains:
+            session.delete(contains)
+        old_work_type, old_wbs_level = old_child.work_type, old_child.wbs_level
+        old_child.parent_id = None
+        old_child.closed_from_stage, old_child.closed_from_status = old_child.stage, old_child.status
+        old_child.stage, old_child.status = "CLOSED", "CANCELLED"
+        old_child.status_reason = f"Removed by accepted split proposal {proposal.version}"
+        record_batch_operation(
+            session,
+            batch,
+            "remove_split_child",
+            {"node_id": old_child.id, "proposal_version": proposal.version},
+            {
+                "action": "restore_state",
+                "node_id": old_child.id,
+                **before_state,
+            },
+        )
+        record_batch_operation(
+            session,
+            batch,
+            "detach_split_child",
+            {"node_id": old_child.id, "parent_id": None},
+            {
+                "action": "restore_parent",
+                "node_id": old_child.id,
+                "parent_id": split.parent_node_id,
+                "work_type": old_work_type,
+                "wbs_level": old_wbs_level,
+            },
+        )
 
     for draft in proposal.proposed_edges:
         source = split.parent_node_id if draft["source"] == "parent" else temp_to_real.get(draft["source"], draft["source"])
@@ -1448,7 +1502,58 @@ def discard_split(session: Session, split: SplitSession) -> None:
 def serialize_proposal(proposal: ProposalVersion | None) -> dict[str, Any] | None:
     if proposal is None:
         return None
-    return {"id": proposal.id, "version": proposal.version, "rationale": proposal.rationale, "nodes": proposal.proposed_nodes or [], "edges": proposal.proposed_edges or [], "actionability_results": proposal.actionability_results or [], "warnings": proposal.warnings or [], "created_at": _iso(proposal.created_at)}
+    return {"id": proposal.id, "version": proposal.version, "rationale": proposal.rationale, "nodes": proposal.proposed_nodes or [], "edges": proposal.proposed_edges or [], "suggested_removals": proposal.suggested_removals or [], "actionability_results": proposal.actionability_results or [], "warnings": proposal.warnings or [], "created_at": _iso(proposal.created_at)}
+
+
+def create_commit_authorization(
+    session: Session,
+    split: SplitSession,
+    *,
+    proposal_version: int,
+    actor: str = "local_user",
+    ttl_seconds: int = 300,
+) -> CommitAuthorization:
+    if proposal_version != split.current_proposal_version:
+        raise V2Error(
+            "PROPOSAL_VERSION_CONFLICT",
+            "split.proposal_version_conflict",
+            {"expected": proposal_version, "actual": split.current_proposal_version},
+            status_code=409,
+        )
+    validation = validate_split_proposal(session, split)
+    if not validation["valid"]:
+        raise V2Error("INVALID_PROPOSAL", "split.invalid_proposal", {"errors": validation["errors"]})
+    authorization = CommitAuthorization(
+        session_id=split.id,
+        proposal_version=proposal_version,
+        graph_version=graph_version(session),
+        actor=actor,
+        expires_at=utcnow() + timedelta(seconds=max(30, min(ttl_seconds, 900))),
+    )
+    session.add(authorization)
+    session.flush()
+    return authorization
+
+
+def consume_commit_authorization(
+    session: Session,
+    split: SplitSession,
+    authorization_id: str,
+) -> CommitAuthorization:
+    authorization = session.get(CommitAuthorization, authorization_id)
+    now = utcnow()
+    if (
+        authorization is None
+        or authorization.session_id != split.id
+        or authorization.scope != "commit_split"
+        or authorization.consumed_at is not None
+        or authorization.expires_at.replace(tzinfo=authorization.expires_at.tzinfo or timezone.utc) <= now
+        or authorization.proposal_version != split.current_proposal_version
+        or authorization.graph_version != graph_version(session)
+    ):
+        raise V2Error("AUTHORIZATION_INVALID", "authorization.invalid", {}, status_code=403)
+    authorization.consumed_at = now
+    return authorization
 
 
 def serialize_split_session(session: Session, split: SplitSession) -> dict[str, Any]:

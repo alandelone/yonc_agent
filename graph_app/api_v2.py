@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import hmac
+import os
 from pathlib import Path
 from typing import Any, Literal
 
-from fastapi import Depends, FastAPI, Query
+from fastapi import Depends, FastAPI, Header, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import select
@@ -21,6 +24,8 @@ from .v2_service import (
     add_split_message,
     apply_schedule,
     commit_split,
+    consume_commit_authorization,
+    create_commit_authorization,
     create_direction,
     create_edge_v2,
     create_node_v2,
@@ -166,6 +171,16 @@ class SplitCommitPayload(BaseModel):
     proposal_version: int | None = None
 
 
+class SplitAuthorizationPayload(BaseModel):
+    proposal_version: int
+    actor: str = Field(default="local_user", min_length=1, max_length=100)
+    ttl_seconds: int = Field(default=300, ge=30, le=900)
+
+
+class AgentSplitCommitPayload(BaseModel):
+    authorization_id: str
+
+
 class UndoBatchPayload(BaseModel):
     expected_graph_version: int | None = None
 
@@ -242,7 +257,10 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
 
     @app.get("/api/v2/health")
     def health(session: Session = Depends(get_session)):
-        return {"ok": True, "schema_version": "1.1", "graph_version": graph_version(session), "nodes": len(list(session.scalars(select(GraphNode.id)).all()))}
+        database = session.get_bind().url.database or ""
+        resolved = str(Path(database).resolve()) if database else ""
+        identity = hashlib.sha256(resolved.encode("utf-8")).hexdigest()[:16]
+        return {"ok": True, "schema_version": "1.2", "graph_version": graph_version(session), "nodes": len(list(session.scalars(select(GraphNode.id)).all())), "database_path": resolved, "database_identity": identity}
 
     @app.get("/api/v2/settings/yonc-config")
     def read_yonc_config(session: Session = Depends(get_session)):
@@ -414,7 +432,8 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         split = split_or_error(session, split_id)
         nodes = payload.get("nodes") or []
         edges = payload.get("edges")
-        proposal = update_split_proposal(session, split, nodes=nodes, edges=edges)
+        suggested_removals = payload.get("suggested_removals") or []
+        proposal = update_split_proposal(session, split, nodes=nodes, edges=edges, suggested_removals=suggested_removals)
         return {"session_id": split.id, "proposal": serialize_proposal(proposal)}
 
     @app.post("/api/v2/split-sessions/{split_id}/messages")
@@ -433,6 +452,56 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
     def split_commit(split_id: str, payload: SplitCommitPayload, session: Session = Depends(get_session)):
         split = split_or_error(session, split_id)
         batch = commit_split(session, split, expected_graph_version=payload.expected_graph_version, proposal_version=payload.proposal_version)
+        return {
+            "session_id": split.id,
+            "state": split.state,
+            "operation_batch": serialize_batch(batch),
+            "graph_version": batch.graph_version_after,
+            "temporary_id_map": batch.summary.get("temporary_id_map", {}) if batch.summary else {},
+        }
+
+    @app.post("/api/v2/split-sessions/{split_id}/authorizations", status_code=201)
+    def authorize_agent_split_commit(
+        split_id: str,
+        payload: SplitAuthorizationPayload,
+        session: Session = Depends(get_session),
+    ):
+        split = split_or_error(session, split_id)
+        authorization = create_commit_authorization(
+            session,
+            split,
+            proposal_version=payload.proposal_version,
+            actor=payload.actor,
+            ttl_seconds=payload.ttl_seconds,
+        )
+        return {
+            "authorization_id": authorization.id,
+            "session_id": split.id,
+            "proposal_version": authorization.proposal_version,
+            "graph_version": authorization.graph_version,
+            "expires_at": authorization.expires_at.isoformat(),
+        }
+
+    @app.post("/api/v2/agent/split-sessions/{split_id}/commit")
+    def agent_split_commit(
+        split_id: str,
+        payload: AgentSplitCommitPayload,
+        authorization: str = Header(default=""),
+        session: Session = Depends(get_session),
+    ):
+        expected = os.getenv("YONC_AGENT_COMMIT_TOKEN", "").strip()
+        supplied = authorization.removeprefix("Bearer ").strip()
+        if not expected or not supplied or not hmac.compare_digest(expected, supplied):
+            raise V2Error("AGENT_AUTHENTICATION_FAILED", "authorization.agent_failed", {}, status_code=401)
+        split = split_or_error(session, split_id)
+        grant = consume_commit_authorization(session, split, payload.authorization_id)
+        batch = commit_split(
+            session,
+            split,
+            expected_graph_version=grant.graph_version,
+            proposal_version=grant.proposal_version,
+            actor_channel="hermes_yonc",
+        )
         return {
             "session_id": split.id,
             "state": split.state,

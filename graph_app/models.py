@@ -267,8 +267,25 @@ class ProposalVersion(Base):
     rationale: Mapped[str] = mapped_column(Text, default="", nullable=False)
     proposed_nodes: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     proposed_edges: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
+    suggested_removals: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     actionability_results: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     warnings: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+
+
+class CommitAuthorization(Base):
+    """Single-use user decision binding an Agent commit to one proposal version."""
+
+    __tablename__ = "commit_authorizations"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    session_id: Mapped[str] = mapped_column(String(36), ForeignKey("split_sessions.id"), nullable=False, index=True)
+    proposal_version: Mapped[int] = mapped_column(Integer, nullable=False)
+    graph_version: Mapped[int] = mapped_column(Integer, nullable=False)
+    actor: Mapped[str] = mapped_column(String(100), default="local_user", nullable=False)
+    scope: Mapped[str] = mapped_column(String(50), default="commit_split", nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    consumed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
 
 
@@ -285,4 +302,3 @@ class Direction(Base):
     lane_index: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
-

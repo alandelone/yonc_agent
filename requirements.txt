@@ -7,3 +7,4 @@ fastapi
 uvicorn
 sqlalchemy
 alembic
+mcp

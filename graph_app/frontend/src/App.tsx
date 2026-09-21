@@ -3624,6 +3624,7 @@ interface SplitTabState {
   nodeId: string | null;
   session: SplitSession | null;
   cards: ProposalNode[];
+  suggestedRemovals: string[];
   parentMode: string;
   parentTaskType: string;
   stagedAnnotation: {
@@ -3646,6 +3647,7 @@ function createTab(nodeId: string | null = null, defaultMode = "💻Focus", defa
     nodeId,
     session: null,
     cards: [],
+    suggestedRemovals: [],
     parentMode: defaultMode,
     parentTaskType: defaultTaskType,
     stagedAnnotation: null,
@@ -3891,7 +3893,7 @@ function SplitWorkspace({
         }
 
         setTabs((prev) =>
-          prev.map((t) => (t.id === activeTab.id ? { ...t, session: activeSession, cards: initialCards, isLoading: false } : t))
+          prev.map((t) => (t.id === activeTab.id ? { ...t, session: activeSession, cards: initialCards, suggestedRemovals: activeSession.proposal?.suggested_removals ?? [], isLoading: false } : t))
         );
       } catch (err) {
         if (!cancelled) {
@@ -4204,36 +4206,17 @@ function SplitWorkspace({
     }
   };
 
-  // Auto-Commit Engine: commits every change automatically to split proposal and formal graph
+  // Draft autosave: edits create proposal versions but never mutate the committed graph.
   const performAutoCommit = useCallback(
     async (cardsToCommit?: ProposalNode[]) => {
       const curTab = activeTabRef.current;
       if (!curTab?.session || !curTab?.nodeId) return;
       const cards = cardsToCommit || curTab.cards;
-      if (!cards || cards.length === 0) return;
+      if (!cards) return;
 
       setCommitStatus("saving");
       try {
-        const updated = await api.updateSplitProposal(curTab.session.id, cards);
-        const versionToCommit = updated.proposal?.version ?? curTab.session.current_proposal_version ?? 1;
-        const res = await api.commitSplit(curTab.session.id, graph.graph_version, versionToCommit);
-
-        // If newly generated temporary IDs were mapped to real IDs, update local cards
-        if (res.temporary_id_map && Object.keys(res.temporary_id_map).length > 0) {
-          const map = res.temporary_id_map;
-          setTabs((prev) =>
-            prev.map((t) => {
-              if (t.id !== curTab.id) return t;
-              return {
-                ...t,
-                cards: t.cards.map((c) => {
-                  const realId = map[c.temporary_id];
-                  return realId ? { ...c, temporary_id: realId } : c;
-                }),
-              };
-            })
-          );
-        }
+        const updated = await api.updateSplitProposal(curTab.session.id, cards, undefined, curTab.suggestedRemovals);
 
         // Quietly sync version state
         setTabs((prev) =>
@@ -4251,16 +4234,40 @@ function SplitWorkspace({
           )
         );
 
-        onRegisterUndo({ kind: "batch", batchId: res.operation_batch.id });
-        await onRefresh();
         setCommitStatus("saved");
       } catch (err) {
         console.error("Auto-commit failed:", err);
         setCommitStatus("error");
       }
     },
-    [graph.graph_version, onRefresh, onRegisterUndo]
+    []
   );
+
+  const handleCommit = async () => {
+    const curTab = activeTabRef.current;
+    if (!curTab?.session) return;
+    if (!window.confirm("接受当前提案并写入正式项目图？")) return;
+    setCommitStatus("saving");
+    try {
+      const updated = await api.updateSplitProposal(curTab.session.id, curTab.cards, undefined, curTab.suggestedRemovals);
+      const version = updated.proposal?.version ?? curTab.session.current_proposal_version;
+      const validation = await api.validateSplit(curTab.session.id);
+      if (!validation.valid) {
+        setCommitStatus("error");
+        window.alert("提案尚未通过检查，未写入项目图。");
+        return;
+      }
+      const res = await api.commitSplit(curTab.session.id, graph.graph_version, version);
+      onRegisterUndo({ kind: "batch", batchId: res.operation_batch.id });
+      await onRefresh();
+      setCommitStatus("saved");
+      setSaveToast("已接受并写入项目图");
+      window.setTimeout(() => setSaveToast(null), 1800);
+    } catch (err) {
+      setCommitStatus("error");
+      onError(err);
+    }
+  };
 
   const scheduleAutoCommit = useCallback(
     (updatedCards?: ProposalNode[], delayMs = 700) => {
@@ -4340,11 +4347,11 @@ function SplitWorkspace({
   // Global shortcuts in Split Workspace: Ctrl+S (save), Ctrl+Z (undo), Ctrl+Y (redo)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl+S / Cmd+S: Immediate commit
+      // Ctrl+S / Cmd+S: save draft only
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
         e.preventDefault();
         performAutoCommit();
-        setSaveToast("已提交 (Ctrl+S)");
+        setSaveToast("草稿已保存 (Ctrl+S)");
         const timer = window.setTimeout(() => setSaveToast(null), 1500);
         return () => window.clearTimeout(timer);
       }
@@ -4474,8 +4481,9 @@ function SplitWorkspace({
   const handleDeleteCard = (tempId: string) => {
     recordCardSnapshot();
     const newCards = activeTab.cards.filter((c) => c.temporary_id !== tempId);
+    const isCommittedChild = graph.nodes.some((node) => node.id === tempId && node.parent_id === activeTab.nodeId);
     setTabs((prev) =>
-      prev.map((t) => (t.id === activeTab.id ? { ...t, cards: newCards } : t))
+      prev.map((t) => (t.id === activeTab.id ? { ...t, cards: newCards, suggestedRemovals: isCommittedChild ? [...new Set([...t.suggestedRemovals, tempId])] : t.suggestedRemovals } : t))
     );
     scheduleAutoCommit(newCards, 100);
   };
@@ -5284,7 +5292,7 @@ function SplitWorkspace({
             <span>➤</span>
           </button>
 
-          {/* Far Right Actions: Discard, Validate (Ctrl+S replaces button) */}
+          {/* Far Right Actions: draft save is automatic; graph commit is explicit. */}
           <div className="split-actions-right">
             {saveToast && (
               <span style={{ fontSize: "11px", color: "#34d399", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: "4px" }}>
@@ -5305,9 +5313,18 @@ function SplitWorkspace({
               disabled={!activeTab.nodeId}
               onClick={handleValidate}
               style={{ padding: "6px 12px", background: "#121c29", border: "1px solid #27384d", borderRadius: "8px", color: activeTab.nodeId ? "#cbd5e1" : "#475569", cursor: activeTab.nodeId ? "pointer" : "not-allowed", fontSize: "11px" }}
-              title="检查提案可执行性与项目图依赖 (按 Ctrl+S 可手动立即提交)"
+              title="检查提案可执行性与项目图依赖"
             >
               Validate
+            </button>
+            <button
+              type="button"
+              disabled={!activeTab.nodeId || commitStatus === "saving"}
+              onClick={handleCommit}
+              style={{ padding: "6px 12px", background: "#6d28d9", border: "1px solid #8b5cf6", borderRadius: "8px", color: "white", cursor: activeTab.nodeId ? "pointer" : "not-allowed", fontSize: "11px", fontWeight: 700 }}
+              title="明确接受当前版本并写入项目图"
+            >
+              Accept & Commit
             </button>
           </div>
         </div>

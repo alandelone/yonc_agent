@@ -88,10 +88,10 @@ export const api = {
   },
   splitMessage: (sessionId: string, content: string, annotations: SplitAnnotation[] = []) => request<{ session_id: string }>(`/api/v2/split-sessions/${sessionId}/messages`, { method: "POST", body: JSON.stringify({ content, annotations }) }),
   split: (sessionId: string) => request<SplitSession>(`/api/v2/split-sessions/${sessionId}`),
-  updateSplitProposal: (sessionId: string, nodes: unknown[], edges?: unknown[]) =>
+  updateSplitProposal: (sessionId: string, nodes: unknown[], edges?: unknown[], suggestedRemovals: string[] = []) =>
     request<{ session_id: string; proposal: SplitSession["proposal"] }>(`/api/v2/split-sessions/${sessionId}/proposal`, {
       method: "PUT",
-      body: JSON.stringify({ nodes, edges }),
+      body: JSON.stringify({ nodes, edges, suggested_removals: suggestedRemovals }),
     }),
   validateSplit: (sessionId: string) => request<{ valid: boolean; errors: unknown[]; warnings: unknown[] }>(`/api/v2/split-sessions/${sessionId}/validate`, { method: "POST" }),
   commitSplit: (sessionId: string, graphVersion?: number, proposalVersion?: number) => request<{ graph_version: number; operation_batch: OperationBatchSummary; temporary_id_map?: Record<string, string> }>(`/api/v2/split-sessions/${sessionId}/commit`, { method: "POST", body: JSON.stringify({ expected_graph_version: graphVersion, proposal_version: proposalVersion }) }),

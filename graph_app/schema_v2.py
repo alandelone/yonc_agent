@@ -54,6 +54,10 @@ SPLIT_MESSAGE_COLUMNS = {
     "annotations": "JSON NOT NULL DEFAULT '[]'",
 }
 
+PROPOSAL_VERSION_COLUMNS = {
+    "suggested_removals": "JSON NOT NULL DEFAULT '[]'",
+}
+
 
 def _add_missing_columns(connection, table: str, definitions: dict[str, str]) -> set[str]:
     existing = {row[1] for row in connection.exec_driver_sql(f"PRAGMA table_info({table})")}
@@ -79,6 +83,10 @@ def upgrade_connection(connection) -> None:
         _add_missing_columns(connection, "operations", OPERATION_COLUMNS)
     if "split_messages" in tables:
         _add_missing_columns(connection, "split_messages", SPLIT_MESSAGE_COLUMNS)
+    if "proposal_versions" in tables:
+        _add_missing_columns(connection, "proposal_versions", PROPOSAL_VERSION_COLUMNS)
+    if "graph_meta" in tables:
+        connection.execute(text("UPDATE graph_meta SET schema_version = '1.2' WHERE id = 1"))
 
     connection.exec_driver_sql(
         "CREATE UNIQUE INDEX IF NOT EXISTS uq_committed_contains_parent "

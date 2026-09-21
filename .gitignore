@@ -32,3 +32,5 @@ graph_app/frontend/vite.config.js
 graph_app/frontend/vite.config.d.ts
 docs/product-specs/qa/
 docs/product-specs/qa-v11/
+data/runtime/
+data/deployments/

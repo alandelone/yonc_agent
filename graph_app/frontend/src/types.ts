@@ -161,6 +161,7 @@ export interface SplitSession {
     rationale: string;
     nodes: ProposalNode[];
     edges: Array<{ source: string; target: string; relation: string; required: boolean }>;
+    suggested_removals: string[];
     actionability_results: Array<{ temporary_id: string; valid: boolean }>;
     warnings: unknown[];
   };
@@ -238,4 +239,3 @@ export interface DirectionUpdatePayload {
   lane_index?: number;
   expected_graph_version?: number;
 }
-

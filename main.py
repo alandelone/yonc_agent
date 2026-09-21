@@ -201,11 +201,24 @@ def cmd_show_config() -> None:
     sys.stdout.buffer.write(output.encode("utf-8") + b"\n")
 
 
+def cmd_build_frontend(force: bool = True) -> None:
+    """Compile the frontend TypeScript/CSS bundle into static_v2."""
+    from graph_app.frontend_builder import build_frontend
+
+    success = build_frontend(force=force)
+    if success:
+        print("Frontend build succeeded into graph_app/static_v2.")
+    else:
+        print("Frontend build skipped or failed.")
+
+
 def cmd_graph_serve(host: str, port: int) -> None:
     """Launch the local-only graph web application."""
     import uvicorn
     from graph_app import create_app
+    from graph_app.frontend_builder import build_frontend
 
+    build_frontend(force=False)
     uvicorn.run(create_app(), host=host, port=port)
 
 
@@ -876,6 +889,8 @@ def _dispatch_command(args: argparse.Namespace, parser: argparse.ArgumentParser)
         cmd_show_config()
     elif args.command == "serve":
         cmd_graph_serve(host=args.host, port=args.port)
+    elif args.command == "build-frontend":
+        cmd_build_frontend()
     elif args.command == "graph-import":
         cmd_graph_import(dry_run=args.dry_run)
     elif args.command == "graph-backup":
@@ -968,6 +983,7 @@ def main() -> None:
     serve_parser = subparsers.add_parser("serve", help="Run the local Project Graph web app")
     serve_parser.add_argument("--host", default="127.0.0.1", help="Local bind address (default: 127.0.0.1)")
     serve_parser.add_argument("--port", default=8765, type=int, help="Local port (default: 8765)")
+    subparsers.add_parser("build-frontend", help="Compile frontend TypeScript/CSS bundle into static_v2")
     graph_import_parser = subparsers.add_parser("graph-import", help="Import existing state JSON into local SQLite graph")
     graph_import_parser.add_argument("--dry-run", action="store_true", help="Report import without saving graph changes")
     subparsers.add_parser("graph-backup", help="Copy the local graph database to data/backups")

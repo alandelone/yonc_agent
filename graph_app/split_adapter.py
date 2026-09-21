@@ -32,12 +32,30 @@ class SplitModelAdapter(Protocol):
     ) -> ProposalDraft: ...
 
 
-def _action(temp_id: str, title: str, start_cue: str, done_when: str, minutes: int) -> dict[str, Any]:
+def _child_work_type(parent: dict[str, Any]) -> str:
+    parent_wbs = parent.get("wbs_level")
+    parent_wt = str(parent.get("work_type") or "").upper()
+    if parent_wbs == 1 or parent_wt == "GOAL":
+        return "DELIVERABLE"
+    if parent_wbs == 2 or parent_wt == "DELIVERABLE":
+        return "WORK_PACKAGE"
+    return "ACTION"
+
+
+def _action(
+    temp_id: str,
+    title: str,
+    start_cue: str,
+    done_when: str,
+    minutes: int,
+    tags: dict[str, Any] | None = None,
+    work_type: str = "ACTION",
+) -> dict[str, Any]:
     return {
         "temporary_id": temp_id,
         "title": title.strip()[:500],
         "node_kind": "WORK",
-        "work_type": "ACTION",
+        "work_type": work_type,
         "stage": "READY",
         "status": "TODO",
         "description": "",
@@ -47,7 +65,7 @@ def _action(temp_id: str, title: str, start_cue: str, done_when: str, minutes: i
         "estimated_effort_minutes": minutes,
         "estimate_source": "AI",
         "required": True,
-        "tags": {},
+        "tags": dict(tags or {}),
     }
 
 
@@ -76,7 +94,17 @@ class DeterministicSplitAdapter:
         previous_proposal: dict[str, Any] | None = None,
         annotations: list[dict[str, Any]] | None = None,
     ) -> ProposalDraft:
-        parent_title = str(context.get("parent", {}).get("title") or "当前目标")
+        parent = context.get("parent", {})
+        parent_title = str(parent.get("title") or "当前目标")
+        parent_tags = parent.get("tags") or {}
+        parent_mode = parent_tags.get("Modes") or parent_tags.get("Mode") or ""
+        parent_type = parent_tags.get("Task Type") or parent_tags.get("task_type") or ""
+        default_tags: dict[str, Any] = {}
+        if parent_mode:
+            default_tags["Modes"] = parent_mode
+        if parent_type:
+            default_tags["Task Type"] = parent_type
+        child_work_type = _child_work_type(parent)
         annotations = annotations or []
 
         if previous_proposal and previous_proposal.get("nodes") and annotations:
@@ -121,6 +149,8 @@ class DeterministicSplitAdapter:
                             f"打开与“{parent_title}”相关的资料，开始：{t}",
                             f"已产生可检查的“{t}”结果，并记录在项目资源中。",
                             max(30, int(node.get("estimated_effort_minutes", 60) / len(replacement_titles))),
+                            tags=node.get("tags") or default_tags,
+                            work_type=node.get("work_type") or child_work_type,
                         )
                         new_nodes.append(sub_node)
                 else:
@@ -151,6 +181,8 @@ class DeterministicSplitAdapter:
             titles = requested[:6]
         elif previous_proposal and previous_proposal.get("nodes"):
             titles = [str(item.get("title") or "未命名行动") for item in previous_proposal["nodes"]]
+        elif context.get("children"):
+            titles = [str(item.get("title") or "未命名行动") for item in context["children"]]
         else:
             titles = [f"Clarify {parent_title}", f"Produce {parent_title} draft", f"Review {parent_title} result"]
 
@@ -161,6 +193,8 @@ class DeterministicSplitAdapter:
                 f"打开与“{parent_title}”相关的资料，开始：{title}",
                 f"已产生可检查的“{title}”结果，并记录在项目资源中。",
                 45 if index == 0 else 90,
+                tags=default_tags,
+                work_type=child_work_type,
             )
             for index, title in enumerate(titles)
         ]
@@ -190,7 +224,18 @@ class ExistingDspySplitAdapter:
     ) -> ProposalDraft:
         from llm_pipeline import split_task
 
-        parent_title = str(context.get("parent", {}).get("title") or user_message or "当前目标")
+        parent = context.get("parent", {})
+        parent_title = str(parent.get("title") or user_message or "当前目标")
+        parent_tags = parent.get("tags") or {}
+        parent_mode = parent_tags.get("Modes") or parent_tags.get("Mode") or ""
+        parent_type = parent_tags.get("Task Type") or parent_tags.get("task_type") or ""
+        default_tags: dict[str, Any] = {}
+        if parent_mode:
+            default_tags["Modes"] = parent_mode
+        if parent_type:
+            default_tags["Task Type"] = parent_type
+
+        child_work_type = _child_work_type(parent)
         critique_notes = ""
         if annotations:
             notes = [
@@ -211,6 +256,8 @@ class ExistingDspySplitAdapter:
                 f"打开“{parent_title}”上下文并开始：{title}",
                 title.split(":", 1)[1].strip() if ":" in title else f"已完成并记录“{title}”的可检查结果。",
                 60,
+                tags=default_tags,
+                work_type=child_work_type,
             )
             for index, title in enumerate(titles[:8])
         ]

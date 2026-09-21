@@ -1,4 +1,4 @@
-import type { GraphResponse, SplitAnnotation, SplitSession, TimelineResponse, YoncConfig } from "./types";
+import type { Direction, DirectionCreatePayload, DirectionUpdatePayload, GraphResponse, NotionTaskItem, SplitAnnotation, SplitSession, TimelineResponse, YoncConfig } from "./types";
 
 const chineseByCode: Record<string, string> = {
   GRAPH_VERSION_CONFLICT: "项目图已发生变化。请刷新上下文并重新确认。",
@@ -68,20 +68,50 @@ export const api = {
     if (scope) params.set("scope_node_id", scope);
     return request<TimelineResponse>(`/api/v2/timeline?${params}`);
   },
-  transition: (nodeId: string, action: string, graphVersion: number, reason?: string) =>
-    request<{ graph_version: number; operation_batch_id: string }>(`/api/v2/nodes/${nodeId}/transition`, { method: "POST", body: JSON.stringify({ action, reason, expected_graph_version: graphVersion }) }),
-  schedule: (nodeId: string, start: string, end: string | null, graphVersion: number, autoSpan = false, preview = false) =>
+  transition: (nodeId: string, action: string, graphVersion: number, reason?: string, cascade = true) =>
+    request<{ graph_version: number; operation_batch_id: string }>(`/api/v2/nodes/${nodeId}/transition`, { method: "POST", body: JSON.stringify({ action, reason, cascade, expected_graph_version: graphVersion }) }),
+  schedule: (nodeId: string, start: string | null, end: string | null, graphVersion: number, autoSpan = false, preview = false) =>
     request<{ graph_version: number; operation_batch_id?: string; planned_start: string; planned_end: string; valid?: boolean }>(`/api/v2/nodes/${nodeId}/schedule`, { method: "PUT", body: JSON.stringify({ planned_start: start, planned_end: end, auto_span: autoSpan, preview, expected_graph_version: graphVersion }) }),
   patchNode: (nodeId: string, values: Record<string, unknown>, graphVersion: number) =>
     request<{ graph_version: number; operation_batch_id: string }>(`/api/v2/nodes/${nodeId}`, { method: "PATCH", body: JSON.stringify({ ...values, expected_graph_version: graphVersion }) }),
-  viewState: (view: "canvas" | "timeline", scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`),
-  saveViewState: (view: "canvas" | "timeline", values: Record<string, unknown>, scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`, { method: "PUT", body: JSON.stringify(values) }),
+  reparent: (nodeId: string, parentId: string | null, graphVersion: number, workType?: string) =>
+    request<{ graph_version: number; operation_batch_id: string; node_id: string; parent_id: string | null; node?: unknown }>(`/api/v2/nodes/${nodeId}/reparent`, { method: "POST", body: JSON.stringify({ parent_id: parentId, work_type: workType, expected_graph_version: graphVersion }) }),
+  viewState: (view: "canvas" | "timeline" | "list", scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`),
+  saveViewState: (view: "canvas" | "timeline" | "list", values: Record<string, unknown>, scope?: string | null) => request<Record<string, unknown>>(`/api/v2/view-state/${view}${scope ? `?scope_node_id=${encodeURIComponent(scope)}` : ""}`, { method: "PUT", body: JSON.stringify(values) }),
   startSplit: (parentNodeId: string) => request<SplitSession>("/api/v2/split-sessions", { method: "POST", body: JSON.stringify({ parent_node_id: parentNodeId }) }),
+  listSplitSessions: (params?: { parent_node_id?: string; state?: string }) => {
+    const search = new URLSearchParams();
+    if (params?.parent_node_id) search.set("parent_node_id", params.parent_node_id);
+    if (params?.state) search.set("state", params.state);
+    const query = search.toString() ? `?${search.toString()}` : "";
+    return request<SplitSession[]>(`/api/v2/split-sessions${query}`);
+  },
   splitMessage: (sessionId: string, content: string, annotations: SplitAnnotation[] = []) => request<{ session_id: string }>(`/api/v2/split-sessions/${sessionId}/messages`, { method: "POST", body: JSON.stringify({ content, annotations }) }),
   split: (sessionId: string) => request<SplitSession>(`/api/v2/split-sessions/${sessionId}`),
+  updateSplitProposal: (sessionId: string, nodes: unknown[], edges?: unknown[]) =>
+    request<{ session_id: string; proposal: SplitSession["proposal"] }>(`/api/v2/split-sessions/${sessionId}/proposal`, {
+      method: "PUT",
+      body: JSON.stringify({ nodes, edges }),
+    }),
   validateSplit: (sessionId: string) => request<{ valid: boolean; errors: unknown[]; warnings: unknown[] }>(`/api/v2/split-sessions/${sessionId}/validate`, { method: "POST" }),
-  commitSplit: (sessionId: string, graphVersion: number, proposalVersion: number) => request<{ graph_version: number; operation_batch: OperationBatchSummary }>(`/api/v2/split-sessions/${sessionId}/commit`, { method: "POST", body: JSON.stringify({ expected_graph_version: graphVersion, proposal_version: proposalVersion }) }),
+  commitSplit: (sessionId: string, graphVersion?: number, proposalVersion?: number) => request<{ graph_version: number; operation_batch: OperationBatchSummary; temporary_id_map?: Record<string, string> }>(`/api/v2/split-sessions/${sessionId}/commit`, { method: "POST", body: JSON.stringify({ expected_graph_version: graphVersion, proposal_version: proposalVersion }) }),
   discardSplit: (sessionId: string) => request(`/api/v2/split-sessions/${sessionId}/discard`, { method: "POST" }),
   operationBatches: (limit = 50) => request<OperationBatchSummary[]>(`/api/v2/operation-batches?limit=${limit}`),
   undoBatch: (batchId: string, graphVersion: number) => request<{ graph_version: number }>(`/api/v2/operation-batches/${batchId}/undo`, { method: "POST", body: JSON.stringify({ expected_graph_version: graphVersion }) }),
+  notionTasklist: () => request<NotionTaskItem[]>("/api/v2/tasklist-state"),
+  directions: () => request<Direction[]>("/api/v2/directions"),
+  createDirection: (payload: DirectionCreatePayload) =>
+    request<{ direction: Direction; operation_batch: OperationBatchSummary; graph_version: number }>("/api/v2/directions", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  updateDirection: (directionId: string, payload: DirectionUpdatePayload) =>
+    request<{ direction: Direction; operation_batch: OperationBatchSummary; graph_version: number }>(`/api/v2/directions/${directionId}`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+  deleteDirection: (directionId: string, graphVersion?: number) =>
+    request<{ direction_id: string; operation_batch: OperationBatchSummary; graph_version: number }>(`/api/v2/directions/${directionId}${graphVersion ? `?expected_graph_version=${graphVersion}` : ""}`, {
+      method: "DELETE",
+    }),
 };

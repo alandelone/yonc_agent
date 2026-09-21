@@ -13,7 +13,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .legacy import import_legacy_state, legacy_state_path
-from .models import GraphNode, OperationBatch, ResourceReference, SplitSession
+from .models import Direction, GraphNode, OperationBatch, ResourceReference, SplitSession
 from .yonc_config import get_yonc_config, serialize_yonc_config, update_yonc_config
 from .v2_service import (
     V2Error,
@@ -21,16 +21,20 @@ from .v2_service import (
     add_split_message,
     apply_schedule,
     commit_split,
+    create_direction,
     create_edge_v2,
     create_node_v2,
     current_proposal,
+    delete_direction,
     discard_split,
     get_view_state,
     graph_projection,
     graph_version,
+    list_directions,
     preview_schedule,
     reparent_node,
     serialize_batch,
+    serialize_direction,
     serialize_node,
     serialize_proposal,
     serialize_resource,
@@ -41,6 +45,7 @@ from .v2_service import (
     timeline_projection,
     transition_node,
     undo_batch,
+    update_direction,
     update_node_v2,
     update_view_state,
     validate_split_proposal,
@@ -99,7 +104,8 @@ class V2EdgeCreate(BaseModel):
 
 
 class ReparentPayload(BaseModel):
-    parent_id: str | None
+    parent_id: str | None = None
+    work_type: Literal["UNCLASSIFIED", "GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION"] | None = None
     expected_graph_version: int | None = None
 
 
@@ -107,6 +113,7 @@ class TransitionPayload(BaseModel):
     action: Literal["capture", "ready", "start", "block", "unblock", "submit_review", "done", "cancel", "supersede", "reopen", "undo_close"]
     reason: str | None = None
     superseded_by: str | None = None
+    cascade: bool = True
     expected_graph_version: int | None = None
 
 
@@ -155,11 +162,33 @@ class SplitMessagePayload(BaseModel):
 
 
 class SplitCommitPayload(BaseModel):
-    expected_graph_version: int
-    proposal_version: int
+    expected_graph_version: int | None = None
+    proposal_version: int | None = None
 
 
 class UndoBatchPayload(BaseModel):
+    expected_graph_version: int | None = None
+
+
+class V2DirectionCreate(BaseModel):
+    title: str = Field(min_length=1, max_length=255)
+    notes: str = ""
+    color: str = "#3b82f6"
+    start_date: str = Field(min_length=10, max_length=10)
+    end_date: str = Field(min_length=10, max_length=10)
+    offset_x: float = 0.0
+    lane_index: int | None = None
+    expected_graph_version: int | None = None
+
+
+class V2DirectionUpdate(BaseModel):
+    title: str | None = None
+    notes: str | None = None
+    color: str | None = None
+    start_date: str | None = None
+    end_date: str | None = None
+    offset_x: float | None = None
+    lane_index: int | None = None
     expected_graph_version: int | None = None
 
 
@@ -244,6 +273,16 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
     def graph(scope_node_id: str | None = None, session: Session = Depends(get_session)):
         return graph_projection(session, scope_node_id)
 
+    @app.get("/api/v2/tasklist-state")
+    def tasklist_state():
+        path = legacy_state_path()
+        if not path.exists():
+            return []
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            raise V2Error("TASKLIST_READ_FAILED", "tasklist.read_failed", {"detail": str(exc)}, status_code=500)
+
     @app.get("/api/v2/nodes/{node_id}")
     def get_node(node_id: str, session: Session = Depends(get_session)):
         graph = graph_projection(session, node_id)
@@ -277,19 +316,25 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         node = node_or_error(session, node_id)
         if payload.parent_id:
             node_or_error(session, payload.parent_id)
-        batch = reparent_node(session, node, payload.parent_id, expected_version=payload.expected_graph_version)
-        return {"graph_version": batch.graph_version_after, "operation_batch_id": batch.id, "node_id": node.id, "parent_id": payload.parent_id}
+        batch = reparent_node(session, node, payload.parent_id, work_type=payload.work_type, expected_version=payload.expected_graph_version)
+        return {
+            "graph_version": batch.graph_version_after,
+            "operation_batch_id": batch.id,
+            "node_id": node.id,
+            "parent_id": payload.parent_id,
+            "node": serialize_node(session, node),
+        }
 
     @app.post("/api/v2/nodes/{node_id}/transition")
     def transition(node_id: str, payload: TransitionPayload, session: Session = Depends(get_session)):
         node = node_or_error(session, node_id)
-        batch = transition_node(session, node, payload.action, reason=payload.reason, superseded_by=payload.superseded_by, expected_version=payload.expected_graph_version, actor_channel="user_ui")
+        batch = transition_node(session, node, payload.action, reason=payload.reason, superseded_by=payload.superseded_by, expected_version=payload.expected_graph_version, actor_channel="user_ui", cascade=payload.cascade)
         return {"graph_version": batch.graph_version_after, "operation_batch_id": batch.id, "node": serialize_node(session, node)}
 
     @app.post("/api/v2/agent/nodes/{node_id}/transition")
     def agent_transition(node_id: str, payload: TransitionPayload, session: Session = Depends(get_session)):
         node = node_or_error(session, node_id)
-        batch = transition_node(session, node, payload.action, reason=payload.reason, superseded_by=payload.superseded_by, expected_version=payload.expected_graph_version, actor_channel="agent_api")
+        batch = transition_node(session, node, payload.action, reason=payload.reason, superseded_by=payload.superseded_by, expected_version=payload.expected_graph_version, actor_channel="agent_api", cascade=payload.cascade)
         return {"graph_version": batch.graph_version_after, "operation_batch_id": batch.id, "node": serialize_node(session, node)}
 
     @app.put("/api/v2/nodes/{node_id}/schedule")
@@ -340,6 +385,16 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         split = start_split_session(session, node_or_error(session, payload.parent_node_id), payload.message)
         return serialize_split_session(session, split)
 
+    @app.get("/api/v2/split-sessions")
+    def get_split_sessions(
+        parent_node_id: str | None = None,
+        state: str | None = None,
+        session: Session = Depends(get_session),
+    ):
+        from .v2_service import list_split_sessions
+        sessions = list_split_sessions(session, parent_node_id=parent_node_id, state=state)
+        return [serialize_split_session(session, s) for s in sessions]
+
     @app.get("/api/v2/split-sessions/{split_id}")
     def get_split(split_id: str, session: Session = Depends(get_session)):
         return serialize_split_session(session, split_or_error(session, split_id))
@@ -351,6 +406,15 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         if version is not None:
             from .models import ProposalVersion
             proposal = session.scalar(select(ProposalVersion).where(ProposalVersion.session_id == split.id, ProposalVersion.version == version))
+        return {"session_id": split.id, "proposal": serialize_proposal(proposal)}
+
+    @app.put("/api/v2/split-sessions/{split_id}/proposal")
+    def update_proposal_route(split_id: str, payload: dict[str, Any], session: Session = Depends(get_session)):
+        from .v2_service import update_split_proposal
+        split = split_or_error(session, split_id)
+        nodes = payload.get("nodes") or []
+        edges = payload.get("edges")
+        proposal = update_split_proposal(session, split, nodes=nodes, edges=edges)
         return {"session_id": split.id, "proposal": serialize_proposal(proposal)}
 
     @app.post("/api/v2/split-sessions/{split_id}/messages")
@@ -369,7 +433,13 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
     def split_commit(split_id: str, payload: SplitCommitPayload, session: Session = Depends(get_session)):
         split = split_or_error(session, split_id)
         batch = commit_split(session, split, expected_graph_version=payload.expected_graph_version, proposal_version=payload.proposal_version)
-        return {"session_id": split.id, "state": split.state, "operation_batch": serialize_batch(batch), "graph_version": batch.graph_version_after}
+        return {
+            "session_id": split.id,
+            "state": split.state,
+            "operation_batch": serialize_batch(batch),
+            "graph_version": batch.graph_version_after,
+            "temporary_id_map": batch.summary.get("temporary_id_map", {}) if batch.summary else {},
+        }
 
     @app.post("/api/v2/split-sessions/{split_id}/discard")
     def split_discard(split_id: str, session: Session = Depends(get_session)):
@@ -388,6 +458,56 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
             raise V2Error("BATCH_NOT_FOUND", "operation.batch_not_found", {"batch_id": batch_id}, status_code=404)
         undo_batch(session, batch, expected_version=payload.expected_graph_version)
         return {"operation_batch": serialize_batch(batch), "graph_version": graph_version(session)}
+
+    @app.get("/api/v2/directions")
+    def get_directions(session: Session = Depends(get_session)):
+        return list_directions(session)
+
+    @app.post("/api/v2/directions")
+    def create_direction_endpoint(payload: V2DirectionCreate, session: Session = Depends(get_session)):
+        direction, batch = create_direction(
+            session,
+            payload.model_dump(exclude_unset=True),
+            expected_version=payload.expected_graph_version,
+        )
+        return {
+            "direction": serialize_direction(direction),
+            "operation_batch": serialize_batch(batch),
+            "graph_version": batch.graph_version_after,
+        }
+
+    @app.patch("/api/v2/directions/{direction_id}")
+    def update_direction_endpoint(direction_id: str, payload: V2DirectionUpdate, session: Session = Depends(get_session)):
+        direction = session.get(Direction, direction_id)
+        if direction is None:
+            raise V2Error("DIRECTION_NOT_FOUND", "direction.not_found", {"direction_id": direction_id}, status_code=404)
+        direction, batch = update_direction(
+            session,
+            direction,
+            payload.model_dump(exclude_unset=True),
+            expected_version=payload.expected_graph_version,
+        )
+        return {
+            "direction": serialize_direction(direction),
+            "operation_batch": serialize_batch(batch),
+            "graph_version": batch.graph_version_after,
+        }
+
+    @app.delete("/api/v2/directions/{direction_id}")
+    def delete_direction_endpoint(
+        direction_id: str,
+        expected_graph_version: int | None = None,
+        session: Session = Depends(get_session),
+    ):
+        direction = session.get(Direction, direction_id)
+        if direction is None:
+            raise V2Error("DIRECTION_NOT_FOUND", "direction.not_found", {"direction_id": direction_id}, status_code=404)
+        batch = delete_direction(session, direction, expected_version=expected_graph_version)
+        return {
+            "direction_id": direction_id,
+            "operation_batch": serialize_batch(batch),
+            "graph_version": batch.graph_version_after,
+        }
 
     def import_preview_payload(session: Session, source_path: str | None) -> dict[str, Any]:
         source = Path(source_path) if source_path else legacy_state_path()

@@ -10305,3 +10305,41 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 2026-09-09 23:41:25,071 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
 2026-09-09 23:56:51,307 | INFO | __main__ | CLI command 'graph-import' started (pid=27156, cwd=C:\test_codespace\yonc_agent)
 2026-09-09 23:56:51,307 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-10 15:49:39,014 | ERROR | asyncio | Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\Ling's\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Ling's\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-09-10 15:51:03,196 | INFO | __main__ | CLI command 'serve' started (pid=32052, cwd=C:\test_codespace\yonc_agent)
+2026-09-10 15:51:03,197 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-10 17:24:13,314 | INFO | __main__ | CLI command 'serve' started (pid=16312, cwd=C:\test_codespace\yonc_agent)
+2026-09-10 17:24:13,314 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-12 13:45:25,308 | INFO | __main__ | CLI command 'serve' started (pid=17604, cwd=C:\test_codespace\yonc_agent)
+2026-09-12 13:45:25,309 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-12 22:42:57,574 | INFO | __main__ | CLI command 'serve' started (pid=20600, cwd=C:\test_codespace\yonc_agent)
+2026-09-12 22:42:57,574 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-13 00:04:01,353 | INFO | __main__ | CLI command 'serve' started (pid=13028, cwd=C:\test_codespace\yonc_agent)
+2026-09-13 00:04:01,353 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-14 22:17:48,655 | INFO | __main__ | CLI command 'serve' started (pid=11100, cwd=C:\test_codespace\yonc_agent)
+2026-09-14 22:17:48,655 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-14 22:28:36,981 | INFO | __main__ | CLI command 'serve' started (pid=21672, cwd=C:\test_codespace\yonc_agent)
+2026-09-14 22:28:36,981 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-14 22:37:39,646 | INFO | __main__ | CLI command 'serve' started (pid=11388, cwd=C:\test_codespace\yonc_agent)
+2026-09-14 22:37:39,646 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-14 22:44:02,244 | INFO | __main__ | CLI command 'serve' started (pid=25920, cwd=C:\test_codespace\yonc_agent)
+2026-09-14 22:44:02,244 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-18 03:38:47,529 | INFO | __main__ | CLI command 'serve' started (pid=32440, cwd=C:\test_codespace\yonc_agent)
+2026-09-18 03:38:47,530 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-18 04:15:01,673 | INFO | __main__ | CLI command 'build-frontend' started (pid=19828, cwd=C:\test_codespace\yonc_agent)
+2026-09-18 04:15:01,674 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-18 04:15:02,169 | INFO | graph_app.frontend_builder | Frontend source changes detected. Building static_v2 bundle with Vite...
+2026-09-18 04:15:03,958 | INFO | graph_app.frontend_builder | Frontend build succeeded into C:\test_codespace\yonc_agent\graph_app\static_v2
+2026-09-18 04:32:26,009 | INFO | __main__ | CLI command 'build-frontend' started (pid=19136, cwd=C:\test_codespace\yonc_agent)
+2026-09-18 04:32:26,010 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log
+2026-09-18 04:32:26,471 | INFO | graph_app.frontend_builder | Frontend source changes detected. Building static_v2 bundle with Vite...
+2026-09-18 04:32:28,398 | INFO | graph_app.frontend_builder | Frontend build succeeded into C:\test_codespace\yonc_agent\graph_app\static_v2
+2026-09-20 22:25:12,824 | INFO | __main__ | CLI command 'serve' started (pid=13284, cwd=C:\test_codespace\yonc_agent)
+2026-09-20 22:25:12,824 | INFO | __main__ | Application log file: C:\test_codespace\yonc_agent\data\logs\yonc_agent.log

@@ -13,6 +13,7 @@ import uuid
 from sqlalchemy import Engine, inspect, text
 
 from .database import Base
+from . import models  # noqa: F401
 
 
 NODE_COLUMNS = {

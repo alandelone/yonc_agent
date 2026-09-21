@@ -12,6 +12,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from .models import (
+    Direction,
     GraphEdge,
     GraphMeta,
     GraphNode,
@@ -26,7 +27,7 @@ from .models import (
     new_id,
     utcnow,
 )
-from .split_adapter import get_split_adapter
+from .split_adapter import _check_actionability, get_split_adapter
 
 
 NODE_KINDS = {"WORK", "ARTIFACT", "RESOURCE", "AGENT"}
@@ -338,14 +339,48 @@ def create_edge_v2(
     return edge, batch
 
 
-def reparent_node(session: Session, node: GraphNode, parent_id: str | None, *, expected_version: int | None = None) -> OperationBatch:
+def reparent_node(
+    session: Session,
+    node: GraphNode,
+    parent_id: str | None,
+    *,
+    work_type: str | None = None,
+    expected_version: int | None = None,
+) -> OperationBatch:
     parents, _ = hierarchy_maps(session)
     old_parent = parents.get(node.id)
-    if parent_id == old_parent:
+    old_work_type = node.work_type
+    old_wbs_level = node.wbs_level
+
+    # Determine target work_type
+    if work_type is not None:
+        next_work_type = str(work_type).upper()
+        if next_work_type not in WORK_TYPES:
+            raise V2Error("INVALID_WORK_TYPE", "node.invalid_work_type", {"work_type": next_work_type})
+    elif parent_id:
+        parent = session.get(GraphNode, parent_id)
+        if parent:
+            parent_wbs = parent.wbs_level or WBS_BY_WORK_TYPE.get(parent.work_type)
+            if parent_wbs == 1 or parent.work_type == "GOAL":
+                next_work_type = "DELIVERABLE"
+            elif parent_wbs == 2 or parent.work_type == "DELIVERABLE":
+                next_work_type = "WORK_PACKAGE"
+            elif parent_wbs == 3 or parent.work_type == "WORK_PACKAGE":
+                next_work_type = "ACTION"
+            else:
+                next_work_type = node.work_type if node.work_type != "UNCLASSIFIED" else "ACTION"
+        else:
+            next_work_type = node.work_type
+    else:
+        next_work_type = "UNCLASSIFIED" if node.work_type != "GOAL" else "GOAL"
+
+    if parent_id == old_parent and next_work_type == old_work_type:
         raise V2Error("NO_CHANGE", "graph.no_change", {"node_id": node.id})
+
     if parent_id:
         validate_edge(session, parent_id, node.id, "contains", ignore_edge_id=session.scalar(select(GraphEdge.id).where(GraphEdge.target_id == node.id, GraphEdge.relation == "contains")))
         _validate_schedule_values(session, node, node.planned_start, node.planned_end, proposed_parent_id=parent_id)
+
     batch = begin_batch(session, "reparent_node", expected_version=expected_version)
     old_edge = session.scalar(select(GraphEdge).where(GraphEdge.target_id == node.id, GraphEdge.relation == "contains", GraphEdge.is_proposed.is_(False)))
     if old_edge:
@@ -354,25 +389,56 @@ def reparent_node(session: Session, node: GraphNode, parent_id: str | None, *, e
         # unique index. Flush the removal before inserting the replacement so
         # SQLAlchemy cannot reorder both writes into a transient conflict.
         session.flush()
+
     new_edge_id = None
     if parent_id:
         new_edge = GraphEdge(source_id=parent_id, target_id=node.id, relation="contains", required=node.required, is_proposed=False, metadata_json={})
         session.add(new_edge)
         session.flush()
         new_edge_id = new_edge.id
+
     node.parent_id = parent_id
+    node.work_type = next_work_type
+    node.wbs_level = WBS_BY_WORK_TYPE.get(next_work_type)
+
     record_batch_operation(
         session,
         batch,
         "reparent_node",
-        {"node_id": node.id, "parent_id": parent_id, "edge_id": new_edge_id},
-        {"action": "restore_parent", "node_id": node.id, "parent_id": old_parent},
+        {
+            "node_id": node.id,
+            "parent_id": parent_id,
+            "edge_id": new_edge_id,
+            "work_type": node.work_type,
+            "wbs_level": node.wbs_level,
+        },
+        {
+            "action": "restore_parent",
+            "node_id": node.id,
+            "parent_id": old_parent,
+            "work_type": old_work_type,
+            "wbs_level": old_wbs_level,
+        },
     )
-    batch.summary = {"reparented_node": node.id, "from": old_parent, "to": parent_id}
+    batch.summary = {
+        "reparented_node": node.id,
+        "from": old_parent,
+        "to": parent_id,
+        "work_type": node.work_type,
+        "wbs_level": node.wbs_level,
+    }
     return batch
 
 
-def update_node_v2(session: Session, node: GraphNode, payload: dict[str, Any], *, expected_version: int | None = None) -> OperationBatch:
+def update_node_v2(
+    session: Session,
+    node: GraphNode,
+    payload: dict[str, Any],
+    *,
+    expected_version: int | None = None,
+    actor_channel: str = "user_ui",
+    batch: OperationBatch | None = None,
+) -> OperationBatch:
     disallowed = {"id", "parent_id", "status", "stage", "node_kind"}
     if disallowed.intersection(payload):
         raise V2Error("SPECIAL_ENDPOINT_REQUIRED", "node.special_endpoint_required", {"fields": sorted(disallowed.intersection(payload))})
@@ -393,9 +459,10 @@ def update_node_v2(session: Session, node: GraphNode, payload: dict[str, Any], *
             setattr(node, field, values.get(field))
     if "estimated_effort_minutes" in payload:
         node.estimated_effort_hours = (node.estimated_effort_minutes / 60.0) if node.estimated_effort_minutes is not None else None
-    batch = begin_batch(session, "update_node", expected_version=expected_version)
+    if batch is None:
+        batch = begin_batch(session, "update_node", actor_channel=actor_channel, expected_version=expected_version)
     record_batch_operation(session, batch, "update_node", {"node_id": node.id, "fields": list(payload)}, {"action": "restore_node", "node_id": node.id, "snapshot": before})
-    batch.summary = {"updated_node": node.id, "fields": list(payload)}
+    batch.summary = {**(batch.summary or {}), "updated_node": node.id, "fields": list(payload)}
     return batch
 
 
@@ -408,6 +475,7 @@ def transition_node(
     superseded_by: str | None = None,
     expected_version: int | None = None,
     actor_channel: str = "user_ui",
+    cascade: bool = True,
 ) -> OperationBatch:
     action = action.lower()
     before = {"stage": node.stage, "status": node.status, "reason": node.status_reason, "closed_from_stage": node.closed_from_stage, "closed_from_status": node.closed_from_status, "superseded_by": node.superseded_by}
@@ -462,7 +530,104 @@ def transition_node(
         batch_id=batch.id,
     ))
     record_batch_operation(session, batch, "transition", {"node_id": node.id, "action": action, "stage": node.stage, "status": node.status}, {"action": "restore_state", "node_id": node.id, **before})
-    batch.summary = {"transitioned_node": node.id, "action": action, "stage": node.stage, "status": node.status}
+
+    cascaded_ids: list[str] = []
+    if cascade and action == "cancel":
+        _, children = hierarchy_maps(session)
+        queue = [edge.target_id for edge in children.get(node.id, [])]
+        seen: set[str] = set()
+        while queue:
+            cid = queue.pop(0)
+            if cid in seen:
+                continue
+            seen.add(cid)
+            queue.extend(edge.target_id for edge in children.get(cid, []))
+            child = session.get(GraphNode, cid)
+            if child and child.status != "CANCELLED":
+                child_before = {
+                    "stage": child.stage,
+                    "status": child.status,
+                    "reason": child.status_reason,
+                    "closed_from_stage": child.closed_from_stage,
+                    "closed_from_status": child.closed_from_status,
+                    "superseded_by": child.superseded_by,
+                }
+                child.closed_from_stage, child.closed_from_status = child.stage, child.status
+                child.stage, child.status = "CLOSED", "CANCELLED"
+                child.status_reason = reason
+                child.lifecycle = _legacy_lifecycle(child.status, child.stage)
+                session.add(StatusEvent(
+                    node_id=child.id,
+                    before=child_before["status"],
+                    after=child.status,
+                    stage_before=child_before["stage"],
+                    stage_after=child.stage,
+                    reason=reason,
+                    actor=actor_channel,
+                    batch_id=batch.id,
+                ))
+                record_batch_operation(
+                    session,
+                    batch,
+                    "transition",
+                    {"node_id": child.id, "action": "cancel", "stage": child.stage, "status": child.status},
+                    {"action": "restore_state", "node_id": child.id, **child_before},
+                )
+                cascaded_ids.append(child.id)
+
+    elif cascade and action in {"reopen", "undo_close"}:
+        _, children = hierarchy_maps(session)
+        queue = [edge.target_id for edge in children.get(node.id, [])]
+        seen = set()
+        while queue:
+            cid = queue.pop(0)
+            if cid in seen:
+                continue
+            seen.add(cid)
+            queue.extend(edge.target_id for edge in children.get(cid, []))
+            child = session.get(GraphNode, cid)
+            if child and child.status == "CANCELLED":
+                child_before = {
+                    "stage": child.stage,
+                    "status": child.status,
+                    "reason": child.status_reason,
+                    "closed_from_stage": child.closed_from_stage,
+                    "closed_from_status": child.closed_from_status,
+                    "superseded_by": child.superseded_by,
+                }
+                child.stage = child.closed_from_stage or "PLANNING"
+                child.status = child.closed_from_status or "TODO"
+                child.status_reason = None
+                child.superseded_by = None
+                child.closed_from_stage = None
+                child.closed_from_status = None
+                child.lifecycle = _legacy_lifecycle(child.status, child.stage)
+                session.add(StatusEvent(
+                    node_id=child.id,
+                    before=child_before["status"],
+                    after=child.status,
+                    stage_before=child_before["stage"],
+                    stage_after=child.stage,
+                    reason=None,
+                    actor=actor_channel,
+                    batch_id=batch.id,
+                ))
+                record_batch_operation(
+                    session,
+                    batch,
+                    "transition",
+                    {"node_id": child.id, "action": "reopen", "stage": child.stage, "status": child.status},
+                    {"action": "restore_state", "node_id": child.id, **child_before},
+                )
+                cascaded_ids.append(child.id)
+
+    batch.summary = {
+        "transitioned_node": node.id,
+        "action": action,
+        "stage": node.stage,
+        "status": node.status,
+        "cascaded_nodes": cascaded_ids,
+    }
     return batch
 
 
@@ -929,7 +1094,76 @@ def serialize_resource(resource: ResourceReference) -> dict[str, Any]:
 
 def _split_context(session: Session, parent: GraphNode) -> dict[str, Any]:
     graph = graph_projection(session, parent.id)
-    return {"parent": next(node for node in graph["nodes"] if node["id"] == parent.id), "children": [node for node in graph["nodes"] if node["parent_id"] == parent.id], "edges": graph["edges"], "graph_version": graph["graph_version"]}
+    parent_node = next((node for node in graph["nodes"] if node["id"] == parent.id), None)
+    if not parent_node:
+        parent_node = serialize_node(session, parent)
+    return {"parent": parent_node, "children": [node for node in graph["nodes"] if node.get("parent_id") == parent.id], "edges": graph["edges"], "graph_version": graph["graph_version"]}
+
+
+def _seed_session_from_children(
+    session: Session,
+    split: SplitSession,
+    parent: GraphNode,
+    existing_children: list[dict[str, Any]],
+) -> ProposalVersion:
+    parent_mode = (parent.tags or {}).get("Modes") or (parent.tags or {}).get("Mode") or ""
+    parent_type = (parent.tags or {}).get("Task Type") or (parent.tags or {}).get("task_type") or ""
+    default_tags = {}
+    if parent_mode:
+        default_tags["Modes"] = parent_mode if isinstance(parent_mode, list) else [parent_mode]
+    if parent_type:
+        default_tags["Task Type"] = parent_type if isinstance(parent_type, list) else [parent_type]
+
+    parent_wbs = parent.wbs_level or WBS_BY_WORK_TYPE.get(parent.work_type)
+    if parent_wbs == 1 or parent.work_type == "GOAL":
+        default_child_wt = "DELIVERABLE"
+    elif parent_wbs == 2 or parent.work_type == "DELIVERABLE":
+        default_child_wt = "WORK_PACKAGE"
+    else:
+        default_child_wt = "ACTION"
+
+    proposed_nodes = []
+    for child in existing_children:
+        child_tags = child.get("tags") or {}
+        c_mode = child_tags.get("Modes") or child_tags.get("Mode") or default_tags.get("Modes")
+        c_type = child_tags.get("Task Type") or child_tags.get("task_type") or default_tags.get("Task Type")
+        c_tags = dict(child_tags)
+        if c_mode:
+            c_tags["Modes"] = c_mode if isinstance(c_mode, list) else [c_mode]
+        if c_type:
+            c_tags["Task Type"] = c_type if isinstance(c_type, list) else [c_type]
+
+        proposed_nodes.append({
+            "temporary_id": child["id"],
+            "title": child.get("title") or "未命名任务",
+            "work_type": child.get("work_type") or default_child_wt,
+            "start_cue": child.get("start_cue") or "前置输入准备完毕",
+            "done_when": child.get("done_when") or f"Done: 完成“{child.get('title')}”并交付明确成果。",
+            "estimated_effort_minutes": child.get("estimated_effort_minutes") or 45,
+            "required": child.get("required", True),
+            "status": child.get("status", "TODO"),
+            "tags": c_tags,
+        })
+    edges = [{"source": "parent", "target": n["temporary_id"], "relation": "contains", "required": True} for n in proposed_nodes]
+    for left, right in zip(proposed_nodes, proposed_nodes[1:]):
+        edges.append({"source": right["temporary_id"], "target": left["temporary_id"], "relation": "depends_on", "required": True})
+
+    version = 1
+    proposal = ProposalVersion(
+        session_id=split.id,
+        version=version,
+        rationale=f"已从项目图中自动载入该任务现有的 {len(proposed_nodes)} 项已有子任务。可在下方直接修改、添加新子任务或删减已有子任务。",
+        proposed_nodes=proposed_nodes,
+        proposed_edges=edges,
+        actionability_results=_check_actionability(proposed_nodes),
+        warnings=[],
+    )
+    session.add(proposal)
+    split.current_proposal_version = version
+    split.state = "PENDING_USER_REVIEW"
+    session.add(SplitMessage(session_id=split.id, role="assistant", content=proposal.rationale))
+    session.flush()
+    return proposal
 
 
 def start_split_session(session: Session, parent: GraphNode, user_message: str | None = None) -> SplitSession:
@@ -940,6 +1174,8 @@ def start_split_session(session: Session, parent: GraphNode, user_message: str |
     session.add(SplitMessage(session_id=item.id, role="system", content="拆分会话已开始。提案在你明确提交前不会写入项目图。"))
     if user_message:
         add_split_message(session, item, user_message)
+    elif context.get("children"):
+        _seed_session_from_children(session, item, parent, context["children"])
     return item
 
 
@@ -949,7 +1185,7 @@ def add_split_message(
     content: str,
     annotations: list[dict[str, Any]] | None = None,
 ) -> ProposalVersion:
-    if split.state in {"COMMITTED", "DISCARDED"}:
+    if split.state == "DISCARDED":
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
     content = str(content or "").strip()
     annotations = annotations or []
@@ -976,6 +1212,94 @@ def current_proposal(session: Session, split: SplitSession) -> ProposalVersion |
     if not split.current_proposal_version:
         return None
     return session.scalar(select(ProposalVersion).where(ProposalVersion.session_id == split.id, ProposalVersion.version == split.current_proposal_version))
+
+
+def list_split_sessions(
+    session: Session,
+    *,
+    parent_node_id: str | None = None,
+    state: str | None = None,
+) -> list[SplitSession]:
+    stmt = select(SplitSession)
+    if parent_node_id:
+        stmt = stmt.where(SplitSession.parent_node_id == parent_node_id)
+    if state:
+        stmt = stmt.where(SplitSession.state == state)
+    return list(session.scalars(stmt.order_by(SplitSession.created_at.desc())).all())
+
+
+def update_split_proposal(
+    session: Session,
+    split: SplitSession,
+    *,
+    nodes: list[dict[str, Any]],
+    edges: list[dict[str, Any]] | None = None,
+) -> ProposalVersion:
+    if split.state == "DISCARDED":
+        raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
+    current = current_proposal(session, split)
+
+    valid_temp_ids = {str(n["temporary_id"]) for n in nodes}
+    if edges is not None:
+        filtered_edges = [
+            e for e in edges
+            if (e.get("source") == "parent" or str(e.get("source")) in valid_temp_ids)
+            and str(e.get("target")) in valid_temp_ids
+        ]
+    elif current and current.proposed_edges:
+        filtered_edges = [
+            e for e in current.proposed_edges
+            if (e.get("source") == "parent" or str(e.get("source")) in valid_temp_ids)
+            and str(e.get("target")) in valid_temp_ids
+        ]
+    else:
+        filtered_edges = []
+
+    contains_targets = {
+        str(e["target"]) for e in filtered_edges
+        if e.get("relation") == "contains" and e.get("source") == "parent"
+    }
+    for node in nodes:
+        tid = str(node["temporary_id"])
+        if tid not in contains_targets:
+            filtered_edges.append({
+                "source": "parent",
+                "target": tid,
+                "relation": "contains",
+                "required": bool(node.get("required", True)),
+            })
+
+    has_deps = any(e.get("relation") == "depends_on" for e in filtered_edges)
+    if not has_deps and len(nodes) > 1:
+        for left, right in zip(nodes, nodes[1:]):
+            filtered_edges.append({
+                "source": right["temporary_id"],
+                "target": left["temporary_id"],
+                "relation": "depends_on",
+                "required": True,
+            })
+
+    if not current:
+        version = split.current_proposal_version + 1
+        current = ProposalVersion(
+            session_id=split.id,
+            version=version,
+            rationale="用户手动更新子任务草稿",
+            proposed_nodes=nodes,
+            proposed_edges=filtered_edges,
+            actionability_results=_check_actionability(nodes),
+            warnings=[],
+        )
+        session.add(current)
+        split.current_proposal_version = version
+        split.state = "PENDING_USER_REVIEW"
+    else:
+        current.proposed_nodes = nodes
+        current.proposed_edges = filtered_edges
+        current.actionability_results = _check_actionability(nodes)
+    split.updated_at = utcnow()
+    session.flush()
+    return current
 
 
 def validate_split_proposal(session: Session, split: SplitSession, proposal: ProposalVersion | None = None) -> dict[str, Any]:
@@ -1012,13 +1336,33 @@ def validate_split_proposal(session: Session, split: SplitSession, proposal: Pro
     return {"valid": not errors, "errors": errors, "warnings": proposal.warnings or [], "proposal_version": proposal.version}
 
 
-def commit_split(session: Session, split: SplitSession, *, expected_graph_version: int, proposal_version: int) -> OperationBatch:
-    if split.state in {"COMMITTED", "DISCARDED"}:
+def commit_split(
+    session: Session,
+    split: SplitSession,
+    *,
+    expected_graph_version: int | None = None,
+    proposal_version: int | None = None,
+) -> OperationBatch:
+    if split.state == "DISCARDED":
         raise V2Error("SPLIT_SESSION_CLOSED", "split.session_closed", {"session_id": split.id}, status_code=409)
-    require_graph_version(session, expected_graph_version)
-    if proposal_version != split.current_proposal_version:
+    if expected_graph_version is not None:
+        require_graph_version(session, expected_graph_version)
+    if proposal_version is not None and proposal_version != split.current_proposal_version:
         raise V2Error("PROPOSAL_VERSION_CONFLICT", "split.proposal_version_conflict", {"expected": proposal_version, "actual": split.current_proposal_version}, status_code=409)
     proposal = current_proposal(session, split)
+    if not proposal:
+        raise V2Error("INVALID_PROPOSAL", "split.invalid_proposal", {"errors": ["No proposal found"]})
+
+    # Auto-fill sensible defaults for ACTION nodes if incomplete so auto-commit never fails while typing
+    for draft in proposal.proposed_nodes or []:
+        if str(draft.get("work_type", "")).upper() == "ACTION":
+            if not draft.get("done_when"):
+                draft["done_when"] = f"Done: 完成“{draft.get('title') or '新任务'}”并交付明确成果。"
+            if not draft.get("start_cue"):
+                draft["start_cue"] = "前置输入准备完毕"
+            if not draft.get("estimated_effort_minutes"):
+                draft["estimated_effort_minutes"] = 45
+
     validation = validate_split_proposal(session, split, proposal)
     if not validation["valid"]:
         raise V2Error("INVALID_PROPOSAL", "split.invalid_proposal", {"errors": validation["errors"]})
@@ -1034,17 +1378,62 @@ def commit_split(session: Session, split: SplitSession, *, expected_graph_versio
     for draft in proposal.proposed_nodes:
         payload = dict(draft)
         temp_id = payload.pop("temporary_id")
-        node, _ = create_node_v2(session, payload, batch=batch)
-        temp_to_real[temp_id] = node.id
+        existing_node = session.get(GraphNode, temp_id)
+        if existing_node and existing_node.parent_id == split.parent_node_id:
+            update_payload = {
+                k: v for k, v in payload.items()
+                if k in ("title", "description", "start_cue", "inputs", "done_when", "required", "tags", "estimated_effort_minutes", "work_type")
+            }
+            update_node_v2(session, existing_node, update_payload, batch=batch)
+            temp_to_real[temp_id] = existing_node.id
+        else:
+            node, _ = create_node_v2(session, payload, batch=batch)
+            temp_to_real[temp_id] = node.id
+            draft["temporary_id"] = node.id
+
+    # Update proposal proposed_nodes and proposed_edges with real IDs for seamless re-commit
+    for draft in proposal.proposed_nodes:
+        if draft["temporary_id"] in temp_to_real:
+            draft["temporary_id"] = temp_to_real[draft["temporary_id"]]
+    for draft_edge in proposal.proposed_edges or []:
+        if draft_edge.get("source") in temp_to_real:
+            draft_edge["source"] = temp_to_real[draft_edge["source"]]
+        if draft_edge.get("target") in temp_to_real:
+            draft_edge["target"] = temp_to_real[draft_edge["target"]]
+
+    existing_children = session.scalars(select(GraphNode).where(GraphNode.parent_id == split.parent_node_id)).all()
+    for old_child in existing_children:
+        if old_child.id not in temp_to_real.values():
+            session.execute(delete(GraphEdge).where((GraphEdge.source_id == old_child.id) | (GraphEdge.target_id == old_child.id)))
+            before_old = _node_snapshot(old_child)
+            record_batch_operation(
+                session, batch, "delete_node", {"node_id": old_child.id},
+                {"action": "restore_node", "node_id": old_child.id, "snapshot": before_old}
+            )
+            session.delete(old_child)
+
     for draft in proposal.proposed_edges:
-        source = split.parent_node_id if draft["source"] == "parent" else temp_to_real[draft["source"]]
-        target = temp_to_real[draft["target"]]
-        create_edge_v2(session, {"source_id": source, "target_id": target, "relation": draft["relation"], "required": draft.get("required", True), "metadata": {"proposal_version": proposal.version}}, batch=batch)
+        source = split.parent_node_id if draft["source"] == "parent" else temp_to_real.get(draft["source"], draft["source"])
+        target = temp_to_real.get(draft["target"], draft["target"])
+        existing_edge = session.scalar(select(GraphEdge).where(
+            GraphEdge.source_id == source, GraphEdge.target_id == target, GraphEdge.relation == draft["relation"]
+        ))
+        if not existing_edge:
+            create_edge_v2(session, {"source_id": source, "target_id": target, "relation": draft["relation"], "required": draft.get("required", True), "metadata": {"proposal_version": proposal.version}}, batch=batch)
+
+    # Roll up subtask estimated effort to parent node so parent effort matches sum of subtasks
+    total_effort = sum(int(draft.get("estimated_effort_minutes") or 0) for draft in proposal.proposed_nodes)
+    parent_node = session.get(GraphNode, split.parent_node_id)
+    if parent_node and total_effort > 0 and parent_node.estimated_effort_minutes != total_effort:
+        update_node_v2(session, parent_node, {"estimated_effort_minutes": total_effort}, batch=batch)
+
     split.state = "COMMITTED"
     split.committed_batch_id = batch.id
     split.updated_at = utcnow()
     batch.summary = {**(batch.summary or {}), "split_session_id": split.id, "proposal_version": proposal.version, "temporary_id_map": temp_to_real}
-    session.add(SplitMessage(session_id=split.id, role="system", content="拆分已提交，可在 Canvas 和 Timeline 中查看。"))
+    existing_sys = session.scalar(select(SplitMessage).where(SplitMessage.session_id == split.id, SplitMessage.role == "system"))
+    if not existing_sys:
+        session.add(SplitMessage(session_id=split.id, role="system", content="拆分已实时同步，可在 Canvas 和 Timeline 中查看。"))
     return batch
 
 
@@ -1063,6 +1452,11 @@ def serialize_proposal(proposal: ProposalVersion | None) -> dict[str, Any] | Non
 
 
 def serialize_split_session(session: Session, split: SplitSession) -> dict[str, Any]:
+    parent = session.get(GraphNode, split.parent_node_id)
+    if split.state == "OPEN" and split.current_proposal_version == 0 and parent:
+        context = _split_context(session, parent)
+        if context.get("children"):
+            _seed_session_from_children(session, split, parent, context["children"])
     messages = list(session.scalars(select(SplitMessage).where(SplitMessage.session_id == split.id).order_by(SplitMessage.created_at)).all())
     proposal = current_proposal(session, split)
     return {"id": split.id, "parent_node_id": split.parent_node_id, "state": split.state, "context_graph_version": split.context_graph_version, "context": split.context_snapshot, "current_proposal_version": split.current_proposal_version, "proposal": serialize_proposal(proposal), "messages": [{"id": item.id, "role": item.role, "content": item.content, "annotations": item.annotations or [], "created_at": _iso(item.created_at)} for item in messages], "committed_batch_id": split.committed_batch_id, "created_at": _iso(split.created_at), "updated_at": _iso(split.updated_at)}
@@ -1080,6 +1474,169 @@ def _parse_optional_datetime(value: Any) -> datetime | None:
     return datetime.fromisoformat(str(value))
 
 
+def serialize_direction(direction: Direction) -> dict[str, Any]:
+    return {
+        "id": direction.id,
+        "title": direction.title,
+        "notes": direction.notes,
+        "color": direction.color,
+        "start_date": direction.start_date,
+        "end_date": direction.end_date,
+        "offset_x": direction.offset_x,
+        "lane_index": direction.lane_index,
+        "created_at": _iso(direction.created_at),
+        "updated_at": _iso(direction.updated_at),
+    }
+
+
+def list_directions(session: Session) -> list[dict[str, Any]]:
+    stmt = select(Direction).order_by(Direction.start_date.asc(), Direction.created_at.asc())
+    directions = list(session.scalars(stmt).all())
+    return [serialize_direction(d) for d in directions]
+
+
+def allocate_direction_lane(
+    session: Session,
+    start_date: str,
+    end_date: str,
+    exclude_id: str | None = None,
+) -> int:
+    stmt = select(Direction)
+    if exclude_id:
+        stmt = stmt.where(Direction.id != exclude_id)
+    directions = list(session.scalars(stmt).all())
+    used_lanes = set()
+    for d in directions:
+        if not (d.end_date < start_date or end_date < d.start_date):
+            used_lanes.add(d.lane_index)
+    lane = 0
+    while lane in used_lanes:
+        lane += 1
+    return lane
+
+
+def create_direction(
+    session: Session,
+    payload: dict[str, Any],
+    *,
+    expected_version: int | None = None,
+    batch: OperationBatch | None = None,
+) -> tuple[Direction, OperationBatch]:
+    title = str(payload.get("title", "")).strip() or "Untitled Direction"
+    notes = str(payload.get("notes", "") or "")
+    color = str(payload.get("color", "") or "#3b82f6")
+    start_date = str(payload.get("start_date", "")).strip()
+    end_date = str(payload.get("end_date", "")).strip()
+    if not start_date or not end_date:
+        raise V2Error("INVALID_DATE_RANGE", "direction.invalid_date_range", {"start_date": start_date, "end_date": end_date})
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
+
+    offset_x = float(payload.get("offset_x", 0.0) or 0.0)
+    lane_index = payload.get("lane_index")
+    if lane_index is None:
+        lane_index = allocate_direction_lane(session, start_date, end_date)
+    else:
+        lane_index = int(lane_index)
+
+    direction = Direction(
+        id=payload.get("id") or new_id(),
+        title=title,
+        notes=notes,
+        color=color,
+        start_date=start_date,
+        end_date=end_date,
+        offset_x=offset_x,
+        lane_index=lane_index,
+    )
+    session.add(direction)
+    session.flush()
+
+    batch = batch or begin_batch(session, "create_direction", expected_version=expected_version)
+    record_batch_operation(
+        session,
+        batch,
+        "create_direction",
+        {"direction_id": direction.id, "title": direction.title},
+        {"action": "delete_direction", "direction_id": direction.id},
+    )
+    batch.summary = {"direction_id": direction.id, "title": direction.title, "action": "create_direction"}
+    return direction, batch
+
+
+def update_direction(
+    session: Session,
+    direction: Direction,
+    payload: dict[str, Any],
+    *,
+    expected_version: int | None = None,
+    batch: OperationBatch | None = None,
+) -> tuple[Direction, OperationBatch]:
+    snapshot = serialize_direction(direction)
+
+    if "title" in payload:
+        val = str(payload["title"]).strip()
+        if val:
+            direction.title = val
+    if "notes" in payload:
+        direction.notes = str(payload["notes"] or "")
+    if "color" in payload:
+        direction.color = str(payload["color"] or "#3b82f6")
+    date_changed = False
+    if "start_date" in payload and payload["start_date"]:
+        direction.start_date = str(payload["start_date"]).strip()
+        date_changed = True
+    if "end_date" in payload and payload["end_date"]:
+        direction.end_date = str(payload["end_date"]).strip()
+        date_changed = True
+    if direction.start_date > direction.end_date:
+        direction.start_date, direction.end_date = direction.end_date, direction.start_date
+    if "offset_x" in payload and payload["offset_x"] is not None:
+        direction.offset_x = float(payload["offset_x"])
+    if "lane_index" in payload and payload["lane_index"] is not None:
+        direction.lane_index = int(payload["lane_index"])
+    elif date_changed:
+        direction.lane_index = allocate_direction_lane(session, direction.start_date, direction.end_date, exclude_id=direction.id)
+
+    session.flush()
+
+    batch = batch or begin_batch(session, "update_direction", expected_version=expected_version)
+    record_batch_operation(
+        session,
+        batch,
+        "update_direction",
+        {"direction_id": direction.id, "changes": payload},
+        {"action": "restore_direction", "direction_id": direction.id, "snapshot": snapshot},
+    )
+    batch.summary = {"direction_id": direction.id, "title": direction.title, "action": "update_direction"}
+    return direction, batch
+
+
+def delete_direction(
+    session: Session,
+    direction: Direction,
+    *,
+    expected_version: int | None = None,
+    batch: OperationBatch | None = None,
+) -> OperationBatch:
+    snapshot = serialize_direction(direction)
+    dir_id = direction.id
+    dir_title = direction.title
+    session.delete(direction)
+    session.flush()
+
+    batch = batch or begin_batch(session, "delete_direction", expected_version=expected_version)
+    record_batch_operation(
+        session,
+        batch,
+        "delete_direction",
+        {"direction_id": dir_id, "title": dir_title},
+        {"action": "restore_direction", "direction_id": dir_id, "snapshot": snapshot},
+    )
+    batch.summary = {"direction_id": dir_id, "title": dir_title, "action": "delete_direction"}
+    return batch
+
+
 def undo_batch(session: Session, batch: OperationBatch, *, expected_version: int | None = None) -> OperationBatch:
     if batch.undone_at:
         raise V2Error("BATCH_ALREADY_UNDONE", "operation.already_undone", {"batch_id": batch.id}, status_code=409)
@@ -1090,6 +1647,27 @@ def undo_batch(session: Session, batch: OperationBatch, *, expected_version: int
             edge = session.get(GraphEdge, inverse["edge_id"])
             if edge:
                 session.delete(edge)
+        elif action == "delete_direction":
+            direction = session.get(Direction, inverse["direction_id"])
+            if direction:
+                session.delete(direction)
+        elif action == "restore_direction":
+            direction = session.get(Direction, inverse["direction_id"])
+            if direction is None:
+                snapshot = dict(inverse["snapshot"])
+                direction = Direction(id=inverse["direction_id"])
+                for field, value in snapshot.items():
+                    if field in {"created_at", "updated_at"}:
+                        continue
+                    if hasattr(direction, field):
+                        setattr(direction, field, value)
+                session.add(direction)
+            else:
+                for field, value in inverse["snapshot"].items():
+                    if field in {"created_at", "updated_at"}:
+                        continue
+                    if hasattr(direction, field):
+                        setattr(direction, field, value)
         elif action == "delete_node":
             node_id = inverse["node_id"]
             session.execute(delete(GraphEdge).where((GraphEdge.source_id == node_id) | (GraphEdge.target_id == node_id)))
@@ -1121,9 +1699,30 @@ def undo_batch(session: Session, batch: OperationBatch, *, expected_version: int
                 if inverse.get("parent_id"):
                     session.add(GraphEdge(source_id=inverse["parent_id"], target_id=node.id, relation="contains", required=node.required, is_proposed=False, metadata_json={}))
                 node.parent_id = inverse.get("parent_id")
+                if "work_type" in inverse:
+                    node.work_type = inverse["work_type"]
+                    node.wbs_level = inverse.get("wbs_level", WBS_BY_WORK_TYPE.get(node.work_type))
         elif action == "restore_node":
             node = session.get(GraphNode, inverse["node_id"])
-            if node:
+            if node is None:
+                snapshot = dict(inverse["snapshot"])
+                node = GraphNode(id=inverse["node_id"])
+                for field, value in snapshot.items():
+                    if field in {"last_user_adjusted_at", "archived_at"}:
+                        value = _parse_optional_datetime(value)
+                    if hasattr(node, field):
+                        setattr(node, field, value)
+                session.add(node)
+                session.flush()
+                if node.parent_id:
+                    has_edge = session.scalar(select(GraphEdge).where(
+                        GraphEdge.source_id == node.parent_id,
+                        GraphEdge.target_id == node.id,
+                        GraphEdge.relation == "contains",
+                    ))
+                    if not has_edge:
+                        session.add(GraphEdge(source_id=node.parent_id, target_id=node.id, relation="contains", required=node.required, is_proposed=False, metadata_json={}))
+            else:
                 for field, value in inverse["snapshot"].items():
                     if field in {"last_user_adjusted_at", "archived_at"}:
                         value = _parse_optional_datetime(value)

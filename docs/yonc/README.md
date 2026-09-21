@@ -20,6 +20,10 @@ These documents convert the ChatGPT design conversation **“Handoff declined”
 | [02 Project WRITE and Graph History](02-project-write-and-history.md) | The complete contract for atomic graph writes, deduplication, history, revert, and restore. |
 | [03 Runtime Foundation v1.2](03-runtime-foundation-v1.2.md) | Additive migration, service boundaries, compatibility, and data-model requirements. |
 | [04 Review and roadmap](04-review-and-roadmap.md) | Code-backed findings, writer inventory, milestones, and release evidence. |
+| [05 Yonc Agent 设计与补齐清单（中文）](05-yonc-agent-design.zh-CN.md) | 2026-09-20 confirmed product decisions, separate UI/Hermes conversations, decomposition contracts, and implementation gaps. |
+| [06 Hermes 实施与直接部署计划（中文）](06-hermes-implementation-plan.zh-CN.md) | Ordered implementation packages across Yonc and UuMA, authorization, deploy tooling, rollback, and real Hermes acceptance gates. |
+
+Document 05 records a later design discussion and a static review of the local working tree on 2026-09-20. Its explicitly confirmed product decisions supersede conflicting earlier product assumptions; proposed technical details and outstanding implementation work remain labeled separately.
 
 ## Governing contract
 

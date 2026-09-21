@@ -1452,33 +1452,25 @@ Recommended desktop layout:
 
 ---
 
-# 43. Timeline Left Card Pool
+# 43. Timeline Left Card Pool (Module Pool)
 
 The left panel contains schedulable units.
 
-Recommended default:
+### Strict Assignment Rule: No Tasks in Timeline
+- **Tasks (L4 Actions) cannot be assigned or scheduled in the Timeline.**
+- Timeline scheduling is strictly for **L1–L3 modules/jobs** (L1 Goals, L2 Deliverables, L3 Work Packages).
+- The Module Pool exclusively lists L1–L3 modules. L4 Actions/tasks are execution-level units managed in Canvas, Focus sessions, and execution views, and are never assigned on the timeline.
+- The UI contains no filter row for tasks vs jobs; tasks are completely excluded from timeline scheduling and pool drag-and-drop.
 
-- WBS L2 modules
-- WBS L3 work packages
+A card shows:
+- Color indicator
+- Module title (compact single-line block)
+- Level badge (L1, L2, or L3) aligned at the right end
 
-Avoid showing every Atomic Action by default.
-
-A card may show:
-
-```text
-Methodology
-Est. effort: 12h
-Forecast span: 4–7 days
-Deadline: 30 Sep
-Tags: Design / Focus
-```
-
-Button/interaction:
-
-- Drag to timeline
-- Click to inspect
-- Toggle descendants
-- Filter
+Interactions:
+- Drag module to calendar date
+- Click to inspect range/dates
+- Expandable search icon to filter modules by title
 
 ---
 

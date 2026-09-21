@@ -33,6 +33,7 @@ export interface GraphNode {
   planned_end: string | null;
   deadline: string | null;
   placement_source: string | null;
+  notion_block_id?: string | null;
   resource_count: number;
   progress: { completed: number; total: number; ratio: number; weight_minutes: number; completed_weight_minutes: number };
   health: Array<{ code: string; [key: string]: unknown }>;
@@ -128,6 +129,8 @@ export interface ProposalNode {
   done_when: string;
   estimated_effort_minutes: number;
   required: boolean;
+  tags?: Record<string, unknown>;
+  status?: Status;
 }
 
 export interface SplitAnnotation {
@@ -162,3 +165,77 @@ export interface SplitSession {
     warnings: unknown[];
   };
 }
+
+export interface NotionAnnotations {
+  bold?: boolean;
+  italic?: boolean;
+  strikethrough?: boolean;
+  underline?: boolean;
+  code?: boolean;
+  color?: string;
+}
+
+export interface NotionRichTextSpan {
+  type: string;
+  text?: { content: string; link?: { url: string } | null };
+  annotations?: NotionAnnotations;
+  plain_text?: string;
+  href?: string | null;
+}
+
+export interface NotionTaskItem {
+  id: string;
+  notion_block_id: string;
+  title: string;
+  original_notion_title?: string;
+  context_heading?: string;
+  parent_id: string | null;
+  depth: number;
+  wbs_level: number | null;
+  type: string;
+  notion_type: string;
+  notion_rich_text: NotionRichTextSpan[];
+  checked: boolean | null;
+  tags: Record<string, unknown>;
+  status: string;
+  description?: string;
+  theme_display_label?: string;
+  timeliner_priority?: string;
+  timeliner_rank?: number;
+}
+
+export interface Direction {
+  id: string;
+  title: string;
+  notes: string;
+  color: string;
+  start_date: string;
+  end_date: string;
+  offset_x: number;
+  lane_index: number;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+export interface DirectionCreatePayload {
+  title: string;
+  notes?: string;
+  color?: string;
+  start_date: string;
+  end_date: string;
+  offset_x?: number;
+  lane_index?: number;
+  expected_graph_version?: number;
+}
+
+export interface DirectionUpdatePayload {
+  title?: string;
+  notes?: string;
+  color?: string;
+  start_date?: string;
+  end_date?: string;
+  offset_x?: number;
+  lane_index?: number;
+  expected_graph_version?: number;
+}
+

@@ -270,3 +270,19 @@ class ProposalVersion(Base):
     actionability_results: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     warnings: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+
+
+class Direction(Base):
+    __tablename__ = "directions"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    notes: Mapped[str] = mapped_column(Text, default="", nullable=False)
+    color: Mapped[str] = mapped_column(String(32), default="#3b82f6", nullable=False)
+    start_date: Mapped[str] = mapped_column(String(10), nullable=False, index=True)
+    end_date: Mapped[str] = mapped_column(String(10), nullable=False, index=True)
+    offset_x: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    lane_index: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+

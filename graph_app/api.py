@@ -95,6 +95,12 @@ def create_app(database_path: str | Path | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         ensure_v2_schema(engine)
+        try:
+            from graph_app.frontend_builder import build_frontend, start_frontend_watcher
+            build_frontend(force=False)
+            start_frontend_watcher()
+        except Exception:
+            pass
         yield
         engine.dispose()
 
@@ -329,11 +335,21 @@ def create_app(database_path: str | Path | None = None) -> FastAPI:
 
     @app.get("/", include_in_schema=False)
     def index():
+        try:
+            from graph_app.frontend_builder import build_frontend
+            build_frontend(force=False)
+        except Exception:
+            pass
         return FileResponse(static_v2_dir / "index.html" if (static_v2_dir / "index.html").exists() else static_dir / "index.html")
 
     @app.get("/v2", include_in_schema=False)
     @app.get("/v2/", include_in_schema=False)
     def v2_index():
+        try:
+            from graph_app.frontend_builder import build_frontend
+            build_frontend(force=False)
+        except Exception:
+            pass
         return FileResponse(static_v2_dir / "index.html")
 
     @app.get("/legacy", include_in_schema=False)

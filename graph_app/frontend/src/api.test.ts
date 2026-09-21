@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, calculateRangeDuration, calculateRangeEnd, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, isUnclassifiedConstellation, isUnclassifiedNode, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, themeInfoForNode, tidyConstellationPositions, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
 import type { GraphNode, YoncConfig } from "./types";
 
 describe("Simplified Chinese interaction messages", () => {
@@ -55,6 +55,81 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(timelinePoolMatches(nodes, "solar", "all").map((node) => node.id)).toEqual(["package", "goal", "artifact", "task"]);
     expect(timelinePoolMatches(nodes, "solar", "jobs").map((node) => node.id)).toEqual(["package", "goal"]);
     expect(timelinePoolMatches(nodes, "solar inverter", "tasks").map((node) => node.id)).toEqual(["task"]);
+  });
+
+  it("excludes tasks (ACTION / L4) from timeline module pool", () => {
+    const nodes = [
+      { id: "l1-goal", title: "Launch Product", work_type: "GOAL", planned_start: null, wbs_level: 1 },
+      { id: "l2-deliv", title: "Core Engine", work_type: "DELIVERABLE", planned_start: null, wbs_level: 2 },
+      { id: "l3-pkg", title: "API Module", work_type: "WORK_PACKAGE", planned_start: null, wbs_level: 3 },
+      { id: "l4-task", title: "Write Tests", work_type: "ACTION", planned_start: null, wbs_level: 4 },
+    ] as GraphNode[];
+    const schedulable = nodes.filter(
+      (node) => node.work_type !== "ACTION" && (node.wbs_level === null || node.wbs_level <= 3)
+    );
+    const pool = timelinePoolMatches(schedulable, "", "jobs");
+    expect(pool.map((n) => n.id)).toEqual(["l3-pkg", "l2-deliv", "l1-goal"]);
+    expect(pool.some((n) => n.id === "l4-task")).toBe(false);
+  });
+
+  it("sorts tasks in Unscheduled modules by task theme according to config priority", () => {
+    const config: YoncConfig = {
+      themes: [
+        { name: "PhD", color: "#ef4444", sub_themes: ["Research", "Writing"] },
+        { name: "Career", color: "#3b82f6", sub_themes: ["Job Search"] },
+        { name: "Health", color: "#10b981", sub_themes: [] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const nodes = [
+      { id: "health-task", title: "Morning Run", work_type: "ACTION", planned_start: null, tags: { "Task Theme": "Health" }, parent_id: null, wbs_level: 4 },
+      { id: "career-pkg", title: "Resume Prep", work_type: "WORK_PACKAGE", planned_start: null, tags: { "Task Theme": "Job Search" }, parent_id: null, wbs_level: 2 },
+      { id: "phd-task", title: "Paper Draft", work_type: "ACTION", planned_start: null, tags: { "Task Theme": "Writing" }, parent_id: null, wbs_level: 4 },
+      { id: "phd-goal", title: "Thesis Plan", work_type: "GOAL", planned_start: null, tags: { "Task Theme": "PhD" }, parent_id: null, wbs_level: 1 },
+      { id: "unthemed-task", title: "Buy Groceries", work_type: "ACTION", planned_start: null, tags: {}, parent_id: null, wbs_level: 4 },
+    ] as GraphNode[];
+
+    const result = timelinePoolMatches(nodes, "", "all", config);
+    expect(result.map((n) => n.id)).toEqual([
+      "phd-goal",
+      "phd-task",
+      "career-pkg",
+      "health-task",
+      "unthemed-task",
+    ]);
+  });
+
+  it("sorts tasks by inheriting ancestor task theme in Unscheduled modules", () => {
+    const config: YoncConfig = {
+      themes: [
+        { name: "PhD", color: "#ef4444", sub_themes: [] },
+        { name: "Career", color: "#3b82f6", sub_themes: [] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const parentGoal = { id: "goal-phd", title: "PhD Project", work_type: "GOAL", planned_start: "2026-10-01", tags: { "Task Theme": "PhD" }, parent_id: null, wbs_level: 1 } as GraphNode;
+    const childAction = { id: "task-phd-child", title: "Experiment Setup", work_type: "ACTION", planned_start: null, tags: {}, parent_id: "goal-phd", wbs_level: 4 } as GraphNode;
+    const careerAction = { id: "task-career", title: "Interview", work_type: "ACTION", planned_start: null, tags: { "Task Theme": "Career" }, parent_id: null, wbs_level: 4 } as GraphNode;
+
+    const allNodesMap = new Map([
+      ["goal-phd", parentGoal],
+      ["task-phd-child", childAction],
+      ["task-career", careerAction],
+    ]);
+
+    const unscheduledCandidates = [careerAction, childAction];
+    const result = timelinePoolMatches(unscheduledCandidates, "", "all", config, allNodesMap);
+    expect(result.map((n) => n.id)).toEqual(["task-phd-child", "task-career"]);
   });
 
   it("keeps the same Canvas world point directly below the mouse while zooming", () => {
@@ -124,7 +199,7 @@ describe("Capacity Grid drag allocation preview", () => {
 
   it("closes the description inspector before opening a split session", () => {
     const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
-    expect(app).toMatch(/const openSplit = async \(node: GraphNode\) => \{\s*setSelectedIds\(\[\]\);\s*try \{ setSplit\(await api\.startSplit\(node\.id\)\)/);
+    expect(app).toMatch(/const openSplit = useCallback\(\(node: GraphNode\) => \{\s*setSelectedIds\(\[\]\);\s*setSplitTargetNodeId\(node\.id\);\s*setView\("split"\);/);
   });
 
   it("keeps useful past and future time around today without crushing distant months", () => {
@@ -419,6 +494,7 @@ describe("Canvas card title hierarchy", () => {
     expect(nodeCardHeight(meta)).toBe(79);
     expect(nodeCardHeight(signals)).toBe(81);
     expect(nodeCardHeight({ ...empty, planned_start: "2026-08-31", resource_count: 2 })).toBe(94);
+    expect(nodeCardHeight({ ...empty, wbs_level: 4 })).toBe(52);
     const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
     const card = app.slice(app.indexOf("function NodeCard"), app.indexOf("function logarithmicDateOffset"));
     expect(card).not.toContain(': "No date"');
@@ -468,6 +544,179 @@ describe("Canvas card title hierarchy", () => {
     expect(styles).toContain(".node-mode-text");
     expect(styles).toContain(".node-mode-text.ring-passed");
     expect(styles).toContain(".node-task-emoji");
+  });
+
+  it("extracts task theme name and color from settings and styles theme capsule pill before WBS", () => {
+    const mockConfig: YoncConfig = {
+      themes: [
+        { name: "PhDSettle✒", color: "#38bdf8", sub_themes: ["Research", "Thesis"] },
+        { name: "鍛造Lab", color: "#a855f7", sub_themes: ["Dev"] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const directNode = { id: "n1", parent_id: null, tags: { "Task Theme with colour": "PhDSettle✒ Research | Review" } };
+    expect(themeInfoForNode(directNode, mockConfig)).toEqual({ name: "PhDSettle✒", color: "#38bdf8" });
+
+    const parentNode = { id: "p1", parent_id: null, tags: { "Task Theme with colour": "鍛造Lab Dev" } };
+    const childNode = { id: "c1", parent_id: "p1", tags: {} };
+    const nodesById = new Map([["p1", parentNode], ["c1", childNode]]);
+    expect(themeInfoForNode(childNode, mockConfig, nodesById)).toEqual({ name: "鍛造Lab", color: "#a855f7" });
+
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(app).toContain("node-theme-pill");
+    expect(styles).toContain(".node-theme-pill");
+    expect(styles).toContain(".node-card[data-wbs-level=\"4\"] .node-theme-pill");
+  });
+
+  it("supports draggable theme rows with handle and step buttons in Settings", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(app).toContain("theme-drag-handle");
+    expect(app).toContain("drag-grip");
+    expect(app).toContain("theme-step-buttons");
+    expect(app).toContain("moveTheme");
+    expect(styles).toContain(".theme-row");
+    expect(styles).toContain(".theme-row.dragging");
+    expect(styles).toContain(".theme-row.drag-over");
+    expect(styles).toContain(".theme-drag-handle");
+  });
+
+  it("arranges unscheduled tasks grouped by theme with first 3 themes in columns near Today and subsequent themes in a 2D grid", () => {
+    const mockConfig: YoncConfig = {
+      themes: [
+        { name: "Theme1_PhD", color: "red", sub_themes: [] },
+        { name: "Theme2_Lab", color: "purple", sub_themes: [] },
+        { name: "Theme3_Week", color: "blue", sub_themes: [] },
+        { name: "Theme4_Side", color: "green", sub_themes: [] },
+        { name: "Theme5_Self", color: "yellow", sub_themes: [] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const nodes = [
+      { id: "t1-a", parent_id: null, wbs_level: 2, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "t1-b", parent_id: null, wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "t2-a", parent_id: null, wbs_level: 2, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme2_Lab" } },
+      { id: "t3-a", parent_id: null, wbs_level: 2, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme3_Week" } },
+      { id: "t4-a", parent_id: null, wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme4_Side" } },
+      { id: "t4-b", parent_id: null, wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme4_Side" } },
+      { id: "t5-a", parent_id: null, wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme5_Self" } },
+    ];
+    const seed = Object.fromEntries(nodes.map((n) => [n.id, { x: 500, y: 500 }]));
+    const result = arrangeCanvasFamilies(nodes, seed, {}, 1000, 48, mockConfig);
+
+    // Theme 1, 2, 3 should all be stacked in a single vertical column (竖列) starting at todayX + 120 = 1120
+    expect(result["t1-a"].x).toBe(1120);
+    expect(result["t1-b"].x).toBe(1120);
+    expect(result["t1-b"].y).toBeGreaterThan(result["t1-a"].y); // column vertical stack
+
+    // Theme 2 should be in the same vertical column beneath Theme 1
+    expect(result["t2-a"].x).toBe(1120);
+    expect(result["t2-a"].y).toBeGreaterThan(result["t1-b"].y);
+
+    // Theme 3 should be in the same vertical column beneath Theme 2
+    expect(result["t3-a"].x).toBe(1120);
+    expect(result["t3-a"].y).toBeGreaterThan(result["t2-a"].y);
+
+    // Theme 4 & 5 (subsequent themes) should be in the right corner area
+    expect(result["t4-a"].x).toBeGreaterThanOrEqual(1000 + 1200);
+    expect(result["t4-b"].x).toBeGreaterThan(result["t4-a"].x); // 2D grid row
+    expect(result["t5-a"].x).toBeGreaterThan(result["t3-a"].x);
+  });
+
+  it("preserves relative angles, orientation, and directions within an L1 constellation while tidying overlaps", () => {
+    // Construct an L1 family where L1 is at (500, 500),
+    // L2 is placed above L1 (500, 300) -> angle -90 deg,
+    // L3 is placed to the left of L1 (250, 500) -> angle 180 deg.
+    const constellationNodes = [
+      { id: "root-l1", parent_id: null, wbs_level: 1, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "child-l2-top", parent_id: "root-l1", wbs_level: 2, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "child-l3-left", parent_id: "root-l1", wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+    ];
+    const seed = {
+      "root-l1": { x: 500, y: 500 },
+      "child-l2-top": { x: 500, y: 300 },
+      "child-l3-left": { x: 250, y: 500 },
+    };
+
+    const tidied = tidyConstellationPositions(constellationNodes, seed, {});
+    // L2 should remain above L1 (smaller Y)
+    expect(tidied.positions["child-l2-top"].y).toBeLessThan(tidied.positions["root-l1"].y);
+    // L3 should remain to the left of L1 (smaller X)
+    expect(tidied.positions["child-l3-left"].x).toBeLessThan(tidied.positions["root-l1"].x);
+
+    // Now verify within arrangeCanvasFamilies
+    const mockConfig: YoncConfig = {
+      themes: [{ name: "Theme1_PhD", color: "red", sub_themes: [] }],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+    const arranged = arrangeCanvasFamilies(constellationNodes, seed, {}, 1000, 48, mockConfig);
+    expect(arranged["child-l2-top"].y).toBeLessThan(arranged["root-l1"].y);
+    expect(arranged["child-l3-left"].x).toBeLessThan(arranged["root-l1"].x);
+  });
+
+  it("preserves viewport zoom, percentage, and scroll position after Auto Arrange instead of reverting to fit", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toContain("preserveViewportAfterArrange");
+    expect(app).toContain("autoArrangeAll = (shouldFit = false)");
+    expect(app).toContain("canvasRef.current.scrollTo({ left: snap.left, top: snap.top })");
+  });
+
+  it("arranges UNCLASSIFIED group tasks starting from bottom centre", () => {
+    const mockConfig: YoncConfig = {
+      themes: [
+        { name: "Theme1_PhD", color: "red", sub_themes: [] },
+        { name: "Theme2_Lab", color: "blue", sub_themes: [] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const nodes = [
+      // Theme 1 structured task (WBS 2)
+      { id: "t1-a", parent_id: null, wbs_level: 2, work_type: "DELIVERABLE", planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      // UNCLASSIFIED tasks
+      { id: "unclass-1", parent_id: null, wbs_level: null, work_type: "UNCLASSIFIED", planned_start: null, deadline: null, tags: {} },
+      { id: "unclass-2", parent_id: null, wbs_level: null, work_type: "UNCLASSIFIED", planned_start: null, deadline: null, tags: {} },
+    ];
+    const seed = Object.fromEntries(nodes.map((n) => [n.id, { x: 500, y: 500 }]));
+    const result = arrangeCanvasFamilies(nodes, seed, {}, 1000, 48, mockConfig);
+
+    // Theme 1 task should be near todayX (1000 + 120 = 1120) with Y at top (82)
+    expect(result["t1-a"].x).toBe(1120);
+    expect(result["t1-a"].y).toBe(82);
+
+    // UNCLASSIFIED tasks should be arranged at Bottom Centre:
+    // Y should start at bottom (e.g. >= 700)
+    expect(result["unclass-1"].y).toBeGreaterThanOrEqual(700);
+    expect(result["unclass-2"].y).toBeGreaterThanOrEqual(700);
+
+    // X should be centered around the primary area (near todayX / primaryCenterX)
+    expect(result["unclass-1"].x).toBeGreaterThanOrEqual(1000);
+    expect(result["unclass-2"].x).toBeGreaterThan(result["unclass-1"].x);
+
+    // Helper checks
+    expect(isUnclassifiedNode(nodes[1])).toBe(true);
+    expect(isUnclassifiedNode(nodes[0])).toBe(false);
+    expect(isUnclassifiedConstellation({ members: [nodes[1], nodes[2]] })).toBe(true);
+    expect(isUnclassifiedConstellation({ members: [nodes[0]] })).toBe(false);
   });
 });
 
@@ -525,4 +774,153 @@ describe("Inspector health warnings", () => {
     expect(styles).toContain(".inline-edit-field");
     expect(styles).toContain("scroll-behavior: smooth");
   });
+
+  it("calculates range end from start and duration", () => {
+    expect(calculateRangeEnd("2026-09-17", 3)).toBe("2026-09-19");
+    expect(calculateRangeEnd("2026-09-17", 1)).toBe("2026-09-17");
+  });
+
+  it("calculates duration from start and end dates", () => {
+    expect(calculateRangeDuration("2026-09-17", "2026-09-19")).toBe(3);
+    expect(calculateRangeDuration("2026-09-17", "2026-09-17")).toBe(1);
+    expect(calculateRangeDuration("2026-09-19", "2026-09-17")).toBe(1);
+  });
+
+  it("renders range triplet inputs and remove from timeline button", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(app).toContain("range-triplet-group");
+    expect(app).toContain("duration-field");
+    expect(app).toContain("btn-remove-timeline");
+    expect(app).toContain("Remove from Timeline");
+    expect(styles).toContain(".range-triplet-group");
+    expect(styles).toContain(".btn-remove-timeline");
+  });
+
+  it("supports Mark Cancel with mandatory reason comment, cascade warning, and red-grey cross styling", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    const apiFile = readFileSync(new URL("./api.ts", import.meta.url), "utf8");
+
+    // api.transition supports cascade
+    expect(apiFile).toContain("cascade = true");
+
+    // Inspector buttons
+    expect(app).toContain("Mark Cancel");
+    expect(app).toContain("btn-mark-cancel");
+    expect(app).toContain("Undo Cancel");
+
+    // Mandatory reason comment input & cascade warning in App.tsx
+    expect(app).toContain("cancelReasonInputRef");
+    expect(app).toContain("cancel-reason-input");
+    expect(app).toContain("cancel-confirm-box");
+    expect(app).toContain("cancel-cascade-warning");
+    expect(app).toContain("status-cancelled-info");
+    expect(app).toContain("cancelled-reason-tag");
+    expect(app).toContain("请输入取消原因（必填）");
+
+    // NodeCard cancelled visual styling in styles.css
+    expect(styles).toContain(".node-card.status-cancelled");
+    expect(styles).toContain(".node-card.status-cancelled .node-state::before");
+    expect(styles).toContain("content: \"✕\"");
+    expect(styles).toContain(".node-card.status-cancelled::after");
+    // Cross overlay contains red-grey diagonal lines and crosshatch
+    expect(styles).toContain("%23ef4444"); // Red line in SVG
+    expect(styles).toContain("%2394a3b8"); // Slate grey line in SVG
+    expect(styles).toContain("repeating-linear-gradient(45deg");
+    expect(styles).toContain("repeating-linear-gradient(-45deg");
+    // Crown only belongs to status-done, not status-cancelled
+    expect(styles).not.toContain(".node-card.status-cancelled::after {\n  content: \"\";\n  position: absolute;\n  top: -8px");
+
+    // Inspector styles
+    expect(styles).toContain(".btn-mark-cancel");
+    expect(styles).toContain(".cancel-confirm-box");
+    expect(styles).toContain(".cancel-reason-input");
+    expect(styles).toContain(".cancel-cascade-warning");
+    expect(styles).toContain(".cancelled-reason-tag");
+    expect(styles).toContain(".btn-sm.danger");
+  });
 });
+
+describe("Notion Toggle List View (v2-LineV2)", () => {
+  it("integrates List view into sidebar right after Canvas and before Timeline", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toContain('type MainView = "canvas" | "list" | "timeline" | "split";');
+    expect(app).toContain('<button className={view === "list" ? "active" : ""} onClick={() => setView("list")} aria-label="List"><span>☰</span><small>List</small></button>');
+    expect(app).toContain('<ListView graph={graph}');
+    // NodeInspector floating sidebar is restricted to Canvas only, not appearing on List view
+    expect(app).toContain('{view === "canvas" && selected && <NodeInspector');
+  });
+
+  it("exposes notionTasklist in api client and imports NotionTaskItem", () => {
+    const apiFile = readFileSync(new URL("./api.ts", import.meta.url), "utf8");
+    expect(apiFile).toContain('notionTasklist: () => request<NotionTaskItem[]>("/api/v2/tasklist-state")');
+  });
+
+  it("includes comprehensive Notion and sliding search styling in styles.css", () => {
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(styles).toContain(".notion-list-view");
+    expect(styles).toContain(".notion-compact-header");
+    expect(styles).toContain(".notion-sliding-search");
+    expect(styles).toContain(".notion-row");
+    expect(styles).toContain(".notion-toggle-btn");
+    expect(styles).toContain(".notion-checkbox");
+    expect(styles).toContain(".notion-indent-line");
+    expect(styles).toContain(".notion-drag-handle");
+    expect(styles).toContain(".level-title-1");
+    expect(styles).toContain(".notion-inline-editor");
+    expect(styles).toContain(".tag-options-popover");
+    expect(styles).toContain(".notion-badge-theme");
+    expect(styles).toContain(".notion-badge-tasktype");
+    expect(styles).toContain(".notion-badge-mode");
+    expect(styles).toContain(".search-mark");
+  });
+});
+
+describe("Direction (Phase Annotation Layer)", () => {
+  it("exposes direction CRUD endpoints in api client", () => {
+    const apiFile = readFileSync(new URL("./api.ts", import.meta.url), "utf8");
+    expect(apiFile).toContain('directions: () => request<Direction[]>("/api/v2/directions")');
+    expect(apiFile).toContain('createDirection: (payload: DirectionCreatePayload)');
+    expect(apiFile).toContain('updateDirection: (directionId: string, payload: DirectionUpdatePayload)');
+    expect(apiFile).toContain('deleteDirection: (directionId: string');
+  });
+
+  it("integrates Direction sub-mode into Timeline toolbar and App state", () => {
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toContain('type TimelineMode = "forecast" | "capacity" | "directions";');
+    expect(app).toContain('const [directions, setDirections] = useState<Direction[]>([]);');
+    expect(app).toContain('<button className={mode === "directions" ? "active" : ""} onClick={() => onMode("directions")}>Direction List</button>');
+    expect(app).toContain('directions={directions}');
+    expect(app).toContain('className="direction-lanes-strip"');
+    expect(app).toContain('className="direction-capsule"');
+    expect(app).toContain('className="direction-bridge"');
+    expect(app).toContain('FloatingDirectionTag');
+  });
+
+  it("places the [+ 新建 Direction] button at the bottom below the last item in DirectionListView", () => {
+    const listFile = readFileSync(new URL("./DirectionListView.tsx", import.meta.url), "utf8");
+    expect(listFile).toContain("btn-add-direction-bottom");
+    expect(listFile).toContain("direction-list-footer");
+    // Ensure footer with add button appears after mapped months
+    const monthsIndex = listFile.indexOf("monthKeys.map");
+    const footerIndex = listFile.indexOf("direction-list-footer");
+    expect(monthsIndex).toBeGreaterThan(-1);
+    expect(footerIndex).toBeGreaterThan(monthsIndex);
+  });
+
+  it("defines comprehensive styles for capsules, bridges, tags, and bottom button in styles.css", () => {
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    expect(styles).toContain(".direction-drag-selected");
+    expect(styles).toContain(".direction-capsule");
+    expect(styles).toContain(".direction-bridge");
+    expect(styles).toContain(".direction-lanes-strip");
+    expect(styles).toContain(".floating-direction-tag");
+    expect(styles).toContain(".direction-pointer-arrow");
+    expect(styles).toContain(".direction-draft-modal");
+    expect(styles).toContain(".direction-list-view");
+    expect(styles).toContain(".btn-add-direction-bottom");
+  });
+});
+
+

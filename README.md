@@ -44,6 +44,11 @@ pnpm test
 pnpm build
 ```
 
+### Timeline Scheduling Rules
+- **Modules only (L1–L3)**: Timeline scheduling is strictly for Goals (L1), Deliverables (L2), and Work Packages (L3).
+- **No task assignment**: Tasks (L4 Actions) cannot be scheduled or assigned in the Timeline; they are execution-level units managed in Canvas and focus sessions.
+- **Module Pool**: Features compact single-line module blocks with L1/L2/L3 badges and an expandable search bar.
+
 ## 这是什么？ (What is this?)
 
 YoncAgent 基于 Python，整合了 DSPy 与 Gemini 多模型能力，旨在辅助前额叶功能。它将抽象宏大的目标强制“降维”拆解为可执行的物理动作，帮助你摆脱面对模糊任务时的卡壳状态。

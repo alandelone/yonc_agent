@@ -109,6 +109,14 @@ Review states are `UNREVIEWED`, `ACCEPTABLE`, `PARTIAL`, `NEEDS_REWORK`, and `RE
 
 Initial workers remain Brainstormer, Scholar, Forge-Lab-Bot, and Wisdom-Oldman. Worker integration follows the History and Project WRITE milestones.
 
+## Timeline Assignment Contract
+
+**Implemented / Enforced.** Timeline scheduling is strictly reserved for L1–L3 modules/jobs (L1 Goals, L2 Deliverables, L3 Work Packages).
+
+- **Tasks (L4 Actions) cannot be assigned or scheduled in the Timeline.**
+- Tasks are execution-level units managed in Canvas, Focus sessions, and execution views. They are strictly excluded from the Timeline Module Pool and cannot be dragged or dropped onto calendar dates.
+- The Timeline Module Pool presents only schedulable L1–L3 units in a compact single-line layout with level badges (L1, L2, L3) and an expandable search bar, omitting lower-level task filter rows.
+
 ## Deferred surfaces
 
 **Deferred.** Heavy Daily Runtime tables, policy learning, vector memory, autonomous strategic delegation, mobile/今日 redesign, and Notion’s bidirectional editing rules remain outside Runtime Foundation v1.2.

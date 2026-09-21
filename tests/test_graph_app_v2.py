@@ -294,6 +294,18 @@ def test_schedule_constraints_auto_span_overlap_and_view_state(tmp_path):
         persisted = client.get(f"/api/v2/view-state/canvas?scope_node_id={goal['id']}&client_key=test").json()
         assert persisted["vertical_layout"] == {task["id"]: 240}
 
+        # Test remove from timeline (unschedule by sending null dates)
+        unscheduled = client.put(f"/api/v2/nodes/{task['id']}/schedule", json={
+            "planned_start": None, "planned_end": None
+        })
+        assert unscheduled.status_code == 200, unscheduled.text
+        assert unscheduled.json()["planned_start"] is None
+        assert unscheduled.json()["planned_end"] is None
+        node_after = client.get("/api/v2/graph").json()["nodes"]
+        task_in_graph = next(n for n in node_after if n["id"] == task["id"])
+        assert task_in_graph["planned_start"] is None
+        assert task_in_graph["planned_end"] is None
+
 
 def test_iso_week_pace_counts_each_current_done_transition_once(tmp_path):
     engine = create_engine(f"sqlite:///{(tmp_path / 'pace.sqlite3').as_posix()}")
@@ -407,3 +419,343 @@ def test_real_551_node_backup_migrates_without_legacy_field_loss(tmp_path):
     assert after_edges == before_edges
     assert mapped == {"ACTION": 300, "DELIVERABLE": 31, "GOAL": 14, "UNCLASSIFIED": 85, "WORK_PACKAGE": 121}
     assert typed_resources == 2
+
+
+def test_split_sessions_list_and_mode_type_propagation(tmp_path):
+    app = create_app(tmp_path / "split-tags.sqlite3")
+    with TestClient(app) as client:
+        parent = client.post("/api/v2/nodes", json={
+            "title": "API Gateway Core",
+            "node_kind": "WORK",
+            "work_type": "DELIVERABLE",
+            "tags": {"Modes": "💻Focus", "Task Type": "💻 Coding"},
+        }).json()["node"]
+
+        started = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": parent["id"],
+            "message": "Gateway Router; JWT Middleware",
+        }).json()
+        assert started["state"] == "PENDING_USER_REVIEW"
+        proposal = started["proposal"]
+        assert len(proposal["nodes"]) >= 2
+        for node in proposal["nodes"]:
+            assert node["tags"].get("Modes") == "💻Focus"
+            assert node["tags"].get("Task Type") == "💻 Coding"
+
+        listed = client.get("/api/v2/split-sessions").json()
+        assert len(listed) == 1
+        assert listed[0]["id"] == started["id"]
+
+        nodes = list(proposal["nodes"])
+        nodes[0]["tags"]["Task Type"] = "⚙️ Architecture"
+        updated = client.put(f"/api/v2/split-sessions/{started['id']}/proposal", json={"nodes": nodes}).json()
+        assert updated["proposal"]["nodes"][0]["tags"]["Task Type"] == "⚙️ Architecture"
+
+        graph_version = client.get("/api/v2/health").json()["graph_version"]
+        commit_res = client.post(f"/api/v2/split-sessions/{started['id']}/commit", json={
+            "expected_graph_version": graph_version,
+            "proposal_version": started["current_proposal_version"],
+        })
+        assert commit_res.status_code == 200
+
+        graph_nodes = client.get("/api/v2/graph").json()["nodes"]
+        child_arch = next(n for n in graph_nodes if n["id"] != parent["id"] and n["tags"].get("Task Type") == "⚙️ Architecture")
+        assert child_arch["tags"]["Modes"] == "💻Focus"
+
+
+def test_split_session_seeds_existing_children_and_supports_modify_add_delete(tmp_path):
+    with make_client(tmp_path) as client:
+        # 1. Create parent deliverable
+        parent = client.post("/api/v2/nodes", json={
+            "expected_graph_version": 1,
+            "title": "笔记计算Deadline",
+            "node_kind": "WORK",
+            "work_type": "DELIVERABLE",
+            "tags": {"Modes": ["💻Focus"], "Task Type": ["💻 Coding"]},
+        }).json()["node"]
+
+        # 2. Create two existing child action tasks
+        c1 = client.post("/api/v2/nodes", json={
+            "expected_graph_version": 2,
+            "parent_id": parent["id"],
+            "title": "list all task in draft",
+            "node_kind": "WORK",
+            "work_type": "ACTION",
+            "start_cue": "Input ready",
+            "done_when": "Done: Listed all draft tasks.",
+            "estimated_effort_minutes": 30,
+            "tags": {"Modes": ["💻Focus"], "Task Type": ["💻 Coding"]},
+        }).json()["node"]
+
+        c2 = client.post("/api/v2/nodes", json={
+            "expected_graph_version": 3,
+            "parent_id": parent["id"],
+            "title": "配置 Task",
+            "node_kind": "WORK",
+            "work_type": "ACTION",
+            "start_cue": "Config ready",
+            "done_when": "Done: Tasks configured.",
+            "estimated_effort_minutes": 45,
+            "tags": {"Modes": ["💻Focus"], "Task Type": ["💻 Coding"]},
+        }).json()["node"]
+
+        # 3. Start split session with no user message -> should seed existing children
+        started = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": parent["id"],
+        }).json()
+        assert started["state"] == "PENDING_USER_REVIEW"
+        proposal = started["proposal"]
+        assert proposal is not None
+        assert len(proposal["nodes"]) == 2
+        temp_ids = [n["temporary_id"] for n in proposal["nodes"]]
+        assert c1["id"] in temp_ids
+        assert c2["id"] in temp_ids
+
+        # 4. Modify existing child 1, delete existing child 2, add new child 3
+        mod_nodes = [
+            {
+                "temporary_id": c1["id"],
+                "title": "list all task in draft (UPDATED)",
+                "work_type": "ACTION",
+                "start_cue": "Input ready",
+                "done_when": "Done: Listed all draft tasks updated.",
+                "estimated_effort_minutes": 50,
+                "required": True,
+                "tags": {"Modes": ["💻Focus"], "Task Type": ["💻 Coding"]},
+            },
+            {
+                "temporary_id": "temp-new-child-3",
+                "title": "实现 Deadline 计算 (NEW)",
+                "work_type": "ACTION",
+                "start_cue": "Code ready",
+                "done_when": "Done: Calculated deadline.",
+                "estimated_effort_minutes": 60,
+                "required": True,
+                "tags": {"Modes": ["💻Focus"], "Task Type": ["💻 Coding"]},
+            },
+        ]
+
+        upd = client.put(f"/api/v2/split-sessions/{started['id']}/proposal", json={"nodes": mod_nodes}).json()
+        assert len(upd["proposal"]["nodes"]) == 2
+
+        # 5. Commit split
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        commit_res = client.post(f"/api/v2/split-sessions/{started['id']}/commit", json={
+            "expected_graph_version": gv,
+            "proposal_version": upd["proposal"]["version"],
+        })
+        assert commit_res.status_code == 200, commit_res.text
+        commit_data = commit_res.json()
+        batch_id = commit_data["operation_batch"]["id"]
+
+        # 6. Verify in graph
+        graph_nodes = client.get("/api/v2/graph").json()["nodes"]
+        # c1 updated
+        c1_after = next(n for n in graph_nodes if n["id"] == c1["id"])
+        assert c1_after["title"] == "list all task in draft (UPDATED)"
+        assert c1_after["estimated_effort_minutes"] == 50
+        # c2 deleted
+        assert not any(n["id"] == c2["id"] for n in graph_nodes)
+        # new node created under parent
+        new_node = next(n for n in graph_nodes if n["title"] == "实现 Deadline 计算 (NEW)")
+        assert new_node["parent_id"] == parent["id"]
+
+        # 7. Test undo batch
+        undo_res = client.post(f"/api/v2/operation-batches/{batch_id}/undo", json={
+            "expected_graph_version": commit_data["graph_version"],
+        })
+        assert undo_res.status_code == 200, undo_res.text
+
+        # Verify undo: c2 restored, c1 reverted, new node deleted
+        graph_nodes_undone = client.get("/api/v2/graph").json()["nodes"]
+        assert any(n["id"] == c2["id"] for n in graph_nodes_undone)
+        c1_reverted = next(n for n in graph_nodes_undone if n["id"] == c1["id"])
+        assert c1_reverted["title"] == "list all task in draft"
+        assert not any(n["title"] == "实现 Deadline 计算 (NEW)" for n in graph_nodes_undone)
+
+
+def test_split_auto_leveling_and_reparent_wbs(tmp_path):
+    with make_client(tmp_path) as client:
+        # Create L1 Goal
+        goal = create_node(client, "L1 Master Project", work_type="GOAL")
+        assert goal["wbs_level"] == 1
+
+        # 1. Split L1 -> children should be DELIVERABLE (L2)
+        split_l1 = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": goal["id"],
+            "message": "Module Alpha; Module Beta",
+        }).json()
+        assert split_l1["state"] == "PENDING_USER_REVIEW"
+        nodes_l1 = split_l1["proposal"]["nodes"]
+        assert len(nodes_l1) == 2
+        assert all(n["work_type"] == "DELIVERABLE" for n in nodes_l1)
+
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        commit_l1 = client.post(f"/api/v2/split-sessions/{split_l1['id']}/commit", json={
+            "expected_graph_version": gv,
+            "proposal_version": split_l1["current_proposal_version"],
+        }).json()
+        assert "operation_batch" in commit_l1
+
+        graph_after_l1 = client.get("/api/v2/graph").json()["nodes"]
+        mod_alpha = next(n for n in graph_after_l1 if n["title"] == "Module Alpha")
+        assert mod_alpha["work_type"] == "DELIVERABLE"
+        assert mod_alpha["wbs_level"] == 2
+        assert mod_alpha["parent_id"] == goal["id"]
+
+        # 2. Split L2 Deliverable -> children should be WORK_PACKAGE (L3)
+        split_l2 = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": mod_alpha["id"],
+            "message": "Package 1; Package 2",
+        }).json()
+        nodes_l2 = split_l2["proposal"]["nodes"]
+        assert len(nodes_l2) == 2
+        assert all(n["work_type"] == "WORK_PACKAGE" for n in nodes_l2)
+
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        client.post(f"/api/v2/split-sessions/{split_l2['id']}/commit", json={
+            "expected_graph_version": gv,
+            "proposal_version": split_l2["current_proposal_version"],
+        })
+        graph_after_l2 = client.get("/api/v2/graph").json()["nodes"]
+        pkg1 = next(n for n in graph_after_l2 if n["title"] == "Package 1")
+        assert pkg1["work_type"] == "WORK_PACKAGE"
+        assert pkg1["wbs_level"] == 3
+
+        # 3. Split L3 Work Package -> children should be ACTION (L4)
+        split_l3 = client.post("/api/v2/split-sessions", json={
+            "parent_node_id": pkg1["id"],
+            "message": "Action A; Action B",
+        }).json()
+        nodes_l3 = split_l3["proposal"]["nodes"]
+        assert all(n["work_type"] == "ACTION" for n in nodes_l3)
+
+        # 4. Test Reparent & Auto-leveling for unclassified node
+        unclass = create_node(client, "Inbox Idea", work_type="UNCLASSIFIED")
+        assert unclass["work_type"] == "UNCLASSIFIED"
+        assert unclass["wbs_level"] is None
+        assert unclass["parent_id"] is None
+
+        # Reparent to L1 Goal -> becomes L2 DELIVERABLE
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        rep_to_l1 = client.post(f"/api/v2/nodes/{unclass['id']}/reparent", json={
+            "parent_id": goal["id"],
+            "expected_graph_version": gv,
+        }).json()
+        assert rep_to_l1["node"]["work_type"] == "DELIVERABLE"
+        assert rep_to_l1["node"]["wbs_level"] == 2
+        assert rep_to_l1["node"]["parent_id"] == goal["id"]
+        batch_id = rep_to_l1["operation_batch_id"]
+
+        # Undo reparent -> restores UNCLASSIFIED
+        undo_res = client.post(f"/api/v2/operation-batches/{batch_id}/undo", json={
+            "expected_graph_version": rep_to_l1["graph_version"],
+        })
+        assert undo_res.status_code == 200
+        unclass_restored = client.get("/api/v2/graph").json()["nodes"]
+        restored_node = next(n for n in unclass_restored if n["id"] == unclass["id"])
+        assert restored_node["work_type"] == "UNCLASSIFIED"
+        assert restored_node["wbs_level"] is None
+        assert restored_node["parent_id"] is None
+
+        # Reparent to L2 Deliverable -> becomes L3 WORK_PACKAGE
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        rep_to_l2 = client.post(f"/api/v2/nodes/{unclass['id']}/reparent", json={
+            "parent_id": mod_alpha["id"],
+            "expected_graph_version": gv,
+        }).json()
+        assert rep_to_l2["node"]["work_type"] == "WORK_PACKAGE"
+        assert rep_to_l2["node"]["wbs_level"] == 3
+
+        # Set as L1 Top Project directly
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        rep_to_top = client.post(f"/api/v2/nodes/{unclass['id']}/reparent", json={
+            "parent_id": None,
+            "work_type": "GOAL",
+            "expected_graph_version": gv,
+        }).json()
+        assert rep_to_top["node"]["work_type"] == "GOAL"
+        assert rep_to_top["node"]["wbs_level"] == 1
+        assert rep_to_top["node"]["parent_id"] is None
+
+
+def test_mark_cancel_cascade_and_undo(tmp_path):
+    app = create_app(tmp_path / "cancel-cascade.sqlite3")
+    with TestClient(app) as client:
+        # Create parent L1
+        parent = client.post("/api/v2/nodes", json={
+            "title": "Main Project",
+            "node_kind": "WORK",
+            "work_type": "GOAL",
+        }).json()["node"]
+
+        # Create child L2
+        child = client.post("/api/v2/nodes", json={
+            "title": "Sub Deliverable",
+            "node_kind": "WORK",
+            "work_type": "DELIVERABLE",
+            "parent_id": parent["id"],
+        }).json()["node"]
+
+        # 1. Attempt cancel without reason -> TERMINAL_REASON_REQUIRED
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        fail_res = client.post(f"/api/v2/nodes/{parent['id']}/transition", json={
+            "action": "cancel",
+            "reason": "",
+            "expected_graph_version": gv,
+        })
+        assert fail_res.status_code == 422
+        assert error_code(fail_res) == "TERMINAL_REASON_REQUIRED"
+
+        # 2. Cancel parent with reason -> cascades to child
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        cancel_res = client.post(f"/api/v2/nodes/{parent['id']}/transition", json={
+            "action": "cancel",
+            "reason": "Market shifted",
+            "expected_graph_version": gv,
+        })
+        assert cancel_res.status_code == 200
+        batch_id = cancel_res.json()["operation_batch_id"]
+
+        nodes = {n["id"]: n for n in client.get("/api/v2/graph").json()["nodes"]}
+        assert nodes[parent["id"]]["status"] == "CANCELLED"
+        assert nodes[parent["id"]]["stage"] == "CLOSED"
+        assert nodes[parent["id"]]["status_reason"] == "Market shifted"
+        assert nodes[child["id"]]["status"] == "CANCELLED"
+        assert nodes[child["id"]]["stage"] == "CLOSED"
+        assert nodes[child["id"]]["status_reason"] == "Market shifted"
+
+        # 3. Undo batch -> restores parent and child
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        undo_res = client.post(f"/api/v2/operation-batches/{batch_id}/undo", json={
+            "expected_graph_version": gv,
+        })
+        assert undo_res.status_code == 200
+
+        nodes = {n["id"]: n for n in client.get("/api/v2/graph").json()["nodes"]}
+        assert nodes[parent["id"]]["status"] == "TODO"
+        assert nodes[parent["id"]]["stage"] == "PLANNING"
+        assert nodes[parent["id"]]["status_reason"] is None
+        assert nodes[child["id"]]["status"] == "TODO"
+        assert nodes[child["id"]]["stage"] == "PLANNING"
+        assert nodes[child["id"]]["status_reason"] is None
+
+        # 4. Cancel again, then reopen parent -> cascades reopen to child
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        client.post(f"/api/v2/nodes/{parent['id']}/transition", json={
+            "action": "cancel",
+            "reason": "Cancelled again",
+            "expected_graph_version": gv,
+        })
+        gv = client.get("/api/v2/health").json()["graph_version"]
+        reopen_res = client.post(f"/api/v2/nodes/{parent['id']}/transition", json={
+            "action": "reopen",
+            "expected_graph_version": gv,
+        })
+        assert reopen_res.status_code == 200
+
+        nodes = {n["id"]: n for n in client.get("/api/v2/graph").json()["nodes"]}
+        assert nodes[parent["id"]]["status"] == "TODO"
+        assert nodes[child["id"]]["status"] == "TODO"
+
+

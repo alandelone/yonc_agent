@@ -3,7 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { ApiError, api } from "./api";
 import { ListView } from "./ListView";
 import { DirectionListView } from "./DirectionListView";
-import type { Direction, GraphEdge, GraphNode, GraphResponse, ProposalNode, SplitAnnotation, SplitSession, Status, TimelineCell, TimelineResponse, YoncConfig } from "./types";
+import type { Direction, GraphEdge, GraphNode, GraphResponse, ProposalNode, SplitAnnotation, SplitSession, Status, TimelineCell, TimelineResponse, YoncConfig, YoncThemeConfig } from "./types";
 
 type MainView = "canvas" | "list" | "timeline" | "split";
 type TimelineMode = "forecast" | "capacity" | "directions";
@@ -87,18 +87,26 @@ function shadeHexColor(hex: string, factor: number) {
   return `#${[channel(16), channel(8), channel(0)].map((item) => item.toString(16).padStart(2, "0")).join("")}`;
 }
 
-export type ThemeableNode = Pick<GraphNode, "id" | "parent_id"> & { tags?: Record<string, unknown> | null };
+export type ThemeableNode = Pick<GraphNode, "id" | "parent_id"> & {
+  title?: string;
+  tags?: Record<string, unknown> | null;
+  theme_display_label?: string | null;
+};
 
 export function themeInfoForNode(
   node: ThemeableNode,
   config?: YoncConfig | null,
   nodesById?: ReadonlyMap<string, ThemeableNode> | Map<string, ThemeableNode>
-): { name: string; color: string } | null {
+): { name: string; color: string; subtheme?: string } | null {
   if (!config?.themes?.length) return null;
+
+  // 1. Walk ancestors to resolve main theme
   let current: ThemeableNode | undefined = node;
-  const visited = new Set<string>();
-  while (current && !visited.has(current.id)) {
-    visited.add(current.id);
+  const visitedTheme = new Set<string>();
+  let matchedTheme: YoncThemeConfig | null = null;
+
+  while (current && !visitedTheme.has(current.id)) {
+    visitedTheme.add(current.id);
     const rawTag = current.tags?.["Task Theme with colour"] ?? current.tags?.["Task Theme"] ?? current.tags?.["Theme"] ?? current.tags?.["theme"];
     const tag = Array.isArray(rawTag) ? rawTag.join(" | ") : String(rawTag ?? "").trim();
     if (tag) {
@@ -109,12 +117,55 @@ export function themeInfoForNode(
         candidate.sub_themes.some((subTheme) => tag === subTheme || tag.includes(subTheme))
       ));
       if (theme) {
-        return { name: theme.name, color: theme.color };
+        matchedTheme = theme;
+        break;
       }
     }
     current = (current.parent_id && nodesById) ? nodesById.get(current.parent_id) : undefined;
   }
-  return null;
+
+  if (!matchedTheme) return null;
+
+  // 2. Walk from current node up through ancestors to resolve subtheme
+  let subthemeWalker: ThemeableNode | undefined = node;
+  const visitedSub = new Set<string>();
+  let matchedSubtheme: string | null = null;
+  const sortedSubthemes = [...matchedTheme.sub_themes].sort((a, b) => b.length - a.length);
+
+  while (subthemeWalker && !visitedSub.has(subthemeWalker.id)) {
+    visitedSub.add(subthemeWalker.id);
+    const tags = subthemeWalker.tags ?? {};
+
+    // Explicit subtheme tag / property
+    for (const key of ["theme_display_label", "Subtheme", "subtheme", "sub_theme", "Task Theme"]) {
+      const val = String((tags as Record<string, unknown>)[key] ?? (subthemeWalker as any)[key] ?? "").trim();
+      if (val && matchedTheme.sub_themes.includes(val)) {
+        matchedSubtheme = val;
+        break;
+      }
+    }
+    if (matchedSubtheme) break;
+
+    // Title matching against configured subthemes
+    const title = subthemeWalker.title ?? "";
+    if (title) {
+      for (const st of sortedSubthemes) {
+        if (st && title.includes(st)) {
+          matchedSubtheme = st;
+          break;
+        }
+      }
+      if (matchedSubtheme) break;
+    }
+
+    subthemeWalker = (subthemeWalker.parent_id && nodesById) ? nodesById.get(subthemeWalker.parent_id) : undefined;
+  }
+
+  return {
+    name: matchedTheme.name,
+    color: matchedTheme.color,
+    ...(matchedSubtheme ? { subtheme: matchedSubtheme } : {}),
+  };
 }
 
 export function configuredThemeColor(node: GraphNode, nodesById: ReadonlyMap<string, GraphNode>, config?: YoncConfig | null) {
@@ -374,15 +425,40 @@ export function tidyConstellationPositions(
   const root = members.find((n) => n.wbs_level === 1) ?? members.find((n) => !n.parent_id) ?? members[0];
   const anchorPos = seedPositions[root.id] ?? { x: 0, y: 0 };
 
+  // Detect whether existing seed positions are missing or collapsed into a deadlocked vertical column
+  const knownSeeds = members.map((n) => seedPositions[n.id]).filter(Boolean);
+  let isVerticallyDeadlocked = false;
+  if (members.length > 1) {
+    if (knownSeeds.length < members.length) {
+      isVerticallyDeadlocked = true;
+    } else {
+      const xs = knownSeeds.map((p) => p.x);
+      const ys = knownSeeds.map((p) => p.y);
+      const spanX = Math.max(...xs) - Math.min(...xs);
+      const spanY = Math.max(...ys) - Math.min(...ys);
+      const uniqueX = new Set(xs).size;
+      isVerticallyDeadlocked = uniqueX <= 1 || spanX < 120 || (spanY > 800 && spanY / Math.max(spanX, 1) > 1.8);
+    }
+  }
+
   // 1. Initial relative positions relative to anchor
   const positions: Record<string, Position> = {};
-  for (const node of members) {
-    const pos = seedPositions[node.id];
-    if (pos) {
-      positions[node.id] = { x: pos.x - anchorPos.x, y: pos.y - anchorPos.y };
-    } else {
-      const level = node.wbs_level ?? 3;
-      positions[node.id] = { x: (level - 1) * 120, y: (level - 1) * 60 };
+  if (isVerticallyDeadlocked) {
+    const wide = wideCanvasFamilyLayout(members, seedPositions, nodeHeights);
+    const rootPos = wide[root.id] ?? { x: 0, y: 0 };
+    for (const node of members) {
+      const w = wide[node.id] ?? rootPos;
+      positions[node.id] = { x: w.x - rootPos.x, y: w.y - rootPos.y };
+    }
+  } else {
+    for (const node of members) {
+      const pos = seedPositions[node.id];
+      if (pos) {
+        positions[node.id] = { x: pos.x - anchorPos.x, y: pos.y - anchorPos.y };
+      } else {
+        const level = node.wbs_level ?? 3;
+        positions[node.id] = { x: (level - 1) * 120, y: (level - 1) * 60 };
+      }
     }
   }
 
@@ -413,9 +489,11 @@ export function tidyConstellationPositions(
           let dx = centerBx - centerAx;
           let dy = centerBy - centerAy;
 
-          if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
-            dx = b.parent_id === a.id ? 20 : -20;
-            dy = b.parent_id === a.id ? 20 : -20;
+          if (Math.abs(dx) < 12) {
+            dx = b.parent_id === a.id || (i + j) % 2 === 0 ? 24 : -24;
+          }
+          if (Math.abs(dy) < 12) {
+            dy = b.parent_id === a.id || (i + j) % 2 === 0 ? 24 : -24;
           }
 
           const angle = Math.atan2(dy, dx);
@@ -661,25 +739,25 @@ export function arrangeCanvasFamilies(
     return orderA - orderB || nameA.localeCompare(nameB);
   });
 
-  const firstThreeThemeEntries: Array<[string, Constellation[]]> = [];
+  const firstTwoThemeEntries: Array<[string, Constellation[]]> = [];
   const subsequentThemeEntries: Array<[string, Constellation[]]> = [];
 
   for (const entry of sortedThemeEntries) {
     const [themeName] = entry;
     const order = themeOrder.has(themeName) ? themeOrder.get(themeName)! : 999999;
-    if (order < 3) {
-      firstThreeThemeEntries.push(entry);
+    if (order < 2) {
+      firstTwoThemeEntries.push(entry);
     } else {
       subsequentThemeEntries.push(entry);
     }
   }
 
-  // 3. Layout First 3 themes in a single neat vertical column (竖列) along the Today line
+  // 3. Layout Top 2 themes in a single neat vertical column (竖列) along the Today line
   const nearTodayStart = todayX + 120;
   let currentY = 82;
   let maxColWidth = 0;
 
-  for (const [, themeConstellations] of firstThreeThemeEntries) {
+  for (const [, themeConstellations] of firstTwoThemeEntries) {
     for (const c of themeConstellations) {
       for (const node of c.members) {
         const rel = c.tidy.positions[node.id];
@@ -695,10 +773,10 @@ export function arrangeCanvasFamilies(
     }
   }
 
-  const firstThreeMaxX = nearTodayStart + maxColWidth;
+  const firstTwoMaxX = nearTodayStart + maxColWidth;
 
-  // 4. Layout Subsequent themes (4, 5, 6, 7, 8...) in a 2D row-and-column grid in the far-right corner
-  const cornerStartX = Math.max(todayX + 1200, firstThreeMaxX + 120);
+  // 4. Layout Subsequent themes (3, 4, 5, 6, 7...) in a 2D row-and-column grid in the far-right corner
+  const cornerStartX = Math.max(todayX + 1200, firstTwoMaxX + 120);
   const maxGridWidth = 1400;
   let blockCursorX = cornerStartX;
   let blockCursorY = 82;
@@ -743,7 +821,7 @@ export function arrangeCanvasFamilies(
     const bottomCenterStartY = Math.max(primaryBottomY + 80, 700);
 
     const primaryAreaLeft = todayX;
-    const primaryAreaRight = Math.max(todayX + 600, firstThreeMaxX);
+    const primaryAreaRight = Math.max(todayX + 600, firstTwoMaxX);
     const primaryCenterX = Math.round((primaryAreaLeft + primaryAreaRight) / 2);
 
     const maxUnclassifiedRowWidth = 1100;
@@ -864,6 +942,96 @@ export function splitCardTitle(value: string) {
   const title = value.slice(0, separator.index).trim();
   const description = value.slice(separator.index + separator[0].length).trim();
   return title && description ? { title, description } : { title: value, description: null };
+}
+
+export interface ParsedModuleTitle {
+  subtheme: string | null;
+  cleanTitle: string;
+  description: string | null;
+}
+
+export function parseModulePoolTitle(
+  rawTitle: string,
+  rawDescription?: string | null,
+  config?: YoncConfig | null,
+  node?: ThemeableNode,
+  nodesById?: ReadonlyMap<string, ThemeableNode> | Map<string, ThemeableNode>
+): ParsedModuleTitle {
+  let cleanDesc = (rawDescription || "").trim() || null;
+  let working = (rawTitle || "").trim();
+
+  // 1. Separate description from title if not already provided
+  if (!cleanDesc) {
+    const separator = working.match(/\s+[:：]\s+/);
+    if (separator && separator.index != null) {
+      cleanDesc = working.slice(separator.index + separator[0].length).trim() || null;
+      working = working.slice(0, separator.index).trim();
+    }
+  }
+
+  // 2. Strip leading WBS emojis, brackets, effort tags
+  working = working
+    .replace(/^(?:[🏭🟧🔶🔸]|🤖💬🔜|\[.*?\]|\*[\d\.]+h\*|[\d*#]\uFE0F?\u20E3|\s+)+/gu, "")
+    .trim();
+
+  // 3. Resolve subtheme
+  let foundSubtheme: string | null = null;
+  const configSubthemes: string[] = [];
+  if (config?.themes?.length) {
+    for (const t of config.themes) {
+      if (t.sub_themes?.length) configSubthemes.push(...t.sub_themes);
+    }
+  }
+  const sortedSubs = [...new Set(configSubthemes)].sort((a, b) => b.length - a.length);
+
+  for (const s of sortedSubs) {
+    if (!s) continue;
+    const escaped = s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`^${escaped}(?:\\s+|$)`, "u");
+    if (re.test(working)) {
+      foundSubtheme = s;
+      working = working.replace(re, "").trim();
+      break;
+    }
+  }
+
+  // 4. Strip priority emojis, mode keywords & tags
+  working = working
+    .replace(/^(?:[💣🚨🧨⚡🔥💥💯✅🎯💻🤔👥🧩📋✍️🔬🔨🤘🏻]|💻Focus|🧘Jail|Handy🤘🏻|小Do📱|🧟Zombie|Read|Watch👁‍🗨|[\d*#]\uFE0F?\u20E3|\*[\d\.]+h\*|\s+)+/gu, "")
+    .trim();
+
+  // If subtheme was after priority emoji
+  if (!foundSubtheme) {
+    for (const s of sortedSubs) {
+      if (!s) continue;
+      const escaped = s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const re = new RegExp(`^${escaped}(?:\\s+|$)`, "u");
+      if (re.test(working)) {
+        foundSubtheme = s;
+        working = working.replace(re, "").trim();
+        break;
+      }
+    }
+  }
+
+  // 5. If still no subtheme found from title, check node / ancestor tags via themeInfoForNode
+  if (!foundSubtheme && node) {
+    const info = themeInfoForNode(node, config, nodesById);
+    if (info?.subtheme) {
+      foundSubtheme = info.subtheme;
+    }
+  }
+
+  // 6. Final cleanup of any leading punctuation, emojis or colons
+  working = working
+    .replace(/^(?:[💣🚨🧨⚡🔥💥💯✅🎯💻🤔👥🧩📋✍️🔬🔨🤘🏻]|[:：]|\s+)+/gu, "")
+    .trim();
+
+  return {
+    subtheme: foundSubtheme,
+    cleanTitle: working || rawTitle,
+    description: cleanDesc,
+  };
 }
 
 export function nodeCardInfo(node: Pick<GraphNode, "planned_start" | "deadline" | "estimated_effort_minutes" | "resource_count" | "health">) {
@@ -1050,9 +1218,9 @@ function NodeCard({ node, position, height, color, selected, yoncConfig, nodesBy
             <span
               className="node-theme-pill"
               style={{ "--theme-color": theme.color } as React.CSSProperties}
-              title={`Theme: ${theme.name}`}
+              title={theme.subtheme ? `Subtheme: ${theme.subtheme} (${theme.name})` : `Theme: ${theme.name}`}
             >
-              {theme.name}
+              {theme.subtheme || theme.name}
             </span>
           )}
           {taskEmojis.length > 0 && (
@@ -2876,6 +3044,50 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
   const [draftColor, setDraftColor] = useState("#38bdf8");
   const [isCreatingDraft, setIsCreatingDraft] = useState(false);
 
+  const [modulePoolWidth, setModulePoolWidth] = useState<number>(() => {
+    const saved = localStorage.getItem("yonc_module_pool_width");
+    const parsed = saved ? parseInt(saved, 10) : NaN;
+    return !isNaN(parsed) && parsed >= 180 && parsed <= 800 ? parsed : 276;
+  });
+  const timelineLayoutRef = useRef<HTMLDivElement>(null);
+  const isResizingRef = useRef(false);
+
+  const handleResizeMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isResizingRef.current = true;
+    document.body.classList.add("resizing-module-pool");
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      if (!isResizingRef.current || !timelineLayoutRef.current) return;
+      const layoutRect = timelineLayoutRef.current.getBoundingClientRect();
+      const rawWidth = moveEvent.clientX - layoutRect.left;
+      const maxAllowed = Math.min(800, Math.floor(layoutRect.width * 0.65));
+      const clampedWidth = Math.max(180, Math.min(maxAllowed, rawWidth));
+      setModulePoolWidth(clampedWidth);
+    };
+
+    const onMouseUp = (upEvent: MouseEvent) => {
+      if (!isResizingRef.current) return;
+      isResizingRef.current = false;
+      document.body.classList.remove("resizing-module-pool");
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+
+      if (timelineLayoutRef.current) {
+        const layoutRect = timelineLayoutRef.current.getBoundingClientRect();
+        const rawWidth = upEvent.clientX - layoutRect.left;
+        const maxAllowed = Math.min(800, Math.floor(layoutRect.width * 0.65));
+        const finalWidth = Math.max(180, Math.min(maxAllowed, rawWidth));
+        localStorage.setItem("yonc_module_pool_width", String(finalWidth));
+        setModulePoolWidth(finalWidth);
+      }
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+  }, []);
+
   const activeSelectionRange = useMemo(() => {
     if (!isSelectingDirection || !directionSelectStart || !directionSelectEnd) return null;
     const s = directionSelectStart <= directionSelectEnd ? directionSelectStart : directionSelectEnd;
@@ -3192,7 +3404,11 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
     }
   };
   return (
-    <div className="timeline-layout">
+    <div
+      ref={timelineLayoutRef}
+      className="timeline-layout"
+      style={{ gridTemplateColumns: `${modulePoolWidth}px minmax(0, 1fr)` }}
+    >
       <aside
         className={`module-pool ${isDragOverPool ? "accepting-drop" : ""}`}
         onDragOver={(event) => {
@@ -3230,6 +3446,11 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
           }
         }}
       >
+        <div
+          className="module-pool-resizer"
+          onMouseDown={handleResizeMouseDown}
+          title="Drag to resize Module Pool (width is remembered)"
+        />
         <div className="module-pool-head">
           <div className="module-pool-header-row">
             <div className="module-pool-title-wrap">
@@ -3290,20 +3511,44 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
         <div className="module-pool-list">
           {poolNodes.length ? poolNodes.map((node) => {
             const lvl = node.wbs_level ? Math.min(Math.max(node.wbs_level, 1), 3) : (node.work_type === "GOAL" ? 1 : node.work_type === "WORK_PACKAGE" ? 3 : 2);
+            const parsed = parseModulePoolTitle(node.title, node.description, yoncConfig, node, nodesByIdMap);
+            const nodeColor = nodeColors[node.id] ?? "#8b5cf6";
             return (
               <article
                 key={node.id}
-                className={`${draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging " : ""}${selectedId === node.id ? "selected" : ""}`}
+                className={`module-pool-card ${draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging " : ""}${selectedId === node.id ? "selected" : ""}${parsed.description ? " has-desc" : ""}`}
                 draggable
-                aria-label={`Drag ${node.title} to a date`}
+                aria-label={`Drag ${parsed.cleanTitle} to a date`}
                 onDragStart={(event) => beginModuleDrag(event, node.id)}
                 onDragEnd={clearModuleDrag}
                 onClick={() => choosePoolNode(node)}
-                title={node.title}
+                title={parsed.description ? `${parsed.cleanTitle} — ${parsed.description}` : parsed.cleanTitle}
               >
-                <i style={{ background: nodeColors[node.id] }} />
-                <b title={node.title}>{node.title}</b>
-                <span className={`split-tab-badge l${lvl}`}>L{lvl}</span>
+                <i style={{ background: nodeColor }} />
+                <div className="module-pool-card-content">
+                  <div className="module-pool-title-row">
+                    {parsed.subtheme && (
+                      <span
+                        className="module-subtheme-badge"
+                        style={{
+                          color: nodeColor,
+                          backgroundColor: `${nodeColor}22`,
+                          borderColor: `${nodeColor}44`,
+                        }}
+                        title={`Subtheme: ${parsed.subtheme}`}
+                      >
+                        {parsed.subtheme}
+                      </span>
+                    )}
+                    <b className="module-pool-clean-title" title={parsed.cleanTitle}>{parsed.cleanTitle}</b>
+                    <span className={`split-tab-badge l${lvl}`}>L{lvl}</span>
+                  </div>
+                  {parsed.description && (
+                    <div className="module-pool-desc" title={parsed.description}>
+                      {parsed.description}
+                    </div>
+                  )}
+                </div>
               </article>
             );
           }) : <p className="quiet">{normalizedSearch ? `No modules match “${normalizedSearch}”.` : "All modules have scheduled dates."}</p>}
@@ -3942,7 +4187,7 @@ function SplitWorkspace({
       if (b.title.toLowerCase().includes(q)) return true;
       if (b.description && b.description.toLowerCase().includes(q)) return true;
       const theme = themeInfoForNode(b, yoncConfig, nodesById);
-      if (theme && theme.name.toLowerCase().includes(q)) return true;
+      if (theme && (theme.name.toLowerCase().includes(q) || (theme.subtheme && theme.subtheme.toLowerCase().includes(q)))) return true;
       return false;
     });
   }, [candidateBlocks, activeTab?.searchQuery, yoncConfig, nodesById]);
@@ -4629,9 +4874,9 @@ function SplitWorkspace({
                               <span
                                 className="node-theme-pill"
                                 style={{ "--theme-color": candTheme.color } as React.CSSProperties}
-                                title={`Theme: ${candTheme.name}`}
+                                title={candTheme.subtheme ? `Subtheme: ${candTheme.subtheme} (${candTheme.name})` : `Theme: ${candTheme.name}`}
                               >
-                                {candTheme.name}
+                                {candTheme.subtheme || candTheme.name}
                               </span>
                             )}
                             <span className="split-dropdown-item-title" title={cand.title}>
@@ -4782,9 +5027,9 @@ function SplitWorkspace({
                     maxWidth: "180px",
                     borderRadius: "6px",
                   } as React.CSSProperties}
-                  title={`Theme: ${theme.name}`}
+                  title={theme.subtheme ? `Subtheme: ${theme.subtheme} (${theme.name})` : `Theme: ${theme.name}`}
                 >
-                  {theme.name}
+                  {theme.subtheme || theme.name}
                 </span>
               ) : null;
             })()}
@@ -5115,9 +5360,9 @@ function SplitWorkspace({
                             <span
                               className="node-theme-pill"
                               style={{ "--theme-color": candTheme.color } as React.CSSProperties}
-                              title={`Theme: ${candTheme.name}`}
+                              title={candTheme.subtheme ? `Subtheme: ${candTheme.subtheme} (${candTheme.name})` : `Theme: ${candTheme.name}`}
                             >
-                              {candTheme.name}
+                              {candTheme.subtheme || candTheme.name}
                             </span>
                           )}
                           <span className="split-guide-item-title" title={cand.title}>

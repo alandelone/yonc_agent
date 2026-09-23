@@ -51,11 +51,11 @@ pnpm build
 
 ## 这是什么？ (What is this?)
 
-YoncAgent 基于 Python，整合了 DSPy 与 Gemini 多模型能力，旨在辅助前额叶功能。它将抽象宏大的目标强制“降维”拆解为可执行的物理动作，帮助你摆脱面对模糊任务时的卡壳状态。
+YoncAgent 基于 Python，整合了 DSPy 与 Gemini 能力，旨在辅助前额叶功能。它将抽象宏大的目标强制“降维”拆解为可执行的物理动作，帮助你摆脱面对模糊任务时的卡壳状态。
 - **WBS 4 级任务分解**：精准将任务划分为 Deliverables → Work Packages → Activities → Atomic Actions。
 - **智能模式判定**：自动区分项目类任务（WBS 确定性分解）与探索类任务（OKR 愿景分解）。
 - **自动化同步引擎**：无缝拉取 Notion 页面内容，进行 Diff 比对防重复写入，并记录偏好习惯以供长期微调。
-- **多 Key 负载均衡**：内置 API Key 切换机制，突破单 Key 限流瓶颈。
+- **Gemini 能力**：通过 DSPy 直接调用 Gemini 执行任务分解与标签。
 
 ## 快速开始 (Quick Start)
 
@@ -75,15 +75,7 @@ pip install -r requirements.txt
 ```env
 NOTION_API_KEY=secret_xxx
 YONCTASK_CONFIG_PAGE_ID=page_id_xxx
-```
-
-**API 负载均衡配置**  
-在 `unlimited_llmapi/api_keys.json` 中添加你的 Gemini Keys：
-```json
-[
-  {"key": "YOUR_KEY_1", "model": "gemini-1.5-flash"},
-  {"key": "YOUR_KEY_2", "model": "gemini-1.5-flash"}
-]
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 **运行核心指令**  
@@ -104,7 +96,6 @@ python main.py push-sync  # 不调用 LLM，按规则修正后直接回写 Notio
 __pycache__/
 data/
 tests/
-unlimited_llmapi/
 README.md
 completion.py
 config.py
@@ -126,7 +117,6 @@ task_reader.py
 | `llm_pipeline.py` | **核心大脑**。定义 WBS 分类器与各层级精炼器，使用 DSPy 进行安全性约束。 |
 | `sync_engine.py` | 负责处理 Notion Block 的深度写入以及本地状态同步，包含防重复逻辑。 |
 | `config_reader.py` | 解析 Notion 配置页，支持 Task Theme、优先级的颜色与 Emoji 匹配。 |
-| `unlimited_llmapi/` | **基础设施层**。管理多模型 API Key 的轮询切换、报错重试与 Token 优化。 |
 | `state_manager.py` | 本地化 JSON 文件持久保存，确保同步过程中数据的原子性。 |
 
 ## 🎯 WBS 任务分解方法论

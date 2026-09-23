@@ -1,10 +1,13 @@
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
-    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$ProjectRoot = "",
     [Parameter(Mandatory = $true)][string]$ManifestPath
 )
 
 $ErrorActionPreference = "Stop"
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
+    $ProjectRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+}
 $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
 $manifest = Get-Content -LiteralPath (Resolve-Path -LiteralPath $ManifestPath) -Raw | ConvertFrom-Json
 $pidFile = Join-Path $root "data\runtime\yonc.pid"

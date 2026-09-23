@@ -137,15 +137,12 @@ LIVETODAY_PAGE_ID=33ae1eb5...                    # Dashboard page ID
 DAILYSTATE_DB_ID=347e1eb5...                     # DailyState database ID
 ```
 
-### 3. LLM API Keys
+### 3. LLM API Key
 
-Add Gemini keys to `unlimited_llmapi/api_keys.json`:
+Add a Gemini key to the root `.env` file:
 
-```json
-[
-  {"key": "YOUR_KEY_1", "model": "gemini-2.0-flash"},
-  {"key": "YOUR_KEY_2", "model": "gemini-2.0-flash"}
-]
+```env
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ---

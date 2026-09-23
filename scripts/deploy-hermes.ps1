@@ -1,9 +1,10 @@
 [CmdletBinding()]
 param(
-    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$ProjectRoot = "",
     [Parameter(Mandatory = $true)][string]$UumaRoot,
     [Parameter(Mandatory = $true)][string]$DatabasePath,
     [string]$PythonExe = "python",
+    [string]$UumaPythonExe = "",
     [string]$HermesExe = (Join-Path $env:LOCALAPPDATA "hermes\hermes-agent\venv\Scripts\hermes.exe"),
     [string]$UumaDataDir = (Join-Path $env:LOCALAPPDATA "UuMA"),
     [int]$Port = 8765,
@@ -13,10 +14,17 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
+    $ProjectRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+}
 $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
 $uuma = (Resolve-Path -LiteralPath $UumaRoot).Path
 $database = (Resolve-Path -LiteralPath $DatabasePath).Path
 $PythonExe = (Get-Command $PythonExe -ErrorAction Stop).Source
+if ([string]::IsNullOrWhiteSpace($UumaPythonExe)) {
+    $UumaPythonExe = Join-Path $uuma ".venv\Scripts\python.exe"
+}
+$UumaPythonExe = (Resolve-Path -LiteralPath $UumaPythonExe -ErrorAction Stop).Path
 $HermesExe = (Resolve-Path -LiteralPath $HermesExe -ErrorAction Stop).Path
 $profile = Join-Path $ProfilesRoot "yonc"
 $runtime = Join-Path $root "data\runtime"
@@ -34,6 +42,8 @@ foreach ($required in @(
 }
 & $PythonExe --version | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "Python is unavailable: $PythonExe" }
+& $UumaPythonExe --version | Out-Null
+if ($LASTEXITCODE -ne 0) { throw "UuMA Python is unavailable: $UumaPythonExe" }
 & $HermesExe --version | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "Hermes is unavailable: $HermesExe" }
 
@@ -49,7 +59,10 @@ function Backup-ManagedFile([string]$Path, [string]$Name) {
     }
 }
 function Set-DotEnvValue([string]$Path, [string]$Key, [string]$Value) {
-    $lines = if (Test-Path -LiteralPath $Path) { [Collections.Generic.List[string]](Get-Content -LiteralPath $Path) } else { [Collections.Generic.List[string]]::new() }
+    $lines = [Collections.Generic.List[string]]::new()
+    if (Test-Path -LiteralPath $Path) {
+        foreach ($line in Get-Content -LiteralPath $Path) { $lines.Add([string]$line) }
+    }
     $replacement = "$Key=$Value"
     $found = $false
     for ($index = 0; $index -lt $lines.Count; $index++) {
@@ -87,7 +100,8 @@ try {
 $tokenFile = Join-Path $runtime "hermes-agent-token"
 if (-not (Test-Path -LiteralPath $tokenFile)) {
     $bytes = New-Object byte[] 48
-    [Security.Cryptography.RandomNumberGenerator]::Fill($bytes)
+    $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+    try { $rng.GetBytes($bytes) } finally { $rng.Dispose() }
     [IO.File]::WriteAllText($tokenFile, [Convert]::ToBase64String($bytes))
 }
 $token = (Get-Content -LiteralPath $tokenFile -Raw).Trim()
@@ -99,7 +113,7 @@ try {
     $env:PYTHONPATH = Join-Path $uuma "src"
     $env:UUMA_DATA_DIR = $UumaDataDir
     $env:UUMA_HERMES_EXE = $HermesExe
-    & $PythonExe -m uuma.cli init
+    & $UumaPythonExe -m uuma.cli init
     if ($LASTEXITCODE -ne 0) { throw "UuMA identity/capability registration failed." }
 } finally {
     $env:PYTHONPATH = $oldPythonPath
@@ -134,9 +148,9 @@ foreach ($pluginName in @("uuma_audit", "uuma_control_guard")) {
 }
 
 if (-not (Test-Path -LiteralPath $configPath)) { throw "Hermes profile did not create $configPath" }
-& $PythonExe (Join-Path $uuma "scripts\configure-hermes-profile.py") `
+& $UumaPythonExe (Join-Path $uuma "scripts\configure-hermes-profile.py") `
     --config $configPath --role worker --agent-id yonc `
-    --python-exe $PythonExe --source-path (Join-Path $uuma "src") `
+    --python-exe $UumaPythonExe --source-path (Join-Path $uuma "src") `
     --data-dir $UumaDataDir --gemini-allowed-roots $root `
     --yonc-root $root --yonc-python $PythonExe --yonc-api-url "http://127.0.0.1:$Port"
 if ($LASTEXITCODE -ne 0) { throw "Failed to configure Hermes yonc profile." }

@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, calculateRangeDuration, calculateRangeEnd, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, isUnclassifiedConstellation, isUnclassifiedNode, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, themeInfoForNode, tidyConstellationPositions, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, calculateRangeDuration, calculateRangeEnd, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, isUnclassifiedConstellation, isUnclassifiedNode, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, parseModulePoolTitle, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, themeInfoForNode, tidyConstellationPositions, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import { nodeHasTimeline, parseNodeContent, resolveSubthemeInfo, treeHasTimeline } from "./ListView";
 import type { GraphNode, YoncConfig } from "./types";
 
 describe("Simplified Chinese interaction messages", () => {
@@ -501,6 +502,101 @@ describe("Canvas card title hierarchy", () => {
     expect(card).not.toContain("<span>✓</span>");
   });
 
+  describe("Module pool title cleaning and resizable sidebar", () => {
+    const testConfig: YoncConfig = {
+      themes: [
+        {
+          name: "PhDSettle✒",
+          color: "#dc2626",
+          sub_themes: ["Dev", "Research", "Thesis", "SolarMan"],
+        },
+        {
+          name: "小事业们",
+          color: "#ea580c",
+          sub_themes: ["素食堂🍱", "1粒工房"],
+        },
+        {
+          name: "Typhoon",
+          color: "#a16207",
+          sub_themes: ["Headache"],
+        },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    it("parses clean title, subtheme, and description from complex raw title", () => {
+      const raw = "🏭 Dev 💣Trade-Enabled NanoCentralised OGPV 交易原型 : ( design | BOM | dev |data collection)";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: "Dev",
+        cleanTitle: "Trade-Enabled NanoCentralised OGPV 交易原型",
+        description: "( design | BOM | dev |data collection)",
+      });
+    });
+
+    it("handles urgency emojis and separates descriptions", () => {
+      const raw = "🏭 Research 🧨Rs_SF_risk : risk-averse for OGPV system";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: "Research",
+        cleanTitle: "Rs_SF_risk",
+        description: "risk-averse for OGPV system",
+      });
+    });
+
+    it("extracts subtheme for Thesis and Deliverable WBS level", () => {
+      const raw = "🟧 Thesis Gap 综述 : 文献综述：识别学术 Gap";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: "Thesis",
+        cleanTitle: "Gap 综述",
+        description: "文献综述：识别学术 Gap",
+      });
+    });
+
+    it("cleans title without subtheme and retains description", () => {
+      const raw = "🔶 硬件 BOM 采购清单 : OGPV原型组装最终清单（组件、传感器、通信硬件）";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: null,
+        cleanTitle: "硬件 BOM 采购清单",
+        description: "OGPV原型组装最终清单（组件、传感器、通信硬件）",
+      });
+    });
+
+    it("cleans title when no description exists", () => {
+      const raw = "🏭 素食堂🍱 菜单开发";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: "素食堂🍱",
+        cleanTitle: "菜单开发",
+        description: null,
+      });
+    });
+
+    it("cleans effort and 100% completed emojis from title", () => {
+      const raw = "🔶 💯✅ *0.0h* 实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。";
+      const parsed = parseModulePoolTitle(raw, null, testConfig);
+      expect(parsed).toEqual({
+        subtheme: null,
+        cleanTitle: "实际 Deadline",
+        description: "详情见Paper：按日规划推算 8/31 完结。",
+      });
+    });
+
+    it("has CSS styles for the resizable module pool and subtheme badge", () => {
+      const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+      expect(styles).toContain(".module-pool-resizer");
+      expect(styles).toContain("col-resize");
+      expect(styles).toContain(".module-subtheme-badge");
+      expect(styles).toContain(".module-pool-desc");
+    });
+  });
+
   it("extracts task type emojis from settings and prepends them before WBS", () => {
     const mockConfig: YoncConfig = {
       themes: [],
@@ -574,6 +670,81 @@ describe("Canvas card title hierarchy", () => {
     expect(styles).toContain(".node-card[data-wbs-level=\"4\"] .node-theme-pill");
   });
 
+  it("resolves subtheme for node cards from title, tags, or ancestor inheritance and displays subtheme in node-theme-pill", () => {
+    const mockConfig: YoncConfig = {
+      themes: [
+        { name: "PhDSettle✒", color: "#dc2626", sub_themes: ["Research", "Review", "Thesis", "Dev"] },
+        { name: "鍛造Lab", color: "#9333ea", sub_themes: ["鍛造Maker", "DZsp_V1"] },
+        { name: "3rdWeek", color: "#2563eb", sub_themes: [] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    // 1. Direct title matching subtheme
+    const thesisRoot = {
+      id: "root-1",
+      title: "🏭 Thesis 🚨Phd RsPlan : Diversed Parallel Assisted Pushing",
+      parent_id: null,
+      tags: { "Task Theme with colour": "PhDSettle✒ Research | Review | Thesis | Dev" },
+    };
+    expect(themeInfoForNode(thesisRoot, mockConfig)).toEqual({
+      name: "PhDSettle✒",
+      color: "#dc2626",
+      subtheme: "Thesis",
+    });
+
+    // 2. Child node inherits subtheme from ancestor even when child title does not contain subtheme
+    const childL4 = {
+      id: "child-4",
+      title: "🔸 💻Focus 🗂️0️⃣list all task in draft",
+      parent_id: "root-1",
+      tags: {},
+    };
+    const nodesById = new Map([
+      ["root-1", thesisRoot],
+      ["child-4", childL4],
+    ]);
+    expect(themeInfoForNode(childL4, mockConfig, nodesById)).toEqual({
+      name: "PhDSettle✒",
+      color: "#dc2626",
+      subtheme: "Thesis",
+    });
+
+    // 3. Explicit tag matching subtheme (e.g. Task Theme or theme_display_label)
+    const taggedNode = {
+      id: "tag-1",
+      title: "Just a generic task",
+      parent_id: null,
+      tags: { "Task Theme": "DZsp_V1" },
+    };
+    expect(themeInfoForNode(taggedNode, mockConfig)).toEqual({
+      name: "鍛造Lab",
+      color: "#9333ea",
+      subtheme: "DZsp_V1",
+    });
+
+    // 4. Fallback to theme name when theme has no subthemes
+    const noSubNode = {
+      id: "week-1",
+      title: "Weekly sync meeting",
+      parent_id: null,
+      tags: { "Task Theme": "3rdWeek" },
+    };
+    expect(themeInfoForNode(noSubNode, mockConfig)).toEqual({
+      name: "3rdWeek",
+      color: "#2563eb",
+    });
+
+    // 5. Verify App.tsx renders subtheme in pill and uses subtheme in title
+    const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+    expect(app).toContain("theme.subtheme || theme.name");
+    expect(app).toContain("Subtheme: ${theme.subtheme}");
+  });
+
   it("supports draggable theme rows with handle and step buttons in Settings", () => {
     const app = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
     const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
@@ -615,7 +786,7 @@ describe("Canvas card title hierarchy", () => {
     const seed = Object.fromEntries(nodes.map((n) => [n.id, { x: 500, y: 500 }]));
     const result = arrangeCanvasFamilies(nodes, seed, {}, 1000, 48, mockConfig);
 
-    // Theme 1, 2, 3 should all be stacked in a single vertical column (竖列) starting at todayX + 120 = 1120
+    // Top 2 Themes (Theme 1 & 2) should be stacked in a single vertical column (竖列) starting at todayX + 120 = 1120
     expect(result["t1-a"].x).toBe(1120);
     expect(result["t1-b"].x).toBe(1120);
     expect(result["t1-b"].y).toBeGreaterThan(result["t1-a"].y); // column vertical stack
@@ -624,14 +795,11 @@ describe("Canvas card title hierarchy", () => {
     expect(result["t2-a"].x).toBe(1120);
     expect(result["t2-a"].y).toBeGreaterThan(result["t1-b"].y);
 
-    // Theme 3 should be in the same vertical column beneath Theme 2
-    expect(result["t3-a"].x).toBe(1120);
-    expect(result["t3-a"].y).toBeGreaterThan(result["t2-a"].y);
-
-    // Theme 4 & 5 (subsequent themes) should be in the right corner area
+    // Theme 3, 4 & 5 (subsequent themes) should be in the right corner area
+    expect(result["t3-a"].x).toBeGreaterThanOrEqual(1000 + 1200);
     expect(result["t4-a"].x).toBeGreaterThanOrEqual(1000 + 1200);
     expect(result["t4-b"].x).toBeGreaterThan(result["t4-a"].x); // 2D grid row
-    expect(result["t5-a"].x).toBeGreaterThan(result["t3-a"].x);
+    expect(result["t5-a"].x).toBeGreaterThan(result["t2-a"].x);
   });
 
   it("preserves relative angles, orientation, and directions within an L1 constellation while tidying overlaps", () => {
@@ -667,6 +835,28 @@ describe("Canvas card title hierarchy", () => {
     const arranged = arrangeCanvasFamilies(constellationNodes, seed, {}, 1000, 48, mockConfig);
     expect(arranged["child-l2-top"].y).toBeLessThan(arranged["root-l1"].y);
     expect(arranged["child-l3-left"].x).toBeLessThan(arranged["root-l1"].x);
+  });
+
+  it("breaks vertically collapsed or stacked constellations out into 2D layout without deadlock", () => {
+    const constellationNodes = [
+      { id: "root-l1", parent_id: null, wbs_level: 1, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "c1", parent_id: "root-l1", wbs_level: 2, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "c2", parent_id: "root-l1", wbs_level: 3, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+      { id: "c3", parent_id: "root-l1", wbs_level: 4, planned_start: null, deadline: null, tags: { "Task Theme with colour": "Theme1_PhD" } },
+    ];
+    // Seed where all nodes are deadlocked in a single vertical column (same X)
+    const deadlockedSeed = {
+      "root-l1": { x: 500, y: 100 },
+      c1: { x: 500, y: 200 },
+      c2: { x: 500, y: 300 },
+      c3: { x: 500, y: 400 },
+    };
+    const tidied = tidyConstellationPositions(constellationNodes, deadlockedSeed, {});
+    const xs = Object.values(tidied.positions).map((p) => p.x);
+    const spanX = Math.max(...xs) - Math.min(...xs);
+    // Must expand in 2D horizontally rather than staying locked at spanX = 0
+    expect(spanX).toBeGreaterThan(0);
+    expect(tidied.width).toBeGreaterThan(200);
   });
 
   it("preserves viewport zoom, percentage, and scroll position after Auto Arrange instead of reverting to fit", () => {
@@ -922,5 +1112,139 @@ describe("Direction (Phase Annotation Layer)", () => {
     expect(styles).toContain(".btn-add-direction-bottom");
   });
 });
+
+describe("ListView UI enhancements (v2-LineV2)", () => {
+  it("parses embedded 💯✅, effort, title, and description cleanly", () => {
+    const raw = "🟧 Thesis 💯✅ *0.0h* 实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。";
+    const parsed = parseNodeContent(raw, null);
+    expect(parsed.cleanTitle).toBe("🟧 Thesis");
+    expect(parsed.cleanDesc).toBe("实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。");
+    expect(parsed.isCompleted100).toBe(true);
+    expect(parsed.extractedEffort).toBe("0.0h");
+  });
+
+  it("resolves subtheme and theme color accurately", () => {
+    const fakeConfig: YoncConfig = {
+      themes: [
+        {
+          name: "PhDSettle✒",
+          sub_themes: ["Research", "Review", "Event", "SolarMan", "心法", "科研人", "Thesis", "Dev"],
+          color: "#dc2626",
+        },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: "2026-09-23T00:00:00",
+    };
+
+    const fakeNode: GraphNode = {
+      id: "node-1",
+      title: "🟧 Thesis 💯✅ *0.0h* 实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。",
+      node_kind: "WORK",
+      work_type: "DELIVERABLE",
+      stage: "PLANNING",
+      status: "TODO",
+      status_reason: null,
+      parent_id: null,
+      wbs_level: 2,
+      description: null,
+      start_cue: null,
+      inputs: [],
+      done_when: null,
+      required: true,
+      tags: { "Task Theme with colour": "PhDSettle✒ Research | Review | Event | SolarMan | 心法 | 科研人 | Thesis | Dev" },
+      estimated_effort_minutes: null,
+      estimate_source: null,
+      estimate_confidence: null,
+      planned_start: null,
+      planned_end: null,
+      deadline: null,
+      placement_source: null,
+      notion_block_id: null,
+      resource_count: 0,
+      archived: false,
+      created_at: "2026-09-23T00:00:00",
+      updated_at: "2026-09-23T00:00:00",
+      progress: { completed: 1, total: 1, ratio: 1.0, weight_minutes: 60, completed_weight_minutes: 60 },
+      health: [],
+      forecast: { node_id: "node-1", confidence: "high", remaining_effort_hours: 0, finish_range: { earliest: "2026-09-23", likely: "2026-09-23", latest: "2026-09-23" }, deadline: null, gap_days: null },
+      pressure: { score: 0, level: "low", factors: [] },
+    };
+
+    const info = resolveSubthemeInfo(fakeNode, fakeConfig);
+    expect(info).not.toBeNull();
+    expect(info?.subtheme).toBe("Thesis");
+    expect(info?.color).toBe("#dc2626");
+  });
+
+  it("includes row split button, moire effect, and 100% completion badge styles", () => {
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+    const listFile = readFileSync(new URL("./ListView.tsx", import.meta.url), "utf8");
+
+    // Moire effect
+    expect(styles).toContain(".notion-row.is-grayed-row");
+    expect(styles).toContain("repeating-linear-gradient(");
+
+    // Split button
+    expect(styles).toContain(".notion-row-split-btn");
+    expect(listFile).toContain("onOpenSplit(node)");
+    expect(listFile).toContain('className="notion-row-split-btn"');
+
+    // 100% completion badge
+    expect(styles).toContain(".notion-badge-done-100");
+    expect(listFile).toContain("notion-badge-done-100");
+    expect(listFile).toContain("💯✅");
+
+    // Click outside auto-save
+    expect(listFile).toContain("handlePointerDownOutside");
+    expect(listFile).toContain("saveEdit(currentNodeId)");
+  });
+
+  it("detects nodes with timeline via explicit dates, tags, or deadline text", () => {
+    expect(nodeHasTimeline({ deadline: "2026-08-31" } as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ planned_start: "2026-09-01" } as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ planned_end: "2026-09-10" } as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ tags: { timeliner_settle_date: "2026-08-31" } } as unknown as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ tags: { Deadline: "2026-08-31" } } as unknown as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ title: "Thesis 实际 Deadline : 详情见Paper" } as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ title: "8/31 完结" } as GraphNode)).toBe(true);
+    expect(nodeHasTimeline({ title: "Regular Task without time", description: "no deadline here" } as GraphNode)).toBe(false);
+  });
+
+  it("identifies entire trees with timeline if any descendant is scheduled", () => {
+    const scheduledLeaf = { node: { id: "c1", deadline: "2026-09-01" } as GraphNode, depth: 1, children: [] };
+    const unscheduledParent = { node: { id: "p1", deadline: null } as GraphNode, depth: 0, children: [scheduledLeaf] };
+    const unscheduledTree = { node: { id: "p2", deadline: null } as GraphNode, depth: 0, children: [] };
+
+    expect(treeHasTimeline(unscheduledParent)).toBe(true);
+    expect(treeHasTimeline(unscheduledTree)).toBe(false);
+  });
+
+  it("renders scheduled section, backlog section, and prominent divider line in ListView", () => {
+    const listFile = readFileSync(new URL("./ListView.tsx", import.meta.url), "utf8");
+    const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+
+    // Sections in ListView
+    expect(listFile).toContain("scheduled-section");
+    expect(listFile).toContain("unscheduled-section");
+    expect(listFile).toContain("notion-list-section-header scheduled-header");
+    expect(listFile).toContain("Scheduled · With Timeline");
+    expect(listFile).toContain("notion-list-section-divider");
+    expect(listFile).toContain("section-divider-line");
+    expect(listFile).toContain("section-divider-pill");
+    expect(listFile).toContain("Backlog · Without Timeline");
+
+    // Styles in styles.css
+    expect(styles).toContain(".notion-list-section-header");
+    expect(styles).toContain(".notion-list-section-header.scheduled-header");
+    expect(styles).toContain(".notion-list-section-divider");
+    expect(styles).toContain(".section-divider-line");
+    expect(styles).toContain(".section-divider-pill");
+    expect(styles).toContain("margin: 32px 0 22px 0;");
+  });
+});
+
 
 

@@ -139,12 +139,13 @@ def detect_focus_from_livetoday(
         rich_text = type_content.get("rich_text", [])
         text = parse_rich_text(rich_text).strip()
 
-        # 尝试解析 [N] 前缀
-        idx_match = re.match(r"^\[(\d+)\]\s*(.*)", text)
+        # 尝试解析 [N] 或 TN 前缀
+        idx_match = re.match(r"^(?:\[(\d+)\]|T(\d+))\s*(.*)", text)
 
         if idx_match:
-            task_num = int(idx_match.group(1))
-            task_title = idx_match.group(2).strip()
+            num_str = idx_match.group(1) or idx_match.group(2)
+            task_num = int(num_str)
+            task_title = idx_match.group(3).strip()
 
             # Pattern A: emoji 在任务标题末尾（inline）
             if FOCUS_EMOJI in task_title:

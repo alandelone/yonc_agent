@@ -57,39 +57,55 @@ def format_livetoday_title(
     title_str: str,
     theme: str,
     theme_color: str = "default",
-    remove_term: str = ""
+    remove_term: str = "",
+    parent_title: str = "",
+    mode_val: str = ""
 ) -> list:
     """
     Build Notion rich_text list for a LIVETODAY task row.
 
     Target output pattern:
-      **[N]**  **`theme`**  `mode_tag`  type_emoji  rest_of_primary : *description*
-
-    - counter    → bold
-    - theme      → bold + code + color  (e.g. 科研人 in red)
-    - mode_tag   → code only            (e.g. 💻Focus)
-    - type_emoji → plain                (e.g. ❓ 🔍)
-    - rest       → plain
-    - after ":"  → italic
+      **T{N}**  parent_title >> **clean_title** : *description*
     """
     rich_text: list = []
 
     # ── pre-process ──────────────────────────────────────────
-    # Strip existing [N] prefix
-    title_str = re.sub(r'^\[\d+\]\s*', '', title_str).strip()
+    # Strip existing [N] or T[N] prefix
+    title_str = re.sub(r'^(?:\[\d+\]|T\d+)\s*', '', title_str).strip()
     # Strip WBS-level emoji prefix (🔸, 🔶, …)
     title_str = _WBS_EMOJI_PREFIX.sub('', title_str).strip()
-    # Strip the remove_term (mode name in By-Modes, type emoji in By-Type)
+    
+    # Remove the remove_term
     if remove_term:
         title_str = title_str.replace(remove_term, '', 1)
-        title_str = re.sub(r'\s{2,}', ' ', title_str).strip()
+        
+    # Also remove mode_val if it exists in the title (to strip mode names in By Task Type)
+    if mode_val:
+        # Sometimes mode_val has emojis, let's just strip the alphabetical part or the whole thing
+        title_str = title_str.replace(mode_val, '')
+        # Also try stripping just the English word part if the mode has an emoji like 💻Focus
+        alpha_mode = re.sub(r'[^A-Za-z]', '', mode_val)
+        if alpha_mode:
+            title_str = title_str.replace(alpha_mode, '')
+        
+    # Remove all emojis from the title string
+    title_str = emoji_pattern.sub('', title_str)
+    title_str = re.sub(r'\s{2,}', ' ', title_str).strip()
 
     # ── [counter] ────────────────────────────────────────────
     rich_text.append({
         "type": "text",
-        "text": {"content": f"[{counter}] "},
+        "text": {"content": f"T{counter} "},
         "annotations": {"bold": True}
     })
+
+    # ── parent title ─────────────────────────────────────────
+    if parent_title:
+        rich_text.append({
+            "type": "text",
+            "text": {"content": f"{parent_title} >> "},
+            "annotations": {}  # plain text (black)
+        })
 
     # ── split primary : description ──────────────────────────
     if ":" in title_str:
@@ -98,45 +114,12 @@ def format_livetoday_title(
         primary_part = title_str
         desc_part = ""
 
-    # ── tokenise primary part ────────────────────────────────
-    words = primary_part.split()
-    consumed = 0  # how many words consumed by prefix tags
-
-    for i, word in enumerate(words):
-        # Theme word  →  bold + code + color
-        if theme and word == theme:
-            annots = {"bold": True, "code": True}
-            if theme_color and theme_color != "default":
-                annots["color"] = theme_color
-            rich_text.append({
-                "type": "text",
-                "text": {"content": f"{word} "},
-                "annotations": annots
-            })
-            consumed = i + 1
-            continue
-
-        # Emoji-containing token (💻Focus, ❓, 🔍, …)
-        if emoji_pattern.search(word):
-            has_alpha = bool(re.search(r'[A-Za-z]', word))
-            rich_text.append({
-                "type": "text",
-                "text": {"content": f"{word} "},
-                "annotations": {"code": has_alpha}   # 💻Focus → code; ❓ → plain
-            })
-            consumed = i + 1
-            continue
-
-        # First non-tag word → stop consuming prefix
-        break
-
-    # ── remaining primary text ───────────────────────────────
-    if consumed < len(words):
-        rest = " ".join(words[consumed:])
+    # ── primary text ───────────────────────────────
+    if primary_part:
         rich_text.append({
             "type": "text",
-            "text": {"content": rest},
-            "annotations": {}
+            "text": {"content": primary_part.strip()},
+            "annotations": {"bold": True}  # bold and black
         })
 
     # ── description (after ":") ──────────────────────────────
@@ -144,7 +127,7 @@ def format_livetoday_title(
         rich_text.append({
             "type": "text",
             "text": {"content": f" : {desc_part.strip()}"},
-            "annotations": {"italic": True}
+            "annotations": {"italic": True, "color": "gray"}
         })
 
     # trim trailing whitespace on last block
@@ -298,8 +281,7 @@ def _subgroup_by_theme(
                 "type": "numbered_list_item",
                 "numbered_list_item": {
                     "rich_text": [{
-                        "type": "text",
-                        "text": {"content": f"[{counter}] {title}{focus_suffix}"}
+                        "text": {"content": f"T{counter} {title}{focus_suffix}"}
                     }]
                 }
             })
@@ -326,8 +308,9 @@ def build_dashboard_blocks(
     返回 (blocks, task_index_map)。
     """
     blocks = []
-    counter = 1  # 全局任务编号
     task_index_map: Dict[int, str] = {}  # counter → 原始 block_id
+    task_by_id: Dict[str, Dict[str, Any]] = {t.get("id"): t for t in flat_state}
+    MAX_TASKS_PER_SECTION = 10
 
     from livetoday_sync import get_dash_checked_today
     todays_checked = get_dash_checked_today()
@@ -346,6 +329,16 @@ def build_dashboard_blocks(
             # Keep if it isn't done globally, or if it WAS checked on dashboard today!
             if not is_done_globally or task_bid in todays_checked:
                 l4_assigned_state.append(t)
+
+    # Pre-assign global counters to all candidate tasks to ensure stable T# references
+    # even if tasks are sliced out of the top 20 in some sections.
+    global_counter = 1
+    for t in l4_assigned_state:
+        task_bid = t.get("notion_block_id") or t.get("id", "")
+        task_index_map[global_counter] = task_bid
+        global_counter += 1
+
+    bid_to_counter = {bid: cnt for cnt, bid in task_index_map.items()}
 
     by_mode_blocks = []
     
@@ -381,6 +374,11 @@ def build_dashboard_blocks(
 
     for mode_name in sorted_mode_keys:
         tasks = mode_groups[mode_name]
+        if not tasks:
+            continue
+            
+        tasks = tasks[:MAX_TASKS_PER_SECTION]
+        
         by_mode_blocks.append({
             "object": "block",
             "type": "paragraph",
@@ -396,16 +394,29 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
+            
+            # Extract clean parent title
+            parent_id = task.get("parent_id")
+            parent_title = ""
+            if parent_id and parent_id in task_by_id:
+                raw_parent = task_by_id[parent_id].get("original_notion_title", task_by_id[parent_id].get("title", ""))
+                # Remove description part from parent title
+                if ":" in raw_parent:
+                    raw_parent = raw_parent.split(":")[0]
+                parent_title = _WBS_EMOJI_PREFIX.sub('', raw_parent).strip()
+                parent_title = emoji_pattern.sub('', parent_title).strip()
+                
             theme, theme_color = _resolve_theme_from_task(task, structured_cfg)
             task_bid = task.get("notion_block_id") or task.get("id", "")
-            task_index_map[counter] = task_bid
+            
+            display_counter = bid_to_counter.get(task_bid, -1)
 
             is_task_checked = task_bid in todays_checked
             task_node = {
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(counter, title, theme, theme_color=theme_color, remove_term=mode_name),
+                    "rich_text": format_livetoday_title(display_counter, title, theme, theme_color=theme_color, remove_term=mode_name, parent_title=parent_title, mode_val=mode_name),
                     "checked": is_task_checked
                 }
             }
@@ -428,11 +439,6 @@ def build_dashboard_blocks(
                 }]
                 
             by_mode_blocks.append(task_node)
-                
-            counter += 1
-
-    # Create a reverse mapping so By Task Type uses the same numbers
-    bid_to_counter = {bid: cnt for cnt, bid in task_index_map.items()}
 
     # ── Section 2: By Task Type ──────────────────────────
     by_type_blocks = []
@@ -443,6 +449,11 @@ def build_dashboard_blocks(
 
     for type_name in sorted_type_keys:
         tasks = type_groups[type_name]
+        if not tasks:
+            continue
+            
+        tasks = tasks[:MAX_TASKS_PER_SECTION]
+        
         by_type_blocks.append({
             "object": "block",
             "type": "paragraph",
@@ -458,18 +469,31 @@ def build_dashboard_blocks(
         
         for task in tasks:
             title = task.get("original_notion_title", task.get("title", ""))
+            
+            # Extract clean parent title
+            parent_id = task.get("parent_id")
+            parent_title = ""
+            if parent_id and parent_id in task_by_id:
+                raw_parent = task_by_id[parent_id].get("original_notion_title", task_by_id[parent_id].get("title", ""))
+                # Remove description part from parent title
+                if ":" in raw_parent:
+                    raw_parent = raw_parent.split(":")[0]
+                parent_title = _WBS_EMOJI_PREFIX.sub('', raw_parent).strip()
+                parent_title = emoji_pattern.sub('', parent_title).strip()
+                
             theme, theme_color = _resolve_theme_from_task(task, structured_cfg)
             task_bid = task.get("notion_block_id") or task.get("id", "")
             
             display_counter = bid_to_counter.get(task_bid, -1)
             
             remove_emoji = type_name.split()[0] if type_name else ""
+            mode_val = (task.get("tags") or {}).get("Modes", "")
             is_task_checked = task_bid in todays_checked
             by_type_blocks.append({
                 "object": "block",
                 "type": "to_do",
                 "to_do": {
-                    "rich_text": format_livetoday_title(display_counter, title, theme, theme_color=theme_color, remove_term=remove_emoji),
+                    "rich_text": format_livetoday_title(display_counter, title, theme, theme_color=theme_color, remove_term=remove_emoji, parent_title=parent_title, mode_val=mode_val),
                     "checked": is_task_checked
                 }
             })
@@ -628,7 +652,7 @@ def write_dashboard(
     map_file = os.path.join(os.path.dirname(__file__), "data", "livetoday_map.json")
     try:
         with open(map_file, "w", encoding="utf-8") as f:
-            json.dump({str(k): v for k, v in task_index_map.items()}, f, indent=2)
+            json.dump({f"T{k}": v for k, v in task_index_map.items()}, f, indent=2)
     except Exception as e:
         print(f"Failed to save livetoday map: {e}")
 

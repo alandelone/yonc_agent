@@ -1,12 +1,15 @@
 [CmdletBinding()]
 param(
-    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$ProjectRoot = "",
     [string]$PythonExe = "python",
     [Parameter(Mandatory = $true)][string]$DatabasePath,
     [int]$Port = 8765
 )
 
 $ErrorActionPreference = "Stop"
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
+    $ProjectRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+}
 $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
 $database = (Resolve-Path -LiteralPath $DatabasePath).Path
 $runtime = Join-Path $root "data\runtime"

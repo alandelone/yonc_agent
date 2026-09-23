@@ -1,0 +1,58 @@
+[
+  {
+    "id": "47d073f3-2339-43d9-8b27-c8a15f8dcf2b",
+    "wbs": 2,
+    "status": "TODO",
+    "parent": "938b3261-3456-488b-a019-d34cb9907b23",
+    "title": "🟧 Thesis 💯✅ *0.0h* 实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。"
+  },
+  {
+    "id": "56759ea2-13d6-4422-85b1-ba3ffb656352",
+    "wbs": 3,
+    "status": "TODO",
+    "parent": "47d073f3-2339-43d9-8b27-c8a15f8dcf2b",
+    "title": "🔶 💯✅ *0.0h* 💯✅ *0.0h* 💯✅ *0.0h* 💯✅ *0.0h* 💯✅ *0.0h* 笔记计算Deadline : 基于计划笔记日推算：记录最终截止日。"
+  },
+  {
+    "id": "68b97b15-8945-498b-a9ab-ba5732f2ac3a",
+    "wbs": 4,
+    "status": "DONE",
+    "parent": "56759ea2-13d6-4422-85b1-ba3ffb656352",
+    "title": "🔸 💻Focus 🗂️1️⃣配置 Task : 配置Hook/事件里程碑：对接、标注任务类型及预估工时。"
+  },
+  {
+    "id": "938b3261-3456-488b-a019-d34cb9907b23",
+    "wbs": 1,
+    "status": "TODO",
+    "parent": null,
+    "title": "🏭 Thesis 🚨Phd RsPlan : Diversed Parallel Assisted Pushing>  | Prototype | Algo"
+  },
+  {
+    "id": "a0647524-9685-4e0a-a046-084a03dd6662",
+    "wbs": 4,
+    "status": "DONE",
+    "parent": "56759ea2-13d6-4422-85b1-ba3ffb656352",
+    "title": "🔸 💻Focus 🗂️3️⃣  format and arrange all the thing u"
+  },
+  {
+    "id": "ac4d6dd9-4014-4637-9435-3e8fffeb8705",
+    "wbs": 4,
+    "status": "DONE",
+    "parent": "56759ea2-13d6-4422-85b1-ba3ffb656352",
+    "title": "🔸 💻Focus 🗂️0️⃣list all task in draft"
+  },
+  {
+    "id": "dfb24f0d-3ed0-4ca8-a87c-a3308879cb67",
+    "wbs": null,
+    "status": "TODO",
+    "parent": "938b3261-3456-488b-a019-d34cb9907b23",
+    "title": "🏭 Thesis Phd RsPlan : Diversed Parallel Assisted Pushing> | Prototype | Algo"
+  },
+  {
+    "id": "eb90ef93-836e-4f0e-a9d6-b87c6192e3e7",
+    "wbs": 4,
+    "status": "DONE",
+    "parent": "56759ea2-13d6-4422-85b1-ba3ffb656352",
+    "title": "🔸 💻Focus 🗂️2️⃣实现 Deadline 计算 : 计算最终日期 (基于计划日期) expected timeline in which are parellel"
+  }
+]

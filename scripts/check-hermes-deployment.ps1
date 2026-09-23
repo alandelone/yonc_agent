@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$ProjectRoot = "",
     [Parameter(Mandatory = $true)][string]$UumaRoot,
     [Parameter(Mandatory = $true)][string]$DatabasePath,
     [int]$Port = 8765,
@@ -8,6 +8,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
+    $ProjectRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+}
 $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
 $uuma = (Resolve-Path -LiteralPath $UumaRoot).Path
 $database = (Resolve-Path -LiteralPath $DatabasePath).Path
@@ -35,12 +38,39 @@ foreach ($path in $required) { if (-not (Test-Path -LiteralPath $path)) { $failu
 
 $configPath = Join-Path $profile "config.yaml"
 if (Test-Path -LiteralPath $configPath) {
-    $configText = Get-Content -LiteralPath $configPath -Raw
+    $configLines = @(Get-Content -LiteralPath $configPath)
+    $configText = $configLines -join "`n"
     foreach ($needle in @("yonc-project", "uuma-worker", "uuma_control_guard")) {
         if (-not $configText.Contains($needle)) { $failures.Add("Profile config is missing $needle.") }
     }
-    foreach ($forbidden in @("uuma-control", "computer_use", "terminal")) {
-        if ($configText.Contains($forbidden)) { $failures.Add("Profile config contains forbidden capability $forbidden.") }
+
+    $mcpNames = [Collections.Generic.List[string]]::new()
+    $inMcpServers = $false
+    foreach ($line in $configLines) {
+        if ($line -match '^mcp_servers:\s*$') { $inMcpServers = $true; continue }
+        if ($inMcpServers -and $line -match '^\S') { break }
+        if ($inMcpServers -and $line -match '^  ([A-Za-z0-9_.-]+):\s*$') {
+            $mcpNames.Add($Matches[1])
+        }
+    }
+    foreach ($requiredMcp in @("uuma-worker", "yonc-project")) {
+        if (-not $mcpNames.Contains($requiredMcp)) { $failures.Add("Profile MCP list is missing $requiredMcp.") }
+    }
+    foreach ($mcpName in $mcpNames) {
+        if ($mcpName -notin @("uuma-worker", "yonc-project")) {
+            $failures.Add("Profile contains unrelated MCP server $mcpName.")
+        }
+    }
+
+    $inPlatformToolsets = $false
+    foreach ($line in $configLines) {
+        if ($line -match '^platform_toolsets:\s*$') { $inPlatformToolsets = $true; continue }
+        if ($inPlatformToolsets -and $line -match '^\S') { break }
+        if ($inPlatformToolsets -and $line -match '^\s+-\s+([A-Za-z0-9_.-]+)\s*$') {
+            if ($Matches[1] -in @("computer_use", "delegation", "terminal")) {
+                $failures.Add("Profile enables forbidden platform toolset $($Matches[1]).")
+            }
+        }
     }
 }
 

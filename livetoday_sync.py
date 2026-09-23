@@ -97,12 +97,12 @@ def sync_livetoday_checks_to_livev2():
             continue
             
         text = "".join(t.get("text", {}).get("content", "") for t in rich_text).strip()
-        idx_match = re.match(r"^\[(\d+)\]\s*(.*)", text)
+        idx_match = re.match(r"^(?:\[(\d+)\]|T(\d+))\s*(.*)", text)
         if not idx_match:
             continue
             
-        task_num_str = idx_match.group(1)
-        original_block_id = livetoday_map.get(task_num_str)
+        num = idx_match.group(1) or idx_match.group(2)
+        original_block_id = livetoday_map.get(f"T{num}") or livetoday_map.get(str(num))
         
         if original_block_id:
             rendered_on_dashboard.add(original_block_id)

@@ -5,33 +5,19 @@ import re
 import time
 from typing import List, Dict, Any, Optional, Set
 
-from unlimited_llmapi import configure_dspy, configure_dspy_light
-
 def _is_content_block(task: Dict[str, Any]) -> bool:
     return bool(task.get("is_content_block")) or (task.get("notion_type") or task.get("type")) == "quote"
 
+lm = None
 try:
-    # Initialize the LM using the unlimited multi-key manager
-    # Passing 'model' here ensures it's used as the primary model if config doesn't specify otherwise
-    lm = configure_dspy(model="gemini/gemini-3-flash-preview")
+    # Configure DSPy directly. LiteLLM reads GEMINI_API_KEY from the environment.
+    lm = dspy.LM("gemini/gemini-3-flash-preview")
+    dspy.configure(lm=lm)
 except Exception as e:
-    print(f"Critical Error: Could not configure DSPy multi-key LM: {e}")
-    # Still attempt a basic setup if all else fails, but don't depend on non-existent config vars
-    try:
-        lm = dspy.LM("gemini/gemini-3-flash-preview")
-        dspy.configure(lm=lm)
-    except Exception as inner_e:
-        print(f"Warning: Could not configure fallback DSPy LM: {inner_e}")
+    print(f"Critical Error: Could not configure DSPy LM: {e}")
 
-# Dedicated light-weight LM for cheap, high-frequency tasks
-# (compaction / CondenseTaskDescription / CondenseTaskTitle).
-# Uses the model labelled 'light_model' in api_keys.json as top priority,
-# falling back to the rest of the model chain if its quota is exhausted.
-try:
-    light_lm = configure_dspy_light()
-except Exception as e:
-    print(f"Warning: Could not create light LM, will use global lm as fallback: {e}")
-    light_lm = None
+# Reuse the configured LM for cheap, high-frequency condensation tasks.
+light_lm = lm
 
 
 class SplitAbstractTask(dspy.Signature):

@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$ProjectRoot = "",
-    [string]$PythonExe = "python",
-    [Parameter(Mandatory = $true)][string]$DatabasePath,
+    [string]$PythonExe = "",
+    [string]$DatabasePath = "",
     [int]$Port = 8765
 )
 
@@ -11,7 +11,19 @@ if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $ProjectRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 }
 $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
+if ([string]::IsNullOrWhiteSpace($DatabasePath)) {
+    $DatabasePath = Join-Path $root "data\project_graph.sqlite3"
+}
 $database = (Resolve-Path -LiteralPath $DatabasePath).Path
+
+if ([string]::IsNullOrWhiteSpace($PythonExe) -or $PythonExe -eq "python") {
+    $py312 = "C:\Users\Alandelone\AppData\Local\Programs\Python\Python312\python.exe"
+    if (Test-Path -LiteralPath $py312) {
+        $PythonExe = $py312
+    } else {
+        $PythonExe = "python"
+    }
+}
 $runtime = Join-Path $root "data\runtime"
 $logs = Join-Path $runtime "logs"
 $pidFile = Join-Path $runtime "yonc.pid"

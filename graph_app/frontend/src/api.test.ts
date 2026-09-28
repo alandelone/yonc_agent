@@ -298,6 +298,9 @@ describe("Capacity Grid drag allocation preview", () => {
     expect(styles).toContain(".minimap-viewport");
     expect(styles).toMatch(/\.canvas-scroll\s*\{[^}]*scroll-behavior:\s*auto;/);
     expect(styles).toContain(".canvas-scroll.panning { scroll-behavior: auto;");
+    expect(styles).toMatch(/\.canvas-scroll\s*\{[^}]*touch-action:\s*none;[^}]*user-select:\s*none;/);
+    expect(canvas).toContain('window.addEventListener("pointermove", onWindowPointerMove)');
+    expect(canvas).toContain('window.addEventListener("pointerup", onWindowPointerUp)');
     expect(styles).toContain(".canvas-stage.node-dragging .node-card::before { filter: none;");
     expect(styles).toContain(".canvas-overlay-tools:hover { opacity: 1");
     expect(app).toContain('className="scheduled-module-lane"');
@@ -593,7 +596,7 @@ describe("Canvas card title hierarchy", () => {
       expect(styles).toContain(".module-pool-resizer");
       expect(styles).toContain("col-resize");
       expect(styles).toContain(".module-subtheme-badge");
-      expect(styles).toContain(".module-pool-desc");
+      expect(styles).toContain(".module-pool-inline-desc");
     });
   });
 
@@ -1116,11 +1119,23 @@ describe("Direction (Phase Annotation Layer)", () => {
 describe("ListView UI enhancements (v2-LineV2)", () => {
   it("parses embedded 💯✅, effort, title, and description cleanly", () => {
     const raw = "🟧 Thesis 💯✅ *0.0h* 实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。";
-    const parsed = parseNodeContent(raw, null);
+    const parsed = parseNodeContent(raw, null, 4);
     expect(parsed.cleanTitle).toBe("🟧 Thesis");
     expect(parsed.cleanDesc).toBe("实际 Deadline : 详情见Paper：按日规划推算 8/31 完结。");
     expect(parsed.isCompleted100).toBe(true);
     expect(parsed.extractedEffort).toBe("0.0h");
+
+    // Level 4 action colon separator
+    const rawAction = "🔸 💻Focus 💻✍️🎯模板 Design Spec : 详细说明";
+    const parsedAction = parseNodeContent(rawAction, null, 4);
+    expect(parsedAction.cleanTitle).toBe("🔸 💻Focus 💻✍️🎯模板 Design Spec");
+    expect(parsedAction.cleanDesc).toBe("详细说明");
+
+    // Non-level-4 tasks (Level 1, 2, 3) must NOT have cleanDesc split out
+    const rawGap = "🔶 理论/实证缺口(Gaps)识别清单 : 基于前述分析明确提出的、现有文献尚未解决的具体科学问题或实践矛盾点清单。";
+    const parsedGap = parseNodeContent(rawGap, null, 3);
+    expect(parsedGap.cleanTitle).toBe("🔶 理论/实证缺口(Gaps)识别清单 : 基于前述分析明确提出的、现有文献尚未解决的具体科学问题或实践矛盾点清单。");
+    expect(parsedGap.cleanDesc).toBe("");
   });
 
   it("resolves subtheme and theme color accurately", () => {
@@ -1187,19 +1202,29 @@ describe("ListView UI enhancements (v2-LineV2)", () => {
     expect(styles).toContain(".notion-row.is-grayed-row");
     expect(styles).toContain("repeating-linear-gradient(");
 
-    // Split button
+    // Split button (hover-only like + Type / + Mode)
     expect(styles).toContain(".notion-row-split-btn");
+    expect(styles).toContain(".notion-row:hover .notion-row-split-btn");
+    expect(styles).toMatch(/opacity:\s*0;\s*pointer-events:\s*none;/);
     expect(listFile).toContain("onOpenSplit(node)");
     expect(listFile).toContain('className="notion-row-split-btn"');
 
-    // 100% completion badge
+    // 100% completion badge (strictly driven by node.status === 'DONE' so ancestors are not falsely completed)
     expect(styles).toContain(".notion-badge-done-100");
     expect(listFile).toContain("notion-badge-done-100");
     expect(listFile).toContain("💯✅");
+    expect(listFile).toContain("const isCompleted100 = isDone;");
 
     // Click outside auto-save
     expect(listFile).toContain("handlePointerDownOutside");
     expect(listFile).toContain("saveEdit(currentNodeId)");
+  });
+
+  it("completes container when child actions/subtrees are done and renders checkbox on all rows", () => {
+    const listFile = readFileSync(new URL("./ListView.tsx", import.meta.url), "utf8");
+    expect(listFile).toContain("completedNodeIds");
+    expect(listFile).toContain("const isDone = completedNodeIds.has(node.id) || parsed.isCompleted100;");
+    expect(listFile).toMatch(/<div className="notion-control-cell">\s*<button[\s\S]*?className=\{`notion-checkbox \$\{isDone \? "checked" : ""\}`\}/);
   });
 
   it("detects nodes with timeline via explicit dates, tags, or deadline text", () => {
@@ -1243,6 +1268,62 @@ describe("ListView UI enhancements (v2-LineV2)", () => {
     expect(styles).toContain(".section-divider-line");
     expect(styles).toContain(".section-divider-pill");
     expect(styles).toContain("margin: 32px 0 22px 0;");
+  });
+
+  it("prevents cross-theme pollution (e.g. 科学问题 matching 我流方矩 学问) and scopes subtheme badge strictly to Level 2 nodes", () => {
+    const multiThemeConfig: YoncConfig = {
+      themes: [
+        { name: "PhDSettle✒", color: "#dc2626", sub_themes: ["Research", "Review", "Thesis", "Dev"] },
+        { name: "我流方矩", color: "#ca8a04", sub_themes: ["自我", "学问", "知识结构"] },
+      ],
+      modes: [],
+      task_types: [],
+      source: "test",
+      revision: 1,
+      updated_at: null,
+    };
+
+    const parentL2 = {
+      id: "parent-l2",
+      title: "🟧 Thesis SLR 综合 : 现有研究分析：识别理论/实证缺陷，论证新研究必要性。",
+      parent_id: null,
+      wbs_level: 2,
+      tags: { "Task Theme with colour": "PhDSettle✒ Research | Review | Thesis | Dev" },
+    } as unknown as GraphNode;
+
+    const childL3 = {
+      id: "child-l3",
+      title: "🔶 理论/实证缺口(Gaps)识别清单 : 基于前述分析明确提出的、现有文献尚未解决的具体科学问题或实践矛盾点清单。",
+      parent_id: "parent-l2",
+      wbs_level: 3,
+      tags: { "Task Theme with colour": "PhDSettle✒ Research | Review | Thesis | Dev" },
+    } as unknown as GraphNode;
+
+    const nodesMap = new Map([
+      ["parent-l2", parentL2],
+      ["child-l3", childL3],
+    ]);
+
+    // Parent resolves to Thesis under PhDSettle✒
+    const parentInfo = resolveSubthemeInfo(parentL2, multiThemeConfig, nodesMap);
+    expect(parentInfo).toEqual({
+      themeName: "PhDSettle✒",
+      subtheme: "Thesis",
+      color: "#dc2626",
+    });
+
+    // Child with "具体科学问题" must NOT resolve to "学问" from "我流方矩"!
+    // Instead it properly inherits "Thesis" from its PhDSettle✒ theme parent.
+    const childInfo = resolveSubthemeInfo(childL3, multiThemeConfig, nodesMap);
+    expect(childInfo).toEqual({
+      themeName: "PhDSettle✒",
+      subtheme: "Thesis",
+      color: "#dc2626",
+    });
+
+    // Verify in ListView.tsx that subtheme badge is conditioned on wbs === 2
+    const listFile = readFileSync(new URL("./ListView.tsx", import.meta.url), "utf8");
+    expect(listFile).toContain("wbs === 2 && subthemeInfo");
   });
 });
 

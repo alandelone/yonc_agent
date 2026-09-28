@@ -149,13 +149,20 @@ export function themeInfoForNode(
     // Title matching against configured subthemes
     const title = subthemeWalker.title ?? "";
     if (title) {
+      let bestMatch: { pos: number; len: number; sub: string } | null = null;
       for (const st of sortedSubthemes) {
-        if (st && title.includes(st)) {
-          matchedSubtheme = st;
-          break;
+        if (!st) continue;
+        const pos = title.toLowerCase().indexOf(st.toLowerCase());
+        if (pos !== -1) {
+          if (!bestMatch || pos < bestMatch.pos || (pos === bestMatch.pos && st.length > bestMatch.len)) {
+            bestMatch = { pos, len: st.length, sub: st };
+          }
         }
       }
-      if (matchedSubtheme) break;
+      if (bestMatch) {
+        matchedSubtheme = bestMatch.sub;
+        break;
+      }
     }
 
     subthemeWalker = (subthemeWalker.parent_id && nodesById) ? nodesById.get(subthemeWalker.parent_id) : undefined;
@@ -997,7 +1004,7 @@ export function parseModulePoolTitle(
 
   // 4. Strip priority emojis, mode keywords & tags
   working = working
-    .replace(/^(?:[💣🚨🧨⚡🔥💥💯✅🎯💻🤔👥🧩📋✍️🔬🔨🤘🏻]|💻Focus|🧘Jail|Handy🤘🏻|小Do📱|🧟Zombie|Read|Watch👁‍🗨|[\d*#]\uFE0F?\u20E3|\*[\d\.]+h\*|\s+)+/gu, "")
+    .replace(/^(?:💻Focus|🧘Jail|Handy🤘🏻|小Do📱|🧟Zombie|Watch👁‍🗨|Read|🗂️(?:\d\uFE0F?\u20E3)?|[💣🚨🧨⚡🔥💥💯✅🎯💻🤔👥🧩📋✍️🔬🔨🤘🏻]|[\d*#]\uFE0F?\u20E3|\*[\d\.]+h\*|\s+)+/gu, "")
     .trim();
 
   // If subtheme was after priority emoji
@@ -1647,6 +1654,12 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
   const nodeDragFrame = useRef<number | null>(null);
   const marqueeDrag = useRef<null | { pointerId: number; startX: number; startY: number; currentX: number; currentY: number; baseIds: string[]; moved: boolean }>(null);
   const [marqueeBounds, setMarqueeBounds] = useState<SelectionBounds | null>(null);
+  const [, setResizeTick] = useState(0);
+  useEffect(() => {
+    const handleResize = () => setResizeTick((t) => t + 1);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const today = new Date().toISOString().slice(0, 10);
   const scheduledDates = renderNodes.flatMap((node) => [node.planned_start, node.planned_end, node.deadline]).filter(Boolean) as string[];
   const { start: axisStart, end: axisEnd } = canvasTimeRange(new Date(`${today}T12:00:00`), scheduledDates);
@@ -1732,8 +1745,10 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
     return <path ref={(element) => { if (element) edgeRefs.current.set(edge.id, element); else edgeRefs.current.delete(edge.id); }} key={edge.id} data-source={endpoints.sourceId} data-target={endpoints.targetId} data-source-side={route.sourceSide} data-target-side={route.targetSide} className={`edge edge-${edge.relation}`} d={route.path} markerEnd="url(#arrow)" />;
   }), [renderEdges, positions, nodeBoxes, nodeHeights, nodeWidths]);
 
-  const height = Math.max(760, ...Object.entries(positions).map(([id, item]) => item.y + (nodeHeights[id] ?? COMPACT_CARD_H) + 120));
-  const width = Math.max(1800, todayX + maxOffset + CANVAS_TIME_END_PADDING, ...Object.entries(positions).map(([id, item]) => item.x + (nodeWidths[id] ?? CARD_W) + CANVAS_TIME_END_PADDING));
+  const canvasClientW = canvasRef.current?.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 1400);
+  const canvasClientH = canvasRef.current?.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 800);
+  const height = Math.max(760, Math.ceil((canvasClientH + 800) / Math.max(zoom, 0.05)), ...Object.entries(positions).map(([id, item]) => item.y + (nodeHeights[id] ?? COMPACT_CARD_H) + 240));
+  const width = Math.max(1800, Math.ceil((canvasClientW + 1400) / Math.max(zoom, 0.05)), todayX + maxOffset + CANVAS_TIME_END_PADDING, ...Object.entries(positions).map(([id, item]) => item.x + (nodeWidths[id] ?? CARD_W) + CANVAS_TIME_END_PADDING));
   const paintNodeDrag = useCallback((restoreRouting = false) => {
     nodeDragFrame.current = null;
     const current = nodeDrag.current;
@@ -2019,7 +2034,7 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
     bottom: Math.max(startY, currentY),
   });
   const selectionForBounds = (baseIds: string[], bounds: SelectionBounds) => [...new Set([...baseIds, ...nodesInSelectionBounds(positions, nodeHeights, bounds, nodeWidths)])];
-  const moveCanvas = (event: React.PointerEvent<HTMLDivElement>) => {
+  const moveCanvas = (event: PointerEvent | React.PointerEvent<HTMLDivElement>) => {
     const selection = marqueeDrag.current;
     if (selection && event.pointerId === selection.pointerId) {
       const point = pointInStage(event.clientX, event.clientY);
@@ -2037,16 +2052,16 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
     current.clientY = event.clientY;
     current.moved ||= Math.abs(event.clientX - current.x) + Math.abs(event.clientY - current.y) > 4;
     if (panFrame.current != null) return;
-    const canvas = event.currentTarget;
     panFrame.current = window.requestAnimationFrame(() => {
       panFrame.current = null;
       const latest = pan.current;
-      if (!latest) return;
+      const canvas = canvasRef.current;
+      if (!latest || !canvas) return;
       canvas.scrollLeft = latest.left - (latest.clientX - latest.x);
       canvas.scrollTop = latest.top - (latest.clientY - latest.y);
     });
   };
-  const finishCanvasMove = (event: React.PointerEvent<HTMLDivElement>, cancelled = false) => {
+  const finishCanvasMove = (event: PointerEvent | React.PointerEvent<HTMLDivElement>, cancelled = false) => {
     const selection = marqueeDrag.current;
     if (selection && event.pointerId === selection.pointerId) {
       if (cancelled) onSelectionChange(selection.baseIds);
@@ -2056,36 +2071,61 @@ function CanvasView({ graph, yoncConfig, selectedIds, onSelectionChange, onOpenS
       }
       marqueeDrag.current = null;
       setMarqueeBounds(null);
-      event.currentTarget.classList.remove("selecting");
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+      const canvas = canvasRef.current;
+      canvas?.classList.remove("selecting");
+      try {
+        if (canvas?.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+      } catch {}
       return;
     }
     const current = pan.current;
     if (!current || event.pointerId !== current.pointerId) return;
+    const canvas = canvasRef.current;
     if (panFrame.current != null) {
       window.cancelAnimationFrame(panFrame.current);
       panFrame.current = null;
-      event.currentTarget.scrollLeft = current.left - (current.clientX - current.x);
-      event.currentTarget.scrollTop = current.top - (current.clientY - current.y);
+      if (canvas) {
+        canvas.scrollLeft = current.left - (current.clientX - current.x);
+        canvas.scrollTop = current.top - (current.clientY - current.y);
+      }
     }
     pan.current = null;
-    event.currentTarget.classList.remove("panning");
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    canvas?.classList.remove("panning");
+    try {
+      if (canvas?.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+    } catch {}
     if (!cancelled && !current.moved) onSelectionChange([]);
   };
   const beginCanvasMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (event.button !== 0 || (event.target as HTMLElement).closest(".node-card")) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
     if (event.shiftKey) {
       const point = pointInStage(event.clientX, event.clientY);
       marqueeDrag.current = { pointerId: event.pointerId, startX: point.x, startY: point.y, currentX: point.x, currentY: point.y, baseIds: selectedIds, moved: false };
       setMarqueeBounds(normalizedSelectionBounds(point.x, point.y, point.x, point.y));
-      event.currentTarget.classList.add("selecting");
+      canvas.classList.add("selecting");
     } else {
-      pan.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, clientX: event.clientX, clientY: event.clientY, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop, moved: false };
-      event.currentTarget.classList.add("panning");
+      pan.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, clientX: event.clientX, clientY: event.clientY, left: canvas.scrollLeft, top: canvas.scrollTop, moved: false };
+      canvas.classList.add("panning");
     }
-    event.currentTarget.setPointerCapture(event.pointerId);
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {}
   };
+  useEffect(() => {
+    const onWindowPointerMove = (event: PointerEvent) => moveCanvas(event);
+    const onWindowPointerUp = (event: PointerEvent) => finishCanvasMove(event);
+    const onWindowPointerCancel = (event: PointerEvent) => finishCanvasMove(event, true);
+    window.addEventListener("pointermove", onWindowPointerMove);
+    window.addEventListener("pointerup", onWindowPointerUp);
+    window.addEventListener("pointercancel", onWindowPointerCancel);
+    return () => {
+      window.removeEventListener("pointermove", onWindowPointerMove);
+      window.removeEventListener("pointerup", onWindowPointerUp);
+      window.removeEventListener("pointercancel", onWindowPointerCancel);
+    };
+  }, [onSelectionChange, zoom, positions, nodeHeights, nodeWidths, selectedIds]);
   useEffect(() => {
     const clearWithEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
@@ -3516,13 +3556,13 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
             return (
               <article
                 key={node.id}
-                className={`module-pool-card ${draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging " : ""}${selectedId === node.id ? "selected" : ""}${parsed.description ? " has-desc" : ""}`}
+                className={`module-pool-card ${draggedNodeId === node.id || pendingPlacement?.nodeId === node.id ? "dragging " : ""}${selectedId === node.id ? "selected" : ""}`}
                 draggable
                 aria-label={`Drag ${parsed.cleanTitle} to a date`}
                 onDragStart={(event) => beginModuleDrag(event, node.id)}
                 onDragEnd={clearModuleDrag}
                 onClick={() => choosePoolNode(node)}
-                title={parsed.description ? `${parsed.cleanTitle} — ${parsed.description}` : parsed.cleanTitle}
+                title={parsed.description ? `${parsed.cleanTitle} : ${parsed.description}` : parsed.cleanTitle}
               >
                 <i style={{ background: nodeColor }} />
                 <div className="module-pool-card-content">
@@ -3540,14 +3580,14 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
                         {parsed.subtheme}
                       </span>
                     )}
-                    <b className="module-pool-clean-title" title={parsed.cleanTitle}>{parsed.cleanTitle}</b>
+                    <b className="module-pool-clean-title" title={parsed.description ? `${parsed.cleanTitle} : ${parsed.description}` : parsed.cleanTitle}>
+                      {parsed.cleanTitle}
+                      {parsed.description && (
+                        <span className="module-pool-inline-desc"> : {parsed.description}</span>
+                      )}
+                    </b>
                     <span className={`split-tab-badge l${lvl}`}>L{lvl}</span>
                   </div>
-                  {parsed.description && (
-                    <div className="module-pool-desc" title={parsed.description}>
-                      {parsed.description}
-                    </div>
-                  )}
                 </div>
               </article>
             );

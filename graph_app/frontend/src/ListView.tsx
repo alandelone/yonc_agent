@@ -80,7 +80,17 @@ export function resolveSubthemeInfo(
 ): SubthemeInfo | null {
   if (!config?.themes?.length) return null;
 
-  // 1. Check explicit tags on the node itself
+  // 1. Delegate to themeInfoForNode so resolution is strictly scoped to the node's theme family
+  const info = themeInfoForNode(node, config, nodesById);
+  if (info) {
+    return {
+      subtheme: info.subtheme || info.name,
+      themeName: info.name,
+      color: info.color,
+    };
+  }
+
+  // 2. Fallback for explicit tags if node or ancestors were untagged with theme
   const explicitTags = [
     node.tags?.["theme_display_label"],
     node.tags?.["subtheme"],
@@ -104,54 +114,14 @@ export function resolveSubthemeInfo(
     }
   }
 
-  // 2. Check title against sub_themes of each theme (including walking up parent nodes)
-  let current: GraphNode | undefined = node;
-  const visited = new Set<string>();
-  while (current && !visited.has(current.id)) {
-    visited.add(current.id);
-    const title = current.title || "";
-
-    for (const t of config.themes) {
-      const sortedSubs = [...t.sub_themes].sort((a, b) => b.length - a.length);
-      for (const sub of sortedSubs) {
-        if (!sub) continue;
-        const escaped = sub.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(`(?:\\b|[\\W_])${escaped}(?:\\b|[\\W_])`, "i");
-        if (regex.test(title) || title.toLowerCase().includes(sub.toLowerCase())) {
-          return { subtheme: sub, themeName: t.name, color: t.color };
-        }
-      }
-    }
-
-    current = current.parent_id && nodesById ? nodesById.get(current.parent_id) : undefined;
-  }
-
-  // 3. Check "Task Theme with colour" or "Theme" tag for subthemes or theme name
-  current = node;
-  visited.clear();
-  while (current && !visited.has(current.id)) {
-    visited.add(current.id);
-    const rawTag = current.tags?.["Task Theme with colour"] ?? current.tags?.["Task Theme"] ?? current.tags?.["Theme"] ?? current.tags?.["theme"];
-    const tag = Array.isArray(rawTag) ? rawTag.join(" | ") : String(rawTag ?? "").trim();
-    if (tag) {
-      for (const t of config.themes) {
-        for (const sub of t.sub_themes) {
-          if (sub && tag.toLowerCase().includes(sub.toLowerCase())) {
-            return { subtheme: sub, themeName: t.name, color: t.color };
-          }
-        }
-        if (tag.includes(t.name)) {
-          return { subtheme: t.name, themeName: t.name, color: t.color };
-        }
-      }
-    }
-    current = current.parent_id && nodesById ? nodesById.get(current.parent_id) : undefined;
-  }
-
   return null;
 }
 
-export function parseNodeContent(title: string, description: string | null | undefined): {
+export function parseNodeContent(
+  title: string,
+  description: string | null | undefined,
+  wbs?: number
+): {
   cleanTitle: string;
   cleanDesc: string;
   isCompleted100: boolean;
@@ -170,29 +140,34 @@ export function parseNodeContent(title: string, description: string | null | und
   let workingTitle = title
     .replace(/💯\s*✅/g, "")
     .replace(/\*\d+(?:\.\d+)?h\*/gi, "")
+    .replace(/\s{2,}/g, " ")
     .trim();
 
   let cleanTitle = workingTitle;
   let cleanDesc = (description || "").trim();
 
-  // If no explicit description is present, look for description indicators inside title
+  // If no explicit description in DB, separate at colon
   if (!cleanDesc) {
-    if (workingTitle.includes("\n")) {
-      const lines = workingTitle.split("\n");
-      cleanTitle = lines[0].trim();
-      cleanDesc = lines.slice(1).join("\n").trim();
-    } else {
-      const splitPatterns = [
-        /(.*?)\s+(实际\s*Deadline\s*[:：].*)$/i,
-        /(.*?)\s+(Deadline\s*[:：].*)$/i,
-        /(.*?)\s+(详情见.*)$/i,
-      ];
-      for (const pattern of splitPatterns) {
-        const match = workingTitle.match(pattern);
-        if (match && match[1]?.trim() && match[2]?.trim()) {
-          cleanTitle = match[1].trim();
-          cleanDesc = match[2].trim();
-          break;
+    const isLevel4 = wbs === undefined || wbs === 4;
+    if (isLevel4) {
+      if (workingTitle.includes("\n")) {
+        const lines = workingTitle.split("\n");
+        cleanTitle = lines[0].trim();
+        cleanDesc = lines.slice(1).join("\n").trim();
+      } else {
+        const splitPatterns = [
+          /(.*?)\s+(实际\s*Deadline\s*[:：].*)$/i,
+          /(.*?)\s+(Deadline\s*[:：].*)$/i,
+          /(.*?)\s+(详情见.*)$/i,
+          /(.*?)\s*[:：]\s*(.*)$/,
+        ];
+        for (const pattern of splitPatterns) {
+          const match = workingTitle.match(pattern);
+          if (match && match[1]?.trim() && match[2]?.trim()) {
+            cleanTitle = match[1].trim();
+            cleanDesc = match[2].trim();
+            break;
+          }
         }
       }
     }
@@ -344,9 +319,21 @@ export function ListView({
     };
   }, []);
 
+  // Children grouped by parent ID
+  const childrenByParent = useMemo(() => {
+    const map = new Map<string, GraphNode[]>();
+    for (const node of graph.nodes) {
+      if (node.parent_id && nodesById.has(node.parent_id)) {
+        const existing = map.get(node.parent_id) || [];
+        existing.push(node);
+        map.set(node.parent_id, existing);
+      }
+    }
+    return map;
+  }, [graph.nodes, nodesById]);
+
   // Build the hierarchical tree from SQL graph nodes
   const treeRoots = useMemo(() => {
-    const childrenByParent = new Map<string, GraphNode[]>();
     const roots: GraphNode[] = [];
 
     // Order map
@@ -362,10 +349,6 @@ export function ListView({
     for (const node of graph.nodes) {
       if (!node.parent_id || !nodesById.has(node.parent_id)) {
         roots.push(node);
-      } else {
-        const existing = childrenByParent.get(node.parent_id) || [];
-        existing.push(node);
-        childrenByParent.set(node.parent_id, existing);
       }
     }
 
@@ -377,7 +360,7 @@ export function ListView({
     };
 
     return roots.map((root) => buildTree(root, 0));
-  }, [graph.nodes, nodesById, customOrder]);
+  }, [graph.nodes, nodesById, customOrder, childrenByParent]);
 
   // Default expand root nodes ONLY if user has NEVER saved an expanded state before
   useEffect(() => {
@@ -666,10 +649,10 @@ export function ListView({
 
   // Handle Checkbox click
   const handleCheckboxClick = useCallback(
-    async (node: GraphNode, e: React.MouseEvent) => {
+    async (node: GraphNode, e: React.MouseEvent, isCurrentlyDone?: boolean) => {
       e.stopPropagation();
-      const isDone = node.status === "DONE";
-      const nextAction = isDone ? "reopen" : "done";
+      const isDone = isCurrentlyDone !== undefined ? isCurrentlyDone : node.status === "DONE";
+      const nextAction = isDone && node.status !== "TODO" ? "reopen" : "done";
 
       try {
         const result = await api.transition(node.id, nextAction, graph.graph_version);
@@ -683,9 +666,10 @@ export function ListView({
   );
 
   // Start double-click inline edit
-  const startEdit = useCallback((node: GraphNode, e: React.MouseEvent) => {
+  const startEdit = useCallback((node: GraphNode, depth: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    const parsed = parseNodeContent(node.title, node.description);
+    const wbs = node.wbs_level || (depth === 0 ? 1 : depth === 1 ? 2 : depth === 2 ? 3 : 4);
+    const parsed = parseNodeContent(node.title, node.description, wbs);
     setEditingNodeId(node.id);
     setEditTitle(parsed.cleanTitle);
     setEditDesc(parsed.cleanDesc);
@@ -848,6 +832,361 @@ export function ListView({
 
   const currentMatchNodeId = matchingNodeIds[currentMatchIndex] || null;
 
+  // Recursively compute completed state for all nodes:
+  // - A leaf node is completed if node.status === "DONE" or title contains 💯✅.
+  // - A container node is completed if node.status === "DONE", OR title contains 💯✅,
+  //   OR all of its child subtrees are completed!
+  const completedNodeIds = useMemo(() => {
+    const doneSet = new Set<string>();
+    const visiting = new Set<string>();
+
+    const checkDone = (id: string): boolean => {
+      if (doneSet.has(id)) return true;
+      if (visiting.has(id)) return false;
+      visiting.add(id);
+
+      const node = nodesById.get(id);
+      if (!node) {
+        visiting.delete(id);
+        return false;
+      }
+
+      if (node.status === "DONE" || /💯\s*✅/.test(node.title)) {
+        doneSet.add(id);
+        visiting.delete(id);
+        return true;
+      }
+
+      const children = childrenByParent.get(id) || [];
+      if (children.length > 0) {
+        const allChildrenDone = children.every((child) => checkDone(child.id));
+        if (allChildrenDone) {
+          doneSet.add(id);
+          visiting.delete(id);
+          return true;
+        }
+      }
+
+      visiting.delete(id);
+      return false;
+    };
+
+    for (const node of graph.nodes) {
+      checkDone(node.id);
+    }
+    return doneSet;
+  }, [graph.nodes, nodesById, childrenByParent]);
+
+  const renderRow = ({ node, depth, hasChildren }: { node: GraphNode; depth: number; hasChildren: boolean }) => {
+    const isExpanded = expandedIds.has(node.id);
+    const directChildren = childrenByParent.get(node.id) || [];
+    const hasDirectChildren = directChildren.length > 0;
+
+    const wbs = node.wbs_level || (depth === 0 ? 1 : depth === 1 ? 2 : depth === 2 ? 3 : 4);
+    const parsed = parseNodeContent(node.title, node.description, wbs);
+
+    const isDone = completedNodeIds.has(node.id) || parsed.isCompleted100;
+    const isCompleted100 = isDone;
+
+    const isAction = node.work_type === "ACTION" || node.wbs_level === 4;
+    const isCurrentMatch = node.id === currentMatchNodeId;
+    const isEditing = editingNodeId === node.id;
+
+    const subthemeInfo = resolveSubthemeInfo(node, yoncConfig, nodesById);
+    const rawTaskType = node.tags?.["Task Type"];
+    const formattedTaskType = cleanTaskType(rawTaskType);
+    const rawMode = node.tags?.["Modes"] || node.tags?.["Mode"];
+    const deadline = node.deadline;
+    const effort = node.estimated_effort_minutes;
+    const displayEffort = effort ? renderEffort(effort) : parsed.extractedEffort ? parsed.extractedEffort : null;
+
+    return (
+      <div
+        key={node.id}
+        ref={(el) => {
+          if (el) rowRefs.current.set(node.id, el);
+          else rowRefs.current.delete(node.id);
+        }}
+        className={`notion-row level-${wbs} depth-${depth} ${isCompleted100 ? "is-done is-grayed-row" : ""} ${isCurrentMatch ? "is-active-match" : ""} ${draggingId === node.id ? "is-dragging" : ""} ${dragOverId === node.id ? "is-drag-over" : ""}`}
+        style={{ paddingLeft: `${depth * 22 + 10}px` }}
+        onClick={() => {
+          if (!isEditing && hasChildren) {
+            toggleExpand(node.id);
+          }
+        }}
+        onDragOver={(e) => handleDragOver(node.id, e)}
+        onDrop={(e) => handleDrop(node.id, e)}
+        role="treeitem"
+        aria-expanded={hasChildren ? isExpanded : undefined}
+      >
+        {depth > 0 && (
+          <div className="notion-indent-line" style={{ left: `${(depth - 1) * 22 + 18}px` }} />
+        )}
+
+        <div
+          className="notion-drag-handle"
+          draggable
+          onDragStart={(e) => handleDragStart(node.id, e)}
+          onClick={(e) => e.stopPropagation()}
+          title="Drag to reorder"
+        >
+          ⠿
+        </div>
+
+        <div className="notion-toggle-cell">
+          {hasChildren ? (
+            <button
+              className={`notion-toggle-btn level-toggle-${wbs} ${isExpanded ? "expanded" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleExpand(node.id);
+              }}
+              aria-label={isExpanded ? "Collapse" : "Expand"}
+            >
+              <svg viewBox="0 0 100 100" className="notion-toggle-svg">
+                <polygon points="25,15 80,50 25,85" />
+              </svg>
+            </button>
+          ) : (
+            <span className="notion-toggle-spacer" />
+          )}
+        </div>
+
+        <div className="notion-control-cell">
+          <button
+            type="button"
+            className={`notion-checkbox ${isDone ? "checked" : ""}`}
+            onClick={(e) => handleCheckboxClick(node, e, isDone)}
+            title={isDone ? "Mark as TODO" : "Mark as DONE"}
+            aria-checked={isDone}
+          >
+            {isDone && (
+              <svg viewBox="0 0 16 16" className="notion-check-svg">
+                <path
+                  d="M13.485 3.515a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414 0l-3-3a1 1 0 1 1 1.414-1.414L6 10.086l6.293-6.293a1 1 0 0 1 1.414 0z"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        <div className="notion-content-cell" onDoubleClick={(e) => startEdit(node, depth, e)}>
+          {isEditing ? (
+            <div
+              ref={editorContainerRef}
+              className="notion-inline-editor"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="inline-edit-field">
+                <span className="inline-field-label">Title</span>
+                <input
+                  type="text"
+                  className="inline-edit-title"
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") saveEdit(node.id);
+                    if (e.key === "Escape") setEditingNodeId(null);
+                  }}
+                  autoFocus
+                  placeholder="Task title (Title column)…"
+                />
+              </div>
+              <div className="inline-edit-field">
+                <span className="inline-field-label">Description</span>
+                <textarea
+                  className="inline-edit-desc"
+                  rows={2}
+                  value={editDesc}
+                  onChange={(e) => setEditDesc(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) saveEdit(node.id);
+                    if (e.key === "Escape") setEditingNodeId(null);
+                  }}
+                  placeholder="Description or notes (Description column)…"
+                />
+              </div>
+              <div className="inline-edit-actions">
+                <button
+                  type="button"
+                  className="inline-btn-cancel"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingNodeId(null);
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="inline-btn-save"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    saveEdit(node.id);
+                  }}
+                  disabled={isSavingEdit}
+                >
+                  {isSavingEdit ? "Saving…" : "Save"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className={`notion-title-text level-title-${wbs}`} title="Double-click to edit">
+                <HighlightedText text={parsed.cleanTitle} query={searchQuery} isCurrent={isCurrentMatch} />
+              </div>
+              {parsed.cleanDesc ? (
+                <div className="notion-desc-preview" title="Double-click to edit">
+                  <HighlightedText text={parsed.cleanDesc} query={searchQuery} isCurrent={isCurrentMatch} />
+                </div>
+              ) : null}
+            </>
+          )}
+        </div>
+
+        <div className="notion-badges-cell" onClick={(e) => e.stopPropagation()}>
+          <button
+            type="button"
+            className="notion-row-split-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenSplit(node);
+            }}
+            title={`Split "${parsed.cleanTitle}" into subtasks (⑂ Split)`}
+          >
+            <span className="split-icon">⑂</span>
+            <span className="split-label">Split</span>
+          </button>
+
+          <div className="tag-dropdown-wrap">
+            {formattedTaskType ? (
+              <span
+                className="notion-badge notion-badge-tasktype interactive"
+                onClick={() =>
+                  setActiveMenu(
+                    activeMenu?.nodeId === node.id && activeMenu.type === "taskType"
+                      ? null
+                      : { nodeId: node.id, type: "taskType" }
+                  )
+                }
+                title="Click to change Task Type"
+              >
+                <HighlightedText text={formattedTaskType} query={searchQuery} />
+              </span>
+            ) : (
+              <span
+                className="notion-badge-add interactive"
+                onClick={() => setActiveMenu({ nodeId: node.id, type: "taskType" })}
+                title="Add Task Type"
+              >
+                + Type
+              </span>
+            )}
+
+            {activeMenu?.nodeId === node.id && activeMenu.type === "taskType" && (
+              <div className="tag-options-popover">
+                <div className="popover-title">Select Task Type</div>
+                {TASK_TYPE_OPTIONS.map((opt) => (
+                  <div
+                    key={opt}
+                    className={`popover-item ${formattedTaskType === opt.replace(/\|\s*/, " ") ? "selected" : ""}`}
+                    onClick={() => selectTaskType(node, opt)}
+                  >
+                    {opt}
+                  </div>
+                ))}
+                {formattedTaskType && (
+                  <div className="popover-item clear-item" onClick={() => selectTaskType(node, null)}>
+                    ✕ Clear Type
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="tag-dropdown-wrap">
+            {rawMode ? (
+              <span
+                className="notion-badge notion-badge-mode interactive"
+                onClick={() =>
+                  setActiveMenu(
+                    activeMenu?.nodeId === node.id && activeMenu.type === "mode"
+                      ? null
+                      : { nodeId: node.id, type: "mode" }
+                  )
+                }
+                title="Click to change Energy Mode"
+              >
+                <HighlightedText text={String(rawMode)} query={searchQuery} />
+              </span>
+            ) : (
+              <span
+                className="notion-badge-add interactive"
+                onClick={() => setActiveMenu({ nodeId: node.id, type: "mode" })}
+                title="Add Mode"
+              >
+                + Mode
+              </span>
+            )}
+
+            {activeMenu?.nodeId === node.id && activeMenu.type === "mode" && (
+              <div className="tag-options-popover">
+                <div className="popover-title">Select Mode</div>
+                {MODE_OPTIONS.map((opt) => (
+                  <div
+                    key={opt}
+                    className={`popover-item ${String(rawMode) === opt ? "selected" : ""}`}
+                    onClick={() => selectMode(node, opt)}
+                  >
+                    {opt}
+                  </div>
+                ))}
+                {Boolean(rawMode) && (
+                  <div className="popover-item clear-item" onClick={() => selectMode(node, null)}>
+                    ✕ Clear Mode
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {deadline ? (
+            <span className="notion-badge notion-badge-deadline" title={`Deadline: ${deadline}`}>
+              ⚑ {renderDate(deadline)}
+            </span>
+          ) : null}
+
+          {displayEffort ? (
+            <span className="notion-badge notion-badge-effort" title={`Estimated: ${displayEffort}`}>
+              ⏱ {displayEffort}
+            </span>
+          ) : null}
+
+          {isCompleted100 ? (
+            <span className="notion-badge notion-badge-done-100" title="Completed 💯✅">
+              💯✅
+            </span>
+          ) : null}
+
+          {wbs === 2 && subthemeInfo ? (
+            <span
+              className="notion-badge notion-badge-theme theme-end"
+              style={{
+                backgroundColor: `${subthemeInfo.color}22`,
+                color: subthemeInfo.color,
+                borderColor: `${subthemeInfo.color}44`,
+              }}
+              title={`Theme: ${subthemeInfo.themeName} · Subtheme: ${subthemeInfo.subtheme}`}
+            >
+              <HighlightedText text={subthemeInfo.subtheme} query={searchQuery} />
+            </span>
+          ) : null}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="notion-list-view" onClick={() => setActiveMenu(null)}>
       {/* Sleek Minimal Top Navigation Bar */}
@@ -986,313 +1325,7 @@ export function ListView({
                   ({scheduledRoots.length} {scheduledRoots.length === 1 ? "theme" : "themes"} · {scheduledRows.length} tasks)
                 </span>
               </div>
-              {scheduledRows.map(({ node, depth, hasChildren }) => {
-                const isExpanded = expandedIds.has(node.id);
-                const isDone = node.status === "DONE";
-                const isAction = node.work_type === "ACTION" || node.wbs_level === 4;
-                const isCurrentMatch = node.id === currentMatchNodeId;
-                const isEditing = editingNodeId === node.id;
-                const wbs = node.wbs_level || (depth === 0 ? 1 : depth === 1 ? 2 : depth === 2 ? 3 : 4);
-
-                const parsed = parseNodeContent(node.title, node.description);
-                const isCompleted100 = isDone || parsed.isCompleted100 || (node.progress && node.progress.ratio === 1);
-
-                const subthemeInfo = resolveSubthemeInfo(node, yoncConfig, nodesById);
-                const rawTaskType = node.tags?.["Task Type"];
-                const formattedTaskType = cleanTaskType(rawTaskType);
-                const rawMode = node.tags?.["Modes"] || node.tags?.["Mode"];
-                const deadline = node.deadline;
-                const effort = node.estimated_effort_minutes;
-                const displayEffort = effort ? renderEffort(effort) : parsed.extractedEffort ? parsed.extractedEffort : null;
-
-                return (
-                  <div
-                    key={node.id}
-                    ref={(el) => {
-                      if (el) rowRefs.current.set(node.id, el);
-                      else rowRefs.current.delete(node.id);
-                    }}
-                    className={`notion-row level-${wbs} depth-${depth} ${isCompleted100 ? "is-done is-grayed-row" : ""} ${isCurrentMatch ? "is-active-match" : ""} ${draggingId === node.id ? "is-dragging" : ""} ${dragOverId === node.id ? "is-drag-over" : ""}`}
-                    style={{ paddingLeft: `${depth * 22 + 10}px` }}
-                    onClick={() => {
-                      if (!isEditing && hasChildren) {
-                        toggleExpand(node.id);
-                      }
-                    }}
-                    onDragOver={(e) => handleDragOver(node.id, e)}
-                    onDrop={(e) => handleDrop(node.id, e)}
-                    role="treeitem"
-                    aria-expanded={hasChildren ? isExpanded : undefined}
-                  >
-                    {depth > 0 && (
-                      <div className="notion-indent-line" style={{ left: `${(depth - 1) * 22 + 18}px` }} />
-                    )}
-
-                    <div
-                      className="notion-drag-handle"
-                      draggable
-                      onDragStart={(e) => handleDragStart(node.id, e)}
-                      onClick={(e) => e.stopPropagation()}
-                      title="Drag to reorder"
-                    >
-                      ⠿
-                    </div>
-
-                    <div className="notion-toggle-cell">
-                      {hasChildren ? (
-                        <button
-                          className={`notion-toggle-btn level-toggle-${wbs} ${isExpanded ? "expanded" : ""}`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleExpand(node.id);
-                          }}
-                          aria-label={isExpanded ? "Collapse" : "Expand"}
-                        >
-                          <svg viewBox="0 0 100 100" className="notion-toggle-svg">
-                            <polygon points="25,15 80,50 25,85" />
-                          </svg>
-                        </button>
-                      ) : (
-                        <span className="notion-toggle-spacer" />
-                      )}
-                    </div>
-
-                    <div className="notion-control-cell">
-                      {isAction ? (
-                        <button
-                          type="button"
-                          className={`notion-checkbox ${isDone ? "checked" : ""}`}
-                          onClick={(e) => handleCheckboxClick(node, e)}
-                          title={isDone ? "Mark as TODO" : "Mark as DONE"}
-                          aria-checked={isDone}
-                        >
-                          {isDone && (
-                            <svg viewBox="0 0 16 16" className="notion-check-svg">
-                              <path
-                                d="M13.485 3.515a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414 0l-3-3a1 1 0 1 1 1.414-1.414L6 10.086l6.293-6.293a1 1 0 0 1 1.414 0z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                          )}
-                        </button>
-                      ) : null}
-                    </div>
-
-                    <div className="notion-content-cell" onDoubleClick={(e) => startEdit(node, e)}>
-                      {isEditing ? (
-                        <div
-                          ref={editorContainerRef}
-                          className="notion-inline-editor"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <div className="inline-edit-field">
-                            <span className="inline-field-label">Title</span>
-                            <input
-                              type="text"
-                              className="inline-edit-title"
-                              value={editTitle}
-                              onChange={(e) => setEditTitle(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") saveEdit(node.id);
-                                if (e.key === "Escape") setEditingNodeId(null);
-                              }}
-                              autoFocus
-                              placeholder="Task title (Title column)…"
-                            />
-                          </div>
-                          <div className="inline-edit-field">
-                            <span className="inline-field-label">Description</span>
-                            <textarea
-                              className="inline-edit-desc"
-                              rows={2}
-                              value={editDesc}
-                              onChange={(e) => setEditDesc(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) saveEdit(node.id);
-                                if (e.key === "Escape") setEditingNodeId(null);
-                              }}
-                              placeholder="Description or notes (Description column)…"
-                            />
-                          </div>
-                          <div className="inline-edit-actions">
-                            <button
-                              type="button"
-                              className="inline-btn-cancel"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setEditingNodeId(null);
-                              }}
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              type="button"
-                              className="inline-btn-save"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                saveEdit(node.id);
-                              }}
-                              disabled={isSavingEdit}
-                            >
-                              {isSavingEdit ? "Saving…" : "Save"}
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className={`notion-title-text level-title-${wbs}`} title="Double-click to edit">
-                            <HighlightedText text={parsed.cleanTitle} query={searchQuery} isCurrent={isCurrentMatch} />
-                          </div>
-                          {parsed.cleanDesc ? (
-                            <div className="notion-desc-preview" title="Double-click to edit">
-                              <HighlightedText text={parsed.cleanDesc} query={searchQuery} isCurrent={isCurrentMatch} />
-                            </div>
-                          ) : null}
-                        </>
-                      )}
-                    </div>
-
-                    <div className="notion-badges-cell" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        type="button"
-                        className="notion-row-split-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenSplit(node);
-                        }}
-                        title={`Split "${parsed.cleanTitle}" into subtasks (⑂ Split)`}
-                      >
-                        <span className="split-icon">⑂</span>
-                        <span className="split-label">Split</span>
-                      </button>
-
-                      <div className="tag-dropdown-wrap">
-                        {formattedTaskType ? (
-                          <span
-                            className="notion-badge notion-badge-tasktype interactive"
-                            onClick={() =>
-                              setActiveMenu(
-                                activeMenu?.nodeId === node.id && activeMenu?.type === "taskType"
-                                  ? null
-                                  : { nodeId: node.id, type: "taskType" }
-                              )
-                            }
-                            title="Click to change Task Type"
-                          >
-                            <HighlightedText text={formattedTaskType} query={searchQuery} />
-                          </span>
-                        ) : (
-                          <span
-                            className="notion-badge-add interactive"
-                            onClick={() => setActiveMenu({ nodeId: node.id, type: "taskType" })}
-                            title="Add Task Type"
-                          >
-                            + Type
-                          </span>
-                        )}
-
-                        {activeMenu?.nodeId === node.id && activeMenu?.type === "taskType" && (
-                          <div className="tag-options-popover">
-                            <div className="popover-title">Select Task Type</div>
-                            {TASK_TYPE_OPTIONS.map((opt) => (
-                              <div
-                                key={opt}
-                                className={`popover-item ${formattedTaskType === opt.replace(/\|\s*/, " ") ? "selected" : ""}`}
-                                onClick={() => selectTaskType(node, opt)}
-                              >
-                                {opt}
-                              </div>
-                            ))}
-                            {formattedTaskType && (
-                              <div className="popover-item clear-item" onClick={() => selectTaskType(node, null)}>
-                                ✕ Clear Type
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="tag-dropdown-wrap">
-                        {rawMode ? (
-                          <span
-                            className="notion-badge notion-badge-mode interactive"
-                            onClick={() =>
-                              setActiveMenu(
-                                activeMenu?.nodeId === node.id && activeMenu?.type === "mode"
-                                  ? null
-                                  : { nodeId: node.id, type: "mode" }
-                              )
-                            }
-                            title="Click to change Energy Mode"
-                          >
-                            <HighlightedText text={String(rawMode)} query={searchQuery} />
-                          </span>
-                        ) : (
-                          <span
-                            className="notion-badge-add interactive"
-                            onClick={() => setActiveMenu({ nodeId: node.id, type: "mode" })}
-                            title="Add Mode"
-                          >
-                            + Mode
-                          </span>
-                        )}
-
-                        {activeMenu?.nodeId === node.id && activeMenu?.type === "mode" && (
-                          <div className="tag-options-popover">
-                            <div className="popover-title">Select Mode</div>
-                            {MODE_OPTIONS.map((opt) => (
-                              <div
-                                key={opt}
-                                className={`popover-item ${String(rawMode) === opt ? "selected" : ""}`}
-                                onClick={() => selectMode(node, opt)}
-                              >
-                                {opt}
-                              </div>
-                            ))}
-                            {Boolean(rawMode) && (
-                              <div className="popover-item clear-item" onClick={() => selectMode(node, null)}>
-                                ✕ Clear Mode
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      {deadline ? (
-                        <span className="notion-badge notion-badge-deadline" title={`Deadline: ${deadline}`}>
-                          ⚑ {renderDate(deadline)}
-                        </span>
-                      ) : null}
-
-                      {displayEffort ? (
-                        <span className="notion-badge notion-badge-effort" title={`Estimated: ${displayEffort}`}>
-                          ⏱ {displayEffort}
-                        </span>
-                      ) : null}
-
-                      {isCompleted100 ? (
-                        <span className="notion-badge notion-badge-done-100" title="Completed 💯✅">
-                          💯✅
-                        </span>
-                      ) : null}
-
-                      {subthemeInfo ? (
-                        <span
-                          className="notion-badge notion-badge-theme theme-end"
-                          style={{
-                            backgroundColor: `${subthemeInfo.color}22`,
-                            color: subthemeInfo.color,
-                            borderColor: `${subthemeInfo.color}44`,
-                          }}
-                          title={`Theme: ${subthemeInfo.themeName} · Subtheme: ${subthemeInfo.subtheme}`}
-                        >
-                          <HighlightedText text={subthemeInfo.subtheme} query={searchQuery} />
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                );
-              })}
+              {scheduledRows.map(renderRow)}
             </div>
           )}
 
@@ -1323,313 +1356,7 @@ export function ListView({
                   </span>
                 </div>
               )}
-              {unscheduledRows.map(({ node, depth, hasChildren }) => {
-                const isExpanded = expandedIds.has(node.id);
-                const isDone = node.status === "DONE";
-                const isAction = node.work_type === "ACTION" || node.wbs_level === 4;
-                const isCurrentMatch = node.id === currentMatchNodeId;
-                const isEditing = editingNodeId === node.id;
-                const wbs = node.wbs_level || (depth === 0 ? 1 : depth === 1 ? 2 : depth === 2 ? 3 : 4);
-
-                const parsed = parseNodeContent(node.title, node.description);
-                const isCompleted100 = isDone || parsed.isCompleted100 || (node.progress && node.progress.ratio === 1);
-
-                const subthemeInfo = resolveSubthemeInfo(node, yoncConfig, nodesById);
-                const rawTaskType = node.tags?.["Task Type"];
-                const formattedTaskType = cleanTaskType(rawTaskType);
-                const rawMode = node.tags?.["Modes"] || node.tags?.["Mode"];
-                const deadline = node.deadline;
-                const effort = node.estimated_effort_minutes;
-                const displayEffort = effort ? renderEffort(effort) : parsed.extractedEffort ? parsed.extractedEffort : null;
-
-                return (
-                  <div
-                    key={node.id}
-                    ref={(el) => {
-                      if (el) rowRefs.current.set(node.id, el);
-                      else rowRefs.current.delete(node.id);
-                    }}
-                    className={`notion-row level-${wbs} depth-${depth} ${isCompleted100 ? "is-done is-grayed-row" : ""} ${isCurrentMatch ? "is-active-match" : ""} ${draggingId === node.id ? "is-dragging" : ""} ${dragOverId === node.id ? "is-drag-over" : ""}`}
-                    style={{ paddingLeft: `${depth * 22 + 10}px` }}
-                    onClick={() => {
-                      if (!isEditing && hasChildren) {
-                        toggleExpand(node.id);
-                      }
-                    }}
-                    onDragOver={(e) => handleDragOver(node.id, e)}
-                    onDrop={(e) => handleDrop(node.id, e)}
-                    role="treeitem"
-                    aria-expanded={hasChildren ? isExpanded : undefined}
-                  >
-                    {depth > 0 && (
-                      <div className="notion-indent-line" style={{ left: `${(depth - 1) * 22 + 18}px` }} />
-                    )}
-
-                    <div
-                      className="notion-drag-handle"
-                      draggable
-                      onDragStart={(e) => handleDragStart(node.id, e)}
-                      onClick={(e) => e.stopPropagation()}
-                      title="Drag to reorder"
-                    >
-                      ⠿
-                    </div>
-
-                    <div className="notion-toggle-cell">
-                      {hasChildren ? (
-                        <button
-                          className={`notion-toggle-btn level-toggle-${wbs} ${isExpanded ? "expanded" : ""}`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleExpand(node.id);
-                          }}
-                          aria-label={isExpanded ? "Collapse" : "Expand"}
-                        >
-                          <svg viewBox="0 0 100 100" className="notion-toggle-svg">
-                            <polygon points="25,15 80,50 25,85" />
-                          </svg>
-                        </button>
-                      ) : (
-                        <span className="notion-toggle-spacer" />
-                      )}
-                    </div>
-
-                    <div className="notion-control-cell">
-                      {isAction ? (
-                        <button
-                          type="button"
-                          className={`notion-checkbox ${isDone ? "checked" : ""}`}
-                          onClick={(e) => handleCheckboxClick(node, e)}
-                          title={isDone ? "Mark as TODO" : "Mark as DONE"}
-                          aria-checked={isDone}
-                        >
-                          {isDone && (
-                            <svg viewBox="0 0 16 16" className="notion-check-svg">
-                              <path
-                                d="M13.485 3.515a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414 0l-3-3a1 1 0 1 1 1.414-1.414L6 10.086l6.293-6.293a1 1 0 0 1 1.414 0z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                          )}
-                        </button>
-                      ) : null}
-                    </div>
-
-                    <div className="notion-content-cell" onDoubleClick={(e) => startEdit(node, e)}>
-                      {isEditing ? (
-                        <div
-                          ref={editorContainerRef}
-                          className="notion-inline-editor"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <div className="inline-edit-field">
-                            <span className="inline-field-label">Title</span>
-                            <input
-                              type="text"
-                              className="inline-edit-title"
-                              value={editTitle}
-                              onChange={(e) => setEditTitle(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") saveEdit(node.id);
-                                if (e.key === "Escape") setEditingNodeId(null);
-                              }}
-                              autoFocus
-                              placeholder="Task title (Title column)…"
-                            />
-                          </div>
-                          <div className="inline-edit-field">
-                            <span className="inline-field-label">Description</span>
-                            <textarea
-                              className="inline-edit-desc"
-                              rows={2}
-                              value={editDesc}
-                              onChange={(e) => setEditDesc(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) saveEdit(node.id);
-                                if (e.key === "Escape") setEditingNodeId(null);
-                              }}
-                              placeholder="Description or notes (Description column)…"
-                            />
-                          </div>
-                          <div className="inline-edit-actions">
-                            <button
-                              type="button"
-                              className="inline-btn-cancel"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setEditingNodeId(null);
-                              }}
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              type="button"
-                              className="inline-btn-save"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                saveEdit(node.id);
-                              }}
-                              disabled={isSavingEdit}
-                            >
-                              {isSavingEdit ? "Saving…" : "Save"}
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className={`notion-title-text level-title-${wbs}`} title="Double-click to edit">
-                            <HighlightedText text={parsed.cleanTitle} query={searchQuery} isCurrent={isCurrentMatch} />
-                          </div>
-                          {parsed.cleanDesc ? (
-                            <div className="notion-desc-preview" title="Double-click to edit">
-                              <HighlightedText text={parsed.cleanDesc} query={searchQuery} isCurrent={isCurrentMatch} />
-                            </div>
-                          ) : null}
-                        </>
-                      )}
-                    </div>
-
-                    <div className="notion-badges-cell" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        type="button"
-                        className="notion-row-split-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenSplit(node);
-                        }}
-                        title={`Split "${parsed.cleanTitle}" into subtasks (⑂ Split)`}
-                      >
-                        <span className="split-icon">⑂</span>
-                        <span className="split-label">Split</span>
-                      </button>
-
-                      <div className="tag-dropdown-wrap">
-                        {formattedTaskType ? (
-                          <span
-                            className="notion-badge notion-badge-tasktype interactive"
-                            onClick={() =>
-                              setActiveMenu(
-                                activeMenu?.nodeId === node.id && activeMenu.type === "taskType"
-                                  ? null
-                                  : { nodeId: node.id, type: "taskType" }
-                              )
-                            }
-                            title="Click to change Task Type"
-                          >
-                            <HighlightedText text={formattedTaskType} query={searchQuery} />
-                          </span>
-                        ) : (
-                          <span
-                            className="notion-badge-add interactive"
-                            onClick={() => setActiveMenu({ nodeId: node.id, type: "taskType" })}
-                            title="Add Task Type"
-                          >
-                            + Type
-                          </span>
-                        )}
-
-                        {activeMenu?.nodeId === node.id && activeMenu.type === "taskType" && (
-                          <div className="tag-options-popover">
-                            <div className="popover-title">Select Task Type</div>
-                            {TASK_TYPE_OPTIONS.map((opt) => (
-                              <div
-                                key={opt}
-                                className={`popover-item ${formattedTaskType === opt.replace(/\|\s*/, " ") ? "selected" : ""}`}
-                                onClick={() => selectTaskType(node, opt)}
-                              >
-                                {opt}
-                              </div>
-                            ))}
-                            {formattedTaskType && (
-                              <div className="popover-item clear-item" onClick={() => selectTaskType(node, null)}>
-                                ✕ Clear Type
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="tag-dropdown-wrap">
-                        {rawMode ? (
-                          <span
-                            className="notion-badge notion-badge-mode interactive"
-                            onClick={() =>
-                              setActiveMenu(
-                                activeMenu?.nodeId === node.id && activeMenu.type === "mode"
-                                  ? null
-                                  : { nodeId: node.id, type: "mode" }
-                              )
-                            }
-                            title="Click to change Energy Mode"
-                          >
-                            <HighlightedText text={String(rawMode)} query={searchQuery} />
-                          </span>
-                        ) : (
-                          <span
-                            className="notion-badge-add interactive"
-                            onClick={() => setActiveMenu({ nodeId: node.id, type: "mode" })}
-                            title="Add Mode"
-                          >
-                            + Mode
-                          </span>
-                        )}
-
-                        {activeMenu?.nodeId === node.id && activeMenu.type === "mode" && (
-                          <div className="tag-options-popover">
-                            <div className="popover-title">Select Mode</div>
-                            {MODE_OPTIONS.map((opt) => (
-                              <div
-                                key={opt}
-                                className={`popover-item ${String(rawMode) === opt ? "selected" : ""}`}
-                                onClick={() => selectMode(node, opt)}
-                              >
-                                {opt}
-                              </div>
-                            ))}
-                            {Boolean(rawMode) && (
-                              <div className="popover-item clear-item" onClick={() => selectMode(node, null)}>
-                                ✕ Clear Mode
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      {deadline ? (
-                        <span className="notion-badge notion-badge-deadline" title={`Deadline: ${deadline}`}>
-                          ⚑ {renderDate(deadline)}
-                        </span>
-                      ) : null}
-
-                      {displayEffort ? (
-                        <span className="notion-badge notion-badge-effort" title={`Estimated: ${displayEffort}`}>
-                          ⏱ {displayEffort}
-                        </span>
-                      ) : null}
-
-                      {isCompleted100 ? (
-                        <span className="notion-badge notion-badge-done-100" title="Completed 💯✅">
-                          💯✅
-                        </span>
-                      ) : null}
-
-                      {subthemeInfo ? (
-                        <span
-                          className="notion-badge notion-badge-theme theme-end"
-                          style={{
-                            backgroundColor: `${subthemeInfo.color}22`,
-                            color: subthemeInfo.color,
-                            borderColor: `${subthemeInfo.color}44`,
-                          }}
-                          title={`Theme: ${subthemeInfo.themeName} · Subtheme: ${subthemeInfo.subtheme}`}
-                        >
-                          <HighlightedText text={subthemeInfo.subtheme} query={searchQuery} />
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                );
-              })}
+              {unscheduledRows.map(renderRow)}
             </div>
           )}
 

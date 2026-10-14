@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { ApiError } from "./api";
-import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, calculateRangeDuration, calculateRangeEnd, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, isUnclassifiedConstellation, isUnclassifiedNode, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, parseModulePoolTitle, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, splitCardTitle, taskTypeEmojisForNode, themeInfoForNode, tidyConstellationPositions, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
+import { anchoredScrollPosition, arrangeCanvasFamilies, arrangeCanvasPositions, calculateRangeDuration, calculateRangeEnd, canvasContentBounds, canvasEdgeEndpoints, canvasPositionForNode, canvasSubtreeIds, canvasTimeRange, configuredThemeColor, connectorRoute, healthWarningMessage, isUnclassifiedConstellation, isUnclassifiedNode, logarithmicDateOffset, modeInfoForNode, nodeCardHeight, nodeCardInfo, nodeCardWidth, nodesInSelectionBounds, parseModulePoolTitle, placeChildrenBeforeDatedParents, projectKeyForNode, scheduledModuleLayout, scrollCalendarToElement, splitCardTitle, taskTypeEmojisForNode, themeInfoForNode, tidyConstellationPositions, timelinePoolMatches, wideCanvasFamilyLayout, wbsColorFor } from "./App";
 import { nodeHasTimeline, parseNodeContent, resolveSubthemeInfo, treeHasTimeline } from "./ListView";
 import type { GraphNode, YoncConfig } from "./types";
 
@@ -1324,6 +1324,96 @@ describe("ListView UI enhancements (v2-LineV2)", () => {
     // Verify in ListView.tsx that subtheme badge is conditioned on wbs === 2
     const listFile = readFileSync(new URL("./ListView.tsx", import.meta.url), "utf8");
     expect(listFile).toContain("wbs === 2 && subthemeInfo");
+  });
+
+  describe("Timeline calendar viewport centering with resizable module pool", () => {
+    it("ensures .calendar-wrap has position: relative in styles.css", () => {
+      const styles = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+      expect(styles).toContain(".calendar-wrap { position: relative;");
+    });
+
+    it("centers target element within the visible calendar viewport regardless of module pool width", () => {
+      // Simulate calendar container offset by a resized module pool (e.g. 450px wide)
+      // Container viewport is 800px wide, currently at scrollLeft 0
+      const container = {
+        scrollLeft: 0,
+        clientWidth: 800,
+        getBoundingClientRect: () => ({
+          left: 450,
+          top: 50,
+          right: 1250,
+          bottom: 600,
+          width: 800,
+          height: 550,
+        }),
+        scrollTo: ({ left }: { left: number; behavior?: string }) => {
+          container.scrollLeft = left;
+        },
+      } as unknown as HTMLElement;
+
+      // Target element (Today cell, width 44px) located at 1200px within scroll content
+      // Screen X coordinate = 450 (module pool) + (1200 - scrollLeft) = 1650
+      const target = {
+        clientWidth: 44,
+        offsetLeft: 1200,
+        getBoundingClientRect: () => ({
+          left: 450 + (1200 - container.scrollLeft),
+          top: 100,
+          right: 450 + (1200 - container.scrollLeft) + 44,
+          bottom: 144,
+          width: 44,
+          height: 44,
+        }),
+      } as unknown as HTMLElement;
+
+      // Centering formula:
+      // contentLeft = (targetRect.left - containerRect.left) + container.scrollLeft = 1200
+      // targetScrollLeft = 1200 - 800/2 + 44/2 = 1200 - 400 + 22 = 822
+      scrollCalendarToElement(container, target, false);
+      expect(container.scrollLeft).toBe(822);
+
+      // Now verify that with scrollLeft = 822:
+      // Target center in container = (1200 - 822) + 22 = 400 = 800 / 2 (EXACT center of calendar viewport!)
+      const targetVisualLeftInCalendar = (450 + (1200 - container.scrollLeft)) - 450;
+      expect(targetVisualLeftInCalendar + 22).toBe(400);
+    });
+
+    it("supports smooth scrolling when requested", () => {
+      let scrolledWith: { left: number; behavior?: string } | null = null;
+      const container = {
+        scrollLeft: 100,
+        clientWidth: 600,
+        getBoundingClientRect: () => ({
+          left: 300,
+          top: 0,
+          right: 900,
+          bottom: 500,
+          width: 600,
+          height: 500,
+        }),
+        scrollTo: (options: { left: number; behavior?: string }) => {
+          scrolledWith = options;
+        },
+      } as unknown as HTMLElement;
+
+      const target = {
+        clientWidth: 44,
+        offsetLeft: 700,
+        getBoundingClientRect: () => ({
+          left: 300 + (700 - container.scrollLeft),
+          top: 0,
+          right: 300 + (700 - container.scrollLeft) + 44,
+          bottom: 44,
+          width: 44,
+          height: 44,
+        }),
+      } as unknown as HTMLElement;
+
+      scrollCalendarToElement(container, target, true);
+      // contentLeft = 300 + (700 - 100) - 300 + 100 = 700
+      // targetScrollLeft = 700 - 300 + 22 = 422
+      expect(scrolledWith).toEqual({ left: 422, behavior: "smooth" });
+    });
   });
 });
 

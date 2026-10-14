@@ -3,7 +3,8 @@ param(
     [string]$ProjectRoot = "",
     [string]$PythonExe = "",
     [string]$DatabasePath = "",
-    [int]$Port = 8765
+    [int]$Port = 8766,
+    [switch]$OpenBrowser
 )
 
 $ErrorActionPreference = "Stop"
@@ -37,6 +38,9 @@ if (Test-Path -LiteralPath $pidFile) {
             $health = Invoke-RestMethod -Uri "http://127.0.0.1:$Port/api/v2/health" -TimeoutSec 5
             if ([IO.Path]::GetFullPath($health.database_path) -eq [IO.Path]::GetFullPath($database)) {
                 Write-Output "Yonc is already running (PID $oldPid) with the requested database."
+                if ($OpenBrowser) {
+                    Start-Process "http://127.0.0.1:$Port/"
+                }
                 exit 0
             }
         } catch {}
@@ -75,6 +79,9 @@ for ($attempt = 0; $attempt -lt 30; $attempt++) {
             throw "Yonc started with a different database: $($health.database_path)"
         }
         Write-Output "Yonc ready at http://127.0.0.1:$Port (PID $($process.Id), DB $($health.database_identity))."
+        if ($OpenBrowser) {
+            Start-Process "http://127.0.0.1:$Port/"
+        }
         exit 0
     } catch {
         if ($process.HasExited) { throw "Yonc exited during startup. See $logs\yonc.err.log" }

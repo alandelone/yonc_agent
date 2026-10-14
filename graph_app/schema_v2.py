@@ -35,6 +35,7 @@ NODE_COLUMNS = {
     "placement_source": "VARCHAR(30)",
     "last_user_adjusted_at": "DATETIME",
     "archived_at": "DATETIME",
+    "portfolio_role": "VARCHAR(20)",
     "legacy_metadata": "JSON NOT NULL DEFAULT '{}'",
 }
 
@@ -43,6 +44,14 @@ STATUS_EVENT_COLUMNS = {
     "stage_after": "VARCHAR(20)",
     "reason": "TEXT",
     "batch_id": "VARCHAR(36)",
+}
+
+FOCUS_SESSION_COLUMNS = {
+    "duration_seconds": "INTEGER",
+}
+
+GRAPH_META_COLUMNS = {
+    "database_id": "VARCHAR(36)",
 }
 
 OPERATION_COLUMNS = {
@@ -85,8 +94,14 @@ def upgrade_connection(connection) -> None:
         _add_missing_columns(connection, "split_messages", SPLIT_MESSAGE_COLUMNS)
     if "proposal_versions" in tables:
         _add_missing_columns(connection, "proposal_versions", PROPOSAL_VERSION_COLUMNS)
+    if "focus_sessions" in tables:
+        _add_missing_columns(connection, "focus_sessions", FOCUS_SESSION_COLUMNS)
     if "graph_meta" in tables:
+        _add_missing_columns(connection, "graph_meta", GRAPH_META_COLUMNS)
         connection.execute(text("UPDATE graph_meta SET schema_version = '1.2' WHERE id = 1"))
+        meta_row = connection.execute(text("SELECT database_id FROM graph_meta WHERE id = 1")).first()
+        if meta_row and not meta_row[0]:
+            connection.execute(text("UPDATE graph_meta SET database_id = :db_id WHERE id = 1"), {"db_id": str(uuid.uuid4())})
 
     connection.exec_driver_sql(
         "CREATE UNIQUE INDEX IF NOT EXISTS uq_committed_contains_parent "
@@ -129,9 +144,9 @@ def upgrade_connection(connection) -> None:
                  ELSE legacy_metadata END
         """))
     connection.execute(text("""
-        INSERT OR IGNORE INTO graph_meta (id, graph_version, schema_version, updated_at)
-        VALUES (1, 1, '1.1', CURRENT_TIMESTAMP)
-    """))
+        INSERT OR IGNORE INTO graph_meta (id, database_id, graph_version, schema_version, updated_at)
+        VALUES (1, :db_id, 1, '1.2', CURRENT_TIMESTAMP)
+    """), {"db_id": str(uuid.uuid4())})
     legacy_links = connection.execute(text("SELECT id, links FROM graph_nodes WHERE links IS NOT NULL AND links != '[]'"))
     for node_id, raw_links in legacy_links:
         try:

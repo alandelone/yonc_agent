@@ -1,4 +1,4 @@
 @echo off
 rem Yonc UI Launcher
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0start-yonc.ps1" %*
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0start-yonc.ps1" -OpenBrowser %*
 exit /b %ERRORLEVEL%

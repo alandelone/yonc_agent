@@ -22,6 +22,7 @@ from .v2_service import (
     V2Error,
     add_resource_reference,
     add_split_message,
+    apply_action_decision,
     apply_schedule,
     commit_split,
     consume_commit_authorization,
@@ -30,16 +31,21 @@ from .v2_service import (
     create_edge_v2,
     create_node_v2,
     current_proposal,
+    database_id,
     delete_direction,
     discard_split,
+    get_execution_receipt,
     get_view_state,
     graph_projection,
     graph_version,
+    handle_focus_event,
+    hierarchy_maps,
     list_directions,
     preview_schedule,
     reparent_node,
     serialize_batch,
     serialize_direction,
+    serialize_execution_receipt,
     serialize_node,
     serialize_proposal,
     serialize_resource,
@@ -65,6 +71,7 @@ class V2NodeCreate(BaseModel):
     status: Literal["TODO", "DOING", "BLOCKED", "DONE", "CANCELLED", "SUPERSEDED"] = "TODO"
     status_reason: str | None = None
     parent_id: str | None = None
+    portfolio_role: Literal["MAIN", "SUPPORT", "PARKED"] | None = None
     description: str | None = None
     start_cue: str | None = None
     inputs: list[Any] = Field(default_factory=list)
@@ -86,6 +93,7 @@ class V2NodeCreate(BaseModel):
 class V2NodePatch(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=500)
     work_type: Literal["UNCLASSIFIED", "GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION"] | None = None
+    portfolio_role: Literal["MAIN", "SUPPORT", "PARKED"] | None = None
     description: str | None = None
     start_cue: str | None = None
     inputs: list[Any] | None = None
@@ -97,6 +105,25 @@ class V2NodePatch(BaseModel):
     estimate_confidence: float | None = Field(default=None, ge=0, le=1)
     deadline: str | None = None
     expected_graph_version: int | None = None
+
+
+class ActionDecisionPayload(BaseModel):
+    operation_id: str = Field(min_length=1, max_length=36)
+    node_id: str = Field(min_length=1, max_length=36)
+    action: Literal["start", "block", "unblock", "done", "reopen"]
+    decision_origin: dict[str, Any]
+    actor: str = "honc"
+    reason: str | None = None
+    expected_graph_version: int | None = None
+
+
+class FocusEventPayload(BaseModel):
+    interval_id: str = Field(min_length=1, max_length=36)
+    event_type: Literal["start", "close"]
+    node_id: str | None = None
+    timestamp: str | None = None
+    duration_seconds: int | None = Field(default=None, ge=0)
+    source: str = "honc"
 
 
 class V2EdgeCreate(BaseModel):
@@ -260,7 +287,36 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         database = session.get_bind().url.database or ""
         resolved = str(Path(database).resolve()) if database else ""
         identity = hashlib.sha256(resolved.encode("utf-8")).hexdigest()[:16]
-        return {"ok": True, "schema_version": "1.2", "graph_version": graph_version(session), "nodes": len(list(session.scalars(select(GraphNode.id)).all())), "database_path": resolved, "database_identity": identity}
+        return {
+            "ok": True,
+            "schema_version": "1.2",
+            "graph_version": graph_version(session),
+            "database_id": database_id(session),
+            "nodes": len(list(session.scalars(select(GraphNode.id)).all())),
+            "database_path": resolved,
+            "database_identity": identity,
+        }
+
+    @app.get("/api/v2/nodes")
+    def list_nodes(
+        portfolio_role: Literal["MAIN", "SUPPORT", "PARKED"] | None = Query(default=None),
+        work_type: str | None = Query(default=None),
+        stage: str | None = Query(default=None),
+        status: str | None = Query(default=None),
+        session: Session = Depends(get_session),
+    ):
+        stmt = select(GraphNode).where(GraphNode.is_proposed.is_(False), GraphNode.archived_at.is_(None))
+        if portfolio_role:
+            stmt = stmt.where(GraphNode.portfolio_role == portfolio_role)
+        if work_type:
+            stmt = stmt.where(GraphNode.work_type == work_type.upper())
+        if stage:
+            stmt = stmt.where(GraphNode.stage == stage.upper())
+        if status:
+            stmt = stmt.where(GraphNode.status == status.upper())
+        nodes = list(session.scalars(stmt).all())
+        parents, _ = hierarchy_maps(session)
+        return {"nodes": [serialize_node(session, node, parent_id=parents.get(node.id)) for node in nodes]}
 
     @app.get("/api/v2/settings/yonc-config")
     def read_yonc_config(session: Session = Depends(get_session)):
@@ -521,11 +577,13 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         return [serialize_batch(batch) for batch in session.scalars(select(OperationBatch).order_by(OperationBatch.created_at.desc()).limit(limit)).all()]
 
     @app.post("/api/v2/operation-batches/{batch_id}/undo")
-    def undo_operation_batch(batch_id: str, payload: UndoBatchPayload, session: Session = Depends(get_session)):
+    @app.post("/api/v2/batches/{batch_id}/undo")
+    def undo_operation_batch(batch_id: str, payload: UndoBatchPayload | None = None, session: Session = Depends(get_session)):
+        expected_version = payload.expected_graph_version if payload else None
         batch = session.get(OperationBatch, batch_id)
         if batch is None:
             raise V2Error("BATCH_NOT_FOUND", "operation.batch_not_found", {"batch_id": batch_id}, status_code=404)
-        undo_batch(session, batch, expected_version=payload.expected_graph_version)
+        undo_batch(session, batch, expected_version=expected_version)
         return {"operation_batch": serialize_batch(batch), "graph_version": graph_version(session)}
 
     @app.get("/api/v2/directions")
@@ -598,3 +656,38 @@ def register_v2_routes(app: FastAPI, get_session) -> None:
         preview = import_preview_payload(session, payload.source_path)
         result = import_legacy_state(session, payload.source_path)
         return {"preview": preview, "result": result, "will_write_back_to_notion": False}
+
+    @app.post("/api/v2/execution/action-decisions")
+    def post_action_decision(
+        payload: ActionDecisionPayload,
+        x_graph_database_id: str | None = Header(default=None, alias="X-Graph-Database-Id"),
+        session: Session = Depends(get_session),
+    ):
+        receipt, batch, node = apply_action_decision(
+            session,
+            payload.model_dump(),
+            expected_database_id=x_graph_database_id,
+        )
+        return {
+            "receipt": serialize_execution_receipt(receipt),
+            "graph_version": batch.graph_version_after,
+            "operation_batch_id": batch.id,
+            "node": serialize_node(session, node),
+        }
+
+    @app.get("/api/v2/execution/receipts/{operation_id}")
+    def get_receipt(operation_id: str, session: Session = Depends(get_session)):
+        receipt = get_execution_receipt(session, operation_id)
+        return {"receipt": serialize_execution_receipt(receipt)}
+
+    @app.post("/api/v2/execution/focus-events")
+    def post_focus_event(
+        payload: FocusEventPayload,
+        x_graph_database_id: str | None = Header(default=None, alias="X-Graph-Database-Id"),
+        session: Session = Depends(get_session),
+    ):
+        return handle_focus_event(
+            session,
+            payload.model_dump(),
+            expected_database_id=x_graph_database_id,
+        )

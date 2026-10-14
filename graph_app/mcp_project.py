@@ -20,7 +20,7 @@ except ImportError:  # pragma: no cover - gives a useful error in minimal instal
     FastMCP = None  # type: ignore[assignment]
 
 
-API_URL = os.getenv("YONC_API_URL", "http://127.0.0.1:8765").rstrip("/")
+API_URL = os.getenv("YONC_API_URL", "http://127.0.0.1:8766").rstrip("/")
 MAX_RESULTS = 50
 
 

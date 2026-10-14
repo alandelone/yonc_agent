@@ -134,6 +134,8 @@ def set_lifecycle(session: Session, node: GraphNode, lifecycle: str, *, actor: s
 
 
 def finish_focus_session(session: Session, active: FocusSession) -> FocusSession:
+    if active.ended_at is not None and active.duration_seconds is not None:
+        return active
     active.ended_at = utcnow()
     # SQLite returns naive datetimes even for timezone-aware columns.  Treat its
     # stored timestamps as UTC so focus duration remains stable across backends.
@@ -141,6 +143,7 @@ def finish_focus_session(session: Session, active: FocusSession) -> FocusSession
     if started_at.tzinfo is None:
         started_at = started_at.replace(tzinfo=timezone.utc)
     seconds = max(0, int((active.ended_at - started_at).total_seconds()))
+    active.duration_seconds = seconds
     node = session.get(GraphNode, active.node_id)
     if node:
         node.observed_work_seconds += seconds

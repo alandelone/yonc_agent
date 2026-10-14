@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import math
 import statistics
 from collections import defaultdict
@@ -14,6 +16,8 @@ from sqlalchemy.orm import Session
 from .models import (
     CommitAuthorization,
     Direction,
+    ExecutionReceipt,
+    FocusSession,
     GraphEdge,
     GraphMeta,
     GraphNode,
@@ -28,11 +32,13 @@ from .models import (
     new_id,
     utcnow,
 )
+from .service import finish_focus_session
 from .split_adapter import _check_actionability, get_split_adapter
 
 
 NODE_KINDS = {"WORK", "ARTIFACT", "RESOURCE", "AGENT"}
 WORK_TYPES = {"UNCLASSIFIED", "GOAL", "DELIVERABLE", "WORK_PACKAGE", "ACTION"}
+PORTFOLIO_ROLES = {"MAIN", "SUPPORT", "PARKED"}
 STAGES = {"CAPTURED", "PLANNING", "READY", "EXECUTION", "REVIEW", "CLOSED"}
 STATUSES = {"TODO", "DOING", "BLOCKED", "DONE", "CANCELLED", "SUPERSEDED"}
 TERMINAL_STATUSES = {"DONE", "CANCELLED", "SUPERSEDED"}
@@ -72,14 +78,21 @@ def _iso(value: datetime | None) -> str | None:
 def graph_meta(session: Session) -> GraphMeta:
     meta = session.get(GraphMeta, 1)
     if meta is None:
-        meta = GraphMeta(id=1, graph_version=1, schema_version="1.2")
+        meta = GraphMeta(id=1, database_id=new_id(), graph_version=1, schema_version="1.2")
         session.add(meta)
+        session.flush()
+    elif not getattr(meta, "database_id", None):
+        meta.database_id = new_id()
         session.flush()
     return meta
 
 
 def graph_version(session: Session) -> int:
     return graph_meta(session).graph_version
+
+
+def database_id(session: Session) -> str:
+    return graph_meta(session).database_id
 
 
 def require_graph_version(session: Session, expected: int | None) -> int:
@@ -229,6 +242,13 @@ def validate_node_payload(payload: dict[str, Any], *, partial: bool = False) -> 
         raise V2Error("INVALID_ESTIMATE", "node.invalid_estimate", {"estimated_effort_minutes": effort})
     for field in ("planned_start", "planned_end", "deadline"):
         parse_date(values.get(field), field)
+    if "portfolio_role" in values and values["portfolio_role"] is not None:
+        role = str(values["portfolio_role"]).strip().upper()
+        if role not in PORTFOLIO_ROLES:
+            raise V2Error("INVALID_PORTFOLIO_ROLE", "node.invalid_portfolio_role", {"portfolio_role": values["portfolio_role"]})
+        values["portfolio_role"] = role
+    elif "portfolio_role" in values:
+        values["portfolio_role"] = None
     values.update(node_kind=node_kind, work_type=work_type, stage=stage, status=status)
     return values
 
@@ -239,7 +259,7 @@ def _node_snapshot(node: GraphNode) -> dict[str, Any]:
         "closed_from_status", "superseded_by", "description", "start_cue", "inputs", "done_when",
         "required", "tags", "estimated_effort_minutes", "estimate_source", "estimate_confidence",
         "planned_start", "planned_end", "deadline", "placement_source", "last_user_adjusted_at",
-        "archived_at", "kind", "lifecycle", "wbs_level", "parent_id", "links", "legacy_metadata",
+        "archived_at", "portfolio_role", "kind", "lifecycle", "wbs_level", "parent_id", "links", "legacy_metadata",
     )
     result = {field: getattr(node, field) for field in fields}
     if isinstance(result.get("last_user_adjusted_at"), datetime):
@@ -262,6 +282,34 @@ def create_node_v2(
     if not title:
         raise V2Error("TITLE_REQUIRED", "node.title_required", {})
     parent_id = values.pop("parent_id", None)
+    portfolio_role = values.get("portfolio_role")
+    if portfolio_role is not None:
+        if values["work_type"] != "GOAL" or parent_id is not None:
+            raise V2Error(
+                "INVALID_PORTFOLIO_ROLE_TARGET",
+                "portfolio_role can only be assigned to root GOAL nodes",
+                {"work_type": values["work_type"], "parent_id": parent_id},
+                status_code=422,
+            )
+        if portfolio_role in ("MAIN", "SUPPORT"):
+            existing = session.scalar(
+                select(GraphNode).where(
+                    GraphNode.portfolio_role == portfolio_role,
+                    GraphNode.archived_at.is_(None),
+                )
+            )
+            if existing:
+                existing_before = _node_snapshot(existing)
+                existing.portfolio_role = "PARKED"
+                if batch is None:
+                    batch = begin_batch(session, "create_node", actor_channel=actor_channel, expected_version=expected_version)
+                record_batch_operation(
+                    session,
+                    batch,
+                    "update_node",
+                    {"node_id": existing.id, "fields": ["portfolio_role"]},
+                    {"action": "restore_node", "node_id": existing.id, "snapshot": existing_before},
+                )
     if batch is None:
         batch = begin_batch(session, "create_node", actor_channel=actor_channel, expected_version=expected_version)
     elif expected_version is not None:
@@ -292,6 +340,7 @@ def create_node_v2(
         placement_source=values.get("placement_source"),
         notion_block_id=values.get("notion_block_id"),
         origin=values.get("origin", "human"),
+        portfolio_role=portfolio_role,
         legacy_metadata=values.get("legacy_metadata") or {},
         kind=_legacy_kind(values["node_kind"]),
         lifecycle=_legacy_lifecycle(values["status"], values["stage"]),
@@ -398,6 +447,10 @@ def reparent_node(
         session.flush()
         new_edge_id = new_edge.id
 
+    old_portfolio_role = node.portfolio_role
+    if parent_id is not None:
+        node.portfolio_role = None
+
     node.parent_id = parent_id
     node.work_type = next_work_type
     node.wbs_level = WBS_BY_WORK_TYPE.get(next_work_type)
@@ -419,6 +472,7 @@ def reparent_node(
             "parent_id": old_parent,
             "work_type": old_work_type,
             "wbs_level": old_wbs_level,
+            "portfolio_role": old_portfolio_role,
         },
     )
     batch.summary = {
@@ -452,6 +506,39 @@ def update_node_v2(
     if "work_type" in payload:
         node.work_type = values["work_type"]
         node.wbs_level = WBS_BY_WORK_TYPE[node.work_type]
+    if "portfolio_role" in payload:
+        new_role = values.get("portfolio_role")
+        if new_role is not None:
+            parents, _ = hierarchy_maps(session)
+            parent_id = parents.get(node.id) or node.parent_id
+            if node.work_type != "GOAL" or parent_id is not None:
+                raise V2Error(
+                    "INVALID_PORTFOLIO_ROLE_TARGET",
+                    "portfolio_role can only be assigned to root GOAL nodes",
+                    {"node_id": node.id, "work_type": node.work_type, "parent_id": parent_id},
+                    status_code=422,
+                )
+            if new_role in ("MAIN", "SUPPORT"):
+                existing = session.scalar(
+                    select(GraphNode).where(
+                        GraphNode.portfolio_role == new_role,
+                        GraphNode.id != node.id,
+                        GraphNode.archived_at.is_(None),
+                    )
+                )
+                if existing:
+                    existing_before = _node_snapshot(existing)
+                    existing.portfolio_role = "PARKED"
+                    if batch is None:
+                        batch = begin_batch(session, "update_node", actor_channel=actor_channel, expected_version=expected_version)
+                    record_batch_operation(
+                        session,
+                        batch,
+                        "update_node",
+                        {"node_id": existing.id, "fields": ["portfolio_role"]},
+                        {"action": "restore_node", "node_id": existing.id, "snapshot": existing_before},
+                    )
+        node.portfolio_role = new_role
     for field in (
         "title", "description", "start_cue", "inputs", "done_when", "required", "tags",
         "estimated_effort_minutes", "estimate_source", "estimate_confidence", "deadline",
@@ -489,7 +576,7 @@ def transition_node(
     elif action == "submit_review":
         node.stage, node.status, node.status_reason = "REVIEW", "TODO", None
     elif action in {"done", "cancel", "supersede"}:
-        if action == "done" and actor_channel != "user_ui":
+        if action == "done" and actor_channel not in {"user_ui", "honc_execution"}:
             raise V2Error("USER_ONLY_DONE", "node.user_only_done", {}, status_code=403)
         target_status = {"done": "DONE", "cancel": "CANCELLED", "supersede": "SUPERSEDED"}[action]
         if target_status in {"CANCELLED", "SUPERSEDED"} and not str(reason or "").strip():
@@ -955,6 +1042,8 @@ def serialize_node(
         "deadline": node.deadline,
         "placement_source": node.placement_source,
         "notion_block_id": node.notion_block_id,
+        "portfolio_role": node.portfolio_role,
+        "observed_work_seconds": node.observed_work_seconds,
         "resource_count": resource_count,
         "archived": node.archived_at is not None,
         "created_at": _iso(node.created_at),
@@ -1807,6 +1896,8 @@ def undo_batch(session: Session, batch: OperationBatch, *, expected_version: int
                 if "work_type" in inverse:
                     node.work_type = inverse["work_type"]
                     node.wbs_level = inverse.get("wbs_level", WBS_BY_WORK_TYPE.get(node.work_type))
+                if "portfolio_role" in inverse:
+                    node.portfolio_role = inverse.get("portfolio_role")
         elif action == "restore_node":
             node = session.get(GraphNode, inverse["node_id"])
             if node is None:
@@ -1846,4 +1937,283 @@ def undo_batch(session: Session, batch: OperationBatch, *, expected_version: int
     operations = list(session.scalars(select(Operation).where(Operation.batch_id == batch.id)).all())
     for operation in operations:
         operation.undone_at = batch.undone_at
+    receipts = list(session.scalars(select(ExecutionReceipt).where(ExecutionReceipt.batch_id == batch.id)).all())
+    for receipt in receipts:
+        receipt.undone_at = batch.undone_at
     return batch
+
+
+ALLOWED_ACTION_DECISIONS = {"start", "block", "unblock", "done", "reopen"}
+
+
+def compute_semantic_digest(node_id: str, action: str, decision_origin: dict[str, Any], reason: str | None = None) -> str:
+    raw = json.dumps({
+        "node_id": node_id,
+        "action": action.lower(),
+        "decision_origin": decision_origin,
+        "reason": reason,
+    }, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def serialize_execution_receipt(receipt: ExecutionReceipt) -> dict[str, Any]:
+    return {
+        "operation_id": receipt.operation_id,
+        "node_id": receipt.node_id,
+        "action": receipt.action,
+        "semantic_digest": receipt.semantic_digest,
+        "decision_origin": receipt.decision_origin or {},
+        "actor": receipt.actor,
+        "state_before": receipt.state_before or {},
+        "state_after": receipt.state_after or {},
+        "batch_id": receipt.batch_id,
+        "graph_version_before": receipt.graph_version_before,
+        "graph_version_after": receipt.graph_version_after,
+        "response_payload": receipt.response_payload or {},
+        "undone_at": _iso(receipt.undone_at),
+        "is_undone": receipt.undone_at is not None,
+        "created_at": _iso(receipt.created_at),
+    }
+
+
+def get_execution_receipt(session: Session, operation_id: str) -> ExecutionReceipt:
+    receipt = session.get(ExecutionReceipt, operation_id)
+    if receipt is None:
+        raise V2Error("RECEIPT_NOT_FOUND", "execution.receipt_not_found", {"operation_id": operation_id}, status_code=404)
+    return receipt
+
+
+def apply_action_decision(
+    session: Session,
+    payload: dict[str, Any],
+    *,
+    expected_database_id: str | None = None,
+) -> tuple[ExecutionReceipt, OperationBatch, GraphNode]:
+    current_db_id = database_id(session)
+    if expected_database_id and expected_database_id != current_db_id:
+        raise V2Error(
+            "DATABASE_ID_MISMATCH",
+            "database.id_mismatch",
+            {"expected": expected_database_id, "actual": current_db_id},
+            status_code=412,
+        )
+
+    operation_id = str(payload.get("operation_id") or "").strip()
+    if not operation_id:
+        raise V2Error("OPERATION_ID_REQUIRED", "execution.operation_id_required", {})
+
+    node_id = str(payload.get("node_id") or "").strip()
+    if not node_id:
+        raise V2Error("NODE_ID_REQUIRED", "execution.node_id_required", {})
+
+    action = str(payload.get("action") or "").strip().lower()
+    if action not in ALLOWED_ACTION_DECISIONS:
+        raise V2Error(
+            "INVALID_ACTION_DECISION",
+            "execution.invalid_action",
+            {"action": action, "allowed": sorted(ALLOWED_ACTION_DECISIONS)},
+            status_code=422,
+        )
+
+    decision_origin = payload.get("decision_origin")
+    if not isinstance(decision_origin, dict) or not decision_origin:
+        raise V2Error("DECISION_ORIGIN_REQUIRED", "execution.decision_origin_required", {})
+
+    reason = payload.get("reason")
+    expected_version = payload.get("expected_graph_version")
+    semantic_digest = compute_semantic_digest(node_id, action, decision_origin, reason)
+
+    # Check idempotency
+    existing = session.get(ExecutionReceipt, operation_id)
+    if existing:
+        if existing.semantic_digest == semantic_digest:
+            node = session.get(GraphNode, existing.node_id)
+            batch = session.get(OperationBatch, existing.batch_id)
+            return existing, batch, node
+        else:
+            raise V2Error(
+                "OPERATION_ID_CONFLICT",
+                "execution.operation_id_conflict",
+                {"operation_id": operation_id, "existing_action": existing.action},
+                status_code=409,
+            )
+
+    node = session.get(GraphNode, node_id)
+    if node is None or node.archived_at is not None:
+        raise V2Error("NODE_NOT_FOUND", "node.not_found", {"node_id": node_id}, status_code=404)
+
+    if node.work_type != "ACTION":
+        raise V2Error(
+            "ACTION_ONLY_DECISION",
+            "execution.action_only_decision",
+            {"node_id": node.id, "work_type": node.work_type},
+            status_code=422,
+        )
+
+    state_before = {
+        "stage": node.stage,
+        "status": node.status,
+        "reason": node.status_reason,
+        "closed_from_stage": node.closed_from_stage,
+        "closed_from_status": node.closed_from_status,
+    }
+
+    batch = transition_node(
+        session,
+        node,
+        action,
+        reason=reason,
+        expected_version=expected_version,
+        actor_channel="honc_execution",
+        cascade=False,
+    )
+
+    state_after = {
+        "stage": node.stage,
+        "status": node.status,
+        "reason": node.status_reason,
+        "closed_from_stage": node.closed_from_stage,
+        "closed_from_status": node.closed_from_status,
+    }
+
+    response_payload = {
+        "graph_version": batch.graph_version_after,
+        "operation_batch_id": batch.id,
+        "node": serialize_node(session, node),
+    }
+
+    receipt = ExecutionReceipt(
+        operation_id=operation_id,
+        node_id=node.id,
+        action=action,
+        semantic_digest=semantic_digest,
+        decision_origin=decision_origin,
+        actor=str(payload.get("actor") or "honc"),
+        state_before=state_before,
+        state_after=state_after,
+        batch_id=batch.id,
+        graph_version_before=batch.graph_version_before,
+        graph_version_after=batch.graph_version_after,
+        response_payload=response_payload,
+        undone_at=None,
+    )
+    session.add(receipt)
+    session.flush()
+    return receipt, batch, node
+
+
+def handle_focus_event(
+    session: Session,
+    payload: dict[str, Any],
+    *,
+    expected_database_id: str | None = None,
+) -> dict[str, Any]:
+    current_db_id = database_id(session)
+    if expected_database_id and expected_database_id != current_db_id:
+        raise V2Error(
+            "DATABASE_ID_MISMATCH",
+            "database.id_mismatch",
+            {"expected": expected_database_id, "actual": current_db_id},
+            status_code=412,
+        )
+
+    interval_id = str(payload.get("interval_id") or "").strip()
+    if not interval_id:
+        raise V2Error("INTERVAL_ID_REQUIRED", "focus.interval_id_required", {})
+
+    event_type = str(payload.get("event_type") or "").strip().lower()
+    if event_type not in ("start", "close"):
+        raise V2Error("INVALID_FOCUS_EVENT_TYPE", "focus.invalid_event_type", {"event_type": event_type}, status_code=422)
+
+    if event_type == "start":
+        node_id = str(payload.get("node_id") or "").strip()
+        if not node_id:
+            raise V2Error("NODE_ID_REQUIRED", "focus.node_id_required", {})
+        node = session.get(GraphNode, node_id)
+        if node is None or node.archived_at is not None:
+            raise V2Error("NODE_NOT_FOUND", "node.not_found", {"node_id": node_id}, status_code=404)
+
+        existing = session.get(FocusSession, interval_id)
+        if existing:
+            return {
+                "session_id": existing.id,
+                "node_id": existing.node_id,
+                "started_at": _iso(existing.started_at),
+                "ended_at": _iso(existing.ended_at),
+                "duration_seconds": existing.duration_seconds,
+                "source": existing.source,
+                "status": "active" if existing.ended_at is None else "closed",
+            }
+
+        # Auto-settle any prior active focus session across all sources
+        active = session.scalar(select(FocusSession).where(FocusSession.ended_at.is_(None)))
+        if active:
+            finish_focus_session(session, active)
+
+        started_at = _parse_optional_datetime(payload.get("timestamp")) or utcnow()
+        new_focus = FocusSession(
+            id=interval_id,
+            node_id=node.id,
+            started_at=started_at,
+            ended_at=None,
+            duration_seconds=None,
+            source=str(payload.get("source") or "honc"),
+        )
+        session.add(new_focus)
+        session.flush()
+        return {
+            "session_id": new_focus.id,
+            "node_id": new_focus.node_id,
+            "started_at": _iso(new_focus.started_at),
+            "ended_at": None,
+            "duration_seconds": None,
+            "source": new_focus.source,
+            "status": "active",
+        }
+
+    else:  # close
+        focus = session.get(FocusSession, interval_id)
+        if focus is None:
+            raise V2Error("FOCUS_SESSION_NOT_FOUND", "focus.session_not_found", {"interval_id": interval_id}, status_code=404)
+
+        node = session.get(GraphNode, focus.node_id)
+        if focus.ended_at is not None and focus.duration_seconds is not None:
+            return {
+                "session_id": focus.id,
+                "node_id": focus.node_id,
+                "started_at": _iso(focus.started_at),
+                "ended_at": _iso(focus.ended_at),
+                "duration_seconds": focus.duration_seconds,
+                "source": focus.source,
+                "status": "closed",
+                "observed_work_seconds": node.observed_work_seconds if node else None,
+            }
+
+        ended_at = _parse_optional_datetime(payload.get("timestamp")) or utcnow()
+        focus.ended_at = ended_at
+        started_at = focus.started_at
+        if started_at.tzinfo is None:
+            started_at = started_at.replace(tzinfo=timezone.utc)
+        if ended_at.tzinfo is None:
+            ended_at = ended_at.replace(tzinfo=timezone.utc)
+
+        raw_duration = payload.get("duration_seconds")
+        if raw_duration is not None and int(raw_duration) >= 0:
+            duration = int(raw_duration)
+        else:
+            duration = max(0, int((ended_at - started_at).total_seconds()))
+
+        focus.duration_seconds = duration
+        if node:
+            node.observed_work_seconds += duration
+        session.flush()
+        return {
+            "session_id": focus.id,
+            "node_id": focus.node_id,
+            "started_at": _iso(focus.started_at),
+            "ended_at": _iso(focus.ended_at),
+            "duration_seconds": focus.duration_seconds,
+            "source": focus.source,
+            "status": "closed",
+            "observed_work_seconds": node.observed_work_seconds if node else None,
+        }

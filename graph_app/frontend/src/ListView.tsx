@@ -1034,6 +1034,15 @@ export function ListView({
           ) : (
             <>
               <div className={`notion-title-text level-title-${wbs}`} title="Double-click to edit">
+                {node.portfolio_role === "MAIN" && (
+                  <span className="portfolio-badge main" title="Portfolio Role: MAIN">★ MAIN</span>
+                )}
+                {node.portfolio_role === "SUPPORT" && (
+                  <span className="portfolio-badge support" title="Portfolio Role: SUPPORT">✦ SUPPORT</span>
+                )}
+                {node.portfolio_role === "PARKED" && (
+                  <span className="portfolio-badge parked" title="Portfolio Role: PARKED">⏸ PARKED</span>
+                )}
                 <HighlightedText text={parsed.cleanTitle} query={searchQuery} isCurrent={isCurrentMatch} />
               </div>
               {parsed.cleanDesc ? (

@@ -1221,6 +1221,15 @@ function NodeCard({ node, position, height, color, selected, yoncConfig, nodesBy
       )}
       <div className="node-topline">
         <span className="node-wbs-meta">
+          {node.portfolio_role === "MAIN" && (
+            <span className="portfolio-badge main" title="Portfolio Role: MAIN">★ MAIN</span>
+          )}
+          {node.portfolio_role === "SUPPORT" && (
+            <span className="portfolio-badge support" title="Portfolio Role: SUPPORT">✦ SUPPORT</span>
+          )}
+          {node.portfolio_role === "PARKED" && (
+            <span className="portfolio-badge parked" title="Portfolio Role: PARKED">⏸ PARKED</span>
+          )}
           {theme && (
             <span
               className="node-theme-pill"
@@ -2296,6 +2305,17 @@ function NodeInspector({ node, allNodes = [], color, graphVersion, onClose, onRe
     }
   };
 
+  const handlePortfolioRoleChange = async (newRole: "MAIN" | "SUPPORT" | "PARKED" | null) => {
+    if (!node) return;
+    try {
+      const result = await api.patchNode(node.id, { portfolio_role: newRole }, graphVersion);
+      onRegisterUndo({ kind: "batch", batchId: result.operation_batch_id });
+      await onRefresh();
+    } catch (error) {
+      onError(error);
+    }
+  };
+
   const performDone = async () => {
     try {
       const result = await api.transition(node.id, "done", graphVersion);
@@ -2624,6 +2644,32 @@ function NodeInspector({ node, allNodes = [], color, graphVersion, onClose, onRe
           )}
         </div>
         <span>Progress</span><b>{Math.round((node.progress?.ratio ?? 0) * 100)}%</b>
+        {node.work_type === "GOAL" && !node.parent_id && (
+          <>
+            <span>Portfolio Role</span>
+            <div className="portfolio-role-wrap">
+              <select
+                className="portfolio-role-select"
+                value={node.portfolio_role || ""}
+                onChange={(event) => {
+                  const val = event.target.value as "MAIN" | "SUPPORT" | "PARKED" | "";
+                  handlePortfolioRoleChange(val ? val : null);
+                }}
+              >
+                <option value="">None (Standard Goal)</option>
+                <option value="MAIN">★ MAIN (Only 1 allowed)</option>
+                <option value="SUPPORT">✦ SUPPORT (Only 1 allowed)</option>
+                <option value="PARKED">⏸ PARKED</option>
+              </select>
+            </div>
+          </>
+        )}
+        {node.observed_work_seconds !== undefined && node.observed_work_seconds > 0 && (
+          <>
+            <span>Focus Time</span>
+            <b>{Math.round(node.observed_work_seconds / 60)} min</b>
+          </>
+        )}
         <span>Estimated Effort</span><b>{formatEffort(node.estimated_effort_minutes)}</b>
         <span>Planned Span</span><b>{node.planned_start ? `${fmtDate(node.planned_start)} – ${fmtDate(node.planned_end ?? node.planned_start)}` : "Unscheduled"}</b>
         <span>Deadline</span>
@@ -3024,6 +3070,39 @@ function FloatingDirectionTag({
   );
 }
 
+export function scrollCalendarToElement(
+  container: HTMLElement,
+  target: HTMLElement,
+  smooth = false
+) {
+  const containerRect = container.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  let contentLeft: number;
+  let targetWidth: number;
+  let clientWidth: number;
+
+  if (containerRect.width > 0) {
+    const currentOffsetInContainer = targetRect.left - containerRect.left;
+    contentLeft = currentOffsetInContainer + container.scrollLeft;
+    targetWidth = targetRect.width;
+    clientWidth = container.clientWidth;
+  } else {
+    contentLeft = target.offsetLeft;
+    targetWidth = target.clientWidth;
+    clientWidth = container.clientWidth;
+  }
+
+  const targetScrollLeft = Math.max(
+    0,
+    contentLeft - clientWidth / 2 + targetWidth / 2
+  );
+  if (smooth) {
+    container.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+  } else {
+    container.scrollLeft = targetScrollLeft;
+  }
+}
+
 function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId, calendarRef, onSelect, onRefresh, onError, onRegisterUndo }: {
   timeline: TimelineResponse;
   graph: GraphResponse;
@@ -3288,9 +3367,13 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
   };
   useEffect(() => {
     if (positionedOnce.current || !calendarRef.current) return;
-    const todayCell = calendarRef.current.querySelector<HTMLElement>(`[data-date="${new Date().toISOString().slice(0, 10)}"]`);
+    const calendar = calendarRef.current;
+    const todayCell = calendar.querySelector<HTMLElement>(".day-cell.today") || calendar.querySelector<HTMLElement>(`[data-date="${new Date().toISOString().slice(0, 10)}"]`);
     if (!todayCell) return;
-    calendarRef.current.scrollLeft = Math.max(0, todayCell.offsetLeft - calendarRef.current.clientWidth / 2 + todayCell.clientWidth / 2);
+    scrollCalendarToElement(calendar, todayCell, false);
+    window.requestAnimationFrame(() => {
+      scrollCalendarToElement(calendar, todayCell, false);
+    });
     positionedOnce.current = true;
   }, [calendarRef, timeline.cells]);
   const drop = async (event: React.DragEvent, cell: TimelineCell) => {
@@ -3344,7 +3427,7 @@ function TimelineGrid({ timeline, graph, yoncConfig, directions = [], selectedId
       openRange(node);
       window.requestAnimationFrame(() => {
         const cell = calendarRef.current?.querySelector<HTMLElement>(`[data-date="${node.planned_start}"]`);
-        if (cell && calendarRef.current) calendarRef.current.scrollTo({ left: Math.max(0, cell.offsetLeft - calendarRef.current.clientWidth / 2 + cell.clientWidth / 2), behavior: "smooth" });
+        if (cell && calendarRef.current) scrollCalendarToElement(calendarRef.current, cell, true);
       });
     } else onSelect(node.id);
   };
@@ -3837,8 +3920,8 @@ function TimelineView({ timeline, graph, yoncConfig, directions = [], selectedId
     const calendar = calendarRef.current;
     if (!calendar) return;
     if (direction === 0) {
-      const today = calendar.querySelector<HTMLElement>(`[data-date="${new Date().toISOString().slice(0, 10)}"]`);
-      if (today) calendar.scrollTo({ left: Math.max(0, today.offsetLeft - calendar.clientWidth / 2 + today.clientWidth / 2), behavior: "smooth" });
+      const today = calendar.querySelector<HTMLElement>(".day-cell.today") || calendar.querySelector<HTMLElement>(`[data-date="${new Date().toISOString().slice(0, 10)}"]`);
+      if (today) scrollCalendarToElement(calendar, today, true);
       return;
     }
     calendar.scrollBy({ left: direction * 13 * 49, behavior: "smooth" });
@@ -3851,10 +3934,7 @@ function TimelineView({ timeline, graph, yoncConfig, directions = [], selectedId
       if (!calendar) return;
       const targetCell = calendar.querySelector<HTMLElement>(`[data-date="${dir.start_date}"]`);
       if (targetCell) {
-        calendar.scrollTo({
-          left: Math.max(0, targetCell.offsetLeft - calendar.clientWidth / 2 + targetCell.clientWidth / 2),
-          behavior: "smooth",
-        });
+        scrollCalendarToElement(calendar, targetCell, true);
       }
     });
   };

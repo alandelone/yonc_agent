@@ -63,6 +63,7 @@ class GraphNode(Base):
     placement_source: Mapped[str | None] = mapped_column(String(30), nullable=True)
     last_user_adjusted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     archived_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    portfolio_role: Mapped[str | None] = mapped_column(String(20), nullable=True)
     legacy_metadata: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
     remote_baseline: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
@@ -90,6 +91,7 @@ class FocusSession(Base):
     node_id: Mapped[str] = mapped_column(String(36), ForeignKey("graph_nodes.id"), nullable=False, index=True)
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
     ended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    duration_seconds: Mapped[int | None] = mapped_column(Integer, nullable=True)
     source: Mapped[str] = mapped_column(String(30), default="web", nullable=False)
 
 
@@ -167,9 +169,29 @@ class GraphMeta(Base):
     __tablename__ = "graph_meta"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, default=1)
+    database_id: Mapped[str] = mapped_column(String(36), default=new_id, nullable=False)
     graph_version: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
-    schema_version: Mapped[str] = mapped_column(String(20), default="1.1", nullable=False)
+    schema_version: Mapped[str] = mapped_column(String(20), default="1.2", nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+
+class ExecutionReceipt(Base):
+    __tablename__ = "execution_receipts"
+
+    operation_id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    node_id: Mapped[str] = mapped_column(String(36), ForeignKey("graph_nodes.id"), nullable=False, index=True)
+    action: Mapped[str] = mapped_column(String(20), nullable=False)
+    semantic_digest: Mapped[str] = mapped_column(String(64), nullable=False)
+    decision_origin: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    actor: Mapped[str] = mapped_column(String(50), default="honc", nullable=False)
+    state_before: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    state_after: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    batch_id: Mapped[str] = mapped_column(String(36), ForeignKey("operation_batches.id"), nullable=False, index=True)
+    graph_version_before: Mapped[int] = mapped_column(Integer, nullable=False)
+    graph_version_after: Mapped[int] = mapped_column(Integer, nullable=False)
+    response_payload: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    undone_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
 
 
 class OperationBatch(Base):

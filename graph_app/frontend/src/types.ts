@@ -1,6 +1,7 @@
 export type WorkType = "UNCLASSIFIED" | "GOAL" | "DELIVERABLE" | "WORK_PACKAGE" | "ACTION";
 export type Stage = "CAPTURED" | "PLANNING" | "READY" | "EXECUTION" | "REVIEW" | "CLOSED";
 export type Status = "TODO" | "DOING" | "BLOCKED" | "DONE" | "CANCELLED" | "SUPERSEDED";
+export type PortfolioRole = "MAIN" | "SUPPORT" | "PARKED" | null;
 
 export interface Forecast {
   node_id: string;
@@ -21,6 +22,7 @@ export interface GraphNode {
   status: Status;
   status_reason: string | null;
   parent_id: string | null;
+  portfolio_role?: PortfolioRole;
   wbs_level: number | null;
   description: string | null;
   start_cue: string | null;
@@ -29,6 +31,7 @@ export interface GraphNode {
   required: boolean;
   tags: Record<string, unknown>;
   estimated_effort_minutes: number | null;
+  observed_work_seconds?: number;
   planned_start: string | null;
   planned_end: string | null;
   deadline: string | null;

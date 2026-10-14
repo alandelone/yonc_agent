@@ -14,7 +14,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     serve = sub.add_parser("serve", help="Run the local web app")
     serve.add_argument("--host", default="127.0.0.1")
-    serve.add_argument("--port", default=8765, type=int)
+    serve.add_argument("--port", default=8766, type=int)
     importer = sub.add_parser("import-legacy", help="Import current JSON state into SQLite")
     importer.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

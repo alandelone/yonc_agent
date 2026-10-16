@@ -20,26 +20,13 @@
       "raw": "8.2 | trace | 睡前15 | yesterday got done ?"
     },
     {
-      "start_hour": 9,
+      "start_hour": 16,
       "end_hour": null,
       "section": 1,
-      "cron_type": "alert",
-      "name_in_db": "eat_bh",
-      "description": "六分饱，咬15次",
-      "raw": "9.1 | alert | eat_bh | 六分饱，咬15次"
-    },
-    {
-      "start_hour": 9,
-      "end_hour": [
-        12,
-        15,
-        18
-      ],
-      "section": 3,
-      "cron_type": "traceXlt",
+      "cron_type": "trace",
       "name_in_db": "锻体tod",
-      "description": "what type? (where are u today ?) >> remind later to start",
-      "raw": "9,12,15,18 | traceXlt | 锻体tod |  what type? (where are u today ?) >> remind later to start"
+      "description": "八段锦和游泳",
+      "raw": "16.1 | trace | 锻体tod | 八段锦和游泳"
     },
     {
       "start_hour": 9,
@@ -56,8 +43,8 @@
       "section": 2,
       "cron_type": "trace",
       "name_in_db": "eat_bh",
-      "description": "六分饱，咬15次",
-      "raw": "12.2 | trace | eat_bh | 六分饱，咬15次"
+      "description": "六分饱，每口咀嚼 20 次",
+      "raw": "12.2 | trace | eat_bh | 六分饱，每口咀嚼 20 次"
     },
     {
       "start_hour": 15,
@@ -69,13 +56,13 @@
       "raw": "15.1  | trace | FullRest |  Clear Dofi:100 次 意念数腹式呼吸+ 伏魔经Loop"
     },
     {
-      "start_hour": 18,
+      "start_hour": 19,
       "end_hour": null,
       "section": 1,
       "cron_type": "trace",
       "name_in_db": "eat_bh",
-      "description": "六分饱，咬15次",
-      "raw": "18.1  | trace | eat_bh | 六分饱，咬15次"
+      "description": "六分饱，每口咀嚼 20 次",
+      "raw": "19.2 | trace | eat_bh | 六分饱，每口咀嚼 20 次 (19:30)"
     },
     {
       "start_hour": 21,

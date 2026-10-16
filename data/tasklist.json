@@ -11953,12 +11953,11 @@
   "Cron": [
     "8.1 | trace | 晨仪:💊 | Eat Medi, Supplement",
     "8.2 | trace | 睡前15 | yesterday got done ?",
-    "9.1 | alert | eat_bh | 六分饱，咬15次",
-    "9,12,15,18 | traceXlt | 锻体tod |  what type? (where are u today ?) >> remind later to start",
+    "16.1 | trace | 锻体tod | 八段锦和游泳",
     "9-18.3 | Trighear | OffJobBh |  Toilet Mode record and resting",
-    "12.2 | trace | eat_bh | 六分饱，咬15次",
+    "12.2 | trace | eat_bh | 六分饱，每口咀嚼 20 次",
     "15.1  | trace | FullRest |  Clear Dofi:100 次 意念数腹式呼吸+ 伏魔经Loop",
-    "18.1  | trace | eat_bh | 六分饱，咬15次",
+    "19.2 | trace | eat_bh | 六分饱，每口咀嚼 20 次 (19:30)",
     "21.1 | trace | 泡脚 | 泡脚alert",
     "21.2 | trace | Dairy | Record Daily",
     "21.2 | trace | 睡前15 | 保养suggestion, 宝宝&me睡前保养(肌肤，保养头发，保养按摩),精进"
